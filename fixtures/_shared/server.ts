@@ -93,5 +93,5 @@ export async function startFixtureServer(opts: { handler: SiteHandler; logFile?:
     server.listen(opts.port ?? 0, "127.0.0.1", () => resolve());
   });
   const port = (server.address() as AddressInfo).port;
-  return { origin: `http://127.0.0.1:${port}`, log, state, close: () => new Promise((r) => server.close(() => r())) };
+  return { origin: `http://127.0.0.1:${port}`, log, state, close: () => new Promise((r) => { server.close(() => r()); server.closeAllConnections(); }) };
 }

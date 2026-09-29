@@ -81,8 +81,15 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
     const u = new URL(url);
     const pageId = pageIdOf(u);
     const base = { browser: o.browser, url, runDir: o.runDir, pageId, writeShots: o.writeShots, tiles: o.tiles, collectFxMarkers: o.collectFxMarkers, throttle, newContext: o.newContext };
-    const d = await captureViewport({ ...base, vp: "D" });
-    const m = await captureViewport({ ...base, vp: "M" });
+    const once = async (vp: VP) => {
+      try {
+        return await captureViewport({ ...base, vp });
+      } catch {
+        return captureViewport({ ...base, vp }); // одна повторна спроба (watchdog/збій сторінки)
+      }
+    };
+    const d = await once("D");
+    const m = await once("M");
     const type = classifyPageType(d.capture);
     const pathOnly = u.pathname + u.search;
     return { url, path: pathOnly, page_id: pageId, page_type: type, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };

@@ -3,7 +3,7 @@
  * Запуск (пісочниця Chromium не стартує під root, DEV-25): bash scripts/run-as-sitelens.sh pnpm run audit:fixture
  * Пише в planning/qa/artifacts/sprint-1a/{shop,shop-clean,mutants/M*,controls/*}/ і summary.json.
  */
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,7 +18,6 @@ const SHOP_PORT = 4210;
 const CLEAN_PORT = 4211;
 const AUX_PORT = 4212;
 
-const read = <T>(f: string): T => JSON.parse(readFileSync(f, "utf8")) as T;
 const fresh = (d: string) => {
   rmSync(d, { recursive: true, force: true });
   mkdirSync(d, { recursive: true });

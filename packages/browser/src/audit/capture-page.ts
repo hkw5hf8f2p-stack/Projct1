@@ -92,6 +92,12 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
   const failed: Array<{ url: string; resource_type: string; failure: string }> = [];
   let jsErrors = 0;
 
+  // watchdog: зависла операція сторінки не має блокувати аудит (SPEC §48 ізоляція збоїв) — закриваємо контекст, виклик кине
+  let timedOut = false;
+  const watchdog = setTimeout(() => {
+    timedOut = true;
+    void context.close().catch(() => undefined);
+  }, 60_000);
   try {
     await installMethodGuard(context, blocked);
     const page = await context.newPage();
@@ -274,7 +280,11 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     void _s;
     await writeFile(path.join(o.runDir, files.capture), JSON.stringify(slim, null, 2) + "\n");
     return { capture, timing: metrics };
+  } catch (e) {
+    if (timedOut) throw new Error(`capture watchdog 60s: ${o.url} ${o.vp}`);
+    throw e;
   } finally {
-    await context.close();
+    clearTimeout(watchdog);
+    await context.close().catch(() => undefined);
   }
 }

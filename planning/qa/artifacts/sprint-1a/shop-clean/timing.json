@@ -1,16 +1,16 @@
 {
   "index": {
     "D": {
-      "dom_content_loaded_ms": 15.400000000139698,
-      "load_ms": 19.800000000046566,
-      "first_paint_ms": 60,
-      "fcp_ms": 60,
+      "dom_content_loaded_ms": 20.699999999720603,
+      "load_ms": 36.6999999997206,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
       "resource_count": 1,
       "transfer_bytes": 13859
     },
     "M": {
-      "dom_content_loaded_ms": 23.0999999998603,
-      "load_ms": 23.300000000046566,
+      "dom_content_loaded_ms": 24.5,
+      "load_ms": 24.59999999962747,
       "first_paint_ms": 36,
       "fcp_ms": 36,
       "resource_count": 1,
@@ -19,52 +19,52 @@
   },
   "catalog": {
     "D": {
-      "dom_content_loaded_ms": 18.199999999953434,
-      "load_ms": 46.699999999953434,
-      "first_paint_ms": 68,
-      "fcp_ms": 68,
+      "dom_content_loaded_ms": 15.299999999813735,
+      "load_ms": 37.799999999813735,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
       "resource_count": 3,
       "transfer_bytes": 7211
     },
     "M": {
-      "dom_content_loaded_ms": 40.300000000046566,
-      "load_ms": 43,
-      "first_paint_ms": 44,
-      "fcp_ms": 44,
+      "dom_content_loaded_ms": 25,
+      "load_ms": 35.5,
+      "first_paint_ms": 36,
+      "fcp_ms": 36,
       "resource_count": 3,
       "transfer_bytes": 7211
     }
   },
   "product-glass-kettle": {
     "D": {
-      "dom_content_loaded_ms": 25.600000000093132,
-      "load_ms": 25.800000000046566,
-      "first_paint_ms": 52,
-      "fcp_ms": 52,
+      "dom_content_loaded_ms": 16.799999999813735,
+      "load_ms": 23.899999999906868,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
       "resource_count": 1,
       "transfer_bytes": 7311
     },
     "M": {
-      "dom_content_loaded_ms": 33.0999999998603,
-      "load_ms": 33.5,
-      "first_paint_ms": 36,
-      "fcp_ms": 36,
+      "dom_content_loaded_ms": 16.899999999906868,
+      "load_ms": 27.100000000093132,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
       "resource_count": 1,
       "transfer_bytes": 7311
     }
   },
   "product-travel-thermos": {
     "D": {
-      "dom_content_loaded_ms": 15.399999999906868,
-      "load_ms": 31.0999999998603,
-      "first_paint_ms": 56,
-      "fcp_ms": 56,
+      "dom_content_loaded_ms": 20,
+      "load_ms": 34.799999999813735,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
       "resource_count": 1,
       "transfer_bytes": 7310
     },
     "M": {
-      "dom_content_loaded_ms": 17.199999999953434,
-      "load_ms": 31.4000000001397,
+      "dom_content_loaded_ms": 17.799999999813735,
+      "load_ms": 34.09999999962747,
       "first_paint_ms": 40,
       "fcp_ms": 40,
       "resource_count": 1,
@@ -73,34 +73,34 @@
   },
   "product-wooden-board": {
     "D": {
-      "dom_content_loaded_ms": 25.600000000093132,
-      "load_ms": 25.899999999906868,
-      "first_paint_ms": 52,
-      "fcp_ms": 52,
+      "dom_content_loaded_ms": 18.399999999906868,
+      "load_ms": 33.5,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
       "resource_count": 1,
       "transfer_bytes": 7272
     },
     "M": {
-      "dom_content_loaded_ms": 16.5,
-      "load_ms": 27.899999999906868,
-      "first_paint_ms": 40,
-      "fcp_ms": 40,
+      "dom_content_loaded_ms": 32.60000000009313,
+      "load_ms": 33,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
       "resource_count": 1,
       "transfer_bytes": 7272
     }
   },
   "shipping": {
     "D": {
-      "dom_content_loaded_ms": 16.800000000046566,
-      "load_ms": 17.399999999906868,
+      "dom_content_loaded_ms": 20.399999999906868,
+      "load_ms": 20.5,
       "first_paint_ms": 40,
       "fcp_ms": 40,
       "resource_count": 0,
       "transfer_bytes": 4877
     },
     "M": {
-      "dom_content_loaded_ms": 14.800000000046566,
-      "load_ms": 15.700000000186265,
+      "dom_content_loaded_ms": 16.199999999720603,
+      "load_ms": 17.199999999720603,
       "first_paint_ms": 32,
       "fcp_ms": 32,
       "resource_count": 0,
@@ -109,18 +109,18 @@
   },
   "about": {
     "D": {
-      "dom_content_loaded_ms": 17.300000000046566,
-      "load_ms": 18,
-      "first_paint_ms": 40,
-      "fcp_ms": 40,
+      "dom_content_loaded_ms": 18,
+      "load_ms": 18.700000000186265,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
       "resource_count": 0,
       "transfer_bytes": 4832
     },
     "M": {
-      "dom_content_loaded_ms": 21.899999999906868,
-      "load_ms": 21.899999999906868,
-      "first_paint_ms": 36,
-      "fcp_ms": 36,
+      "dom_content_loaded_ms": 28.899999999906868,
+      "load_ms": 29.799999999813735,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
       "resource_count": 0,
       "transfer_bytes": 4832
     }

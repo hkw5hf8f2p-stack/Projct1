@@ -5,7 +5,7 @@
 export const SHIP_SRC = String.raw`(?<!\p{L})(доставк\p{L}*|відправк\p{L}*|shipping|delivery|нова пошта|укрпошта)(?!\p{L})`;
 export const SHIP_PATH_SRC = String.raw`/shipping|/delivery|/dostavka`;
 export const CTA_SRC = String.raw`^(купити|придбати|замовити|оформити( замовлення)?|(додати )?(в|у|до)\s+кошик[аи]?|buy( now)?|add to (cart|bag|basket)|order( now)?)(?!\p{L})`;
-const SP = String.raw`    `;
+const SP = "\\u00a0\\u202f\\u2009 ";
 export const PRICE_SRC =
   String.raw`(?<![\p{L}\d])(?:[$€£₴]\s?\d{1,3}(?:[${SP}.,]\d{3})*(?:[.,]\d{1,2})?|\d{1,3}(?:[${SP}.,]\d{3})*(?:[.,]\d{1,2})?[${SP}]?(?:грн\.?|₴|uah|usd|eur|zł|\$|€))(?!\p{L})`;
 export const PRICE_EXCL_SRC = String.raw`(?<!\p{L})(від|from|економія|знижка|save)(?!\p{L})`;
