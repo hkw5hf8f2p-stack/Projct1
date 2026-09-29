@@ -1,0 +1,115 @@
+{
+  "scenario": "(в) проксі є, --proxy-bypass-list=<-loopback> прибрано",
+  "page_loaded": true,
+  "canary_hits": 7,
+  "hits": [
+    {
+      "ts": "2026-09-29T21:27:55.266Z",
+      "method": "GET",
+      "url": "/img",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.266Z",
+      "method": "GET",
+      "url": "/css",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.267Z",
+      "method": "GET",
+      "url": "/decimal-img",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.286Z",
+      "method": "GET",
+      "url": "/iframe",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.289Z",
+      "method": "GET",
+      "url": "/fetch",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.308Z",
+      "method": "GET",
+      "url": "/redirect",
+      "host": "127.0.0.2:4199"
+    },
+    {
+      "ts": "2026-09-29T21:27:55.395Z",
+      "method": "GET",
+      "url": "/popup",
+      "host": "127.0.0.2:4199"
+    }
+  ],
+  "proxy_decisions": [
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/attack.html",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "93.184.216.34"
+      ],
+      "connected_ip": "93.184.216.34"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "metadata.google.internal",
+      "port": 80,
+      "path": "/computeMetadata/v1/",
+      "decision": "deny",
+      "reason": "заборонене ім'я хоста metadata.google.internal (metadata/loopback)",
+      "resolved": [],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/redir-canary",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "93.184.216.34"
+      ],
+      "connected_ip": "93.184.216.34"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/redir-private",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "93.184.216.34"
+      ],
+      "connected_ip": "93.184.216.34"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "10.0.0.1",
+      "port": 80,
+      "path": "/admin",
+      "decision": "deny",
+      "reason": "IP-літерал 10.0.0.1 заблоковано: 10.0.0.0/8 private RFC1918 (§49)",
+      "resolved": [
+        "10.0.0.1"
+      ],
+      "connected_ip": null
+    }
+  ],
+  "layer2_blocked": []
+}

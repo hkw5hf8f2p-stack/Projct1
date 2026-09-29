@@ -1,0 +1,189 @@
+{
+  "scenario": "(б2) secureLaunch fixture, allow-list лише http://127.0.0.1:35521",
+  "page_loaded": true,
+  "canary_hits": 0,
+  "hits": [],
+  "proxy_decisions": [
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.1",
+      "port": 35521,
+      "path": "/attack.html",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "127.0.0.1"
+      ],
+      "connected_ip": "127.0.0.1"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/img",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/css",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/decimal-img",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/fetch",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/iframe",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "169.254.169.254",
+      "port": 80,
+      "path": "/latest/meta-data/",
+      "decision": "deny",
+      "reason": "IP-літерал 169.254.169.254 заблоковано: 169.254.0.0/16 link-local / cloud metadata 169.254.169.254 (§49)",
+      "resolved": [
+        "169.254.169.254"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "metadata.google.internal",
+      "port": 80,
+      "path": "/computeMetadata/v1/",
+      "decision": "deny",
+      "reason": "заборонене ім'я хоста metadata.google.internal (metadata/loopback)",
+      "resolved": [],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "[::ffff:7f00:2]",
+      "port": 4199,
+      "path": "/mapped",
+      "decision": "deny",
+      "reason": "IP-літерал 0:0:0:0:0:ffff:7f00:2 заблоковано: ::ffff:0:0/96 IPv4-mapped (B1); вбудована IPv4 127.0.0.2",
+      "resolved": [
+        "0:0:0:0:0:ffff:7f00:2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.1",
+      "port": 35521,
+      "path": "/redir-canary",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "127.0.0.1"
+      ],
+      "connected_ip": "127.0.0.1"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.1",
+      "port": 35521,
+      "path": "/redir-private",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "127.0.0.1"
+      ],
+      "connected_ip": "127.0.0.1"
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/redirect",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "10.0.0.1",
+      "port": 80,
+      "path": "/admin",
+      "decision": "deny",
+      "reason": "IP-літерал 10.0.0.1 заблоковано: 10.0.0.0/8 private RFC1918 (§49)",
+      "resolved": [
+        "10.0.0.1"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/popup",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    }
+  ],
+  "layer2_blocked": []
+}

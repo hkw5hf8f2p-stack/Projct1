@@ -1,0 +1,70 @@
+{
+  "root_pid": 22824,
+  "root_env_keys": [
+    "PATH",
+    "HOME",
+    "TMPDIR",
+    "XDG_CONFIG_HOME",
+    "XDG_CACHE_HOME"
+  ],
+  "non_allowlisted_keys": [],
+  "leaked_count": 0,
+  "processes": [
+    {
+      "pid": 22824,
+      "type": "browser",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22827,
+      "type": "zygote",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22828,
+      "type": "zygote",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22830,
+      "type": "zygote",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22847,
+      "type": "gpu-process",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22860,
+      "type": "utility",
+      "seccomp": 0,
+      "env_readable": true,
+      "no_sandbox": false
+    },
+    {
+      "pid": 22873,
+      "type": "renderer",
+      "seccomp": 2,
+      "env_readable": true,
+      "no_sandbox": false
+    }
+  ],
+  "browser_env_passed": [
+    "PATH",
+    "HOME",
+    "TMPDIR",
+    "XDG_CONFIG_HOME",
+    "XDG_CACHE_HOME"
+  ]
+}

@@ -1,0 +1,154 @@
+
+ RUN  v3.2.7 /home/user/Projct1
+
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > CONNECT: публічне ім'я → 1 резолв, TCP саме до перевіреної IP, тунель працює 15ms
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > DNS rebinding (резолвер: 1-й раз публічна, далі 127.0.0.1): наївний «перевір, потім підключись за ім'ям» FAIL, наш проксі PASS 29ms
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > змішані записи: одна заблокована A/AAAA серед публічних → відмова цілком (контроль: «лише перша адреса» пропустив би) 4ms
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > CONNECT до IP-літералів у будь-якому записі і до metadata-імен → 403 без резолву й без TCP 7ms
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > plain HTTP absolute-URI: дозволена ціль проксюється з оригінальним Host і TCP до перевіреної IP; metadata → 403 14ms
+ ✓ packages/browser/test/net-proxy.test.ts > egress-проксі: резолв → перевірка всіх A/AAAA → TCP до перевіреної IP > fixture-режим: дозволено рівно allow-list host:port; prod блокує той самий loopback; конфіг-помилки — виняток 11ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 127.0.0.1 → 127.0.0.0/8 7ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 127.255.255.254 → 127.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 127.0.0.2 → 127.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 10.0.0.1 → 10.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 10.255.255.255 → 10.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 172.16.0.1 → 172.16.0.0/12 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 172.31.255.255 → 172.16.0.0/12 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 192.168.0.1 → 192.168.0.0/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 192.168.255.255 → 192.168.0.0/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 169.254.169.254 → 169.254.0.0/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 169.254.0.1 → 169.254.0.0/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::1 → ::1/128 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок fc00::1 → fc00::/7 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок fd00:ec2::254 → fc00::/7 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок fdff:ffff::1 → fc00::/7 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок fe80::1 → fe80::/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок febf::1 → fe80::/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 0.0.0.0 → 0.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 0.1.2.3 → 0.0.0.0/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 100.64.0.1 → 100.64.0.0/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 100.127.255.255 → 100.64.0.0/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 100.100.100.200 → 100.64.0.0/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 224.0.0.1 → 224.0.0.0/4 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 239.255.255.250 → 224.0.0.0/4 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ff02::1 → ff00::/8 9ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ff05::2 → ff00::/8 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::ffff:127.0.0.1 → ::ffff:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::ffff:7f00:1 → ::ffff:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::ffff:169.254.169.254 → ::ffff:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::ffff:8.8.8.8 → ::ffff:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок [::ffff:10.0.0.1] → ::ffff:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 64:ff9b::7f00:1 → 64:ff9b::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 64:ff9b::a9fe:a9fe → 64:ff9b::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 64:ff9b::8.8.8.8 → 64:ff9b::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 192.0.0.192 → 192.0.0.0/24 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 192.0.2.1 → 192.0.2.0/24 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 198.51.100.7 → 198.51.100.0/24 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 203.0.113.9 → 203.0.113.0/24 1ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 198.18.0.1 → 198.18.0.0/15 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 198.19.255.255 → 198.18.0.0/15 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 192.88.99.1 → 192.88.99.0/24 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 240.0.0.1 → 240.0.0.0/4 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 255.255.255.255 → 255.255.255.255/32 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 168.63.129.16 → 168.63.129.16/32 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок :: → ::/128 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::7f00:1 → ::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::127.0.0.1 → ::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::ffff:0:7f00:1 → ::ffff:0:0:0/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 64:ff9b:1::1 → 64:ff9b:1::/48 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 100::1 → 100::/64 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2002:7f00:1::1 → 2002::/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2002:c0a8:101:: → 2002::/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2001:0:4136:e378:8000:63bf:80ff:fffe → 2001::/32 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2001:db8::1 → 2001:db8::/32 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2001:10::1 → 2001:10::/28 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 2001:20::1 → 2001:20::/28 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 3fff::1 → 3fff::/20 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 5f00::1 → 5f00::/16 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок fec0::1 → fec0::/10 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 4000::1 → !2000::/3 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок ::2 → ::/96 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > блок 1:: → !2000::/3 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 8.8.8.8 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 1.1.1.1 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 93.184.216.34 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 100.63.255.255 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 100.128.0.0 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 172.15.255.255 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 172.32.0.0 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 192.167.255.255 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 192.169.0.0 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 169.253.255.255 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 223.255.255.255 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 11.0.0.1 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 2606:4700:4700::1111 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 2a00:1450:4001:80b::200e (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > дозвіл публічної 2001:4860:4860::8888 (перевірка вміє сказати «так» — межі діапазонів) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 2130706433 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 017700000001 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0x7f000001 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0x7F.1 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0177.0.0.1 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0x7f.0.0.1 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 127.1 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 127.0.1 = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0 = 0.0.0.0 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0x0 = 0.0.0.0 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 2852039166 = 169.254.169.254 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0xa9fea9fe = 169.254.169.254 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0251.0376.0251.0376 = 169.254.169.254 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 169.254.43518 = 169.254.169.254 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 10.1 = 10.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 167772161 = 10.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 0xc0.0xa8.1.1 = 192.168.1.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 3232235777 = 192.168.1.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > запис 127.0.0.1. = 127.0.0.1 і заблоковано 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > некоректні числові записи не проходять як ім'я хоста 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > вбудована IPv4 названа в причині (mapped / NAT64 / 6to4 / Teredo) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > IPv6-парсер: zone id, дужки, некоректні форми 0ms
+ ✓ packages/browser/test/net-classify.test.ts > SSRF-класифікатор IP (§49 + B1) > КОНТРОЛЬ «вміє впасти»: наївний класифікатор лише за рядковими префіксами §49 пропускає більшість векторів B1 1ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > схеми поза http/https відкидаються 0ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > числові записи хоста в URL → канонічна IPv4 → блок 1ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > userinfo відкидається (плутанина public@private) 0ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > metadata-імена та локальні зони блокуються до резолву 3ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > IDN → punycode, порт і дефолтні порти 1ms
+ ✓ packages/browser/test/net-classify.test.ts > нормалізація URL цілі > IDN-гомогліф точки/цифри: повноширинні цифри нормалізуються в IPv4 і блокуються 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/?add-to-cart=42 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/product/x?add_to_cart=1 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/cart/add?id=1 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/checkout 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/checkout/step-2 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/logout 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/account/sign-out 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/item?action=delete 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/?action=anything 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/items/5/delete 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/newsletter/unsubscribe?u=1 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/wp-admin/ 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/wp-login.php 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/ADD-TO-CART/9 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > deny https://shop.test/%63heckout 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/ 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/product/42 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/cart 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/shipping 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/about 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/category?page=2 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > allow https://shop.test/blog/checkout-tips-guide 0ms
+ ✓ packages/browser/test/net-classify.test.ts > deny-list URL дій (G0-11) > текст елемента 1ms
+ ✓ packages/browser/test/secure-browser.test.ts > канарка 127.0.0.2:4199 (G0-3, DEV-8) > (а) контроль БЕЗ проксі: канарка отримує запити від img/css/iframe/fetch/redirect/popup 1829ms
+ ✓ packages/browser/test/secure-browser.test.ts > канарка 127.0.0.2:4199 (G0-3, DEV-8) > (б) prod-режим через проксі: 0 звернень до канарки, сторінка завантажилась, кожна спроба залогована як deny 1840ms
+ ✓ packages/browser/test/secure-browser.test.ts > канарка 127.0.0.2:4199 (G0-3, DEV-8) > (б2) fixture-режим: дозволено рівно origin фікстури, канарка на іншому loopback — 0 1803ms
+ ✓ packages/browser/test/secure-browser.test.ts > канарка 127.0.0.2:4199 (G0-3, DEV-8) > (в) контроль БЕЗ <-loopback>: Chromium обходить проксі для loopback → канарка отримує запит (прапорець потрібен) 1818ms
+ ✓ packages/browser/test/secure-browser.test.ts > шар 2: не-GET/HEAD і WebSocket (G0-11, DEV-12) > контроль: той самий проксі, контекст БЕЗ шару 2 → сервер отримує не-GET і WS upgrade (FAIL) 1932ms
+ ✓ packages/browser/test/secure-browser.test.ts > шар 2: не-GET/HEAD і WebSocket (G0-11, DEV-12) > захищений контекст: сервер 0 не-GET, 0 WS; лог блоків ≥1 на кожну спробу 1860ms
+ ✓ packages/browser/test/secure-browser.test.ts > середовище й пісочниця процесу Chromium (G0-4) > контроль: Chromium без очищення env і без пісочниці → фейковий ключ у /proc/<pid>/environ, --no-sandbox у cmdline (FAIL) 192ms
+ ✓ packages/browser/test/secure-browser.test.ts > середовище й пісочниця процесу Chromium (G0-4) > secureLaunch: 0 секретів у environ усіх читаних процесів дерева, env лише з білого списку, без --no-sandbox, seccomp-пісочниця активна 223ms
+ ✓ packages/browser/test/secure-browser.test.ts > середовище й пісочниця процесу Chromium (G0-4) > secureLaunch відмовляє в небезпечних опціях контексту і в fixtureOrigins у prod 160ms
+ ✓ packages/browser/test/secure-browser.test.ts > інтеграція: captureSlice без переданого браузера йде через secureLaunch (fixture-режим) > defective.html → ті самі 3 Evidence, що й у slice-тесті 1708ms
+
+ Test Files  3 passed (3)
+      Tests  145 passed (145)
+   Start at  21:25:13
+   Duration  14.58s (transform 554ms, setup 0ms, collect 1.40s, tests 13.51s, environment 1ms, prepare 440ms)
+

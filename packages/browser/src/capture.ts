@@ -1,9 +1,10 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { chromium, type Browser } from "playwright";
+import type { Browser } from "playwright";
 import { runAxe } from "./detectors/axe.js";
 import { detectHorizontalOverflow } from "./detectors/overflow.js";
 import { evidenceId, type Evidence } from "./evidence.js";
+import { secureLaunch } from "./secure-launch.js";
 
 export const VIEWPORTS = {
   desktop: { width: 1440, height: 1000 },
@@ -19,8 +20,9 @@ export interface SliceResult {
 
 /**
  * Мінімальний наскрізний зріз S1a крок 2: одна URL → 2 viewport → скриншоти → axe + overflow → Evidence.
- * Лише локальна фікстура: жодного SSRF-захисту тут немає (це крок 3, S1a), тож URL має бути loopback.
- * Пісочниця Chromium увімкнена без фолбеку (DEV-13): під root launch кине помилку.
+ * Лише локальна фікстура. Власний браузер — через secureLaunch (S1a крок 3): egress-проксі у fixture-режимі з
+ * allow-list рівно origin цієї URL, шар 2 (не-GET/WS), пісочниця без фолбеку, очищений env (G0-3, G0-4).
+ * Переданий ззовні `browser` використовується як є — захист тоді на відповідальності того, хто його запустив.
  */
 export async function captureSlice(opts: { url: string; outDir: string; browser?: Browser }): Promise<SliceResult> {
   const { url, outDir } = opts;
@@ -28,7 +30,8 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
   await mkdir(path.join(outDir, "screenshots"), { recursive: true });
   await mkdir(path.join(outDir, "regions"), { recursive: true });
 
-  const browser = opts.browser ?? (await chromium.launch({ headless: true, chromiumSandbox: true }));
+  const secure = opts.browser ? null : await secureLaunch({ mode: "fixture", fixtureOrigins: [new URL(url).origin] });
+  const browser = opts.browser ?? secure!.browser;
   const evidence: Evidence[] = [];
   const detector_summary = {} as SliceResult["detector_summary"];
   const shots: Record<string, string> = {};
@@ -38,7 +41,7 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
   try {
     for (const name of Object.keys(VIEWPORTS) as ViewportName[]) {
       const vp = VIEWPORTS[name];
-      const context = await browser.newContext({ viewport: vp, acceptDownloads: false, serviceWorkers: "block" });
+      const context = secure ? await secure.newContext({ viewport: vp }) : await browser.newContext({ viewport: vp, acceptDownloads: false, serviceWorkers: "block" });
       try {
         const page = await context.newPage();
         const resp = await page.goto(url, { waitUntil: "load" });
@@ -95,7 +98,7 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
       }
     }
   } finally {
-    if (!opts.browser) await browser.close();
+    if (secure) await secure.close();
   }
 
   evidence.sort((a, b) => a.id.localeCompare(b.id));

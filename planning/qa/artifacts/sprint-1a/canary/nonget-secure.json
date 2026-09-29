@@ -1,0 +1,77 @@
+{
+  "server_requests": [
+    {
+      "ts": "2026-09-29T21:27:58.879Z",
+      "method": "GET",
+      "url": "/forms.html",
+      "host": "attacker.test"
+    }
+  ],
+  "non_get_count": 0,
+  "blocked": [
+    {
+      "ts": "2026-09-29T21:27:58.964Z",
+      "kind": "method",
+      "method": "POST",
+      "url": "http://attacker.test/cart/add",
+      "resource_type": "fetch",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    },
+    {
+      "ts": "2026-09-29T21:27:58.974Z",
+      "kind": "method",
+      "method": "POST",
+      "url": "http://attacker.test/api/order",
+      "resource_type": "fetch",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    },
+    {
+      "ts": "2026-09-29T21:27:58.981Z",
+      "kind": "method",
+      "method": "POST",
+      "url": "http://attacker.test/beacon",
+      "resource_type": "ping",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    },
+    {
+      "ts": "2026-09-29T21:27:58.982Z",
+      "kind": "method",
+      "method": "PUT",
+      "url": "http://attacker.test/xhr",
+      "resource_type": "xhr",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    },
+    {
+      "ts": "2026-09-29T21:27:58.990Z",
+      "kind": "method",
+      "method": "DELETE",
+      "url": "http://attacker.test/del",
+      "resource_type": "fetch",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    },
+    {
+      "ts": "2026-09-29T21:27:58.996Z",
+      "kind": "websocket",
+      "method": "GET",
+      "url": "ws://attacker.test/ws",
+      "resource_type": "websocket",
+      "reason": "WebSocket заблоковано (DEV-8)"
+    },
+    {
+      "ts": "2026-09-29T21:27:59.053Z",
+      "kind": "method",
+      "method": "POST",
+      "url": "http://attacker.test/submit",
+      "resource_type": "document",
+      "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
+    }
+  ],
+  "blocked_per_attempt": {
+    "/cart/add": 1,
+    "/api/order": 1,
+    "/beacon": 1,
+    "/xhr": 1,
+    "/del": 1,
+    "/submit": 1
+  }
+}
