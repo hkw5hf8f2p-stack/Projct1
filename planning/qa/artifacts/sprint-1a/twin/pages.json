@@ -1,0 +1,2864 @@
+[
+  {
+    "id": "index-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/index.html",
+    "page_type": "unknown",
+    "title": "Початок — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/index-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/index-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Час, що пахне літом\" [level=1]\n  - paragraph: Ми робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся.\n  - img \"Загальний вигляд пасіки в горах\"\n  - paragraph:\n    - link \"Подивитися\":\n      - /url: kataloh.html\n  - list:\n    - listitem:\n      - img \"Банка гречаного меду\"\n      - heading \"Мед КМ-12\" [level=3]\n    - listitem:\n      - img \"Набір для початківця\"\n      - heading \"Набір Ф-2\" [level=3]\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nЧас, що пахне літом\n\nМи робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся.\n\nПодивитися\n\nМед КМ-12\nНабір Ф-2\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Час, що пахне літом"
+        },
+        {
+          "level": 3,
+          "text": "Мед КМ-12"
+        },
+        {
+          "level": 3,
+          "text": "Набір Ф-2"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:33043/img/pasika-zahalnyi-plan.png",
+          "alt": "Загальний вигляд пасіки в горах"
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/med-grechka.svg",
+          "alt": "Банка гречаного меду"
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/nabir.svg",
+          "alt": "Набір для початківця"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Початок — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Час, що пахне літом"
+          },
+          {
+            "level": 3,
+            "text": "Мед КМ-12"
+          },
+          {
+            "level": 3,
+            "text": "Набір Ф-2"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 205,
+              "y": 12,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Подивитися",
+        "name": "Подивитися",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 544,
+          "w": 132,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 212,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 186,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/index.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/index.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/index-html/1440x1000/capture.json",
+          "network": "pages/index-html/1440x1000/network.json",
+          "axe": "pages/index-html/1440x1000/axe.json",
+          "dir": "pages/index-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/index-html/390x844/capture.json",
+          "network": "pages/index-html/390x844/network.json",
+          "axe": "pages/index-html/390x844/axe.json",
+          "dir": "pages/index-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/index-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/index-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/index-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/index-html/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 2540,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "kataloh-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/kataloh.html",
+    "page_type": "unknown",
+    "title": "Що у нас є — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/kataloh-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/kataloh-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Що у нас є\" [level=1]\n  - paragraph: Рамки, мед, дим і решта.\n  - text: Рамки та вулики Мед і продукти бджільництва Обладнання для диму Набори для початківців Інструмент\n  - list:\n    - listitem:\n      - link:\n        - /url: tovar-ramka-435.html\n        - img\n      - heading \"Рамка ДБ-435 ВЛ розс.\" [level=3]\n      - link \"Докладніше\":\n        - /url: tovar-ramka-435.html\n    - listitem:\n      - link:\n        - /url: tovar-ramka-435r.html\n        - img\n      - heading \"Рамка ДБ-435 ВЛ розс. Р\" [level=3]\n      - link \"Докладніше\":\n        - /url: tovar-ramka-435r.html\n    - listitem:\n      - heading \"Мед КМ-12 зб.\" [level=3]\n    - listitem:\n      - img\n      - heading \"Дим. апарат ДА-3 нерж.\" [level=3]\n    - listitem:\n      - img \"Набір\"\n      - heading \"Набір Ф-2 ДНЗ/8р\" [level=3]\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nЩо у нас є\n\nРамки, мед, дим і решта.\n\nРамки та вулики\nМед і продукти бджільництва\nОбладнання для диму\nНабори для початківців\nІнструмент\nРамка ДБ-435 ВЛ розс.\nДокладніше\nРамка ДБ-435 ВЛ розс. Р\nДокладніше\nМед КМ-12 зб.\nДим. апарат ДА-3 нерж.\nНабір Ф-2 ДНЗ/8р\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Що у нас є"
+        },
+        {
+          "level": 3,
+          "text": "Рамка ДБ-435 ВЛ розс."
+        },
+        {
+          "level": 3,
+          "text": "Рамка ДБ-435 ВЛ розс. Р"
+        },
+        {
+          "level": 3,
+          "text": "Мед КМ-12 зб."
+        },
+        {
+          "level": 3,
+          "text": "Дим. апарат ДА-3 нерж."
+        },
+        {
+          "level": 3,
+          "text": "Набір Ф-2 ДНЗ/8р"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:33043/img/ramka-a.svg",
+          "alt": null
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/ramka-b.svg",
+          "alt": null
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/med-grechka.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/dymar.svg",
+          "alt": null
+        },
+        {
+          "src": "http://127.0.0.1:33043/img/nabir.svg",
+          "alt": "Набір"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Що у нас є — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Що у нас є"
+          },
+          {
+            "level": 3,
+            "text": "Рамка ДБ-435 ВЛ розс."
+          },
+          {
+            "level": 3,
+            "text": "Рамка ДБ-435 ВЛ розс. Р"
+          },
+          {
+            "level": 3,
+            "text": "Мед КМ-12 зб."
+          },
+          {
+            "level": 3,
+            "text": "Дим. апарат ДА-3 нерж."
+          },
+          {
+            "level": 3,
+            "text": "Набір Ф-2 ДНЗ/8р"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 510,
+              "y": 12,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "tovar-ramka-435.html",
+        "abs": "http://127.0.0.1:33043/tovar-ramka-435.html",
+        "text": "",
+        "name": "",
+        "visible": true,
+        "rect": {
+          "x": 287,
+          "y": 243,
+          "w": 265,
+          "h": 198
+        },
+        "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(1)"
+      },
+      {
+        "href": "tovar-ramka-435.html",
+        "abs": "http://127.0.0.1:33043/tovar-ramka-435.html",
+        "text": "Докладніше",
+        "name": "Докладніше",
+        "visible": true,
+        "rect": {
+          "x": 287,
+          "y": 485,
+          "w": 82,
+          "h": 17
+        },
+        "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(2)"
+      },
+      {
+        "href": "tovar-ramka-435r.html",
+        "abs": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+        "text": "",
+        "name": "",
+        "visible": true,
+        "rect": {
+          "x": 598,
+          "y": 243,
+          "w": 265,
+          "h": 199
+        },
+        "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(1)"
+      },
+      {
+        "href": "tovar-ramka-435r.html",
+        "abs": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+        "text": "Докладніше",
+        "name": "Докладніше",
+        "visible": true,
+        "rect": {
+          "x": 598,
+          "y": 485,
+          "w": 82,
+          "h": 17
+        },
+        "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(2)"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 347,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 321,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/kataloh.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/kataloh.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/kataloh-html/1440x1000/capture.json",
+          "network": "pages/kataloh-html/1440x1000/network.json",
+          "axe": "pages/kataloh-html/1440x1000/axe.json",
+          "dir": "pages/kataloh-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/kataloh-html/390x844/capture.json",
+          "network": "pages/kataloh-html/390x844/network.json",
+          "axe": "pages/kataloh-html/390x844/axe.json",
+          "dir": "pages/kataloh-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/kataloh-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kataloh-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/kataloh-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kataloh-html/390x844/fullpage.png",
+            "width_px": 2148,
+            "height_px": 4650,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "pro-nas-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/pro-nas.html",
+    "page_type": "unknown",
+    "title": "Про нас — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/pro-nas-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/pro-nas-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Про нас\" [level=1]\n  - paragraph: Пасіка «Верховина» працює в Закарпатті з 1986 року. Ми тримаємо 120 сімей бджіл і власний цех із виготовлення рамок.\n  - img \"Наш цех\"\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nПро нас\n\nПасіка «Верховина» працює в Закарпатті з 1986 року. Ми тримаємо 120 сімей бджіл і власний цех із виготовлення рамок.\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Про нас"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:33043/img/dymar.svg",
+          "alt": "Наш цех"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Про нас — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Про нас"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 205,
+              "y": 57,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 216,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 190,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/pro-nas.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/pro-nas.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/pro-nas-html/1440x1000/capture.json",
+          "network": "pages/pro-nas-html/1440x1000/network.json",
+          "axe": "pages/pro-nas-html/1440x1000/axe.json",
+          "dir": "pages/pro-nas-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/pro-nas-html/390x844/capture.json",
+          "network": "pages/pro-nas-html/390x844/network.json",
+          "axe": "pages/pro-nas-html/390x844/axe.json",
+          "dir": "pages/pro-nas-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/pro-nas-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/pro-nas-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/pro-nas-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/pro-nas-html/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "kosh-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/kosh.html",
+    "page_type": "product",
+    "title": "Кошик — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/kosh-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/kosh-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Ваш кошик\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Рамка ДБ-435 ВЛ розс. 1 200 грн\":\n        - cell \"Рамка ДБ-435 ВЛ розс.\"\n        - cell \"1 200 грн\"\n  - table:\n    - rowgroup:\n      - row \"Рамка ДБ-435 ВЛ розс. Р 1 240 грн\":\n        - cell \"Рамка ДБ-435 ВЛ розс. Р\"\n        - cell \"1 240 грн\"\n  - paragraph: \"Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\"\n  - paragraph:\n    - link \"Оформити\":\n      - /url: umovy.html\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nВаш кошик\nРамка ДБ-435 ВЛ розс.\t1 200 грн\nРамка ДБ-435 ВЛ розс. Р\t1 240 грн\n\nРазом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\n\nОформити\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ваш кошик"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Кошик — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Ваш кошик"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 346,
+              "y": 79,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Оформити",
+        "name": "Оформити",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 256,
+          "w": 121,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 276,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 250,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/kosh-html/1440x1000/capture.json",
+          "network": "pages/kosh-html/1440x1000/network.json",
+          "axe": "pages/kosh-html/1440x1000/axe.json",
+          "dir": "pages/kosh-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/kosh-html/390x844/capture.json",
+          "network": "pages/kosh-html/390x844/network.json",
+          "axe": "pages/kosh-html/390x844/axe.json",
+          "dir": "pages/kosh-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/kosh-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/kosh-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html/390x844/fullpage.png",
+            "width_px": 1344,
+            "height_px": 2910,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "tovar-ramka-435-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/tovar-ramka-435.html",
+    "page_type": "unknown",
+    "title": "Рамка ДБ-435 ВЛ розс. — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/tovar-ramka-435-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/tovar-ramka-435-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Рамка ДБ-435 ВЛ розс.\" [level=1]\n  - paragraph: Розсувна рамка для корпусу ДБ.\n  - img \"Рамка ДБ-435 ВЛ розс.\"\n  - paragraph: Виготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n  - paragraph: Комплектується без дроту.\n  - table:\n    - rowgroup:\n      - row \"Параметр Значення\":\n        - cell \"Параметр\"\n        - cell \"Значення\"\n      - row \"Типорозмір 435×300 мм, ДБ\":\n        - cell \"Типорозмір\"\n        - cell \"435×300 мм, ДБ\"\n      - row \"Матеріал липа, ВЛ-сорт\":\n        - cell \"Матеріал\"\n        - cell \"липа, ВЛ-сорт\"\n      - row \"Дротяне армування ДНЗ/8р\":\n        - cell \"Дротяне армування\"\n        - cell \"ДНЗ/8р\"\n  - group: Додатково\n  - paragraph:\n    - link \"Обрати\":\n      - /url: kosh.html?t=a\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nРамка ДБ-435 ВЛ розс.\n\nРозсувна рамка для корпусу ДБ.\n\nВиготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n\nКомплектується без дроту.\n\nПараметр\tЗначення\nТипорозмір\t435×300 мм, ДБ\nМатеріал\tлипа, ВЛ-сорт\nДротяне армування\tДНЗ/8р\nДодатково\n\nОбрати\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Рамка ДБ-435 ВЛ розс."
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:33043/img/ramka-a.svg",
+          "alt": "Рамка ДБ-435 ВЛ розс."
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Рамка ДБ-435 ВЛ розс. — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Рамка ДБ-435 ВЛ розс."
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 346,
+              "y": 12,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "kosh.html?t=a",
+        "abs": "http://127.0.0.1:33043/kosh.html?t=a",
+        "text": "Обрати",
+        "name": "Обрати",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 1278,
+          "w": 98,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1403,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1403,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 424,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 398,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/tovar-ramka-435.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/tovar-ramka-435.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/tovar-ramka-435-html/1440x1000/capture.json",
+          "network": "pages/tovar-ramka-435-html/1440x1000/network.json",
+          "axe": "pages/tovar-ramka-435-html/1440x1000/axe.json",
+          "dir": "pages/tovar-ramka-435-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/tovar-ramka-435-html/390x844/capture.json",
+          "network": "pages/tovar-ramka-435-html/390x844/network.json",
+          "axe": "pages/tovar-ramka-435-html/390x844/axe.json",
+          "dir": "pages/tovar-ramka-435-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/tovar-ramka-435-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/tovar-ramka-435-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1439,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/tovar-ramka-435-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/tovar-ramka-435-html/390x844/fullpage.png",
+            "width_px": 1344,
+            "height_px": 2910,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "tovar-ramka-435r-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+    "page_type": "unknown",
+    "title": "Рамка ДБ-435 ВЛ розс. Р — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/tovar-ramka-435r-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/tovar-ramka-435r-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Рамка ДБ-435 ВЛ розс. Р\" [level=1]\n  - paragraph: Розсувна рамка для корпусу ДБ, редакція Р.\n  - img \"Рамка ДБ-435 ВЛ розс. Р\"\n  - paragraph: Виготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n  - paragraph: Комплектується з дротом.\n  - table:\n    - rowgroup:\n      - row \"Параметр Значення\":\n        - cell \"Параметр\"\n        - cell \"Значення\"\n      - row \"Типорозмір 435×300 мм, ДБ\":\n        - cell \"Типорозмір\"\n        - cell \"435×300 мм, ДБ\"\n      - row \"Матеріал липа, ВЛ-сорт\":\n        - cell \"Матеріал\"\n        - cell \"липа, ВЛ-сорт\"\n      - row \"Дротяне армування ДНЗ/8р\":\n        - cell \"Дротяне армування\"\n        - cell \"ДНЗ/8р\"\n  - group: Додатково\n  - paragraph:\n    - link \"Обрати\":\n      - /url: kosh.html?t=b\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nРамка ДБ-435 ВЛ розс. Р\n\nРозсувна рамка для корпусу ДБ, редакція Р.\n\nВиготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n\nКомплектується з дротом.\n\nПараметр\tЗначення\nТипорозмір\t435×300 мм, ДБ\nМатеріал\tлипа, ВЛ-сорт\nДротяне армування\tДНЗ/8р\nДодатково\n\nОбрати\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Рамка ДБ-435 ВЛ розс. Р"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:33043/img/ramka-b.svg",
+          "alt": "Рамка ДБ-435 ВЛ розс. Р"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Рамка ДБ-435 ВЛ розс. Р — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Рамка ДБ-435 ВЛ розс. Р"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 346,
+              "y": 12,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "kosh.html?t=b",
+        "abs": "http://127.0.0.1:33043/kosh.html?t=b",
+        "text": "Обрати",
+        "name": "Обрати",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 1278,
+          "w": 98,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1403,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1403,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 437,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 411,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/tovar-ramka-435r-html/1440x1000/capture.json",
+          "network": "pages/tovar-ramka-435r-html/1440x1000/network.json",
+          "axe": "pages/tovar-ramka-435r-html/1440x1000/axe.json",
+          "dir": "pages/tovar-ramka-435r-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/tovar-ramka-435r-html/390x844/capture.json",
+          "network": "pages/tovar-ramka-435r-html/390x844/network.json",
+          "axe": "pages/tovar-ramka-435r-html/390x844/axe.json",
+          "dir": "pages/tovar-ramka-435r-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/tovar-ramka-435r-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/tovar-ramka-435r-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1439,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/tovar-ramka-435r-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/tovar-ramka-435r-html/390x844/fullpage.png",
+            "width_px": 1344,
+            "height_px": 2910,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "kosh-html-t-a",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/kosh.html?t=a",
+    "page_type": "product",
+    "title": "Кошик — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/kosh-html-t-a/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/kosh-html-t-a/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Ваш кошик\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Рамка ДБ-435 ВЛ розс. 1 200 грн\":\n        - cell \"Рамка ДБ-435 ВЛ розс.\"\n        - cell \"1 200 грн\"\n  - paragraph: \"Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\"\n  - paragraph:\n    - link \"Оформити\":\n      - /url: umovy.html\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nВаш кошик\nРамка ДБ-435 ВЛ розс.\t1 200 грн\n\nРазом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\n\nОформити\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ваш кошик"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Кошик — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Ваш кошик"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 346,
+              "y": 88,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Оформити",
+        "name": "Оформити",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 198,
+          "w": 121,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 242,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 216,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html?t=a",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html?t=a",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/kosh-html-t-a/1440x1000/capture.json",
+          "network": "pages/kosh-html-t-a/1440x1000/network.json",
+          "axe": "pages/kosh-html-t-a/1440x1000/axe.json",
+          "dir": "pages/kosh-html-t-a/1440x1000"
+        },
+        "M": {
+          "capture": "pages/kosh-html-t-a/390x844/capture.json",
+          "network": "pages/kosh-html-t-a/390x844/network.json",
+          "axe": "pages/kosh-html-t-a/390x844/axe.json",
+          "dir": "pages/kosh-html-t-a/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/kosh-html-t-a/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html-t-a/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/kosh-html-t-a/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html-t-a/390x844/fullpage.png",
+            "width_px": 1344,
+            "height_px": 2910,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "kosh-html-t-b",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/kosh.html?t=b",
+    "page_type": "product",
+    "title": "Кошик — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/kosh-html-t-b/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/kosh-html-t-b/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Ваш кошик\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Рамка ДБ-435 ВЛ розс. Р 1 240 грн\":\n        - cell \"Рамка ДБ-435 ВЛ розс. Р\"\n        - cell \"1 240 грн\"\n  - paragraph: \"Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\"\n  - paragraph:\n    - link \"Оформити\":\n      - /url: umovy.html\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nВаш кошик\nРамка ДБ-435 ВЛ розс. Р\t1 240 грн\n\nРазом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн.\n\nОформити\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ваш кошик"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Кошик — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Ваш кошик"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 346,
+              "y": 88,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Оформити",
+        "name": "Оформити",
+        "visible": true,
+        "rect": {
+          "x": 274,
+          "y": 198,
+          "w": 121,
+          "h": 49
+        },
+        "selector": "#tilo > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 244,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 218,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html?t=b",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/kosh.html?t=b",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/kosh-html-t-b/1440x1000/capture.json",
+          "network": "pages/kosh-html-t-b/1440x1000/network.json",
+          "axe": "pages/kosh-html-t-b/1440x1000/axe.json",
+          "dir": "pages/kosh-html-t-b/1440x1000"
+        },
+        "M": {
+          "capture": "pages/kosh-html-t-b/390x844/capture.json",
+          "network": "pages/kosh-html-t-b/390x844/network.json",
+          "axe": "pages/kosh-html-t-b/390x844/axe.json",
+          "dir": "pages/kosh-html-t-b/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/kosh-html-t-b/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html-t-b/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/kosh-html-t-b/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/kosh-html-t-b/390x844/fullpage.png",
+            "width_px": 1344,
+            "height_px": 2910,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "umovy-html",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:33043/umovy.html",
+    "page_type": "unknown",
+    "title": "Доставка й оплата — Пасіка «Верховина»",
+    "http_status": 200,
+    "desktop_screenshot": "pages/umovy-html/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/umovy-html/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Доставка й оплата\" [level=1]\n  - heading \"Доставка\" [level=2]\n  - paragraph: Нова пошта — 2–3 дні, від 95 грн. Безкоштовно від 3 000 грн. Самовивіз із пасіки — щодня до 18:00.\n  - heading \"Оплата\" [level=2]\n  - paragraph: Карткою на сайті або накладеним платежем (комісія 30 грн).\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+    "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nДоставка й оплата\nДоставка\n\nНова пошта — 2–3 дні, від 95 грн. Безкоштовно від 3 000 грн. Самовивіз із пасіки — щодня до 18:00.\n\nОплата\n\nКарткою на сайті або накладеним платежем (комісія 30 грн).\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Доставка й оплата"
+        },
+        {
+          "level": 2,
+          "text": "Доставка"
+        },
+        {
+          "level": 2,
+          "text": "Оплата"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "#liva-panel > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Доставка й оплата — Пасіка «Верховина»",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Доставка й оплата"
+          },
+          {
+            "level": 2,
+            "text": "Доставка"
+          },
+          {
+            "level": 2,
+            "text": "Оплата"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "#liva-panel > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 205,
+              "y": 78,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Верховина",
+        "name": "Верховина",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 24,
+          "w": 194,
+          "h": 34
+        },
+        "selector": "#liva-panel > a:nth-of-type(1)"
+      },
+      {
+        "href": "index.html",
+        "abs": "http://127.0.0.1:33043/index.html",
+        "text": "Початок",
+        "name": "Початок",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 86,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "kataloh.html",
+        "abs": "http://127.0.0.1:33043/kataloh.html",
+        "text": "Що у нас є",
+        "name": "Що у нас є",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 130,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Хто ми",
+        "name": "Хто ми",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 174,
+          "w": 194,
+          "h": 44
+        },
+        "selector": "#liva-panel > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "kosh.html",
+        "abs": "http://127.0.0.1:33043/kosh.html",
+        "text": "Кошик",
+        "name": "Кошик",
+        "visible": true,
+        "rect": {
+          "x": 18,
+          "y": 241,
+          "w": 194,
+          "h": 25
+        },
+        "selector": "#kosh-lnk"
+      },
+      {
+        "href": "umovy.html",
+        "abs": "http://127.0.0.1:33043/umovy.html",
+        "text": "Умови",
+        "name": "Умови",
+        "visible": true,
+        "rect": {
+          "x": 44,
+          "y": 1020,
+          "w": 36,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(1)"
+      },
+      {
+        "href": "pro-nas.html",
+        "abs": "http://127.0.0.1:33043/pro-nas.html",
+        "text": "Пасіка «Верховина», Закарпаття",
+        "name": "Пасіка «Верховина», Закарпаття",
+        "visible": true,
+        "rect": {
+          "x": 91,
+          "y": 1020,
+          "w": 179,
+          "h": 15
+        },
+        "selector": "footer > a:nth-of-type(2)"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 285,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 259,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:33043/umovy.html",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:33043/umovy.html",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/umovy-html/1440x1000/capture.json",
+          "network": "pages/umovy-html/1440x1000/network.json",
+          "axe": "pages/umovy-html/1440x1000/axe.json",
+          "dir": "pages/umovy-html/1440x1000"
+        },
+        "M": {
+          "capture": "pages/umovy-html/390x844/capture.json",
+          "network": "pages/umovy-html/390x844/network.json",
+          "axe": "pages/umovy-html/390x844/axe.json",
+          "dir": "pages/umovy-html/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/umovy-html/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/umovy-html/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1056,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/umovy-html/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/umovy-html/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  }
+]

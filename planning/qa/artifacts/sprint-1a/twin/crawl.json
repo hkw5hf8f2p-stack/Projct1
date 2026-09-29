@@ -1,0 +1,161 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://127.0.0.1:33043/index.html",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0
+    },
+    {
+      "url": "http://127.0.0.1:33043/kataloh.html",
+      "depth": 1,
+      "class": "other",
+      "priority": 0.3,
+      "order": 1
+    },
+    {
+      "url": "http://127.0.0.1:33043/pro-nas.html",
+      "depth": 1,
+      "class": "other",
+      "priority": 0.3,
+      "order": 2
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html",
+      "depth": 1,
+      "class": "other",
+      "priority": 0.3,
+      "order": 3
+    },
+    {
+      "url": "http://127.0.0.1:33043/tovar-ramka-435.html",
+      "depth": 2,
+      "class": "other",
+      "priority": 0.3,
+      "order": 4
+    },
+    {
+      "url": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+      "depth": 2,
+      "class": "other",
+      "priority": 0.3,
+      "order": 5
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html?t=a",
+      "depth": 3,
+      "class": "other",
+      "priority": 0.3,
+      "order": 6
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html?t=b",
+      "depth": 3,
+      "class": "other",
+      "priority": 0.3,
+      "order": 7
+    },
+    {
+      "url": "http://127.0.0.1:33043/umovy.html",
+      "depth": 1,
+      "class": "legal",
+      "priority": 0.1,
+      "order": 8
+    }
+  ],
+  "pages": [
+    {
+      "url": "http://127.0.0.1:33043/index.html",
+      "page_id": "index-html",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:33043/kataloh.html",
+      "page_id": "kataloh-html",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:33043/pro-nas.html",
+      "page_id": "pro-nas-html",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html",
+      "page_id": "kosh-html",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:33043/tovar-ramka-435.html",
+      "page_id": "tovar-ramka-435-html",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:33043/tovar-ramka-435r.html",
+      "page_id": "tovar-ramka-435r-html",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html?t=a",
+      "page_id": "kosh-html-t-a",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:33043/kosh.html?t=b",
+      "page_id": "kosh-html-t-b",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:33043/umovy.html",
+      "page_id": "umovy-html",
+      "page_type": "unknown"
+    }
+  ],
+  "skipped": [],
+  "edges": [
+    "http://127.0.0.1:33043/index.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/index.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/index.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/index.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/index.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/tovar-ramka-435.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/tovar-ramka-435r.html",
+    "http://127.0.0.1:33043/kataloh.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/kosh.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/kosh.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/kosh.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/kosh.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/kosh.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/pro-nas.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/pro-nas.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/pro-nas.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/pro-nas.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/pro-nas.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/kosh.html?t=a",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/tovar-ramka-435.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/kosh.html?t=b",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/tovar-ramka-435r.html -> http://127.0.0.1:33043/umovy.html",
+    "http://127.0.0.1:33043/umovy.html -> http://127.0.0.1:33043/index.html",
+    "http://127.0.0.1:33043/umovy.html -> http://127.0.0.1:33043/kataloh.html",
+    "http://127.0.0.1:33043/umovy.html -> http://127.0.0.1:33043/kosh.html",
+    "http://127.0.0.1:33043/umovy.html -> http://127.0.0.1:33043/pro-nas.html",
+    "http://127.0.0.1:33043/umovy.html -> http://127.0.0.1:33043/umovy.html"
+  ]
+}

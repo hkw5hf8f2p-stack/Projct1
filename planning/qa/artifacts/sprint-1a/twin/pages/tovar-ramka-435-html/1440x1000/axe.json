@@ -1,0 +1,68 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "target": "span",
+          "html": "<span>Кошик</span>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, background color: #3d2b1f, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 48,
+            "y": 241,
+            "w": 47,
+            "h": 25
+          }
+        },
+        {
+          "target": ".dia",
+          "html": "<a class=\"dia\" href=\"kosh.html?t=a\">Обрати</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, background color: #b8720f, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 274,
+            "y": 1278,
+            "w": 98,
+            "h": 49
+          }
+        },
+        {
+          "target": "footer",
+          "html": "<footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 0,
+            "y": 1383,
+            "w": 1440,
+            "h": 56
+          }
+        },
+        {
+          "target": "a[href$=\"umovy.html\"]",
+          "html": "<a href=\"umovy.html\">Умови</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 44,
+            "y": 1403,
+            "w": 36,
+            "h": 15
+          }
+        },
+        {
+          "target": "footer > a[href$=\"pro-nas.html\"]",
+          "html": "<a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 91,
+            "y": 1403,
+            "w": 179,
+            "h": 15
+          }
+        }
+      ]
+    }
+  ]
+}

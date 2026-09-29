@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:33043/css/pasika.css",
+    "resource_type": "stylesheet",
+    "status": 200,
+    "content_type": "text/css",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:33043/js/pasika.js",
+    "resource_type": "script",
+    "status": 200,
+    "content_type": "text/javascript",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:33043/kosh.html?t=a",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

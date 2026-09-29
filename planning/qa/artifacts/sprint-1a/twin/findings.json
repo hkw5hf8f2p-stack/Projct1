@@ -1,0 +1,495 @@
+[
+  {
+    "finding_key": "accessibility|/index.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/index.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_3daec8f3d6f3"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/index.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/index.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_0bed7c22b45b",
+      "ev_4e3ca49925c7",
+      "ev_5c779e026608",
+      "ev_71eaefed5bbe",
+      "ev_bf19ed95e8f7",
+      "ev_d095abde23f9",
+      "ev_d7768e012f2b",
+      "ev_fb2329bf7b17",
+      "ev_fb97c023b9a2"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/index.html|axe:heading-order",
+    "category": "accessibility",
+    "page_group": "/index.html",
+    "claim_kind": "axe:heading-order",
+    "detector_ids": [
+      "axe:heading-order"
+    ],
+    "evidence_ids": [
+      "ev_552703ff4bcf",
+      "ev_c41866a4540e"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/kataloh.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/kataloh.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_95a344c18c12"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/kataloh.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/kataloh.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_2cd02b4672c5",
+      "ev_3326e9f759f0",
+      "ev_9522fd7a0260",
+      "ev_9f17016923bd",
+      "ev_afeb05e8b572",
+      "ev_c2e424e08688",
+      "ev_ef130947ec53"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/kataloh.html|axe:heading-order",
+    "category": "accessibility",
+    "page_group": "/kataloh.html",
+    "claim_kind": "axe:heading-order",
+    "detector_ids": [
+      "axe:heading-order"
+    ],
+    "evidence_ids": [
+      "ev_6e7180530247",
+      "ev_8d4695cf2a34"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/kataloh.html|axe:image-alt",
+    "category": "accessibility",
+    "page_group": "/kataloh.html",
+    "claim_kind": "axe:image-alt",
+    "detector_ids": [
+      "axe:image-alt"
+    ],
+    "evidence_ids": [
+      "ev_164c8b081e2f",
+      "ev_365806a46eca",
+      "ev_684cd485f8a2",
+      "ev_752b79dbbb75",
+      "ev_91463d302360",
+      "ev_beaa34359c2e"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/kataloh.html|axe:link-name",
+    "category": "accessibility",
+    "page_group": "/kataloh.html",
+    "claim_kind": "axe:link-name",
+    "detector_ids": [
+      "axe:link-name"
+    ],
+    "evidence_ids": [
+      "ev_a9f5811ea000",
+      "ev_af930c0743cf",
+      "ev_caa51efe0cb7",
+      "ev_e5d12ad8591c"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/pro-nas.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/pro-nas.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_eeb09580cc36"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/pro-nas.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/pro-nas.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_00ae0c77b146",
+      "ev_1c4a13cb3dc3",
+      "ev_46c278a104e4",
+      "ev_5d9997248de3",
+      "ev_82b91045a15e",
+      "ev_c9e3e1f8efd6",
+      "ev_da0111fce282"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/tovar-ramka-435.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/tovar-ramka-435.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_c157425d5780"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/tovar-ramka-435.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/tovar-ramka-435.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_197853229af2",
+      "ev_238f08b5396e",
+      "ev_50d8111c036c",
+      "ev_6fbb7222d4f1",
+      "ev_9f8ba92434b1",
+      "ev_b0b83efe2f6d",
+      "ev_cf7a88237bf3",
+      "ev_e94e204869d4",
+      "ev_f20ea3bf98dc"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/tovar-ramka-435r.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/tovar-ramka-435r.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_153d8fd1dbc6"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/tovar-ramka-435r.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/tovar-ramka-435r.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_0f4989f49f44",
+      "ev_2abdcf415e6d",
+      "ev_43b6c1ce13f0",
+      "ev_50bc5384d16c",
+      "ev_7dcc14f42b99",
+      "ev_a94ffcdc9280",
+      "ev_b5d1794b8224",
+      "ev_c2195bf619e9",
+      "ev_fbbaa3777b6c"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/umovy.html|axe:button-name",
+    "category": "accessibility",
+    "page_group": "/umovy.html",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_371ca92f4084"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|/umovy.html|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "/umovy.html",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_23df32c6769a",
+      "ev_363e27d3fea8",
+      "ev_7517644b15ed",
+      "ev_95936601fb10",
+      "ev_b72cfe0451b2",
+      "ev_cc0fdb6dc1e6",
+      "ev_dadbf46d55c8"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|product|axe:button-name",
+    "category": "accessibility",
+    "page_group": "product",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_19fa30484491",
+      "ev_7ce5ed8eb7d6",
+      "ev_a6ee8515df69"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "accessibility|product|axe:color-contrast",
+    "category": "accessibility",
+    "page_group": "product",
+    "claim_kind": "axe:color-contrast",
+    "detector_ids": [
+      "axe:color-contrast"
+    ],
+    "evidence_ids": [
+      "ev_02f28c4a8b75",
+      "ev_10b9b9169f2f",
+      "ev_1d8b9c5929bc",
+      "ev_2d8c36dbb8e8",
+      "ev_30a4d2c051c3",
+      "ev_36e3104c0769",
+      "ev_45a184b9d38a",
+      "ev_4b95c4a6699e",
+      "ev_4de2318edf1d",
+      "ev_5405adde494e",
+      "ev_5c2f4251b143",
+      "ev_5c3e2e766b52",
+      "ev_5fae58c9af1e",
+      "ev_6aa8fb2a9574",
+      "ev_7b06188d36b8",
+      "ev_7b8ce2f82f45",
+      "ev_7d29646a4b5f",
+      "ev_90b251191de0",
+      "ev_a9bd23d6807f",
+      "ev_ac8e88fd51ba",
+      "ev_c8d85a939765",
+      "ev_c9ddcbbb2e46",
+      "ev_d250df56f0d3",
+      "ev_db6ddf7424d3",
+      "ev_dd20af92b25b",
+      "ev_ebf2ce2b6eaf",
+      "ev_f0a222f122c9"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "mobile_usability|/kataloh.html|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "/kataloh.html",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_84f2b118cfde"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "mobile_usability|/tovar-ramka-435.html|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "/tovar-ramka-435.html",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_40468effefef"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "mobile_usability|/tovar-ramka-435r.html|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "/tovar-ramka-435r.html",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_08b6c4373d62"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "mobile_usability|product|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "product",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_0d84740a76b0",
+      "ev_b80416254c70",
+      "ev_fd411476d1e4"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "performance|/index.html|oversized_image",
+    "category": "performance",
+    "page_group": "/index.html",
+    "claim_kind": "oversized_image",
+    "detector_ids": [
+      "oversized_image"
+    ],
+    "evidence_ids": [
+      "ev_7d69e8faab38",
+      "ev_df3eaaec06f9"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  },
+  {
+    "finding_key": "pricing|product|not_in_first_viewport",
+    "category": "pricing",
+    "page_group": "product",
+    "claim_kind": "not_in_first_viewport",
+    "detector_ids": [
+      "price_first_viewport"
+    ],
+    "evidence_ids": [
+      "ev_638a014000a5",
+      "ev_9545272871b7",
+      "ev_e0bbd50eb6c4"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1
+  }
+]

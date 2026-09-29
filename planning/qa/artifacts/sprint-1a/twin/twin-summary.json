@@ -1,0 +1,1273 @@
+{
+  "schema": "sitelens-twin-summary/v1",
+  "twin_hash_before": "85106e74e18827d718e08b9c48303a65513f772744d791991bcc0226709f3200",
+  "twin_hash_after": "85106e74e18827d718e08b9c48303a65513f772744d791991bcc0226709f3200",
+  "twin_hash_expected": "85106e74e18827d718e08b9c48303a65513f772744d791991bcc0226709f3200",
+  "origin": "http://127.0.0.1:33043",
+  "pages_crawled": [
+    "/index.html",
+    "/kataloh.html",
+    "/pro-nas.html",
+    "/kosh.html",
+    "/tovar-ramka-435.html",
+    "/tovar-ramka-435r.html",
+    "/kosh.html?t=a",
+    "/kosh.html?t=b",
+    "/umovy.html"
+  ],
+  "evidence_total": 109,
+  "findings_total": 24,
+  "non_get_requests": 0,
+  "requests_total": 76,
+  "deterministic_found": 5,
+  "of": 7,
+  "deterministic_found_full_vp": 4,
+  "defects": [
+    {
+      "n": 2,
+      "detector": "shipping_depth",
+      "found": false,
+      "complete_vp_coverage": false,
+      "pages_found": [],
+      "viewports_found": [],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 0,
+      "sample": [],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": []
+    },
+    {
+      "n": 5,
+      "detector": "cta_below_fold",
+      "found": false,
+      "complete_vp_coverage": false,
+      "pages_found": [],
+      "viewports_found": [],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 0,
+      "sample": [],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": []
+    },
+    {
+      "n": 6,
+      "detector": "axe:button-name|link-name|label",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/index.html",
+        "/kataloh.html",
+        "/kosh.html",
+        "/kosh.html?t=a",
+        "/kosh.html?t=b",
+        "/pro-nas.html",
+        "/tovar-ramka-435.html",
+        "/tovar-ramka-435r.html",
+        "/umovy.html"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "390x844"
+      ],
+      "evidence_count": 11,
+      "sample": [
+        {
+          "id": "ev_3daec8f3d6f3",
+          "detector": "axe:button-name",
+          "page": "/index.html",
+          "viewport": "390x844",
+          "selector": "button",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat",
+          "artifact": "pages/index-html/390x844/axe.json"
+        },
+        {
+          "id": "ev_95a344c18c12",
+          "detector": "axe:button-name",
+          "page": "/kataloh.html",
+          "viewport": "390x844",
+          "selector": "button",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat",
+          "artifact": "pages/kataloh-html/390x844/axe.json"
+        },
+        {
+          "id": "ev_7ce5ed8eb7d6",
+          "detector": "axe:button-name",
+          "page": "/kosh.html",
+          "viewport": "390x844",
+          "selector": "button",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat",
+          "artifact": "pages/kosh-html/390x844/axe.json"
+        }
+      ],
+      "out_of_scope_same_detector": 2,
+      "all_rows_compact": [
+        "/index.html@390x844 button [VERIFIED]",
+        "/kataloh.html@390x844 button [VERIFIED]",
+        "/kosh.html@390x844 button [VERIFIED]",
+        "/kosh.html?t=a@390x844 button [VERIFIED]",
+        "/kosh.html?t=b@390x844 button [VERIFIED]",
+        "/pro-nas.html@390x844 button [VERIFIED]",
+        "/tovar-ramka-435.html@390x844 button [VERIFIED]",
+        "/tovar-ramka-435r.html@390x844 button [VERIFIED]",
+        "/umovy.html@390x844 button [VERIFIED]",
+        "/kataloh.html@390x844 a[href$=\"tovar-ramka-435.html\"]:nth-child(1) [VERIFIED]",
+        "/kataloh.html@390x844 a[href$=\"tovar-ramka-435r.html\"]:nth-child(1) [VERIFIED]"
+      ]
+    },
+    {
+      "n": 7,
+      "detector": "horizontal_overflow",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/kataloh.html",
+        "/tovar-ramka-435.html",
+        "/tovar-ramka-435r.html"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "390x844"
+      ],
+      "evidence_count": 3,
+      "sample": [
+        {
+          "id": "ev_84f2b118cfde",
+          "detector": "horizontal_overflow",
+          "page": "/kataloh.html",
+          "viewport": "390x844",
+          "selector": "#tilo > div > span:nth-of-type(5)",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "#tilo > div > span:nth-of-type(5) | footer | #tilo > h1",
+          "artifact": "pages/kataloh-html/390x844/fullpage.png"
+        },
+        {
+          "id": "ev_40468effefef",
+          "detector": "horizontal_overflow",
+          "page": "/tovar-ramka-435.html",
+          "viewport": "390x844",
+          "selector": "footer",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "footer | #tilo > details > summary | #tilo > div > p:nth-of-type(1)",
+          "artifact": "pages/tovar-ramka-435-html/390x844/fullpage.png"
+        },
+        {
+          "id": "ev_08b6c4373d62",
+          "detector": "horizontal_overflow",
+          "page": "/tovar-ramka-435r.html",
+          "viewport": "390x844",
+          "selector": "footer",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "footer | #tilo > details > summary | #tilo > div > p:nth-of-type(1)",
+          "artifact": "pages/tovar-ramka-435r-html/390x844/fullpage.png"
+        }
+      ],
+      "out_of_scope_same_detector": 3,
+      "all_rows_compact": [
+        "/kataloh.html@390x844 #tilo > div > span:nth-of-type(5) [VERIFIED]",
+        "/tovar-ramka-435.html@390x844 footer [VERIFIED]",
+        "/tovar-ramka-435r.html@390x844 footer [VERIFIED]"
+      ]
+    },
+    {
+      "n": 8,
+      "detector": "oversized_image",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/index.html"
+      ],
+      "viewports_found": [
+        "1440x1000",
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 2,
+      "sample": [
+        {
+          "id": "ev_7d69e8faab38",
+          "detector": "oversized_image",
+          "page": "/index.html",
+          "viewport": "1440x1000",
+          "selector": "#tilo > img",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "http://127.0.0.1:33043/img/pasika-zahalnyi-plan.png — 9598261 B — natural 2400×1600, rendered 560×373",
+          "artifact": "pages/index-html/1440x1000/network.json"
+        },
+        {
+          "id": "ev_df3eaaec06f9",
+          "detector": "oversized_image",
+          "page": "/index.html",
+          "viewport": "390x844",
+          "selector": "#tilo > img",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "http://127.0.0.1:33043/img/pasika-zahalnyi-plan.png — 9598261 B — natural 2400×1600, rendered 358×239",
+          "artifact": "pages/index-html/390x844/network.json"
+        }
+      ],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": [
+        "/index.html@1440x1000 #tilo > img [VERIFIED]",
+        "/index.html@390x844 #tilo > img [VERIFIED]"
+      ]
+    },
+    {
+      "n": 9,
+      "detector": "axe:image-alt",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/kataloh.html"
+      ],
+      "viewports_found": [
+        "1440x1000",
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 6,
+      "sample": [
+        {
+          "id": "ev_91463d302360",
+          "detector": "axe:image-alt",
+          "page": "/kataloh.html",
+          "viewport": "1440x1000",
+          "selector": "img[src$=\"dymar.svg\"]",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "img[src$=\"dymar.svg\"] — <img src=\"img/dymar.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or ",
+          "artifact": "pages/kataloh-html/1440x1000/axe.json"
+        },
+        {
+          "id": "ev_365806a46eca",
+          "detector": "axe:image-alt",
+          "page": "/kataloh.html",
+          "viewport": "1440x1000",
+          "selector": "img[src$=\"ramka-a.svg\"]",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "img[src$=\"ramka-a.svg\"] — <img src=\"img/ramka-a.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist",
+          "artifact": "pages/kataloh-html/1440x1000/axe.json"
+        },
+        {
+          "id": "ev_684cd485f8a2",
+          "detector": "axe:image-alt",
+          "page": "/kataloh.html",
+          "viewport": "1440x1000",
+          "selector": "img[src$=\"ramka-b.svg\"]",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "img[src$=\"ramka-b.svg\"] — <img src=\"img/ramka-b.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist",
+          "artifact": "pages/kataloh-html/1440x1000/axe.json"
+        }
+      ],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": [
+        "/kataloh.html@1440x1000 img[src$=\"dymar.svg\"] [VERIFIED]",
+        "/kataloh.html@1440x1000 img[src$=\"ramka-a.svg\"] [VERIFIED]",
+        "/kataloh.html@1440x1000 img[src$=\"ramka-b.svg\"] [VERIFIED]",
+        "/kataloh.html@390x844 img[src$=\"dymar.svg\"] [VERIFIED]",
+        "/kataloh.html@390x844 img[src$=\"ramka-a.svg\"] [VERIFIED]",
+        "/kataloh.html@390x844 img[src$=\"ramka-b.svg\"] [VERIFIED]"
+      ]
+    },
+    {
+      "n": 10,
+      "detector": "price_first_viewport",
+      "found": true,
+      "complete_vp_coverage": false,
+      "pages_found": [
+        "/kosh.html",
+        "/kosh.html?t=a",
+        "/kosh.html?t=b"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 3,
+      "sample": [
+        {
+          "id": "ev_9545272871b7",
+          "detector": "price_first_viewport",
+          "page": "/kosh.html",
+          "viewport": "390x844",
+          "selector": null,
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "absence",
+          "evidence": "Верховина Ваш кошик Рамка ДБ-435 ВЛ розс. Рамка ДБ-435 ВЛ розс. Р Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 ",
+          "artifact": "pages/kosh-html/390x844/viewport.png"
+        },
+        {
+          "id": "ev_e0bbd50eb6c4",
+          "detector": "price_first_viewport",
+          "page": "/kosh.html?t=a",
+          "viewport": "390x844",
+          "selector": null,
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "absence",
+          "evidence": "Верховина Ваш кошик Рамка ДБ-435 ВЛ розс. Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн. Оформити Умови · Па",
+          "artifact": "pages/kosh-html-t-a/390x844/viewport.png"
+        },
+        {
+          "id": "ev_638a014000a5",
+          "detector": "price_first_viewport",
+          "page": "/kosh.html?t=b",
+          "viewport": "390x844",
+          "selector": null,
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "absence",
+          "evidence": "Верховина Ваш кошик Рамка ДБ-435 ВЛ розс. Р Разом до сплати: у цьому кошику ціна вказана в рядку товару. Безкоштовна доставка — від 3 000 грн. Оформити Умови · ",
+          "artifact": "pages/kosh-html-t-b/390x844/viewport.png"
+        }
+      ],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": [
+        "/kosh.html@390x844 [VERIFIED]",
+        "/kosh.html?t=a@390x844 [VERIFIED]",
+        "/kosh.html?t=b@390x844 [VERIFIED]"
+      ]
+    }
+  ],
+  "false_positives": [
+    {
+      "id": "ev_0bed7c22b45b",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kataloh.html\">Подивитися</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (fore"
+    },
+    {
+      "id": "ev_4e3ca49925c7",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_fb97c023b9a2",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_d7768e012f2b",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_d095abde23f9",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_5c779e026608",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kataloh.html\">Подивитися</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (fore"
+    },
+    {
+      "id": "ev_bf19ed95e8f7",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_71eaefed5bbe",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_fb2329bf7b17",
+      "detector": "axe:color-contrast",
+      "page": "/index.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_ef130947ec53",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "#kosh-lnk > span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "#kosh-lnk > span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000"
+    },
+    {
+      "id": "ev_2cd02b4672c5",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_3326e9f759f0",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_9522fd7a0260",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_c2e424e08688",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_9f17016923bd",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_afeb05e8b572",
+      "detector": "axe:color-contrast",
+      "page": "/kataloh.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_36e3104c0769",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_4de2318edf1d",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_7d29646a4b5f",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_6aa8fb2a9574",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_db6ddf7424d3",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_7b06188d36b8",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_d250df56f0d3",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_7b8ce2f82f45",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_4b95c4a6699e",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_2d8c36dbb8e8",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_c9ddcbbb2e46",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_a9bd23d6807f",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_5fae58c9af1e",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_ac8e88fd51ba",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_30a4d2c051c3",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_1d8b9c5929bc",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_90b251191de0",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_5c3e2e766b52",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=a",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_ebf2ce2b6eaf",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_45a184b9d38a",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_10b9b9169f2f",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_dd20af92b25b",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_5405adde494e",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_c8d85a939765",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregrou"
+    },
+    {
+      "id": "ev_f0a222f122c9",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_5c2f4251b143",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_02f28c4a8b75",
+      "detector": "axe:color-contrast",
+      "page": "/kosh.html?t=b",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.2"
+    },
+    {
+      "id": "ev_82b91045a15e",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_46c278a104e4",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_c9e3e1f8efd6",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_da0111fce282",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_5d9997248de3",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_00ae0c77b146",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_1c4a13cb3dc3",
+      "detector": "axe:color-contrast",
+      "page": "/pro-nas.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_197853229af2",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=a\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregro"
+    },
+    {
+      "id": "ev_b0b83efe2f6d",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_6fbb7222d4f1",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_f20ea3bf98dc",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_cf7a88237bf3",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_e94e204869d4",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=a\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregro"
+    },
+    {
+      "id": "ev_9f8ba92434b1",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_50d8111c036c",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_238f08b5396e",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_2abdcf415e6d",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "1440x1000",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=b\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregro"
+    },
+    {
+      "id": "ev_b5d1794b8224",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_fbbaa3777b6c",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_a94ffcdc9280",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_7dcc14f42b99",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_0f4989f49f44",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "390x844",
+      "selector": ".dia",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=b\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foregro"
+    },
+    {
+      "id": "ev_c2195bf619e9",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_43b6c1ce13f0",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_50bc5384d16c",
+      "detector": "axe:color-contrast",
+      "page": "/tovar-ramka-435r.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_23df32c6769a",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_7517644b15ed",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "1440x1000",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_363e27d3fea8",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "1440x1000",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_95936601fb10",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "1440x1000",
+      "selector": "span",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, backgrou"
+    },
+    {
+      "id": "ev_b72cfe0451b2",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "390x844",
+      "selector": "a[href$=\"umovy.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foregr"
+    },
+    {
+      "id": "ev_dadbf46d55c8",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>"
+    },
+    {
+      "id": "ev_cc0fdb6dc1e6",
+      "detector": "axe:color-contrast",
+      "page": "/umovy.html",
+      "viewport": "390x844",
+      "selector": "footer > a[href$=\"pro-nas.html\"]",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insuf"
+    },
+    {
+      "id": "ev_552703ff4bcf",
+      "detector": "axe:heading-order",
+      "page": "/index.html",
+      "viewport": "1440x1000",
+      "selector": ".kartka:nth-child(1) > h3",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".kartka:nth-child(1) > h3 — <h3>Мед КМ-12</h3> — Fix any of the following:\n  Heading order invalid"
+    },
+    {
+      "id": "ev_c41866a4540e",
+      "detector": "axe:heading-order",
+      "page": "/index.html",
+      "viewport": "390x844",
+      "selector": ".kartka:nth-child(1) > h3",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".kartka:nth-child(1) > h3 — <h3>Мед КМ-12</h3> — Fix any of the following:\n  Heading order invalid"
+    },
+    {
+      "id": "ev_6e7180530247",
+      "detector": "axe:heading-order",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": ".kartka:nth-child(1) > h3",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".kartka:nth-child(1) > h3 — <h3>Рамка ДБ-435 ВЛ розс.</h3> — Fix any of the following:\n  Heading order invalid"
+    },
+    {
+      "id": "ev_8d4695cf2a34",
+      "detector": "axe:heading-order",
+      "page": "/kataloh.html",
+      "viewport": "390x844",
+      "selector": ".kartka:nth-child(1) > h3",
+      "in_mapped_detector": false,
+      "confidence": "VERIFIED",
+      "excerpt": ".kartka:nth-child(1) > h3 — <h3>Рамка ДБ-435 ВЛ розс.</h3> — Fix any of the following:\n  Heading order invalid"
+    },
+    {
+      "id": "ev_caa51efe0cb7",
+      "detector": "axe:link-name",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1)",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1) — <a href=\"tovar-ramka-435.html\"><img src=\"img/ramka-a.svg\"></a> — Fix all of the following:\n  "
+    },
+    {
+      "id": "ev_a9f5811ea000",
+      "detector": "axe:link-name",
+      "page": "/kataloh.html",
+      "viewport": "1440x1000",
+      "selector": "a[href$=\"tovar-ramka-435r.html\"]:nth-child(1)",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href$=\"tovar-ramka-435r.html\"]:nth-child(1) — <a href=\"tovar-ramka-435r.html\"><img src=\"img/ramka-b.svg\"></a> — Fix all of the following:\n"
+    },
+    {
+      "id": "ev_fd411476d1e4",
+      "detector": "horizontal_overflow",
+      "page": "/kosh.html",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "footer | #tilo > h1 | #tilo > p:nth-of-type(1)"
+    },
+    {
+      "id": "ev_b80416254c70",
+      "detector": "horizontal_overflow",
+      "page": "/kosh.html?t=a",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "footer | #tilo > h1 | #tilo > p:nth-of-type(1)"
+    },
+    {
+      "id": "ev_0d84740a76b0",
+      "detector": "horizontal_overflow",
+      "page": "/kosh.html?t=b",
+      "viewport": "390x844",
+      "selector": "footer",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "footer | #tilo > h1 | #tilo > p:nth-of-type(1)"
+    }
+  ],
+  "false_positive_count": 84,
+  "evidence_by_detector": {
+    "axe:button-name": 9,
+    "axe:color-contrast": 75,
+    "axe:heading-order": 4,
+    "axe:image-alt": 6,
+    "axe:link-name": 4,
+    "horizontal_overflow": 6,
+    "oversized_image": 2,
+    "price_first_viewport": 3
+  },
+  "hash_ok": true,
+  "verdict": {
+    "strict_any_page_any_viewport": "5/7",
+    "full_expected_coverage": "3/7 (№6,№7,№8 повні; №9 лише kataloh; №10 лише kosh M)",
+    "note": "№10 знайдено випадково: kosh.html помилково класифіковано як product; на лістингу/товарах немає"
+  },
+  "exit_criterion_3_deterministic_ge_6_of_7": false,
+  "qa": {
+    "tests": "176/176 passed (5 files)",
+    "typecheck": "OK",
+    "lint": "OK (після виправлення no-unused-expressions у новому audit-twin.ts)",
+    "side_effect": "pnpm test перезаписав planning/qa/artifacts/sprint-1a/canary/*.json (git M)"
+  },
+  "miss_diagnosis": {
+    "2": "shipping_depth: gate page_type==product. Товари двійника /tovar-ramka-435.html → unknown: PRODUCT_PATH_RE вимагає /(product|products|p|item|tovar)/<slug> (двійник — плоский файл tovar-ramka-435.html, не каталог tovar/); немає JSON-LD Product; CTA «Обрати» не в CTA_RE. Предикат (SHIP_RE на тексті/посиланнях) не досягається; сам по собі спрацював би: у details «Відправляємо…» (не відправк*), посилання «Умови» не SHIP, шлях umovy.html не SHIP_PATH.",
+    "5": "cta_below_fold: той самий gate product + CTA_RE не знає «Обрати». Обидва обходять предикат до його перевірки.",
+    "10": "price_first_viewport: gate product|category. tovar-* unknown; kataloh unknown, бо посилань на товари 2 (<3 для category, і шлях не збігається з PRODUCT_PATH_RE). Спрацював лише на kosh.html (M) — там h1 + «Оформити» (CTA_RE) дало product; тобто збіг випадковий, не на лістингу/товарах."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "button-name",
+      "impact": "critical",
+      "help": "Buttons must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "nodes": [
+        {
+          "target": "button",
+          "html": "<button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></path></svg></button>",
+          "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  ",
+          "rect": {
+            "x": 346,
+            "y": 79,
+            "w": 36,
+            "h": 36
+          }
+        }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "target": ".dia",
+          "html": "<a class=\"dia\" href=\"umovy.html\">Оформити</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, background color: #b8720f, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 16,
+            "y": 445,
+            "w": 121,
+            "h": 49
+          }
+        },
+        {
+          "target": "footer",
+          "html": "<footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 0,
+            "y": 663,
+            "w": 672,
+            "h": 181
+          }
+        },
+        {
+          "target": "footer > a[href$=\"umovy.html\"]",
+          "html": "<a href=\"umovy.html\">Умови</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 16,
+            "y": 679,
+            "w": 36,
+            "h": 15
+          }
+        },
+        {
+          "target": "footer > a[href$=\"pro-nas.html\"]",
+          "html": "<a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 63,
+            "y": 679,
+            "w": 179,
+            "h": 15
+          }
+        }
+      ]
+    }
+  ]
+}
