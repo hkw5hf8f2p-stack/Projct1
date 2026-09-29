@@ -11,6 +11,8 @@
   const sx = window.scrollX;
   const sy = window.scrollY;
   const de = document.documentElement;
+  // на широкій мобільній сторінці layout viewport розширюється, і hit-test за координатами вікна ненадійний
+  const skipCover = window.innerWidth !== vw || window.innerHeight !== vh;
   const round = (n) => Math.round(n);
   const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
 
@@ -169,7 +171,7 @@
     const r = el.getBoundingClientRect();
     const name = accName(el);
     let vis = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0)) / r.height;
-    if (vis > 0) {
+    if (vis > 0 && !skipCover) {
       const cx = Math.min(Math.max((Math.max(r.left, 0) + Math.min(r.right, vw)) / 2, 0), vw - 1);
       const cy = Math.min(Math.max((Math.max(r.top, 0) + Math.min(r.bottom, vh)) / 2, 0), vh - 1);
       const top = document.elementFromPoint(cx, cy);
@@ -190,6 +192,7 @@
     const iy = Math.min(r.bottom, vh) - Math.max(r.top, 0);
     if (ix <= 0 || iy <= 0) return false;
     if ((ix * iy) / (r.width * r.height) < 0.5) return false;
+    if (skipCover) return true;
     const cx = Math.max(r.left, 0) + ix / 2;
     const cy = Math.max(r.top, 0) + iy / 2;
     const top = document.elementFromPoint(Math.min(cx, vw - 1), Math.min(cy, vh - 1));

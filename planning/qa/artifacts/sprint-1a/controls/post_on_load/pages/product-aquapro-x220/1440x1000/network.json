@@ -1,0 +1,42 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4210/img/aquapro-x220.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 284,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4210/product/aquapro-x220",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "POST",
+    "url": "http://127.0.0.1:4210/track",
+    "resource_type": "fetch",
+    "status": null,
+    "content_type": null,
+    "body_bytes": null,
+    "blocked": false,
+    "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+  },
+  {
+    "method": "POST",
+    "url": "http://127.0.0.1:4210/track",
+    "resource_type": "fetch",
+    "status": null,
+    "content_type": null,
+    "body_bytes": null,
+    "blocked": true,
+    "failure": "blocked_by_method_guard"
+  }
+]

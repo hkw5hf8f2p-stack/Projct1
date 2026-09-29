@@ -1,0 +1,3651 @@
+[
+  {
+    "id": "index",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/",
+    "page_type": "unknown",
+    "title": "ТехноДім — головна",
+    "http_status": 200,
+    "desktop_screenshot": "pages/index/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/index/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - img \"Світла вітрина магазину з речами для дому\"\n  - heading \"Ідеї, що змінюють будні\" [level=1]\n  - paragraph: Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.\n  - paragraph:\n    - link \"Переглянути асортимент\":\n      - /url: /catalog\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nІдеї, що змінюють будні\n\nМи підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.\n\nПереглянути асортимент\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Магазин речей для дому.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ідеї, що змінюють будні"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:4210/img/hero.jpg",
+          "alt": "Світла вітрина магазину з речами для дому"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "ТехноДім — головна",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Ідеї, що змінюють будні"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Переглянути асортимент",
+        "name": "Переглянути асортимент",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 664,
+          "w": 215,
+          "h": 19
+        },
+        "selector": "main > div > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 745,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 745,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 171,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 149,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/index/1440x1000/capture.json",
+          "network": "pages/index/1440x1000/network.json",
+          "axe": "pages/index/1440x1000/axe.json",
+          "dir": "pages/index/1440x1000"
+        },
+        "M": {
+          "capture": "pages/index/390x844/capture.json",
+          "network": "pages/index/390x844/network.json",
+          "axe": "pages/index/390x844/axe.json",
+          "dir": "pages/index/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/index/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/index/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/index/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/index/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "catalog",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/catalog",
+    "page_type": "category",
+    "title": "Каталог — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/catalog/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/catalog/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Каталог\" [level=1]\n  - paragraph:\n    - text: Три моделі для щоденного вжитку.\n    - link \"Очистити порівняння\":\n      - /url: /catalog?action=delete&list=compare\n  - list:\n    - listitem:\n      - img \"Фільтр AquaPro X200 на світлому тлі\"\n      - heading \"AquaPro X200 (система HFX)\" [level=2]:\n        - link \"AquaPro X200 (система HFX)\":\n          - /url: /product/aquapro-x200\n      - paragraph: Фільтр для води з проточною кухонною установкою.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=1\n    - listitem:\n      - img \"Фільтр AquaPro X220 на світлому тлі\"\n      - heading \"AquaPro X220 (система HFX)\" [level=2]:\n        - link \"AquaPro X220 (система HFX)\":\n          - /url: /product/aquapro-x220\n      - paragraph: Фільтр для води з проточною кухонною установкою.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=2\n    - listitem:\n      - img \"Softline S1 (модуль SLT)\"\n      - heading \"Softline S1 (модуль SLT)\" [level=2]:\n        - link \"Softline S1 (модуль SLT)\":\n          - /url: /product/softline-s1\n      - paragraph: Пом'якшувач води для побутових потреб.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=3\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nКаталог\n\nТри моделі для щоденного вжитку. Очистити порівняння\n\nAquaPro X200 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nВ кошик\nAquaPro X220 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nВ кошик\nSoftline S1 (модуль SLT)\n\nПом'якшувач води для побутових потреб.\n\nВ кошик\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Три моделі для щоденного вжитку.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Каталог"
+        },
+        {
+          "level": 2,
+          "text": "AquaPro X200 (система HFX)"
+        },
+        {
+          "level": 2,
+          "text": "AquaPro X220 (система HFX)"
+        },
+        {
+          "level": 2,
+          "text": "Softline S1 (модуль SLT)"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:4210/img/aquapro-x200.svg",
+          "alt": "Фільтр AquaPro X200 на світлому тлі"
+        },
+        {
+          "src": "http://127.0.0.1:4210/img/aquapro-x220.svg",
+          "alt": "Фільтр AquaPro X220 на світлому тлі"
+        },
+        {
+          "src": "http://127.0.0.1:4210/img/softline-s1.svg",
+          "alt": "Softline S1 (модуль SLT)"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Каталог — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Каталог"
+          },
+          {
+            "level": 2,
+            "text": "AquaPro X200 (система HFX)"
+          },
+          {
+            "level": 2,
+            "text": "AquaPro X220 (система HFX)"
+          },
+          {
+            "level": 2,
+            "text": "Softline S1 (модуль SLT)"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/catalog?action=delete&list=compare",
+        "abs": "http://127.0.0.1:4210/catalog?action=delete&list=compare",
+        "text": "Очистити порівняння",
+        "name": "Очистити порівняння",
+        "visible": true,
+        "rect": {
+          "x": 501,
+          "y": 144,
+          "w": 181,
+          "h": 19
+        },
+        "selector": "main > p > a"
+      },
+      {
+        "href": "/product/aquapro-x200",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x200",
+        "text": "AquaPro X200 (система HFX)",
+        "name": "AquaPro X200 (система HFX)",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 198,
+          "w": 331,
+          "h": 24
+        },
+        "selector": "main > ul > li:nth-of-type(1) > div > h2 > a"
+      },
+      {
+        "href": "/catalog?add-to-cart=1",
+        "abs": "http://127.0.0.1:4210/catalog?add-to-cart=1",
+        "text": "В кошик",
+        "name": "В кошик",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 281,
+          "w": 106,
+          "h": 44
+        },
+        "selector": "main > ul > li:nth-of-type(1) > div > a"
+      },
+      {
+        "href": "/product/aquapro-x220",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x220",
+        "text": "AquaPro X220 (система HFX)",
+        "name": "AquaPro X220 (система HFX)",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 370,
+          "w": 331,
+          "h": 24
+        },
+        "selector": "main > ul > li:nth-of-type(2) > div > h2 > a"
+      },
+      {
+        "href": "/catalog?add-to-cart=2",
+        "abs": "http://127.0.0.1:4210/catalog?add-to-cart=2",
+        "text": "В кошик",
+        "name": "В кошик",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 453,
+          "w": 106,
+          "h": 44
+        },
+        "selector": "main > ul > li:nth-of-type(2) > div > a"
+      },
+      {
+        "href": "/product/softline-s1",
+        "abs": "http://127.0.0.1:4210/product/softline-s1",
+        "text": "Softline S1 (модуль SLT)",
+        "name": "Softline S1 (модуль SLT)",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 542,
+          "w": 279,
+          "h": 24
+        },
+        "selector": "main > ul > li:nth-of-type(3) > div > h2 > a"
+      },
+      {
+        "href": "/catalog?add-to-cart=3",
+        "abs": "http://127.0.0.1:4210/catalog?add-to-cart=3",
+        "text": "В кошик",
+        "name": "В кошик",
+        "visible": true,
+        "rect": {
+          "x": 343,
+          "y": 625,
+          "w": 106,
+          "h": 44
+        },
+        "selector": "main > ul > li:nth-of-type(3) > div > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 741,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 741,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 356,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 334,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/catalog",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/catalog",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/catalog/1440x1000/capture.json",
+          "network": "pages/catalog/1440x1000/network.json",
+          "axe": "pages/catalog/1440x1000/axe.json",
+          "dir": "pages/catalog/1440x1000"
+        },
+        "M": {
+          "capture": "pages/catalog/390x844/capture.json",
+          "network": "pages/catalog/390x844/network.json",
+          "axe": "pages/catalog/390x844/axe.json",
+          "dir": "pages/catalog/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/catalog/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/catalog/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/catalog/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/catalog/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1980,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-aquapro-x200",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/aquapro-x200",
+    "page_type": "product",
+    "title": "AquaPro X200 (система HFX) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-aquapro-x200/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"AquaPro X200 (система HFX)\" [level=1]\n  - img \"Фільтр AquaPro X200 на світлому тлі\"\n  - paragraph: Фільтр для води з проточною кухонною установкою.\n  - paragraph:\n    - link \"Налаштувати комплектацію\":\n      - /url: /product/aquapro-x200/configure\n  - paragraph:\n    - link \"Прибрати з порівняння\":\n      - /url: /product/aquapro-x200?action=delete&id=1\n  - region \"Опис\":\n    - paragraph: Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n    - paragraph: Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n    - paragraph: \"Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\"\n    - paragraph: \"Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\"\n    - paragraph: \"Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\"\n  - button \"Додати в кошик\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nAquaPro X200 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nНалаштувати комплектацію\n\nПрибрати з порівняння\n\nМодель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n\nКожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n\nМи свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\n\nДогляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\n\nКомплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\n\nДодати в кошик\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Фільтр для води з проточною кухонною установкою.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "AquaPro X200 (система HFX)"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:4210/img/aquapro-x200.svg",
+          "alt": "Фільтр AquaPro X200 на світлому тлі"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "selector": "main > form > button",
+          "name": "Додати в кошик",
+          "type": "submit",
+          "visible": true,
+          "rect": {
+            "x": 194,
+            "y": 2164,
+            "w": 173,
+            "h": 44
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [
+        {
+          "method": "post",
+          "action": "/cart"
+        }
+      ],
+      "mobile": {
+        "title": "AquaPro X200 (система HFX) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "AquaPro X200 (система HFX)"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          },
+          {
+            "selector": "main > form > button",
+            "name": "Додати в кошик",
+            "type": "submit",
+            "visible": true,
+            "rect": {
+              "x": 12,
+              "y": 2204,
+              "w": 173,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/aquapro-x200/configure",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+        "text": "Налаштувати комплектацію",
+        "name": "Налаштувати комплектацію",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 436,
+          "w": 239,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/product/aquapro-x200?action=delete&id=1",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x200?action=delete&id=1",
+        "text": "Прибрати з порівняння",
+        "name": "Прибрати з порівняння",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 476,
+          "w": 196,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 2251,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 2251,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 862,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 840,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x200",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x200",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-aquapro-x200/1440x1000/capture.json",
+          "network": "pages/product-aquapro-x200/1440x1000/network.json",
+          "axe": "pages/product-aquapro-x200/1440x1000/axe.json",
+          "dir": "pages/product-aquapro-x200/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-aquapro-x200/390x844/capture.json",
+          "network": "pages/product-aquapro-x200/390x844/network.json",
+          "axe": "pages/product-aquapro-x200/390x844/axe.json",
+          "dir": "pages/product-aquapro-x200/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-aquapro-x200/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 2289,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-aquapro-x200/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x200/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 4642,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-aquapro-x220",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/aquapro-x220",
+    "page_type": "product",
+    "title": "AquaPro X220 (система HFX) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-aquapro-x220/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"AquaPro X220 (система HFX)\" [level=1]\n  - img \"Фільтр AquaPro X220 на світлому тлі\"\n  - paragraph: Фільтр для води з проточною кухонною установкою.\n  - paragraph:\n    - link \"Налаштувати комплектацію\":\n      - /url: /product/aquapro-x220/configure\n  - paragraph:\n    - link \"Прибрати з порівняння\":\n      - /url: /product/aquapro-x220?action=delete&id=2\n  - region \"Опис\":\n    - paragraph: Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n    - paragraph: Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n    - paragraph: \"Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\"\n    - paragraph: \"Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\"\n    - paragraph: \"Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\"\n  - button \"Додати в кошик\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nAquaPro X220 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nНалаштувати комплектацію\n\nПрибрати з порівняння\n\nМодель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n\nКожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n\nМи свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\n\nДогляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\n\nКомплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\n\nДодати в кошик\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Фільтр для води з проточною кухонною установкою.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "AquaPro X220 (система HFX)"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:4210/img/aquapro-x220.svg",
+          "alt": "Фільтр AquaPro X220 на світлому тлі"
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "selector": "main > form > button",
+          "name": "Додати в кошик",
+          "type": "submit",
+          "visible": true,
+          "rect": {
+            "x": 194,
+            "y": 2164,
+            "w": 173,
+            "h": 44
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [
+        {
+          "method": "post",
+          "action": "/cart"
+        }
+      ],
+      "mobile": {
+        "title": "AquaPro X220 (система HFX) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "AquaPro X220 (система HFX)"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          },
+          {
+            "selector": "main > form > button",
+            "name": "Додати в кошик",
+            "type": "submit",
+            "visible": true,
+            "rect": {
+              "x": 12,
+              "y": 2204,
+              "w": 173,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/aquapro-x220/configure",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+        "text": "Налаштувати комплектацію",
+        "name": "Налаштувати комплектацію",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 436,
+          "w": 239,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/product/aquapro-x220?action=delete&id=2",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x220?action=delete&id=2",
+        "text": "Прибрати з порівняння",
+        "name": "Прибрати з порівняння",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 476,
+          "w": 196,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 2251,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 2251,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 862,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 840,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x220",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x220",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-aquapro-x220/1440x1000/capture.json",
+          "network": "pages/product-aquapro-x220/1440x1000/network.json",
+          "axe": "pages/product-aquapro-x220/1440x1000/axe.json",
+          "dir": "pages/product-aquapro-x220/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-aquapro-x220/390x844/capture.json",
+          "network": "pages/product-aquapro-x220/390x844/network.json",
+          "axe": "pages/product-aquapro-x220/390x844/axe.json",
+          "dir": "pages/product-aquapro-x220/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-aquapro-x220/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 2289,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-aquapro-x220/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x220/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 4642,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-softline-s1",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/softline-s1",
+    "page_type": "product",
+    "title": "Softline S1 (модуль SLT) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-softline-s1/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-softline-s1/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Softline S1 (модуль SLT)\" [level=1]\n  - img\n  - paragraph: Пом'якшувач води для побутових потреб.\n  - paragraph:\n    - link \"Налаштувати комплектацію\":\n      - /url: /product/softline-s1/configure\n  - paragraph:\n    - link \"Прибрати з порівняння\":\n      - /url: /product/softline-s1?action=delete&id=3\n  - region \"Опис\":\n    - paragraph: Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n    - paragraph: Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n    - paragraph: \"Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\"\n    - paragraph: \"Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\"\n    - paragraph: \"Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\"\n    - region \"Таблиця характеристик\":\n      - table \"Характеристики\":\n        - caption: Характеристики\n        - rowgroup:\n          - row \"Параметр Значення Примітка\":\n            - columnheader \"Параметр\"\n            - columnheader \"Значення\"\n            - columnheader \"Примітка\"\n        - rowgroup:\n          - row \"Тип Пом'якшувач Побутовий\":\n            - cell \"Тип\"\n            - cell \"Пом'якшувач\"\n            - cell \"Побутовий\"\n          - row \"Кольори Білий, сірий На вибір\":\n            - cell \"Кольори\"\n            - cell \"Білий, сірий\"\n            - cell \"На вибір\"\n  - button \"Додати в кошик\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nSoftline S1 (модуль SLT)\n\nПом'якшувач води для побутових потреб.\n\nНалаштувати комплектацію\n\nПрибрати з порівняння\n\nМодель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n\nКожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n\nМи свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\n\nДогляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\n\nКомплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\n\nХарактеристики\nПараметр\tЗначення\tПримітка\nТип\tПом'якшувач\tПобутовий\nКольори\tБілий, сірий\tНа вибір\nДодати в кошик\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Пом'якшувач води для побутових потреб.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Softline S1 (модуль SLT)"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:4210/img/softline-s1.svg",
+          "alt": null
+        }
+      ],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "selector": "main > form > button",
+          "name": "Додати в кошик",
+          "type": "submit",
+          "visible": true,
+          "rect": {
+            "x": 194,
+            "y": 2164,
+            "w": 173,
+            "h": 44
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [
+        {
+          "method": "post",
+          "action": "/cart"
+        }
+      ],
+      "mobile": {
+        "title": "Softline S1 (модуль SLT) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Softline S1 (модуль SLT)"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          },
+          {
+            "selector": "main > form > button",
+            "name": "Додати в кошик",
+            "type": "submit",
+            "visible": true,
+            "rect": {
+              "x": 12,
+              "y": 2149,
+              "w": 173,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/softline-s1/configure",
+        "abs": "http://127.0.0.1:4210/product/softline-s1/configure",
+        "text": "Налаштувати комплектацію",
+        "name": "Налаштувати комплектацію",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 436,
+          "w": 239,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/product/softline-s1?action=delete&id=3",
+        "abs": "http://127.0.0.1:4210/product/softline-s1?action=delete&id=3",
+        "text": "Прибрати з порівняння",
+        "name": "Прибрати з порівняння",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 476,
+          "w": 196,
+          "h": 19
+        },
+        "selector": "main > section:nth-of-type(1) > p:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 2251,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 2251,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 948,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 926,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/softline-s1",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/softline-s1",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-softline-s1/1440x1000/capture.json",
+          "network": "pages/product-softline-s1/1440x1000/network.json",
+          "axe": "pages/product-softline-s1/1440x1000/axe.json",
+          "dir": "pages/product-softline-s1/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-softline-s1/390x844/capture.json",
+          "network": "pages/product-softline-s1/390x844/network.json",
+          "axe": "pages/product-softline-s1/390x844/axe.json",
+          "dir": "pages/product-softline-s1/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-softline-s1/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-softline-s1/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 2289,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-softline-s1/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-softline-s1/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 4532,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "help",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/help",
+    "page_type": "unknown",
+    "title": "Допомога — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/help/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/help/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Допомога\" [level=1]\n  - list:\n    - listitem:\n      - link \"Доставка й оплата\":\n        - /url: /help/shipping\n    - listitem:\n      - link \"Контакти\":\n        - /url: /about\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nДопомога\nДоставка й оплата\nКонтакти\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Відповіді на поширені запитання.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Допомога"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Допомога — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Допомога"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help/shipping",
+        "abs": "http://127.0.0.1:4210/help/shipping",
+        "text": "Доставка й оплата",
+        "name": "Доставка й оплата",
+        "visible": true,
+        "rect": {
+          "x": 234,
+          "y": 144,
+          "w": 159,
+          "h": 19
+        },
+        "selector": "main > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Контакти",
+        "name": "Контакти",
+        "visible": true,
+        "rect": {
+          "x": 234,
+          "y": 168,
+          "w": 80,
+          "h": 19
+        },
+        "selector": "main > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 249,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 249,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 83,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 61,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/help",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/help",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/help/1440x1000/capture.json",
+          "network": "pages/help/1440x1000/network.json",
+          "axe": "pages/help/1440x1000/axe.json",
+          "dir": "pages/help/1440x1000"
+        },
+        "M": {
+          "capture": "pages/help/390x844/capture.json",
+          "network": "pages/help/390x844/network.json",
+          "axe": "pages/help/390x844/axe.json",
+          "dir": "pages/help/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/help/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/help/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/help/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/help/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "help-shipping",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/help/shipping",
+    "page_type": "unknown",
+    "title": "Доставка й оплата — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/help-shipping/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/help-shipping/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Доставка й оплата\" [level=1]\n  - paragraph: \"Доставка Новою поштою: 1–2 дні, від 70 грн. Оплата при отриманні.\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nДоставка й оплата\n\nДоставка Новою поштою: 1–2 дні, від 70 грн. Оплата при отриманні.\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Умови доставки й оплати.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Доставка й оплата"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Доставка й оплата — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Доставка й оплата"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 225,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 225,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 133,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 111,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/help/shipping",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/help/shipping",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/help-shipping/1440x1000/capture.json",
+          "network": "pages/help-shipping/1440x1000/network.json",
+          "axe": "pages/help-shipping/1440x1000/axe.json",
+          "dir": "pages/help-shipping/1440x1000"
+        },
+        "M": {
+          "capture": "pages/help-shipping/390x844/capture.json",
+          "network": "pages/help-shipping/390x844/network.json",
+          "axe": "pages/help-shipping/390x844/axe.json",
+          "dir": "pages/help-shipping/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/help-shipping/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/help-shipping/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/help-shipping/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/help-shipping/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "about",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/about",
+    "page_type": "unknown",
+    "title": "Про нас — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/about/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/about/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Про нас\" [level=1]\n  - paragraph: Ми — невеликий магазин, який відбирає речі для дому й пояснює, чим вони відрізняються.\n  - paragraph:\n    - text: Ваше повідомлення\n    - textbox \"Ваше повідомлення\"\n  - paragraph:\n    - button \"Надіслати\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nПро нас\n\nМи — невеликий магазин, який відбирає речі для дому й пояснює, чим вони відрізняються.\n\nВаше повідомлення\n\n\nНадіслати\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Про магазин.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Про нас"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        {
+          "selector": "main > form > p:nth-of-type(2) > button",
+          "name": "Надіслати",
+          "type": "submit",
+          "visible": true,
+          "rect": {
+            "x": 194,
+            "y": 280,
+            "w": 122,
+            "h": 44
+          }
+        }
+      ],
+      "form_controls": [
+        {
+          "selector": "#msg",
+          "tag": "textarea",
+          "type": "textarea",
+          "name": "msg",
+          "label": "Ваше повідомлення",
+          "visible": true
+        }
+      ],
+      "forms": [
+        {
+          "method": "post",
+          "action": "/contact"
+        }
+      ],
+      "mobile": {
+        "title": "Про нас — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Про нас"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          },
+          {
+            "selector": "main > form > p:nth-of-type(2) > button",
+            "name": "Надіслати",
+            "type": "submit",
+            "visible": true,
+            "rect": {
+              "x": 12,
+              "y": 313,
+              "w": 122,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 383,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 383,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 175,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 153,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/about",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/about",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/about/1440x1000/capture.json",
+          "network": "pages/about/1440x1000/network.json",
+          "axe": "pages/about/1440x1000/axe.json",
+          "dir": "pages/about/1440x1000"
+        },
+        "M": {
+          "capture": "pages/about/390x844/capture.json",
+          "network": "pages/about/390x844/network.json",
+          "axe": "pages/about/390x844/axe.json",
+          "dir": "pages/about/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/about/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/about/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/about/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/about/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-aquapro-x200-configure",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+    "page_type": "unknown",
+    "title": "Комплектація AquaPro X200 (система HFX) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-aquapro-x200-configure/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-aquapro-x200-configure/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Комплектація\" [level=1]\n  - paragraph: \"Обрана модель: AquaPro X200 (система HFX)\"\n  - region \"Ціна\":\n    - paragraph: 2 499 грн\n  - paragraph:\n    - link \"Назад до моделі\":\n      - /url: /product/aquapro-x200\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nКомплектація\n\nОбрана модель: AquaPro X200 (система HFX)\n\n2 499 грн\n\nНазад до моделі\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Налаштування комплектації.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Комплектація"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Комплектація AquaPro X200 (система HFX) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Комплектація"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/aquapro-x200",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x200",
+        "text": "Назад до моделі",
+        "name": "Назад до моделі",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 239,
+          "w": 140,
+          "h": 19
+        },
+        "selector": "main > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 320,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 320,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 132,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 110,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-aquapro-x200-configure/1440x1000/capture.json",
+          "network": "pages/product-aquapro-x200-configure/1440x1000/network.json",
+          "axe": "pages/product-aquapro-x200-configure/1440x1000/axe.json",
+          "dir": "pages/product-aquapro-x200-configure/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-aquapro-x200-configure/390x844/capture.json",
+          "network": "pages/product-aquapro-x200-configure/390x844/network.json",
+          "axe": "pages/product-aquapro-x200-configure/390x844/axe.json",
+          "dir": "pages/product-aquapro-x200-configure/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-aquapro-x200-configure/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x200-configure/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-aquapro-x200-configure/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x200-configure/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-aquapro-x220-configure",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+    "page_type": "unknown",
+    "title": "Комплектація AquaPro X220 (система HFX) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-aquapro-x220-configure/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-aquapro-x220-configure/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Комплектація\" [level=1]\n  - paragraph: \"Обрана модель: AquaPro X220 (система HFX)\"\n  - region \"Ціна\":\n    - paragraph: 2 499 грн\n  - paragraph:\n    - link \"Назад до моделі\":\n      - /url: /product/aquapro-x220\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nКомплектація\n\nОбрана модель: AquaPro X220 (система HFX)\n\n2 499 грн\n\nНазад до моделі\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Налаштування комплектації.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Комплектація"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Комплектація AquaPro X220 (система HFX) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Комплектація"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/aquapro-x220",
+        "abs": "http://127.0.0.1:4210/product/aquapro-x220",
+        "text": "Назад до моделі",
+        "name": "Назад до моделі",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 239,
+          "w": 140,
+          "h": 19
+        },
+        "selector": "main > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 320,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 320,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 132,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 110,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-aquapro-x220-configure/1440x1000/capture.json",
+          "network": "pages/product-aquapro-x220-configure/1440x1000/network.json",
+          "axe": "pages/product-aquapro-x220-configure/1440x1000/axe.json",
+          "dir": "pages/product-aquapro-x220-configure/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-aquapro-x220-configure/390x844/capture.json",
+          "network": "pages/product-aquapro-x220-configure/390x844/network.json",
+          "axe": "pages/product-aquapro-x220-configure/390x844/axe.json",
+          "dir": "pages/product-aquapro-x220-configure/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-aquapro-x220-configure/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x220-configure/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-aquapro-x220-configure/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-aquapro-x220-configure/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "product-softline-s1-configure",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:4210/product/softline-s1/configure",
+    "page_type": "unknown",
+    "title": "Комплектація Softline S1 (модуль SLT) — ТехноДім",
+    "http_status": 200,
+    "desktop_screenshot": "pages/product-softline-s1-configure/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/product-softline-s1-configure/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"Комплектація\" [level=1]\n  - paragraph: \"Обрана модель: Softline S1 (модуль SLT)\"\n  - region \"Ціна\":\n    - paragraph: 2 499 грн\n  - paragraph:\n    - link \"Назад до моделі\":\n      - /url: /product/softline-s1\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+    "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nКомплектація\n\nОбрана модель: Softline S1 (модуль SLT)\n\n2 499 грн\n\nНазад до моделі\n\nДопомога\nПро нас",
+    "metadata_json": {
+      "meta_description": "Налаштування комплектації.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Комплектація"
+        }
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "selector": "header > button",
+          "name": "",
+          "type": "button",
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        }
+      ],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Комплектація Softline S1 (модуль SLT) — ТехноДім",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Комплектація"
+          }
+        ],
+        "buttons": [
+          {
+            "selector": "header > button",
+            "name": "",
+            "type": "button",
+            "visible": true,
+            "rect": {
+              "x": 334,
+              "y": 10,
+              "w": 44,
+              "h": 44
+            }
+          }
+        ]
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:4210/",
+        "text": "ТехноДім",
+        "name": "ТехноДім",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 17,
+          "w": 109,
+          "h": 30
+        },
+        "selector": "header > a"
+      },
+      {
+        "href": "/catalog",
+        "abs": "http://127.0.0.1:4210/catalog",
+        "text": "Каталог",
+        "name": "Каталог",
+        "visible": true,
+        "rect": {
+          "x": 1190,
+          "y": 22,
+          "w": 69,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 1278,
+          "y": 22,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(2) > a"
+      },
+      {
+        "href": "/logout",
+        "abs": "http://127.0.0.1:4210/logout",
+        "text": "Вийти",
+        "name": "Вийти",
+        "visible": true,
+        "rect": {
+          "x": 1365,
+          "y": 22,
+          "w": 52,
+          "h": 19
+        },
+        "selector": "header > nav > ul > li:nth-of-type(3) > a"
+      },
+      {
+        "href": "/product/softline-s1",
+        "abs": "http://127.0.0.1:4210/product/softline-s1",
+        "text": "Назад до моделі",
+        "name": "Назад до моделі",
+        "visible": true,
+        "rect": {
+          "x": 194,
+          "y": 239,
+          "w": 140,
+          "h": 19
+        },
+        "selector": "main > p:nth-of-type(2) > a"
+      },
+      {
+        "href": "/help",
+        "abs": "http://127.0.0.1:4210/help",
+        "text": "Допомога",
+        "name": "Допомога",
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 320,
+          "w": 83,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(1) > a"
+      },
+      {
+        "href": "/about",
+        "abs": "http://127.0.0.1:4210/about",
+        "text": "Про нас",
+        "name": "Про нас",
+        "visible": true,
+        "rect": {
+          "x": 127,
+          "y": 320,
+          "w": 66,
+          "h": 19
+        },
+        "selector": "footer > ul > li:nth-of-type(2) > a"
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 130,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "closed",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 108,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        },
+        "M": {
+          "detected": true,
+          "state": "closed",
+          "actions": [
+            {
+              "step": "reject",
+              "label": "Лише необхідні",
+              "clicked": true,
+              "method": "click",
+              "hidden_after": true
+            }
+          ]
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:4210/product/softline-s1/configure",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:4210/product/softline-s1/configure",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/product-softline-s1-configure/1440x1000/capture.json",
+          "network": "pages/product-softline-s1-configure/1440x1000/network.json",
+          "axe": "pages/product-softline-s1-configure/1440x1000/axe.json",
+          "dir": "pages/product-softline-s1-configure/1440x1000"
+        },
+        "M": {
+          "capture": "pages/product-softline-s1-configure/390x844/capture.json",
+          "network": "pages/product-softline-s1-configure/390x844/network.json",
+          "axe": "pages/product-softline-s1-configure/390x844/axe.json",
+          "dir": "pages/product-softline-s1-configure/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/product-softline-s1-configure/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-softline-s1-configure/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": false
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/product-softline-s1-configure/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          },
+          "fullpage": {
+            "file": "pages/product-softline-s1-configure/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": false
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  }
+]
