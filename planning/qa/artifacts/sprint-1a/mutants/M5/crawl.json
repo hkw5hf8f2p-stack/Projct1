@@ -1,0 +1,234 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://127.0.0.1:4210/",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0
+    },
+    {
+      "url": "http://127.0.0.1:4210/catalog",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.95,
+      "order": 1
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x200",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 2
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 3
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/softline-s1",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 4
+    },
+    {
+      "url": "http://127.0.0.1:4210/help",
+      "depth": 1,
+      "class": "faq",
+      "priority": 0.75,
+      "order": 5
+    },
+    {
+      "url": "http://127.0.0.1:4210/help/shipping",
+      "depth": 2,
+      "class": "shipping",
+      "priority": 0.8,
+      "order": 6
+    },
+    {
+      "url": "http://127.0.0.1:4210/about",
+      "depth": 1,
+      "class": "about",
+      "priority": 0.6,
+      "order": 7
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+      "depth": 3,
+      "class": "other",
+      "priority": 0.3,
+      "order": 8
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+      "depth": 3,
+      "class": "other",
+      "priority": 0.3,
+      "order": 9
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/softline-s1/configure",
+      "depth": 3,
+      "class": "other",
+      "priority": 0.3,
+      "order": 10
+    }
+  ],
+  "pages": [
+    {
+      "url": "http://127.0.0.1:4210/",
+      "page_id": "index",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/catalog",
+      "page_id": "catalog",
+      "page_type": "category"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x200",
+      "page_id": "product-aquapro-x200",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "page_id": "product-aquapro-x220",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/softline-s1",
+      "page_id": "product-softline-s1",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4210/help",
+      "page_id": "help",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/help/shipping",
+      "page_id": "help-shipping",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/about",
+      "page_id": "about",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x200/configure",
+      "page_id": "product-aquapro-x200-configure",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+      "page_id": "product-aquapro-x220-configure",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/softline-s1/configure",
+      "page_id": "product-softline-s1-configure",
+      "page_type": "unknown"
+    }
+  ],
+  "skipped": [
+    {
+      "url": "http://127.0.0.1:4210/catalog?action=delete&list=compare",
+      "reason": "deny_list",
+      "rule": "query:action",
+      "from": "http://127.0.0.1:4210/catalog"
+    },
+    {
+      "url": "http://127.0.0.1:4210/catalog?add-to-cart=1",
+      "reason": "deny_list",
+      "rule": "query:add-to-cart",
+      "from": "http://127.0.0.1:4210/catalog"
+    },
+    {
+      "url": "http://127.0.0.1:4210/catalog?add-to-cart=2",
+      "reason": "deny_list",
+      "rule": "query:add-to-cart",
+      "from": "http://127.0.0.1:4210/catalog"
+    },
+    {
+      "url": "http://127.0.0.1:4210/catalog?add-to-cart=3",
+      "reason": "deny_list",
+      "rule": "query:add-to-cart",
+      "from": "http://127.0.0.1:4210/catalog"
+    },
+    {
+      "url": "http://127.0.0.1:4210/logout",
+      "reason": "deny_list",
+      "rule": "path:logout",
+      "from": "http://127.0.0.1:4210/"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x200?action=delete&id=1",
+      "reason": "deny_list",
+      "rule": "query:action",
+      "from": "http://127.0.0.1:4210/product/aquapro-x200"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220?action=delete&id=2",
+      "reason": "deny_list",
+      "rule": "query:action",
+      "from": "http://127.0.0.1:4210/product/aquapro-x220"
+    },
+    {
+      "url": "http://127.0.0.1:4210/product/softline-s1?action=delete&id=3",
+      "reason": "deny_list",
+      "rule": "query:action",
+      "from": "http://127.0.0.1:4210/product/softline-s1"
+    }
+  ],
+  "edges": [
+    "http://127.0.0.1:4210/ -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/ -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/ -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/ -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/about -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/about -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/about -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/about -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/product/aquapro-x200",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/product/aquapro-x220",
+    "http://127.0.0.1:4210/catalog -> http://127.0.0.1:4210/product/softline-s1",
+    "http://127.0.0.1:4210/help -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/help -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/help -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/help -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/help -> http://127.0.0.1:4210/help/shipping",
+    "http://127.0.0.1:4210/help/shipping -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/help/shipping -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/help/shipping -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/help/shipping -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/product/aquapro-x200 -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/product/aquapro-x200 -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/product/aquapro-x200 -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/product/aquapro-x200 -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/product/aquapro-x200 -> http://127.0.0.1:4210/product/aquapro-x200/configure",
+    "http://127.0.0.1:4210/product/aquapro-x220 -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/product/aquapro-x220 -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/product/aquapro-x220 -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/product/aquapro-x220 -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/product/aquapro-x220 -> http://127.0.0.1:4210/product/aquapro-x220/configure",
+    "http://127.0.0.1:4210/product/softline-s1 -> http://127.0.0.1:4210/",
+    "http://127.0.0.1:4210/product/softline-s1 -> http://127.0.0.1:4210/about",
+    "http://127.0.0.1:4210/product/softline-s1 -> http://127.0.0.1:4210/catalog",
+    "http://127.0.0.1:4210/product/softline-s1 -> http://127.0.0.1:4210/help",
+    "http://127.0.0.1:4210/product/softline-s1 -> http://127.0.0.1:4210/product/softline-s1/configure"
+  ]
+}

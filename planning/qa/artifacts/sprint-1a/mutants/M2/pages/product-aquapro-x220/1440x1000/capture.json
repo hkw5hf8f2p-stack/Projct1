@@ -1,0 +1,442 @@
+{
+  "title": "AquaPro X220 (система HFX) — ТехноДім",
+  "meta_description": "Фільтр для води з проточною кухонною установкою.",
+  "headings": [
+    {
+      "level": 1,
+      "text": "AquaPro X220 (система HFX)"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:4210/",
+      "text": "ТехноДім",
+      "name": "ТехноДім",
+      "visible": true,
+      "rect": {
+        "x": 24,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "selector": "header > a"
+    },
+    {
+      "href": "/catalog",
+      "abs": "http://127.0.0.1:4210/catalog",
+      "text": "Каталог",
+      "name": "Каталог",
+      "visible": true,
+      "rect": {
+        "x": 1190,
+        "y": 22,
+        "w": 69,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(1) > a"
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 1278,
+        "y": 22,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(2) > a"
+    },
+    {
+      "href": "/logout",
+      "abs": "http://127.0.0.1:4210/logout",
+      "text": "Вийти",
+      "name": "Вийти",
+      "visible": true,
+      "rect": {
+        "x": 1365,
+        "y": 22,
+        "w": 52,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(3) > a"
+    },
+    {
+      "href": "/product/aquapro-x220/configure",
+      "abs": "http://127.0.0.1:4210/product/aquapro-x220/configure",
+      "text": "Налаштувати комплектацію",
+      "name": "Налаштувати комплектацію",
+      "visible": true,
+      "rect": {
+        "x": 194,
+        "y": 436,
+        "w": 239,
+        "h": 19
+      },
+      "selector": "main > section:nth-of-type(1) > p:nth-of-type(2) > a"
+    },
+    {
+      "href": "/product/aquapro-x220?action=delete&id=2",
+      "abs": "http://127.0.0.1:4210/product/aquapro-x220?action=delete&id=2",
+      "text": "Прибрати з порівняння",
+      "name": "Прибрати з порівняння",
+      "visible": true,
+      "rect": {
+        "x": 194,
+        "y": 476,
+        "w": 196,
+        "h": 19
+      },
+      "selector": "main > section:nth-of-type(1) > p:nth-of-type(3) > a"
+    },
+    {
+      "href": "/help",
+      "abs": "http://127.0.0.1:4210/help",
+      "text": "Допомога",
+      "name": "Допомога",
+      "visible": true,
+      "rect": {
+        "x": 24,
+        "y": 2307,
+        "w": 83,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(1) > a"
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 127,
+        "y": 2307,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(2) > a"
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "header > button",
+      "name": "",
+      "type": "button",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    },
+    {
+      "selector": "main > form > button",
+      "name": "Додати в кошик",
+      "type": "submit",
+      "visible": true,
+      "rect": {
+        "x": 194,
+        "y": 2164,
+        "w": 173,
+        "h": 44
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [
+    {
+      "method": "post",
+      "action": "/cart"
+    }
+  ],
+  "images": [
+    {
+      "selector": "main > section:nth-of-type(1) > img",
+      "src": "/img/aquapro-x220.svg",
+      "current_src": "http://127.0.0.1:4210/img/aquapro-x220.svg",
+      "alt": "Фільтр AquaPro X220 на світлому тлі",
+      "natural_w": 240,
+      "natural_h": 240,
+      "rect": {
+        "x": 194,
+        "y": 138,
+        "w": 390,
+        "h": 240
+      },
+      "is_background": false
+    }
+  ],
+  "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nAquaPro X220 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nНалаштувати комплектацію\n\nПрибрати з порівняння\n\nМодель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n\nКожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n\nМи свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\n\nДогляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\n\nКомплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\n\nДодати в кошик\n\nДоставка: 1–2 дні, від 70 грн.\n\nДопомога\nПро нас",
+  "text_nodes": [
+    {
+      "t": "ТехноДім",
+      "a": true
+    },
+    {
+      "t": "Каталог",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    },
+    {
+      "t": "Вийти",
+      "a": true
+    },
+    {
+      "t": "AquaPro X220 (система HFX)",
+      "a": false
+    },
+    {
+      "t": "Фільтр для води з проточною кухонною установкою.",
+      "a": false
+    },
+    {
+      "t": "Налаштувати комплектацію",
+      "a": true
+    },
+    {
+      "t": "Прибрати з порівняння",
+      "a": true
+    },
+    {
+      "t": "Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.",
+      "a": false
+    },
+    {
+      "t": "Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.",
+      "a": false
+    },
+    {
+      "t": "Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.",
+      "a": false
+    },
+    {
+      "t": "Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.",
+      "a": false
+    },
+    {
+      "t": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
+      "a": false
+    },
+    {
+      "t": "Додати в кошик",
+      "a": false
+    },
+    {
+      "t": "Доставка: 1–2 дні, від 70 грн.",
+      "a": false
+    },
+    {
+      "t": "Допомога",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    }
+  ],
+  "fv_text": "ТехноДім Каталог Про нас Вийти AquaPro X220 (система HFX) Фільтр для води з проточною кухонною установкою. Налаштувати комплектацію Прибрати з порівняння Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів. Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку. Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі. Догляд",
+  "interactive": [
+    {
+      "selector": "header > a",
+      "tag": "a",
+      "name": "ТехноДім",
+      "rect": {
+        "x": 24,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "vis": 1
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Каталог",
+      "rect": {
+        "x": 1190,
+        "y": 22,
+        "w": 69,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 1278,
+        "y": 22,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(3) > a",
+      "tag": "a",
+      "name": "Вийти",
+      "rect": {
+        "x": 1365,
+        "y": 22,
+        "w": 52,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > section:nth-of-type(1) > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Налаштувати комплектацію",
+      "rect": {
+        "x": 194,
+        "y": 436,
+        "w": 239,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > section:nth-of-type(1) > p:nth-of-type(3) > a",
+      "tag": "a",
+      "name": "Прибрати з порівняння",
+      "rect": {
+        "x": 194,
+        "y": 476,
+        "w": 196,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > form > button",
+      "tag": "button",
+      "name": "Додати в кошик",
+      "rect": {
+        "x": 194,
+        "y": 2164,
+        "w": 173,
+        "h": 44
+      },
+      "vis": 0
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Допомога",
+      "rect": {
+        "x": 24,
+        "y": 2307,
+        "w": 83,
+        "h": 19
+      },
+      "vis": 0
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 127,
+        "y": 2307,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 0
+    }
+  ],
+  "price_candidates": [
+    {
+      "selector": "main > section:nth-of-type(3) > p",
+      "text": "Доставка: 1–2 дні, від 70 грн.",
+      "rect": {
+        "x": 194,
+        "y": 2224,
+        "w": 1052,
+        "h": 24
+      },
+      "in_fv": false,
+      "excluded": true,
+      "kind": "text"
+    }
+  ],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 2345,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "http://127.0.0.1:4210/product/aquapro-x220",
+  "final_url": "http://127.0.0.1:4210/product/aquapro-x220",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - heading \"AquaPro X220 (система HFX)\" [level=1]\n  - img \"Фільтр AquaPro X220 на світлому тлі\"\n  - paragraph: Фільтр для води з проточною кухонною установкою.\n  - paragraph:\n    - link \"Налаштувати комплектацію\":\n      - /url: /product/aquapro-x220/configure\n  - paragraph:\n    - link \"Прибрати з порівняння\":\n      - /url: /product/aquapro-x220?action=delete&id=2\n  - region \"Опис\":\n    - paragraph: Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n    - paragraph: Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n    - paragraph: \"Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\"\n    - paragraph: \"Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\"\n    - paragraph: \"Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\"\n  - button \"Додати в кошик\"\n  - region \"Доставка\":\n    - paragraph: \"Доставка: 1–2 дні, від 70 грн.\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/product-aquapro-x220/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": false
+    },
+    "fullpage": {
+      "file": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 2345,
+      "written": false
+    }
+  },
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "closed",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 895,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/product-aquapro-x220/1440x1000/capture.json",
+    "network": "pages/product-aquapro-x220/1440x1000/network.json",
+    "axe": "pages/product-aquapro-x220/1440x1000/axe.json",
+    "dir": "pages/product-aquapro-x220/1440x1000"
+  }
+}

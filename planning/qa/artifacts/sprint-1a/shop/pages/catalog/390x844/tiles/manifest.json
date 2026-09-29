@@ -1,0 +1,17 @@
+{
+  "viewport": "M",
+  "first_viewport": "pages/catalog/390x844/viewport.png",
+  "tile_height_css": 844,
+  "overlap_css": 127,
+  "full_height_css": 990,
+  "width_css": 390,
+  "dpr": 2,
+  "tiles": [
+    {
+      "index": 1,
+      "file": "pages/catalog/390x844/tiles/tile-01.jpg",
+      "y_css": 717,
+      "height_css": 273
+    }
+  ]
+}

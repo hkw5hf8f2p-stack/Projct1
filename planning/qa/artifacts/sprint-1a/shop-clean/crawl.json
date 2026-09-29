@@ -1,0 +1,129 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://127.0.0.1:4211/",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0
+    },
+    {
+      "url": "http://127.0.0.1:4211/catalog",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.95,
+      "order": 1
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/glass-kettle",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 2
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/travel-thermos",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 3
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/wooden-board",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 4
+    },
+    {
+      "url": "http://127.0.0.1:4211/shipping",
+      "depth": 1,
+      "class": "shipping",
+      "priority": 0.8,
+      "order": 5
+    },
+    {
+      "url": "http://127.0.0.1:4211/about",
+      "depth": 1,
+      "class": "about",
+      "priority": 0.6,
+      "order": 6
+    }
+  ],
+  "pages": [
+    {
+      "url": "http://127.0.0.1:4211/",
+      "page_id": "index",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4211/catalog",
+      "page_id": "catalog",
+      "page_type": "category"
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/glass-kettle",
+      "page_id": "product-glass-kettle",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/travel-thermos",
+      "page_id": "product-travel-thermos",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4211/product/wooden-board",
+      "page_id": "product-wooden-board",
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4211/shipping",
+      "page_id": "shipping",
+      "page_type": "unknown"
+    },
+    {
+      "url": "http://127.0.0.1:4211/about",
+      "page_id": "about",
+      "page_type": "unknown"
+    }
+  ],
+  "skipped": [],
+  "edges": [
+    "http://127.0.0.1:4211/ -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/ -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/ -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/ -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/about -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/about -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/about -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/about -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/product/glass-kettle",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/product/travel-thermos",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/product/wooden-board",
+    "http://127.0.0.1:4211/catalog -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/product/glass-kettle -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/product/glass-kettle -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/product/glass-kettle -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/product/glass-kettle -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/product/travel-thermos -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/product/travel-thermos -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/product/travel-thermos -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/product/travel-thermos -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/product/wooden-board -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/product/wooden-board -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/product/wooden-board -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/product/wooden-board -> http://127.0.0.1:4211/shipping",
+    "http://127.0.0.1:4211/shipping -> http://127.0.0.1:4211/",
+    "http://127.0.0.1:4211/shipping -> http://127.0.0.1:4211/about",
+    "http://127.0.0.1:4211/shipping -> http://127.0.0.1:4211/catalog",
+    "http://127.0.0.1:4211/shipping -> http://127.0.0.1:4211/shipping"
+  ]
+}

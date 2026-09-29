@@ -10,6 +10,7 @@
     "doctor:as-sitelens": "SL_PASS_PROXY=1 bash scripts/run-as-sitelens.sh pnpm run doctor",
     "spike": "tsx scripts/spike.ts",
     "slice": "tsx packages/browser/src/run-slice.ts",
+    "audit:fixture": "tsx scripts/audit-fixture.ts",
     "test": "vitest run --configLoader runner",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint ."

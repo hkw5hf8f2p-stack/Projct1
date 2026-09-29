@@ -1,0 +1,332 @@
+{
+  "schema": "sitelens-fixture-expected/v1",
+  "fixture": "shop",
+  "scoring_version": "scoring-v1",
+  "defects": [
+    {
+      "id": 1,
+      "spec_ref": "§53.1",
+      "type": "llm",
+      "pages": [
+        "/"
+      ],
+      "match": "any",
+      "viewports": [
+        "D",
+        "M"
+      ],
+      "detector_id": null,
+      "support_detector_id": "h1_category_overlap",
+      "claim_kind": null,
+      "assertion": null,
+      "categories": [
+        "value_proposition",
+        "visual_hierarchy"
+      ],
+      "page_groups": [
+        "/"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "INFERRED",
+        "self_confirming": false
+      },
+      "expected_confidence": null,
+      "region_marker": "d1",
+      "mutant": null
+    },
+    {
+      "id": 2,
+      "spec_ref": "§53.2",
+      "type": "deterministic",
+      "pages": [
+        "/product/aquapro-x200",
+        "/product/aquapro-x220",
+        "/product/softline-s1"
+      ],
+      "match": "any",
+      "viewports": [
+        "M"
+      ],
+      "detector_id": "shipping_depth",
+      "claim_kind": "deep_link_only",
+      "assertion": "absence",
+      "categories": [
+        "shipping",
+        "missing_information"
+      ],
+      "page_groups": [
+        "product"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "OBSERVED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d2",
+      "mutant": "m2",
+      "viewport_note": "union D∪M; evidence attached to M"
+    },
+    {
+      "id": 3,
+      "spec_ref": "§53.3",
+      "type": "llm",
+      "pages": [
+        "/catalog"
+      ],
+      "match": "any",
+      "viewports": [
+        "D"
+      ],
+      "detector_id": null,
+      "support_detector_id": "term_unexplained",
+      "claim_kind": null,
+      "assertion": null,
+      "categories": [
+        "terminology",
+        "product_selection"
+      ],
+      "page_groups": [
+        "product",
+        "category"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "INFERRED",
+        "self_confirming": false
+      },
+      "expected_confidence": null,
+      "region_marker": "d3",
+      "mutant": null
+    },
+    {
+      "id": 4,
+      "spec_ref": "§53.4",
+      "type": "hybrid",
+      "pages": [
+        "/catalog"
+      ],
+      "match": "any",
+      "viewports": [
+        "D"
+      ],
+      "detector_id": null,
+      "support_detector_id": "similar_products",
+      "claim_kind": null,
+      "assertion": null,
+      "categories": [
+        "comparison",
+        "product_selection"
+      ],
+      "page_groups": [
+        "category",
+        "product"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "SYNTHETIC",
+        "self_confirming": false
+      },
+      "expected_confidence": null,
+      "region_marker": "d4",
+      "mutant": null
+    },
+    {
+      "id": 5,
+      "spec_ref": "§53.5",
+      "type": "deterministic",
+      "pages": [
+        "/product/aquapro-x200",
+        "/product/aquapro-x220",
+        "/product/softline-s1"
+      ],
+      "match": "any",
+      "viewports": [
+        "D",
+        "M"
+      ],
+      "detector_id": "cta_below_fold",
+      "claim_kind": "below_fold",
+      "assertion": "presence",
+      "categories": [
+        "cta",
+        "visual_hierarchy",
+        "mobile_usability"
+      ],
+      "page_groups": [
+        "product"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "OBSERVED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d5",
+      "mutant": "m5"
+    },
+    {
+      "id": 6,
+      "spec_ref": "§53.6",
+      "type": "deterministic",
+      "pages": [
+        "*"
+      ],
+      "match": "any",
+      "viewports": [
+        "M"
+      ],
+      "detector_id": "axe:button-name",
+      "claim_kind": "axe:button-name",
+      "assertion": "presence",
+      "categories": [
+        "accessibility"
+      ],
+      "page_groups": [
+        "*"
+      ],
+      "evidence": {
+        "type": "axe",
+        "source_class": "BENCHMARKED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d6",
+      "mutant": "m6",
+      "detector_ids": [
+        "axe:button-name",
+        "axe:link-name",
+        "axe:label"
+      ]
+    },
+    {
+      "id": 7,
+      "spec_ref": "§53.7",
+      "type": "deterministic",
+      "pages": [
+        "/product/softline-s1"
+      ],
+      "match": "any",
+      "viewports": [
+        "M"
+      ],
+      "detector_id": "horizontal_overflow",
+      "claim_kind": "horizontal_overflow",
+      "assertion": "presence",
+      "categories": [
+        "mobile_usability"
+      ],
+      "page_groups": [
+        "*"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "OBSERVED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d7",
+      "mutant": "m7"
+    },
+    {
+      "id": 8,
+      "spec_ref": "§53.8",
+      "type": "deterministic",
+      "pages": [
+        "/"
+      ],
+      "match": "any",
+      "viewports": [
+        "D",
+        "M"
+      ],
+      "detector_id": "oversized_image",
+      "claim_kind": "oversized_image",
+      "assertion": "presence",
+      "categories": [
+        "performance"
+      ],
+      "page_groups": [
+        "*"
+      ],
+      "evidence": {
+        "type": "dom",
+        "source_class": "OBSERVED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d8",
+      "mutant": "m8"
+    },
+    {
+      "id": 9,
+      "spec_ref": "§53.9",
+      "type": "deterministic",
+      "pages": [
+        "/product/softline-s1"
+      ],
+      "match": "any",
+      "viewports": [
+        "D",
+        "M"
+      ],
+      "detector_id": "axe:image-alt",
+      "claim_kind": "axe:image-alt",
+      "assertion": "presence",
+      "categories": [
+        "accessibility"
+      ],
+      "page_groups": [
+        "*"
+      ],
+      "evidence": {
+        "type": "axe",
+        "source_class": "BENCHMARKED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d9",
+      "mutant": "m9"
+    },
+    {
+      "id": 10,
+      "spec_ref": "§53.10",
+      "type": "deterministic",
+      "pages": [
+        "/catalog",
+        "/product/aquapro-x200",
+        "/product/aquapro-x220",
+        "/product/softline-s1"
+      ],
+      "match": "any",
+      "viewports": [
+        "D",
+        "M"
+      ],
+      "detector_id": "price_first_viewport",
+      "claim_kind": "not_in_first_viewport",
+      "assertion": "absence",
+      "categories": [
+        "pricing"
+      ],
+      "page_groups": [
+        "category",
+        "product"
+      ],
+      "evidence": {
+        "type": "screenshot",
+        "source_class": "OBSERVED",
+        "self_confirming": true
+      },
+      "expected_confidence": "VERIFIED",
+      "region_marker": "d10",
+      "mutant": "m10"
+    }
+  ],
+  "clean": {
+    "fixture": "shop-clean",
+    "deterministic_findings_max": 0,
+    "support_facts_max": 0
+  }
+}
