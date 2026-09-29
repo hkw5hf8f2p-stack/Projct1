@@ -3,11 +3,13 @@ import { mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { chromium, type Browser } from "playwright";
+import type { Browser } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { captureSlice, detectHorizontalOverflow, serveDir, type Evidence } from "../src/index.js";
+import { secureLaunch, type SecureBrowser } from "../src/secure-launch.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
+let sb: SecureBrowser;
 let browser: Browser;
 let server: Awaited<ReturnType<typeof serveDir>>;
 const tmpDirs: string[] = [];
@@ -18,11 +20,13 @@ const tmp = async () => {
 };
 
 beforeAll(async () => {
-  browser = await chromium.launch({ headless: true, chromiumSandbox: true });
   server = await serveDir(path.join(ROOT, "fixtures/slice"));
+  // захищений браузер: egress-проксі у fixture-режимі з allow-list рівно origin фікстури, пісочниця, очищений env
+  sb = await secureLaunch({ mode: "fixture", fixtureOrigins: [server.origin] });
+  browser = sb.browser;
 });
 afterAll(async () => {
-  await browser?.close();
+  await sb?.close();
   await server?.close();
   await Promise.all(tmpDirs.map((d) => rm(d, { recursive: true, force: true })));
 });
