@@ -1,0 +1,6 @@
+
+> sitelens@0.0.0 slice /home/user/Projct1
+> tsx packages/browser/src/run-slice.ts
+
+defective {"desktop":{"overflow":{"overflows":false,"overflow_px":0,"offenders":0},"axe_violations":[{"id":"image-alt","impact":"critical","nodes":1}]},"mobile":{"overflow":{"overflows":true,"overflow_px":528,"offenders":1},"axe_violations":[{"id":"image-alt","impact":"critical","nodes":1}]}} evidence=3
+clean {"desktop":{"overflow":{"overflows":false,"overflow_px":0,"offenders":0},"axe_violations":[]},"mobile":{"overflow":{"overflows":false,"overflow_px":0,"offenders":0},"axe_violations":[]}} evidence=0

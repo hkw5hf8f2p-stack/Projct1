@@ -1,0 +1,17 @@
+
+> sitelens@0.0.0 test /home/user/Projct1
+> vitest run --configLoader runner
+
+
+ RUN  v3.2.7 /home/user/Projct1
+
+ ✓ packages/browser/test/slice.test.ts (5 tests) 7310ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > ПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport  1575ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > НЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень  1236ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > детермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон)  4294ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  21:03:10
+   Duration  8.08s (transform 130ms, setup 0ms, collect 524ms, tests 7.31s, environment 0ms, prepare 62ms)
+

@@ -1,0 +1,21 @@
+
+> sitelens@0.0.0 doctor:as-sitelens /home/user/Projct1
+> SL_PASS_PROXY=1 bash scripts/run-as-sitelens.sh pnpm run doctor
+
+
+> sitelens@0.0.0 doctor /home/user/Projct1
+> tsx scripts/doctor.ts
+
+PASS node: Node 22.22.2 (потрібно major >= 22)
+PASS pnpm: pnpm 10.33.0, packageManager=pnpm@10.33.0
+INFO platform: linux x64, uid=1001, rosetta=n/a
+PASS chromium_installed: playwright-core 1.56.1 потребує chromium r1194 (141.0.7390.37) + headless-shell r1194; PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers; chromium=true, headless_shell=true; вміст: [.links, chromium, chromium-1194, chromium_headless_shell-1194, ffmpeg-1011]
+PASS chromium_sandbox: Chromium 141.0.7390.37 стартував із chromiumSandbox:true; --no-sandbox у cmdline: false; uid=1001
+PASS axe: @axe-core/playwright 4.13.0, axe-core 4.13.0
+PASS lighthouse: lighthouse 13.5.0 імпортується (engines node >=22.19)
+INFO postgres_options: system PG версії: [16] (Ver Cluster Port Status Owner    Data directory              Log file
+16  main    5432 down   postgres /var/lib/postgresql/16/main /var/log/postgresql/postgresql-16-main.log); @embedded-postgres/linux-x64@18.4.0-beta.17. S1a не стартує БД.
+INFO internet: registry.npmjs.org=200, example.com=ERR(curl: (56) CONNECT tunnel failed, response 403) → живі публічні сайти НЕдоступні (живі пас-и ⏭️)
+INFO docker: клієнт: Docker version 29.3.1, build c2be9cc; демон: недоступний
+
+DOCTOR PASS → planning/qa/artifacts/sprint-1a/doctor.json

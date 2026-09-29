@@ -52,3 +52,13 @@
 | embedded-postgres: arch бінарника (`file`) + старт + `SELECT 1` на `EMBEDDED_PG_PORT` | так/ні | зайнятий порт → FAIL з назвою причини |
 | Вихід в інтернет (GET на публічний сайт зі списку G0-14) | так/ні — визначає, чи можливі живі пас-и | — |
 | Docker | так/ні (лише інформативно) | — |
+
+## Linux-контейнер (S1a крок 1, 29.09.2026, sl-core-engineer) — факти цього середовища
+
+Артефакти: `planning/qa/artifacts/sprint-1a/` (`doctor.json` PASS, `doctor-FAIL-empty-browsers-path.json`, `doctor-FAIL-root-sandbox.json`, `spike.json`). Відхилення: DEV-19, DEV-20, DEV-21.
+
+- Linux x64, Node 22.22.2, pnpm 10.33.0, Playwright 1.56.1 + Chromium r1194 (141.0.7390.37), `@axe-core/playwright` 4.13.0 (axe-core 4.13.0), Lighthouse 13.5.0.
+- **U-5 частково закрито:** Lighthouse 13.5.0 (engines node ≥ 22.19) працює на Node 22.22.2 + Playwright 1.56.1 Chromium 141, підключення через `--remote-debugging-port`; performance/accessibility = 1 на порожній сторінці (`spike.json`). Комбінацію Playwright 1.63 + Node 24 **не перевірено** (мережа не дає r1243).
+- U-4 без змін (embedded-postgres не стартовано: БД out-of-scope S1a). Доступне: system PG16 (кластер down), `@embedded-postgres/linux-x64@18.4.0-beta.17` на npm.
+- Живі сайти недоступні: `example.com` → 403 від проксі політики, лише registry.npmjs.org = 200 → усі «живі» пункти S1a/S1b ⏭️ у цьому середовищі.
+- Пастки: `@axe-core/playwright` вимагає `browser.newContext()` (не `newPage()`); `page.evaluate(fn)` під tsx ламається на `__name` (keepNames) → in-page код тримаємо plain-JS рядком; `.gitignore` правило `artifacts/` ігнорувало б `planning/qa/artifacts` → додано `!`-виняток.

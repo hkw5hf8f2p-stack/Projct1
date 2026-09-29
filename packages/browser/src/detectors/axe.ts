@@ -1,4 +1,4 @@
-import AxeBuilder from "@axe-core/playwright";
+import { AxeBuilder } from "@axe-core/playwright";
 import type { Page } from "playwright";
 import { evidenceId, type Evidence, type Region } from "../evidence.js";
 
