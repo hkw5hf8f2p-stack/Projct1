@@ -1,0 +1,41 @@
+{
+  "id": "ev_a3f3d78e49b3",
+  "audit_run_id": null,
+  "url": "http://127.0.0.1:34855/clean.html",
+  "page_type": "fixture",
+  "title": "Slice fixture - clean",
+  "http_status": 200,
+  "desktop_screenshot": "screenshots/desktop-1440x1000-full.png",
+  "mobile_screenshot": "screenshots/mobile-390x844-full.png",
+  "technical_json": {
+    "browser_version": "141.0.7390.37",
+    "viewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    "detector_summary": {
+      "desktop": {
+        "overflow": {
+          "overflows": false,
+          "overflow_px": 0,
+          "offenders": 0
+        },
+        "axe_violations": []
+      },
+      "mobile": {
+        "overflow": {
+          "overflows": false,
+          "overflow_px": 0,
+          "offenders": 0
+        },
+        "axe_violations": []
+      }
+    }
+  }
+}

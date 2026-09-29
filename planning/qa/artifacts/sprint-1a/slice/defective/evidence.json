@@ -1,0 +1,88 @@
+[
+  {
+    "id": "ev_16c571ce58fc",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34855/defective.html",
+    "self_confirming": true,
+    "detector_id": "axe:image-alt",
+    "claim_kind": "presence",
+    "viewport": "desktop",
+    "description": "Images must have alternative text (critical): Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "screenshots/desktop-1440x1000-full.png",
+    "selector_or_region": {
+      "selector": "#hero-img",
+      "region": {
+        "x": 120,
+        "y": 185,
+        "width": 320,
+        "height": 180,
+        "coordinate_space": "full_page"
+      }
+    },
+    "data": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "html": "<img class=\"hero\" id=\"hero-img\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23fb8'/%3E%3C/svg%3E\">"
+    },
+    "region_artifact": "regions/desktop-axe_image_alt-16c571ce58fc.png"
+  },
+  {
+    "id": "ev_443b745502be",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:34855/defective.html",
+    "self_confirming": true,
+    "detector_id": "horizontal_overflow",
+    "claim_kind": "presence",
+    "viewport": "mobile",
+    "description": "Сторінка прокручується вбік на 390px: scrollWidth 918px > вікно 390px; елемент виступає на 528px.",
+    "artifact_reference": "screenshots/mobile-390x844-full.png",
+    "selector_or_region": {
+      "selector": "#wide-banner",
+      "region": {
+        "x": 16,
+        "y": 107,
+        "width": 902,
+        "height": 62,
+        "coordinate_space": "full_page"
+      }
+    },
+    "region_artifact": "regions/mobile-overflow-a7bc9a5b157f.png",
+    "data": {
+      "viewport_width": 390,
+      "scroll_width": 918,
+      "overshoot_px": 528
+    }
+  },
+  {
+    "id": "ev_80c95c657daf",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34855/defective.html",
+    "self_confirming": true,
+    "detector_id": "axe:image-alt",
+    "claim_kind": "presence",
+    "viewport": "mobile",
+    "description": "Images must have alternative text (critical): Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "screenshots/mobile-390x844-full.png",
+    "selector_or_region": {
+      "selector": "#hero-img",
+      "region": {
+        "x": 16,
+        "y": 185,
+        "width": 320,
+        "height": 180,
+        "coordinate_space": "full_page"
+      }
+    },
+    "data": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "html": "<img class=\"hero\" id=\"hero-img\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23fb8'/%3E%3C/svg%3E\">"
+    },
+    "region_artifact": "regions/mobile-axe_image_alt-80c95c657daf.png"
+  }
+]

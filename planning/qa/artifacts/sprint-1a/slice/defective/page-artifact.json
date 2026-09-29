@@ -1,0 +1,53 @@
+{
+  "id": "ev_f2d098ed5366",
+  "audit_run_id": null,
+  "url": "http://127.0.0.1:34855/defective.html",
+  "page_type": "fixture",
+  "title": "Slice fixture - defective",
+  "http_status": 200,
+  "desktop_screenshot": "screenshots/desktop-1440x1000-full.png",
+  "mobile_screenshot": "screenshots/mobile-390x844-full.png",
+  "technical_json": {
+    "browser_version": "141.0.7390.37",
+    "viewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    "detector_summary": {
+      "desktop": {
+        "overflow": {
+          "overflows": false,
+          "overflow_px": 0,
+          "offenders": 0
+        },
+        "axe_violations": [
+          {
+            "id": "image-alt",
+            "impact": "critical",
+            "nodes": 1
+          }
+        ]
+      },
+      "mobile": {
+        "overflow": {
+          "overflows": true,
+          "overflow_px": 528,
+          "offenders": 1
+        },
+        "axe_violations": [
+          {
+            "id": "image-alt",
+            "impact": "critical",
+            "nodes": 1
+          }
+        ]
+      }
+    }
+  }
+}
