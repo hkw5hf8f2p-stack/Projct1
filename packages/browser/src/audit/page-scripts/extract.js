@@ -1,5 +1,5 @@
 // Виконується у сторінці: (patterns) => ExtractResult. Свідомо plain JS: tsx/esbuild інжектує helper `__name`,
-// якого немає в контексті сторінки. Не читає жодних data-fx-*: маркери збирає окремий fx-markers.js для перевірки.
+// якого немає в контексті сторінки. Службових міток фікстури не читає: їх збирає окремий скрипт для перевірки.
 (patterns) => {
   const SHIP = new RegExp(patterns.SHIP_SRC, "iu");
   const PRICE = new RegExp(patterns.PRICE_SRC, "iu");
@@ -12,7 +12,7 @@
   const sy = window.scrollY;
   const de = document.documentElement;
   // на широкій мобільній сторінці layout viewport розширюється, і hit-test за координатами вікна ненадійний
-  const skipCover = window.innerWidth !== vw || window.innerHeight !== vh;
+  const skipCover = window.innerWidth !== vw || window.innerHeight !== vh || de.scrollWidth > de.clientWidth + 1;
   const round = (n) => Math.round(n);
   const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
 

@@ -173,23 +173,6 @@
     "evidence_strength": 1
   },
   {
-    "finding_key": "cta|product|below_fold",
-    "category": "cta",
-    "page_group": "product",
-    "claim_kind": "below_fold",
-    "detector_ids": [
-      "cta_below_fold"
-    ],
-    "evidence_ids": [
-      "ev_a679645bd500"
-    ],
-    "evidence_families": [
-      "F-DET"
-    ],
-    "confidence": "VERIFIED",
-    "evidence_strength": 1
-  },
-  {
     "finding_key": "mobile_usability|product|horizontal_overflow",
     "category": "mobile_usability",
     "page_group": "product",

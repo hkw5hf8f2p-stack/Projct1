@@ -57,6 +57,6 @@
     "content_type": null,
     "body_bytes": null,
     "blocked": true,
-    "failure": "blocked_by_method_guard"
+    "failure": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
   }
 ]

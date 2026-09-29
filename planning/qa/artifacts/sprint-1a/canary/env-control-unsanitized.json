@@ -1,45 +1,45 @@
 {
-  "pid": 22772,
+  "pid": 20537,
   "leaked_vars": [
     "SL_FAKE_ANTHROPIC_API_KEY",
     "DATABASE_URL",
     "ACCESS_TOKEN"
   ],
-  "env_var_count": 27,
+  "env_var_count": 43,
   "cmdline_has_no_sandbox": true,
   "processes": [
     {
-      "pid": 22772,
+      "pid": 20537,
       "type": "browser",
       "seccomp": 0,
       "no_sandbox": true
     },
     {
-      "pid": 22774,
+      "pid": 20539,
       "type": "zygote",
       "seccomp": 0,
       "no_sandbox": true
     },
     {
-      "pid": 22775,
+      "pid": 20540,
       "type": "zygote",
       "seccomp": 0,
       "no_sandbox": true
     },
     {
-      "pid": 22791,
+      "pid": 20552,
       "type": "gpu-process",
       "seccomp": 0,
       "no_sandbox": true
     },
     {
-      "pid": 22793,
+      "pid": 20557,
       "type": "utility",
       "seccomp": 0,
       "no_sandbox": true
     },
     {
-      "pid": 22815,
+      "pid": 20583,
       "type": "renderer",
       "seccomp": 0,
       "no_sandbox": true

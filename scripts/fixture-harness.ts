@@ -36,8 +36,7 @@ export async function auditFixture(cfg: AuditRunCfg): Promise<{ result: AuditRes
   const server = await startFixture(cfg);
   try {
     const result = await auditSite({
-      browser: cfg.sb.browser,
-      newContext: (o) => cfg.sb.newContext(o),
+      secure: cfg.sb,
       seedUrl: server.origin + "/",
       runDir: cfg.runDir,
       writeShots: cfg.shots,
@@ -105,7 +104,7 @@ export interface DenyReport {
 export async function runDenyListTest(sb: SecureBrowser, port: number, runDir: string): Promise<DenyReport> {
   const server = await startFixture({ site: "shop", port });
   try {
-    const r = await auditSite({ browser: sb.browser, newContext: (o) => sb.newContext(o), seedUrl: server.origin + "/", runDir, writeShots: false, tiles: false, minDelayMs: 0 });
+    const r = await auditSite({ secure: sb, seedUrl: server.origin + "/", runDir, writeShots: false, tiles: false, minDelayMs: 0 });
     const crawlHits = { add_to_cart_get: server.state.add_to_cart_get, logout: server.state.logout, delete_action: server.state.delete_action };
     await fetch(`${server.origin}/catalog?add-to-cart=1`);
     await fetch(`${server.origin}/logout`);

@@ -5,7 +5,7 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { Browser, BrowserContext, BrowserContextOptions } from "playwright";
+import type { SecureBrowser } from "../secure-launch.js";
 import { captureViewport } from "./capture-page.js";
 import { crawl, CRAWL_LIMITS, type CrawlResult } from "./crawl.js";
 import { classifyPageType, detectAll, pageGroupOf } from "./detectors.js";
@@ -14,7 +14,7 @@ import { SHIP_RE } from "./patterns.js";
 import type { EvidenceRow, FindingRow, PageCapture, VP } from "./types.js";
 
 export interface AuditOptions {
-  browser: Browser;
+  secure: SecureBrowser;
   seedUrl: string;
   runDir: string;
   writeShots: boolean;
@@ -23,7 +23,6 @@ export interface AuditOptions {
   /** пауза між навігаціями; 1500 на живих сайтах (DEV-18), 0 для локальної фікстури */
   minDelayMs?: number;
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
-  newContext?: (options: BrowserContextOptions) => Promise<BrowserContext>;
 }
 
 export interface AuditResult {
@@ -80,7 +79,7 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   const capturePage = async (url: string): Promise<PageCapture> => {
     const u = new URL(url);
     const pageId = pageIdOf(u);
-    const base = { browser: o.browser, url, runDir: o.runDir, pageId, writeShots: o.writeShots, tiles: o.tiles, collectFxMarkers: o.collectFxMarkers, throttle, newContext: o.newContext };
+    const base = { secure: o.secure, url, runDir: o.runDir, pageId, writeShots: o.writeShots, tiles: o.tiles, collectFxMarkers: o.collectFxMarkers, throttle };
     const once = async (vp: VP) => {
       try {
         return await captureViewport({ ...base, vp });

@@ -230,23 +230,6 @@
     "evidence_strength": 1
   },
   {
-    "finding_key": "pricing|product|not_in_first_viewport",
-    "category": "pricing",
-    "page_group": "product",
-    "claim_kind": "not_in_first_viewport",
-    "detector_ids": [
-      "price_first_viewport"
-    ],
-    "evidence_ids": [
-      "ev_2ce2e3d7112f"
-    ],
-    "evidence_families": [
-      "F-DET"
-    ],
-    "confidence": "VERIFIED",
-    "evidence_strength": 1
-  },
-  {
     "finding_key": "shipping|product|deep_link_only",
     "category": "shipping",
     "page_group": "product",

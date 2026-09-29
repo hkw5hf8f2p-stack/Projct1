@@ -8,9 +8,9 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { Browser, BrowserContext, BrowserContextOptions, Page, Request } from "playwright";
+import type { Page, Request } from "playwright";
 import { handleBanner } from "./banner.js";
-import { blockedRow, installMethodGuard, type BlockedRequest } from "./guard.js";
+import type { SecureBrowser } from "../secure-launch.js";
 import { PATTERN_SOURCES } from "./patterns.js";
 import { tileFullPage } from "./tiles.js";
 import {
@@ -33,7 +33,8 @@ const SIGNATURE = script("signature.js");
 const FX_MARKERS = script("fx-markers.js");
 
 export interface CaptureOptions {
-  browser: Browser;
+  /** захищений браузер (sl-security): проксі, шар 2 (блок не-GET/WS з логом), SW block; блок робить він, ми лише рахуємо */
+  secure: SecureBrowser;
   url: string;
   vp: VP;
   /** корінь прогону; файли пишуться в <runDir>/pages/<pageId>/<WxH>/ */
@@ -45,8 +46,6 @@ export interface CaptureOptions {
   collectFxMarkers?: boolean;
   /** ≥ 1500 мс на живих сайтах (DEV-18); 0 для локальної фікстури */
   throttle?: { wait: () => Promise<void> };
-  /** фабрика контексту: `secureBrowser.newContext` (sl-security: проксі-браузер + шар 2); за замовчуванням browser.newContext */
-  newContext?: (options: BrowserContextOptions) => Promise<BrowserContext>;
 }
 
 const png = (buf: Buffer) => ({ w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) });
@@ -77,7 +76,8 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
   const dirAbs = path.join(o.runDir, dirRel);
   await mkdir(dirAbs, { recursive: true });
 
-  const context = await (o.newContext ?? ((x) => o.browser.newContext(x)))({
+  const blockedFrom = o.secure.blocked.length;
+  const context = await o.secure.newContext({
     viewport: { width: spec.width, height: spec.height },
     deviceScaleFactor: spec.dpr,
     isMobile: spec.isMobile,
@@ -85,7 +85,6 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     acceptDownloads: false,
     serviceWorkers: "block",
   });
-  const blocked: BlockedRequest[] = [];
   const rows = new Map<Request, NetworkRow>();
   const bodyJobs: Promise<void>[] = [];
   const consoleErrors: Array<{ text: string; location: string }> = [];
@@ -99,7 +98,6 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     void context.close().catch(() => undefined);
   }, 60_000);
   try {
-    await installMethodGuard(context, blocked);
     const page = await context.newPage();
     page.on("pageerror", () => {
       jsErrors++;
@@ -202,7 +200,9 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
       axe = { version: "", violations: [], error: String(e).slice(0, 200) };
     }
 
-    // ---- вилучення DOM
+    // ---- вилучення DOM (після скриншотів/axe прокрутку могло зсунути: FV міряється лише при scrollY = 0)
+    await page.evaluate(`window.scrollTo(0, 0)`);
+    await settle(page);
     const ex = (await page.evaluate(`(${EXTRACT})(${JSON.stringify({ ...PATTERN_SOURCES, VW: spec.width, VH: spec.height })})`)) as ExtractResult;
     const fx = o.collectFxMarkers ? ((await page.evaluate(FX_MARKERS)) as Record<string, Array<{ x: number; y: number; w: number; h: number }>>) : undefined;
     const ariaSnapshot = await page.locator("body").ariaSnapshot().catch(() => "");
@@ -216,7 +216,10 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
       : null;
 
     await Promise.all(bodyJobs);
-    const requests: NetworkRow[] = [...rows.values(), ...blocked.map(blockedRow)].sort((a, b) => (a.url + a.method).localeCompare(b.url + b.method));
+    // блоки шару 2 цього захоплення: записи, додані secureLaunch у спільний лог після початку (сторінки йдуть послідовно)
+    const blocked = o.secure.blocked.slice(blockedFrom);
+    const blockedRows: NetworkRow[] = blocked.map((b) => ({ method: b.method, url: b.url, resource_type: b.resource_type ?? b.kind, status: null, content_type: null, body_bytes: null, blocked: true, failure: b.reason }));
+    const requests: NetworkRow[] = [...rows.values(), ...blockedRows].sort((a, b) => (a.url + a.method).localeCompare(b.url + b.method));
     const failedCritical = failed.filter((f) => {
       try {
         return new URL(f.url).origin === new URL(o.url).origin && ["document", "script", "xhr", "fetch"].includes(f.resource_type);

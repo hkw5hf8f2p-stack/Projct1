@@ -715,60 +715,6 @@
     }
   },
   {
-    "id": "ev_a679645bd500",
-    "type": "dom",
-    "source_class": "OBSERVED",
-    "page_url": "http://127.0.0.1:4210/product/softline-s1",
-    "page_path": "/product/softline-s1",
-    "page_type": "product",
-    "page_group": "product",
-    "category": "cta",
-    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 123px при висоті вікна 844px.",
-    "artifact_reference": "pages/product-softline-s1/390x844/fullpage.png",
-    "screenshot_reference": "pages/product-softline-s1/390x844/fullpage.png",
-    "selector_or_region": {
-      "selector": "main > form > button",
-      "region": {
-        "x": 12,
-        "y": 123,
-        "w": 173,
-        "h": 44
-      },
-      "dpr": 2,
-      "coord": "css_px_document"
-    },
-    "excerpt": "Додати в кошик — main > form > button",
-    "detector_id": "cta_below_fold",
-    "claim_kind": "below_fold",
-    "assertion": "presence",
-    "viewport": "M",
-    "measurement": {
-      "top_px": 123,
-      "vh": 844,
-      "vis": 0,
-      "candidates": 1
-    },
-    "self_confirming": true,
-    "capture_complete": true,
-    "capture_context": {
-      "banner_state": "closed",
-      "banner_actions": [
-        {
-          "step": "reject",
-          "label": "Лише необхідні",
-          "clicked": true,
-          "method": "dispatch",
-          "hidden_after": true
-        }
-      ],
-      "blocked_requests_count": 0,
-      "js_error_count": 0,
-      "scroll_completed": true,
-      "layout_stable": true,
-      "http_status": 200
-    }
-  },
-  {
     "id": "ev_da1aa8e5315b",
     "type": "dom",
     "source_class": "OBSERVED",
@@ -1339,7 +1285,7 @@
       "dpr": 2,
       "coord": "css_px_document"
     },
-    "excerpt": "Пом'якшувач води для побутових потреб. Налаштувати комплектацію Прибрати з порівняння Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів. Кожен виріб проходить перевірку на заводі, а в комплекті ви з",
+    "excerpt": "ТехноДім Softline S1 (модуль SLT) Додати в кошик Пом'якшувач води для побутових потреб. Налаштувати комплектацію Прибрати з порівняння Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів. Кожен виріб ",
     "detector_id": "price_first_viewport",
     "claim_kind": "not_in_first_viewport",
     "assertion": "absence",

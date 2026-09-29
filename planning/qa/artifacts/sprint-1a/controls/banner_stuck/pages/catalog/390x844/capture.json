@@ -1,0 +1,643 @@
+{
+  "title": "Каталог — ТехноДім",
+  "meta_description": "Три моделі для щоденного вжитку.",
+  "headings": [
+    {
+      "level": 1,
+      "text": "Каталог"
+    },
+    {
+      "level": 2,
+      "text": "AquaPro X200 (система HFX)"
+    },
+    {
+      "level": 2,
+      "text": "AquaPro X220 (система HFX)"
+    },
+    {
+      "level": 2,
+      "text": "Softline S1 (модуль SLT)"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:4210/",
+      "text": "ТехноДім",
+      "name": "ТехноДім",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "selector": "header > a"
+    },
+    {
+      "href": "/catalog",
+      "abs": "http://127.0.0.1:4210/catalog",
+      "text": "Каталог",
+      "name": "Каталог",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(1) > a"
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(2) > a"
+    },
+    {
+      "href": "/logout",
+      "abs": "http://127.0.0.1:4210/logout",
+      "text": "Вийти",
+      "name": "Вийти",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(3) > a"
+    },
+    {
+      "href": "/catalog?action=delete&list=compare",
+      "abs": "http://127.0.0.1:4210/catalog?action=delete&list=compare",
+      "text": "Очистити порівняння",
+      "name": "Очистити порівняння",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 153,
+        "w": 181,
+        "h": 19
+      },
+      "selector": "main > p > a"
+    },
+    {
+      "href": "/product/aquapro-x200",
+      "abs": "http://127.0.0.1:4210/product/aquapro-x200",
+      "text": "AquaPro X200 (система HFX)",
+      "name": "AquaPro X200 (система HFX)",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 207,
+        "w": 164,
+        "h": 54
+      },
+      "selector": "main > ul > li:nth-of-type(1) > div > h2 > a"
+    },
+    {
+      "href": "/catalog?add-to-cart=1",
+      "abs": "http://127.0.0.1:4210/catalog?add-to-cart=1",
+      "text": "В кошик",
+      "name": "В кошик",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 368,
+        "w": 106,
+        "h": 44
+      },
+      "selector": "main > ul > li:nth-of-type(1) > div > a"
+    },
+    {
+      "href": "/product/aquapro-x220",
+      "abs": "http://127.0.0.1:4210/product/aquapro-x220",
+      "text": "AquaPro X220 (система HFX)",
+      "name": "AquaPro X220 (система HFX)",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 457,
+        "w": 164,
+        "h": 54
+      },
+      "selector": "main > ul > li:nth-of-type(2) > div > h2 > a"
+    },
+    {
+      "href": "/catalog?add-to-cart=2",
+      "abs": "http://127.0.0.1:4210/catalog?add-to-cart=2",
+      "text": "В кошик",
+      "name": "В кошик",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 618,
+        "w": 106,
+        "h": 44
+      },
+      "selector": "main > ul > li:nth-of-type(2) > div > a"
+    },
+    {
+      "href": "/product/softline-s1",
+      "abs": "http://127.0.0.1:4210/product/softline-s1",
+      "text": "Softline S1 (модуль SLT)",
+      "name": "Softline S1 (модуль SLT)",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 707,
+        "w": 149,
+        "h": 54
+      },
+      "selector": "main > ul > li:nth-of-type(3) > div > h2 > a"
+    },
+    {
+      "href": "/catalog?add-to-cart=3",
+      "abs": "http://127.0.0.1:4210/catalog?add-to-cart=3",
+      "text": "В кошик",
+      "name": "В кошик",
+      "visible": true,
+      "rect": {
+        "x": 161,
+        "y": 844,
+        "w": 106,
+        "h": 44
+      },
+      "selector": "main > ul > li:nth-of-type(3) > div > a"
+    },
+    {
+      "href": "/help",
+      "abs": "http://127.0.0.1:4210/help",
+      "text": "Допомога",
+      "name": "Допомога",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 952,
+        "w": 83,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(1) > a"
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 115,
+        "y": 952,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(2) > a"
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "header > button",
+      "name": "",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(1)",
+      "name": "Лише необхідні",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 734,
+        "w": 162,
+        "h": 42
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(2)",
+      "name": "Закрити",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 190,
+        "y": 734,
+        "w": 43,
+        "h": 42
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(3)",
+      "name": "Прийняти все",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 792,
+        "w": 146,
+        "h": 42
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "main > ul > li:nth-of-type(1) > img",
+      "src": "/img/aquapro-x200.svg",
+      "current_src": "http://127.0.0.1:4210/img/aquapro-x200.svg",
+      "alt": "Фільтр AquaPro X200 на світлому тлі",
+      "natural_w": 240,
+      "natural_h": 240,
+      "rect": {
+        "x": 25,
+        "y": 204,
+        "w": 120,
+        "h": 120
+      },
+      "is_background": false
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > img",
+      "src": "/img/aquapro-x220.svg",
+      "current_src": "http://127.0.0.1:4210/img/aquapro-x220.svg",
+      "alt": "Фільтр AquaPro X220 на світлому тлі",
+      "natural_w": 240,
+      "natural_h": 240,
+      "rect": {
+        "x": 25,
+        "y": 454,
+        "w": 120,
+        "h": 120
+      },
+      "is_background": false
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > img",
+      "src": "/img/softline-s1.svg",
+      "current_src": "http://127.0.0.1:4210/img/softline-s1.svg",
+      "alt": "Softline S1 (модуль SLT)",
+      "natural_w": 240,
+      "natural_h": 240,
+      "rect": {
+        "x": 25,
+        "y": 704,
+        "w": 120,
+        "h": 120
+      },
+      "is_background": false
+    }
+  ],
+  "visible_text": "ТехноДім\nКаталог\n\nТри моделі для щоденного вжитку. Очистити порівняння\n\nAquaPro X200 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nВ кошик\nAquaPro X220 (система HFX)\n\nФільтр для води з проточною кухонною установкою.\n\nВ кошик\nSoftline S1 (модуль SLT)\n\nПом'якшувач води для побутових потреб.\n\nВ кошик\nДопомога\nПро нас\n\nМи використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.\n\nЛише необхідні\n×\nПрийняти все",
+  "text_nodes": [
+    {
+      "t": "ТехноДім",
+      "a": true
+    },
+    {
+      "t": "Каталог",
+      "a": false
+    },
+    {
+      "t": "Три моделі для щоденного вжитку.",
+      "a": false
+    },
+    {
+      "t": "Очистити порівняння",
+      "a": true
+    },
+    {
+      "t": "AquaPro X200 (система HFX)",
+      "a": true
+    },
+    {
+      "t": "Фільтр для води з проточною кухонною установкою.",
+      "a": false
+    },
+    {
+      "t": "В кошик",
+      "a": true
+    },
+    {
+      "t": "AquaPro X220 (система HFX)",
+      "a": true
+    },
+    {
+      "t": "Фільтр для води з проточною кухонною установкою.",
+      "a": false
+    },
+    {
+      "t": "В кошик",
+      "a": true
+    },
+    {
+      "t": "Softline S1 (модуль SLT)",
+      "a": true
+    },
+    {
+      "t": "Пом'якшувач води для побутових потреб.",
+      "a": false
+    },
+    {
+      "t": "В кошик",
+      "a": true
+    },
+    {
+      "t": "Допомога",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    },
+    {
+      "t": "Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.",
+      "a": false
+    },
+    {
+      "t": "Лише необхідні",
+      "a": false
+    },
+    {
+      "t": "×",
+      "a": false
+    },
+    {
+      "t": "Прийняти все",
+      "a": false
+    }
+  ],
+  "fv_text": "ТехноДім Каталог Три моделі для щоденного вжитку. Очистити порівняння AquaPro X200 (система HFX) Фільтр для води з проточною кухонною установкою. В кошик AquaPro X220 (система HFX) Фільтр для води з проточною кухонною установкою. В кошик Softline S1 (модуль SLT) Пом'якшувач води для побутових потреб. Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні. Лише необхідні × Прийняти все",
+  "interactive": [
+    {
+      "selector": "header > a",
+      "tag": "a",
+      "name": "ТехноДім",
+      "rect": {
+        "x": 12,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "vis": 1
+    },
+    {
+      "selector": "header > button",
+      "tag": "button",
+      "name": "",
+      "rect": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > p > a",
+      "tag": "a",
+      "name": "Очистити порівняння",
+      "rect": {
+        "x": 12,
+        "y": 153,
+        "w": 181,
+        "h": 19
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > div > h2 > a",
+      "tag": "a",
+      "name": "AquaPro X200 (система HFX)",
+      "rect": {
+        "x": 161,
+        "y": 207,
+        "w": 164,
+        "h": 54
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > div > a",
+      "tag": "a",
+      "name": "В кошик",
+      "rect": {
+        "x": 161,
+        "y": 368,
+        "w": 106,
+        "h": 44
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > div > h2 > a",
+      "tag": "a",
+      "name": "AquaPro X220 (система HFX)",
+      "rect": {
+        "x": 161,
+        "y": 457,
+        "w": 164,
+        "h": 54
+      },
+      "vis": 1
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > div > a",
+      "tag": "a",
+      "name": "В кошик",
+      "rect": {
+        "x": 161,
+        "y": 618,
+        "w": 106,
+        "h": 44
+      },
+      "vis": 0
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > div > h2 > a",
+      "tag": "a",
+      "name": "Softline S1 (модуль SLT)",
+      "rect": {
+        "x": 161,
+        "y": 707,
+        "w": 149,
+        "h": 54
+      },
+      "vis": 0
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > div > a",
+      "tag": "a",
+      "name": "В кошик",
+      "rect": {
+        "x": 161,
+        "y": 844,
+        "w": 106,
+        "h": 44
+      },
+      "vis": 0
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Допомога",
+      "rect": {
+        "x": 12,
+        "y": 952,
+        "w": 83,
+        "h": 19
+      },
+      "vis": 0
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 115,
+        "y": 952,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 0
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(1)",
+      "tag": "button",
+      "name": "Лише необхідні",
+      "rect": {
+        "x": 12,
+        "y": 734,
+        "w": 162,
+        "h": 42
+      },
+      "vis": 1
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(2)",
+      "tag": "button",
+      "name": "Закрити",
+      "rect": {
+        "x": 190,
+        "y": 734,
+        "w": 43,
+        "h": 42
+      },
+      "vis": 1
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(3)",
+      "tag": "button",
+      "name": "Прийняти все",
+      "rect": {
+        "x": 12,
+        "y": 792,
+        "w": 146,
+        "h": 42
+      },
+      "vis": 1
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 390,
+    "scroll_height": 990,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:4210/catalog",
+  "final_url": "http://127.0.0.1:4210/catalog",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:4210/catalog",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - button\n- main:\n  - heading \"Каталог\" [level=1]\n  - paragraph:\n    - text: Три моделі для щоденного вжитку.\n    - link \"Очистити порівняння\":\n      - /url: /catalog?action=delete&list=compare\n  - list:\n    - listitem:\n      - img \"Фільтр AquaPro X200 на світлому тлі\"\n      - heading \"AquaPro X200 (система HFX)\" [level=2]:\n        - link \"AquaPro X200 (система HFX)\":\n          - /url: /product/aquapro-x200\n      - paragraph: Фільтр для води з проточною кухонною установкою.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=1\n    - listitem:\n      - img \"Фільтр AquaPro X220 на світлому тлі\"\n      - heading \"AquaPro X220 (система HFX)\" [level=2]:\n        - link \"AquaPro X220 (система HFX)\":\n          - /url: /product/aquapro-x220\n      - paragraph: Фільтр для води з проточною кухонною установкою.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=2\n    - listitem:\n      - img \"Softline S1 (модуль SLT)\"\n      - heading \"Softline S1 (модуль SLT)\" [level=2]:\n        - link \"Softline S1 (модуль SLT)\":\n          - /url: /product/softline-s1\n      - paragraph: Пом'якшувач води для побутових потреб.\n      - link \"В кошик\":\n        - /url: /catalog?add-to-cart=3\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about\n- complementary \"Повідомлення про cookie\":\n  - paragraph: Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.\n  - button \"Лише необхідні\"\n  - button \"Закрити\": ×\n  - button \"Прийняти все\"",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/catalog/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": false
+    },
+    "fullpage": {
+      "file": "pages/catalog/390x844/fullpage.png",
+      "width_px": 780,
+      "height_px": 1980,
+      "written": false
+    }
+  },
+  "banner": {
+    "detected": true,
+    "state": "open",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      },
+      {
+        "step": "close",
+        "label": "Закрити",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      },
+      {
+        "step": "accept",
+        "label": "Прийняти все",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      }
+    ]
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "open",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 446,
+    "capture_complete": false,
+    "incomplete_reasons": [
+      "banner_open"
+    ]
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/catalog/390x844/capture.json",
+    "network": "pages/catalog/390x844/network.json",
+    "axe": "pages/catalog/390x844/axe.json",
+    "dir": "pages/catalog/390x844"
+  }
+}

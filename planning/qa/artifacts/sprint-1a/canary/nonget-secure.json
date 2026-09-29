@@ -1,7 +1,7 @@
 {
   "server_requests": [
     {
-      "ts": "2026-09-29T21:27:58.879Z",
+      "ts": "2026-09-29T22:02:02.219Z",
       "method": "GET",
       "url": "/forms.html",
       "host": "attacker.test"
@@ -10,7 +10,7 @@
   "non_get_count": 0,
   "blocked": [
     {
-      "ts": "2026-09-29T21:27:58.964Z",
+      "ts": "2026-09-29T22:02:02.299Z",
       "kind": "method",
       "method": "POST",
       "url": "http://attacker.test/cart/add",
@@ -18,7 +18,7 @@
       "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
     },
     {
-      "ts": "2026-09-29T21:27:58.974Z",
+      "ts": "2026-09-29T22:02:02.315Z",
       "kind": "method",
       "method": "POST",
       "url": "http://attacker.test/api/order",
@@ -26,7 +26,7 @@
       "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
     },
     {
-      "ts": "2026-09-29T21:27:58.981Z",
+      "ts": "2026-09-29T22:02:02.325Z",
       "kind": "method",
       "method": "POST",
       "url": "http://attacker.test/beacon",
@@ -34,7 +34,7 @@
       "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
     },
     {
-      "ts": "2026-09-29T21:27:58.982Z",
+      "ts": "2026-09-29T22:02:02.329Z",
       "kind": "method",
       "method": "PUT",
       "url": "http://attacker.test/xhr",
@@ -42,7 +42,7 @@
       "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
     },
     {
-      "ts": "2026-09-29T21:27:58.990Z",
+      "ts": "2026-09-29T22:02:02.337Z",
       "kind": "method",
       "method": "DELETE",
       "url": "http://attacker.test/del",
@@ -50,7 +50,7 @@
       "reason": "не-GET/HEAD заблоковано (G0-11, DEV-12)"
     },
     {
-      "ts": "2026-09-29T21:27:58.996Z",
+      "ts": "2026-09-29T22:02:02.342Z",
       "kind": "websocket",
       "method": "GET",
       "url": "ws://attacker.test/ws",
@@ -58,7 +58,7 @@
       "reason": "WebSocket заблоковано (DEV-8)"
     },
     {
-      "ts": "2026-09-29T21:27:59.053Z",
+      "ts": "2026-09-29T22:02:02.392Z",
       "kind": "method",
       "method": "POST",
       "url": "http://attacker.test/submit",

@@ -3,19 +3,19 @@
   "page_loaded": true,
   "attacker_requests": [
     {
-      "ts": "2026-09-29T21:27:51.637Z",
+      "ts": "2026-09-29T22:01:54.406Z",
       "method": "GET",
       "url": "/attack.html",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T21:27:51.683Z",
+      "ts": "2026-09-29T22:01:54.501Z",
       "method": "GET",
       "url": "/redir-canary",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T21:27:51.690Z",
+      "ts": "2026-09-29T22:01:54.501Z",
       "method": "GET",
       "url": "/redir-private",
       "host": "attacker.test"
@@ -92,32 +92,6 @@
     {
       "via": "http",
       "method": "GET",
-      "host": "127.0.0.2",
-      "port": 4199,
-      "path": "/iframe",
-      "decision": "deny",
-      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
-      "resolved": [
-        "127.0.0.2"
-      ],
-      "connected_ip": null
-    },
-    {
-      "via": "http",
-      "method": "GET",
-      "host": "attacker.test",
-      "port": 80,
-      "path": "/redir-canary",
-      "decision": "allow",
-      "reason": "усі адреси дозволені; TCP до перевіреної IP",
-      "resolved": [
-        "93.184.216.34"
-      ],
-      "connected_ip": "93.184.216.34"
-    },
-    {
-      "via": "http",
-      "method": "GET",
       "host": "169.254.169.254",
       "port": 80,
       "path": "/latest/meta-data/",
@@ -151,6 +125,32 @@
         "0:0:0:0:0:ffff:7f00:2"
       ],
       "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4199,
+      "path": "/iframe",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "resolved": [
+        "127.0.0.2"
+      ],
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/redir-canary",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "resolved": [
+        "93.184.216.34"
+      ],
+      "connected_ip": "93.184.216.34"
     },
     {
       "via": "http",

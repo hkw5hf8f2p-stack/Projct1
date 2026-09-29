@@ -1,7 +1,7 @@
 /**
  * Детермінований модуль детекторів S1a (D3): №2 shipping_depth, №5 cta_below_fold, №6 axe:button-name|link-name|label,
  * №7 horizontal_overflow, №8 oversized_image, №9 axe:image-alt, №10 price_first_viewport. Чисті функції над даними
- * захоплення: без часу, без LLM, без назв/селекторів фікстури й без data-fx (planning/eval/fixture-defect-map.md).
+ * захоплення: без часу, без LLM, без назв і селекторів фікстури й без її службових міток (planning/eval/fixture-defect-map.md).
  * Твердження відсутності (№2, №10) — за DEV-17/DEV-19 (map §4); №5 при відкритому банері — ET-INC.
  */
 import { evidenceId } from "../evidence.js";
