@@ -23,7 +23,15 @@ export interface ResolvedAddress { address: string; family: 4 | 6 }
 export type Resolver = (hostname: string) => Promise<ResolvedAddress[]>;
 export type Dialer = (ip: string, port: number) => net.Socket;
 
-export type ProxyMode = { kind: "prod" } | { kind: "fixture"; allow: string[] };
+/**
+ * `fixture` вмикається лише явно: `allowFixtureLoopback: true` або env `SITELENS_FIXTURE_MODE=1` (не «NODE_ENV≠production»),
+ * плюс непорожній allow-list; при NODE_ENV=production заборонений завжди.
+ */
+export type ProxyMode = { kind: "prod" } | { kind: "fixture"; allow: string[]; allowFixtureLoopback?: boolean };
+
+export function fixtureModeEnabled(explicit?: boolean, env: NodeJS.ProcessEnv = process.env): boolean {
+  return explicit === true || env.SITELENS_FIXTURE_MODE === "1";
+}
 
 export interface ProxyDecision {
   ts: string;
@@ -85,6 +93,8 @@ export async function startEgressProxy(opts: EgressProxyOptions): Promise<Egress
   let allow = new Set<string>();
   if (opts.mode.kind === "fixture") {
     if (process.env.NODE_ENV === "production") throw new Error("egress-proxy: fixture-режим заборонено при NODE_ENV=production");
+    if (!fixtureModeEnabled(opts.mode.allowFixtureLoopback))
+      throw new Error("egress-proxy: fixture-режим вимкнений — потрібен явний прапорець allowFixtureLoopback:true або SITELENS_FIXTURE_MODE=1");
     if (opts.mode.allow.length === 0) throw new Error("egress-proxy: fixture-режим без allow-list — використай prod");
     allow = new Set(opts.mode.allow.map(normalizeAllowEntry));
   } else if (opts.mode.kind !== "prod") {

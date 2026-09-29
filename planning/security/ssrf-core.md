@@ -24,7 +24,7 @@ SiteLens відкриває в справжньому Chromium довільни�
 | Нормалізація URL: лише http/https, userinfo заборонено, IDN → punycode, повноширинні цифри, дефолтні порти, metadata-імена й зони `.localhost/.internal/.local`, однокомпонентні імена | `net/url-guard.ts` `normalizeTargetUrl` | `net-classify.test.ts` | — |
 | Deny-list URL дій (G0-11): `add-to-cart` (query/шлях), `/cart/add`, `checkout`, `logout/sign-out`, `delete/remove`, `unsubscribe`, `wp-admin`, `wp-login.php`, `?action=`; текст елементів EN+UK | `isDeniedActionUrl`, `isDeniedActionText` | 15 deny + 7 allow (вкл. `/blog/checkout-tips-guide`, `/cart`) | allow-кейси доводять, що фільтр не «блокує все» |
 | Egress-проксі: резолв рівно 1 раз → перевірка **всіх** A/AAAA → TCP до перевіреної IP (`dial(ip)`, без повторного резолву); CONNECT і plain HTTP; IP-літерали й metadata-імена — без резолву | `net/egress-proxy.ts` | `net-proxy.test.ts` (6 тестів) | rebinding-резолвер: наївне «перевір, потім підключись за ім'ям» пішло б на 127.0.0.1 (FAIL), проксі — 1 резолв, TCP до 93.184.216.34; «лише перша адреса» пропустила б `[публічна, 10.0.0.1]` |
-| Режими: `prod` блокує loopback/private для всього; `fixture` — явний allow-list `host:port` лише loopback, заборонений при `NODE_ENV=production`, порожній allow-list — помилка | `startEgressProxy`, `secureLaunch` | fixture: дозволено рівно `127.0.0.1:PORT` (і `2130706433:PORT` — та сама IP), `PORT+1` і `127.0.0.2` — 403; prod на тому самому URL — 403 | allow-list з `10.0.0.1:80` → виняток |
+| Режими: `prod` блокує loopback/private для всього; `fixture` — лише з явним прапорцем (`allowFixtureLoopback:true` або env `SITELENS_FIXTURE_MODE=1`; без нього — виняток) + явний allow-list `host:port` лише loopback, заборонений при `NODE_ENV=production`, порожній allow-list — помилка | `startEgressProxy`, `secureLaunch` | fixture: дозволено рівно `127.0.0.1:PORT` (і `2130706433:PORT` — та сама IP), `PORT+1` і `127.0.0.2` — 403; prod на тому самому URL — 403 | allow-list з `10.0.0.1:80` → виняток |
 | Прапорці Chromium: `--proxy-server`, `--proxy-bypass-list=<-loopback>`, `--force-webrtc-ip-handling-policy=disable_non_proxied_udp` (+ `--webrtc-ip-handling-policy`), `--disable-quic`. Playwright-опцію `proxy` свідомо не використовуємо (вона сама дописує bypass-правила) | `secure-launch.ts` `secureChromiumArgs` | канарка (б) | канарка (в) |
 | Шар 2: не-GET/HEAD → `route.abort` + лог; `routeWebSocket` → close(1008) + лог; `serviceWorkers:'block'`, `acceptDownloads:false`, `permissions:[]`; `newContext` відмовляє на `acceptDownloads:true`, `serviceWorkers:'allow'`, `proxy` | `applyContextGuards`, `SecureBrowser.newContext` | не-GET: сервер 0 не-GET, 0 WS-upgrade; лог блоків по 1 на кожну з 6 спроб + 1 WS | той самий проксі, контекст без шару 2 → сервер отримав 6 не-GET і WS upgrade |
 | Пісочниця (DEV-13): `chromiumSandbox:true`, інваріант перед launch, без фолбеку; env — білий список (`PATH, LANG, LC_ALL, TZ`) + тимчасові `HOME/TMPDIR/XDG_*`; тимчасовий профіль Playwright | `buildBrowserEnv`, `buildLaunchOptions`, `secureLaunch` | 0 фейкових секретів у `/proc/<pid>/environ` усіх 7 процесів дерева; ключі env лише з білого списку; 0 `--no-sandbox`; renderer під seccomp-bpf (`Seccomp: 2`) | звичайний `chromium.launch` без env і без пісочниці: 3/3 фейкові секрети в environ, `--no-sandbox` у кожному процесі, 0 renderer під seccomp |
@@ -48,8 +48,10 @@ SiteLens відкриває в справжньому Chromium довільни�
 
 `captureSlice` (крок 2) без переданого `browser` тепер запускає Chromium через `secureLaunch({mode:'fixture',
 fixtureOrigins:[origin URL]})` і створює контексти через `secure.newContext` (тест: ті самі 3 Evidence на
-`fixtures/slice/defective.html`, сервер фікстури — лише GET/HEAD). Коли `browser` передано ззовні (так робить
-`slice.test.ts`), захист — на тому, хто запускав: наступний крок — перевести тести й crawl на `SecureBrowser`.
+`fixtures/slice/defective.html`, сервер фікстури — лише GET/HEAD). **Обхід закрито (S1a-fix, п.9):**
+`captureSlice`, `auditSite`, `captureViewport` приймають лише `SecureBrowser` — branded type (`unique symbol`; сирий `Browser` —
+помилка типу, `@ts-expect-error` у тестах) і runtime-перевірка `assertSecureBrowser` (WeakSet об'єктів, виданих `secureLaunch`;
+структурна підробка теж відхиляється). `captureSlice` більше не запускає браузер сам і не закриває чужий.
 
 ## Що лишається на S1b (і пізніше)
 
@@ -67,10 +69,12 @@ fixtureOrigins:[origin URL]})` і створює контексти через `
    IPv6-апстрім і happy-eyeballs (проксі бере першу адресу; fallback на наступні перевірені — S1b).
 5. Ліміти проксі: розмір/час відповіді, кількість з'єднань, ліміт редиректів на рівні аудиту; `blocked_requests_count`
    у полях повноти захоплення (G0-10) — брати з `SecureBrowser.blocked` + `proxy.log`.
-6. Гейт fixture-режиму: зараз — «не `NODE_ENV=production`» + явний allow-list. Промпт sl-security вимагає
-   «`NODE_ENV=development` **і** явний прапорець» — під vitest `NODE_ENV=test`; вирівняти, коли з'явиться конфіг worker
-   (S2), і записати рішення.
+6. ~~Гейт fixture-режиму~~ — **закрито (S1a-fix):** fixture вмикається лише явно (`allowFixtureLoopback:true` або
+   `SITELENS_FIXTURE_MODE=1`), а не «NODE_ENV≠production»; `NODE_ENV=production` забороняє його завжди; порожній allow-list —
+   виняток. Тести: без прапорця → виняток; з прапорцем і `[]` → виняток (`net-proxy.test.ts`, `secure-browser.test.ts`).
+   Скрипти (`fixture-harness`, `run-slice`) ставлять прапорець явно. Прапорець «NODE_ENV=development» з промпту свідомо
+   замінено на явний прапорець (під vitest `NODE_ENV=test`); worker (S2) fixture-режим не вмикає.
 7. Проксі слухає 127.0.0.1 без автентифікації: будь-який локальний процес може ним скористатись (дозволено лише
    публічні IP — не ескалація, але в спільному хості — токен у `Proxy-Authorization`). Контейнерні egress-правила — ⏭️ L9.
 8. `planning/security/THREAT_MODEL.md` із посиланнями «мітигація → тест» — створити на основі цього файлу.
-9. Перевести `slice.test.ts` і майбутній crawl/журнали на `SecureBrowser` (зараз передають «голий» `browser`).
+9. ~~Перевести `slice.test.ts` і crawl/журнали на `SecureBrowser`~~ — **закрито (S1a-fix, п.5 критика):** див. «Інтеграція».

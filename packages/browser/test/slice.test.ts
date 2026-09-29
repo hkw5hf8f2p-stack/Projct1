@@ -3,14 +3,13 @@ import { mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { Browser } from "playwright";
+import { chromium } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { captureSlice, detectHorizontalOverflow, serveDir, type Evidence } from "../src/index.js";
 import { secureLaunch, type SecureBrowser } from "../src/secure-launch.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 let sb: SecureBrowser;
-let browser: Browser;
 let server: Awaited<ReturnType<typeof serveDir>>;
 const tmpDirs: string[] = [];
 const tmp = async () => {
@@ -22,8 +21,7 @@ const tmp = async () => {
 beforeAll(async () => {
   server = await serveDir(path.join(ROOT, "fixtures/slice"));
   // захищений браузер: egress-проксі у fixture-режимі з allow-list рівно origin фікстури, пісочниця, очищений env
-  sb = await secureLaunch({ mode: "fixture", fixtureOrigins: [server.origin] });
-  browser = sb.browser;
+  sb = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [server.origin] });
 });
 afterAll(async () => {
   await sb?.close();
@@ -34,7 +32,7 @@ afterAll(async () => {
 describe("S1a slice: наскрізний зріз на фікстурі", () => {
   it("ПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport", async () => {
     const outDir = await tmp();
-    const r = await captureSlice({ url: `${server.origin}/defective.html`, outDir, browser });
+    const r = await captureSlice({ url: `${server.origin}/defective.html`, outDir, secure: sb });
 
     expect(r.detector_summary.desktop.overflow.overflows).toBe(false);
     expect(r.detector_summary.mobile.overflow.overflows).toBe(true);
@@ -72,7 +70,7 @@ describe("S1a slice: наскрізний зріз на фікстурі", () =>
   });
 
   it("НЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень", async () => {
-    const r = await captureSlice({ url: `${server.origin}/clean.html`, outDir: await tmp(), browser });
+    const r = await captureSlice({ url: `${server.origin}/clean.html`, outDir: await tmp(), secure: sb });
     expect(r.evidence).toHaveLength(0);
     for (const vp of ["desktop", "mobile"] as const) {
       expect(r.detector_summary[vp].overflow.overflows).toBe(false);
@@ -82,7 +80,7 @@ describe("S1a slice: наскрізний зріз на фікстурі", () =>
 
   it("детермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон)", async () => {
     const sig = async () => {
-      const r = await captureSlice({ url: `${server.origin}/defective.html`, outDir: await tmp(), browser });
+      const r = await captureSlice({ url: `${server.origin}/defective.html`, outDir: await tmp(), secure: sb });
       return JSON.stringify(r.evidence.map((e) => [e.id, e.detector_id, e.viewport, e.selector_or_region]));
     };
     const [a, b, c] = [await sig(), await sig(), await sig()];
@@ -91,7 +89,7 @@ describe("S1a slice: наскрізний зріз на фікстурі", () =>
   });
 
   it("мутант: елемент виступає, але обрізаний предком overflow-x:hidden → детектор мовчить", async () => {
-    const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const context = await sb.newContext({ viewport: { width: 390, height: 844 } });
     const page = await context.newPage();
     await page.setContent(`<body style="margin:0"><div style="overflow-x:hidden;width:100%"><div style="width:900px;height:20px;background:#ccc"></div></div></body>`);
     expect((await detectHorizontalOverflow(page)).overflows).toBe(false);
@@ -104,6 +102,19 @@ describe("S1a slice: наскрізний зріз на фікстурі", () =>
   });
 
   it("захоплення відмовляє нелокальному URL (SSRF-ядро — крок 3)", async () => {
-    await expect(captureSlice({ url: "http://example.com/", outDir: await tmp(), browser })).rejects.toThrow(/loopback/);
+    await expect(captureSlice({ url: "http://example.com/", outDir: await tmp(), secure: sb })).rejects.toThrow(/loopback/);
+  });
+
+  it("сирий playwright Browser у captureSlice: помилка типу і runtime-виняток", async () => {
+    const raw = await chromium.launch({ headless: true, chromiumSandbox: true });
+    try {
+      // @ts-expect-error сирий Browser не є SecureBrowser (branded type)
+      await expect(captureSlice({ url: `${server.origin}/defective.html`, outDir: await tmp(), secure: raw })).rejects.toThrow(/SecureBrowser/);
+      // структурна підробка (без secureLaunch) теж відхиляється в runtime
+      const fake = { ...sb } as unknown as SecureBrowser;
+      await expect(captureSlice({ url: `${server.origin}/defective.html`, outDir: await tmp(), secure: fake })).rejects.toThrow(/SecureBrowser/);
+    } finally {
+      await raw.close();
+    }
   });
 });

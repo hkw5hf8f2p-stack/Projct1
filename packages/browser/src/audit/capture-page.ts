@@ -10,7 +10,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Page, Request } from "playwright";
 import { handleBanner } from "./banner.js";
-import type { SecureBrowser } from "../secure-launch.js";
+import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { PATTERN_SOURCES } from "./patterns.js";
 import { tileFullPage } from "./tiles.js";
 import {
@@ -71,6 +71,7 @@ async function scrollThrough(page: Page, vh: number): Promise<boolean> {
 const sameSig = (a: number[], b: number[]) => a.length === b.length && a.every((v, i) => Math.abs(v - (b[i] ?? 0)) <= 1);
 
 export async function captureViewport(o: CaptureOptions): Promise<{ capture: ViewportCapture; timing: Record<string, number | null> }> {
+  assertSecureBrowser(o.secure, "captureViewport");
   const spec: ViewportSpec = VIEWPORT_SPECS[o.vp];
   const dirRel = `pages/${o.pageId}/${vpDir(spec)}`;
   const dirAbs = path.join(o.runDir, dirRel);

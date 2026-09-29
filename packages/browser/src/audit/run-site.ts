@@ -5,7 +5,7 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { SecureBrowser } from "../secure-launch.js";
+import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { captureViewport } from "./capture-page.js";
 import { crawl, CRAWL_LIMITS, type CrawlResult } from "./crawl.js";
 import { classifyPageType, detectAll, pageGroupOf } from "./detectors.js";
@@ -73,6 +73,7 @@ export function bfsDepth(start: string, edges: Array<{ from: string; to: string 
 }
 
 export async function auditSite(o: AuditOptions): Promise<AuditResult> {
+  assertSecureBrowser(o.secure, "auditSite");
   await mkdir(o.runDir, { recursive: true });
   const throttle = makeThrottle(o.minDelayMs ?? 0);
 

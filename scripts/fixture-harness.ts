@@ -22,7 +22,7 @@ export async function startFixture(cfg: FixtureCfg): Promise<FixtureServer> {
 
 /** Захищений браузер для фікстур: дозволені рівно origin-и фікстур (mode fixture, DEV-8/DEV-13). */
 export async function launchForFixtures(ports: number[]): Promise<SecureBrowser> {
-  return secureLaunch({ mode: "fixture", fixtureOrigins: ports.map((p) => `http://127.0.0.1:${p}`) });
+  return secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: ports.map((p) => `http://127.0.0.1:${p}`) });
 }
 
 export interface AuditRunCfg extends FixtureCfg {

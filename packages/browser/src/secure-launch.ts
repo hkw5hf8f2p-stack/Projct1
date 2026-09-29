@@ -28,13 +28,20 @@ export interface SecureLaunchOptions {
    */
   mode: "prod" | "fixture";
   fixtureOrigins?: string[];
+  /** Явний прапорець fixture-режиму (або env SITELENS_FIXTURE_MODE=1). Без нього `mode:"fixture"` кидає виняток. */
+  allowFixtureLoopback?: boolean;
   headless?: boolean;
   /** Ін'єкція резолвера/дайлера проксі (тести). */
   resolver?: Resolver;
   dial?: Dialer;
 }
 
+declare const SECURE_BRAND: unique symbol;
+const issued = new WeakSet<object>();
+
 export interface SecureBrowser {
+  /** Брендований тип: сирий playwright `Browser` не присвоюється (лише результат secureLaunch). */
+  readonly [SECURE_BRAND]: true;
   browser: Browser;
   proxy: EgressProxy;
   /** Лог блоків шару 2 (усі контексти цього браузера). */
@@ -46,6 +53,12 @@ export interface SecureBrowser {
 }
 
 /** Змінні, які Chromium отримує від батька. Усе інше (ключі, DATABASE_URL, ACCESS_TOKEN, *_PROXY) — відкидається. */
+/** Runtime-перевірка: лише об'єкт, створений `secureLaunch`, проходить (сирий Browser/структурна підробка — виняток). */
+export function assertSecureBrowser(x: unknown, who = "assertSecureBrowser"): asserts x is SecureBrowser {
+  if (typeof x !== "object" || x === null || !issued.has(x))
+    throw new Error(`${who}: потрібен SecureBrowser (результат secureLaunch), а не сирий Browser`);
+}
+
 export const BROWSER_ENV_ALLOWLIST = ["PATH", "LANG", "LC_ALL", "TZ"] as const;
 
 export function buildBrowserEnv(tmpRoot: string, parent: NodeJS.ProcessEnv = process.env): Record<string, string> {
@@ -129,7 +142,7 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
     if (opts.fixtureOrigins?.length) throw new Error("secureLaunch: fixtureOrigins не дозволені в prod-режимі");
     mode = { kind: "prod" };
   } else if (opts.mode === "fixture") {
-    mode = { kind: "fixture", allow: fixtureAllowList(opts.fixtureOrigins ?? []) };
+    mode = { kind: "fixture", allow: fixtureAllowList(opts.fixtureOrigins ?? []), allowFixtureLoopback: opts.allowFixtureLoopback };
   } else {
     throw new Error("secureLaunch: mode має бути 'prod' або 'fixture'");
   }
@@ -152,7 +165,7 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
     cleanup.unshift(() => browser.close());
 
     const blocked: BlockedRequest[] = [];
-    return {
+    const sb = {
       browser,
       proxy,
       blocked,
@@ -168,7 +181,9 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
       async close() {
         for (const c of cleanup) await c().catch(() => {});
       },
-    };
+    } as SecureBrowser;
+    issued.add(sb);
+    return sb;
   } catch (e) {
     for (const c of cleanup) await c().catch(() => {});
     throw e;

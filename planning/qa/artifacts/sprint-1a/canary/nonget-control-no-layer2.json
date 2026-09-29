@@ -1,50 +1,50 @@
 {
   "server_requests": [
     {
-      "ts": "2026-09-29T22:02:00.343Z",
+      "ts": "2026-09-29T22:28:07.193Z",
       "method": "GET",
       "url": "/forms.html",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.432Z",
+      "ts": "2026-09-29T22:28:07.271Z",
       "method": "POST",
       "url": "/cart/add",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.444Z",
+      "ts": "2026-09-29T22:28:07.284Z",
       "method": "POST",
       "url": "/api/order",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.454Z",
+      "ts": "2026-09-29T22:28:07.294Z",
       "method": "POST",
       "url": "/beacon",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.461Z",
+      "ts": "2026-09-29T22:28:07.299Z",
       "method": "PUT",
       "url": "/xhr",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.469Z",
+      "ts": "2026-09-29T22:28:07.306Z",
       "method": "DELETE",
       "url": "/del",
       "host": "attacker.test"
     },
     {
-      "ts": "2026-09-29T22:02:00.477Z",
+      "ts": "2026-09-29T22:28:07.315Z",
       "method": "GET",
       "url": "/ws",
       "host": "attacker.test",
       "upgrade": true
     },
     {
-      "ts": "2026-09-29T22:02:00.526Z",
+      "ts": "2026-09-29T22:28:07.376Z",
       "method": "POST",
       "url": "/submit",
       "host": "attacker.test"

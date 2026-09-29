@@ -1,10 +1,9 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { Browser } from "playwright";
 import { runAxe } from "./detectors/axe.js";
 import { detectHorizontalOverflow } from "./detectors/overflow.js";
 import { evidenceId, type Evidence } from "./evidence.js";
-import { secureLaunch } from "./secure-launch.js";
+import { assertSecureBrowser, type SecureBrowser } from "./secure-launch.js";
 
 export const VIEWPORTS = {
   desktop: { width: 1440, height: 1000 },
@@ -20,18 +19,17 @@ export interface SliceResult {
 
 /**
  * Мінімальний наскрізний зріз S1a крок 2: одна URL → 2 viewport → скриншоти → axe + overflow → Evidence.
- * Лише локальна фікстура. Власний браузер — через secureLaunch (S1a крок 3): egress-проксі у fixture-режимі з
- * allow-list рівно origin цієї URL, шар 2 (не-GET/WS), пісочниця без фолбеку, очищений env (G0-3, G0-4).
- * Переданий ззовні `browser` використовується як є — захист тоді на відповідальності того, хто його запустив.
+ * Лише локальна фікстура. Браузер — лише `SecureBrowser` (результат secureLaunch: egress-проксі, шар 2 не-GET/WS,
+ * пісочниця без фолбеку, очищений env; G0-3, G0-4). Сирий playwright Browser — помилка типу й runtime-виняток.
  */
-export async function captureSlice(opts: { url: string; outDir: string; browser?: Browser }): Promise<SliceResult> {
+export async function captureSlice(opts: { url: string; outDir: string; secure: SecureBrowser }): Promise<SliceResult> {
   const { url, outDir } = opts;
+  assertSecureBrowser(opts.secure, "captureSlice");
   if (!/^http:\/\/127\.0\.0\.1[:/]/.test(url)) throw new Error("captureSlice (крок 2) приймає лише loopback-фікстуру; SSRF-ядро — крок 3");
   await mkdir(path.join(outDir, "screenshots"), { recursive: true });
   await mkdir(path.join(outDir, "regions"), { recursive: true });
 
-  const secure = opts.browser ? null : await secureLaunch({ mode: "fixture", fixtureOrigins: [new URL(url).origin] });
-  const browser = opts.browser ?? secure!.browser;
+  const secure = opts.secure;
   const evidence: Evidence[] = [];
   const detector_summary = {} as SliceResult["detector_summary"];
   const shots: Record<string, string> = {};
@@ -41,7 +39,7 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
   try {
     for (const name of Object.keys(VIEWPORTS) as ViewportName[]) {
       const vp = VIEWPORTS[name];
-      const context = secure ? await secure.newContext({ viewport: vp }) : await browser.newContext({ viewport: vp, acceptDownloads: false, serviceWorkers: "block" });
+      const context = await secure.newContext({ viewport: vp });
       try {
         const page = await context.newPage();
         const resp = await page.goto(url, { waitUntil: "load" });
@@ -98,7 +96,7 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
       }
     }
   } finally {
-    if (secure) await secure.close();
+    // secure принадлежить викликачу (він і закриває)
   }
 
   evidence.sort((a, b) => a.id.localeCompare(b.id));
@@ -112,7 +110,7 @@ export async function captureSlice(opts: { url: string; outDir: string; browser?
     http_status: status,
     desktop_screenshot: shots.desktop,
     mobile_screenshot: shots.mobile,
-    technical_json: { browser_version: browser.version(), viewports: VIEWPORTS, detector_summary },
+    technical_json: { browser_version: secure.browser.version(), viewports: VIEWPORTS, detector_summary },
   };
   await writeFile(path.join(outDir, "evidence.json"), JSON.stringify(evidence, null, 2) + "\n");
   await writeFile(path.join(outDir, "page-artifact.json"), JSON.stringify(page_artifact, null, 2) + "\n");

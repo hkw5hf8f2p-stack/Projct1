@@ -202,7 +202,7 @@ describe("egress-проксі: резолв → перевірка всіх A/AA
 
   it("fixture-режим: дозволено рівно allow-list host:port; prod блокує той самий loopback; конфіг-помилки — виняток", async () => {
     const d = recordingDialer(() => upstreamPort);
-    const fx = await startEgressProxy({ mode: { kind: "fixture", allow: [`127.0.0.1:${upstreamPort}`] }, dial: d.dial, resolver: mockResolver({}).resolver });
+    const fx = await startEgressProxy({ mode: { kind: "fixture", allow: [`127.0.0.1:${upstreamPort}`], allowFixtureLoopback: true }, dial: d.dial, resolver: mockResolver({}).resolver });
     const prod = await startEgressProxy({ mode: { kind: "prod" }, dial: d.dial, resolver: mockResolver({}).resolver });
     try {
       expect((await httpVia(fx, `http://127.0.0.1:${upstreamPort}/a`)).status).toBe(200);
@@ -214,12 +214,27 @@ describe("egress-проксі: резолв → перевірка всіх A/AA
       await fx.close();
       await prod.close();
     }
-    await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["10.0.0.1:80"] } })).rejects.toThrow(/лише loopback/);
-    await expect(startEgressProxy({ mode: { kind: "fixture", allow: [] } })).rejects.toThrow(/без allow-list/);
+    await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["10.0.0.1:80"], allowFixtureLoopback: true } })).rejects.toThrow(/лише loopback/);
+    await expect(startEgressProxy({ mode: { kind: "fixture", allow: [], allowFixtureLoopback: true } })).rejects.toThrow(/без allow-list/);
+    // без явного прапорця fixture-режим — виняток (навіть з валідним allow-list і NODE_ENV=test)
+    const prevFx = process.env.SITELENS_FIXTURE_MODE;
+    delete process.env.SITELENS_FIXTURE_MODE;
+    try {
+      await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["127.0.0.1:1"] } })).rejects.toThrow(/прапорець/);
+      await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["127.0.0.1:1"], allowFixtureLoopback: false } })).rejects.toThrow(/прапорець/);
+      // env-прапорець вмикає режим, але порожній allow-list все одно виняток
+      process.env.SITELENS_FIXTURE_MODE = "1";
+      await expect(startEgressProxy({ mode: { kind: "fixture", allow: [] } })).rejects.toThrow(/без allow-list/);
+      const p = await startEgressProxy({ mode: { kind: "fixture", allow: ["127.0.0.1:1"] } });
+      await p.close();
+    } finally {
+      if (prevFx === undefined) delete process.env.SITELENS_FIXTURE_MODE;
+      else process.env.SITELENS_FIXTURE_MODE = prevFx;
+    }
     const prev = process.env.NODE_ENV;
     process.env.NODE_ENV = "production";
     try {
-      await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["127.0.0.1:1"] } })).rejects.toThrow(/production/);
+      await expect(startEgressProxy({ mode: { kind: "fixture", allow: ["127.0.0.1:1"], allowFixtureLoopback: true } })).rejects.toThrow(/production/);
     } finally {
       process.env.NODE_ENV = prev;
     }

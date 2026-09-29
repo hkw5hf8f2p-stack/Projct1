@@ -17,6 +17,7 @@ import { chromium, type Browser, type BrowserContext } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startEgressProxy, type Dialer, type ProxyDecision, type Resolver } from "../src/net/egress-proxy.js";
 import { captureSlice } from "../src/capture.js";
+import { auditSite } from "../src/audit/run-site.js";
 import { serveDir } from "../src/static-server.js";
 import {
   applyContextGuards,
@@ -179,7 +180,7 @@ describe("канарка 127.0.0.2:4199 (G0-3, DEV-8)", () => {
   it("(б2) fixture-режим: дозволено рівно origin фікстури, канарка на іншому loopback — 0", async () => {
     const start = canaryHits.length;
     const origin = `http://127.0.0.1:${attacker.port}`;
-    const sb = await secureLaunch({ mode: "fixture", fixtureOrigins: [origin] });
+    const sb = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [origin] });
     let loaded = false;
     try {
       const ctx = await sb.newContext();
@@ -361,7 +362,17 @@ describe("середовище й пісочниця процесу Chromium (G0
 
   it("secureLaunch відмовляє в небезпечних опціях контексту і в fixtureOrigins у prod", async () => {
     await expect(secureLaunch({ mode: "prod", fixtureOrigins: ["http://127.0.0.1:1"] })).rejects.toThrow(/prod/);
-    await expect(secureLaunch({ mode: "fixture", fixtureOrigins: ["http://10.0.0.1:80"] })).rejects.toThrow(/loopback/);
+    await expect(secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: ["http://10.0.0.1:80"] })).rejects.toThrow(/loopback/);
+    // fixture без явного прапорця → виняток; з прапорцем, але порожній allow-list → виняток
+    const prevFx = process.env.SITELENS_FIXTURE_MODE;
+    delete process.env.SITELENS_FIXTURE_MODE;
+    try {
+      await expect(secureLaunch({ mode: "fixture", fixtureOrigins: ["http://127.0.0.1:1"] })).rejects.toThrow(/прапорець/);
+      await expect(secureLaunch({ mode: "fixture", allowFixtureLoopback: true })).rejects.toThrow(/без allow-list/);
+      await expect(secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [] })).rejects.toThrow(/без allow-list/);
+    } finally {
+      if (prevFx !== undefined) process.env.SITELENS_FIXTURE_MODE = prevFx;
+    }
     const sb = await secureLaunch({ mode: "prod", resolver, dial });
     try {
       await expect(sb.newContext({ acceptDownloads: true })).rejects.toThrow(/acceptDownloads/);
@@ -373,16 +384,22 @@ describe("середовище й пісочниця процесу Chromium (G0
   });
 });
 
-describe("інтеграція: captureSlice без переданого браузера йде через secureLaunch (fixture-режим)", () => {
-  it("defective.html → ті самі 3 Evidence, що й у slice-тесті", async () => {
+describe("інтеграція: captureSlice/auditSite лише через SecureBrowser", () => {
+  it("defective.html → ті самі 3 Evidence, що й у slice-тесті; сирий Browser → помилка типу і runtime-виняток", async () => {
     const srv = await serveDir(path.join(ROOT, "fixtures/slice"));
     const out = mkdtempSync(path.join(os.tmpdir(), "sl-cap-"));
     tmpRoots.push(out);
+    const sb = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [srv.origin] });
     try {
-      const r = await captureSlice({ url: `${srv.origin}/defective.html`, outDir: out });
+      const r = await captureSlice({ url: `${srv.origin}/defective.html`, outDir: out, secure: sb });
       expect(r.evidence).toHaveLength(3);
       expect(srv.requests.every((q) => q.method === "GET" || q.method === "HEAD")).toBe(true);
+      // @ts-expect-error сирий Browser не є SecureBrowser
+      await expect(captureSlice({ url: `${srv.origin}/defective.html`, outDir: out, secure: sb.browser })).rejects.toThrow(/SecureBrowser/);
+      // @ts-expect-error сирий Browser не є SecureBrowser
+      await expect(auditSite({ secure: sb.browser, seedUrl: `${srv.origin}/`, runDir: out, writeShots: false, tiles: false })).rejects.toThrow(/SecureBrowser/);
     } finally {
+      await sb.close();
       await srv.close();
     }
   });
