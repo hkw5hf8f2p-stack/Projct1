@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Запуск команди від не-root користувача `sitelens` (Chromium-пісочниця не стартує під root, DEV-13/DEV-19).
+# Запуск команди від не-root користувача `sitelens` (Chromium-пісочниця не стартує під root, DEV-13/DEV-25).
 # Середовище — білий список (жодних секретів родителя). Використання: bash scripts/run-as-sitelens.sh pnpm test
 # SL_PASS_PROXY=1 — додатково передати HTTPS_PROXY і копію публічного CA-бандла (для мережевих проб doctor / npm view).
 set -euo pipefail

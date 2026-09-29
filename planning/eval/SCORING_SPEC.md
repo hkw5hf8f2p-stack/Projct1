@@ -58,7 +58,8 @@ interface Evidence {
 | ET-SYN-M | SYNTHETIC, і ключ знахідки підтримують ≥ 2 **різні** `session_id` | **0.70** |
 | ET-SYN-1 | SYNTHETIC, рівно 1 `session_id` | **0.40** |
 | ET-INF | INFERRED | **0.30** |
-| ET-SUP | OBSERVED/BENCHMARKED, але `self_confirming = false` (опорний факт) | **не рівень сили**; впливає лише на впевненість (§2) |
+| ET-INC | OBSERVED, `self_confirming = false`, `capture_complete = false` — доказ відсутності (або позиційний при `banner_state='open'`) з неповного захоплення (DEV-19) | **0.30** |
+| ET-SUP | OBSERVED/BENCHMARKED, але `self_confirming = false` (опорний факт), `capture_complete ≠ false` | **не рівень сили**; впливає лише на впевненість (§2) |
 
 Примітки:
 - Кілька семплів самоузгодженості однієї snapshot-сесії — це **одна** сесія.
@@ -74,7 +75,7 @@ function evidenceStrength(f: Finding): number {
   else if (tiers.includes('ET-BRW')) s = 0.90;
   else if (synSessions.length >= 2) s = 0.70;
   else if (synSessions.length === 1) s = 0.40;
-  else if (tiers.includes('ET-INF')) s = 0.30;
+  else if (tiers.includes('ET-INF') || tiers.includes('ET-INC')) s = 0.30;   // ET-INC — DEV-19
   else throw new Error('finding without strength-bearing evidence'); // §23: відкинути
   return s;
 }
@@ -96,12 +97,14 @@ function evidenceStrength(f: Finding): number {
 | F-BRW | ET-BRW | ні (збій бачить браузер) |
 | F-SYN | усі SYNTHETIC | **так** |
 | F-INF | усі INFERRED | **так** |
+| F-INC | ET-INC (DEV-19) | ні, але **не** входить у `nonLlm` для STRONG(a) |
 
 ```ts
 function confidence(f: Finding): 'VERIFIED'|'STRONG_HYPOTHESIS'|'HYPOTHESIS' {
   const fam = families(f);                                  // Set<'F-DET'|...>
   // VERIFIED: є доказ, що сам підтверджує проблему (C3)
   if (fam.has('F-DET')) return 'VERIFIED';
+  if (fam.has('F-INC')) return 'HYPOTHESIS';                // DEV-17/DEV-19: кап незалежно від SYN
   if (fam.has('F-BRW') && f.evidence.some(e => e.browser_failure?.reproduced_by_replay)) return 'VERIFIED';
 
   // STRONG (a): ≥2 незалежні родини, з них хоча б одна не LLM-похідна.
@@ -125,7 +128,7 @@ function confidence(f: Finding): 'VERIFIED'|'STRONG_HYPOTHESIS'|'HYPOTHESIS' {
 кшталт `absent_in_first_viewport`, `absent_on_page`, `not_found_within_depth`), він дає VERIFIED лише коли захоплення
 сторінки повне: `PageArtifact.blocked_requests_count` до цільового origin = 0, `js_error_count` (неперехоплені) = 0,
 `banner_state ∈ {none, closed}`, `scroll_completed = true`. Інакше доказ лишається OBSERVED з приміткою «можлива
-неповнота захоплення», **не** входить у F-DET для `confidence()`, і знахідка отримує щонайбільше HYPOTHESIS. Тест-таблиця
+неповнота захоплення», **не** входить у F-DET для `confidence()`, і знахідка отримує щонайбільше HYPOTHESIS (рівень ET-INC, родина F-INC, strength 0.30 — DEV-19). Тест-таблиця
 нижче доповнюється двома рядками: «відсутність ціни, повне захоплення → VERIFIED» і «те саме, 1 заблокований запит →
 HYPOTHESIS».
 
@@ -154,6 +157,9 @@ HYPOTHESIS».
 | ET-BRW у 2 журналах без replay | STRONG (F-BRW + F-SYN) |
 | ET-BRW із replay | VERIFIED |
 | STRONG, але детектор повернув негатив | HYPOTHESIS + контрдоказ |
+| відсутність ціни, повне захоплення (DEV-17) | VERIFIED |
+| те саме, 1 заблокований запит до цільового origin (ET-INC) | HYPOTHESIS, strength 0.30 (DEV-19) |
+| те саме + SYN 3 лінзи / 2 контексти | HYPOTHESIS (кап DEV-17, DEV-19) |
 
 ---
 
@@ -189,7 +195,7 @@ HYPOTHESIS».
 | Lighthouse (performance) | LCP > 4.0 s **або** TBT > 600 ms (mobile) | 0.65 |
 | Lighthouse (performance) | 2.5 s < LCP ≤ 4.0 s **або** 200 < TBT ≤ 600 ms | 0.45 |
 | Lighthouse (performance) | лише opportunities (байти, формати), метрики в нормі | 0.30 |
-| мережа | зображення > 500 KB **або** відповідь > 2 s на сторінці першого етапу | max(поточна, 0.45) |
+| мережа | тіло зображення ≥ 512 000 байт (500 KiB) на сторінці першого етапу (DEV-20: час відповіді не використовується — R-9) | max(поточна, 0.45) |
 
 Для кількох джерел в одній знахідці береться **максимум** перевизначень.
 
@@ -299,7 +305,11 @@ finding_key = `${category}|${stage}|${pageGroup}|${claim_kind}`
 - `shipping`: `not_on_product_page | collapsed_hidden | cost_unknown | time_unknown | deep_link_only`;
 - `pricing`: `not_in_first_viewport | only_in_cart | total_unclear`;
 - `cta`: `below_fold | ambiguous_label | competing_ctas`;
-- `accessibility`: `axe:<rule-id>`.
+- `accessibility`: `axe:<rule-id>`;
+- `mobile_usability`: `horizontal_overflow` (детектор `horizontal_overflow`);
+- `performance`: `oversized_image` (детектор `oversized_image`, DEV-20).
+
+Детектори й предикати — `planning/eval/fixture-defect-map.md`.
 
 Детектори видають фіксований `claim_kind`. SYNTHETIC/INFERRED-скарги з тим самим ключем зливаються в
 знахідку детектора й успадковують її твердження (текст проблеми — шаблон детектора, рецензія C4).
