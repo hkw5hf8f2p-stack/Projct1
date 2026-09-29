@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slice fixture - clean</title>
+  <style>
+    body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #111; background: #fff; }
+    main { padding: 16px; max-width: 1200px; margin: 0 auto; }
+    /* без дефекту: банер тримає ширину контейнера */
+    .banner { max-width: 100%; box-sizing: border-box; height: 60px; background: #cde; border: 1px solid #89a; }
+    .hero { display: block; width: 320px; height: 180px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Slice shop</h1>
+    <div class="banner" id="wide-banner">Free delivery on orders over 100</div>
+    <!-- без дефекту: alt є -->
+    <img class="hero" id="hero-img" alt="Orange product placeholder" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23fb8'/%3E%3C/svg%3E">
+    <p>Plain paragraph.</p>
+  </main>
+</body>
+</html>

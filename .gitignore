@@ -13,3 +13,7 @@ artifacts/
 .turbo/
 playwright-report/
 test-results/
+
+# S1a: артефакти доказів у planning/qa/artifacts комітяться (малі); правило artifacts/ вище їх ігнорує
+!planning/qa/artifacts/
+!planning/qa/artifacts/**

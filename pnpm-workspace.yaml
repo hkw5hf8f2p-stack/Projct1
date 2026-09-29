@@ -1,0 +1,10 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+
+# Дозвіл на postinstall (S1a, DEV-19). pnpm 10.33 читає onlyBuiltDependencies; pnpm 11 читає allowBuilds.
+# Обидва ключі — щоб конфіг не залежав від мажорної версії; який реально діє — див. planning/engineering/toolchain-probe.md
+onlyBuiltDependencies:
+  - esbuild
+allowBuilds:
+  esbuild: true

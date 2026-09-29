@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-09-29T20:59:20.344Z",
+  "verdict": "PASS",
+  "failed_required": [],
+  "env": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers",
+    "node": "22.22.2",
+    "uid": 1001
+  },
+  "checks": [
+    {
+      "id": "node",
+      "status": "PASS",
+      "required": true,
+      "detail": "Node 22.22.2 (потрібно major >= 22)"
+    },
+    {
+      "id": "pnpm",
+      "status": "PASS",
+      "required": true,
+      "detail": "pnpm 10.33.0, packageManager=pnpm@10.33.0"
+    },
+    {
+      "id": "platform",
+      "status": "INFO",
+      "required": false,
+      "detail": "linux x64, uid=1001, rosetta=n/a",
+      "data": {
+        "platform": "linux",
+        "arch": "x64",
+        "uid": 1001,
+        "release": "6.18.44-fc-v37"
+      }
+    },
+    {
+      "id": "chromium_installed",
+      "status": "PASS",
+      "required": true,
+      "detail": "playwright-core 1.56.1 потребує chromium r1194 (141.0.7390.37) + headless-shell r1194; PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers; chromium=true, headless_shell=true; вміст: [.links, chromium, chromium-1194, chromium_headless_shell-1194, ffmpeg-1011]",
+      "data": {
+        "playwright": "1.56.1",
+        "required_revision": "1194",
+        "browsers_path": "/opt/pw-browsers",
+        "listing": [
+          ".links",
+          "chromium",
+          "chromium-1194",
+          "chromium_headless_shell-1194",
+          "ffmpeg-1011"
+        ]
+      }
+    },
+    {
+      "id": "chromium_sandbox",
+      "status": "PASS",
+      "required": true,
+      "detail": "Chromium 141.0.7390.37 стартував із chromiumSandbox:true; --no-sandbox у cmdline: false; uid=1001",
+      "data": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "browser_version": "141.0.7390.37",
+        "no_sandbox_flag_in_cmdline": false,
+        "cmdline_checked": false
+      }
+    },
+    {
+      "id": "axe",
+      "status": "PASS",
+      "required": true,
+      "detail": "@axe-core/playwright 4.13.0, axe-core 4.13.0"
+    },
+    {
+      "id": "lighthouse",
+      "status": "PASS",
+      "required": true,
+      "detail": "lighthouse 13.5.0 імпортується (engines node >=22.19)"
+    },
+    {
+      "id": "postgres_options",
+      "status": "INFO",
+      "required": false,
+      "detail": "system PG версії: [16] (Ver Cluster Port Status Owner    Data directory              Log file\n16  main    5432 down   postgres /var/lib/postgresql/16/main /var/log/postgresql/postgresql-16-main.log); @embedded-postgres/linux-x64@18.4.0-beta.17. S1a не стартує БД.",
+      "data": {
+        "system_pg_versions": [
+          "16"
+        ],
+        "embedded_pkg": "@embedded-postgres/linux-x64",
+        "embedded_pkg_npm_version": "18.4.0-beta.17"
+      }
+    },
+    {
+      "id": "internet",
+      "status": "INFO",
+      "required": false,
+      "detail": "registry.npmjs.org=200, example.com=ERR(curl: (56) CONNECT tunnel failed, response 403) → живі публічні сайти НЕдоступні (живі пас-и ⏭️)",
+      "data": {
+        "registry": "200",
+        "public_site": "ERR(curl: (56) CONNECT tunnel failed, response 403)",
+        "live_sites_reachable": false
+      }
+    },
+    {
+      "id": "docker",
+      "status": "INFO",
+      "required": false,
+      "detail": "клієнт: Docker version 29.3.1, build c2be9cc; демон: недоступний"
+    }
+  ]
+}
