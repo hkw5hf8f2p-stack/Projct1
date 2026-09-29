@@ -1,0 +1,41 @@
+
+:root{--c:#3d2b1f;--a:#b8720f;--bg:#fbf6ea;--mut:#6f6255}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 Georgia,serif;color:var(--c);background:var(--bg);display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.rail{background:var(--c);color:#f3e6c8;padding:24px 18px;position:sticky;top:0;height:100vh}
+.rail .logo{font-size:22px;font-weight:bold;display:block;margin-bottom:28px;color:#f3e6c8;text-decoration:none}
+.rail ul{list-style:none;margin:0;padding:0}
+.rail li a{display:block;padding:9px 0;color:#f3e6c8;text-decoration:none;border-bottom:1px solid #5a4636}
+.rail .kosh{margin-top:24px;display:flex;align-items:center;gap:8px}
+.rail .kosh svg{width:22px;height:22px}
+.rail .tgl{display:none}
+main.zmist{padding:36px 44px;max-width:1000px}
+h1{font-size:40px;line-height:1.15;margin:0 0 16px}
+.lead{font-size:20px;color:var(--mut)}
+.zahal{display:block;width:100%;max-width:560px;border-radius:6px;margin:18px 0}
+.sitka{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;list-style:none;padding:0}
+.kartka{background:#fff;border:1px solid #e3d5b5;padding:12px;border-radius:6px}
+.kartka img{width:100%;height:auto;display:block}
+.kartka h3{font-size:17px;margin:10px 0 4px}
+.dia{display:inline-block;background:var(--a);color:#fff;padding:12px 22px;border-radius:4px;text-decoration:none;font-weight:bold}
+.smuha{display:flex;gap:14px;white-space:nowrap;width:max-content;margin:18px 0;padding:10px 0;color:var(--mut)}
+.smuha span{border:1px solid #d9c8a0;padding:6px 16px;min-width:190px}
+.velykyi{min-height:88vh;padding:20px 0}
+.tabl{border-collapse:collapse;width:640px;margin:16px 0}
+.tabl td,.tabl th{border:1px solid #d9c8a0;padding:8px 12px;text-align:left}
+.pidval{grid-column:1/-1;background:#efe4c6;padding:18px 44px;font-size:13px;color:#8a7c68}
+.pidval a{color:#8a7c68}
+details{margin:8px 0}
+.rozp{margin:20px 0}
+@media(max-width:700px){
+ body{grid-template-columns:1fr}
+ .rail{position:static;height:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;flex-wrap:wrap}
+ .rail .logo{margin:0;font-size:18px}
+ .rail ul{display:none;width:100%}
+ .rail .tgl{display:inline-block;background:none;border:0;padding:6px;width:36px;height:36px;cursor:pointer}
+ .rail .tgl svg{width:26px;height:26px}
+ .rail .kosh{margin:0;font-size:0}
+ main.zmist{padding:20px 16px}
+ h1{font-size:28px}
+ .pidval{padding:14px 16px}
+}

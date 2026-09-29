@@ -1,0 +1,2 @@
+document.addEventListener("click",function(e){var t=e.target.closest(".tgl");if(!t)return;var u=document.querySelector(".rail ul");u.style.display=u.style.display==="block"?"none":"block";});
+(function(){var m=document.querySelectorAll("[data-tovar]");if(!m.length)return;var q=new URLSearchParams(location.search).get("t");if(!q)return;m.forEach(function(n){if(n.dataset.tovar!==q)n.hidden=true;});})();
