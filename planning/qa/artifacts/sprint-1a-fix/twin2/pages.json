@@ -1,0 +1,3274 @@
+[
+  {
+    "id": "index",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/",
+    "page_type": "homepage",
+    "page_type_reason": null,
+    "title": "Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/index/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/index/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Made for the slow hour.\" [level=1]\n  - paragraph: Some mornings deserve more than a cup. Come in, look around, stay a while.\n  - link \"Peek inside\":\n    - /url: /range/07/?view=all\n  - heading \"From the workbench\" [level=2]\n  - list:\n    - listitem:\n      - link \"Halden pour-over dripper in matte ceramic\":\n        - /url: /range/07/item/2210/?ref=hm\n        - img \"Halden pour-over dripper in matte ceramic\"\n      - heading \"Halden Pour-Over Set 02\" [level=2]\n    - listitem:\n      - link \"Compact grinder\":\n        - /url: /range/07/item/2214/?ref=hm\n        - img \"Compact grinder\"\n      - heading \"Kōrin EK-S Burr Unit\" [level=2]\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nMade for the slow hour.\n\nSome mornings deserve more than a cup. Come in, look around, stay a while.\n\nPeek inside\nFrom the workbench\nHalden Pour-Over Set 02\nKōrin EK-S Burr Unit\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Made for the slow hour."
+        },
+        {
+          "level": 2,
+          "text": "From the workbench"
+        },
+        {
+          "level": 2,
+          "text": "Halden Pour-Over Set 02"
+        },
+        {
+          "level": 2,
+          "text": "Kōrin EK-S Burr Unit"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g1.svg",
+          "alt": "Halden pour-over dripper in matte ceramic"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g3.svg",
+          "alt": "Compact grinder"
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Made for the slow hour."
+          },
+          {
+            "level": 2,
+            "text": "From the workbench"
+          },
+          {
+            "level": 2,
+            "text": "Halden Pour-Over Set 02"
+          },
+          {
+            "level": 2,
+            "text": "Kōrin EK-S Burr Unit"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Peek inside",
+        "name": "Peek inside",
+        "visible": true,
+        "rect": {
+          "x": 202,
+          "y": 270,
+          "w": 109,
+          "h": 45
+        },
+        "selector": "main > section > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2210/?ref=hm",
+        "abs": "http://127.0.0.1:43983/range/07/item/2210/?ref=hm",
+        "text": "",
+        "name": "Halden pour-over dripper in matte ceramic",
+        "visible": true,
+        "rect": {
+          "x": 215,
+          "y": 444,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(1) > a",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2214/?ref=hm",
+        "abs": "http://127.0.0.1:43983/range/07/item/2214/?ref=hm",
+        "text": "",
+        "name": "Compact grinder",
+        "visible": true,
+        "rect": {
+          "x": 480,
+          "y": 444,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(2) > a",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 857,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 857,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 270,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 266,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/index/1440x1000/capture.json",
+          "network": "pages/index/1440x1000/network.json",
+          "axe": "pages/index/1440x1000/axe.json",
+          "dir": "pages/index/1440x1000"
+        },
+        "M": {
+          "capture": "pages/index/390x844/capture.json",
+          "network": "pages/index/390x844/network.json",
+          "axe": "pages/index/390x844/axe.json",
+          "dir": "pages/index/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/index/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/index/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/index/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/index/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 2828,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "range-07-view-all",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_type": "category",
+    "page_type_reason": null,
+    "title": "Kit & gear – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/range-07-view-all/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/range-07-view-all/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Kit & gear\" [level=1]\n  - img \"Workshop shelves with brewing gear\"\n  - paragraph: Four things we make or stand behind.\n  - list:\n    - listitem:\n      - link:\n        - /url: /range/07/item/2210/\n        - img\n      - heading \"Halden Pour-Over Set 02\" [level=2]\n      - paragraph: Ceramic dripper, carafe and filters.\n      - link \"Take me there\":\n        - /url: /range/07/item/2210/\n    - listitem:\n      - link:\n        - /url: /range/07/item/2211/\n        - img\n      - heading \"Halden Pour-Over Set 02S\" [level=2]\n      - paragraph: Ceramic dripper, carafe and filters.\n      - link \"Take me there\":\n        - /url: /range/07/item/2211/\n    - listitem:\n      - link \"Grinder\":\n        - /url: /range/07/item/2214/\n        - img \"Grinder\"\n      - heading \"Kōrin EK-S Burr Unit, SSP-HG 64\" [level=2]\n      - paragraph: Grind engine for the bench.\n      - link \"Take me there\":\n        - /url: /range/07/item/2214/\n    - listitem:\n      - link \"Kettle\":\n        - /url: /range/07/item/2219/\n        - img \"Kettle\"\n      - heading \"Copperline Kettle\" [level=2]\n      - paragraph: Swan-neck kettle, 0.9 l.\n      - link \"Take me there\":\n        - /url: /range/07/item/2219/\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nKit & gear\n\nFour things we make or stand behind.\n\nHalden Pour-Over Set 02\n\nCeramic dripper, carafe and filters.\n\nTake me there\nHalden Pour-Over Set 02S\n\nCeramic dripper, carafe and filters.\n\nTake me there\nKōrin EK-S Burr Unit, SSP-HG 64\n\nGrind engine for the bench.\n\nTake me there\nCopperline Kettle\n\nSwan-neck kettle, 0.9 l.\n\nTake me there\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Kit & gear"
+        },
+        {
+          "level": 2,
+          "text": "Halden Pour-Over Set 02"
+        },
+        {
+          "level": 2,
+          "text": "Halden Pour-Over Set 02S"
+        },
+        {
+          "level": 2,
+          "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+        },
+        {
+          "level": 2,
+          "text": "Copperline Kettle"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/hall-2019.png",
+          "alt": "Workshop shelves with brewing gear"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g1.svg",
+          "alt": null
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g2.svg",
+          "alt": null
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g3.svg",
+          "alt": "Grinder"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g4.svg",
+          "alt": "Kettle"
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Kit & gear – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Kit & gear"
+          },
+          {
+            "level": 2,
+            "text": "Halden Pour-Over Set 02"
+          },
+          {
+            "level": 2,
+            "text": "Halden Pour-Over Set 02S"
+          },
+          {
+            "level": 2,
+            "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+          },
+          {
+            "level": 2,
+            "text": "Copperline Kettle"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2210/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2210/",
+        "text": "",
+        "name": "",
+        "visible": true,
+        "rect": {
+          "x": 215,
+          "y": 791,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(1)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2210/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2210/",
+        "text": "Take me there",
+        "name": "Take me there",
+        "visible": true,
+        "rect": {
+          "x": 215,
+          "y": 1131,
+          "w": 90,
+          "h": 17
+        },
+        "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(2)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2211/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2211/",
+        "text": "",
+        "name": "",
+        "visible": true,
+        "rect": {
+          "x": 480,
+          "y": 791,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(1)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2211/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2211/",
+        "text": "Take me there",
+        "name": "Take me there",
+        "visible": true,
+        "rect": {
+          "x": 480,
+          "y": 1131,
+          "w": 90,
+          "h": 17
+        },
+        "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(2)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2214/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2214/",
+        "text": "",
+        "name": "Grinder",
+        "visible": true,
+        "rect": {
+          "x": 744,
+          "y": 791,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(1)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2214/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2214/",
+        "text": "Take me there",
+        "name": "Take me there",
+        "visible": true,
+        "rect": {
+          "x": 744,
+          "y": 1134,
+          "w": 90,
+          "h": 17
+        },
+        "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(2)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2219/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2219/",
+        "text": "",
+        "name": "Kettle",
+        "visible": true,
+        "rect": {
+          "x": 1009,
+          "y": 791,
+          "w": 217,
+          "h": 217
+        },
+        "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(1)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": true,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/item/2219/",
+        "abs": "http://127.0.0.1:43983/range/07/item/2219/",
+        "text": "Take me there",
+        "name": "Take me there",
+        "visible": true,
+        "rect": {
+          "x": 1009,
+          "y": 1106,
+          "w": 90,
+          "h": 17
+        },
+        "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(2)",
+        "landmark": "main",
+        "in_card": true,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 1308,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 1308,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 433,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 429,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/range/07?view=all",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/range/07?view=all",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/range-07-view-all/1440x1000/capture.json",
+          "network": "pages/range-07-view-all/1440x1000/network.json",
+          "axe": "pages/range-07-view-all/1440x1000/axe.json",
+          "dir": "pages/range-07-view-all/1440x1000"
+        },
+        "M": {
+          "capture": "pages/range-07-view-all/390x844/capture.json",
+          "network": "pages/range-07-view-all/390x844/network.json",
+          "axe": "pages/range-07-view-all/390x844/axe.json",
+          "dir": "pages/range-07-view-all/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/range-07-view-all/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-view-all/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1315,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/range-07-view-all/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-view-all/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 5052,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "range-07-item-2210-ref-hm",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_type_reason": null,
+    "title": "Halden Pour-Over Set 02 – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/range-07-item-2210-ref-hm/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - img \"Pour-over set\"\n  - heading \"Halden Pour-Over Set 02\" [level=1]\n  - paragraph: A ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n  - paragraph: Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n  - paragraph: \"Care: rinse with warm water. Avoid abrupt temperature change.\"\n  - heading \"What is in the box\" [level=2]\n  - paragraph: The set, a cloth pouch, and a card with our brewing notes.\n  - paragraph:\n    - link \"Reserve this one\":\n      - /url: /bag/?set=2210\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nHalden Pour-Over Set 02\n\nA ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n\nBuilt in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n\nCare: rinse with warm water. Avoid abrupt temperature change.\n\nWhat is in the box\n\nThe set, a cloth pouch, and a card with our brewing notes.\n\nReserve this one\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Halden Pour-Over Set 02"
+        },
+        {
+          "level": 2,
+          "text": "What is in the box"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g1.svg",
+          "alt": "Pour-over set"
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Halden Pour-Over Set 02 – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Halden Pour-Over Set 02"
+          },
+          {
+            "level": 2,
+            "text": "What is in the box"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?set=2210",
+        "abs": "http://127.0.0.1:43983/bag/?set=2210",
+        "text": "Reserve this one",
+        "name": "Reserve this one",
+        "visible": true,
+        "rect": {
+          "x": 738,
+          "y": 1041,
+          "w": 142,
+          "h": 45
+        },
+        "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 1225,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 1225,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 516,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 512,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/range-07-item-2210-ref-hm/1440x1000/capture.json",
+          "network": "pages/range-07-item-2210-ref-hm/1440x1000/network.json",
+          "axe": "pages/range-07-item-2210-ref-hm/1440x1000/axe.json",
+          "dir": "pages/range-07-item-2210-ref-hm/1440x1000"
+        },
+        "M": {
+          "capture": "pages/range-07-item-2210-ref-hm/390x844/capture.json",
+          "network": "pages/range-07-item-2210-ref-hm/390x844/network.json",
+          "axe": "pages/range-07-item-2210-ref-hm/390x844/axe.json",
+          "dir": "pages/range-07-item-2210-ref-hm/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/range-07-item-2210-ref-hm/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2210-ref-hm/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1232,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/range-07-item-2210-ref-hm/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 3240,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "range-07-item-2214-ref-hm",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_type_reason": null,
+    "title": "Kōrin EK-S Burr Unit, SSP-HG 64 – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/range-07-item-2214-ref-hm/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - img \"Grinder\"\n  - heading \"Kōrin EK-S Burr Unit, SSP-HG 64\" [level=1]\n  - paragraph: Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.\n  - paragraph: Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n  - paragraph: \"Care: rinse with warm water. Avoid abrupt temperature change.\"\n  - heading \"What is in the box\" [level=2]\n  - paragraph: The set, a cloth pouch, and a card with our brewing notes.\n  - table:\n    - rowgroup:\n      - row \"Burr SSP-HG 64 Retention Zero-index RPM band Motor\":\n        - cell \"Burr\"\n        - cell \"SSP-HG 64\"\n        - cell \"Retention\"\n        - cell \"Zero-index\"\n        - cell \"RPM band\"\n        - cell \"Motor\"\n      - row \"Flat HG <0.3 g Yes 800–1400 DC 180 W\":\n        - cell \"Flat\"\n        - cell \"HG\"\n        - cell \"<0.3 g\"\n        - cell \"Yes\"\n        - cell \"800–1400\"\n        - cell \"DC 180 W\"\n  - paragraph:\n    - link \"Reserve this one\":\n      - /url: /bag/?set=2214\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nKōrin EK-S Burr Unit, SSP-HG 64\n\nFlat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.\n\nBuilt in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n\nCare: rinse with warm water. Avoid abrupt temperature change.\n\nWhat is in the box\n\nThe set, a cloth pouch, and a card with our brewing notes.\n\nBurr\tSSP-HG 64\tRetention\tZero-index\tRPM band\tMotor\nFlat\tHG\t<0.3 g\tYes\t800–1400\tDC 180 W\n\nReserve this one\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+        },
+        {
+          "level": 2,
+          "text": "What is in the box"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g3.svg",
+          "alt": "Grinder"
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Kōrin EK-S Burr Unit, SSP-HG 64 – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+          },
+          {
+            "level": 2,
+            "text": "What is in the box"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?set=2214",
+        "abs": "http://127.0.0.1:43983/bag/?set=2214",
+        "text": "Reserve this one",
+        "name": "Reserve this one",
+        "visible": true,
+        "rect": {
+          "x": 598,
+          "y": 1105,
+          "w": 142,
+          "h": 45
+        },
+        "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 1289,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 1289,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 605,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 601,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/range-07-item-2214-ref-hm/1440x1000/capture.json",
+          "network": "pages/range-07-item-2214-ref-hm/1440x1000/network.json",
+          "axe": "pages/range-07-item-2214-ref-hm/1440x1000/axe.json",
+          "dir": "pages/range-07-item-2214-ref-hm/1440x1000"
+        },
+        "M": {
+          "capture": "pages/range-07-item-2214-ref-hm/390x844/capture.json",
+          "network": "pages/range-07-item-2214-ref-hm/390x844/network.json",
+          "axe": "pages/range-07-item-2214-ref-hm/390x844/axe.json",
+          "dir": "pages/range-07-item-2214-ref-hm/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/range-07-item-2214-ref-hm/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2214-ref-hm/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1296,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/range-07-item-2214-ref-hm/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+            "width_px": 1312,
+            "height_px": 3932,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "range-07-item-2210",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_type": "product",
+    "page_type_reason": null,
+    "title": "Halden Pour-Over Set 02 – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/range-07-item-2210/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/range-07-item-2210/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - img \"Pour-over set\"\n  - heading \"Halden Pour-Over Set 02\" [level=1]\n  - paragraph: A ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n  - paragraph: Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n  - paragraph: \"Care: rinse with warm water. Avoid abrupt temperature change.\"\n  - heading \"What is in the box\" [level=2]\n  - paragraph: The set, a cloth pouch, and a card with our brewing notes.\n  - paragraph:\n    - link \"Reserve this one\":\n      - /url: /bag/?set=2210\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nHalden Pour-Over Set 02\n\nA ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n\nBuilt in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n\nCare: rinse with warm water. Avoid abrupt temperature change.\n\nWhat is in the box\n\nThe set, a cloth pouch, and a card with our brewing notes.\n\nReserve this one\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Halden Pour-Over Set 02"
+        },
+        {
+          "level": 2,
+          "text": "What is in the box"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/g1.svg",
+          "alt": "Pour-over set"
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Halden Pour-Over Set 02 – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Halden Pour-Over Set 02"
+          },
+          {
+            "level": 2,
+            "text": "What is in the box"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?set=2210",
+        "abs": "http://127.0.0.1:43983/bag/?set=2210",
+        "text": "Reserve this one",
+        "name": "Reserve this one",
+        "visible": true,
+        "rect": {
+          "x": 738,
+          "y": 1041,
+          "w": 142,
+          "h": 45
+        },
+        "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 1225,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 1225,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 516,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 512,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2210",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/range/07/item/2210",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/range-07-item-2210/1440x1000/capture.json",
+          "network": "pages/range-07-item-2210/1440x1000/network.json",
+          "axe": "pages/range-07-item-2210/1440x1000/axe.json",
+          "dir": "pages/range-07-item-2210/1440x1000"
+        },
+        "M": {
+          "capture": "pages/range-07-item-2210/390x844/capture.json",
+          "network": "pages/range-07-item-2210/390x844/network.json",
+          "axe": "pages/range-07-item-2210/390x844/axe.json",
+          "dir": "pages/range-07-item-2210/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/range-07-item-2210/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2210/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1232,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/range-07-item-2210/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/range-07-item-2210/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 3240,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "info-1",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/info/1",
+    "page_type": "about",
+    "page_type_reason": null,
+    "title": "Who we are – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/info-1/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/info-1/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Who we are\" [level=1]\n  - paragraph: Halden Hearth started in 2016 as a two-person roastery on a Lviv side street. Today a small team roasts, makes ceramics and packs every parcel by hand.\n  - paragraph: Write to us at hello@haldenhearth.example.\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nWho we are\n\nHalden Hearth started in 2016 as a two-person roastery on a Lviv side street. Today a small team roasts, makes ceramics and packs every parcel by hand.\n\nWrite to us at hello@haldenhearth.example.\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Who we are"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Who we are – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Who we are"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 374,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 374,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 302,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 298,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/info/1",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/info/1",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/info-1/1440x1000/capture.json",
+          "network": "pages/info-1/1440x1000/network.json",
+          "axe": "pages/info-1/1440x1000/axe.json",
+          "dir": "pages/info-1/1440x1000"
+        },
+        "M": {
+          "capture": "pages/info-1/390x844/capture.json",
+          "network": "pages/info-1/390x844/network.json",
+          "axe": "pages/info-1/390x844/axe.json",
+          "dir": "pages/info-1/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/info-1/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/info-1/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/info-1/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/info-1/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "bag-t-1",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/bag?t=1",
+    "page_type": "other",
+    "page_type_reason": null,
+    "title": "Your bag – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/bag-t-1/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/bag-t-1/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Your bag\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Item Price\":\n        - cell \"Item\"\n        - cell \"Price\"\n      - row \"Halden Pour-Over Set 02 € 89,00\":\n        - cell \"Halden Pour-Over Set 02\"\n        - cell \"€ 89,00\"\n      - row \"Copperline Kettle € 1.299,00\":\n        - cell \"Copperline Kettle\"\n        - cell \"€ 1.299,00\"\n      - row \"Filter papers ×2 $ 49.90\":\n        - cell \"Filter papers ×2\"\n        - cell \"$ 49.90\"\n      - row \"Delivery from 890 ₴ / € 7,50\":\n        - cell \"Delivery\"\n        - cell \"from 890 ₴ / € 7,50\"\n  - paragraph:\n    - text: Prices become final here.\n    - link \"Continue\":\n      - /url: /info/4/\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nYour bag\nItem\tPrice\nHalden Pour-Over Set 02\t€ 89,00\nCopperline Kettle\t€ 1.299,00\nFilter papers ×2\t$ 49.90\nDelivery\tfrom 890 ₴ / € 7,50\n\nPrices become final here. Continue\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Your bag"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Your bag – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Your bag"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Continue",
+        "name": "Continue",
+        "visible": true,
+        "rect": {
+          "x": 368,
+          "y": 375,
+          "w": 95,
+          "h": 45
+        },
+        "selector": "main > p > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 559,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 559,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 265,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 261,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/bag?t=1",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/bag?t=1",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/bag-t-1/1440x1000/capture.json",
+          "network": "pages/bag-t-1/1440x1000/network.json",
+          "axe": "pages/bag-t-1/1440x1000/axe.json",
+          "dir": "pages/bag-t-1/1440x1000"
+        },
+        "M": {
+          "capture": "pages/bag-t-1/390x844/capture.json",
+          "network": "pages/bag-t-1/390x844/network.json",
+          "axe": "pages/bag-t-1/390x844/axe.json",
+          "dir": "pages/bag-t-1/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/bag-t-1/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-t-1/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/bag-t-1/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-t-1/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "info-4",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/info/4",
+    "page_type": "info_shipping",
+    "page_type_reason": null,
+    "title": "Delivery & payment – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/info-4/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/info-4/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Terms\" [level=1]\n  - heading \"Delivery\" [level=2]\n  - paragraph: \"Within Ukraine: 2–4 working days, from 120 ₴. To the EU: 5–9 working days, € 7,50 per parcel, free above € 150,00.\"\n  - heading \"Payment\" [level=2]\n  - paragraph: Card, bank transfer or cash on collection in Lviv. Prices include VAT.\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nTerms\nDelivery\n\nWithin Ukraine: 2–4 working days, from 120 ₴. To the EU: 5–9 working days, € 7,50 per parcel, free above € 150,00.\n\nPayment\n\nCard, bank transfer or cash on collection in Lviv. Prices include VAT.\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Terms"
+        },
+        {
+          "level": 2,
+          "text": "Delivery"
+        },
+        {
+          "level": 2,
+          "text": "Payment"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Delivery & payment – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Terms"
+          },
+          {
+            "level": 2,
+            "text": "Delivery"
+          },
+          {
+            "level": 2,
+            "text": "Payment"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 496,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 496,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 306,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 302,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/info/4",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/info/4",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/info-4/1440x1000/capture.json",
+          "network": "pages/info-4/1440x1000/network.json",
+          "axe": "pages/info-4/1440x1000/axe.json",
+          "dir": "pages/info-4/1440x1000"
+        },
+        "M": {
+          "capture": "pages/info-4/390x844/capture.json",
+          "network": "pages/info-4/390x844/network.json",
+          "axe": "pages/info-4/390x844/axe.json",
+          "dir": "pages/info-4/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/info-4/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/info-4/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/info-4/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/info-4/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "bag-set-2210",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/bag?set=2210",
+    "page_type": "other",
+    "page_type_reason": null,
+    "title": "Your bag – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/bag-set-2210/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/bag-set-2210/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Your bag\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Item Price\":\n        - cell \"Item\"\n        - cell \"Price\"\n      - row \"Halden Pour-Over Set 02 € 89,00\":\n        - cell \"Halden Pour-Over Set 02\"\n        - cell \"€ 89,00\"\n      - row \"Copperline Kettle € 1.299,00\":\n        - cell \"Copperline Kettle\"\n        - cell \"€ 1.299,00\"\n      - row \"Filter papers ×2 $ 49.90\":\n        - cell \"Filter papers ×2\"\n        - cell \"$ 49.90\"\n      - row \"Delivery from 890 ₴ / € 7,50\":\n        - cell \"Delivery\"\n        - cell \"from 890 ₴ / € 7,50\"\n  - paragraph:\n    - text: Prices become final here.\n    - link \"Continue\":\n      - /url: /info/4/\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nYour bag\nItem\tPrice\nHalden Pour-Over Set 02\t€ 89,00\nCopperline Kettle\t€ 1.299,00\nFilter papers ×2\t$ 49.90\nDelivery\tfrom 890 ₴ / € 7,50\n\nPrices become final here. Continue\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Your bag"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Your bag – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Your bag"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Continue",
+        "name": "Continue",
+        "visible": true,
+        "rect": {
+          "x": 368,
+          "y": 375,
+          "w": 95,
+          "h": 45
+        },
+        "selector": "main > p > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 559,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 559,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 265,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 261,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/bag?set=2210",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/bag?set=2210",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/bag-set-2210/1440x1000/capture.json",
+          "network": "pages/bag-set-2210/1440x1000/network.json",
+          "axe": "pages/bag-set-2210/1440x1000/axe.json",
+          "dir": "pages/bag-set-2210/1440x1000"
+        },
+        "M": {
+          "capture": "pages/bag-set-2210/390x844/capture.json",
+          "network": "pages/bag-set-2210/390x844/network.json",
+          "axe": "pages/bag-set-2210/390x844/axe.json",
+          "dir": "pages/bag-set-2210/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/bag-set-2210/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-set-2210/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/bag-set-2210/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-set-2210/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  },
+  {
+    "id": "bag-set-2214",
+    "audit_run_id": null,
+    "url": "http://127.0.0.1:43983/bag?set=2214",
+    "page_type": "other",
+    "page_type_reason": null,
+    "title": "Your bag – Halden Hearth",
+    "http_status": 200,
+    "desktop_screenshot": "pages/bag-set-2214/1440x1000/fullpage.png",
+    "mobile_screenshot": "pages/bag-set-2214/390x844/fullpage.png",
+    "dom_text": null,
+    "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Your bag\" [level=1]\n  - table:\n    - rowgroup:\n      - row \"Item Price\":\n        - cell \"Item\"\n        - cell \"Price\"\n      - row \"Halden Pour-Over Set 02 € 89,00\":\n        - cell \"Halden Pour-Over Set 02\"\n        - cell \"€ 89,00\"\n      - row \"Copperline Kettle € 1.299,00\":\n        - cell \"Copperline Kettle\"\n        - cell \"€ 1.299,00\"\n      - row \"Filter papers ×2 $ 49.90\":\n        - cell \"Filter papers ×2\"\n        - cell \"$ 49.90\"\n      - row \"Delivery from 890 ₴ / € 7,50\":\n        - cell \"Delivery\"\n        - cell \"from 890 ₴ / € 7,50\"\n  - paragraph:\n    - text: Prices become final here.\n    - link \"Continue\":\n      - /url: /info/4/\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+    "visible_text": "Kit & gear\nWho we are\nBag\nYour bag\nItem\tPrice\nHalden Pour-Over Set 02\t€ 89,00\nCopperline Kettle\t€ 1.299,00\nFilter papers ×2\t$ 49.90\nDelivery\tfrom 890 ₴ / € 7,50\n\nPrices become final here. Continue\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+    "metadata_json": {
+      "meta_description": null,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Your bag"
+        }
+      ],
+      "images": [
+        {
+          "src": "http://127.0.0.1:43983/static/logo.svg",
+          "alt": "Halden Hearth"
+        },
+        {
+          "src": "http://127.0.0.1:43983/static/bag.svg",
+          "alt": ""
+        }
+      ],
+      "buttons": [],
+      "form_controls": [],
+      "forms": [],
+      "mobile": {
+        "title": "Your bag – Halden Hearth",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Your bag"
+          }
+        ],
+        "buttons": []
+      }
+    },
+    "links_json": [
+      {
+        "href": "/",
+        "abs": "http://127.0.0.1:43983/",
+        "text": "",
+        "name": "Halden Hearth",
+        "visible": true,
+        "rect": {
+          "x": 32,
+          "y": 14,
+          "w": 136,
+          "h": 42
+        },
+        "selector": "header > a:nth-of-type(1)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/range/07/?view=all",
+        "abs": "http://127.0.0.1:43983/range/07/?view=all",
+        "text": "Kit & gear",
+        "name": "Kit & gear",
+        "visible": true,
+        "rect": {
+          "x": 212,
+          "y": 23,
+          "w": 68,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(1)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": true,
+        "rect": {
+          "x": 302,
+          "y": 23,
+          "w": 77,
+          "h": 25
+        },
+        "selector": "header > nav > a:nth-of-type(2)",
+        "landmark": "nav",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/bag/?t=1",
+        "abs": "http://127.0.0.1:43983/bag/?t=1",
+        "text": "Bag",
+        "name": "Bag",
+        "visible": true,
+        "rect": {
+          "x": 1354,
+          "y": 23,
+          "w": 54,
+          "h": 25
+        },
+        "selector": "header > a:nth-of-type(2)",
+        "landmark": "header",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Continue",
+        "name": "Continue",
+        "visible": true,
+        "rect": {
+          "x": 368,
+          "y": 375,
+          "w": 95,
+          "h": 45
+        },
+        "selector": "main > p > a",
+        "landmark": "main",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/4/",
+        "abs": "http://127.0.0.1:43983/info/4/",
+        "text": "Terms",
+        "name": "Terms",
+        "visible": false,
+        "rect": {
+          "x": 32,
+          "y": 559,
+          "w": 35,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(1)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      },
+      {
+        "href": "/info/1/",
+        "abs": "http://127.0.0.1:43983/info/1/",
+        "text": "Who we are",
+        "name": "Who we are",
+        "visible": false,
+        "rect": {
+          "x": 78,
+          "y": 559,
+          "w": 68,
+          "h": 15
+        },
+        "selector": "footer > details > p > a:nth-of-type(2)",
+        "landmark": "footer",
+        "in_card": false,
+        "card_primary": false,
+        "has_counter": false
+      }
+    ],
+    "technical_json": {
+      "viewports": {
+        "D": [
+          1440,
+          1000,
+          1
+        ],
+        "M": [
+          390,
+          844,
+          2
+        ]
+      },
+      "capture": {
+        "D": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 265,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        },
+        "M": {
+          "blocked_requests_count": 0,
+          "js_error_count": 0,
+          "banner_state": "none",
+          "scroll_completed": true,
+          "layout_stable": true,
+          "http_status": 200,
+          "navigation_completed": true,
+          "failed_critical_requests": 0,
+          "visible_text_length": 261,
+          "capture_complete": true,
+          "incomplete_reasons": []
+        }
+      },
+      "banner": {
+        "D": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        },
+        "M": {
+          "detected": false,
+          "state": "none",
+          "actions": []
+        }
+      },
+      "redirect_chain": {
+        "D": [
+          {
+            "url": "http://127.0.0.1:43983/bag?set=2214",
+            "status": 200
+          }
+        ],
+        "M": [
+          {
+            "url": "http://127.0.0.1:43983/bag?set=2214",
+            "status": 200
+          }
+        ]
+      },
+      "console_errors": {
+        "D": [],
+        "M": []
+      },
+      "failed_requests": {
+        "D": [],
+        "M": []
+      },
+      "axe_version": "4.13.0",
+      "files": {
+        "D": {
+          "capture": "pages/bag-set-2214/1440x1000/capture.json",
+          "network": "pages/bag-set-2214/1440x1000/network.json",
+          "axe": "pages/bag-set-2214/1440x1000/axe.json",
+          "dir": "pages/bag-set-2214/1440x1000"
+        },
+        "M": {
+          "capture": "pages/bag-set-2214/390x844/capture.json",
+          "network": "pages/bag-set-2214/390x844/network.json",
+          "axe": "pages/bag-set-2214/390x844/axe.json",
+          "dir": "pages/bag-set-2214/390x844"
+        }
+      },
+      "screenshots": {
+        "D": {
+          "viewport": {
+            "file": "pages/bag-set-2214/1440x1000/viewport.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-set-2214/1440x1000/fullpage.png",
+            "width_px": 1440,
+            "height_px": 1000,
+            "written": true
+          }
+        },
+        "M": {
+          "viewport": {
+            "file": "pages/bag-set-2214/390x844/viewport.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          },
+          "fullpage": {
+            "file": "pages/bag-set-2214/390x844/fullpage.png",
+            "width_px": 780,
+            "height_px": 1688,
+            "written": true
+          }
+        }
+      },
+      "tiles": {
+        "D": null,
+        "M": null
+      },
+      "metrics_ref": "timing.json"
+    },
+    "created_at": null
+  }
+]

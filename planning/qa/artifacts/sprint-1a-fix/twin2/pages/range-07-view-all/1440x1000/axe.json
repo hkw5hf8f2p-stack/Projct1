@@ -1,0 +1,73 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "image-alt",
+      "impact": "critical",
+      "help": "Images must have alternative text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "nodes": [
+        {
+          "target": "img[src$=\"g1.svg\"]",
+          "html": "<img src=\"/static/g1.svg\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 215,
+            "y": 791,
+            "w": 217,
+            "h": 217
+          },
+          "landmark": "main",
+          "tag": "img"
+        },
+        {
+          "target": "img[src$=\"g2.svg\"]",
+          "html": "<img src=\"/static/g2.svg\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 480,
+            "y": 791,
+            "w": 217,
+            "h": 217
+          },
+          "landmark": "main",
+          "tag": "img"
+        }
+      ]
+    },
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "help": "Links must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "nodes": [
+        {
+          "target": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+          "html": "<a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a>",
+          "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no",
+          "rect": {
+            "x": 215,
+            "y": 791,
+            "w": 217,
+            "h": 217
+          },
+          "landmark": "main",
+          "tag": "a"
+        },
+        {
+          "target": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+          "html": "<a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a>",
+          "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no",
+          "rect": {
+            "x": 480,
+            "y": 791,
+            "w": 217,
+            "h": 217
+          },
+          "landmark": "main",
+          "tag": "a"
+        }
+      ]
+    }
+  ]
+}

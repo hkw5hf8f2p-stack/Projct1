@@ -1,0 +1,196 @@
+[
+  {
+    "finding_key": "accessibility|*|axe:link-name|header/a",
+    "category": "accessibility",
+    "page_group": "*",
+    "claim_kind": "axe:link-name",
+    "detector_ids": [
+      "axe:link-name"
+    ],
+    "evidence_ids": [
+      "ev_00d5b439d7ca",
+      "ev_079ef6b34203",
+      "ev_1c02da824f38",
+      "ev_2f4188fd18f2",
+      "ev_99a40e3cedd9",
+      "ev_9abd9fcf5b83",
+      "ev_af2dac5b4ca9",
+      "ev_b45b43ad256b",
+      "ev_ecb96e44aa21",
+      "ev_fc8d42104747"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 10,
+    "component": "header/a"
+  },
+  {
+    "finding_key": "accessibility|category|axe:image-alt|main/img",
+    "category": "accessibility",
+    "page_group": "category",
+    "claim_kind": "axe:image-alt",
+    "detector_ids": [
+      "axe:image-alt"
+    ],
+    "evidence_ids": [
+      "ev_73304e32af83",
+      "ev_a6a18ae38c3b",
+      "ev_de71d98cc918",
+      "ev_ec47b9ae9b7f"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 4,
+    "component": "main/img"
+  },
+  {
+    "finding_key": "accessibility|category|axe:link-name|main/a",
+    "category": "accessibility",
+    "page_group": "category",
+    "claim_kind": "axe:link-name",
+    "detector_ids": [
+      "axe:link-name"
+    ],
+    "evidence_ids": [
+      "ev_0526152117bd",
+      "ev_06cb383756b7",
+      "ev_55140db3a857",
+      "ev_b4ef025a834e"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 4,
+    "component": "main/a"
+  },
+  {
+    "finding_key": "cta|product|below_fold",
+    "category": "cta",
+    "page_group": "product",
+    "claim_kind": "below_fold",
+    "detector_ids": [
+      "cta_below_fold"
+    ],
+    "evidence_ids": [
+      "ev_1911d41d5bd5",
+      "ev_44882b63f5e7",
+      "ev_50ed898d7c91",
+      "ev_ace829a54f12",
+      "ev_c8a7f0ec7cb8",
+      "ev_cf484a8e7443"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  },
+  {
+    "finding_key": "mobile_usability|product|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "product",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_8c70f297e25f"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 1
+  },
+  {
+    "finding_key": "performance|category|oversized_image",
+    "category": "performance",
+    "page_group": "category",
+    "claim_kind": "oversized_image",
+    "detector_ids": [
+      "oversized_image"
+    ],
+    "evidence_ids": [
+      "ev_66f1ac32d58f",
+      "ev_7908258d2edc"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 2
+  },
+  {
+    "finding_key": "pricing|category|not_in_first_viewport",
+    "category": "pricing",
+    "page_group": "category",
+    "claim_kind": "not_in_first_viewport",
+    "detector_ids": [
+      "price_first_viewport"
+    ],
+    "evidence_ids": [
+      "ev_3647a653dc0b",
+      "ev_f2dbaa88cd77"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 2
+  },
+  {
+    "finding_key": "pricing|product|not_in_first_viewport",
+    "category": "pricing",
+    "page_group": "product",
+    "claim_kind": "not_in_first_viewport",
+    "detector_ids": [
+      "price_first_viewport"
+    ],
+    "evidence_ids": [
+      "ev_54ab9ecaa3e7",
+      "ev_6c6f564d2a7e",
+      "ev_73aa8df26e8e",
+      "ev_7a980b2198e8",
+      "ev_9961cba75eff",
+      "ev_9c611f42b4c6"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  },
+  {
+    "finding_key": "shipping|product|deep_link_only",
+    "category": "shipping",
+    "page_group": "product",
+    "claim_kind": "deep_link_only",
+    "detector_ids": [
+      "shipping_depth"
+    ],
+    "evidence_ids": [
+      "ev_69ba64865bab",
+      "ev_9a01d17eb17e",
+      "ev_9e20180a81ea"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 3
+  }
+]

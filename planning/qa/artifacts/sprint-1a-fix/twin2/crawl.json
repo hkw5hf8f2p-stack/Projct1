@@ -1,0 +1,525 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://127.0.0.1:43983/",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0,
+      "page_type": "homepage"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07?view=all",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.95,
+      "order": 1,
+      "page_type": "category"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+      "depth": 1,
+      "class": "product",
+      "priority": 0.95,
+      "order": 2,
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+      "depth": 1,
+      "class": "product",
+      "priority": 0.95,
+      "order": 3,
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2210",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 4,
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:43983/info/1",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.9,
+      "order": 5,
+      "page_type": "about"
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?t=1",
+      "depth": 1,
+      "class": "cart",
+      "priority": 0.1,
+      "order": 6,
+      "page_type": "other"
+    },
+    {
+      "url": "http://127.0.0.1:43983/info/4",
+      "depth": 2,
+      "class": "other",
+      "priority": 0.3,
+      "order": 7,
+      "page_type": "info_shipping"
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?set=2210",
+      "depth": 2,
+      "class": "cart",
+      "priority": 0.1,
+      "order": 8,
+      "page_type": "other"
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?set=2214",
+      "depth": 2,
+      "class": "cart",
+      "priority": 0.1,
+      "order": 9,
+      "page_type": "other"
+    }
+  ],
+  "engine": "v2",
+  "pages": [
+    {
+      "url": "http://127.0.0.1:43983/",
+      "page_id": "index",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": true,
+        "rule": "3:home",
+        "scores": {
+          "P": 1,
+          "K": 3,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "K1:2"
+        ],
+        "per_view": {
+          "D": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 1,
+            "K": 3,
+            "C": 0
+          },
+          "M": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 1,
+            "K": 3,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07?view=all",
+      "page_id": "range-07-view-all",
+      "page_type": "category",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "5:category",
+        "scores": {
+          "P": 2,
+          "K": 4,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "P5",
+          "K1:4",
+          "K+1"
+        ],
+        "per_view": {
+          "D": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 2,
+            "K": 4,
+            "C": 0
+          },
+          "M": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 2,
+            "K": 4,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+      "page_id": "range-07-item-2210-ref-hm",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P3",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 4.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+      "page_id": "range-07-item-2214-ref-hm",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P3",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 4.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2210",
+      "page_id": "range-07-item-2210",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P3",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 4.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/info/1",
+      "page_id": "info-1",
+      "page_type": "about",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "7:about",
+        "scores": {
+          "P": 1,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "about",
+            "rule": "7:about",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "about",
+            "rule": "7:about",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?t=1",
+      "page_id": "bag-t-1",
+      "page_type": "other",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "8:other",
+        "scores": {
+          "P": 3,
+          "K": 0,
+          "C": 0.5
+        },
+        "features": [
+          "P2",
+          "P4",
+          "C4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          },
+          "M": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/info/4",
+      "page_id": "info-4",
+      "page_type": "info_shipping",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "7:info_shipping",
+        "scores": {
+          "P": 1,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "info_shipping",
+            "rule": "7:info_shipping",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "info_shipping",
+            "rule": "7:info_shipping",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?set=2210",
+      "page_id": "bag-set-2210",
+      "page_type": "other",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "8:other",
+        "scores": {
+          "P": 3,
+          "K": 0,
+          "C": 0.5
+        },
+        "features": [
+          "P2",
+          "P4",
+          "C4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          },
+          "M": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:43983/bag?set=2214",
+      "page_id": "bag-set-2214",
+      "page_type": "other",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "8:other",
+        "scores": {
+          "P": 3,
+          "K": 0,
+          "C": 0.5
+        },
+        "features": [
+          "P2",
+          "P4",
+          "C4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          },
+          "M": {
+            "type": "other",
+            "rule": "8:other",
+            "P": 3,
+            "K": 0,
+            "C": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2211",
+      "reason": "product_cap",
+      "from": "http://127.0.0.1:43983/range/07?view=all"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2214",
+      "reason": "product_cap",
+      "from": "http://127.0.0.1:43983/range/07?view=all"
+    },
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2219",
+      "reason": "product_cap",
+      "from": "http://127.0.0.1:43983/range/07?view=all"
+    }
+  ],
+  "edges": [
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "http://127.0.0.1:43983/ -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/bag?set=2210 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/bag?set=2210 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/bag?set=2210 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/bag?set=2210 -> http://127.0.0.1:43983/info/4",
+    "http://127.0.0.1:43983/bag?set=2210 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/bag?set=2214 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/bag?set=2214 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/bag?set=2214 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/bag?set=2214 -> http://127.0.0.1:43983/info/4",
+    "http://127.0.0.1:43983/bag?set=2214 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/bag?t=1 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/bag?t=1 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/bag?t=1 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/bag?t=1 -> http://127.0.0.1:43983/info/4",
+    "http://127.0.0.1:43983/bag?t=1 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/info/1 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/info/1 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/info/1 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/info/1 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/info/4 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/info/4 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/info/4 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/info/4 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/range/07/item/2210 -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/range/07/item/2210 -> http://127.0.0.1:43983/bag?set=2210",
+    "http://127.0.0.1:43983/range/07/item/2210 -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/range/07/item/2210 -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/range/07/item/2210 -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/range/07/item/2210?ref=hm -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/range/07/item/2210?ref=hm -> http://127.0.0.1:43983/bag?set=2210",
+    "http://127.0.0.1:43983/range/07/item/2210?ref=hm -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/range/07/item/2210?ref=hm -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/range/07/item/2210?ref=hm -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/range/07/item/2214?ref=hm -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/range/07/item/2214?ref=hm -> http://127.0.0.1:43983/bag?set=2214",
+    "http://127.0.0.1:43983/range/07/item/2214?ref=hm -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/range/07/item/2214?ref=hm -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/range/07/item/2214?ref=hm -> http://127.0.0.1:43983/range/07?view=all",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/bag?t=1",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/info/1",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/range/07/item/2210",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/range/07/item/2211",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/range/07/item/2214",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/range/07/item/2219",
+    "http://127.0.0.1:43983/range/07?view=all -> http://127.0.0.1:43983/range/07?view=all"
+  ]
+}

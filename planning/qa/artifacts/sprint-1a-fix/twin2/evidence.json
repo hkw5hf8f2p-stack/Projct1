@@ -1,0 +1,1856 @@
+[
+  {
+    "id": "ev_a6a18ae38c3b",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"g1.svg\"]",
+      "region": {
+        "x": 215,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_ec47b9ae9b7f",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"g2.svg\"]",
+      "region": {
+        "x": 480,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"g2.svg\"] — <img src=\"/static/g2.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_de71d98cc918",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/range-07-view-all/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"g1.svg\"]",
+      "region": {
+        "x": 29,
+        "y": 402,
+        "w": 332,
+        "h": 332
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_73304e32af83",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/range-07-view-all/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"g2.svg\"]",
+      "region": {
+        "x": 29,
+        "y": 902,
+        "w": 332,
+        "h": 332
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"g2.svg\"] — <img src=\"/static/g2.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9abd9fcf5b83",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/",
+    "page_path": "/",
+    "page_type": "homepage",
+    "page_group": "/",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/index/390x844/axe.json",
+    "screenshot_reference": "pages/index/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_00d5b439d7ca",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/bag?set=2210",
+    "page_path": "/bag?set=2210",
+    "page_type": "other",
+    "page_group": "/bag",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/bag-set-2210/390x844/axe.json",
+    "screenshot_reference": "pages/bag-set-2210/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_99a40e3cedd9",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/bag?set=2214",
+    "page_path": "/bag?set=2214",
+    "page_type": "other",
+    "page_group": "/bag",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/bag-set-2214/390x844/axe.json",
+    "screenshot_reference": "pages/bag-set-2214/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_fc8d42104747",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/bag?t=1",
+    "page_path": "/bag?t=1",
+    "page_type": "other",
+    "page_group": "/bag",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/bag-t-1/390x844/axe.json",
+    "screenshot_reference": "pages/bag-t-1/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_2f4188fd18f2",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/info/1",
+    "page_path": "/info/1",
+    "page_type": "about",
+    "page_group": "/info/1",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/info-1/390x844/axe.json",
+    "screenshot_reference": "pages/info-1/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_af2dac5b4ca9",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/info/4",
+    "page_path": "/info/4",
+    "page_type": "info_shipping",
+    "page_group": "/info/4",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/info-4/390x844/axe.json",
+    "screenshot_reference": "pages/info-4/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_06cb383756b7",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+      "region": {
+        "x": 215,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label a",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/a",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_55140db3a857",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+      "region": {
+        "x": 480,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "a[href=\"/range/07/item/2211/\"]:nth-child(1) — <a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label a",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/a",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_079ef6b34203",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-view-all/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 3,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_b4ef025a834e",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-view-all/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+      "region": {
+        "x": 29,
+        "y": 402,
+        "w": 332,
+        "h": 332
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label a",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 3,
+      "component_signature": "main/a",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_0526152117bd",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-view-all/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+      "region": {
+        "x": 29,
+        "y": 902,
+        "w": 332,
+        "h": 332
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "a[href=\"/range/07/item/2211/\"]:nth-child(1) — <a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label a",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 3,
+      "component_signature": "main/a",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_ecb96e44aa21",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-item-2210/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-item-2210/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_1c02da824f38",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_b45b43ad256b",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Links must have discernible text (serious). Fix all of the following:   Element is in tab order and does not have accessible text",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/390x844/axe.json",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".bagl",
+      "region": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen",
+    "detector_id": "axe:link-name",
+    "claim_kind": "axe:link-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "link-name",
+      "impact": "serious",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/a",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_50ed898d7c91",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1041px при висоті вікна 1000px.",
+    "artifact_reference": "pages/range-07-item-2210/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 738,
+        "y": 1041,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 1041,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_44882b63f5e7",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1417px при висоті вікна 844px.",
+    "artifact_reference": "pages/range-07-item-2210/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 16,
+        "y": 1417,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 1417,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_cf484a8e7443",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1041px при висоті вікна 1000px.",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 738,
+        "y": 1041,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 1041,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_ace829a54f12",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1417px при висоті вікна 844px.",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 16,
+        "y": 1417,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 1417,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_1911d41d5bd5",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1105px при висоті вікна 1000px.",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 598,
+        "y": 1105,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 1105,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_c8a7f0ec7cb8",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Reserve this one» лежить нижче першого вікна: верхній край на 1764px при висоті вікна 844px.",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "region": {
+        "x": 16,
+        "y": 1764,
+        "w": 142,
+        "h": 45
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 1764,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_8c70f297e25f",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "mobile_usability",
+    "description": "Сторінка прокручується вбік на 390px: scrollWidth 656px, надлишок 266px.",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > div > div:nth-of-type(1) > img",
+      "region": {
+        "x": 16,
+        "y": 86,
+        "w": 640,
+        "h": 640
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "main > div > div:nth-of-type(1) > img | main > div > div:nth-of-type(2) > div > h2 | main > div > div:nth-of-type(2) > div > p:nth-of-type(1)",
+    "detector_id": "horizontal_overflow",
+    "claim_kind": "horizontal_overflow",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "scroll_width": 656,
+      "overflow_px": 266,
+      "offenders": [
+        {
+          "selector": "main > div > div:nth-of-type(1) > img",
+          "right": 656
+        },
+        {
+          "selector": "main > div > div:nth-of-type(2) > div > h2",
+          "right": 656
+        },
+        {
+          "selector": "main > div > div:nth-of-type(2) > div > p:nth-of-type(1)",
+          "right": 656
+        }
+      ]
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_7908258d2edc",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "performance",
+    "description": "Зображення важить 2745 КБ (поріг 500 КБ) і відмальоване 1036×553px при природному 1500×800px.",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/network.json",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/viewport.png",
+    "selector_or_region": {
+      "selector": "main > img",
+      "region": {
+        "x": 202,
+        "y": 161,
+        "w": 1036,
+        "h": 553
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "http://127.0.0.1:43983/static/hall-2019.png — 2811137 B — natural 1500×800, rendered 1036×553",
+    "detector_id": "oversized_image",
+    "claim_kind": "oversized_image",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "body_bytes": 2811137,
+      "natural_w": 1500,
+      "natural_h": 800,
+      "rendered_w": 1036,
+      "rendered_h": 553,
+      "oversize_ratio": 2.09
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_66f1ac32d58f",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "performance",
+    "description": "Зображення важить 2745 КБ (поріг 500 КБ) і відмальоване 358×191px при природному 1500×800px.",
+    "artifact_reference": "pages/range-07-view-all/390x844/network.json",
+    "screenshot_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "main > img",
+      "region": {
+        "x": 16,
+        "y": 132,
+        "w": 358,
+        "h": 191
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "http://127.0.0.1:43983/static/hall-2019.png — 2811137 B — natural 1500×800, rendered 358×191",
+    "detector_id": "oversized_image",
+    "claim_kind": "oversized_image",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "body_bytes": 2811137,
+      "natural_w": 1500,
+      "natural_h": 800,
+      "rendered_w": 358,
+      "rendered_h": 191,
+      "oversize_ratio": 4.39
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_3647a653dc0b",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "pricing",
+    "description": "У першому вікні 1440×1000 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-view-all/1440x1000/viewport.png",
+    "screenshot_reference": "pages/range-07-view-all/1440x1000/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 1000
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Bag Kit & gear Four things we make or stand behind.",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f2dbaa88cd77",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07?view=all",
+    "page_path": "/range/07?view=all",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "pricing",
+    "description": "У першому вікні 390×844 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "screenshot_reference": "pages/range-07-view-all/390x844/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Kit & gear Four things we make or stand behind. Halden Pour-Over Set 02 Ceramic dripper, carafe and filters. Take me there",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9c611f42b4c6",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 1440×1000 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2210/1440x1000/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2210/1440x1000/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 1000
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Bag Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse wit",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_7a980b2198e8",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 390×844 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2210/390x844/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2210/390x844/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse with wa",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_73aa8df26e8e",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 1440×1000 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/1440x1000/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/1440x1000/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 1000
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Bag Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse wit",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_54ab9ecaa3e7",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 390×844 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/390x844/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/390x844/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse with wa",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9961cba75eff",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 1440×1000 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/1440x1000/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/1440x1000/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 1000
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Bag Kōrin EK-S Burr Unit, SSP-HG 64 Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse wit",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_6c6f564d2a7e",
+    "type": "screenshot",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "pricing",
+    "description": "У першому вікні 390×844 немає ціни (на сторінці її не знайдено взагалі).",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/390x844/viewport.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/390x844/viewport.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Kit & gear Who we are Kōrin EK-S Burr Unit, SSP-HG 64 Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.",
+    "detector_id": "price_first_viewport",
+    "claim_kind": "not_in_first_viewport",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "first_price_x": null,
+      "first_price_y": null,
+      "reason": "none_on_page",
+      "price_depth_clicks": 1,
+      "price_candidates": 0,
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9a01d17eb17e",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210",
+    "page_path": "/range/07/item/2210",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/range-07-item-2210/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 1620
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2210 → /bag",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "depth_clicks": 1,
+      "shipping_found_via": "/range/07/item/2210 → /bag",
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_69ba64865bab",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+    "page_path": "/range/07/item/2210?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 1620
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2210 → /bag",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "depth_clicks": 1,
+      "shipping_found_via": "/range/07/item/2210 → /bag",
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9e20180a81ea",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+    "page_path": "/range/07/item/2214?ref=hm",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "screenshot_reference": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 656,
+        "h": 1966
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2214 → /bag",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "depth_clicks": 1,
+      "shipping_found_via": "/range/07/item/2214 → /bag",
+      "crawl_pages": 10
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "none",
+      "banner_actions": [],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  }
+]

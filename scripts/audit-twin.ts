@@ -8,6 +8,7 @@
  */
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
+import { spawn, type ChildProcess } from "node:child_process";
 import http from "node:http";
 import type { AddressInfo } from "node:net";
 import path from "node:path";
@@ -62,7 +63,16 @@ const server = http.createServer((req, res) => {
   } catch { res.writeHead(404, { "content-type": "text/plain" }).end("not found"); }
 });
 await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
-const port = (server.address() as AddressInfo).port;
+let port = (server.address() as AddressInfo).port;
+// --server <file>: використати власний server.mjs двійника (каталог-індекс без кінцевого «/», query ігнорується) замість вбудованого статичного сервера. Лише транспорт; audit-код не змінюється.
+let child: ChildProcess | undefined;
+if (arg("--server")) {
+  server.close();
+  const probe = http.createServer(); await new Promise<void>((r) => probe.listen(0, "127.0.0.1", r));
+  port = (probe.address() as AddressInfo).port; await new Promise<void>((r) => probe.close(() => r()));
+  child = spawn("node", [path.join(TWIN, arg("--server")!), String(port)], { stdio: ["ignore", "pipe", "inherit"] });
+  await new Promise<void>((r) => child!.stdout!.once("data", () => r()));
+}
 const origin = `http://127.0.0.1:${port}`;
 
 const hashBefore = hashOfTwin();
@@ -118,4 +128,5 @@ try {
 } finally {
   await sb.close();
   server.close();
+  child?.kill();
 }

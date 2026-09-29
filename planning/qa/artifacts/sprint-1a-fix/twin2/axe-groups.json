@@ -1,0 +1,145 @@
+[
+  {
+    "rule": "image-alt",
+    "page_group": "category",
+    "component": "main/img",
+    "instances": 4,
+    "impact": "critical",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/range/07?view=all"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_a6a18ae38c3b",
+        "page": "/range/07?view=all",
+        "viewport": "D",
+        "selector": "img[src$=\"g1.svg\"]",
+        "excerpt": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is"
+      },
+      {
+        "evidence_id": "ev_ec47b9ae9b7f",
+        "page": "/range/07?view=all",
+        "viewport": "D",
+        "selector": "img[src$=\"g2.svg\"]",
+        "excerpt": "img[src$=\"g2.svg\"] — <img src=\"/static/g2.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is"
+      },
+      {
+        "evidence_id": "ev_de71d98cc918",
+        "page": "/range/07?view=all",
+        "viewport": "M",
+        "selector": "img[src$=\"g1.svg\"]",
+        "excerpt": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is"
+      }
+    ],
+    "evidence_ids": [
+      "ev_73304e32af83",
+      "ev_a6a18ae38c3b",
+      "ev_de71d98cc918",
+      "ev_ec47b9ae9b7f"
+    ]
+  },
+  {
+    "rule": "link-name",
+    "page_group": "*",
+    "component": "header/a",
+    "instances": 10,
+    "impact": "serious",
+    "viewports": [
+      "M"
+    ],
+    "pages": [
+      "/",
+      "/bag?set=2210",
+      "/bag?set=2214",
+      "/bag?t=1",
+      "/info/1",
+      "/info/4",
+      "/range/07/item/2210",
+      "/range/07/item/2210?ref=hm",
+      "/range/07/item/2214?ref=hm",
+      "/range/07?view=all"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_9abd9fcf5b83",
+        "page": "/",
+        "viewport": "M",
+        "selector": ".bagl",
+        "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n "
+      },
+      {
+        "evidence_id": "ev_079ef6b34203",
+        "page": "/range/07?view=all",
+        "viewport": "M",
+        "selector": ".bagl",
+        "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n "
+      },
+      {
+        "evidence_id": "ev_1c02da824f38",
+        "page": "/range/07/item/2210?ref=hm",
+        "viewport": "M",
+        "selector": ".bagl",
+        "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n "
+      }
+    ],
+    "evidence_ids": [
+      "ev_00d5b439d7ca",
+      "ev_079ef6b34203",
+      "ev_1c02da824f38",
+      "ev_2f4188fd18f2",
+      "ev_99a40e3cedd9",
+      "ev_9abd9fcf5b83",
+      "ev_af2dac5b4ca9",
+      "ev_b45b43ad256b",
+      "ev_ecb96e44aa21",
+      "ev_fc8d42104747"
+    ]
+  },
+  {
+    "rule": "link-name",
+    "page_group": "category",
+    "component": "main/a",
+    "instances": 4,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/range/07?view=all"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_06cb383756b7",
+        "page": "/range/07?view=all",
+        "viewport": "D",
+        "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+        "excerpt": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  Element is in tab orde"
+      },
+      {
+        "evidence_id": "ev_55140db3a857",
+        "page": "/range/07?view=all",
+        "viewport": "D",
+        "selector": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+        "excerpt": "a[href=\"/range/07/item/2211/\"]:nth-child(1) — <a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a> — Fix all of the following:\n  Element is in tab orde"
+      },
+      {
+        "evidence_id": "ev_b4ef025a834e",
+        "page": "/range/07?view=all",
+        "viewport": "M",
+        "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+        "excerpt": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  Element is in tab orde"
+      }
+    ],
+    "evidence_ids": [
+      "ev_0526152117bd",
+      "ev_06cb383756b7",
+      "ev_55140db3a857",
+      "ev_b4ef025a834e"
+    ]
+  }
+]

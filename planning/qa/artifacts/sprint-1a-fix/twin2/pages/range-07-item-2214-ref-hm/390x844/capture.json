@@ -1,0 +1,545 @@
+{
+  "title": "Kōrin EK-S Burr Unit, SSP-HG 64 – Halden Hearth",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+    },
+    {
+      "level": 2,
+      "text": "What is in the box"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:43983/",
+      "text": "",
+      "name": "Halden Hearth",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "selector": "header > a:nth-of-type(1)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/?view=all",
+      "abs": "http://127.0.0.1:43983/range/07/?view=all",
+      "text": "Kit & gear",
+      "name": "Kit & gear",
+      "visible": true,
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": true,
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(2)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?t=1",
+      "abs": "http://127.0.0.1:43983/bag/?t=1",
+      "text": "Bag",
+      "name": "Bag",
+      "visible": true,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "selector": "header > a:nth-of-type(2)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?set=2214",
+      "abs": "http://127.0.0.1:43983/bag/?set=2214",
+      "text": "Reserve this one",
+      "name": "Reserve this one",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 1764,
+        "w": 142,
+        "h": 45
+      },
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/4/",
+      "abs": "http://127.0.0.1:43983/info/4/",
+      "text": "Terms",
+      "name": "Terms",
+      "visible": false,
+      "rect": {
+        "x": 32,
+        "y": 1959,
+        "w": 35,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": false,
+      "rect": {
+        "x": 78,
+        "y": 1959,
+        "w": 68,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "header > a:nth-of-type(1) > img",
+      "src": "/static/logo.svg",
+      "current_src": "http://127.0.0.1:43983/static/logo.svg",
+      "alt": "Halden Hearth",
+      "natural_w": 300,
+      "natural_h": 75,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 34
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "header > a:nth-of-type(2) > img",
+      "src": "/static/bag.svg",
+      "current_src": "http://127.0.0.1:43983/static/bag.svg",
+      "alt": "",
+      "natural_w": 22,
+      "natural_h": 22,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "main > div > div:nth-of-type(1) > img",
+      "src": "/static/g3.svg",
+      "current_src": "http://127.0.0.1:43983/static/g3.svg",
+      "alt": "Grinder",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 16,
+        "y": 86,
+        "w": 640,
+        "h": 640
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "Kit & gear\nWho we are\nKōrin EK-S Burr Unit, SSP-HG 64\n\nFlat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.\n\nBuilt in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n\nCare: rinse with warm water. Avoid abrupt temperature change.\n\nWhat is in the box\n\nThe set, a cloth pouch, and a card with our brewing notes.\n\nBurr\tSSP-HG 64\tRetention\tZero-index\tRPM band\tMotor\nFlat\tHG\t<0.3 g\tYes\t800–1400\tDC 180 W\n\nReserve this one\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+  "text_nodes": [
+    {
+      "t": "Kit & gear",
+      "a": true
+    },
+    {
+      "t": "Who we are",
+      "a": true
+    },
+    {
+      "t": "Kōrin EK-S Burr Unit, SSP-HG 64",
+      "a": false
+    },
+    {
+      "t": "Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.",
+      "a": false
+    },
+    {
+      "t": "Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.",
+      "a": false
+    },
+    {
+      "t": "Care: rinse with warm water. Avoid abrupt temperature change.",
+      "a": false
+    },
+    {
+      "t": "What is in the box",
+      "a": false
+    },
+    {
+      "t": "The set, a cloth pouch, and a card with our brewing notes.",
+      "a": false
+    },
+    {
+      "t": "Burr",
+      "a": false
+    },
+    {
+      "t": "SSP-HG 64",
+      "a": false
+    },
+    {
+      "t": "Retention",
+      "a": false
+    },
+    {
+      "t": "Zero-index",
+      "a": false
+    },
+    {
+      "t": "RPM band",
+      "a": false
+    },
+    {
+      "t": "Motor",
+      "a": false
+    },
+    {
+      "t": "Flat",
+      "a": false
+    },
+    {
+      "t": "HG",
+      "a": false
+    },
+    {
+      "t": "<0.3 g",
+      "a": false
+    },
+    {
+      "t": "Yes",
+      "a": false
+    },
+    {
+      "t": "800–1400",
+      "a": false
+    },
+    {
+      "t": "DC 180 W",
+      "a": false
+    },
+    {
+      "t": "Reserve this one",
+      "a": true
+    },
+    {
+      "t": "Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example",
+      "a": false
+    },
+    {
+      "t": "More",
+      "a": false
+    }
+  ],
+  "fv_text": "Kit & gear Who we are Kōrin EK-S Burr Unit, SSP-HG 64 Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.",
+  "interactive": [
+    {
+      "selector": "header > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Halden Hearth",
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Kit & gear",
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/?view=all",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Who we are",
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/info/1/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Bag",
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?t=1",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Reserve this one",
+      "rect": {
+        "x": 16,
+        "y": 1764,
+        "w": 142,
+        "h": 45
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?set=2214",
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 10,
+      "pad_x": 18,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 656,
+    "scroll_height": 1966,
+    "offenders": [
+      {
+        "selector": "main > div > div:nth-of-type(1) > img",
+        "rect": {
+          "x": 16,
+          "y": 86,
+          "w": 640,
+          "h": 640
+        },
+        "right": 656
+      },
+      {
+        "selector": "main > div > div:nth-of-type(2) > div > h2",
+        "rect": {
+          "x": 16,
+          "y": 985,
+          "w": 640,
+          "h": 37
+        },
+        "right": 656
+      },
+      {
+        "selector": "main > div > div:nth-of-type(2) > div > p:nth-of-type(1)",
+        "rect": {
+          "x": 16,
+          "y": 875,
+          "w": 640,
+          "h": 50
+        },
+        "right": 656
+      }
+    ]
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 16,
+    "y": 777,
+    "w": 640,
+    "h": 35
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 68,
+    "w": 390,
+    "h": 1775
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 1,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+  "final_url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2214?ref=hm",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link:\n    - /url: /bag/?t=1\n- main:\n  - img \"Grinder\"\n  - heading \"Kōrin EK-S Burr Unit, SSP-HG 64\" [level=1]\n  - paragraph: Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench.\n  - paragraph: Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n  - paragraph: \"Care: rinse with warm water. Avoid abrupt temperature change.\"\n  - heading \"What is in the box\" [level=2]\n  - paragraph: The set, a cloth pouch, and a card with our brewing notes.\n  - table:\n    - rowgroup:\n      - row \"Burr SSP-HG 64 Retention Zero-index RPM band Motor\":\n        - cell \"Burr\"\n        - cell \"SSP-HG 64\"\n        - cell \"Retention\"\n        - cell \"Zero-index\"\n        - cell \"RPM band\"\n        - cell \"Motor\"\n      - row \"Flat HG <0.3 g Yes 800–1400 DC 180 W\":\n        - cell \"Flat\"\n        - cell \"HG\"\n        - cell \"<0.3 g\"\n        - cell \"Yes\"\n        - cell \"800–1400\"\n        - cell \"DC 180 W\"\n  - paragraph:\n    - link \"Reserve this one\":\n      - /url: /bag/?set=2214\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/range-07-item-2214-ref-hm/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png",
+      "width_px": 1312,
+      "height_px": 3932,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 601,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/range-07-item-2214-ref-hm/390x844/capture.json",
+    "network": "pages/range-07-item-2214-ref-hm/390x844/network.json",
+    "axe": "pages/range-07-item-2214-ref-hm/390x844/axe.json",
+    "dir": "pages/range-07-item-2214-ref-hm/390x844"
+  }
+}

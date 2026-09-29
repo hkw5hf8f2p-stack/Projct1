@@ -1,0 +1,92 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/range/07?view=all",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/bag.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 239,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/g1.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 263,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/g2.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 312,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/g3.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 282,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/g4.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 241,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/hall-2019.png",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/png",
+    "body_bytes": 2811137,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/logo.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 263,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:43983/static/site.css",
+    "resource_type": "stylesheet",
+    "status": 200,
+    "content_type": "text/css",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

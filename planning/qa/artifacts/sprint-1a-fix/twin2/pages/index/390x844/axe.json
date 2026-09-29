@@ -1,0 +1,26 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "help": "Links must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "nodes": [
+        {
+          "target": ".bagl",
+          "html": "<a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a>",
+          "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no",
+          "rect": {
+            "x": 352,
+            "y": 22,
+            "w": 22,
+            "h": 22
+          },
+          "landmark": "header",
+          "tag": "a"
+        }
+      ]
+    }
+  ]
+}

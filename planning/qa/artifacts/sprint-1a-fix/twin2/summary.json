@@ -1,0 +1,5 @@
+{"schema":"sitelens-twin2-qa/v1","commit":"e638711","tag":"s1a-detectors-frozen-v2","twin_hash_ok":true,"twin_hash":"42d835c602016834adcffee8fd4e56cf5e891abe1fad97766dcc4af00ef5e845","hash_unchanged_after_run":true,
+"deterministic_strict":"6/7","deterministic_full_viewport":"5/7","of":7,
+"defects":{"2":{"found":true,"full_vp":false,"note":"evidence only @390x844 (single page-level row tagged M); no 1440x1000 row"},"5":{"found":true,"full_vp":true},"6":{"found":true,"full_vp":true,"note":".bagl link-name @390 on range/07?view=all"},"7":{"found":true,"full_vp":true},"8":{"found":true,"full_vp":true},"9":{"found":true,"full_vp":true},"10":{"found":false,"full_vp":false,"note":"claimed page /bag/?t=1 is page_type other -> price_first_viewport not_applicable; detector fired on category/product pages instead (unclaimed)"}},
+"unclaimed_count":24,"unclaimed_by_detector":{"axe:link-name":11,"price_first_viewport":8,"axe:image-alt":2,"cta_below_fold":2,"shipping_depth":1},
+"non_get_requests":"n/a (twin2 server.mjs used; no request log)","code_changes":"scripts/audit-twin.ts: added --server option only"}

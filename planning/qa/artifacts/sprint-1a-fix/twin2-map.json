@@ -1,0 +1,7 @@
+[{"n":2,"label":"shipping_depth","ids":["shipping_depth"],"pages":["range/07/item/2210"],"vps":["D","M"]},
+{"n":5,"label":"cta_below_fold","ids":["cta_below_fold"],"pages":["range/07/item/2210"],"vps":["D","M"]},
+{"n":6,"label":"axe:button-name|link-name|label","ids":["axe:button-name","axe:link-name","axe:label"],"pages":["range/07"],"vps":["M"]},
+{"n":7,"label":"horizontal_overflow","ids":["horizontal_overflow"],"pages":["range/07/item/2214"],"vps":["M"]},
+{"n":8,"label":"oversized_image","ids":["oversized_image"],"pages":["range/07"],"vps":["D","M"]},
+{"n":9,"label":"axe:image-alt","ids":["axe:image-alt"],"pages":["range/07"],"vps":["D"]},
+{"n":10,"label":"price_first_viewport","ids":["price_first_viewport"],"pages":["bag"],"vps":["D","M"]}]

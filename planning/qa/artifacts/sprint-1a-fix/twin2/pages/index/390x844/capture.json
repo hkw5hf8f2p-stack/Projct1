@@ -1,0 +1,610 @@
+{
+  "title": "Halden Hearth",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Made for the slow hour."
+    },
+    {
+      "level": 2,
+      "text": "From the workbench"
+    },
+    {
+      "level": 2,
+      "text": "Halden Pour-Over Set 02"
+    },
+    {
+      "level": 2,
+      "text": "Kōrin EK-S Burr Unit"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:43983/",
+      "text": "",
+      "name": "Halden Hearth",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "selector": "header > a:nth-of-type(1)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/?view=all",
+      "abs": "http://127.0.0.1:43983/range/07/?view=all",
+      "text": "Kit & gear",
+      "name": "Kit & gear",
+      "visible": true,
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": true,
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(2)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?t=1",
+      "abs": "http://127.0.0.1:43983/bag/?t=1",
+      "text": "Bag",
+      "name": "Bag",
+      "visible": true,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "selector": "header > a:nth-of-type(2)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/?view=all",
+      "abs": "http://127.0.0.1:43983/range/07/?view=all",
+      "text": "Peek inside",
+      "name": "Peek inside",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 268,
+        "w": 109,
+        "h": 45
+      },
+      "selector": "main > section > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2210/?ref=hm",
+      "abs": "http://127.0.0.1:43983/range/07/item/2210/?ref=hm",
+      "text": "",
+      "name": "Halden pour-over dripper in matte ceramic",
+      "visible": true,
+      "rect": {
+        "x": 29,
+        "y": 443,
+        "w": 332,
+        "h": 332
+      },
+      "selector": "main > ul > li:nth-of-type(1) > a",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2214/?ref=hm",
+      "abs": "http://127.0.0.1:43983/range/07/item/2214/?ref=hm",
+      "text": "",
+      "name": "Compact grinder",
+      "visible": true,
+      "rect": {
+        "x": 29,
+        "y": 867,
+        "w": 332,
+        "h": 332
+      },
+      "selector": "main > ul > li:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/info/4/",
+      "abs": "http://127.0.0.1:43983/info/4/",
+      "text": "Terms",
+      "name": "Terms",
+      "visible": false,
+      "rect": {
+        "x": 32,
+        "y": 1407,
+        "w": 35,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": false,
+      "rect": {
+        "x": 78,
+        "y": 1407,
+        "w": 68,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "header > a:nth-of-type(1) > img",
+      "src": "/static/logo.svg",
+      "current_src": "http://127.0.0.1:43983/static/logo.svg",
+      "alt": "Halden Hearth",
+      "natural_w": 300,
+      "natural_h": 75,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 34
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "header > a:nth-of-type(2) > img",
+      "src": "/static/bag.svg",
+      "current_src": "http://127.0.0.1:43983/static/bag.svg",
+      "alt": "",
+      "natural_w": 22,
+      "natural_h": 22,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > a > img",
+      "src": "/static/g1.svg",
+      "current_src": "http://127.0.0.1:43983/static/g1.svg",
+      "alt": "Halden pour-over dripper in matte ceramic",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 29,
+        "y": 443,
+        "w": 332,
+        "h": 332
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > a > img",
+      "src": "/static/g3.svg",
+      "current_src": "http://127.0.0.1:43983/static/g3.svg",
+      "alt": "Compact grinder",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 29,
+        "y": 867,
+        "w": 332,
+        "h": 332
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    }
+  ],
+  "visible_text": "Kit & gear\nWho we are\nMade for the slow hour.\n\nSome mornings deserve more than a cup. Come in, look around, stay a while.\n\nPeek inside\nFrom the workbench\nHalden Pour-Over Set 02\nKōrin EK-S Burr Unit\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+  "text_nodes": [
+    {
+      "t": "Kit & gear",
+      "a": true
+    },
+    {
+      "t": "Who we are",
+      "a": true
+    },
+    {
+      "t": "Made for the slow hour.",
+      "a": false
+    },
+    {
+      "t": "Some mornings deserve more than a cup. Come in, look around, stay a while.",
+      "a": false
+    },
+    {
+      "t": "Peek inside",
+      "a": true
+    },
+    {
+      "t": "From the workbench",
+      "a": false
+    },
+    {
+      "t": "Halden Pour-Over Set 02",
+      "a": false
+    },
+    {
+      "t": "Kōrin EK-S Burr Unit",
+      "a": false
+    },
+    {
+      "t": "Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example",
+      "a": false
+    },
+    {
+      "t": "More",
+      "a": false
+    }
+  ],
+  "fv_text": "Kit & gear Who we are Made for the slow hour. Some mornings deserve more than a cup. Come in, look around, stay a while. Peek inside From the workbench Halden Pour-Over Set 02",
+  "interactive": [
+    {
+      "selector": "header > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Halden Hearth",
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Kit & gear",
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/?view=all",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Who we are",
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/info/1/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Bag",
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?t=1",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > section > a",
+      "tag": "a",
+      "name": "Peek inside",
+      "rect": {
+        "x": 16,
+        "y": 268,
+        "w": 109,
+        "h": 45
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/?view=all",
+      "nav_target": true,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 10,
+      "pad_x": 18,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Halden pour-over dripper in matte ceramic",
+      "rect": {
+        "x": 29,
+        "y": 443,
+        "w": 332,
+        "h": 332
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2210/?ref=hm",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Compact grinder",
+      "rect": {
+        "x": 29,
+        "y": 867,
+        "w": 332,
+        "h": 332
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2214/?ref=hm",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 390,
+    "scroll_height": 1414,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 16,
+    "y": 152,
+    "w": 358,
+    "h": 35
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 68,
+    "w": 390,
+    "h": 1222
+  },
+  "card_groups": [
+    {
+      "signature": "li(a(img(),),h2(),)",
+      "count": 2,
+      "rect": {
+        "x": 16,
+        "y": 430,
+        "w": 358,
+        "h": 826
+      },
+      "nodes": [
+        {
+          "x": 16,
+          "y": 430,
+          "w": 358,
+          "h": 402
+        },
+        {
+          "x": 16,
+          "y": 854,
+          "w": 358,
+          "h": 402
+        }
+      ],
+      "with_img": 2,
+      "with_price": 0,
+      "urls": [
+        "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+        "http://127.0.0.1:43983/range/07/item/2214?ref=hm"
+      ],
+      "names": [
+        "Halden Pour-Over Set 02",
+        "Kōrin EK-S Burr Unit"
+      ]
+    }
+  ],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 1,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:43983/",
+  "final_url": "http://127.0.0.1:43983/",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43983/",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link:\n    - /url: /bag/?t=1\n- main:\n  - heading \"Made for the slow hour.\" [level=1]\n  - paragraph: Some mornings deserve more than a cup. Come in, look around, stay a while.\n  - link \"Peek inside\":\n    - /url: /range/07/?view=all\n  - heading \"From the workbench\" [level=2]\n  - list:\n    - listitem:\n      - link \"Halden pour-over dripper in matte ceramic\":\n        - /url: /range/07/item/2210/?ref=hm\n        - img \"Halden pour-over dripper in matte ceramic\"\n      - heading \"Halden Pour-Over Set 02\" [level=2]\n    - listitem:\n      - link \"Compact grinder\":\n        - /url: /range/07/item/2214/?ref=hm\n        - img \"Compact grinder\"\n      - heading \"Kōrin EK-S Burr Unit\" [level=2]\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/index/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/index/390x844/fullpage.png",
+      "width_px": 780,
+      "height_px": 2828,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 266,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/index/390x844/capture.json",
+    "network": "pages/index/390x844/network.json",
+    "axe": "pages/index/390x844/axe.json",
+    "dir": "pages/index/390x844"
+  }
+}

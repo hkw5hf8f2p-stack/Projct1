@@ -1,0 +1,466 @@
+{
+  "title": "Halden Pour-Over Set 02 – Halden Hearth",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Halden Pour-Over Set 02"
+    },
+    {
+      "level": 2,
+      "text": "What is in the box"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:43983/",
+      "text": "",
+      "name": "Halden Hearth",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "selector": "header > a:nth-of-type(1)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/?view=all",
+      "abs": "http://127.0.0.1:43983/range/07/?view=all",
+      "text": "Kit & gear",
+      "name": "Kit & gear",
+      "visible": true,
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": true,
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "selector": "header > nav > a:nth-of-type(2)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?t=1",
+      "abs": "http://127.0.0.1:43983/bag/?t=1",
+      "text": "Bag",
+      "name": "Bag",
+      "visible": true,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "selector": "header > a:nth-of-type(2)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?set=2210",
+      "abs": "http://127.0.0.1:43983/bag/?set=2210",
+      "text": "Reserve this one",
+      "name": "Reserve this one",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 1417,
+        "w": 142,
+        "h": 45
+      },
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/4/",
+      "abs": "http://127.0.0.1:43983/info/4/",
+      "text": "Terms",
+      "name": "Terms",
+      "visible": false,
+      "rect": {
+        "x": 32,
+        "y": 1613,
+        "w": 35,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": false,
+      "rect": {
+        "x": 78,
+        "y": 1613,
+        "w": 68,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "header > a:nth-of-type(1) > img",
+      "src": "/static/logo.svg",
+      "current_src": "http://127.0.0.1:43983/static/logo.svg",
+      "alt": "Halden Hearth",
+      "natural_w": 300,
+      "natural_h": 75,
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 34
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "header > a:nth-of-type(2) > img",
+      "src": "/static/bag.svg",
+      "current_src": "http://127.0.0.1:43983/static/bag.svg",
+      "alt": "",
+      "natural_w": 22,
+      "natural_h": 22,
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "main > div > div:nth-of-type(1) > img",
+      "src": "/static/g1.svg",
+      "current_src": "http://127.0.0.1:43983/static/g1.svg",
+      "alt": "Pour-over set",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 16,
+        "y": 86,
+        "w": 358,
+        "h": 358
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "Kit & gear\nWho we are\nHalden Pour-Over Set 02\n\nA ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n\nBuilt in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n\nCare: rinse with warm water. Avoid abrupt temperature change.\n\nWhat is in the box\n\nThe set, a cloth pouch, and a card with our brewing notes.\n\nReserve this one\n\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+  "text_nodes": [
+    {
+      "t": "Kit & gear",
+      "a": true
+    },
+    {
+      "t": "Who we are",
+      "a": true
+    },
+    {
+      "t": "Halden Pour-Over Set 02",
+      "a": false
+    },
+    {
+      "t": "A ceramic dripper, glass carafe and a box of filters, sized for one to two cups.",
+      "a": false
+    },
+    {
+      "t": "Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.",
+      "a": false
+    },
+    {
+      "t": "Care: rinse with warm water. Avoid abrupt temperature change.",
+      "a": false
+    },
+    {
+      "t": "What is in the box",
+      "a": false
+    },
+    {
+      "t": "The set, a cloth pouch, and a card with our brewing notes.",
+      "a": false
+    },
+    {
+      "t": "Reserve this one",
+      "a": true
+    },
+    {
+      "t": "Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example",
+      "a": false
+    },
+    {
+      "t": "More",
+      "a": false
+    }
+  ],
+  "fv_text": "Kit & gear Who we are Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece. Care: rinse with warm water. Avoid abrupt temperature change. What is in the box The set, a cloth pouch, and a card with our brewing notes.",
+  "interactive": [
+    {
+      "selector": "header > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Halden Hearth",
+      "rect": {
+        "x": 16,
+        "y": 12,
+        "w": 136,
+        "h": 43
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Kit & gear",
+      "rect": {
+        "x": 162,
+        "y": 23,
+        "w": 60,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/?view=all",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Who we are",
+      "rect": {
+        "x": 234,
+        "y": 23,
+        "w": 68,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/info/1/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 14,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Bag",
+      "rect": {
+        "x": 352,
+        "y": 22,
+        "w": 22,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?t=1",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Reserve this one",
+      "rect": {
+        "x": 16,
+        "y": 1417,
+        "w": 142,
+        "h": 45
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?set=2210",
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 10,
+      "pad_x": 18,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 390,
+    "scroll_height": 1620,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 16,
+    "y": 495,
+    "w": 358,
+    "h": 35
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 68,
+    "w": 390,
+    "h": 1428
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 1,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+  "final_url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43983/range/07/item/2210?ref=hm",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link:\n    - /url: /bag/?t=1\n- main:\n  - img \"Pour-over set\"\n  - heading \"Halden Pour-Over Set 02\" [level=1]\n  - paragraph: A ceramic dripper, glass carafe and a box of filters, sized for one to two cups.\n  - paragraph: Built in small batches at our Lviv workshop. Each unit is checked by hand before it leaves the bench, and the glaze differs slightly from piece to piece.\n  - paragraph: \"Care: rinse with warm water. Avoid abrupt temperature change.\"\n  - heading \"What is in the box\" [level=2]\n  - paragraph: The set, a cloth pouch, and a card with our brewing notes.\n  - paragraph:\n    - link \"Reserve this one\":\n      - /url: /bag/?set=2210\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/range-07-item-2210-ref-hm/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png",
+      "width_px": 780,
+      "height_px": 3240,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 512,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/range-07-item-2210-ref-hm/390x844/capture.json",
+    "network": "pages/range-07-item-2210-ref-hm/390x844/network.json",
+    "axe": "pages/range-07-item-2210-ref-hm/390x844/axe.json",
+    "dir": "pages/range-07-item-2210-ref-hm/390x844"
+  }
+}

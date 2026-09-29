@@ -1,0 +1,937 @@
+{
+  "title": "Kit & gear – Halden Hearth",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Kit & gear"
+    },
+    {
+      "level": 2,
+      "text": "Halden Pour-Over Set 02"
+    },
+    {
+      "level": 2,
+      "text": "Halden Pour-Over Set 02S"
+    },
+    {
+      "level": 2,
+      "text": "Kōrin EK-S Burr Unit, SSP-HG 64"
+    },
+    {
+      "level": 2,
+      "text": "Copperline Kettle"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:43983/",
+      "text": "",
+      "name": "Halden Hearth",
+      "visible": true,
+      "rect": {
+        "x": 32,
+        "y": 14,
+        "w": 136,
+        "h": 42
+      },
+      "selector": "header > a:nth-of-type(1)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/?view=all",
+      "abs": "http://127.0.0.1:43983/range/07/?view=all",
+      "text": "Kit & gear",
+      "name": "Kit & gear",
+      "visible": true,
+      "rect": {
+        "x": 212,
+        "y": 23,
+        "w": 68,
+        "h": 25
+      },
+      "selector": "header > nav > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": true,
+      "rect": {
+        "x": 302,
+        "y": 23,
+        "w": 77,
+        "h": 25
+      },
+      "selector": "header > nav > a:nth-of-type(2)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/bag/?t=1",
+      "abs": "http://127.0.0.1:43983/bag/?t=1",
+      "text": "Bag",
+      "name": "Bag",
+      "visible": true,
+      "rect": {
+        "x": 1354,
+        "y": 23,
+        "w": 54,
+        "h": 25
+      },
+      "selector": "header > a:nth-of-type(2)",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2210/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2210/",
+      "text": "",
+      "name": "",
+      "visible": true,
+      "rect": {
+        "x": 215,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2210/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2210/",
+      "text": "Take me there",
+      "name": "Take me there",
+      "visible": true,
+      "rect": {
+        "x": 215,
+        "y": 1131,
+        "w": 90,
+        "h": 17
+      },
+      "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2211/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2211/",
+      "text": "",
+      "name": "",
+      "visible": true,
+      "rect": {
+        "x": 480,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2211/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2211/",
+      "text": "Take me there",
+      "name": "Take me there",
+      "visible": true,
+      "rect": {
+        "x": 480,
+        "y": 1131,
+        "w": 90,
+        "h": 17
+      },
+      "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2214/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2214/",
+      "text": "",
+      "name": "Grinder",
+      "visible": true,
+      "rect": {
+        "x": 744,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2214/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2214/",
+      "text": "Take me there",
+      "name": "Take me there",
+      "visible": true,
+      "rect": {
+        "x": 744,
+        "y": 1134,
+        "w": 90,
+        "h": 17
+      },
+      "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2219/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2219/",
+      "text": "",
+      "name": "Kettle",
+      "visible": true,
+      "rect": {
+        "x": 1009,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "/range/07/item/2219/",
+      "abs": "http://127.0.0.1:43983/range/07/item/2219/",
+      "text": "Take me there",
+      "name": "Take me there",
+      "visible": true,
+      "rect": {
+        "x": 1009,
+        "y": 1106,
+        "w": 90,
+        "h": 17
+      },
+      "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/4/",
+      "abs": "http://127.0.0.1:43983/info/4/",
+      "text": "Terms",
+      "name": "Terms",
+      "visible": false,
+      "rect": {
+        "x": 32,
+        "y": 1308,
+        "w": 35,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/info/1/",
+      "abs": "http://127.0.0.1:43983/info/1/",
+      "text": "Who we are",
+      "name": "Who we are",
+      "visible": false,
+      "rect": {
+        "x": 78,
+        "y": 1308,
+        "w": 68,
+        "h": 15
+      },
+      "selector": "footer > details > p > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "header > a:nth-of-type(1) > img",
+      "src": "/static/logo.svg",
+      "current_src": "http://127.0.0.1:43983/static/logo.svg",
+      "alt": "Halden Hearth",
+      "natural_w": 300,
+      "natural_h": 75,
+      "rect": {
+        "x": 32,
+        "y": 14,
+        "w": 136,
+        "h": 34
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "header > a:nth-of-type(2) > img",
+      "src": "/static/bag.svg",
+      "current_src": "http://127.0.0.1:43983/static/bag.svg",
+      "alt": "",
+      "natural_w": 22,
+      "natural_h": 22,
+      "rect": {
+        "x": 1354,
+        "y": 24,
+        "w": 22,
+        "h": 22
+      },
+      "is_background": false,
+      "landmark": "header",
+      "in_card": false
+    },
+    {
+      "selector": "main > img",
+      "src": "/static/hall-2019.png",
+      "current_src": "http://127.0.0.1:43983/static/hall-2019.png",
+      "alt": "Workshop shelves with brewing gear",
+      "natural_w": 1500,
+      "natural_h": 800,
+      "rect": {
+        "x": 202,
+        "y": 161,
+        "w": 1036,
+        "h": 553
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(1) > img",
+      "src": "/static/g1.svg",
+      "current_src": "http://127.0.0.1:43983/static/g1.svg",
+      "alt": null,
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 215,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(1) > img",
+      "src": "/static/g2.svg",
+      "current_src": "http://127.0.0.1:43983/static/g2.svg",
+      "alt": null,
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 480,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(1) > img",
+      "src": "/static/g3.svg",
+      "current_src": "http://127.0.0.1:43983/static/g3.svg",
+      "alt": "Grinder",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 744,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(1) > img",
+      "src": "/static/g4.svg",
+      "current_src": "http://127.0.0.1:43983/static/g4.svg",
+      "alt": "Kettle",
+      "natural_w": 150,
+      "natural_h": 150,
+      "rect": {
+        "x": 1009,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    }
+  ],
+  "visible_text": "Kit & gear\nWho we are\nBag\nKit & gear\n\nFour things we make or stand behind.\n\nHalden Pour-Over Set 02\n\nCeramic dripper, carafe and filters.\n\nTake me there\nHalden Pour-Over Set 02S\n\nCeramic dripper, carafe and filters.\n\nTake me there\nKōrin EK-S Burr Unit, SSP-HG 64\n\nGrind engine for the bench.\n\nTake me there\nCopperline Kettle\n\nSwan-neck kettle, 0.9 l.\n\nTake me there\nHalden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\nMore",
+  "text_nodes": [
+    {
+      "t": "Kit & gear",
+      "a": true
+    },
+    {
+      "t": "Who we are",
+      "a": true
+    },
+    {
+      "t": "Bag",
+      "a": true
+    },
+    {
+      "t": "Kit & gear",
+      "a": false
+    },
+    {
+      "t": "Four things we make or stand behind.",
+      "a": false
+    },
+    {
+      "t": "Halden Pour-Over Set 02",
+      "a": false
+    },
+    {
+      "t": "Ceramic dripper, carafe and filters.",
+      "a": false
+    },
+    {
+      "t": "Take me there",
+      "a": true
+    },
+    {
+      "t": "Halden Pour-Over Set 02S",
+      "a": false
+    },
+    {
+      "t": "Ceramic dripper, carafe and filters.",
+      "a": false
+    },
+    {
+      "t": "Take me there",
+      "a": true
+    },
+    {
+      "t": "Kōrin EK-S Burr Unit, SSP-HG 64",
+      "a": false
+    },
+    {
+      "t": "Grind engine for the bench.",
+      "a": false
+    },
+    {
+      "t": "Take me there",
+      "a": true
+    },
+    {
+      "t": "Copperline Kettle",
+      "a": false
+    },
+    {
+      "t": "Swan-neck kettle, 0.9 l.",
+      "a": false
+    },
+    {
+      "t": "Take me there",
+      "a": true
+    },
+    {
+      "t": "Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example",
+      "a": false
+    },
+    {
+      "t": "More",
+      "a": false
+    }
+  ],
+  "fv_text": "Kit & gear Who we are Bag Kit & gear Four things we make or stand behind.",
+  "interactive": [
+    {
+      "selector": "header > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Halden Hearth",
+      "rect": {
+        "x": 32,
+        "y": 14,
+        "w": 136,
+        "h": 42
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Kit & gear",
+      "rect": {
+        "x": 212,
+        "y": 23,
+        "w": 68,
+        "h": 25
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/?view=all",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Who we are",
+      "rect": {
+        "x": 302,
+        "y": 23,
+        "w": 77,
+        "h": 25
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/info/1/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Bag",
+      "rect": {
+        "x": 1354,
+        "y": 23,
+        "w": 54,
+        "h": 25
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/bag/?t=1",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "",
+      "rect": {
+        "x": 215,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "vis": 0.966,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2210/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(1) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Take me there",
+      "rect": {
+        "x": 215,
+        "y": 1131,
+        "w": 90,
+        "h": 17
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2210/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "",
+      "rect": {
+        "x": 480,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "vis": 0.966,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2211/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(2) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Take me there",
+      "rect": {
+        "x": 480,
+        "y": 1131,
+        "w": 90,
+        "h": 17
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2211/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Grinder",
+      "rect": {
+        "x": 744,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "vis": 0.966,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2214/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(3) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Take me there",
+      "rect": {
+        "x": 744,
+        "y": 1134,
+        "w": 90,
+        "h": 17
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2214/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Kettle",
+      "rect": {
+        "x": 1009,
+        "y": 791,
+        "w": 217,
+        "h": 217
+      },
+      "vis": 0.966,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2219/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "main > ul > li:nth-of-type(4) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Take me there",
+      "rect": {
+        "x": 1009,
+        "y": 1106,
+        "w": 90,
+        "h": 17
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43983/range/07/item/2219/",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 1315,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 202,
+    "y": 107,
+    "w": 1036,
+    "h": 46
+  },
+  "main_rect": {
+    "x": 170,
+    "y": 71,
+    "w": 1100,
+    "h": 1142
+  },
+  "card_groups": [
+    {
+      "signature": "li(a(img(),),h2(),p(),a(),)",
+      "count": 4,
+      "rect": {
+        "x": 202,
+        "y": 778,
+        "w": 1037,
+        "h": 391
+      },
+      "nodes": [
+        {
+          "x": 202,
+          "y": 778,
+          "w": 243,
+          "h": 391
+        },
+        {
+          "x": 467,
+          "y": 778,
+          "w": 243,
+          "h": 391
+        },
+        {
+          "x": 731,
+          "y": 778,
+          "w": 243,
+          "h": 391
+        },
+        {
+          "x": 996,
+          "y": 778,
+          "w": 243,
+          "h": 391
+        }
+      ],
+      "with_img": 4,
+      "with_price": 0,
+      "urls": [
+        "http://127.0.0.1:43983/range/07/item/2210",
+        "http://127.0.0.1:43983/range/07/item/2211",
+        "http://127.0.0.1:43983/range/07/item/2214",
+        "http://127.0.0.1:43983/range/07/item/2219"
+      ],
+      "names": [
+        "Halden Pour-Over Set 02",
+        "Halden Pour-Over Set 02S",
+        "Kōrin EK-S Burr Unit, SSP-HG 64",
+        "Copperline Kettle"
+      ]
+    }
+  ],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 1,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "http://127.0.0.1:43983/range/07?view=all",
+  "final_url": "http://127.0.0.1:43983/range/07?view=all",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43983/range/07?view=all",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"Halden Hearth\":\n    - /url: /\n    - img \"Halden Hearth\"\n  - navigation:\n    - link \"Kit & gear\":\n      - /url: /range/07/?view=all\n    - link \"Who we are\":\n      - /url: /info/1/\n  - link \"Bag\":\n    - /url: /bag/?t=1\n- main:\n  - heading \"Kit & gear\" [level=1]\n  - img \"Workshop shelves with brewing gear\"\n  - paragraph: Four things we make or stand behind.\n  - list:\n    - listitem:\n      - link:\n        - /url: /range/07/item/2210/\n        - img\n      - heading \"Halden Pour-Over Set 02\" [level=2]\n      - paragraph: Ceramic dripper, carafe and filters.\n      - link \"Take me there\":\n        - /url: /range/07/item/2210/\n    - listitem:\n      - link:\n        - /url: /range/07/item/2211/\n        - img\n      - heading \"Halden Pour-Over Set 02S\" [level=2]\n      - paragraph: Ceramic dripper, carafe and filters.\n      - link \"Take me there\":\n        - /url: /range/07/item/2211/\n    - listitem:\n      - link \"Grinder\":\n        - /url: /range/07/item/2214/\n        - img \"Grinder\"\n      - heading \"Kōrin EK-S Burr Unit, SSP-HG 64\" [level=2]\n      - paragraph: Grind engine for the bench.\n      - link \"Take me there\":\n        - /url: /range/07/item/2214/\n    - listitem:\n      - link \"Kettle\":\n        - /url: /range/07/item/2219/\n        - img \"Kettle\"\n      - heading \"Copperline Kettle\" [level=2]\n      - paragraph: Swan-neck kettle, 0.9 l.\n      - link \"Take me there\":\n        - /url: /range/07/item/2219/\n- contentinfo:\n  - text: Halden Hearth Roasting Co. · Lviv · hello@haldenhearth.example\n  - group: More",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/range-07-view-all/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/range-07-view-all/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 1315,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 433,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/range-07-view-all/1440x1000/capture.json",
+    "network": "pages/range-07-view-all/1440x1000/network.json",
+    "axe": "pages/range-07-view-all/1440x1000/axe.json",
+    "dir": "pages/range-07-view-all/1440x1000"
+  }
+}

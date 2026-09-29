@@ -1,0 +1,182 @@
+{
+  "index": {
+    "D": {
+      "dom_content_loaded_ms": 31.59999999962747,
+      "load_ms": 67.5,
+      "first_paint_ms": 84,
+      "fcp_ms": 84,
+      "resource_count": 5,
+      "transfer_bytes": 5817
+    },
+    "M": {
+      "dom_content_loaded_ms": 16.800000000745058,
+      "load_ms": 55.5,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 5,
+      "transfer_bytes": 5817
+    }
+  },
+  "range-07-view-all": {
+    "D": {
+      "dom_content_loaded_ms": 18.90000000037253,
+      "load_ms": 63.90000000037253,
+      "first_paint_ms": 104,
+      "fcp_ms": 104,
+      "resource_count": 8,
+      "transfer_bytes": 2818916
+    },
+    "M": {
+      "dom_content_loaded_ms": 16,
+      "load_ms": 64,
+      "first_paint_ms": 92,
+      "fcp_ms": 92,
+      "resource_count": 8,
+      "transfer_bytes": 2818916
+    }
+  },
+  "range-07-item-2210-ref-hm": {
+    "D": {
+      "dom_content_loaded_ms": 21.5,
+      "load_ms": 47.5,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 4,
+      "transfer_bytes": 5327
+    },
+    "M": {
+      "dom_content_loaded_ms": 14.300000000745058,
+      "load_ms": 32.90000000037253,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 4,
+      "transfer_bytes": 5327
+    }
+  },
+  "range-07-item-2214-ref-hm": {
+    "D": {
+      "dom_content_loaded_ms": 16.799999998882413,
+      "load_ms": 36.5,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
+      "resource_count": 4,
+      "transfer_bytes": 5628
+    },
+    "M": {
+      "dom_content_loaded_ms": 18,
+      "load_ms": 39.80000000074506,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 4,
+      "transfer_bytes": 5628
+    }
+  },
+  "range-07-item-2210": {
+    "D": {
+      "dom_content_loaded_ms": 16.90000000037253,
+      "load_ms": 38.59999999962747,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 4,
+      "transfer_bytes": 5327
+    },
+    "M": {
+      "dom_content_loaded_ms": 15.400000000372529,
+      "load_ms": 36,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 4,
+      "transfer_bytes": 5327
+    }
+  },
+  "info-1": {
+    "D": {
+      "dom_content_loaded_ms": 16.299999998882413,
+      "load_ms": 45.69999999925494,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 3,
+      "transfer_bytes": 4347
+    },
+    "M": {
+      "dom_content_loaded_ms": 14.5,
+      "load_ms": 31.300000000745058,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 3,
+      "transfer_bytes": 4347
+    }
+  },
+  "bag-t-1": {
+    "D": {
+      "dom_content_loaded_ms": 20.5,
+      "load_ms": 37.5,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.5,
+      "load_ms": 38.90000000037253,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    }
+  },
+  "info-4": {
+    "D": {
+      "dom_content_loaded_ms": 13.5,
+      "load_ms": 38,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 3,
+      "transfer_bytes": 4388
+    },
+    "M": {
+      "dom_content_loaded_ms": 14.300000000745058,
+      "load_ms": 33.40000000037253,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
+      "resource_count": 3,
+      "transfer_bytes": 4388
+    }
+  },
+  "bag-set-2210": {
+    "D": {
+      "dom_content_loaded_ms": 12.400000000372529,
+      "load_ms": 25.40000000037253,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    },
+    "M": {
+      "dom_content_loaded_ms": 14.400000000372529,
+      "load_ms": 31.40000000037253,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    }
+  },
+  "bag-set-2214": {
+    "D": {
+      "dom_content_loaded_ms": 15.900000000372529,
+      "load_ms": 34.30000000074506,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    },
+    "M": {
+      "dom_content_loaded_ms": 16.40000000037253,
+      "load_ms": 30.5,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 3,
+      "transfer_bytes": 4499
+    }
+  }
+}

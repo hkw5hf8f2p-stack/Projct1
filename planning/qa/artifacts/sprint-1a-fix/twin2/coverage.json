@@ -1,0 +1,142 @@
+[
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/bag?set=2210",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/bag?set=2214",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/bag?t=1",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/info/1",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/info/4",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/range/07?view=all",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/bag?set=2210",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/bag?set=2214",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/bag?t=1",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/info/1",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/info/4",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/bag?set=2210",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/bag?set=2214",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/bag?t=1",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/info/1",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/info/4",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/range/07?view=all",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  }
+]

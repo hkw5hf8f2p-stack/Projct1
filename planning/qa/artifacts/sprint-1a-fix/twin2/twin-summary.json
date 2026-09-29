@@ -1,0 +1,905 @@
+{
+  "schema": "sitelens-twin-summary/v1",
+  "twin_hash_before": "42d835c602016834adcffee8fd4e56cf5e891abe1fad97766dcc4af00ef5e845",
+  "twin_hash_after": "42d835c602016834adcffee8fd4e56cf5e891abe1fad97766dcc4af00ef5e845",
+  "twin_hash_expected": "42d835c602016834adcffee8fd4e56cf5e891abe1fad97766dcc4af00ef5e845",
+  "twin_dir": "planning/sealed/twin2",
+  "seed": "/",
+  "origin": "http://127.0.0.1:43983",
+  "pages_crawled": [
+    "/",
+    "/range/07?view=all",
+    "/range/07/item/2210?ref=hm",
+    "/range/07/item/2214?ref=hm",
+    "/range/07/item/2210",
+    "/info/1",
+    "/bag?t=1",
+    "/info/4",
+    "/bag?set=2210",
+    "/bag?set=2214"
+  ],
+  "evidence_total": 38,
+  "findings_total": 9,
+  "non_get_requests": 0,
+  "requests_total": 0,
+  "deterministic_found": 6,
+  "of": 7,
+  "deterministic_found_full_vp": 5,
+  "defects": [
+    {
+      "n": 2,
+      "detector": "shipping_depth",
+      "found": true,
+      "complete_vp_coverage": false,
+      "pages_found": [
+        "/range/07/item/2210",
+        "/range/07/item/2210?ref=hm"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 2,
+      "sample": [
+        {
+          "id": "ev_9a01d17eb17e",
+          "detector": "shipping_depth",
+          "page": "/range/07/item/2210",
+          "viewport": "390x844",
+          "selector": null,
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "absence",
+          "evidence": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2210 → /bag",
+          "artifact": "pages/range-07-item-2210/390x844/fullpage.png"
+        },
+        {
+          "id": "ev_69ba64865bab",
+          "detector": "shipping_depth",
+          "page": "/range/07/item/2210?ref=hm",
+          "viewport": "390x844",
+          "selector": null,
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "absence",
+          "evidence": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2210 → /bag",
+          "artifact": "pages/range-07-item-2210-ref-hm/390x844/fullpage.png"
+        }
+      ],
+      "out_of_scope_same_detector": 1,
+      "all_rows_compact": [
+        "/range/07/item/2210@390x844 [VERIFIED]",
+        "/range/07/item/2210?ref=hm@390x844 [VERIFIED]"
+      ]
+    },
+    {
+      "n": 5,
+      "detector": "cta_below_fold",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/range/07/item/2210",
+        "/range/07/item/2210?ref=hm"
+      ],
+      "viewports_found": [
+        "1440x1000",
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 4,
+      "sample": [
+        {
+          "id": "ev_50ed898d7c91",
+          "detector": "cta_below_fold",
+          "page": "/range/07/item/2210",
+          "viewport": "1440x1000",
+          "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "artifact": "pages/range-07-item-2210/1440x1000/fullpage.png"
+        },
+        {
+          "id": "ev_44882b63f5e7",
+          "detector": "cta_below_fold",
+          "page": "/range/07/item/2210",
+          "viewport": "390x844",
+          "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "artifact": "pages/range-07-item-2210/390x844/fullpage.png"
+        },
+        {
+          "id": "ev_cf484a8e7443",
+          "detector": "cta_below_fold",
+          "page": "/range/07/item/2210?ref=hm",
+          "viewport": "1440x1000",
+          "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+          "artifact": "pages/range-07-item-2210-ref-hm/1440x1000/fullpage.png"
+        }
+      ],
+      "out_of_scope_same_detector": 2,
+      "all_rows_compact": [
+        "/range/07/item/2210@1440x1000 main > div > div:nth-of-type(2) > p:nth-of-type(2) > a [VERIFIED]",
+        "/range/07/item/2210@390x844 main > div > div:nth-of-type(2) > p:nth-of-type(2) > a [VERIFIED]",
+        "/range/07/item/2210?ref=hm@1440x1000 main > div > div:nth-of-type(2) > p:nth-of-type(2) > a [VERIFIED]",
+        "/range/07/item/2210?ref=hm@390x844 main > div > div:nth-of-type(2) > p:nth-of-type(2) > a [VERIFIED]"
+      ]
+    },
+    {
+      "n": 6,
+      "detector": "axe:button-name|link-name|label",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/range/07?view=all"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "390x844"
+      ],
+      "evidence_count": 3,
+      "sample": [
+        {
+          "id": "ev_079ef6b34203",
+          "detector": "axe:link-name",
+          "page": "/range/07?view=all",
+          "viewport": "390x844",
+          "selector": ".bagl",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all of the following:\n ",
+          "artifact": "pages/range-07-view-all/390x844/axe.json"
+        },
+        {
+          "id": "ev_b4ef025a834e",
+          "detector": "axe:link-name",
+          "page": "/range/07?view=all",
+          "viewport": "390x844",
+          "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  Element is in tab orde",
+          "artifact": "pages/range-07-view-all/390x844/axe.json"
+        },
+        {
+          "id": "ev_0526152117bd",
+          "detector": "axe:link-name",
+          "page": "/range/07?view=all",
+          "viewport": "390x844",
+          "selector": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "a[href=\"/range/07/item/2211/\"]:nth-child(1) — <a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a> — Fix all of the following:\n  Element is in tab orde",
+          "artifact": "pages/range-07-view-all/390x844/axe.json"
+        }
+      ],
+      "out_of_scope_same_detector": 11,
+      "all_rows_compact": [
+        "/range/07?view=all@390x844 .bagl [VERIFIED]",
+        "/range/07?view=all@390x844 a[href=\"/range/07/item/2210/\"]:nth-child(1) [VERIFIED]",
+        "/range/07?view=all@390x844 a[href=\"/range/07/item/2211/\"]:nth-child(1) [VERIFIED]"
+      ]
+    },
+    {
+      "n": 7,
+      "detector": "horizontal_overflow",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/range/07/item/2214?ref=hm"
+      ],
+      "viewports_found": [
+        "390x844"
+      ],
+      "viewports_expected": [
+        "390x844"
+      ],
+      "evidence_count": 1,
+      "sample": [
+        {
+          "id": "ev_8c70f297e25f",
+          "detector": "horizontal_overflow",
+          "page": "/range/07/item/2214?ref=hm",
+          "viewport": "390x844",
+          "selector": "main > div > div:nth-of-type(1) > img",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "main > div > div:nth-of-type(1) > img | main > div > div:nth-of-type(2) > div > h2 | main > div > div:nth-of-type(2) > div > p:nth-of-type(1)",
+          "artifact": "pages/range-07-item-2214-ref-hm/390x844/fullpage.png"
+        }
+      ],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": [
+        "/range/07/item/2214?ref=hm@390x844 main > div > div:nth-of-type(1) > img [VERIFIED]"
+      ]
+    },
+    {
+      "n": 8,
+      "detector": "oversized_image",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/range/07?view=all"
+      ],
+      "viewports_found": [
+        "1440x1000",
+        "390x844"
+      ],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 2,
+      "sample": [
+        {
+          "id": "ev_7908258d2edc",
+          "detector": "oversized_image",
+          "page": "/range/07?view=all",
+          "viewport": "1440x1000",
+          "selector": "main > img",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "http://127.0.0.1:43983/static/hall-2019.png — 2811137 B — natural 1500×800, rendered 1036×553",
+          "artifact": "pages/range-07-view-all/1440x1000/network.json"
+        },
+        {
+          "id": "ev_66f1ac32d58f",
+          "detector": "oversized_image",
+          "page": "/range/07?view=all",
+          "viewport": "390x844",
+          "selector": "main > img",
+          "class": "OBSERVED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "http://127.0.0.1:43983/static/hall-2019.png — 2811137 B — natural 1500×800, rendered 358×191",
+          "artifact": "pages/range-07-view-all/390x844/network.json"
+        }
+      ],
+      "out_of_scope_same_detector": 0,
+      "all_rows_compact": [
+        "/range/07?view=all@1440x1000 main > img [VERIFIED]",
+        "/range/07?view=all@390x844 main > img [VERIFIED]"
+      ]
+    },
+    {
+      "n": 9,
+      "detector": "axe:image-alt",
+      "found": true,
+      "complete_vp_coverage": true,
+      "pages_found": [
+        "/range/07?view=all"
+      ],
+      "viewports_found": [
+        "1440x1000"
+      ],
+      "viewports_expected": [
+        "1440x1000"
+      ],
+      "evidence_count": 2,
+      "sample": [
+        {
+          "id": "ev_a6a18ae38c3b",
+          "detector": "axe:image-alt",
+          "page": "/range/07?view=all",
+          "viewport": "1440x1000",
+          "selector": "img[src$=\"g1.svg\"]",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is",
+          "artifact": "pages/range-07-view-all/1440x1000/axe.json"
+        },
+        {
+          "id": "ev_ec47b9ae9b7f",
+          "detector": "axe:image-alt",
+          "page": "/range/07?view=all",
+          "viewport": "1440x1000",
+          "selector": "img[src$=\"g2.svg\"]",
+          "class": "BENCHMARKED",
+          "confidence": "VERIFIED",
+          "self_confirming": true,
+          "capture_complete": true,
+          "assertion": "presence",
+          "evidence": "img[src$=\"g2.svg\"] — <img src=\"/static/g2.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is",
+          "artifact": "pages/range-07-view-all/1440x1000/axe.json"
+        }
+      ],
+      "out_of_scope_same_detector": 2,
+      "all_rows_compact": [
+        "/range/07?view=all@1440x1000 img[src$=\"g1.svg\"] [VERIFIED]",
+        "/range/07?view=all@1440x1000 img[src$=\"g2.svg\"] [VERIFIED]"
+      ]
+    },
+    {
+      "n": 10,
+      "detector": "price_first_viewport",
+      "found": false,
+      "complete_vp_coverage": false,
+      "pages_found": [],
+      "viewports_found": [],
+      "viewports_expected": [
+        "1440x1000",
+        "390x844"
+      ],
+      "evidence_count": 0,
+      "sample": [],
+      "out_of_scope_same_detector": 8,
+      "all_rows_compact": []
+    }
+  ],
+  "unclaimed_real_findings": [
+    {
+      "id": "ev_de71d98cc918",
+      "detector": "axe:image-alt",
+      "page": "/range/07?view=all",
+      "viewport": "390x844",
+      "selector": "img[src$=\"g1.svg\"]",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "img[src$=\"g1.svg\"] — <img src=\"/static/g1.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute "
+    },
+    {
+      "id": "ev_73304e32af83",
+      "detector": "axe:image-alt",
+      "page": "/range/07?view=all",
+      "viewport": "390x844",
+      "selector": "img[src$=\"g2.svg\"]",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "img[src$=\"g2.svg\"] — <img src=\"/static/g2.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute "
+    },
+    {
+      "id": "ev_9abd9fcf5b83",
+      "detector": "axe:link-name",
+      "page": "/",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_00d5b439d7ca",
+      "detector": "axe:link-name",
+      "page": "/bag?set=2210",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_99a40e3cedd9",
+      "detector": "axe:link-name",
+      "page": "/bag?set=2214",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_fc8d42104747",
+      "detector": "axe:link-name",
+      "page": "/bag?t=1",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_2f4188fd18f2",
+      "detector": "axe:link-name",
+      "page": "/info/1",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_af2dac5b4ca9",
+      "detector": "axe:link-name",
+      "page": "/info/4",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_06cb383756b7",
+      "detector": "axe:link-name",
+      "page": "/range/07?view=all",
+      "viewport": "1440x1000",
+      "selector": "a[href=\"/range/07/item/2210/\"]:nth-child(1)",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href=\"/range/07/item/2210/\"]:nth-child(1) — <a href=\"/range/07/item/2210/\"><img src=\"/static/g1.svg\"></a> — Fix all of the following:\n  El"
+    },
+    {
+      "id": "ev_55140db3a857",
+      "detector": "axe:link-name",
+      "page": "/range/07?view=all",
+      "viewport": "1440x1000",
+      "selector": "a[href=\"/range/07/item/2211/\"]:nth-child(1)",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "a[href=\"/range/07/item/2211/\"]:nth-child(1) — <a href=\"/range/07/item/2211/\"><img src=\"/static/g2.svg\"></a> — Fix all of the following:\n  El"
+    },
+    {
+      "id": "ev_ecb96e44aa21",
+      "detector": "axe:link-name",
+      "page": "/range/07/item/2210",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_1c02da824f38",
+      "detector": "axe:link-name",
+      "page": "/range/07/item/2210?ref=hm",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_b45b43ad256b",
+      "detector": "axe:link-name",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "390x844",
+      "selector": ".bagl",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": ".bagl — <a class=\"bagl\" href=\"/bag/?t=1\"><img src=\"/static/bag.svg\" width=\"22\" height=\"22\" alt=\"\"><span class=\"lbl\">Bag</span></a> — Fix all"
+    },
+    {
+      "id": "ev_1911d41d5bd5",
+      "detector": "cta_below_fold",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "1440x1000",
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a"
+    },
+    {
+      "id": "ev_c8a7f0ec7cb8",
+      "detector": "cta_below_fold",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "390x844",
+      "selector": "main > div > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Reserve this one — main > div > div:nth-of-type(2) > p:nth-of-type(2) > a"
+    },
+    {
+      "id": "ev_3647a653dc0b",
+      "detector": "price_first_viewport",
+      "page": "/range/07?view=all",
+      "viewport": "1440x1000",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Bag Kit & gear Four things we make or stand behind."
+    },
+    {
+      "id": "ev_f2dbaa88cd77",
+      "detector": "price_first_viewport",
+      "page": "/range/07?view=all",
+      "viewport": "390x844",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Kit & gear Four things we make or stand behind. Halden Pour-Over Set 02 Ceramic dripper, carafe and filters. Take me t"
+    },
+    {
+      "id": "ev_9c611f42b4c6",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2210",
+      "viewport": "1440x1000",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Bag Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in "
+    },
+    {
+      "id": "ev_7a980b2198e8",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2210",
+      "viewport": "390x844",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in smal"
+    },
+    {
+      "id": "ev_73aa8df26e8e",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2210?ref=hm",
+      "viewport": "1440x1000",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Bag Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in "
+    },
+    {
+      "id": "ev_54ab9ecaa3e7",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2210?ref=hm",
+      "viewport": "390x844",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Halden Pour-Over Set 02 A ceramic dripper, glass carafe and a box of filters, sized for one to two cups. Built in smal"
+    },
+    {
+      "id": "ev_9961cba75eff",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "1440x1000",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Bag Kōrin EK-S Burr Unit, SSP-HG 64 Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench. Built in "
+    },
+    {
+      "id": "ev_6c6f564d2a7e",
+      "detector": "price_first_viewport",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "390x844",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Kit & gear Who we are Kōrin EK-S Burr Unit, SSP-HG 64 Flat-burr grind engine with a 64 mm SSP-HG set and a dial for the bench."
+    },
+    {
+      "id": "ev_9e20180a81ea",
+      "detector": "shipping_depth",
+      "page": "/range/07/item/2214?ref=hm",
+      "viewport": "390x844",
+      "selector": null,
+      "in_mapped_detector": true,
+      "confidence": "VERIFIED",
+      "excerpt": "Видимі посилання сторінки: Halden Hearth | Kit & gear | Who we are | Bag | Reserve this one | Доставку знайдено: /range/07/item/2214 → /bag"
+    }
+  ],
+  "unclaimed_real_finding_count": 24,
+  "page_types": [
+    {
+      "path": "/",
+      "page_type": "homepage",
+      "reason": null,
+      "rule": "3:home",
+      "scores": {
+        "P": 1,
+        "K": 3,
+        "C": 0
+      },
+      "is_home": true
+    },
+    {
+      "path": "/range/07?view=all",
+      "page_type": "category",
+      "reason": null,
+      "rule": "5:category",
+      "scores": {
+        "P": 2,
+        "K": 4,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/range/07/item/2210?ref=hm",
+      "page_type": "product",
+      "reason": null,
+      "rule": "4:product",
+      "scores": {
+        "P": 5,
+        "K": 0,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/range/07/item/2214?ref=hm",
+      "page_type": "product",
+      "reason": null,
+      "rule": "4:product",
+      "scores": {
+        "P": 5,
+        "K": 0,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/range/07/item/2210",
+      "page_type": "product",
+      "reason": null,
+      "rule": "4:product",
+      "scores": {
+        "P": 5,
+        "K": 0,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/info/1",
+      "page_type": "about",
+      "reason": null,
+      "rule": "7:about",
+      "scores": {
+        "P": 1,
+        "K": 0,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/bag?t=1",
+      "page_type": "other",
+      "reason": null,
+      "rule": "8:other",
+      "scores": {
+        "P": 3,
+        "K": 0,
+        "C": 0.5
+      },
+      "is_home": false
+    },
+    {
+      "path": "/info/4",
+      "page_type": "info_shipping",
+      "reason": null,
+      "rule": "7:info_shipping",
+      "scores": {
+        "P": 1,
+        "K": 0,
+        "C": 0
+      },
+      "is_home": false
+    },
+    {
+      "path": "/bag?set=2210",
+      "page_type": "other",
+      "reason": null,
+      "rule": "8:other",
+      "scores": {
+        "P": 3,
+        "K": 0,
+        "C": 0.5
+      },
+      "is_home": false
+    },
+    {
+      "path": "/bag?set=2214",
+      "page_type": "other",
+      "reason": null,
+      "rule": "8:other",
+      "scores": {
+        "P": 3,
+        "K": 0,
+        "C": 0.5
+      },
+      "is_home": false
+    }
+  ],
+  "coverage": [
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/",
+      "page_type": "homepage",
+      "status": "not_applicable",
+      "reason": "page_type:homepage"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/bag?set=2210",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/bag?set=2214",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/bag?t=1",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/info/1",
+      "page_type": "about",
+      "status": "not_applicable",
+      "reason": "page_type:about"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/info/4",
+      "page_type": "info_shipping",
+      "status": "not_applicable",
+      "reason": "page_type:info_shipping"
+    },
+    {
+      "detector_id": "cta_below_fold",
+      "page": "/range/07?view=all",
+      "page_type": "category",
+      "status": "not_applicable",
+      "reason": "page_type:category"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/",
+      "page_type": "homepage",
+      "status": "not_applicable",
+      "reason": "page_type:homepage"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/bag?set=2210",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/bag?set=2214",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/bag?t=1",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/info/1",
+      "page_type": "about",
+      "status": "not_applicable",
+      "reason": "page_type:about"
+    },
+    {
+      "detector_id": "price_first_viewport",
+      "page": "/info/4",
+      "page_type": "info_shipping",
+      "status": "not_applicable",
+      "reason": "page_type:info_shipping"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/",
+      "page_type": "homepage",
+      "status": "not_applicable",
+      "reason": "page_type:homepage"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/bag?set=2210",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/bag?set=2214",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/bag?t=1",
+      "page_type": "other",
+      "status": "not_applicable",
+      "reason": "page_type:other"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/info/1",
+      "page_type": "about",
+      "status": "not_applicable",
+      "reason": "page_type:about"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/info/4",
+      "page_type": "info_shipping",
+      "status": "not_applicable",
+      "reason": "page_type:info_shipping"
+    },
+    {
+      "detector_id": "shipping_depth",
+      "page": "/range/07?view=all",
+      "page_type": "category",
+      "status": "not_applicable",
+      "reason": "page_type:category"
+    }
+  ],
+  "axe_groups": {
+    "total": 3,
+    "instances": 18,
+    "by_rule": {
+      "image-alt": {
+        "groups": 1,
+        "instances": 4
+      },
+      "link-name": {
+        "groups": 2,
+        "instances": 14
+      }
+    }
+  },
+  "evidence_by_detector": {
+    "axe:image-alt": 4,
+    "axe:link-name": 14,
+    "cta_below_fold": 6,
+    "horizontal_overflow": 1,
+    "oversized_image": 2,
+    "price_first_viewport": 8,
+    "shipping_depth": 3
+  }
+}
