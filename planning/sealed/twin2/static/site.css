@@ -1,0 +1,15 @@
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 Georgia,"Times New Roman",serif;color:#2b211d;background:#f7f2ea}
+a{color:#7a3b22}header{display:flex;align-items:center;gap:20px;padding:14px 32px;border-bottom:1px solid #d9cdbb;background:#fffaf1}
+header img.logo{height:34px}nav{display:flex;gap:22px;margin-left:24px;flex:1}nav a{text-decoration:none;color:#2b211d}
+.bagl{display:inline-flex;gap:6px;align-items:center;text-decoration:none;color:#2b211d}
+main{max-width:1100px;margin:0 auto;padding:28px 32px}h1{font-size:40px;line-height:1.15;margin:.2em 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;padding:0;list-style:none}
+.card{background:#fff;border:1px solid #e3d8c6;border-radius:6px;padding:12px}.card img{width:100%;height:auto;display:block}
+.card h2{font-size:18px;margin:.6em 0 .3em}.go{display:inline-block;padding:10px 18px;background:#7a3b22;color:#fff;text-decoration:none;border-radius:4px;border:0;font:inherit}
+.hero{padding:60px 0 40px}.hero p{max-width:560px;color:#5b4a40}
+footer{border-top:1px solid #d9cdbb;padding:24px 32px;background:#efe6d6;font-size:14px;color:#5b4a40}
+footer details{margin-top:10px}.pd{display:grid;grid-template-columns:1fr 1fr;gap:36px}.pd img{width:100%;height:auto}
+.lede{font-size:18px}.spec{border-collapse:collapse;margin:16px 0}.spec td,.spec th{border:1px solid #d9cdbb;padding:6px 12px;text-align:left}
+.tall{min-height:780px;color:#5b4a40}
+@media(max-width:600px){header{padding:12px 16px;gap:10px}nav{gap:12px;margin-left:0;font-size:14px}main{padding:18px 16px}h1{font-size:30px}
+.pd{grid-template-columns:1fr}.lbl{display:none}}

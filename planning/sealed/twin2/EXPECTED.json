@@ -1,0 +1,11 @@
+{"site":"Halden Hearth","defects":[
+{"n":1,"page":"/","viewports":["1440x1000","390x844"],"note":"Home h1 is a vague poetic line with no statement of what is sold."},
+{"n":2,"page":"/range/07/item/2210/","viewports":["1440x1000","390x844"],"note":"Delivery/payment page exists (/info/4/) but is reachable only via a collapsed footer 'More' > 'Terms'; product and category pages carry no shipping info."},
+{"n":3,"page":"/range/07/item/2214/","viewports":["1440x1000"],"note":"Product name and spec table use unexplained codes (SSP-HG 64, EK-S, zero-index, RPM band); also on category card."},
+{"n":4,"page":"/range/07/?view=all","viewports":["1440x1000"],"note":"Set 02 and Set 02S share description, image style and near-identical names/pages."},
+{"n":5,"page":"/range/07/item/2210/","viewports":["1440x1000","390x844"],"note":"'Reserve this one' sits after a tall text block, below the fold at both viewports."},
+{"n":6,"page":"/range/07/?view=all","viewports":["390x844"],"note":"Header bag link: text label hidden at <=600px, leaving an icon link with empty alt and no accessible name (all pages)."},
+{"n":7,"page":"/range/07/item/2214/","viewports":["390x844"],"note":"Nowrap spec table with min-width 640px overflows the page horizontally."},
+{"n":8,"page":"/range/07/?view=all","viewports":["1440x1000","390x844"],"note":"Category banner /static/hall-2019.png is a ~2.8 MB PNG shown at small size."},
+{"n":9,"page":"/range/07/?view=all","viewports":["1440x1000"],"note":"Product card images for 2210 and 2211 have no alt attribute."},
+{"n":10,"page":"/bag/?t=1","viewports":["1440x1000","390x844"],"note":"No price on home, category or product pages; first prices appear only in the bag."}]}
