@@ -100,6 +100,17 @@ describe("classifyPageType: 20 кейсів page-type-tests.md §2", () => {
     expect(c.page_type).toBe("category");
     expect(c.scores.K).toBe(3);
   });
+  it("6b. DEV-38: about з 3 картками «команда» (img+профіль, без цін, URL без підказок) → about, не category; контроль: ті самі картки поза about → category; картки з цінами на about → category", () => {
+    const team = classifyPageType(view({ final_url: "https://shop.test/about", headings: [{ level: 1, text: "Про нас" }], card_groups: [cards(3)] }));
+    expect(team.page_type).toBe("about");
+    expect(team.features).toContain("Kteam_veto");
+    expect(classifyPageType(view({ final_url: "https://shop.test/x", card_groups: [cards(3)] })).page_type).toBe("category");
+    const gp = cards(3, { price: true });
+    expect(classifyPageType(view({ final_url: "https://shop.test/about", headings: [{ level: 1, text: "Про нас" }], card_groups: [gp], prices: cardPrices(gp) })).page_type).toBe("category");
+    const g = cards(3);
+    g.urls = ["https://shop.test/product/a", "https://shop.test/product/b", "https://shop.test/product/c"];
+    expect(classifyPageType(view({ final_url: "https://shop.test/about", headings: [{ level: 1, text: "Про нас" }], card_groups: [g] })).page_type).toBe("category");
+  });
   it("7. 2 картки з цінами, без img → category (K=4)", () => {
     const g = cards(2, { img: false, price: true });
     const c = classifyPageType(view({ card_groups: [g], prices: cardPrices(g) }));

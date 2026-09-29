@@ -109,6 +109,10 @@ export interface ViewportCapture extends ExtractResult {
   final_url: string;
   http_status: number | null;
   redirect_chain: Array<{ url: string; status: number | null }>;
+  /** вибрані заголовки відповіді головного документа (cf-*, server, retry-after; без cookie) — ознаки бот-захисту (§48, DEV-39) */
+  response_headers: Record<string, string>;
+  /** DOM-маркери challenge/captcha (botprotect.ts BOT_DOM_MARKERS) */
+  bot_markers: string[];
   aria_snapshot: string;
   console_errors: Array<{ text: string; location: string }>;
   failed_requests: Array<{ url: string; resource_type: string; failure: string }>;
@@ -149,6 +153,8 @@ export interface PageCapture {
   page_group: string;
   D: ViewportCapture;
   M: ViewportCapture;
+  /** бот-захист/відмова (§48): сторінка — помилка, не аналіз (0 доказів) */
+  page_error?: PageError | null;
   timing: Record<VP, Record<string, number | null>>;
 }
 
@@ -205,4 +211,15 @@ export interface FindingRow {
   instances: number;
   /** для axe: сигнатура компонента групи (rule, page_group, component) */
   component?: string;
+}
+
+/** Помилка сторінки/сайту (SPEC §48): причина + ознаки; на такій сторінці 0 доказів і 0 знахідок. */
+export interface PageError {
+  page_url: string;
+  code: "bot_protection" | "robots_disallow";
+  kind: string;
+  reason: string;
+  signals: string[];
+  http_status: number | null;
+  viewports: VP[];
 }

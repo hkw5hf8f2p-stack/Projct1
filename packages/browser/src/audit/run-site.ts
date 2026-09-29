@@ -7,14 +7,18 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { captureViewport } from "./capture-page.js";
-import { crawl, CRAWL_LIMITS, type CrawlResult } from "./crawl.js";
+import { detectBotProtection } from "./botprotect.js";
+import { groupFor, HostGate, robotsPolicyFromResponse, robotsVerdict, type RobotsPolicy } from "./ethics.js";
+
+const groupRulesFor = (p: RobotsPolicy) => groupFor(p.groups);
+import { crawl, CRAWL_LIMITS, normalizeCrawlUrl, type CrawlResult } from "./crawl.js";
 import { assignAxeScopes, groupAxe, type AxeGroup } from "./axe-groups.js";
 import { classifyPageType } from "./classify.js";
 import { detectAllWithCoverage, pageGroupOf, type CoverageRow } from "./detectors.js";
 import { buildFindings } from "./findings.js";
 import { classifyPageTypeV1 } from "./legacy-page-type.js";
 import { SHIP_RE } from "./patterns.js";
-import type { EvidenceRow, FindingRow, PageCapture, VP } from "./types.js";
+import type { EvidenceRow, FindingRow, PageCapture, PageError, VP } from "./types.js";
 
 export interface AuditOptions {
   secure: SecureBrowser;
@@ -23,8 +27,10 @@ export interface AuditOptions {
   writeShots: boolean;
   tiles: boolean;
   collectFxMarkers?: boolean;
-  /** пауза між навігаціями; 1500 на живих сайтах (DEV-18), 0 для локальної фікстури */
+  /** пауза між навігаціями лише для fixture-режиму (0 за замовчуванням); у prod-режимі потрібен `ethics` (DEV-18) */
   minDelayMs?: number;
+  /** етика звернень (DEV-18): чесний UA, HostGate (пауза ≥ 1500 мс, 1 сторінка на хост), robots.txt. Обов'язково в prod-режимі проксі. */
+  ethics?: { userAgent: string; gate: HostGate; enforceRobots: boolean };
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
   /** 'v1' — старий класифікатор (7c5cae8): ЛИШЕ контроль метаморфного набору; за замовчуванням 'v2' (page-type-spec.md) */
   engine?: "v1" | "v2";
@@ -38,24 +44,41 @@ export interface AuditResult {
   pages: Array<Record<string, unknown>>;
   crawl: CrawlResult;
   captures: PageCapture[];
+  /** помилки сторінок (§48: бот-захист; robots Disallow) — на цих сторінках 0 доказів */
+  errors: PageError[];
+  /** помилка сайту: seed недоступний через бот-захист/robots → аналізу немає */
+  site_error: PageError | null;
+  robots: { url: string; status: number | null; fetch: RobotsPolicy["fetch"] } | null;
+}
+
+/** robots.txt тим самим захищеним браузером (egress-проксі), не прямим fetch; враховує паузу/1 сторінку на хост. */
+async function fetchRobots(secure: SecureBrowser, origin: string, ua: string, gate: HostGate): Promise<{ policy: RobotsPolicy; status: number | null; url: string }> {
+  const url = origin + "/robots.txt";
+  return gate.run(url, async () => {
+    const ctx = await secure.newContext({ userAgent: ua });
+    try {
+      const page = await ctx.newPage();
+      await gate.wait(url);
+      let status: number | null = null;
+      let body: string | null = null;
+      try {
+        const resp = await page.goto(url, { waitUntil: "load", timeout: 20_000 });
+        status = resp?.status() ?? null;
+        body = resp ? await resp.text().catch(() => null) : null;
+      } catch {
+        status = null;
+      }
+      return { policy: robotsPolicyFromResponse(status, body), status, url };
+    } finally {
+      await ctx.close().catch(() => undefined);
+    }
+  });
 }
 
 const pageIdOf = (u: URL): string => {
   const raw = (u.pathname + u.search).replace(/^\/+|\/+$/g, "");
   return raw === "" ? "index" : raw.replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase();
 };
-
-function makeThrottle(ms: number) {
-  let last = 0;
-  return {
-    wait: async () => {
-      if (ms <= 0) return;
-      const d = last + ms - Date.now();
-      if (d > 0) await new Promise((r) => setTimeout(r, d));
-      last = Date.now();
-    },
-  };
-}
 
 /** BFS по графу захоплених сторінок: відстань у кліках до першої сторінки, що задовольняє `goal` (не сама початкова). */
 export function bfsDepth(start: string, edges: Array<{ from: string; to: string }>, goal: (url: string) => boolean): { depth: number; path: string[] } | null {
@@ -82,13 +105,19 @@ export function bfsDepth(start: string, edges: Array<{ from: string; to: string 
 export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   assertSecureBrowser(o.secure, "auditSite");
   await mkdir(o.runDir, { recursive: true });
-  const throttle = makeThrottle(o.minDelayMs ?? 0);
+  if (o.secure.proxy.mode.kind === "prod" && !o.ethics) throw new Error("auditSite: у prod-режимі потрібен `ethics` (чесний UA, пауза ≥ 1500 мс, robots.txt; DEV-18)");
+  const gate = o.ethics?.gate ?? new HostGate(o.minDelayMs ?? 0, { fixture: true });
+  const throttle = gate;
+  const userAgent = o.ethics?.userAgent;
   const engine = o.engine ?? "v2";
+  const errors: PageError[] = [];
+  let robots: { policy: RobotsPolicy; status: number | null; url: string } | null = null;
+  if (o.ethics?.enforceRobots) robots = await fetchRobots(o.secure, new URL(o.seedUrl).origin, o.ethics.userAgent, gate);
 
   const capturePage = async (url: string): Promise<PageCapture> => {
     const u = new URL(url);
     const pageId = pageIdOf(u);
-    const base = { secure: o.secure, url, runDir: o.runDir, pageId, writeShots: o.writeShots, tiles: o.tiles, collectFxMarkers: o.collectFxMarkers, throttle };
+    const base = { secure: o.secure, url, runDir: o.runDir, pageId, writeShots: o.writeShots, tiles: o.tiles, collectFxMarkers: o.collectFxMarkers, throttle, userAgent };
     const once = async (vp: VP) => {
       try {
         return await captureViewport({ ...base, vp });
@@ -99,17 +128,44 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
     const d = await once("D");
     const m = await once("M");
     const classification = engine === "v1" ? null : classifyPageType(d.capture, m.capture, { seed_url: o.seedUrl });
-    const type = classification ? classification.page_type : classifyPageTypeV1(d.capture);
+    // §48: бот-захист/403/429/503 на будь-якому viewport → помилка сторінки, не аналіз
+    const bots = ([d.capture, m.capture] as const).map((c) => ({ vp: c.vp, v: detectBotProtection({ http_status: c.http_status, headers: c.response_headers, title: c.title, visible_text: c.visible_text, markers: c.bot_markers }) }));
+    const hit = bots.filter((b) => b.v.blocked);
+    let page_error: PageError | null = null;
+    if (hit.length > 0) {
+      const f = hit[0]!.v;
+      page_error = { page_url: url, code: "bot_protection", kind: f.kind!, reason: f.reason!, signals: [...new Set(hit.flatMap((b) => b.v.signals))].sort(), http_status: d.capture.http_status ?? m.capture.http_status, viewports: hit.map((b) => b.vp) };
+      errors.push(page_error);
+    }
+    const type = page_error ? "unknown" : classification ? classification.page_type : classifyPageTypeV1(d.capture);
+    const reason = page_error ? "capture" : (classification?.reason ?? null);
     const pathOnly = u.pathname + u.search;
-    return { url, path: pathOnly, page_id: pageId, page_type: type, page_type_reason: classification?.reason ?? null, classification, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
+    return { url, path: pathOnly, page_id: pageId, page_type: type, page_type_reason: reason, classification, page_error, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
   };
 
-  const cr = await crawl({ seedUrl: o.seedUrl, capture: capturePage, limits: o.limits ?? CRAWL_LIMITS, engine });
+  // 1 сторінка одночасно на хост: усе захоплення сторінки (D+M) під HostGate.run; пауза — перед кожною навігацією
+  const robotsAllow = robots
+    ? (url: string) => {
+        const x = new URL(url);
+        return robotsVerdict(robots!.policy, x.pathname + x.search);
+      }
+    : undefined;
+  const cr = await crawl({ seedUrl: o.seedUrl, capture: (url) => gate.run(url, () => capturePage(url)), limits: o.limits ?? CRAWL_LIMITS, engine, allow: robotsAllow });
+  for (const sk of cr.skipped) if (sk.reason === "robots_disallow") errors.push({ page_url: sk.url, code: "robots_disallow", kind: "robots_disallow", reason: `robots.txt забороняє сторінку (${sk.rule}); не відкрито`, signals: [sk.rule ?? ""], http_status: null, viewports: [] });
+  errors.sort((a, b) => a.page_url.localeCompare(b.page_url) || a.code.localeCompare(b.code));
+  const seedNorm = normalizeCrawlUrl(o.seedUrl);
+  const seedPage = cr.pages.find((p) => p.url === seedNorm);
+  const site_error: PageError | null = seedPage?.page_error ?? (cr.pages.length === 0 ? (errors.find((e) => e.code === "robots_disallow" && e.page_url === seedNorm) ?? null) : null);
 
   // ---- детектори
   let evidence: EvidenceRow[] = [];
   const coverage: CoverageRow[] = [];
   for (const p of cr.pages) {
+    if (p.page_error) {
+      // §48: бот-захист → 0 доказів (включно з axe); факт лишається в coverage
+      for (const d of ["shipping_depth", "cta_below_fold", "price_first_viewport"] as const) coverage.push({ detector_id: d, page: p.path, page_type: p.page_type, status: "withheld", reason: `bot_protection:${p.page_error.kind}` });
+      continue;
+    }
     const r = detectAllWithCoverage({ url: p.url, path: p.path, page_type: p.page_type, page_type_reason: p.page_type_reason, page_group: p.page_group, D: p.D, M: p.M, classification: p.classification, engine });
     evidence.push(...r.evidence);
     coverage.push(...r.coverage);
@@ -145,8 +201,15 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   await writeFile(path.join(o.runDir, "axe-groups.json"), JSON.stringify(axeGroups, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "pages.json"), JSON.stringify(pages, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "crawl.json"), JSON.stringify(crawlDoc, null, 2) + "\n");
+  await writeFile(path.join(o.runDir, "errors.json"), JSON.stringify({ site_error, page_errors: errors }, null, 2) + "\n");
+  await writeFile(
+    path.join(o.runDir, "robots.json"),
+    JSON.stringify(robots ? { url: robots.url, status: robots.status, fetch: robots.policy.fetch, rules_for_user_agent: robots.policy.fetch === "ok" ? groupRulesFor(robots.policy) : [], disallowed_skipped: errors.filter((e) => e.code === "robots_disallow").map((e) => ({ url: e.page_url, rule: e.signals[0] })) } : { enforced: false }, null, 2) + "\n",
+  );
+  // лічильник звернень на хост і пауза — артефакт прогону (DEV-18); час — окремо від evidence, тож 3/3 не ламається
+  await writeFile(path.join(o.runDir, "host-hits.json"), JSON.stringify(gate.report(), null, 2) + "\n");
   await writeFile(path.join(o.runDir, "timing.json"), JSON.stringify(timing, null, 2) + "\n");
-  return { evidence, findings, coverage, axe_groups: axeGroups, pages, crawl: cr, captures: cr.pages };
+  return { evidence, findings, coverage, axe_groups: axeGroups, pages, crawl: cr, captures: cr.pages, errors, site_error, robots: robots ? { url: robots.url, status: robots.status, fetch: robots.policy.fetch } : null };
 }
 
 /** depth_clicks (№2) і price_depth_clicks (№10) — інформативні; в предикат не входять (map §3.2, §3.10). */
@@ -211,6 +274,8 @@ function pageArtifactRow(p: PageCapture): Record<string, unknown> {
       files: { D: d.files, M: m.files },
       screenshots: { D: d.screenshots, M: m.screenshots },
       tiles: { D: d.tiles, M: m.tiles },
+      page_error: p.page_error ?? null,
+      response_headers: { D: d.response_headers, M: m.response_headers },
       metrics_ref: "timing.json",
     },
     created_at: null,

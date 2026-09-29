@@ -10,6 +10,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Page, Request } from "playwright";
 import { handleBanner } from "./banner.js";
+import { BOT_DOM_MARKERS, keepHeader } from "./botprotect.js";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { PATTERN_SOURCES } from "./patterns.js";
 import { PRICE_PARSER_SOURCE } from "./price-parser.js";
@@ -47,7 +48,9 @@ export interface CaptureOptions {
   tiles: boolean;
   collectFxMarkers?: boolean;
   /** ≥ 1500 мс на живих сайтах (DEV-18); 0 для локальної фікстури */
-  throttle?: { wait: () => Promise<void> };
+  throttle?: { wait: (url: string) => Promise<void> };
+  /** чесний User-Agent (ethics.ts); не задано → UA Chromium за замовчуванням (лише фікстури) */
+  userAgent?: string;
 }
 
 const png = (buf: Buffer) => ({ w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) });
@@ -87,6 +90,7 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     hasTouch: spec.isMobile,
     acceptDownloads: false,
     serviceWorkers: "block",
+    ...(o.userAgent ? { userAgent: o.userAgent } : {}),
   });
   const rows = new Map<Request, NetworkRow>();
   const bodyJobs: Promise<void>[] = [];
@@ -136,14 +140,17 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
       if (failure !== "net::ERR_BLOCKED_BY_CLIENT") failed.push({ url: r.url(), resource_type: r.resourceType(), failure });
     });
 
-    await o.throttle?.wait();
+    await o.throttle?.wait(o.url);
     let navigationCompleted = true;
     let status: number | null = null;
     const chain: Array<{ url: string; status: number | null }> = [];
     let finalUrl = o.url;
+    let responseHeaders: Record<string, string> = {};
     try {
       const resp = await page.goto(o.url, { waitUntil: "load", timeout: 30_000 });
       status = resp?.status() ?? null;
+      for (const [k, v] of Object.entries(resp?.headers() ?? {})) if (keepHeader(k.toLowerCase())) responseHeaders[k.toLowerCase()] = String(v).slice(0, 200);
+      responseHeaders = Object.fromEntries(Object.entries(responseHeaders).sort(([a], [b]) => a.localeCompare(b)));
       finalUrl = page.url();
       let req: Request | null = resp?.request() ?? null;
       const hops: Request[] = [];
@@ -158,6 +165,9 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     }
 
     await page.evaluate(`document.fonts ? document.fonts.ready.then(() => true) : true`);
+    const botMarkers = (await page
+      .evaluate(`((defs) => defs.filter(([sel]) => { try { return !!document.querySelector(sel); } catch (e) { return false; } }).map(([, n]) => n))(${JSON.stringify(BOT_DOM_MARKERS)})`)
+      .catch(() => [])) as string[];
     const banner = await handleBanner(page);
     const scrollCompleted = await scrollThrough(page, spec.height);
     await page.evaluate(`window.scrollTo(0, 0)`);
@@ -266,6 +276,8 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
       final_url: finalUrl,
       http_status: status,
       redirect_chain: chain,
+      response_headers: responseHeaders,
+      bot_markers: [...new Set(botMarkers)].sort(),
       aria_snapshot: ariaSnapshot,
       console_errors: consoleErrors,
       failed_requests: failed,

@@ -12,6 +12,7 @@ export const TRANSFORM_IDS = [
   "K1", "K2",
   "J1", "J2", "J3",
   "R1", "R2", "R3",
+  "T1",
 ] as const;
 export type TransformId = (typeof TRANSFORM_IDS)[number];
 
@@ -30,6 +31,8 @@ export interface Transforms {
   r1: boolean;
   r2: boolean;
   r3: boolean;
+  /** T1: «команда» — 3 картки (фото + посилання на профіль, без цін) на /about (DEV-38) */
+  t1: boolean;
 }
 
 export function parseTransforms(raw: string | string[] | undefined | null): Transforms {
@@ -56,6 +59,7 @@ export function parseTransforms(raw: string | string[] | undefined | null): Tran
     r1: has("R1") || has("R2"),
     r2: has("R2"),
     r3: has("R3"),
+    t1: has("T1"),
   };
 }
 

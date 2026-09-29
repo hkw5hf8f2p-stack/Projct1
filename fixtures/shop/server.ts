@@ -124,6 +124,12 @@ export function createShopHandler(opts: ShopOptions = {}): SiteHandler {
 <ul class="cards" data-fx="d10">${cardsHtml(visibleProducts, m === "m10", true)}</ul>`,
     });
 
+  /** T1 (DEV-38): «команда» — 3 однакові картки «фото + ім'я-посилання», без цін і без product-подібних URL (посилання ?member= дублюють /about) */
+  const teamHtml = () =>
+    `<section aria-label="${esc(L("Команда", "Team"))}"><h2>${esc(L("Наша команда", "Our team"))}</h2><ul class="cards">${["Анна", "Богдан", "Оксана"]
+      .map((n, i) => `<li class="card"><img src="/img/aquapro-x200.svg" alt="${esc(L("Фото", "Photo"))}: ${esc(n)}" width="120" height="120"><div><h3><a href="/about?member=${i + 1}">${esc(n)}</a></h3><p>${esc(L("Керує напрямком", "Team member"))}</p></div></li>`)
+      .join("")}</ul></section>`;
+
   const product = (req: { cookies: Record<string, string> }, p: Product) => {
     const pi = PRODUCTS.indexOf(p);
     const lab = ctaLabel(t, pi, L("Додати в кошик", "Add to cart"));
@@ -201,6 +207,7 @@ ${related}`,
         title: L("Про нас — ТехноДім", "About us — TechHome"),
         description: L("Про магазин.", "About the store."),
         main: `<h1>${esc(L("Про нас", "About us"))}</h1><p>${esc(L("Ми — невеликий магазин, який відбирає речі для дому й пояснює, чим вони відрізняються.", "We are a small store that picks things for the home and explains how they differ."))}</p>
+${t.t1 ? teamHtml() : ""}
 <form method="post" action="/contact"><p><label for="msg">${esc(L("Ваше повідомлення", "Your message"))}</label><br><textarea id="msg" name="msg" rows="3" cols="40"></textarea></p><p><button type="submit" class="buy-btn">${esc(L("Надіслати", "Send"))}</button></p></form>`,
       });
     }

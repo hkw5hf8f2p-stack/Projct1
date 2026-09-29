@@ -118,6 +118,8 @@ export async function crawl(opts: {
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
   /** 'v1' — старий URL-класифікатор посилань (лише контроль метаморфного набору) */
   engine?: "v1" | "v2";
+  /** robots.txt (DEV-18): false → сторінка не береться, факт у skipped (reason `robots_disallow`) */
+  allow?: (url: string) => { allowed: boolean; rule: string | null };
 }): Promise<CrawlResult> {
   const lim = opts.limits ?? CRAWL_LIMITS;
   const v1 = opts.engine === "v1";
@@ -139,10 +141,16 @@ export async function crawl(opts: {
       result.skipped.push({ url: item.url, reason: "product_cap", from: item.from });
       continue;
     }
+    const verdict = opts.allow?.(item.url);
+    if (verdict && !verdict.allowed) {
+      result.skipped.push({ url: item.url, reason: "robots_disallow", rule: verdict.rule ?? undefined, from: item.from });
+      continue;
+    }
     const page = await opts.capture(item.url);
     result.log.push({ url: item.url, depth: item.depth, class: item.cls, priority: item.priority, order: result.pages.length, page_type: page.page_type });
     result.pages.push(page);
     if (page.page_type === "product") productsCaptured++;
+    if (page.page_error) continue; // бот-захист: посилань сторінки-виклику не збираємо (§48)
     if (item.depth >= lim.maxDepth) continue;
 
     // посилання з обох viewport (мобільна навігація може відрізнятися), у детермінованому порядку
