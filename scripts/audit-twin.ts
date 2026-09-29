@@ -1,7 +1,10 @@
 /**
- * Прогін розкритого двійника (G0-15) через auditSite БЕЗ змін детекторів. Запуск:
- *   bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/audit-twin.ts
- * Пише в planning/qa/artifacts/sprint-1a/twin/ (evidence/findings/pages/crawl, twin-summary.json). twin-report.md генерується окремо з summary.
+ * Прогін двійника фікстури (G0-15) через auditSite БЕЗ підстроювання детекторів під нього. Запуск:
+ *   bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/audit-twin.ts [--twin-dir <шлях>] [--out-dir <шлях>] [--seed /index.html] [--map <json>]
+ * За замовчуванням: двійник-1 (planning/sealed/twin, розкритий → лише «інформативний» прогін), вихід planning/qa/artifacts/sprint-1a-fix/twin/.
+ * Той самий скрипт QA запускає на twin2: `--twin-dir planning/sealed/twin2 --out-dir <...>/twin2 [--seed …] [--map …]`; хеш каталогу звіряється
+ * з `<twin-dir>.sha256` до й після прогону. `--map` — JSON [{n,label,ids,pages,vps}] (карта дефект → detector; для twin2 сторінки інші).
+ * Пише evidence/findings/pages/crawl/coverage/axe-groups і twin-summary.json. twin-report.md генерується окремо з summary.
  */
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
@@ -14,14 +17,17 @@ import type { EvidenceRow, FindingRow } from "../packages/browser/src/audit/type
 import { launchForFixtures, writeJson } from "./fixture-harness.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const TWIN = path.join(ROOT, "planning/sealed/twin");
-const OUT = path.join(ROOT, "planning/qa/artifacts/sprint-1a/twin");
+const arg = (k: string): string | undefined => (process.argv.indexOf(k) >= 0 ? process.argv[process.argv.indexOf(k) + 1] : undefined);
+const TWIN = path.resolve(ROOT, arg("--twin-dir") ?? "planning/sealed/twin");
+const OUT = path.resolve(ROOT, arg("--out-dir") ?? "planning/qa/artifacts/sprint-1a-fix/twin");
+const SEED = arg("--seed") ?? "/index.html";
+const HASH_FILE = `${TWIN}.sha256`;
 
 const MIME: Record<string, string> = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json" };
 
 /** Рукопідготовлена мапа дефект № → detector_id (з завдання), сторінки/viewport з EXPECTED двійника. */
 interface Map1 { n: number; label: string; ids: string[]; pages: string[]; vps: Array<"D" | "M"> }
-const MAP: Map1[] = [
+const MAP_DEFAULT: Map1[] = [
   { n: 2, label: "shipping_depth", ids: ["shipping_depth"], pages: ["umovy.html", "index.html", "kataloh.html", "tovar-ramka-435.html", "tovar-ramka-435r.html"], vps: ["D", "M"] },
   { n: 5, label: "cta_below_fold", ids: ["cta_below_fold"], pages: ["tovar-ramka-435.html", "tovar-ramka-435r.html"], vps: ["D", "M"] },
   { n: 6, label: "axe:button-name|link-name|label", ids: ["axe:button-name", "axe:link-name", "axe:label"], pages: ["*"], vps: ["M"] },
@@ -30,6 +36,8 @@ const MAP: Map1[] = [
   { n: 9, label: "axe:image-alt", ids: ["axe:image-alt"], pages: ["kataloh.html", "index.html", "pro-nas.html"], vps: ["D", "M"] },
   { n: 10, label: "price_first_viewport", ids: ["price_first_viewport"], pages: ["tovar-ramka-435.html", "tovar-ramka-435r.html", "kataloh.html", "kosh.html"], vps: ["D", "M"] },
 ];
+
+const MAP: Map1[] = arg("--map") ? (JSON.parse(readFileSync(path.resolve(ROOT, arg("--map")!), "utf8")) as Map1[]) : MAP_DEFAULT;
 
 const hashOfTwin = (): string => {
   const files: string[] = [];
@@ -62,7 +70,7 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 const sb = await launchForFixtures([port]);
 try {
-  const result = await auditSite({ secure: sb, seedUrl: origin + "/index.html", runDir: OUT, writeShots: true, tiles: false, minDelayMs: 0 });
+  const result = await auditSite({ secure: sb, seedUrl: origin + SEED, runDir: OUT, writeShots: true, tiles: false, minDelayMs: 0 });
   const vpName = (v: "D" | "M") => (v === "D" ? "1440x1000" : "390x844");
   const base = (e: EvidenceRow) => e.page_path.replace(/^\//, "").split("?")[0]!;
   const findingOf = (e: EvidenceRow): FindingRow | undefined => result.findings.find((f) => f.evidence_ids.includes(e.id));
@@ -86,21 +94,26 @@ try {
     };
   });
   const detectorsUsed = new Set(MAP.flatMap((m) => m.ids));
-  const falsePos = result.evidence.filter((e) => !claimed.has(e.id)).map((e) => ({ id: e.id, detector: e.detector_id, page: e.page_path, viewport: vpName(e.viewport), selector: e.selector_or_region.selector ?? null, in_mapped_detector: detectorsUsed.has(e.detector_id), confidence: findingOf(e)?.confidence ?? null, excerpt: (e.excerpt ?? e.description).slice(0, 140) }));
+  // «unclaimed_real_findings»: реальні (не хибні) знахідки, яких немає в заявленому переліку дефектів двійника (EXPECTED неповний)
+  const unclaimed = result.evidence.filter((e) => !claimed.has(e.id)).map((e) => ({ id: e.id, detector: e.detector_id, page: e.page_path, viewport: vpName(e.viewport), selector: e.selector_or_region.selector ?? null, in_mapped_detector: detectorsUsed.has(e.detector_id), confidence: findingOf(e)?.confidence ?? null, excerpt: (e.excerpt ?? e.description).slice(0, 140) }));
   const hashAfter = hashOfTwin();
   const nonGet = requests.filter((r) => r.method !== "GET" && r.method !== "HEAD").length;
   const summary = {
     schema: "sitelens-twin-summary/v1",
-    twin_hash_before: hashBefore, twin_hash_after: hashAfter, twin_hash_expected: readFileSync(path.join(ROOT, "planning/sealed/twin.sha256"), "utf8").trim().split(/\s+/)[0],
+    twin_hash_before: hashBefore, twin_hash_after: hashAfter, twin_hash_expected: readFileSync(HASH_FILE, "utf8").trim().split(/\s+/)[0],
+    twin_dir: path.relative(ROOT, TWIN), seed: SEED,
     origin, pages_crawled: result.captures.map((p) => p.path), evidence_total: result.evidence.length, findings_total: result.findings.length,
     non_get_requests: nonGet, requests_total: requests.length,
     deterministic_found: defects.filter((d) => d.found).length, of: MAP.length,
     deterministic_found_full_vp: defects.filter((d) => d.found && d.complete_vp_coverage).length,
-    defects, false_positives: falsePos, false_positive_count: falsePos.length,
+    defects, unclaimed_real_findings: unclaimed, unclaimed_real_finding_count: unclaimed.length,
+    page_types: result.captures.map((p) => ({ path: p.path, page_type: p.page_type, reason: p.page_type_reason, rule: p.classification?.rule ?? null, scores: p.classification?.scores ?? null, is_home: p.classification?.is_home ?? null })),
+    coverage: result.coverage,
+    axe_groups: { total: result.axe_groups.length, instances: result.axe_groups.reduce((a, g) => a + g.instances, 0), by_rule: Object.fromEntries([...new Set(result.axe_groups.map((g) => g.rule))].sort().map((r) => [r, { groups: result.axe_groups.filter((g) => g.rule === r).length, instances: result.axe_groups.filter((g) => g.rule === r).reduce((a, g) => a + g.instances, 0) }])) },
     evidence_by_detector: Object.fromEntries([...new Set(result.evidence.map((e) => e.detector_id))].sort().map((d) => [d, result.evidence.filter((e) => e.detector_id === d).length])),
   };
   writeJson(path.join(OUT, "twin-summary.json"), summary);
-  console.log(`twin: ${summary.pages_crawled.length} pages, ${summary.evidence_total} evidence; детерміновані ${summary.deterministic_found}/7 (повний viewport ${summary.deterministic_found_full_vp}); хибні ${falsePos.length}; non-GET ${nonGet}; hash ${hashBefore === hashAfter ? "незмінний" : "ЗМІНЕНО"}`);
+  console.log(`twin: ${summary.pages_crawled.length} pages, ${summary.evidence_total} evidence; детерміновані ${summary.deterministic_found}/7 (повний viewport ${summary.deterministic_found_full_vp}); незаявлені реальні ${unclaimed.length}; axe-груп ${result.axe_groups.length} (color-contrast ${result.axe_groups.filter((g) => g.rule === "color-contrast").length}, instances ${result.axe_groups.filter((g) => g.rule === "color-contrast").reduce((a, g) => a + g.instances, 0)}); non-GET ${nonGet}; hash ${hashBefore === hashAfter ? "незмінний" : "ЗМІНЕНО"}`);
   for (const d of defects) console.log(`  №${d.n} ${d.found ? "FOUND" : "MISS"} ${d.detector} n=${d.evidence_count} vp=${d.viewports_found.join(",")} pages=${d.pages_found.join(",")}`);
 } finally {
   await sb.close();

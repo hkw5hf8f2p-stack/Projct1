@@ -25,6 +25,10 @@ export interface LayoutOptions {
   menuMarker?: string;
   /** маркер на футері (місце, де мало б бути посилання на доставку; дефект №2) */
   footerMarker?: string;
+  /** атрибут lang документа (за замовчуванням uk) */
+  lang?: string;
+  /** додатковий вміст <head> (JSON-LD, og:*) — метаморфні трансформації J1–J3 */
+  headExtra?: string;
 }
 
 const CSS = `
@@ -45,7 +49,13 @@ h2{font-size:20px;margin:0 0 6px}
 .cards{list-style:none;margin:16px 0;padding:0;display:grid;gap:16px}
 .card{display:flex;gap:16px;align-items:flex-start;border:1px solid #cbd5e0;border-radius:8px;padding:12px;min-height:120px}
 .card img{flex:none}
-.btn,button.buy-btn{display:inline-block;background:#1a56a0;color:#fff;border:0;border-radius:6px;padding:10px 18px;font:inherit;text-decoration:none;cursor:pointer}
+.btn,button.buy-btn,input.buy-btn,a.buy-btn,div.buy-btn{display:inline-block;background:#1a56a0;color:#fff;border:0;border-radius:6px;padding:10px 18px;font:inherit;text-decoration:none;cursor:pointer}
+table.cart{border-collapse:collapse;width:100%;max-width:640px;margin:12px 0}
+table.cart th,table.cart td{border:1px solid #a0aec0;padding:6px 10px;text-align:left}
+table.cart input{width:64px;font:inherit;padding:4px}
+.total{font-size:18px}
+form.checkout label{display:block;margin:8px 0 2px}
+form.checkout input{font:inherit;padding:6px;width:100%;max-width:360px}
 .gallery{display:block;width:100%;max-width:390px;height:240px;object-fit:contain;background:#edf2f7}
 
 .price{font-size:26px;font-weight:700;margin:0 0 8px}
@@ -85,13 +95,14 @@ export function layout(o: LayoutOptions): string {
       : `<aside id="cookie-banner" class="cookie" aria-label="Повідомлення про cookie"><p>Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.</p><button type="button" data-cookie="necessary">Лише необхідні</button><button type="button" data-cookie="close" aria-label="Закрити">×</button><button type="button" class="accept" data-cookie="accept">Прийняти все</button></aside><script>${o.banner === "stuck" ? "/* контроль: кнопки інертні */" : COOKIE_SCRIPT}</script>`;
   const track = o.postOnLoad ? `<script>fetch('/track',{method:'POST',body:'x'}).catch(function(){});</script>` : "";
   return `<!doctype html>
-<html lang="uk">
+<html lang="${esc(o.lang ?? "uk")}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(o.title)}</title>
 <meta name="description" content="${esc(o.description)}">
 <link rel="icon" href="data:,">
+${o.headExtra ?? ""}
 <style>${CSS}</style>
 </head>
 <body>

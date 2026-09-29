@@ -1,0 +1,523 @@
+{
+  "title": "Початок — Пасіка «Верховина»",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Час, що пахне літом"
+    },
+    {
+      "level": 3,
+      "text": "Мед КМ-12"
+    },
+    {
+      "level": 3,
+      "text": "Набір Ф-2"
+    }
+  ],
+  "links": [
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Верховина",
+      "name": "Верховина",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 16,
+        "w": 86,
+        "h": 28
+      },
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Початок",
+      "name": "Початок",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(1) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kataloh.html",
+      "abs": "http://127.0.0.1:43455/kataloh.html",
+      "text": "Що у нас є",
+      "name": "Що у нас є",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(2) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Хто ми",
+      "name": "Хто ми",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(3) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kosh.html",
+      "abs": "http://127.0.0.1:43455/kosh.html",
+      "text": "Кошик",
+      "name": "Кошик",
+      "visible": true,
+      "rect": {
+        "x": 344,
+        "y": 19,
+        "w": 30,
+        "h": 22
+      },
+      "selector": "#kosh-lnk",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kataloh.html",
+      "abs": "http://127.0.0.1:43455/kataloh.html",
+      "text": "Подивитися",
+      "name": "Подивитися",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 471,
+        "w": 132,
+        "h": 49
+      },
+      "selector": "#tilo > p:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "umovy.html",
+      "abs": "http://127.0.0.1:43455/umovy.html",
+      "text": "Умови",
+      "name": "Умови",
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 1238,
+        "w": 36,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Пасіка «Верховина», Закарпаття",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "visible": true,
+      "rect": {
+        "x": 63,
+        "y": 1238,
+        "w": 179,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "#liva-panel > button",
+      "name": "",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 205,
+        "y": 12,
+        "w": 36,
+        "h": 36
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "#tilo > img",
+      "src": "img/pasika-zahalnyi-plan.png",
+      "current_src": "http://127.0.0.1:43455/img/pasika-zahalnyi-plan.png",
+      "alt": "Загальний вигляд пасіки в горах",
+      "natural_w": 2400,
+      "natural_h": 1600,
+      "rect": {
+        "x": 16,
+        "y": 214,
+        "w": 358,
+        "h": 239
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(1) > img",
+      "src": "img/med-grechka.svg",
+      "current_src": "http://127.0.0.1:43455/img/med-grechka.svg",
+      "alt": "Банка гречаного меду",
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 29,
+        "y": 549,
+        "w": 332,
+        "h": 249
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(2) > img",
+      "src": "img/nabir.svg",
+      "current_src": "http://127.0.0.1:43455/img/nabir.svg",
+      "alt": "Набір для початківця",
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 29,
+        "y": 884,
+        "w": 332,
+        "h": 249
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "Верховина\nКошик\nЧас, що пахне літом\n\nМи робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся.\n\nПодивитися\n\nМед КМ-12\nНабір Ф-2\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+  "text_nodes": [
+    {
+      "t": "Верховина",
+      "a": true
+    },
+    {
+      "t": "Час, що пахне літом",
+      "a": false
+    },
+    {
+      "t": "Ми робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся.",
+      "a": false
+    },
+    {
+      "t": "Подивитися",
+      "a": true
+    },
+    {
+      "t": "Мед КМ-12",
+      "a": false
+    },
+    {
+      "t": "Набір Ф-2",
+      "a": false
+    },
+    {
+      "t": "Умови",
+      "a": true
+    },
+    {
+      "t": "·",
+      "a": false
+    },
+    {
+      "t": "Пасіка «Верховина», Закарпаття",
+      "a": true
+    },
+    {
+      "t": "· © 2026",
+      "a": false
+    }
+  ],
+  "fv_text": "Верховина Час, що пахне літом Ми робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся. Подивитися Мед КМ-12",
+  "interactive": [
+    {
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Верховина",
+      "rect": {
+        "x": 16,
+        "y": 16,
+        "w": 86,
+        "h": 28
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/index.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 18,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > button",
+      "tag": "button",
+      "name": "",
+      "rect": {
+        "x": 205,
+        "y": 12,
+        "w": 36,
+        "h": 36
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 6,
+      "pad_x": 6,
+      "font_size": 13.3333,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#kosh-lnk",
+      "tag": "a",
+      "name": "Кошик",
+      "rect": {
+        "x": 344,
+        "y": 19,
+        "w": 30,
+        "h": 22
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kosh.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 0,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#tilo > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Подивитися",
+      "rect": {
+        "x": 16,
+        "y": 471,
+        "w": 132,
+        "h": 49
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kataloh.html",
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 12,
+      "pad_x": 22,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Умови",
+      "rect": {
+        "x": 16,
+        "y": 1238,
+        "w": 36,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/umovy.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "rect": {
+        "x": 63,
+        "y": 1238,
+        "w": 179,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/pro-nas.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 390,
+    "scroll_height": 1270,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 16,
+    "y": 80,
+    "w": 358,
+    "h": 32
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 60,
+    "w": 390,
+    "h": 1162
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 0,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:43455/index.html",
+  "final_url": "http://127.0.0.1:43455/index.html",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43455/index.html",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - button\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Час, що пахне літом\" [level=1]\n  - paragraph: Ми робимо те, що ми робимо, вже сорок років. Заходьте, розгляньтеся.\n  - img \"Загальний вигляд пасіки в горах\"\n  - paragraph:\n    - link \"Подивитися\":\n      - /url: kataloh.html\n  - list:\n    - listitem:\n      - img \"Банка гречаного меду\"\n      - heading \"Мед КМ-12\" [level=3]\n    - listitem:\n      - img \"Набір для початківця\"\n      - heading \"Набір Ф-2\" [level=3]\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/index-html/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/index-html/390x844/fullpage.png",
+      "width_px": 780,
+      "height_px": 2540,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 186,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/index-html/390x844/capture.json",
+    "network": "pages/index-html/390x844/network.json",
+    "axe": "pages/index-html/390x844/axe.json",
+    "dir": "pages/index-html/390x844"
+  }
+}

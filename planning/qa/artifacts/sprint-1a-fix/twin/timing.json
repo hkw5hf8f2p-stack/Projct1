@@ -1,0 +1,164 @@
+{
+  "index-html": {
+    "D": {
+      "dom_content_loaded_ms": 107.69999999925494,
+      "load_ms": 130,
+      "first_paint_ms": 104,
+      "fcp_ms": 104,
+      "resource_count": 5,
+      "transfer_bytes": 9605265
+    },
+    "M": {
+      "dom_content_loaded_ms": 67.89999999850988,
+      "load_ms": 100.29999999888241,
+      "first_paint_ms": 116,
+      "fcp_ms": 116,
+      "resource_count": 5,
+      "transfer_bytes": 9605265
+    }
+  },
+  "kataloh-html": {
+    "D": {
+      "dom_content_loaded_ms": 62.100000001490116,
+      "load_ms": 62.100000001490116,
+      "first_paint_ms": 80,
+      "fcp_ms": 80,
+      "resource_count": 7,
+      "transfer_bytes": 8932
+    },
+    "M": {
+      "dom_content_loaded_ms": 42.80000000074506,
+      "load_ms": 43.59999999962747,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 7,
+      "transfer_bytes": 8932
+    }
+  },
+  "tovar-ramka-435-html": {
+    "D": {
+      "dom_content_loaded_ms": 29.5,
+      "load_ms": 30.40000000037253,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 3,
+      "transfer_bytes": 6579
+    },
+    "M": {
+      "dom_content_loaded_ms": 32.29999999888241,
+      "load_ms": 33.29999999888241,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 3,
+      "transfer_bytes": 6579
+    }
+  },
+  "tovar-ramka-435r-html": {
+    "D": {
+      "dom_content_loaded_ms": 31.09999999962747,
+      "load_ms": 32.09999999962747,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 3,
+      "transfer_bytes": 6610
+    },
+    "M": {
+      "dom_content_loaded_ms": 49,
+      "load_ms": 49.09999999962747,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 3,
+      "transfer_bytes": 6610
+    }
+  },
+  "pro-nas-html": {
+    "D": {
+      "dom_content_loaded_ms": 29.100000001490116,
+      "load_ms": 30.100000001490116,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 3,
+      "transfer_bytes": 5750
+    },
+    "M": {
+      "dom_content_loaded_ms": 29.90000000037253,
+      "load_ms": 30.5,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 3,
+      "transfer_bytes": 5750
+    }
+  },
+  "kosh-html": {
+    "D": {
+      "dom_content_loaded_ms": 24.699999999254942,
+      "load_ms": 25.799999998882413,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    },
+    "M": {
+      "dom_content_loaded_ms": 26.300000000745058,
+      "load_ms": 27.40000000037253,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    }
+  },
+  "umovy-html": {
+    "D": {
+      "dom_content_loaded_ms": 33.79999999888241,
+      "load_ms": 33.90000000037253,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 2,
+      "transfer_bytes": 5243
+    },
+    "M": {
+      "dom_content_loaded_ms": 33,
+      "load_ms": 33.09999999962747,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 2,
+      "transfer_bytes": 5243
+    }
+  },
+  "kosh-html-t-a": {
+    "D": {
+      "dom_content_loaded_ms": 36.40000000037253,
+      "load_ms": 36.5,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    },
+    "M": {
+      "dom_content_loaded_ms": 38.20000000111759,
+      "load_ms": 38.30000000074506,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    }
+  },
+  "kosh-html-t-b": {
+    "D": {
+      "dom_content_loaded_ms": 26.700000001117587,
+      "load_ms": 27.90000000037253,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    },
+    "M": {
+      "dom_content_loaded_ms": 23.399999998509884,
+      "load_ms": 24.199999999254942,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 2,
+      "transfer_bytes": 5359
+    }
+  }
+}

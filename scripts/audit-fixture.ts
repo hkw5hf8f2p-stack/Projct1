@@ -1,7 +1,8 @@
 /**
  * pnpm run audit:fixture — прогін crawl + детекторів S1a на фікстурах і зведення PASS/FAIL за критеріями виходу.
  * Запуск (пісочниця Chromium не стартує під root, DEV-25): bash scripts/run-as-sitelens.sh pnpm run audit:fixture
- * Пише в planning/qa/artifacts/sprint-1a/{shop,shop-clean,mutants/M*,controls/*}/ і summary.json.
+ * Пише в <out-dir>/{shop,shop-clean,mutants/M*,controls/*}/ і summary.json. За замовчуванням out-dir = planning/qa/artifacts/sprint-1a-fix
+ * (sprint-1a/ — історичні артефакти S1a, не перезаписуються); змінити: `--out-dir <шлях>` або AUDIT_OUT_DIR.
  */
 import { existsSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import os from "node:os";
@@ -13,7 +14,8 @@ import type { Mutant } from "../fixtures/shop/server.js";
 import { auditFixture, launchForFixtures, runDenyListTest, runNonGetTest, sha, writeJson } from "./fixture-harness.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1a");
+const argOut = process.argv.indexOf("--out-dir") >= 0 ? process.argv[process.argv.indexOf("--out-dir") + 1] : undefined;
+const ART = path.resolve(ROOT, argOut ?? process.env["AUDIT_OUT_DIR"] ?? "planning/qa/artifacts/sprint-1a-fix");
 const SHOP_PORT = 4210;
 const CLEAN_PORT = 4211;
 const AUX_PORT = 4212;
@@ -118,6 +120,9 @@ try {
     non_get: nonGet,
     deny_list: deny,
     controls,
+    page_types: { shop: shop.result.captures.map((p) => [p.path, p.page_type, p.page_type_reason]), clean: clean.result.captures.map((p) => [p.path, p.page_type, p.page_type_reason]) },
+    coverage: { shop: shop.result.coverage, clean: clean.result.coverage },
+    axe_groups: { shop: shop.result.axe_groups.length, shop_instances: shop.result.axe_groups.reduce((a, g) => a + g.instances, 0) },
     crawl: {
       shop_pages: shop.result.captures.length,
       shop_order: shop.result.crawl.log.map((l) => `${l.depth}:${l.class}:${new URL(l.url).pathname}`),

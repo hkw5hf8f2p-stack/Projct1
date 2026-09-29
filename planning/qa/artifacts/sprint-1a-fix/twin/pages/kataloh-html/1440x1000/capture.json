@@ -1,0 +1,840 @@
+{
+  "title": "Що у нас є — Пасіка «Верховина»",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Що у нас є"
+    },
+    {
+      "level": 3,
+      "text": "Рамка ДБ-435 ВЛ розс."
+    },
+    {
+      "level": 3,
+      "text": "Рамка ДБ-435 ВЛ розс. Р"
+    },
+    {
+      "level": 3,
+      "text": "Мед КМ-12 зб."
+    },
+    {
+      "level": 3,
+      "text": "Дим. апарат ДА-3 нерж."
+    },
+    {
+      "level": 3,
+      "text": "Набір Ф-2 ДНЗ/8р"
+    }
+  ],
+  "links": [
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Верховина",
+      "name": "Верховина",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 24,
+        "w": 194,
+        "h": 34
+      },
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Початок",
+      "name": "Початок",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 86,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(1) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kataloh.html",
+      "abs": "http://127.0.0.1:43455/kataloh.html",
+      "text": "Що у нас є",
+      "name": "Що у нас є",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 130,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(2) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Хто ми",
+      "name": "Хто ми",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 174,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(3) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kosh.html",
+      "abs": "http://127.0.0.1:43455/kosh.html",
+      "text": "Кошик",
+      "name": "Кошик",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 241,
+        "w": 194,
+        "h": 25
+      },
+      "selector": "#kosh-lnk",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "tovar-ramka-435.html",
+      "abs": "http://127.0.0.1:43455/tovar-ramka-435.html",
+      "text": "",
+      "name": "",
+      "visible": true,
+      "rect": {
+        "x": 287,
+        "y": 243,
+        "w": 265,
+        "h": 198
+      },
+      "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "tovar-ramka-435.html",
+      "abs": "http://127.0.0.1:43455/tovar-ramka-435.html",
+      "text": "Докладніше",
+      "name": "Докладніше",
+      "visible": true,
+      "rect": {
+        "x": 287,
+        "y": 485,
+        "w": 82,
+        "h": 17
+      },
+      "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "tovar-ramka-435r.html",
+      "abs": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+      "text": "",
+      "name": "",
+      "visible": true,
+      "rect": {
+        "x": 598,
+        "y": 243,
+        "w": 265,
+        "h": 199
+      },
+      "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(1)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": true,
+      "has_counter": false
+    },
+    {
+      "href": "tovar-ramka-435r.html",
+      "abs": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+      "text": "Докладніше",
+      "name": "Докладніше",
+      "visible": true,
+      "rect": {
+        "x": 598,
+        "y": 485,
+        "w": 82,
+        "h": 17
+      },
+      "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(2)",
+      "landmark": "main",
+      "in_card": true,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "umovy.html",
+      "abs": "http://127.0.0.1:43455/umovy.html",
+      "text": "Умови",
+      "name": "Умови",
+      "visible": true,
+      "rect": {
+        "x": 44,
+        "y": 1020,
+        "w": 36,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Пасіка «Верховина», Закарпаття",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "visible": true,
+      "rect": {
+        "x": 91,
+        "y": 1020,
+        "w": 179,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "#liva-panel > button",
+      "name": "",
+      "type": "button",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(1) > img",
+      "src": "img/ramka-a.svg",
+      "current_src": "http://127.0.0.1:43455/img/ramka-a.svg",
+      "alt": null,
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 287,
+        "y": 243,
+        "w": 265,
+        "h": 198
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(1) > img",
+      "src": "img/ramka-b.svg",
+      "current_src": "http://127.0.0.1:43455/img/ramka-b.svg",
+      "alt": null,
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 598,
+        "y": 243,
+        "w": 265,
+        "h": 199
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": true
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(3) > img",
+      "src": "img/med-grechka.svg",
+      "current_src": "http://127.0.0.1:43455/img/med-grechka.svg",
+      "alt": "",
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 908,
+        "y": 243,
+        "w": 265,
+        "h": 198
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(4) > img",
+      "src": "img/dymar.svg",
+      "current_src": "http://127.0.0.1:43455/img/dymar.svg",
+      "alt": null,
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 287,
+        "y": 552,
+        "w": 265,
+        "h": 198
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(5) > img",
+      "src": "img/nabir.svg",
+      "current_src": "http://127.0.0.1:43455/img/nabir.svg",
+      "alt": "Набір",
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 598,
+        "y": 552,
+        "w": 265,
+        "h": 199
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nЩо у нас є\n\nРамки, мед, дим і решта.\n\nРамки та вулики\nМед і продукти бджільництва\nОбладнання для диму\nНабори для початківців\nІнструмент\nРамка ДБ-435 ВЛ розс.\nДокладніше\nРамка ДБ-435 ВЛ розс. Р\nДокладніше\nМед КМ-12 зб.\nДим. апарат ДА-3 нерж.\nНабір Ф-2 ДНЗ/8р\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+  "text_nodes": [
+    {
+      "t": "Верховина",
+      "a": true
+    },
+    {
+      "t": "Початок",
+      "a": true
+    },
+    {
+      "t": "Що у нас є",
+      "a": true
+    },
+    {
+      "t": "Хто ми",
+      "a": true
+    },
+    {
+      "t": "Кошик",
+      "a": true
+    },
+    {
+      "t": "Що у нас є",
+      "a": false
+    },
+    {
+      "t": "Рамки, мед, дим і решта.",
+      "a": false
+    },
+    {
+      "t": "Рамки та вулики",
+      "a": false
+    },
+    {
+      "t": "Мед і продукти бджільництва",
+      "a": false
+    },
+    {
+      "t": "Обладнання для диму",
+      "a": false
+    },
+    {
+      "t": "Набори для початківців",
+      "a": false
+    },
+    {
+      "t": "Інструмент",
+      "a": false
+    },
+    {
+      "t": "Рамка ДБ-435 ВЛ розс.",
+      "a": false
+    },
+    {
+      "t": "Докладніше",
+      "a": true
+    },
+    {
+      "t": "Рамка ДБ-435 ВЛ розс. Р",
+      "a": false
+    },
+    {
+      "t": "Докладніше",
+      "a": true
+    },
+    {
+      "t": "Мед КМ-12 зб.",
+      "a": false
+    },
+    {
+      "t": "Дим. апарат ДА-3 нерж.",
+      "a": false
+    },
+    {
+      "t": "Набір Ф-2 ДНЗ/8р",
+      "a": false
+    },
+    {
+      "t": "Умови",
+      "a": true
+    },
+    {
+      "t": "·",
+      "a": false
+    },
+    {
+      "t": "Пасіка «Верховина», Закарпаття",
+      "a": true
+    },
+    {
+      "t": "· © 2026",
+      "a": false
+    }
+  ],
+  "fv_text": "Верховина Початок Що у нас є Хто ми Кошик Що у нас є Рамки, мед, дим і решта. Рамки та вулики Мед і продукти бджільництва Обладнання для диму Набори для початківців Інструмент Рамка ДБ-435 ВЛ розс. Докладніше Рамка ДБ-435 ВЛ розс. Р Докладніше Мед КМ-12 зб. Дим. апарат ДА-3 нерж. Набір Ф-2 ДНЗ/8р",
+  "interactive": [
+    {
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Верховина",
+      "rect": {
+        "x": 18,
+        "y": 24,
+        "w": 194,
+        "h": 34
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/index.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 22,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Початок",
+      "rect": {
+        "x": 18,
+        "y": 86,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/index.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Що у нас є",
+      "rect": {
+        "x": 18,
+        "y": 130,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kataloh.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(3) > a",
+      "tag": "a",
+      "name": "Хто ми",
+      "rect": {
+        "x": 18,
+        "y": 174,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/pro-nas.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#kosh-lnk",
+      "tag": "a",
+      "name": "Кошик",
+      "rect": {
+        "x": 18,
+        "y": 241,
+        "w": 194,
+        "h": 25
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kosh.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "",
+      "rect": {
+        "x": 287,
+        "y": 243,
+        "w": 265,
+        "h": 198
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/tovar-ramka-435.html",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(1) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Докладніше",
+      "rect": {
+        "x": 287,
+        "y": 485,
+        "w": 82,
+        "h": 17
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/tovar-ramka-435.html",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "",
+      "rect": {
+        "x": 598,
+        "y": 243,
+        "w": 265,
+        "h": 199
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "#tilo > ul > li:nth-of-type(2) > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Докладніше",
+      "rect": {
+        "x": 598,
+        "y": 485,
+        "w": 82,
+        "h": 17
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+      "nav_target": false,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": true,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Умови",
+      "rect": {
+        "x": 44,
+        "y": 1020,
+        "w": 36,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/umovy.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "rect": {
+        "x": 91,
+        "y": 1020,
+        "w": 179,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/pro-nas.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 1056,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 274,
+    "y": 36,
+    "w": 912,
+    "h": 46
+  },
+  "main_rect": {
+    "x": 230,
+    "y": 0,
+    "w": 1000,
+    "h": 1000
+  },
+  "card_groups": [
+    {
+      "signature": "li(a(img(),),h3(),a(),)",
+      "count": 2,
+      "rect": {
+        "x": 274,
+        "y": 230,
+        "w": 602,
+        "h": 290
+      },
+      "nodes": [
+        {
+          "x": 274,
+          "y": 230,
+          "w": 291,
+          "h": 290
+        },
+        {
+          "x": 585,
+          "y": 230,
+          "w": 291,
+          "h": 290
+        }
+      ],
+      "with_img": 2,
+      "with_price": 0,
+      "urls": [
+        "http://127.0.0.1:43455/tovar-ramka-435.html",
+        "http://127.0.0.1:43455/tovar-ramka-435r.html"
+      ],
+      "names": [
+        "Рамка ДБ-435 ВЛ розс.",
+        "Рамка ДБ-435 ВЛ розс. Р"
+      ]
+    }
+  ],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 0,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "http://127.0.0.1:43455/kataloh.html",
+  "final_url": "http://127.0.0.1:43455/kataloh.html",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43455/kataloh.html",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Що у нас є\" [level=1]\n  - paragraph: Рамки, мед, дим і решта.\n  - text: Рамки та вулики Мед і продукти бджільництва Обладнання для диму Набори для початківців Інструмент\n  - list:\n    - listitem:\n      - link:\n        - /url: tovar-ramka-435.html\n        - img\n      - heading \"Рамка ДБ-435 ВЛ розс.\" [level=3]\n      - link \"Докладніше\":\n        - /url: tovar-ramka-435.html\n    - listitem:\n      - link:\n        - /url: tovar-ramka-435r.html\n        - img\n      - heading \"Рамка ДБ-435 ВЛ розс. Р\" [level=3]\n      - link \"Докладніше\":\n        - /url: tovar-ramka-435r.html\n    - listitem:\n      - heading \"Мед КМ-12 зб.\" [level=3]\n    - listitem:\n      - img\n      - heading \"Дим. апарат ДА-3 нерж.\" [level=3]\n    - listitem:\n      - img \"Набір\"\n      - heading \"Набір Ф-2 ДНЗ/8р\" [level=3]\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/kataloh-html/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/kataloh-html/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 1056,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 347,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/kataloh-html/1440x1000/capture.json",
+    "network": "pages/kataloh-html/1440x1000/network.json",
+    "axe": "pages/kataloh-html/1440x1000/axe.json",
+    "dir": "pages/kataloh-html/1440x1000"
+  }
+}

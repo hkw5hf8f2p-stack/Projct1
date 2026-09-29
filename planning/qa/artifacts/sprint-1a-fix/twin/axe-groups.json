@@ -1,0 +1,541 @@
+[
+  {
+    "rule": "button-name",
+    "page_group": "*",
+    "component": "nav/button",
+    "instances": 9,
+    "impact": "critical",
+    "viewports": [
+      "M"
+    ],
+    "pages": [
+      "/index.html",
+      "/kataloh.html",
+      "/kosh.html",
+      "/kosh.html?t=a",
+      "/kosh.html?t=b",
+      "/pro-nas.html",
+      "/tovar-ramka-435.html",
+      "/tovar-ramka-435r.html",
+      "/umovy.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_3daec8f3d6f3",
+        "page": "/index.html",
+        "viewport": "M",
+        "selector": "button",
+        "excerpt": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat"
+      },
+      {
+        "evidence_id": "ev_95a344c18c12",
+        "page": "/kataloh.html",
+        "viewport": "M",
+        "selector": "button",
+        "excerpt": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat"
+      },
+      {
+        "evidence_id": "ev_c157425d5780",
+        "page": "/tovar-ramka-435.html",
+        "viewport": "M",
+        "selector": "button",
+        "excerpt": "button — <button class=\"tgl\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" stroke=\"#f3e6c8\" stroke-width=\"2\"></pat"
+      }
+    ],
+    "evidence_ids": [
+      "ev_153d8fd1dbc6",
+      "ev_19fa30484491",
+      "ev_371ca92f4084",
+      "ev_3daec8f3d6f3",
+      "ev_7ce5ed8eb7d6",
+      "ev_95a344c18c12",
+      "ev_a6ee8515df69",
+      "ev_c157425d5780",
+      "ev_eeb09580cc36"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "*",
+    "component": "footer/a [#8a7c68/#efe4c6]",
+    "instances": 36,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/index.html",
+      "/kataloh.html",
+      "/kosh.html",
+      "/kosh.html?t=a",
+      "/kosh.html?t=b",
+      "/pro-nas.html",
+      "/tovar-ramka-435.html",
+      "/tovar-ramka-435r.html",
+      "/umovy.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_4e3ca49925c7",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": "a[href$=\"umovy.html\"]",
+        "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68,"
+      },
+      {
+        "evidence_id": "ev_d7768e012f2b",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": "footer > a[href$=\"pro-nas.html\"]",
+        "excerpt": "footer > a[href$=\"pro-nas.html\"] — <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> — Fix any of the following:\n  Element has insufficient color contra"
+      },
+      {
+        "evidence_id": "ev_bf19ed95e8f7",
+        "page": "/index.html",
+        "viewport": "M",
+        "selector": "a[href$=\"umovy.html\"]",
+        "excerpt": "a[href$=\"umovy.html\"] — <a href=\"umovy.html\">Умови</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68,"
+      }
+    ],
+    "evidence_ids": [
+      "ev_02f28c4a8b75",
+      "ev_10b9b9169f2f",
+      "ev_1c4a13cb3dc3",
+      "ev_238f08b5396e",
+      "ev_23df32c6769a",
+      "ev_2cd02b4672c5",
+      "ev_363e27d3fea8",
+      "ev_4b95c4a6699e",
+      "ev_4e3ca49925c7",
+      "ev_50bc5384d16c",
+      "ev_5c2f4251b143",
+      "ev_5c3e2e766b52",
+      "ev_5d9997248de3",
+      "ev_5fae58c9af1e",
+      "ev_6aa8fb2a9574",
+      "ev_7b8ce2f82f45",
+      "ev_7d29646a4b5f",
+      "ev_82b91045a15e",
+      "ev_90b251191de0",
+      "ev_9522fd7a0260",
+      "ev_9f8ba92434b1",
+      "ev_a94ffcdc9280",
+      "ev_a9bd23d6807f",
+      "ev_afeb05e8b572",
+      "ev_b0b83efe2f6d",
+      "ev_b5d1794b8224",
+      "ev_b72cfe0451b2",
+      "ev_bf19ed95e8f7",
+      "ev_c2195bf619e9",
+      "ev_c2e424e08688",
+      "ev_c9e3e1f8efd6",
+      "ev_cc0fdb6dc1e6",
+      "ev_d7768e012f2b",
+      "ev_dd20af92b25b",
+      "ev_f20ea3bf98dc",
+      "ev_fb2329bf7b17"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "*",
+    "component": "footer/footer [#8a7c68/#efe4c6]",
+    "instances": 18,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/index.html",
+      "/kataloh.html",
+      "/kosh.html",
+      "/kosh.html?t=a",
+      "/kosh.html?t=b",
+      "/pro-nas.html",
+      "/tovar-ramka-435.html",
+      "/tovar-ramka-435r.html",
+      "/umovy.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_fb97c023b9a2",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": "footer",
+        "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer> — Fix any of the fo"
+      },
+      {
+        "evidence_id": "ev_71eaefed5bbe",
+        "page": "/index.html",
+        "viewport": "M",
+        "selector": "footer",
+        "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer> — Fix any of the fo"
+      },
+      {
+        "evidence_id": "ev_3326e9f759f0",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "footer",
+        "excerpt": "footer — <footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer> — Fix any of the fo"
+      }
+    ],
+    "evidence_ids": [
+      "ev_00ae0c77b146",
+      "ev_1d8b9c5929bc",
+      "ev_3326e9f759f0",
+      "ev_43b6c1ce13f0",
+      "ev_45a184b9d38a",
+      "ev_46c278a104e4",
+      "ev_4de2318edf1d",
+      "ev_50d8111c036c",
+      "ev_6fbb7222d4f1",
+      "ev_71eaefed5bbe",
+      "ev_7517644b15ed",
+      "ev_9f17016923bd",
+      "ev_c9ddcbbb2e46",
+      "ev_d250df56f0d3",
+      "ev_dadbf46d55c8",
+      "ev_f0a222f122c9",
+      "ev_fb97c023b9a2",
+      "ev_fbbaa3777b6c"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "*",
+    "component": "nav/span [#0000ee/#3d2b1f]",
+    "instances": 9,
+    "impact": "serious",
+    "viewports": [
+      "D"
+    ],
+    "pages": [
+      "/index.html",
+      "/kataloh.html",
+      "/kosh.html",
+      "/kosh.html?t=a",
+      "/kosh.html?t=b",
+      "/pro-nas.html",
+      "/tovar-ramka-435.html",
+      "/tovar-ramka-435r.html",
+      "/umovy.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_d095abde23f9",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": "span",
+        "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, background color: #3d2b1f, f"
+      },
+      {
+        "evidence_id": "ev_ef130947ec53",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "#kosh-lnk > span",
+        "excerpt": "#kosh-lnk > span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, background color"
+      },
+      {
+        "evidence_id": "ev_cf7a88237bf3",
+        "page": "/tovar-ramka-435.html",
+        "viewport": "D",
+        "selector": "span",
+        "excerpt": "span — <span>Кошик</span> — Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, background color: #3d2b1f, f"
+      }
+    ],
+    "evidence_ids": [
+      "ev_5405adde494e",
+      "ev_7dcc14f42b99",
+      "ev_95936601fb10",
+      "ev_ac8e88fd51ba",
+      "ev_cf7a88237bf3",
+      "ev_d095abde23f9",
+      "ev_da0111fce282",
+      "ev_db6ddf7424d3",
+      "ev_ef130947ec53"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "/index.html",
+    "component": "main/a [#ffffff/#b8720f]",
+    "instances": 2,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/index.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_0bed7c22b45b",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"kataloh.html\">Подивитися</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #fffff"
+      },
+      {
+        "evidence_id": "ev_5c779e026608",
+        "page": "/index.html",
+        "viewport": "M",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"kataloh.html\">Подивитися</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #fffff"
+      }
+    ],
+    "evidence_ids": [
+      "ev_0bed7c22b45b",
+      "ev_5c779e026608"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "/kosh.html",
+    "component": "main/a [#ffffff/#b8720f]",
+    "instances": 6,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/kosh.html",
+      "/kosh.html?t=a",
+      "/kosh.html?t=b"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_36e3104c0769",
+        "page": "/kosh.html",
+        "viewport": "D",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, b"
+      },
+      {
+        "evidence_id": "ev_7b06188d36b8",
+        "page": "/kosh.html",
+        "viewport": "M",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, b"
+      },
+      {
+        "evidence_id": "ev_2d8c36dbb8e8",
+        "page": "/kosh.html?t=a",
+        "viewport": "D",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"umovy.html\">Оформити</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, b"
+      }
+    ],
+    "evidence_ids": [
+      "ev_2d8c36dbb8e8",
+      "ev_30a4d2c051c3",
+      "ev_36e3104c0769",
+      "ev_7b06188d36b8",
+      "ev_c8d85a939765",
+      "ev_ebf2ce2b6eaf"
+    ]
+  },
+  {
+    "rule": "color-contrast",
+    "page_group": "product",
+    "component": "main/a [#ffffff/#b8720f]",
+    "instances": 4,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/tovar-ramka-435.html",
+      "/tovar-ramka-435r.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_197853229af2",
+        "page": "/tovar-ramka-435.html",
+        "viewport": "D",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=a\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, "
+      },
+      {
+        "evidence_id": "ev_e94e204869d4",
+        "page": "/tovar-ramka-435.html",
+        "viewport": "M",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=a\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, "
+      },
+      {
+        "evidence_id": "ev_2abdcf415e6d",
+        "page": "/tovar-ramka-435r.html",
+        "viewport": "D",
+        "selector": ".dia",
+        "excerpt": ".dia — <a class=\"dia\" href=\"kosh.html?t=b\">Обрати</a> — Fix any of the following:\n  Element has insufficient color contrast of 3.85 (foreground color: #ffffff, "
+      }
+    ],
+    "evidence_ids": [
+      "ev_0f4989f49f44",
+      "ev_197853229af2",
+      "ev_2abdcf415e6d",
+      "ev_e94e204869d4"
+    ]
+  },
+  {
+    "rule": "heading-order",
+    "page_group": "/index.html",
+    "component": "main/h3",
+    "instances": 2,
+    "impact": "moderate",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/index.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_552703ff4bcf",
+        "page": "/index.html",
+        "viewport": "D",
+        "selector": ".kartka:nth-child(1) > h3",
+        "excerpt": ".kartka:nth-child(1) > h3 — <h3>Мед КМ-12</h3> — Fix any of the following:\n  Heading order invalid"
+      },
+      {
+        "evidence_id": "ev_c41866a4540e",
+        "page": "/index.html",
+        "viewport": "M",
+        "selector": ".kartka:nth-child(1) > h3",
+        "excerpt": ".kartka:nth-child(1) > h3 — <h3>Мед КМ-12</h3> — Fix any of the following:\n  Heading order invalid"
+      }
+    ],
+    "evidence_ids": [
+      "ev_552703ff4bcf",
+      "ev_c41866a4540e"
+    ]
+  },
+  {
+    "rule": "heading-order",
+    "page_group": "category",
+    "component": "main/h3",
+    "instances": 2,
+    "impact": "moderate",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/kataloh.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_6e7180530247",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": ".kartka:nth-child(1) > h3",
+        "excerpt": ".kartka:nth-child(1) > h3 — <h3>Рамка ДБ-435 ВЛ розс.</h3> — Fix any of the following:\n  Heading order invalid"
+      },
+      {
+        "evidence_id": "ev_8d4695cf2a34",
+        "page": "/kataloh.html",
+        "viewport": "M",
+        "selector": ".kartka:nth-child(1) > h3",
+        "excerpt": ".kartka:nth-child(1) > h3 — <h3>Рамка ДБ-435 ВЛ розс.</h3> — Fix any of the following:\n  Heading order invalid"
+      }
+    ],
+    "evidence_ids": [
+      "ev_6e7180530247",
+      "ev_8d4695cf2a34"
+    ]
+  },
+  {
+    "rule": "image-alt",
+    "page_group": "category",
+    "component": "main/img",
+    "instances": 6,
+    "impact": "critical",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/kataloh.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_91463d302360",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "img[src$=\"dymar.svg\"]",
+        "excerpt": "img[src$=\"dymar.svg\"] — <img src=\"img/dymar.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or "
+      },
+      {
+        "evidence_id": "ev_365806a46eca",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "img[src$=\"ramka-a.svg\"]",
+        "excerpt": "img[src$=\"ramka-a.svg\"] — <img src=\"img/ramka-a.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist"
+      },
+      {
+        "evidence_id": "ev_684cd485f8a2",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "img[src$=\"ramka-b.svg\"]",
+        "excerpt": "img[src$=\"ramka-b.svg\"] — <img src=\"img/ramka-b.svg\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist"
+      }
+    ],
+    "evidence_ids": [
+      "ev_164c8b081e2f",
+      "ev_365806a46eca",
+      "ev_684cd485f8a2",
+      "ev_752b79dbbb75",
+      "ev_91463d302360",
+      "ev_beaa34359c2e"
+    ]
+  },
+  {
+    "rule": "link-name",
+    "page_group": "category",
+    "component": "main/a",
+    "instances": 4,
+    "impact": "serious",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/kataloh.html"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_caa51efe0cb7",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1)",
+        "excerpt": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1) — <a href=\"tovar-ramka-435.html\"><img src=\"img/ramka-a.svg\"></a> — Fix all of the following:\n  Element is in tab or"
+      },
+      {
+        "evidence_id": "ev_a9f5811ea000",
+        "page": "/kataloh.html",
+        "viewport": "D",
+        "selector": "a[href$=\"tovar-ramka-435r.html\"]:nth-child(1)",
+        "excerpt": "a[href$=\"tovar-ramka-435r.html\"]:nth-child(1) — <a href=\"tovar-ramka-435r.html\"><img src=\"img/ramka-b.svg\"></a> — Fix all of the following:\n  Element is in tab "
+      },
+      {
+        "evidence_id": "ev_af930c0743cf",
+        "page": "/kataloh.html",
+        "viewport": "M",
+        "selector": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1)",
+        "excerpt": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1) — <a href=\"tovar-ramka-435.html\"><img src=\"img/ramka-a.svg\"></a> — Fix all of the following:\n  Element is in tab or"
+      }
+    ],
+    "evidence_ids": [
+      "ev_a9f5811ea000",
+      "ev_af930c0743cf",
+      "ev_caa51efe0cb7",
+      "ev_e5d12ad8591c"
+    ]
+  }
+]

@@ -1,0 +1,200 @@
+{
+  "index": {
+    "D": {
+      "dom_content_loaded_ms": 46.19999999925494,
+      "load_ms": 46.40000000037253,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 1,
+      "transfer_bytes": 1705832
+    },
+    "M": {
+      "dom_content_loaded_ms": 23.5,
+      "load_ms": 38.100000001490116,
+      "first_paint_ms": 32,
+      "fcp_ms": 32,
+      "resource_count": 1,
+      "transfer_bytes": 1705832
+    }
+  },
+  "catalog": {
+    "D": {
+      "dom_content_loaded_ms": 24.90000000037253,
+      "load_ms": 36.30000000074506,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 3,
+      "transfer_bytes": 8189
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.90000000037253,
+      "load_ms": 37.40000000037253,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
+      "resource_count": 3,
+      "transfer_bytes": 8189
+    }
+  },
+  "product-aquapro-x200": {
+    "D": {
+      "dom_content_loaded_ms": 107.80000000074506,
+      "load_ms": 116,
+      "first_paint_ms": 144,
+      "fcp_ms": 144,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.59999999962747,
+      "load_ms": 27.59999999962747,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    }
+  },
+  "product-aquapro-x220": {
+    "D": {
+      "dom_content_loaded_ms": 14.599999999627471,
+      "load_ms": 26.40000000037253,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    },
+    "M": {
+      "dom_content_loaded_ms": 27.59999999962747,
+      "load_ms": 28,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    }
+  },
+  "product-softline-s1": {
+    "D": {
+      "dom_content_loaded_ms": 32,
+      "load_ms": 32.5,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 1,
+      "transfer_bytes": 8053
+    },
+    "M": {
+      "dom_content_loaded_ms": 30.59999999962747,
+      "load_ms": 30.800000000745058,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 1,
+      "transfer_bytes": 8053
+    }
+  },
+  "help": {
+    "D": {
+      "dom_content_loaded_ms": 24.600000001490116,
+      "load_ms": 24.600000001490116,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 0,
+      "transfer_bytes": 5226
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.800000000745058,
+      "load_ms": 17.800000000745058,
+      "first_paint_ms": 32,
+      "fcp_ms": 32,
+      "resource_count": 0,
+      "transfer_bytes": 5226
+    }
+  },
+  "help-shipping": {
+    "D": {
+      "dom_content_loaded_ms": 16.59999999962747,
+      "load_ms": 17.300000000745058,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 0,
+      "transfer_bytes": 5237
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.199999999254942,
+      "load_ms": 17.899999998509884,
+      "first_paint_ms": 32,
+      "fcp_ms": 32,
+      "resource_count": 0,
+      "transfer_bytes": 5237
+    }
+  },
+  "about": {
+    "D": {
+      "dom_content_loaded_ms": 19.40000000037253,
+      "load_ms": 20.300000000745058,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 0,
+      "transfer_bytes": 5468
+    },
+    "M": {
+      "dom_content_loaded_ms": 18.09999999962747,
+      "load_ms": 19.700000001117587,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 0,
+      "transfer_bytes": 5468
+    }
+  },
+  "product-aquapro-x200-configure": {
+    "D": {
+      "dom_content_loaded_ms": 16.90000000037253,
+      "load_ms": 17.5,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    },
+    "M": {
+      "dom_content_loaded_ms": 19.699999999254942,
+      "load_ms": 19.699999999254942,
+      "first_paint_ms": 32,
+      "fcp_ms": 32,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    }
+  },
+  "product-aquapro-x220-configure": {
+    "D": {
+      "dom_content_loaded_ms": 21.59999999962747,
+      "load_ms": 22.699999999254942,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.199999999254942,
+      "load_ms": 18.199999999254942,
+      "first_paint_ms": 36,
+      "fcp_ms": 36,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    }
+  },
+  "product-softline-s1-configure": {
+    "D": {
+      "dom_content_loaded_ms": 17.59999999962747,
+      "load_ms": 18.40000000037253,
+      "first_paint_ms": 44,
+      "fcp_ms": 44,
+      "resource_count": 0,
+      "transfer_bytes": 5346
+    },
+    "M": {
+      "dom_content_loaded_ms": 17.300000000745058,
+      "load_ms": 18.09999999962747,
+      "first_paint_ms": 32,
+      "fcp_ms": 32,
+      "resource_count": 0,
+      "transfer_bytes": 5346
+    }
+  }
+}

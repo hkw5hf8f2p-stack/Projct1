@@ -1,0 +1,812 @@
+{
+  "schema": "sitelens-audit-summary/v1",
+  "scoring_version": "scoring-v1",
+  "fixture_expected": "fixtures/shop/EXPECTED.json",
+  "deterministic_defects": {
+    "found": 7,
+    "of": 7,
+    "results": [
+      {
+        "id": 1,
+        "spec_ref": "§53.1",
+        "detector": "h1_category_overlap",
+        "status": "SKIP",
+        "checks": {},
+        "failures": [
+          "LLM/гібрид: deferred to live pass (опорний детектор не входить у 7)"
+        ],
+        "evidence_count": 0,
+        "evidence_ids": []
+      },
+      {
+        "id": 2,
+        "spec_ref": "§53.2",
+        "detector": "shipping_depth",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 3,
+        "evidence_ids": [
+          "ev_cb087a9b31d4",
+          "ev_d3b1fd1d5b00",
+          "ev_f120b619357a"
+        ]
+      },
+      {
+        "id": 3,
+        "spec_ref": "§53.3",
+        "detector": "term_unexplained",
+        "status": "SKIP",
+        "checks": {},
+        "failures": [
+          "LLM/гібрид: deferred to live pass (опорний детектор не входить у 7)"
+        ],
+        "evidence_count": 0,
+        "evidence_ids": []
+      },
+      {
+        "id": 4,
+        "spec_ref": "§53.4",
+        "detector": "similar_products",
+        "status": "SKIP",
+        "checks": {},
+        "failures": [
+          "LLM/гібрид: deferred to live pass (опорний детектор не входить у 7)"
+        ],
+        "evidence_count": 0,
+        "evidence_ids": []
+      },
+      {
+        "id": 5,
+        "spec_ref": "§53.5",
+        "detector": "cta_below_fold",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_D": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 6,
+        "evidence_ids": [
+          "ev_6e93fb9b4ca8",
+          "ev_84d76ad92bde",
+          "ev_90fa85f3f031",
+          "ev_9467f18511ff",
+          "ev_a679645bd500",
+          "ev_f080ee1bb7d9"
+        ]
+      },
+      {
+        "id": 6,
+        "spec_ref": "§53.6",
+        "detector": "axe:button-name|axe:link-name|axe:label",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 11,
+        "evidence_ids": [
+          "ev_24e97e6d978d",
+          "ev_2ef2188d2e5f",
+          "ev_316027a111ca",
+          "ev_38261f3d6368",
+          "ev_4d0c402da9ad",
+          "ev_6a675d10c7f7",
+          "ev_7b93f04f4d2f",
+          "ev_b38341a5da2b",
+          "ev_cf975b2c2b6e",
+          "ev_df1efa72eec3",
+          "ev_e3a6f7d286da"
+        ]
+      },
+      {
+        "id": 7,
+        "spec_ref": "§53.7",
+        "detector": "horizontal_overflow",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 1,
+        "evidence_ids": [
+          "ev_da1aa8e5315b"
+        ]
+      },
+      {
+        "id": 8,
+        "spec_ref": "§53.8",
+        "detector": "oversized_image",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_D": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 2,
+        "evidence_ids": [
+          "ev_0fcc40c9006f",
+          "ev_e130204af87c"
+        ]
+      },
+      {
+        "id": 9,
+        "spec_ref": "§53.9",
+        "detector": "axe:image-alt",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_D": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 2,
+        "evidence_ids": [
+          "ev_298d737db9ce",
+          "ev_3c2826ce5a19"
+        ]
+      },
+      {
+        "id": 10,
+        "spec_ref": "§53.10",
+        "detector": "price_first_viewport",
+        "status": "PASS",
+        "checks": {
+          "has_evidence": true,
+          "viewport_D": true,
+          "viewport_M": true,
+          "verified": true,
+          "artifact_exists": true,
+          "region_in_screenshot": true,
+          "region_intersects_marker": true
+        },
+        "failures": [],
+        "evidence_count": 8,
+        "evidence_ids": [
+          "ev_099ac1e557ae",
+          "ev_1de5ebab2ea2",
+          "ev_1eb041bad07c",
+          "ev_218a2109f9ea",
+          "ev_2ce2e3d7112f",
+          "ev_80e9e6450445",
+          "ev_a7cd880df8a8",
+          "ev_b021f3c9f1f5"
+        ]
+      }
+    ]
+  },
+  "llm_defects": [
+    {
+      "id": 1,
+      "status": "deferred to live pass (без LLM), опорні детектори не входять у 7"
+    },
+    {
+      "id": 3,
+      "status": "deferred to live pass (без LLM), опорні детектори не входять у 7"
+    },
+    {
+      "id": 4,
+      "status": "deferred to live pass (без LLM), опорні детектори не входять у 7"
+    }
+  ],
+  "clean": {
+    "pages": 7,
+    "evidence": 0,
+    "findings": 0,
+    "page_types": [
+      [
+        "/",
+        "homepage"
+      ],
+      [
+        "/catalog",
+        "category"
+      ],
+      [
+        "/product/glass-kettle",
+        "product"
+      ],
+      [
+        "/product/travel-thermos",
+        "product"
+      ],
+      [
+        "/product/wooden-board",
+        "product"
+      ],
+      [
+        "/shipping",
+        "info_shipping"
+      ],
+      [
+        "/about",
+        "about"
+      ]
+    ]
+  },
+  "mutants": {
+    "silent_and_others_unchanged": 7,
+    "of": 7,
+    "results": [
+      {
+        "mutant": "m2",
+        "defect": 2,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 30,
+        "others_mutant": 30,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 0,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m5",
+        "defect": 5,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 27,
+        "others_mutant": 27,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 3,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m6",
+        "defect": 6,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 22,
+        "others_mutant": 22,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 0,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m7",
+        "defect": 7,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 32,
+        "others_mutant": 32,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 1,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m8",
+        "defect": 8,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 31,
+        "others_mutant": 31,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 0,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m9",
+        "defect": 9,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 31,
+        "others_mutant": 31,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 0,
+        "status": "PASS"
+      },
+      {
+        "mutant": "m10",
+        "defect": 10,
+        "detector_silent": true,
+        "fixed_detector_evidence": 0,
+        "others_identical": true,
+        "others_baseline": 25,
+        "others_mutant": 25,
+        "diff_added": [],
+        "diff_removed": [],
+        "region_diffs": 12,
+        "status": "PASS"
+      }
+    ]
+  },
+  "stability": {
+    "runs": 3,
+    "identical_id_selector_region": true,
+    "identical_bytes_sha256": [
+      "66f228210e3b1c0bc29cc214783786791e544da2fc3b2febe4d4c8f935224510",
+      "66f228210e3b1c0bc29cc214783786791e544da2fc3b2febe4d4c8f935224510",
+      "66f228210e3b1c0bc29cc214783786791e544da2fc3b2febe4d4c8f935224510"
+    ],
+    "identical_bytes": true,
+    "evidence_per_run": [
+      33,
+      33,
+      33
+    ]
+  },
+  "non_get": {
+    "clicked": [
+      "Додати в кошик (POST /cart)",
+      "Надіслати (POST /contact)"
+    ],
+    "guarded": {
+      "fixture_non_get": 0,
+      "blocked_logged": 2,
+      "clicked_ok": true
+    },
+    "control_unguarded": {
+      "fixture_non_get": 2
+    },
+    "pass": true
+  },
+  "deny_list": {
+    "crawl_hits": {
+      "add_to_cart_get": 0,
+      "logout": 0,
+      "delete_action": 0
+    },
+    "skipped_by_crawl": 8,
+    "control_direct_get": {
+      "add_to_cart_get": 1,
+      "logout": 1,
+      "delete_action": 1
+    },
+    "pass": true
+  },
+  "controls": {
+    "post_on_load": {
+      "blocked_requests_count_min": 1,
+      "absence_evidence": 11,
+      "absence_self_confirming": 0,
+      "shipping_confidence": [
+        "HYPOTHESIS"
+      ],
+      "pricing_confidence": [
+        "HYPOTHESIS",
+        "HYPOTHESIS"
+      ],
+      "baseline_shipping_confidence": [
+        "VERIFIED"
+      ],
+      "pass": true
+    },
+    "banner_stuck": {
+      "cta_evidence": 6,
+      "cta_self_confirming": 0,
+      "cta_confidence": [
+        "HYPOTHESIS"
+      ],
+      "banner_states": [
+        "open"
+      ],
+      "pass": true
+    }
+  },
+  "page_types": {
+    "shop": [
+      [
+        "/",
+        "homepage",
+        null
+      ],
+      [
+        "/catalog",
+        "category",
+        null
+      ],
+      [
+        "/product/aquapro-x200",
+        "product",
+        null
+      ],
+      [
+        "/product/aquapro-x220",
+        "product",
+        null
+      ],
+      [
+        "/product/softline-s1",
+        "product",
+        null
+      ],
+      [
+        "/help",
+        "other",
+        null
+      ],
+      [
+        "/help/shipping",
+        "info_shipping",
+        null
+      ],
+      [
+        "/about",
+        "about",
+        null
+      ],
+      [
+        "/product/aquapro-x200/configure",
+        "other",
+        null
+      ],
+      [
+        "/product/aquapro-x220/configure",
+        "other",
+        null
+      ],
+      [
+        "/product/softline-s1/configure",
+        "other",
+        null
+      ]
+    ],
+    "clean": [
+      [
+        "/",
+        "homepage",
+        null
+      ],
+      [
+        "/catalog",
+        "category",
+        null
+      ],
+      [
+        "/product/glass-kettle",
+        "product",
+        null
+      ],
+      [
+        "/product/travel-thermos",
+        "product",
+        null
+      ],
+      [
+        "/product/wooden-board",
+        "product",
+        null
+      ],
+      [
+        "/shipping",
+        "info_shipping",
+        null
+      ],
+      [
+        "/about",
+        "about",
+        null
+      ]
+    ]
+  },
+  "coverage": {
+    "shop": [
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "not_applicable",
+        "reason": "page_type:category"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/help",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/help/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/product/aquapro-x200/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/product/aquapro-x220/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/product/softline-s1/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/help",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/help/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/product/aquapro-x200/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/product/aquapro-x220/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/product/softline-s1/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "not_applicable",
+        "reason": "page_type:category"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/help",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/help/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/product/aquapro-x200/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/product/aquapro-x220/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/product/softline-s1/configure",
+        "page_type": "other",
+        "status": "not_applicable",
+        "reason": "page_type:other"
+      }
+    ],
+    "clean": [
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "not_applicable",
+        "reason": "page_type:category"
+      },
+      {
+        "detector_id": "cta_below_fold",
+        "page": "/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "withheld",
+        "reason": "capture_insufficient:D"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "withheld",
+        "reason": "capture_insufficient:M"
+      },
+      {
+        "detector_id": "price_first_viewport",
+        "page": "/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/",
+        "page_type": "homepage",
+        "status": "not_applicable",
+        "reason": "page_type:homepage"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/about",
+        "page_type": "about",
+        "status": "not_applicable",
+        "reason": "page_type:about"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/catalog",
+        "page_type": "category",
+        "status": "not_applicable",
+        "reason": "page_type:category"
+      },
+      {
+        "detector_id": "shipping_depth",
+        "page": "/shipping",
+        "page_type": "info_shipping",
+        "status": "not_applicable",
+        "reason": "page_type:info_shipping"
+      }
+    ]
+  },
+  "axe_groups": {
+    "shop": 2,
+    "shop_instances": 13
+  },
+  "crawl": {
+    "shop_pages": 11,
+    "shop_order": [
+      "0:homepage:/",
+      "1:shop_category:/catalog",
+      "2:product:/product/aquapro-x200",
+      "2:product:/product/aquapro-x220",
+      "2:product:/product/softline-s1",
+      "1:faq:/help",
+      "2:shipping:/help/shipping",
+      "1:about:/about",
+      "3:other:/product/aquapro-x200/configure",
+      "3:other:/product/aquapro-x220/configure",
+      "3:other:/product/softline-s1/configure"
+    ],
+    "deny_list_skipped": 8,
+    "fixture_server_state_after_crawl": {
+      "add_to_cart_get": 0,
+      "logout": 0,
+      "delete_action": 0,
+      "non_get": 0
+    }
+  },
+  "artifacts_open": true,
+  "overall": "PASS"
+}

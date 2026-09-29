@@ -38,13 +38,28 @@ export interface NetworkRow {
   failure: string | null;
 }
 
-export interface LinkRow { href: string; abs: string; text: string; name: string; visible: boolean; rect: Rect; selector: string }
-export interface InteractiveRow { selector: string; tag: string; name: string; rect: Rect; vis: number }
-export interface ImageRow { selector: string; src: string | null; current_src: string; alt: string | null; natural_w: number; natural_h: number; rect: Rect; is_background: boolean }
+export type Landmark = "main" | "header" | "nav" | "footer" | "aside" | "other";
+export interface LinkRow {
+  href: string; abs: string; text: string; name: string; visible: boolean; rect: Rect; selector: string;
+  /** контекст на сторінці-джерелі (spec §6): орієнтир, «у картці», основне посилання картки, іконка з лічильником */
+  landmark: Landmark; in_card: boolean; card_primary: boolean; has_counter: boolean;
+}
+export interface InteractiveForm { method: string; free_text: boolean; has_variants: boolean }
+export interface InteractiveRow {
+  selector: string; tag: string; name: string; rect: Rect; vis: number;
+  /** spec §7: ознаки первинної дії P3 */
+  role: string | null; input_type: string | null; disabled: boolean; is_link: boolean; href: string | null; nav_target: boolean;
+  bg_opaque: boolean; border: boolean; pad_y: number; pad_x: number; font_size: number;
+  landmark: Landmark; in_card: boolean; form: InteractiveForm | null;
+}
+export interface ImageRow { selector: string; src: string | null; current_src: string; alt: string | null; natural_w: number; natural_h: number; rect: Rect; is_background: boolean; landmark: Landmark; in_card: boolean }
+export interface PriceRow { selector: string; value: number; currency: string; text: string; rect: Rect; font_size: number; font_weight: number; in_card: boolean; landmark: Landmark; prefix_from: boolean }
+export interface CardGroup { signature: string; count: number; rect: Rect; nodes: Rect[]; with_img: number; with_price: number; urls: string[]; names: string[] }
+export interface CartRow { price: number | null; rect: Rect; has_qty: boolean; has_remove: boolean }
 export interface PriceCandidate { selector: string; text: string; rect: Rect; in_fv: boolean; excluded: boolean; kind: "text" | "img_alt" }
 export interface TextNodeRow { t: string; a: boolean }
 
-export interface AxeNode { target: string; html: string; failureSummary: string; rect: Rect | null }
+export interface AxeNode { target: string; html: string; failureSummary: string; rect: Rect | null; /** компонент: орієнтир і тег вузла (для групування axe); null, якщо вузол не знайдено за селектором (shadow/iframe) */ landmark?: Landmark | null; tag?: string | null }
 export interface AxeViolation { id: string; impact: string | null; help: string; helpUrl: string; nodes: AxeNode[] }
 
 export interface ExtractResult {
@@ -65,6 +80,22 @@ export interface ExtractResult {
   jsonld_types: string[];
   h1_count: number;
   signature: number[];
+  // ---- поля захоплення для класифікатора типу сторінки (spec §7)
+  og_type: string | null;
+  canonical: string | null;
+  /** JSON-LD @type верхнього рівня (без вкладених в ItemList/CollectionPage) */
+  jsonld_top: string[];
+  microdata_types: Array<{ type: string; in_card: boolean }>;
+  h1_rect: Rect | null;
+  main_rect: Rect;
+  card_groups: CardGroup[];
+  prices: PriceRow[];
+  autocomplete_tokens: string[];
+  details_count: number;
+  question_headings: number;
+  ship_paragraphs: number;
+  listing_controls: boolean;
+  cart_rows: CartRow[];
 }
 
 export interface ScreenshotRef { file: string; width_px: number; height_px: number; written: boolean }
@@ -103,13 +134,18 @@ export interface TilesManifest {
   tiles: Array<{ index: number; file: string; y_css: number; height_css: number }>;
 }
 
-export type PageType = "product" | "category" | "unknown";
+export type PageType = "homepage" | "category" | "product" | "cart" | "checkout" | "info_shipping" | "about" | "faq" | "other" | "unknown";
+export type UnknownReason = "capture" | "product_likely";
 
 export interface PageCapture {
   url: string;
   path: string;
   page_id: string;
   page_type: PageType;
+  /** для unknown: capture | product_likely (spec §4) */
+  page_type_reason: UnknownReason | null;
+  /** повний вихід класифікатора (scores, features, is_home) — для аудиту й тестів */
+  classification: import("./classify.js").PageClassification | null;
   page_group: string;
   D: ViewportCapture;
   M: ViewportCapture;
@@ -126,6 +162,7 @@ export interface EvidenceRow {
   page_url: string;
   page_path: string;
   page_type: PageType;
+  page_type_reason?: UnknownReason | null;
   page_group: string;
   category: string;
   description: string;
@@ -164,4 +201,8 @@ export interface FindingRow {
   evidence_families: string[];
   confidence: Confidence;
   evidence_strength: number;
+  /** кількість Evidence у групі (для axe — вузлів × viewport) */
+  instances: number;
+  /** для axe: сигнатура компонента групи (rule, page_group, component) */
+  component?: string;
 }

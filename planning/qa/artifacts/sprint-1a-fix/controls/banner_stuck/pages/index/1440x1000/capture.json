@@ -1,0 +1,639 @@
+{
+  "title": "ТехноДім — головна",
+  "meta_description": "Магазин речей для дому.",
+  "headings": [
+    {
+      "level": 1,
+      "text": "Ідеї, що змінюють будні"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:4210/",
+      "text": "ТехноДім",
+      "name": "ТехноДім",
+      "visible": true,
+      "rect": {
+        "x": 24,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "selector": "header > a",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/catalog",
+      "abs": "http://127.0.0.1:4210/catalog",
+      "text": "Каталог",
+      "name": "Каталог",
+      "visible": true,
+      "rect": {
+        "x": 1190,
+        "y": 22,
+        "w": 69,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(1) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 1278,
+        "y": 22,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(2) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/logout",
+      "abs": "http://127.0.0.1:4210/logout",
+      "text": "Вийти",
+      "name": "Вийти",
+      "visible": true,
+      "rect": {
+        "x": 1365,
+        "y": 22,
+        "w": 52,
+        "h": 19
+      },
+      "selector": "header > nav > ul > li:nth-of-type(3) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/catalog",
+      "abs": "http://127.0.0.1:4210/catalog",
+      "text": "Переглянути асортимент",
+      "name": "Переглянути асортимент",
+      "visible": true,
+      "rect": {
+        "x": 194,
+        "y": 664,
+        "w": 215,
+        "h": 19
+      },
+      "selector": "main > div > p:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/help",
+      "abs": "http://127.0.0.1:4210/help",
+      "text": "Допомога",
+      "name": "Допомога",
+      "visible": true,
+      "rect": {
+        "x": 24,
+        "y": 745,
+        "w": 83,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4210/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 127,
+        "y": 745,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "header > button",
+      "name": "",
+      "type": "button",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(1)",
+      "name": "Лише необхідні",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 1033,
+        "y": 946,
+        "w": 162,
+        "h": 42
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(2)",
+      "name": "Закрити",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 1211,
+        "y": 946,
+        "w": 43,
+        "h": 42
+      }
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(3)",
+      "name": "Прийняти все",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 1270,
+        "y": 946,
+        "w": 146,
+        "h": 42
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "main > img",
+      "src": "/img/hero.jpg",
+      "current_src": "http://127.0.0.1:4210/img/hero.jpg",
+      "alt": "Світла вітрина магазину з речами для дому",
+      "natural_w": 2400,
+      "natural_h": 1600,
+      "rect": {
+        "x": 0,
+        "y": 64,
+        "w": 1440,
+        "h": 480
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "ТехноДім\nКаталог\nПро нас\nВийти\nІдеї, що змінюють будні\n\nМи підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.\n\nПереглянути асортимент\n\nДопомога\nПро нас\n\nМи використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.\n\nЛише необхідні\n×\nПрийняти все",
+  "text_nodes": [
+    {
+      "t": "ТехноДім",
+      "a": true
+    },
+    {
+      "t": "Каталог",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    },
+    {
+      "t": "Вийти",
+      "a": true
+    },
+    {
+      "t": "Ідеї, що змінюють будні",
+      "a": false
+    },
+    {
+      "t": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+      "a": false
+    },
+    {
+      "t": "Переглянути асортимент",
+      "a": true
+    },
+    {
+      "t": "Допомога",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    },
+    {
+      "t": "Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.",
+      "a": false
+    },
+    {
+      "t": "Лише необхідні",
+      "a": false
+    },
+    {
+      "t": "×",
+      "a": false
+    },
+    {
+      "t": "Прийняти все",
+      "a": false
+    }
+  ],
+  "fv_text": "ТехноДім Каталог Про нас Вийти Ідеї, що змінюють будні Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі. Переглянути асортимент Допомога Про нас Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні. Лише необхідні × Прийняти все",
+  "interactive": [
+    {
+      "selector": "header > a",
+      "tag": "a",
+      "name": "ТехноДім",
+      "rect": {
+        "x": 24,
+        "y": 17,
+        "w": 109,
+        "h": 30
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 20,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Каталог",
+      "rect": {
+        "x": 1190,
+        "y": 22,
+        "w": 69,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/catalog",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 1278,
+        "y": 22,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/about",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > nav > ul > li:nth-of-type(3) > a",
+      "tag": "a",
+      "name": "Вийти",
+      "rect": {
+        "x": 1365,
+        "y": 22,
+        "w": 52,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/logout",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > div > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Переглянути асортимент",
+      "rect": {
+        "x": 194,
+        "y": 664,
+        "w": 215,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/catalog",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Допомога",
+      "rect": {
+        "x": 24,
+        "y": 745,
+        "w": 83,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/help",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 127,
+        "y": 745,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4210/about",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(1)",
+      "tag": "button",
+      "name": "Лише необхідні",
+      "rect": {
+        "x": 1033,
+        "y": 946,
+        "w": 162,
+        "h": 42
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": true,
+      "pad_y": 8,
+      "pad_x": 14,
+      "font_size": 16,
+      "landmark": "aside",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(2)",
+      "tag": "button",
+      "name": "Закрити",
+      "rect": {
+        "x": 1211,
+        "y": 946,
+        "w": 43,
+        "h": 42
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": true,
+      "pad_y": 8,
+      "pad_x": 14,
+      "font_size": 16,
+      "landmark": "aside",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#cookie-banner > button:nth-of-type(3)",
+      "tag": "button",
+      "name": "Прийняти все",
+      "rect": {
+        "x": 1270,
+        "y": 946,
+        "w": 146,
+        "h": 42
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": true,
+      "pad_y": 8,
+      "pad_x": 14,
+      "font_size": 16,
+      "landmark": "aside",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 1000,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 194,
+    "y": 568,
+    "w": 1052,
+    "h": 38
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 64,
+    "w": 1440,
+    "h": 662
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 0,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "http://127.0.0.1:4210/",
+  "final_url": "http://127.0.0.1:4210/",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:4210/",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- banner:\n  - link \"ТехноДім\":\n    - /url: /\n  - navigation \"Головне меню\":\n    - list:\n      - listitem:\n        - link \"Каталог\":\n          - /url: /catalog\n      - listitem:\n        - link \"Про нас\":\n          - /url: /about\n      - listitem:\n        - link \"Вийти\":\n          - /url: /logout\n- main:\n  - img \"Світла вітрина магазину з речами для дому\"\n  - heading \"Ідеї, що змінюють будні\" [level=1]\n  - paragraph: Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.\n  - paragraph:\n    - link \"Переглянути асортимент\":\n      - /url: /catalog\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Допомога\":\n        - /url: /help\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about\n- complementary \"Повідомлення про cookie\":\n  - paragraph: Ми використовуємо cookie, щоб сайт працював. Ви можете залишити лише необхідні.\n  - button \"Лише необхідні\"\n  - button \"Закрити\": ×\n  - button \"Прийняти все\"",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/index/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": false
+    },
+    "fullpage": {
+      "file": "pages/index/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": false
+    }
+  },
+  "banner": {
+    "detected": true,
+    "state": "open",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      },
+      {
+        "step": "close",
+        "label": "Закрити",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      },
+      {
+        "step": "accept",
+        "label": "Прийняти все",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": false
+      }
+    ]
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "open",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 283,
+    "capture_complete": false,
+    "incomplete_reasons": [
+      "banner_open"
+    ]
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/index/1440x1000/capture.json",
+    "network": "pages/index/1440x1000/network.json",
+    "axe": "pages/index/1440x1000/axe.json",
+    "dir": "pages/index/1440x1000"
+  }
+}

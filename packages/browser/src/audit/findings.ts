@@ -3,6 +3,7 @@
  * Це не пакет scoring (його власник — sl-eval-science): лише підмножина, потрібна детермінованим детекторам —
  * F-DET → VERIFIED; F-INC (доказ відсутності з неповного захоплення) → HYPOTHESIS, strength 0.30.
  */
+import { findingPageGroup } from "./axe-groups.js";
 import type { Confidence, EvidenceRow, FindingRow } from "./types.js";
 
 export type Family = "F-DET" | "F-INC" | "F-SUP";
@@ -16,7 +17,8 @@ export function confidenceOf(families: Set<Family>): { confidence: Confidence; s
   if (families.has("F-INC")) return { confidence: "HYPOTHESIS", strength: 0.3 };
   return null; // лише ET-SUP — не знахідка
 }
-export const findingKey = (e: EvidenceRow): string => `${e.category}|${e.page_group}|${e.claim_kind}`;
+/** axe: ключ включає сигнатуру компонента (rule, page_group, component) — знахідка на групу, докази не губляться (evidence_ids) */
+export const findingKey = (e: EvidenceRow): string => (e.type === "axe" ? `${e.category}|${findingPageGroup(e)}|${e.claim_kind}|${String(e.measurement["component_signature"] ?? "")}` : `${e.category}|${e.page_group}|${e.claim_kind}`);
 
 export function buildFindings(evidence: EvidenceRow[]): FindingRow[] {
   const groups = new Map<string, EvidenceRow[]>();
@@ -32,13 +34,15 @@ export function buildFindings(evidence: EvidenceRow[]): FindingRow[] {
     out.push({
       finding_key: key,
       category: list[0]!.category,
-      page_group: list[0]!.page_group,
+      page_group: list[0]!.type === "axe" ? findingPageGroup(list[0]!) : list[0]!.page_group,
       claim_kind: list[0]!.claim_kind,
       detector_ids: [...new Set(list.map((e) => e.detector_id))].sort(),
       evidence_ids: list.map((e) => e.id).sort(),
       evidence_families: [...fams].sort(),
       confidence: c.confidence,
       evidence_strength: c.strength,
+      instances: list.length,
+      ...(list[0]!.type === "axe" ? { component: String(list[0]!.measurement["component_signature"] ?? "") } : {}),
     });
   }
   return out;

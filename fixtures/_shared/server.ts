@@ -17,6 +17,8 @@ export interface SiteResponse {
   type?: string;
   body?: string | Buffer;
   headers?: Record<string, string>;
+  /** логічний ідентифікатор сторінки (не залежить від URL-схеми) — лише для метаморфного набору */
+  logical?: string;
 }
 export type SiteHandler = (req: SiteRequest) => SiteResponse | null;
 
@@ -27,6 +29,7 @@ export interface RequestLogRow {
   status: number;
   user_agent: string;
   audit_hint: string | null;
+  logical: string | null;
 }
 export interface FixtureState {
   add_to_cart_get: number;
@@ -75,6 +78,7 @@ export async function startFixtureServer(opts: { handler: SiteHandler; logFile?:
         status: r.status,
         user_agent: String(req.headers["user-agent"] ?? ""),
         audit_hint: hint,
+        logical: r.logical ?? null,
       };
       log.push(row);
       if (opts.logFile) appendFileSync(opts.logFile, JSON.stringify(row) + "\n");

@@ -12,12 +12,14 @@ import type { Page, Request } from "playwright";
 import { handleBanner } from "./banner.js";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { PATTERN_SOURCES } from "./patterns.js";
+import { PRICE_PARSER_SOURCE } from "./price-parser.js";
 import { tileFullPage } from "./tiles.js";
 import {
   vpDir,
   VIEWPORT_SPECS,
   type AxeViolation,
   type Completeness,
+  type Landmark,
   type ExtractResult,
   type NetworkRow,
   type ScreenshotRef,
@@ -188,10 +190,11 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
         const nodes = [];
         for (const n of v.nodes) {
           const target = n.target.map(String).join(" ");
-          const rect = (await page.evaluate(
-            `((sel) => { const el = document.querySelector(sel); if (!el) return null; const r = el.getBoundingClientRect(); return { x: Math.round(r.left + scrollX), y: Math.round(r.top + scrollY), w: Math.round(r.width), h: Math.round(r.height) }; })(${JSON.stringify(target)})`,
-          ).catch(() => null)) as { x: number; y: number; w: number; h: number } | null;
-          nodes.push({ target, html: n.html.slice(0, 300), failureSummary: (n.failureSummary ?? "").slice(0, 300), rect });
+          const info = (await page.evaluate(
+            `((sel) => { const el = document.querySelector(sel); if (!el) return null; const r = el.getBoundingClientRect(); const main = document.querySelector('main, [role=main]'); const ex = el.closest('header, nav, footer, aside, [role=banner], [role=navigation], [role=contentinfo]'); let lm = 'main'; if (ex && !(main && main.contains(ex))) { const t = ex.tagName.toLowerCase(); const ro = (ex.getAttribute('role') || '').toLowerCase(); lm = t === 'nav' || ro === 'navigation' ? 'nav' : t === 'header' || ro === 'banner' ? 'header' : t === 'footer' || ro === 'contentinfo' ? 'footer' : 'aside'; } else if (main) lm = main.contains(el) ? 'main' : 'other'; return { rect: { x: Math.round(r.left + scrollX), y: Math.round(r.top + scrollY), w: Math.round(r.width), h: Math.round(r.height) }, landmark: lm, tag: el.tagName.toLowerCase() }; })(${JSON.stringify(target)})`,
+          ).catch(() => null)) as { rect: { x: number; y: number; w: number; h: number }; landmark: Landmark; tag: string } | null;
+          const rect = info?.rect ?? null;
+          nodes.push({ target, html: n.html.slice(0, 300), failureSummary: (n.failureSummary ?? "").slice(0, 300), rect, landmark: info?.landmark ?? null, tag: info?.tag ?? null });
         }
         violations.push({ id: v.id, impact: v.impact ?? null, help: v.help, helpUrl: v.helpUrl, nodes });
       }
@@ -204,7 +207,7 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     // ---- вилучення DOM (після скриншотів/axe прокрутку могло зсунути: FV міряється лише при scrollY = 0)
     await page.evaluate(`window.scrollTo(0, 0)`);
     await settle(page);
-    const ex = (await page.evaluate(`(${EXTRACT})(${JSON.stringify({ ...PATTERN_SOURCES, VW: spec.width, VH: spec.height })})`)) as ExtractResult;
+    const ex = (await page.evaluate(`(${EXTRACT})(${JSON.stringify({ ...PATTERN_SOURCES, VW: spec.width, VH: spec.height })}, ${PRICE_PARSER_SOURCE})`)) as ExtractResult;
     const fx = o.collectFxMarkers ? ((await page.evaluate(FX_MARKERS)) as Record<string, Array<{ x: number; y: number; w: number; h: number }>>) : undefined;
     const ariaSnapshot = await page.locator("body").ariaSnapshot().catch(() => "");
     const metrics = (await page.evaluate(

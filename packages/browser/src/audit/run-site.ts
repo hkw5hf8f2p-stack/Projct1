@@ -8,8 +8,11 @@ import path from "node:path";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { captureViewport } from "./capture-page.js";
 import { crawl, CRAWL_LIMITS, type CrawlResult } from "./crawl.js";
-import { classifyPageType, detectAll, pageGroupOf } from "./detectors.js";
+import { assignAxeScopes, groupAxe, type AxeGroup } from "./axe-groups.js";
+import { classifyPageType } from "./classify.js";
+import { detectAllWithCoverage, pageGroupOf, type CoverageRow } from "./detectors.js";
 import { buildFindings } from "./findings.js";
+import { classifyPageTypeV1 } from "./legacy-page-type.js";
 import { SHIP_RE } from "./patterns.js";
 import type { EvidenceRow, FindingRow, PageCapture, VP } from "./types.js";
 
@@ -23,11 +26,15 @@ export interface AuditOptions {
   /** пауза між навігаціями; 1500 на живих сайтах (DEV-18), 0 для локальної фікстури */
   minDelayMs?: number;
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
+  /** 'v1' — старий класифікатор (7c5cae8): ЛИШЕ контроль метаморфного набору; за замовчуванням 'v2' (page-type-spec.md) */
+  engine?: "v1" | "v2";
 }
 
 export interface AuditResult {
   evidence: EvidenceRow[];
   findings: FindingRow[];
+  coverage: CoverageRow[];
+  axe_groups: AxeGroup[];
   pages: Array<Record<string, unknown>>;
   crawl: CrawlResult;
   captures: PageCapture[];
@@ -76,6 +83,7 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   assertSecureBrowser(o.secure, "auditSite");
   await mkdir(o.runDir, { recursive: true });
   const throttle = makeThrottle(o.minDelayMs ?? 0);
+  const engine = o.engine ?? "v2";
 
   const capturePage = async (url: string): Promise<PageCapture> => {
     const u = new URL(url);
@@ -90,16 +98,25 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
     };
     const d = await once("D");
     const m = await once("M");
-    const type = classifyPageType(d.capture);
+    const classification = engine === "v1" ? null : classifyPageType(d.capture, m.capture, { seed_url: o.seedUrl });
+    const type = classification ? classification.page_type : classifyPageTypeV1(d.capture);
     const pathOnly = u.pathname + u.search;
-    return { url, path: pathOnly, page_id: pageId, page_type: type, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
+    return { url, path: pathOnly, page_id: pageId, page_type: type, page_type_reason: classification?.reason ?? null, classification, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
   };
 
-  const cr = await crawl({ seedUrl: o.seedUrl, capture: capturePage, limits: o.limits ?? CRAWL_LIMITS });
+  const cr = await crawl({ seedUrl: o.seedUrl, capture: capturePage, limits: o.limits ?? CRAWL_LIMITS, engine });
 
   // ---- детектори
   let evidence: EvidenceRow[] = [];
-  for (const p of cr.pages) evidence.push(...detectAll({ url: p.url, path: p.path, page_type: p.page_type, page_group: p.page_group, D: p.D, M: p.M }));
+  const coverage: CoverageRow[] = [];
+  for (const p of cr.pages) {
+    const r = detectAllWithCoverage({ url: p.url, path: p.path, page_type: p.page_type, page_type_reason: p.page_type_reason, page_group: p.page_group, D: p.D, M: p.M, classification: p.classification, engine });
+    evidence.push(...r.evidence);
+    coverage.push(...r.coverage);
+  }
+  coverage.sort((a, b) => a.detector_id.localeCompare(b.detector_id) || a.page.localeCompare(b.page) || a.status.localeCompare(b.status) || a.reason.localeCompare(b.reason));
+  assignAxeScopes(evidence);
+  const axeGroups = groupAxe(evidence);
   evidence = enrichDepths(evidence, cr);
   evidence.sort((a, b) => a.detector_id.localeCompare(b.detector_id) || a.page_path.localeCompare(b.page_path) || a.viewport.localeCompare(b.viewport) || (a.selector_or_region.selector ?? "").localeCompare(b.selector_or_region.selector ?? ""));
   const findings = buildFindings(evidence);
@@ -111,16 +128,25 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   const crawlDoc = {
     limits: o.limits ?? CRAWL_LIMITS,
     order: cr.log,
-    pages: cr.pages.map((p) => ({ url: p.url, page_id: p.page_id, page_type: p.page_type })),
+    engine,
+    pages: cr.pages.map((p) => ({
+      url: p.url,
+      page_id: p.page_id,
+      page_type: p.page_type,
+      page_type_reason: p.page_type_reason,
+      classification: p.classification ? { is_home: p.classification.is_home, rule: p.classification.rule, scores: p.classification.scores, features: p.classification.features, per_view: { D: { type: p.classification.per_view.D.type, rule: p.classification.per_view.D.rule, P: p.classification.per_view.D.P, K: p.classification.per_view.D.K, C: p.classification.per_view.D.C }, M: { type: p.classification.per_view.M.type, rule: p.classification.per_view.M.rule, P: p.classification.per_view.M.P, K: p.classification.per_view.M.K, C: p.classification.per_view.M.C } } } : null,
+    })),
     skipped: cr.skipped.sort((a, b) => a.url.localeCompare(b.url) || a.reason.localeCompare(b.reason)),
     edges: [...new Set(cr.edges.map((e) => `${e.from} -> ${e.to}`))].sort(),
   };
   await writeFile(path.join(o.runDir, "evidence.json"), JSON.stringify(evidence, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "findings.json"), JSON.stringify(findings, null, 2) + "\n");
+  await writeFile(path.join(o.runDir, "coverage.json"), JSON.stringify(coverage, null, 2) + "\n");
+  await writeFile(path.join(o.runDir, "axe-groups.json"), JSON.stringify(axeGroups, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "pages.json"), JSON.stringify(pages, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "crawl.json"), JSON.stringify(crawlDoc, null, 2) + "\n");
   await writeFile(path.join(o.runDir, "timing.json"), JSON.stringify(timing, null, 2) + "\n");
-  return { evidence, findings, pages, crawl: cr, captures: cr.pages };
+  return { evidence, findings, coverage, axe_groups: axeGroups, pages, crawl: cr, captures: cr.pages };
 }
 
 /** depth_clicks (№2) і price_depth_clicks (№10) — інформативні; в предикат не входять (map §3.2, §3.10). */
@@ -156,6 +182,7 @@ function pageArtifactRow(p: PageCapture): Record<string, unknown> {
     audit_run_id: null,
     url: p.url,
     page_type: p.page_type,
+    page_type_reason: p.page_type_reason,
     title: d.title,
     http_status: d.http_status,
     desktop_screenshot: d.screenshots.fullpage.file,

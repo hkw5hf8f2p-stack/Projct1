@@ -1,0 +1,585 @@
+{
+  "title": "Рамка ДБ-435 ВЛ розс. Р — Пасіка «Верховина»",
+  "meta_description": null,
+  "headings": [
+    {
+      "level": 1,
+      "text": "Рамка ДБ-435 ВЛ розс. Р"
+    }
+  ],
+  "links": [
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Верховина",
+      "name": "Верховина",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 24,
+        "w": 194,
+        "h": 34
+      },
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "index.html",
+      "abs": "http://127.0.0.1:43455/index.html",
+      "text": "Початок",
+      "name": "Початок",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 86,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(1) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kataloh.html",
+      "abs": "http://127.0.0.1:43455/kataloh.html",
+      "text": "Що у нас є",
+      "name": "Що у нас є",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 130,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(2) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Хто ми",
+      "name": "Хто ми",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 174,
+        "w": 194,
+        "h": 44
+      },
+      "selector": "#liva-panel > ul > li:nth-of-type(3) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kosh.html",
+      "abs": "http://127.0.0.1:43455/kosh.html",
+      "text": "Кошик",
+      "name": "Кошик",
+      "visible": true,
+      "rect": {
+        "x": 18,
+        "y": 241,
+        "w": 194,
+        "h": 25
+      },
+      "selector": "#kosh-lnk",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "kosh.html?t=b",
+      "abs": "http://127.0.0.1:43455/kosh.html?t=b",
+      "text": "Обрати",
+      "name": "Обрати",
+      "visible": true,
+      "rect": {
+        "x": 274,
+        "y": 1278,
+        "w": 98,
+        "h": 49
+      },
+      "selector": "#tilo > p:nth-of-type(2) > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "umovy.html",
+      "abs": "http://127.0.0.1:43455/umovy.html",
+      "text": "Умови",
+      "name": "Умови",
+      "visible": true,
+      "rect": {
+        "x": 44,
+        "y": 1403,
+        "w": 36,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(1)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "pro-nas.html",
+      "abs": "http://127.0.0.1:43455/pro-nas.html",
+      "text": "Пасіка «Верховина», Закарпаття",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "visible": true,
+      "rect": {
+        "x": 91,
+        "y": 1403,
+        "w": 179,
+        "h": 15
+      },
+      "selector": "footer > a:nth-of-type(2)",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "#liva-panel > button",
+      "name": "",
+      "type": "button",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [],
+  "images": [
+    {
+      "selector": "#tilo > div > img",
+      "src": "img/ramka-b.svg",
+      "current_src": "http://127.0.0.1:43455/img/ramka-b.svg",
+      "alt": "Рамка ДБ-435 ВЛ розс. Р",
+      "natural_w": 200,
+      "natural_h": 150,
+      "rect": {
+        "x": 274,
+        "y": 191,
+        "w": 560,
+        "h": 420
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "Верховина\nПочаток\nЩо у нас є\nХто ми\nКошик\nРамка ДБ-435 ВЛ розс. Р\n\nРозсувна рамка для корпусу ДБ, редакція Р.\n\nВиготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n\nКомплектується з дротом.\n\nПараметр\tЗначення\nТипорозмір\t435×300 мм, ДБ\nМатеріал\tлипа, ВЛ-сорт\nДротяне армування\tДНЗ/8р\nДодатково\n\nОбрати\n\nУмови · Пасіка «Верховина», Закарпаття · © 2026",
+  "text_nodes": [
+    {
+      "t": "Верховина",
+      "a": true
+    },
+    {
+      "t": "Початок",
+      "a": true
+    },
+    {
+      "t": "Що у нас є",
+      "a": true
+    },
+    {
+      "t": "Хто ми",
+      "a": true
+    },
+    {
+      "t": "Кошик",
+      "a": true
+    },
+    {
+      "t": "Рамка ДБ-435 ВЛ розс. Р",
+      "a": false
+    },
+    {
+      "t": "Розсувна рамка для корпусу ДБ, редакція Р.",
+      "a": false
+    },
+    {
+      "t": "Виготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.",
+      "a": false
+    },
+    {
+      "t": "Комплектується з дротом.",
+      "a": false
+    },
+    {
+      "t": "Параметр",
+      "a": false
+    },
+    {
+      "t": "Значення",
+      "a": false
+    },
+    {
+      "t": "Типорозмір",
+      "a": false
+    },
+    {
+      "t": "435×300 мм, ДБ",
+      "a": false
+    },
+    {
+      "t": "Матеріал",
+      "a": false
+    },
+    {
+      "t": "липа, ВЛ-сорт",
+      "a": false
+    },
+    {
+      "t": "Дротяне армування",
+      "a": false
+    },
+    {
+      "t": "ДНЗ/8р",
+      "a": false
+    },
+    {
+      "t": "Додатково",
+      "a": false
+    },
+    {
+      "t": "Обрати",
+      "a": true
+    },
+    {
+      "t": "Умови",
+      "a": true
+    },
+    {
+      "t": "·",
+      "a": false
+    },
+    {
+      "t": "Пасіка «Верховина», Закарпаття",
+      "a": true
+    },
+    {
+      "t": "· © 2026",
+      "a": false
+    }
+  ],
+  "fv_text": "Верховина Початок Що у нас є Хто ми Кошик Рамка ДБ-435 ВЛ розс. Р Розсувна рамка для корпусу ДБ, редакція Р. Виготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2. Комплектується з дротом.",
+  "interactive": [
+    {
+      "selector": "#liva-panel > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Верховина",
+      "rect": {
+        "x": 18,
+        "y": 24,
+        "w": 194,
+        "h": 34
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/index.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 22,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Початок",
+      "rect": {
+        "x": 18,
+        "y": 86,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/index.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Що у нас є",
+      "rect": {
+        "x": 18,
+        "y": 130,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kataloh.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#liva-panel > ul > li:nth-of-type(3) > a",
+      "tag": "a",
+      "name": "Хто ми",
+      "rect": {
+        "x": 18,
+        "y": 174,
+        "w": 194,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/pro-nas.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": true,
+      "pad_y": 9,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#kosh-lnk",
+      "tag": "a",
+      "name": "Кошик",
+      "rect": {
+        "x": 18,
+        "y": 241,
+        "w": 194,
+        "h": 25
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kosh.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "nav",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "#tilo > p:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Обрати",
+      "rect": {
+        "x": 274,
+        "y": 1278,
+        "w": 98,
+        "h": 49
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/kosh.html?t=b",
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 12,
+      "pad_x": 22,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(1)",
+      "tag": "a",
+      "name": "Умови",
+      "rect": {
+        "x": 44,
+        "y": 1403,
+        "w": 36,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/umovy.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > a:nth-of-type(2)",
+      "tag": "a",
+      "name": "Пасіка «Верховина», Закарпаття",
+      "rect": {
+        "x": 91,
+        "y": 1403,
+        "w": 179,
+        "h": 15
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:43455/pro-nas.html",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 1439,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 274,
+    "y": 36,
+    "w": 912,
+    "h": 46
+  },
+  "main_rect": {
+    "x": 230,
+    "y": 0,
+    "w": 1000,
+    "h": 1383
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 1,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+  "final_url": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:43455/tovar-ramka-435r.html",
+      "status": 200
+    }
+  ],
+  "aria_snapshot": "- navigation:\n  - link \"Верховина\":\n    - /url: index.html\n  - list:\n    - listitem:\n      - link \"Початок\":\n        - /url: index.html\n    - listitem:\n      - link \"Що у нас є\":\n        - /url: kataloh.html\n    - listitem:\n      - link \"Хто ми\":\n        - /url: pro-nas.html\n  - link \"Кошик\":\n    - /url: kosh.html\n- main:\n  - heading \"Рамка ДБ-435 ВЛ розс. Р\" [level=1]\n  - paragraph: Розсувна рамка для корпусу ДБ, редакція Р.\n  - img \"Рамка ДБ-435 ВЛ розс. Р\"\n  - paragraph: Виготовлена з ВЛ-сировини за ДСТУ, з дотриманням ДНЗ-нормативу для розс. типу. Підходить для корпусів ДБ та багатокорпусних систем типу Ф-2.\n  - paragraph: Комплектується з дротом.\n  - table:\n    - rowgroup:\n      - row \"Параметр Значення\":\n        - cell \"Параметр\"\n        - cell \"Значення\"\n      - row \"Типорозмір 435×300 мм, ДБ\":\n        - cell \"Типорозмір\"\n        - cell \"435×300 мм, ДБ\"\n      - row \"Матеріал липа, ВЛ-сорт\":\n        - cell \"Матеріал\"\n        - cell \"липа, ВЛ-сорт\"\n      - row \"Дротяне армування ДНЗ/8р\":\n        - cell \"Дротяне армування\"\n        - cell \"ДНЗ/8р\"\n  - group: Додатково\n  - paragraph:\n    - link \"Обрати\":\n      - /url: kosh.html?t=b\n- contentinfo:\n  - link \"Умови\":\n    - /url: umovy.html\n  - text: ·\n  - link \"Пасіка «Верховина», Закарпаття\":\n    - /url: pro-nas.html\n  - text: · © 2026",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/tovar-ramka-435r-html/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/tovar-ramka-435r-html/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 1439,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 437,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/tovar-ramka-435r-html/1440x1000/capture.json",
+    "network": "pages/tovar-ramka-435r-html/1440x1000/network.json",
+    "axe": "pages/tovar-ramka-435r-html/1440x1000/axe.json",
+    "dir": "pages/tovar-ramka-435r-html/1440x1000"
+  }
+}

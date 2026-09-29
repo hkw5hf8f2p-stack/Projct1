@@ -44,13 +44,13 @@ describe("предикати (юніт, без браузера)", () => {
     expect(last.y + last.h).toBe(2400);
     for (let i = 1; i < t.length; i++) expect(t[i - 1]!.y + t[i - 1]!.h - t[i]!.y).toBeGreaterThanOrEqual(150 - 1);
   });
-  it("пріоритети §13 і класифікація посилань", () => {
+  it("пріоритети §13 і класифікація посилань за контекстом (spec §6; повний набір — page-type.test.ts)", () => {
     expect(PRIORITY.homepage).toBe(1);
-    expect(classifyLink("http://x/catalog", "Каталог")).toBe("shop_category");
-    expect(classifyLink("http://x/product/a", "A")).toBe("product");
-    expect(classifyLink("http://x/help/shipping", "Доставка й оплата")).toBe("shipping");
-    expect(classifyLink("http://x/about", "Про нас")).toBe("about");
-    expect(classifyLink("http://x/privacy", "Privacy")).toBe("legal");
+    expect(classifyLink({ url: "http://x/catalog", text: "Каталог", landmark: "nav" })).toMatchObject({ cls: "shop_category", priority: 0.9 });
+    expect(classifyLink({ url: "http://x/zzz", text: "A", landmark: "main", card_primary: true }).cls).toBe("product");
+    expect(classifyLink({ url: "http://x/help/shipping", text: "Доставка й оплата", landmark: "nav" }).cls).toBe("shipping");
+    expect(classifyLink({ url: "http://x/about", text: "Про нас", landmark: "footer" }).cls).toBe("about");
+    expect(classifyLink({ url: "http://x/privacy", text: "Privacy", landmark: "footer" }).cls).toBe("legal");
     expect(PRIORITY.shop_category).toBeGreaterThan(PRIORITY.shipping);
     expect(PRIORITY.shipping).toBeGreaterThan(PRIORITY.about);
   });
@@ -62,7 +62,7 @@ describe("предикати (юніт, без браузера)", () => {
     expect(p).toContain("Дерев'яна дошка");
   });
   it("M2 (немає циркулярності): код детекторів не містить data-fx і назв фікстури", () => {
-    for (const f of ["detectors.ts", "patterns.ts", "page-scripts/extract.js", "page-scripts/signature.js"]) {
+    for (const f of ["detectors.ts", "patterns.ts", "classify.ts", "crawl.ts", "axe-groups.ts", "price-parser.ts", "page-scripts/extract.js", "page-scripts/price.js", "page-scripts/signature.js"]) {
       const src = readFileSync(path.join(ROOT, "packages/browser/src/audit", f), "utf8");
       expect(src, f).not.toMatch(/data-fx|aquapro|softline|x200|ТехноДім|ЧистийДім|configure/i);
     }
@@ -194,6 +194,22 @@ describe("аудит фікстур (браузер)", () => {
     expect(sig(b)).toBe(sig(base));
     expect(JSON.stringify(a.evidence)).toBe(JSON.stringify(base.evidence));
     expect(JSON.stringify(b.findings)).toBe(JSON.stringify(base.findings));
+  }, 240_000);
+
+  it("МЕТАМОРФНИЙ зріз (повний набір — `pnpm run audit:metamorphic`): U5+V2 → S₀ і типи як на базі; R1 → /cart-view = cart без №2/№5/№10; старий код (v1) на U5+V2 втрачає №2/№5/№10", async () => {
+    const keyDet = new Set(["shipping_depth", "cta_below_fold", "price_first_viewport"]);
+    const dets = (r: AuditResult) => new Set(r.evidence.map((e) => e.detector_id));
+    const typesOf = (r: AuditResult) => Object.fromEntries(r.captures.map((p) => [p.path, p.page_type]));
+    const u5 = await run({ site: "shop", transforms: ["U5", "V2"] });
+    expect([...dets(u5)].sort()).toEqual([...dets(base)].sort());
+    expect(u5.captures.filter((p) => p.page_type === "product")).toHaveLength(3);
+    expect(u5.captures.find((p) => p.path === "/katalog.html")?.page_type).toBe("category");
+    const r1 = await run({ site: "shop", transforms: ["R1"] });
+    expect(typesOf(r1)["/cart-view"]).toBe("cart");
+    expect(r1.evidence.filter((e) => e.page_path === "/cart-view" && keyDet.has(e.detector_id))).toEqual([]);
+    expect(r1.captures.filter((p) => p.page_type === "product")).toHaveLength(3);
+    const v1 = await run({ site: "shop", transforms: ["U5", "V2"], engine: "v1" });
+    for (const d of keyDet) expect(dets(v1).has(d), `v1 має втратити ${d}`).toBe(false);
   }, 240_000);
 
   it("КОНТРОЛЬ DEV-17/19: один заблокований POST на завантаженні → відсутність ціни/доставки = HYPOTHESIS (ET-INC), не VERIFIED", async () => {

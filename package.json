@@ -11,6 +11,7 @@
     "spike": "tsx scripts/spike.ts",
     "slice": "tsx packages/browser/src/run-slice.ts",
     "audit:fixture": "tsx scripts/audit-fixture.ts",
+    "audit:metamorphic": "tsx scripts/audit-metamorphic.ts",
     "test": "vitest run --configLoader runner",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint ."

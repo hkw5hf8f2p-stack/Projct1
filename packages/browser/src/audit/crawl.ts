@@ -4,37 +4,59 @@
  * фіксується в `skipped`. Крок = захоплення (D+M); між навігаціями throttle (≥ 1500 мс на живих, 0 для фікстури).
  */
 import { isDeniedActionUrl } from "../net/url-guard.js";
-import { PRODUCT_PATH_RE } from "./patterns.js";
-import type { PageCapture, LinkRow } from "./types.js";
+import { classifyLinkV1 } from "./legacy-page-type.js";
+import { urlAccountHint, urlCartHint, urlCategoryHint, urlProductHint } from "./patterns.js";
+import type { Landmark, PageCapture, LinkRow } from "./types.js";
 
 export const CRAWL_LIMITS = { maxPages: 12, maxDepth: 3, maxProducts: 3 } as const;
 
-export type LinkClass = "homepage" | "shop_category" | "product" | "pricing" | "services" | "shipping" | "faq" | "about" | "contact" | "blog" | "legal" | "other";
-export const PRIORITY: Record<LinkClass, number> = { homepage: 1.0, shop_category: 0.95, product: 0.95, pricing: 0.95, services: 0.9, shipping: 0.8, faq: 0.75, about: 0.6, contact: 0.55, blog: 0.2, legal: 0.1, other: 0.3 };
+export type LinkClass = "homepage" | "shop_category" | "product" | "pricing" | "services" | "shipping" | "faq" | "about" | "contact" | "blog" | "legal" | "cart" | "other";
+export const PRIORITY: Record<LinkClass, number> = { homepage: 1.0, shop_category: 0.95, product: 0.95, pricing: 0.95, services: 0.9, shipping: 0.8, faq: 0.75, about: 0.6, contact: 0.55, blog: 0.2, legal: 0.1, cart: 0.1, other: 0.3 };
 
-export function classifyLink(url: string, text: string): LinkClass {
+/** Контекст посилання на сторінці-джерелі (spec §6): клас береться з контексту, URL — лише розв'язання нічиїх. */
+export interface LinkContext {
+  url: string;
+  text: string;
+  landmark: Landmark;
+  /** основне посилання картки з групи K1 */
+  card_primary?: boolean;
+  /** іконка з лічильником (кошик) */
+  has_counter?: boolean;
+  /** найпомітніше посилання/кнопка в main головної */
+  prominent_home?: boolean;
+}
+export interface LinkClassification { cls: LinkClass; priority: number; basis: string }
+
+const INFO_RULES: Array<[LinkClass, RegExp]> = [
+  ["shipping", /shipping|delivery|dostavka|dostawa|wysy[łl]ka|доставк|відправк/i],
+  ["faq", /(^|\/)(faq|help|support|questions|pomoc)(\/|$)|^(допомога|faq|питання|pytania|pomoc)/i],
+  ["about", /(^|\/)(about|about-us|pro-nas|o-nas)(\/|$)|^(про нас|про-нас|about|o nas)/i],
+  ["contact", /(^|\/)(contacts?|kontakty|kontakt)(\/|$)|^(контакти|contact|kontakt)/i],
+  ["blog", /(^|\/)(blog|news|articles?|aktualnosci)(\/|$)|^(блог|новини|blog|aktualności)$/i],
+  ["legal", /privacy|terms|policy|cookies?|legal|umovy|regulamin|polityka|політик|умови/i],
+  ["pricing", /(^|\/)(pricing|prices?|plans?|tarif\w*)(\/|$)|^(ціни|тарифи|pricing|prices)$/i],
+  ["services", /(^|\/)(services?|solutions?|poslugi)(\/|$)|^(послуги|services)$/i],
+];
+
+export function classifyLink(ctx: LinkContext): LinkClassification {
   let p = "/";
+  let hasQuery = false;
   try {
-    p = new URL(url).pathname.toLowerCase();
+    const u = new URL(ctx.url);
+    p = u.pathname.toLowerCase();
+    hasQuery = u.search !== "";
   } catch {
     /* ignore */
   }
-  const t = text.toLowerCase();
-  if (p === "/" || p === "") return "homepage";
-  if (PRODUCT_PATH_RE.test(p)) return "product";
-  const rules: Array<[LinkClass, RegExp]> = [
-    ["shop_category", /(^|\/)(catalog|catalogue|shop|store|category|categories|collections?)(\/|$)|^(каталог|магазин|catalog|shop)$/i],
-    ["pricing", /(^|\/)(pricing|prices?|plans?|tarif\w*)(\/|$)|^(ціни|тарифи|pricing|prices)$/i],
-    ["services", /(^|\/)(services?|solutions?|poslugi)(\/|$)|^(послуги|services)$/i],
-    ["shipping", /shipping|delivery|dostavka|доставк/i],
-    ["faq", /(^|\/)(faq|help|support|questions)(\/|$)|^(допомога|faq|питання)/i],
-    ["about", /(^|\/)(about|about-us|pro-nas)(\/|$)|^(про нас|про-нас|about)/i],
-    ["contact", /(^|\/)(contacts?|kontakty)(\/|$)|^(контакти|contact)/i],
-    ["blog", /(^|\/)(blog|news|articles?)(\/|$)|^(блог|новини|blog)$/i],
-    ["legal", /privacy|terms|policy|cookies?|legal|umovy|політик|умови/i],
-  ];
-  for (const [cls, re] of rules) if (re.test(p) || re.test(t)) return cls;
-  return "other";
+  const t = ctx.text.toLowerCase();
+  const mk = (cls: LinkClass, basis: string, priority = PRIORITY[cls]): LinkClassification => ({ cls, priority, basis });
+  if ((p === "/" || p === "") && !hasQuery) return mk("homepage", "root");
+  if (urlCartHint(ctx.url) || urlAccountHint(ctx.url) || ctx.has_counter) return mk("cart", "cart_account_url_or_counter");
+  if (ctx.card_primary) return mk("product", "card_group");
+  for (const [cls, re] of INFO_RULES) if (re.test(p) || re.test(t)) return mk(cls, "info_lexicon");
+  if (ctx.prominent_home) return mk("shop_category", "prominent_main_home");
+  if (ctx.landmark === "nav" || ctx.landmark === "header") return mk("shop_category", "nav_item", 0.9);
+  return mk("other", "default", PRIORITY.other + (urlProductHint(ctx.url) || urlCategoryHint(ctx.url) ? 0.05 : 0));
 }
 
 /** нормалізація для дедуплікації: без hash, без кінцевого слеша (окрім кореня) */
@@ -86,7 +108,7 @@ export interface CrawlEdge { from: string; to: string }
 export interface CrawlResult {
   pages: PageCapture[];
   edges: CrawlEdge[];
-  log: Array<{ url: string; depth: number; class: LinkClass; priority: number; order: number }>;
+  log: Array<{ url: string; depth: number; class: LinkClass; priority: number; order: number; page_type: string }>;
   skipped: Array<{ url: string; reason: string; rule?: string; from: string }>;
 }
 
@@ -94,28 +116,51 @@ export async function crawl(opts: {
   seedUrl: string;
   capture: (url: string) => Promise<PageCapture>;
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
+  /** 'v1' — старий URL-класифікатор посилань (лише контроль метаморфного набору) */
+  engine?: "v1" | "v2";
 }): Promise<CrawlResult> {
   const lim = opts.limits ?? CRAWL_LIMITS;
+  const v1 = opts.engine === "v1";
   const seed = normalizeCrawlUrl(opts.seedUrl)!;
   const origin = new URL(seed).origin;
   const result: CrawlResult = { pages: [], edges: [], log: [], skipped: [] };
-  interface Item { url: string; depth: number; cls: LinkClass; priority: number; seq: number }
-  const frontier: Item[] = [{ url: seed, depth: 0, cls: "homepage", priority: 1, seq: 0 }];
+  interface Item { url: string; depth: number; cls: LinkClass; priority: number; seq: number; from: string }
+  const frontier: Item[] = [{ url: seed, depth: 0, cls: "homepage", priority: 1, seq: 0, from: "" }];
   const seen = new Set<string>([seed]);
   let seq = 1;
   let productsQueued = 0;
+  let productsCaptured = 0;
 
   while (frontier.length > 0 && result.pages.length < lim.maxPages) {
     frontier.sort((a, b) => b.priority - a.priority || a.depth - b.depth || a.seq - b.seq);
     const item = frontier.shift()!;
+    // v2: кап «≤ N продуктів» рахує ЗАХОПЛЕНІ сторінки типу product; прогноз, що виявився category, кап не витрачає
+    if (!v1 && item.cls === "product" && productsCaptured >= lim.maxProducts) {
+      result.skipped.push({ url: item.url, reason: "product_cap", from: item.from });
+      continue;
+    }
     const page = await opts.capture(item.url);
-    result.log.push({ url: item.url, depth: item.depth, class: item.cls, priority: item.priority, order: result.pages.length });
+    result.log.push({ url: item.url, depth: item.depth, class: item.cls, priority: item.priority, order: result.pages.length, page_type: page.page_type });
     result.pages.push(page);
+    if (page.page_type === "product") productsCaptured++;
     if (item.depth >= lim.maxDepth) continue;
 
     // посилання з обох viewport (мобільна навігація може відрізнятися), у детермінованому порядку
     const links: LinkRow[] = [...page.D.links, ...page.M.links].filter((l) => l.visible);
-    const productCands: Array<{ url: string; name: string }> = [];
+    // найпомітніше посилання в main головної (за площею; нічия — порядок DOM)
+    let prominentUrl: string | null = null;
+    if (!v1 && page.classification?.is_home) {
+      let bestArea = -1;
+      for (const l of links) {
+        if (l.landmark !== "main" || l.in_card) continue;
+        const a = l.rect.w * l.rect.h;
+        if (a > bestArea) {
+          bestArea = a;
+          prominentUrl = normalizeCrawlUrl(l.abs, page.url);
+        }
+      }
+    }
+    const best = new Map<string, { cls: LinkClass; priority: number; name: string }>();
     for (const l of links) {
       const url = normalizeCrawlUrl(l.abs, page.url);
       if (!url) continue;
@@ -140,23 +185,33 @@ export async function crawl(opts: {
       }
       result.edges.push({ from: page.url, to: url });
       if (seen.has(url)) continue;
-      const cls = classifyLink(url, l.name || l.text);
-      if (cls === "product") {
-        if (!productCands.some((c) => c.url === url)) productCands.push({ url, name: l.name || l.text });
+      const name = l.name || l.text;
+      const c: { cls: LinkClass; priority: number } = v1
+        ? (() => {
+            const cls = classifyLinkV1(url, name);
+            return { cls, priority: PRIORITY[cls] };
+          })()
+        : classifyLink({ url, text: name, landmark: l.landmark, card_primary: l.card_primary, has_counter: l.has_counter, prominent_home: prominentUrl !== null && url === prominentUrl });
+      const prev = best.get(url);
+      if (!prev || c.priority > prev.priority) best.set(url, { ...c, name });
+    }
+    const productCands: Array<{ url: string; name: string }> = [];
+    for (const [url, c] of best) {
+      if (c.cls === "product") {
+        productCands.push({ url, name: c.name });
         continue;
       }
       seen.add(url);
-      frontier.push({ url, depth: item.depth + 1, cls, priority: PRIORITY[cls], seq: seq++ });
+      frontier.push({ url, depth: item.depth + 1, cls: c.cls, priority: c.priority, seq: seq++, from: page.url });
     }
-    const picked = pickDiverseProducts(productCands, Math.max(0, lim.maxProducts - productsQueued));
+    const room = v1 ? Math.max(0, lim.maxProducts - productsQueued) : lim.maxProducts;
+    const picked = pickDiverseProducts(productCands, room);
     for (const c of productCands) {
-      if (seen.has(c.url)) continue;
+      seen.add(c.url);
       if (picked.includes(c)) {
-        seen.add(c.url);
         productsQueued++;
-        frontier.push({ url: c.url, depth: item.depth + 1, cls: "product", priority: PRIORITY.product, seq: seq++ });
+        frontier.push({ url: c.url, depth: item.depth + 1, cls: "product", priority: PRIORITY.product, seq: seq++, from: page.url });
       } else {
-        seen.add(c.url);
         result.skipped.push({ url: c.url, reason: "product_cap", from: page.url });
       }
     }

@@ -1,0 +1,142 @@
+[
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/index.html",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/kataloh.html",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/kosh.html",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/kosh.html?t=a",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/kosh.html?t=b",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/pro-nas.html",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/umovy.html",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/index.html",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/kosh.html",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/kosh.html?t=a",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/kosh.html?t=b",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/pro-nas.html",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/umovy.html",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/index.html",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/kataloh.html",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/kosh.html",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/kosh.html?t=a",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/kosh.html?t=b",
+    "page_type": "other",
+    "status": "not_applicable",
+    "reason": "page_type:other"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/pro-nas.html",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/umovy.html",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  }
+]

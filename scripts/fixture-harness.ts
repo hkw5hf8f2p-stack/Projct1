@@ -13,10 +13,20 @@ import { auditSite, type AuditResult } from "../packages/browser/src/audit/run-s
 import { secureLaunch, type SecureBrowser } from "../packages/browser/src/secure-launch.js";
 
 export type Site = "shop" | "clean";
-export interface FixtureCfg { site: Site; mutant?: Mutant | null; control?: Control | null; port: number; logFile?: string }
+export interface FixtureCfg {
+  site: Site;
+  mutant?: Mutant | null;
+  control?: Control | null;
+  /** метаморфні трансформації (page-type-tests.md), напр. ["U5","V2"] */
+  transforms?: string[];
+  /** текст ціни (формати метаморфного набору) */
+  priceText?: string;
+  port: number;
+  logFile?: string;
+}
 
 export async function startFixture(cfg: FixtureCfg): Promise<FixtureServer> {
-  const handler = cfg.site === "shop" ? createShopHandler({ mutant: cfg.mutant ?? null, control: cfg.control ?? null }) : createShopCleanHandler();
+  const handler = cfg.site === "shop" ? createShopHandler({ mutant: cfg.mutant ?? null, control: cfg.control ?? null, transforms: cfg.transforms ?? null, priceText: cfg.priceText }) : createShopCleanHandler({ transforms: cfg.transforms ?? null });
   return startFixtureServer({ handler, logFile: cfg.logFile, port: cfg.port });
 }
 
@@ -31,6 +41,10 @@ export interface AuditRunCfg extends FixtureCfg {
   shots: boolean;
   tiles?: boolean;
   fxMarkers?: boolean;
+  /** 'v1' — старий класифікатор (7c5cae8): лише контроль метаморфного набору */
+  engine?: "v1" | "v2";
+  /** ліміти crawl (за замовчуванням 12/3/3) */
+  limits?: { maxPages: number; maxDepth: number; maxProducts: number };
 }
 export async function auditFixture(cfg: AuditRunCfg): Promise<{ result: AuditResult; server: FixtureServer }> {
   const server = await startFixture(cfg);
@@ -43,6 +57,8 @@ export async function auditFixture(cfg: AuditRunCfg): Promise<{ result: AuditRes
       tiles: cfg.tiles ?? cfg.shots,
       collectFxMarkers: cfg.fxMarkers ?? false,
       minDelayMs: 0, // локальна фікстура; на живих сайтах ≥ 1500 мс (DEV-18)
+      engine: cfg.engine,
+      limits: cfg.limits,
     });
     return { result, server };
   } finally {

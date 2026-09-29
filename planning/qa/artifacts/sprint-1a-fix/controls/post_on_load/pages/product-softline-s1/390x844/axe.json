@@ -1,0 +1,47 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "button-name",
+      "impact": "critical",
+      "help": "Buttons must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "nodes": [
+        {
+          "target": ".menu-btn",
+          "html": "<button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button>",
+          "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  ",
+          "rect": {
+            "x": 334,
+            "y": 10,
+            "w": 44,
+            "h": 44
+          },
+          "landmark": "header",
+          "tag": "button"
+        }
+      ]
+    },
+    {
+      "id": "image-alt",
+      "impact": "critical",
+      "help": "Images must have alternative text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "nodes": [
+        {
+          "target": "img",
+          "html": "<img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 12,
+            "y": 123,
+            "w": 366,
+            "h": 240
+          },
+          "landmark": "main",
+          "tag": "img"
+        }
+      ]
+    }
+  ]
+}

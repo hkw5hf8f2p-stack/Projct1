@@ -5,17 +5,57 @@
  * Твердження відсутності (№2, №10) — за DEV-17/DEV-19 (map §4); №5 при відкритому банері — ET-INC.
  */
 import { evidenceId } from "../evidence.js";
-import { CTA_RE, OVERFLOW_MIN_PX, PRODUCT_PATH_RE, SHIP_PATH_RE, SHIP_RE, SIZE_THRESHOLD_BYTES, CTA_VIS_THRESHOLD } from "./patterns.js";
-import type { EvidenceRow, PageType, Rect, ViewportCapture, VP, EvidenceType, SourceClass } from "./types.js";
+import { componentSignature } from "./axe-groups.js";
+import type { PageClassification } from "./classify.js";
+import { CTA_RE, CTA_RE_V1, OVERFLOW_MIN_PX, SHIP_PATH_RE, SHIP_RE, SIZE_THRESHOLD_BYTES, CTA_VIS_THRESHOLD } from "./patterns.js";
+import type { EvidenceRow, PageType, Rect, UnknownReason, ViewportCapture, VP, EvidenceType, SourceClass } from "./types.js";
 
 export interface DetectInput {
   url: string;
   path: string;
   page_type: PageType;
+  page_type_reason?: UnknownReason | null;
   page_group: string;
   D: ViewportCapture;
   M: ViewportCapture;
+  /** вихід класифікатора v2 (первинна дія P3 по viewport); відсутній для engine 'v1' */
+  classification?: PageClassification | null;
+  /** 'v1' — старі правила гейтингу (лише контроль метаморфного набору) */
+  engine?: "v1" | "v2";
 }
+
+/** Рядок покриття (spec §5): кожне «не застосовано/утримано/обмежено» — видиме, відсутність спрацювання ≠ відсутність дефекту. */
+export interface CoverageRow {
+  detector_id: "shipping_depth" | "cta_below_fold" | "price_first_viewport";
+  page: string;
+  page_type: PageType;
+  status: "not_applicable" | "withheld" | "capped";
+  reason: string;
+}
+type Appl = "yes" | "likely" | "no" | "withheld";
+type CovDetector = CoverageRow["detector_id"];
+
+/** Застосовність детекторів за типом сторінки — таблиця spec §5. */
+export function applicability(detector: CovDetector, type: PageType, reason: UnknownReason | null): Appl {
+  if (type === "unknown") return reason === "product_likely" ? "likely" : "withheld";
+  if (type === "product") return "yes";
+  if (type === "category") return detector === "price_first_viewport" ? "yes" : "no";
+  return "no";
+}
+const applOf = (inp: DetectInput, d: CovDetector): Appl => {
+  if (inp.engine === "v1") return inp.page_type === "product" || (inp.page_type === "category" && d === "price_first_viewport") ? "yes" : "no";
+  return applicability(d, inp.page_type, inp.page_type_reason ?? null);
+};
+/** false → детектор не запускається; рядок покриття пишеться (крім v1) */
+function gate(inp: DetectInput, d: CovDetector, cov?: CoverageRow[]): Appl | "stop" {
+  const a = applOf(inp, d);
+  if (a === "yes" || a === "likely") return a;
+  if (inp.engine !== "v1")
+    cov?.push({ detector_id: d, page: inp.path, page_type: inp.page_type, status: a === "withheld" ? "withheld" : "not_applicable", reason: a === "withheld" ? "capture_insufficient" : `page_type:${inp.page_type}` });
+  return "stop";
+}
+const note = (cov: CoverageRow[] | undefined, inp: DetectInput, d: CovDetector, status: CoverageRow["status"], reason: string) => cov?.push({ detector_id: d, page: inp.path, page_type: inp.page_type, status, reason });
+const UNCERTAIN = "page_type_uncertain";
 
 const is2xx = (c: ViewportCapture) => c.completeness.http_status !== null && c.completeness.http_status >= 200 && c.completeness.http_status < 300;
 const sameOrigin = (a: string, b: string) => {
@@ -26,35 +66,8 @@ const sameOrigin = (a: string, b: string) => {
   }
 };
 
-/** Тип сторінки за map §1 (пріоритет category над «h1+CTA» — DEV-26). */
-export function classifyPageType(c: ViewportCapture): PageType {
-  let path = "/";
-  try {
-    path = new URL(c.final_url).pathname;
-  } catch {
-    /* лишаємо / */
-  }
-  if (c.jsonld_types.some((t) => /^product$/i.test(t))) return "product";
-  if (PRODUCT_PATH_RE.test(path)) return "product";
-  if (productLinkTargets(c).size >= 3) return "category";
-  if (c.h1_count === 1 && c.interactive.some((i) => CTA_RE.test(i.name.trim()))) return "product";
-  return "unknown";
-}
-export function productLinkTargets(c: ViewportCapture): Set<string> {
-  const out = new Set<string>();
-  for (const l of c.links) {
-    if (!l.visible || !sameOrigin(l.abs, c.final_url)) continue;
-    try {
-      const u = new URL(l.abs);
-      if (PRODUCT_PATH_RE.test(u.pathname)) out.add(u.origin + u.pathname.replace(/\/$/, ""));
-    } catch {
-      /* ignore */
-    }
-  }
-  return out;
-}
-
-export const pageGroupOf = (type: PageType, p: string): string => (type === "unknown" ? p.replace(/(.)\/$/, "$1") : type);
+/** product/category — спільні групи знахідок; решта типів групуються за шляхом (як і раніше). */
+export const pageGroupOf = (type: PageType, p: string): string => (type === "product" || type === "category" ? type : p.replace(/(.)\/$/, "$1"));
 
 interface Mk {
   input: DetectInput;
@@ -87,6 +100,7 @@ function mk(m: Mk): EvidenceRow {
     page_url: m.input.url,
     page_path: m.input.path,
     page_type: m.input.page_type,
+    ...(m.input.page_type === "unknown" ? { page_type_reason: m.input.page_type_reason ?? null } : {}),
     page_group: m.input.page_group,
     category: m.category,
     description: m.description,
@@ -118,11 +132,17 @@ const fitsViewport = (r: Rect, c: ViewportCapture) => r.x >= 0 && r.y >= 0 && r.
 const shotFor = (r: Rect, c: ViewportCapture) => (fitsViewport(r, c) ? c.screenshots.viewport.file : c.screenshots.fullpage.file);
 
 // ------------------------------------------------------------------------------------------------ №2
-export function detectShippingDepth(inp: DetectInput): EvidenceRow[] {
-  if (inp.page_type !== "product") return [];
+export function detectShippingDepth(inp: DetectInput, cov?: CoverageRow[]): EvidenceRow[] {
+  const g = gate(inp, "shipping_depth", cov);
+  if (g === "stop") return [];
+  const uncertain = g === "likely";
   const { D, M } = inp;
   // утримання повністю (map §4 п.3)
-  for (const c of [D, M]) if (!is2xx(c) || !c.completeness.navigation_completed || c.completeness.visible_text_length < 200) return [];
+  for (const c of [D, M])
+    if (!is2xx(c) || !c.completeness.navigation_completed || c.completeness.visible_text_length < 200) {
+      note(cov, inp, "shipping_depth", "withheld", `capture_insufficient:${c.vp}`);
+      return [];
+    }
   const caps = [D, M];
   const d0 = caps.some((c) => c.text_nodes.some((n) => SHIP_RE.test(n.t)) || c.images.some((i) => i.alt && SHIP_RE.test(i.alt)));
   const d1 = caps.some((c) =>
@@ -138,8 +158,9 @@ export function detectShippingDepth(inp: DetectInput): EvidenceRow[] {
     }),
   );
   if (d0 || d1) return [];
-  const reasons = [...new Set([...D.completeness.incomplete_reasons, ...M.completeness.incomplete_reasons])].sort();
+  const reasons = [...new Set([...D.completeness.incomplete_reasons, ...M.completeness.incomplete_reasons, ...(uncertain ? [UNCERTAIN] : [])])].sort();
   const complete = reasons.length === 0;
+  if (uncertain) note(cov, inp, "shipping_depth", "capped", "product_likely: ET-INC, знахідка ≤ HYPOTHESIS");
   const linkTexts = [...new Set(M.links.filter((l) => l.visible).map((l) => l.name || l.text).filter(Boolean))];
   const region: Rect = { x: 0, y: 0, w: Math.max(M.width, M.overflow.scroll_width), h: M.overflow.scroll_height };
   return [
@@ -155,7 +176,7 @@ export function detectShippingDepth(inp: DetectInput): EvidenceRow[] {
       region,
       artifact_reference: M.screenshots.fullpage.file,
       screenshot_reference: M.screenshots.fullpage.file,
-      description: `На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.${complete ? "" : " Можлива неповнота захоплення."}`,
+      description: `${uncertain ? "Тип сторінки не визначено однозначно (ймовірно товар). " : ""}На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.${complete ? "" : " Можлива неповнота захоплення."}`,
       excerpt: `Видимі посилання сторінки: ${linkTexts.join(" | ")}`,
       measurement: { d0, d1, union_of: ["D", "M"], depth_clicks: null, shipping_found_via: null },
       self_confirming: complete,
@@ -166,17 +187,30 @@ export function detectShippingDepth(inp: DetectInput): EvidenceRow[] {
 }
 
 // ------------------------------------------------------------------------------------------------ №5
-export function detectCtaBelowFold(inp: DetectInput): EvidenceRow[] {
-  if (inp.page_type !== "product") return [];
+export function detectCtaBelowFold(inp: DetectInput, cov?: CoverageRow[]): EvidenceRow[] {
+  const g = gate(inp, "cta_below_fold", cov);
+  if (g === "stop") return [];
+  const uncertain = g === "likely";
+  const v1 = inp.engine === "v1";
   const out: EvidenceRow[] = [];
   for (const c of [inp.D, inp.M]) {
-    if (!c.completeness.layout_stable) continue;
-    const cands = c.interactive.filter((i) => CTA_RE.test(i.name.trim()));
-    if (cands.length === 0) continue;
+    if (!c.completeness.layout_stable) {
+      note(cov, inp, "cta_below_fold", "withheld", `layout_unstable:${c.vp}`);
+      continue;
+    }
+    // кандидат CTA = первинна дія за роллю (P3) ∪ збіги словника поза картками; v1 — лише старий словник
+    const primarySel = v1 ? null : (inp.classification?.per_view[c.vp].primary?.selector ?? null);
+    const cands = c.interactive.filter((i) => (v1 ? CTA_RE_V1.test(i.name.trim()) : !i.in_card && (i.selector === primarySel || CTA_RE.test(i.name.trim()))));
+    if (cands.length === 0) {
+      note(cov, inp, "cta_below_fold", "withheld", `no_cta_candidate:${c.vp}`);
+      continue;
+    }
     const maxVis = Math.max(...cands.map((i) => i.vis));
     if (maxVis >= CTA_VIS_THRESHOLD) continue;
     const best = [...cands].sort((a, b) => b.vis - a.vis || a.rect.y - b.rect.y || a.selector.localeCompare(b.selector))[0]!;
     const bannerOpen = c.completeness.banner_state === "open";
+    const reasons = [...(bannerOpen ? ["banner_open"] : []), ...(uncertain ? [UNCERTAIN] : [])];
+    if (uncertain) note(cov, inp, "cta_below_fold", "capped", `product_likely:${c.vp}: знахідка ≤ HYPOTHESIS`);
     out.push(
       mk({
         input: inp,
@@ -191,12 +225,12 @@ export function detectCtaBelowFold(inp: DetectInput): EvidenceRow[] {
         region: best.rect,
         artifact_reference: c.screenshots.fullpage.file,
         screenshot_reference: c.screenshots.fullpage.file,
-        description: `Основна кнопка «${best.name}» лежить нижче першого вікна: верхній край на ${best.rect.y}px при висоті вікна ${c.height}px.${bannerOpen ? " Можлива неповнота захоплення (банер відкритий)." : ""}`,
+        description: `${uncertain ? "Тип сторінки не визначено однозначно (ймовірно товар). " : ""}Основна кнопка «${best.name}» лежить нижче першого вікна: верхній край на ${best.rect.y}px при висоті вікна ${c.height}px.${bannerOpen ? " Можлива неповнота захоплення (банер відкритий)." : ""}`,
         excerpt: `${best.name} — ${best.selector}`,
-        measurement: { top_px: best.rect.y, vh: c.height, vis: best.vis, candidates: cands.length },
-        self_confirming: !bannerOpen,
-        capture_complete: !bannerOpen,
-        incomplete_reasons: bannerOpen ? ["banner_open"] : [],
+        measurement: { top_px: best.rect.y, vh: c.height, vis: best.vis, candidates: cands.length, by_role: best.selector === primarySel },
+        self_confirming: reasons.length === 0,
+        capture_complete: reasons.length === 0,
+        incomplete_reasons: reasons,
       }),
     );
   }
@@ -226,7 +260,7 @@ export function detectAxe(inp: DetectInput): EvidenceRow[] {
             screenshot_reference: shotFor(region, c),
             description: `${v.help} (${v.impact ?? "n/a"}). ${n.failureSummary.split("\n").slice(0, 2).join(" ").trim()}`,
             excerpt: `${n.target} — ${n.html} — ${n.failureSummary}`,
-            measurement: { rule: v.id, impact: v.impact, helpUrl: v.helpUrl, axe_version: c.axe.version, nodes_in_rule: v.nodes.length },
+            measurement: { rule: v.id, impact: v.impact, helpUrl: v.helpUrl, axe_version: c.axe.version, nodes_in_rule: v.nodes.length, component_signature: componentSignature(v.id, n.target, n.failureSummary, n.landmark, n.tag), component_landmark: n.landmark ?? null },
             self_confirming: true,
             capture_complete: c.completeness.capture_complete,
             incomplete_reasons: c.completeness.incomplete_reasons,
@@ -313,17 +347,31 @@ export function detectOversizedImage(inp: DetectInput): EvidenceRow[] {
 }
 
 // ------------------------------------------------------------------------------------------------ №10
-export function detectPriceFirstViewport(inp: DetectInput): EvidenceRow[] {
-  if (inp.page_type !== "product" && inp.page_type !== "category") return [];
+export function detectPriceFirstViewport(inp: DetectInput, cov?: CoverageRow[]): EvidenceRow[] {
+  const g = gate(inp, "price_first_viewport", cov);
+  if (g === "stop") return [];
+  const uncertain = g === "likely";
   const out: EvidenceRow[] = [];
   for (const c of [inp.D, inp.M]) {
     const comp = c.completeness;
-    if (!is2xx(c) || !comp.navigation_completed || comp.visible_text_length < 200 || !comp.layout_stable) continue; // утримання (map §4 п.3)
+    if (!is2xx(c) || !comp.navigation_completed || comp.visible_text_length < 200 || !comp.layout_stable) {
+      note(cov, inp, "price_first_viewport", "withheld", `capture_insufficient:${c.vp}`); // утримання (map §4 п.3)
+      continue;
+    }
     const real = c.price_candidates.filter((p) => !p.excluded);
     if (real.some((p) => p.in_fv)) continue;
-    const firstY = real.length ? Math.min(...real.map((p) => p.rect.y)) : null;
-    const reasons = comp.incomplete_reasons;
+    const first = real.length ? [...real].sort((a, b) => a.rect.y - b.rect.y || a.rect.x - b.rect.x)[0]! : null;
+    // причина: немає на сторінці · нижче вікна · поза вікном по горизонталі (ціна є, але x за шириною вікна)
+    const reason: "none_on_page" | "below_fv" | "off_fv_horizontal" = !first ? "none_on_page" : first.rect.y >= c.height ? "below_fv" : first.rect.x >= c.width || first.rect.x + first.rect.w <= 0 ? "off_fv_horizontal" : "below_fv";
+    const reasons = [...comp.incomplete_reasons, ...(uncertain ? [UNCERTAIN] : [])];
     const complete = reasons.length === 0;
+    if (uncertain) note(cov, inp, "price_first_viewport", "capped", `product_likely:${c.vp}: ET-INC`);
+    const where =
+      reason === "none_on_page"
+        ? " (на сторінці її не знайдено взагалі)"
+        : reason === "below_fv"
+          ? ` (перша ціна на y=${first!.rect.y}px, нижче вікна висотою ${c.height}px)`
+          : ` (ціна є на y=${first!.rect.y}px, але x=${first!.rect.x}px лежить поза шириною вікна ${c.width}px)`;
     out.push(
       mk({
         input: inp,
@@ -337,9 +385,9 @@ export function detectPriceFirstViewport(inp: DetectInput): EvidenceRow[] {
         region: { x: 0, y: 0, w: c.width, h: c.height },
         artifact_reference: c.screenshots.viewport.file,
         screenshot_reference: c.screenshots.viewport.file,
-        description: `У першому вікні ${c.width}×${c.height} немає ціни${firstY === null ? " (на сторінці її не знайдено взагалі)" : ` (перша ціна на ${firstY}px)`}.${complete ? "" : " Можлива неповнота захоплення."}`,
+        description: `${uncertain ? "Тип сторінки не визначено однозначно (ймовірно товар). " : ""}У першому вікні ${c.width}×${c.height} немає ціни${where}.${complete ? "" : " Можлива неповнота захоплення."}`,
         excerpt: c.fv_text,
-        measurement: { first_price_y: firstY, price_depth_clicks: null, price_candidates: real.length },
+        measurement: { first_price_x: first?.rect.x ?? null, first_price_y: first?.rect.y ?? null, reason, price_depth_clicks: null, price_candidates: real.length },
         self_confirming: complete,
         capture_complete: complete,
         incomplete_reasons: reasons,
@@ -349,16 +397,22 @@ export function detectPriceFirstViewport(inp: DetectInput): EvidenceRow[] {
   return out;
 }
 
-export function detectAll(inp: DetectInput): EvidenceRow[] {
+const sortEv = (all: EvidenceRow[]) => all.sort((a, b) => a.detector_id.localeCompare(b.detector_id) || a.page_path.localeCompare(b.page_path) || a.viewport.localeCompare(b.viewport) || (a.selector_or_region.selector ?? "").localeCompare(b.selector_or_region.selector ?? ""));
+
+export function detectAllWithCoverage(inp: DetectInput): { evidence: EvidenceRow[]; coverage: CoverageRow[] } {
+  const coverage: CoverageRow[] = [];
   const all = [
-    ...detectShippingDepth(inp),
-    ...detectCtaBelowFold(inp),
+    ...detectShippingDepth(inp, coverage),
+    ...detectCtaBelowFold(inp, coverage),
     ...detectAxe(inp),
     ...detectHorizontalOverflow(inp),
     ...detectOversizedImage(inp),
-    ...detectPriceFirstViewport(inp),
+    ...detectPriceFirstViewport(inp, coverage),
   ];
-  return all.sort((a, b) => a.detector_id.localeCompare(b.detector_id) || a.page_path.localeCompare(b.page_path) || a.viewport.localeCompare(b.viewport) || (a.selector_or_region.selector ?? "").localeCompare(b.selector_or_region.selector ?? ""));
+  return { evidence: sortEv(all), coverage };
+}
+export function detectAll(inp: DetectInput): EvidenceRow[] {
+  return detectAllWithCoverage(inp).evidence;
 }
 
 export type { VP };

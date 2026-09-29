@@ -1,0 +1,167 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "target": "#kosh-lnk > span",
+          "html": "<span>Кошик</span>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.42 (foreground color: #0000ee, background color: #3d2b1f, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 48,
+            "y": 241,
+            "w": 47,
+            "h": 25
+          },
+          "landmark": "nav",
+          "tag": "span"
+        },
+        {
+          "target": "footer",
+          "html": "<footer class=\"pidval\"><a href=\"umovy.html\">Умови</a> · <a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a> · © 2026</footer>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 0,
+            "y": 1000,
+            "w": 1440,
+            "h": 56
+          },
+          "landmark": "footer",
+          "tag": "footer"
+        },
+        {
+          "target": "a[href$=\"umovy.html\"]",
+          "html": "<a href=\"umovy.html\">Умови</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 44,
+            "y": 1020,
+            "w": 36,
+            "h": 15
+          },
+          "landmark": "footer",
+          "tag": "a"
+        },
+        {
+          "target": "footer > a[href$=\"pro-nas.html\"]",
+          "html": "<a href=\"pro-nas.html\">Пасіка «Верховина», Закарпаття</a>",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.21 (foreground color: #8a7c68, background color: #efe4c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "rect": {
+            "x": 91,
+            "y": 1020,
+            "w": 179,
+            "h": 15
+          },
+          "landmark": "footer",
+          "tag": "a"
+        }
+      ]
+    },
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "help": "Heading levels should only increase by one",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/heading-order?application=playwright",
+      "nodes": [
+        {
+          "target": ".kartka:nth-child(1) > h3",
+          "html": "<h3>Рамка ДБ-435 ВЛ розс.</h3>",
+          "failureSummary": "Fix any of the following:\n  Heading order invalid",
+          "rect": {
+            "x": 287,
+            "y": 451,
+            "w": 265,
+            "h": 26
+          },
+          "landmark": "main",
+          "tag": "h3"
+        }
+      ]
+    },
+    {
+      "id": "image-alt",
+      "impact": "critical",
+      "help": "Images must have alternative text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "nodes": [
+        {
+          "target": "img[src$=\"ramka-a.svg\"]",
+          "html": "<img src=\"img/ramka-a.svg\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 287,
+            "y": 243,
+            "w": 265,
+            "h": 198
+          },
+          "landmark": "main",
+          "tag": "img"
+        },
+        {
+          "target": "img[src$=\"ramka-b.svg\"]",
+          "html": "<img src=\"img/ramka-b.svg\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 598,
+            "y": 243,
+            "w": 265,
+            "h": 199
+          },
+          "landmark": "main",
+          "tag": "img"
+        },
+        {
+          "target": "img[src$=\"dymar.svg\"]",
+          "html": "<img src=\"img/dymar.svg\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics ",
+          "rect": {
+            "x": 287,
+            "y": 552,
+            "w": 265,
+            "h": 198
+          },
+          "landmark": "main",
+          "tag": "img"
+        }
+      ]
+    },
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "help": "Links must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+      "nodes": [
+        {
+          "target": "a[href$=\"tovar-ramka-435.html\"]:nth-child(1)",
+          "html": "<a href=\"tovar-ramka-435.html\"><img src=\"img/ramka-a.svg\"></a>",
+          "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no",
+          "rect": {
+            "x": 287,
+            "y": 243,
+            "w": 265,
+            "h": 198
+          },
+          "landmark": "main",
+          "tag": "a"
+        },
+        {
+          "target": "a[href$=\"tovar-ramka-435r.html\"]:nth-child(1)",
+          "html": "<a href=\"tovar-ramka-435r.html\"><img src=\"img/ramka-b.svg\"></a>",
+          "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no",
+          "rect": {
+            "x": 598,
+            "y": 243,
+            "w": 265,
+            "h": 199
+          },
+          "landmark": "main",
+          "tag": "a"
+        }
+      ]
+    }
+  ]
+}
