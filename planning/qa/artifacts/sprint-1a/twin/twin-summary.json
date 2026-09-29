@@ -19,9 +19,9 @@
   "findings_total": 24,
   "non_get_requests": 0,
   "requests_total": 76,
-  "deterministic_found": 5,
+  "deterministic_found": 4,
   "of": 7,
-  "deterministic_found_full_vp": 4,
+  "deterministic_found_full_vp": 3,
   "defects": [
     {
       "n": 2,
@@ -332,7 +332,7 @@
     {
       "n": 10,
       "detector": "price_first_viewport",
-      "found": true,
+      "found": false,
       "complete_vp_coverage": false,
       "pages_found": [
         "/kosh.html",
@@ -396,10 +396,45 @@
         "/kosh.html@390x844 [VERIFIED]",
         "/kosh.html?t=a@390x844 [VERIFIED]",
         "/kosh.html?t=b@390x844 [VERIFIED]"
-      ]
+      ],
+      "found_script": true,
+      "counted": false,
+      "accidental": true,
+      "note": "спрацювання лише на kosh.html (M), хибно класифікованому як product; на заявлених лістингу/товарах не знайдено. Текст доказу «немає ціни (перша ціна на 282px)» суперечить геометрії: ціна 1 200 грн на y=282, x=447 при vw=390 (overflow 672 px, наслідок №7)"
     }
   ],
-  "false_positives": [
+  "evidence_by_detector": {
+    "axe:button-name": 9,
+    "axe:color-contrast": 75,
+    "axe:heading-order": 4,
+    "axe:image-alt": 6,
+    "axe:link-name": 4,
+    "horizontal_overflow": 6,
+    "oversized_image": 2,
+    "price_first_viewport": 3
+  },
+  "hash_ok": true,
+  "verdict": {
+    "honest_any_page_any_viewport": "4/7 (№6, №7, №8, №9)",
+    "full_expected_coverage": "3/7 (№6, №7, №8 повні; №9 лише kataloh)",
+    "script_reported": "5/7 — №10 зараховано помилково",
+    "note": "№10 — випадкове спрацювання на кошику (kosh.html → product), текст доказу суперечить геометрії; не зараховано"
+  },
+  "exit_criterion_3_deterministic_ge_6_of_7": false,
+  "qa": {
+    "tests": "176/176 passed (5 files)",
+    "typecheck": "OK",
+    "lint": "OK (після виправлення no-unused-expressions у новому audit-twin.ts)",
+    "side_effect": "pnpm test перезаписав planning/qa/artifacts/sprint-1a/canary/*.json (git M)"
+  },
+  "miss_diagnosis": {
+    "2": "shipping_depth: gate page_type==product. Товари двійника /tovar-ramka-435.html → unknown: PRODUCT_PATH_RE вимагає /(product|products|p|item|tovar)/<slug> (двійник — плоский файл tovar-ramka-435.html, не каталог tovar/); немає JSON-LD Product; CTA «Обрати» не в CTA_RE. Предикат (SHIP_RE на тексті/посиланнях) не досягається; сам по собі спрацював би: у details «Відправляємо…» (не відправк*), посилання «Умови» не SHIP, шлях umovy.html не SHIP_PATH.",
+    "5": "cta_below_fold: той самий gate product + CTA_RE не знає «Обрати». Обидва обходять предикат до його перевірки.",
+    "10": "price_first_viewport: gate product|category. tovar-* unknown; kataloh unknown, бо посилань на товари 2 (<3 для category, і шлях не збігається з PRODUCT_PATH_RE). Спрацював лише на kosh.html (M) — там h1 + «Оформити» (CTA_RE) дало product; тобто збіг випадковий, не на лістингу/товарах."
+  },
+  "twin_status": "used_disclosed: двійник-1 використаний і розкритий (G0-15, DEV-33); наступні прогони — лише інформативні, у критерій №3 не входять",
+  "deterministic_found_script": 5,
+  "unclaimed_real_findings": [
     {
       "id": "ev_0bed7c22b45b",
       "detector": "axe:color-contrast",
@@ -1241,33 +1276,7 @@
       "excerpt": "footer | #tilo > h1 | #tilo > p:nth-of-type(1)"
     }
   ],
-  "false_positive_count": 84,
-  "evidence_by_detector": {
-    "axe:button-name": 9,
-    "axe:color-contrast": 75,
-    "axe:heading-order": 4,
-    "axe:image-alt": 6,
-    "axe:link-name": 4,
-    "horizontal_overflow": 6,
-    "oversized_image": 2,
-    "price_first_viewport": 3
-  },
-  "hash_ok": true,
-  "verdict": {
-    "strict_any_page_any_viewport": "5/7",
-    "full_expected_coverage": "3/7 (№6,№7,№8 повні; №9 лише kataloh; №10 лише kosh M)",
-    "note": "№10 знайдено випадково: kosh.html помилково класифіковано як product; на лістингу/товарах немає"
-  },
-  "exit_criterion_3_deterministic_ge_6_of_7": false,
-  "qa": {
-    "tests": "176/176 passed (5 files)",
-    "typecheck": "OK",
-    "lint": "OK (після виправлення no-unused-expressions у новому audit-twin.ts)",
-    "side_effect": "pnpm test перезаписав planning/qa/artifacts/sprint-1a/canary/*.json (git M)"
-  },
-  "miss_diagnosis": {
-    "2": "shipping_depth: gate page_type==product. Товари двійника /tovar-ramka-435.html → unknown: PRODUCT_PATH_RE вимагає /(product|products|p|item|tovar)/<slug> (двійник — плоский файл tovar-ramka-435.html, не каталог tovar/); немає JSON-LD Product; CTA «Обрати» не в CTA_RE. Предикат (SHIP_RE на тексті/посиланнях) не досягається; сам по собі спрацював би: у details «Відправляємо…» (не відправк*), посилання «Умови» не SHIP, шлях umovy.html не SHIP_PATH.",
-    "5": "cta_below_fold: той самий gate product + CTA_RE не знає «Обрати». Обидва обходять предикат до його перевірки.",
-    "10": "price_first_viewport: gate product|category. tovar-* unknown; kataloh unknown, бо посилань на товари 2 (<3 для category, і шлях не збігається з PRODUCT_PATH_RE). Спрацював лише на kosh.html (M) — там h1 + «Оформити» (CTA_RE) дало product; тобто збіг випадковий, не на лістингу/товарах."
-  }
+  "unclaimed_real_findings_count": 84,
+  "false_positive_count_note": "84 — не хибні спрацювання, а незаявлені реальні a11y/overflow-знахідки (EXPECTED неповний); поля false_positives/false_positive_count перейменовано на unclaimed_real_findings/_count",
+  "corrected": "2026-09-29 за рецензією критика S1a (sl-eval-science)"
 }
