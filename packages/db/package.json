@@ -1,0 +1,7 @@
+{
+  "name": "@sitelens/db",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Forward-only SQL migrations (PostgreSQL). Runner and connection — S2."
+}

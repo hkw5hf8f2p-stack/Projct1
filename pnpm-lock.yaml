@@ -42,6 +42,29 @@ importers:
         specifier: ^3.2.0
         version: 3.2.7(@types/node@22.20.4)(tsx@4.23.15)
 
+  packages/browser:
+    dependencies:
+      '@axe-core/playwright':
+        specifier: 4.13.0
+        version: 4.13.0(playwright-core@1.56.1)
+      chrome-launcher:
+        specifier: 1.2.1
+        version: 1.2.1
+      lighthouse:
+        specifier: 13.5.0
+        version: 13.5.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))
+      playwright:
+        specifier: 1.56.1
+        version: 1.56.1
+
+  packages/db: {}
+
+  packages/schemas:
+    dependencies:
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
 packages:
 
   '@axe-core/playwright@4.13.0':
