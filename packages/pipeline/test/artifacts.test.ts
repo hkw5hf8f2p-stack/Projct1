@@ -33,7 +33,7 @@ async function seedAudit(id: string, o: { expires: string; status?: "completed" 
 const jobsFor = async (id: string) => Number((await db.pool.query("SELECT count(*) AS n FROM pgboss.job WHERE data->>'auditRunId' = $1", [id])).rows[0].n);
 
 beforeAll(async () => {
-  if (!base) return;
+  if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`); // гучно, не skip
   db = await freshDatabase(base);
   boss = createBoss(db.url, { supervise: false, max: 2 });
   await startBoss(boss);
@@ -46,7 +46,7 @@ afterAll(async () => {
   rmSync(outside, { force: true });
 });
 
-describe.skipIf(base === null)("TTL", () => {
+describe("TTL", () => {
   it("прострочений (підроблена дата) видаляється, свіжий і незавершений — ні; повтор — no-op", async () => {
     await seedAudit("aud_aaaaaaaaaaaaaaa1", { expires: "2020-01-01T00:00:00Z" });
     await seedAudit("aud_aaaaaaaaaaaaaaa2", { expires: "2099-01-01T00:00:00Z" });
@@ -65,7 +65,7 @@ describe.skipIf(base === null)("TTL", () => {
   });
 });
 
-describe.skipIf(base === null)("deleteAuditFully", () => {
+describe("deleteAuditFully", () => {
   it("100 % файлів, рядків усіх таблиць і задач черги видалено; сусідній аудит цілий; повтор — existed=false", async () => {
     await seedAudit("aud_bbbbbbbbbbbbbbb1", { expires: "2099-01-01T00:00:00Z" });
     await seedAudit("aud_bbbbbbbbbbbbbbb2", { expires: "2099-01-01T00:00:00Z" });

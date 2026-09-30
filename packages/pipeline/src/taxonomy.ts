@@ -62,6 +62,7 @@ export interface Classified { errorClass: ErrorClass; detail: string }
 
 const DNS_RE = /резолв не вдався|резолвер не повернув адрес|ENOTFOUND|EAI_AGAIN|ERR_NAME_NOT_RESOLVED/i;
 const SSL_RE = /ERR_CERT_|ERR_SSL_|ERR_BAD_SSL|SSL_ERROR|certificate/i;
+const INVALID_RE = /ERR_UNSAFE_PORT|ERR_UNSAFE_REDIRECT|ERR_DISALLOWED_URL_SCHEME|ERR_INVALID_URL|ERR_ADDRESS_INVALID/i;
 const LOOP_RE = /ERR_TOO_MANY_REDIRECTS/i;
 const JS_NEEDED_RE = /enable javascript|javascript (is )?(required|disabled)|you need to enable javascript|потрібно ввімкнути javascript|увімкніть javascript/i;
 
@@ -78,6 +79,7 @@ export function classifyCapture(s: CaptureSignals): Classified | null {
   const fails = s.document_failures.join(" | ");
   // 2. мережеві збої документа
   if (!s.navigation_completed || s.http_status === null) {
+    if (INVALID_RE.test(fails)) return { errorClass: "invalid_url", detail: `браузер відмовився від адреси: ${fails}` };
     if (LOOP_RE.test(fails)) return { errorClass: "redirect_loop", detail: fails };
     if (/ERR_ABORTED/i.test(fails) && !/ERR_CERT|ERR_SSL/i.test(fails) && !upErr) return { errorClass: "unsupported_site", detail: `навігацію перервано (${fails}): ймовірно не HTML-сторінка (завантаження файлу)` };
     if (SSL_RE.test(fails)) return { errorClass: "ssl_failure", detail: fails };

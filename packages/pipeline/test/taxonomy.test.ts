@@ -37,6 +37,7 @@ describe("таксономія §48", () => {
     ["DNS з рішення проксі", { navigation_completed: false, http_status: null, proxy: [{ host: "shop.example", decision: "deny", reason: "резолв не вдався: getaddrinfo ENOTFOUND" }] }, "dns_failure"],
     ["DNS з тексту помилки", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_NAME_NOT_RESOLVED"] }, "dns_failure"],
     ["SSRF-блок → invalid_url (не 403 і не бот)", { http_status: 403, proxy: [{ host: "shop.example", decision: "deny", reason: "IP-літерал 127.0.0.2 заблоковано: loopback" }] }, "invalid_url"],
+    ["небезпечний порт (Chromium відмовляє сам)", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_UNSAFE_PORT"] }, "invalid_url"],
     ["SSL", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_CERT_AUTHORITY_INVALID"] }, "ssl_failure"],
     ["redirect loop", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_TOO_MANY_REDIRECTS"] }, "redirect_loop"],
     ["timeout без помилки документа", { navigation_completed: false, http_status: null }, "timeout"],

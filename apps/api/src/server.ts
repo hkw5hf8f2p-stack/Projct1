@@ -9,7 +9,7 @@ import {
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
-export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** режим LLM з resolveConfig(env) (обчислює точка входу; тести задають явно) */ llmMode?: "live" | "replay" | "none" }
+export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** режим LLM з resolveConfig(env) (обчислює точка входу; тести задають явно) */ llmMode?: "live" | "replay" | "none"; /** приймач логів (тести перевіряють, що токен у лог не потрапляє) */ logStream?: NodeJS.WritableStream }
 
 const digest = (s: string) => createHash("sha256").update(s).digest();
 export const tokenOk = (given: string | undefined, expected: string): boolean => given !== undefined && timingSafeEqual(digest(given), digest(expected));
@@ -30,7 +30,7 @@ function statusView(a: AuditRow, progress: { pages_captured: number; pages_faile
 export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
   const { cfg, pool, boss } = deps;
   const app = Fastify({
-    logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"] },
+    logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"], ...(deps.logStream ? { stream: deps.logStream } : {}) },
     bodyLimit: 8 * 1024,
     trustProxy: false,
   });

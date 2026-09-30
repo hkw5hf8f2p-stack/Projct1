@@ -14,6 +14,7 @@ export async function freshDatabase(baseUrl: string, opts: { migrate?: boolean }
   const url = baseUrl.replace(/\/[^/]+$/, `/${name}`);
   if (opts.migrate !== false) await migrate(url);
   const pool = new pg.Pool({ connectionString: url, max: 6 });
+  pool.on("error", () => undefined); // DROP DATABASE … FORCE обриває простійні з'єднання пулу — це очікувано
   return {
     url, name, pool,
     async drop() {

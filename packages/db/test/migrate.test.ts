@@ -25,10 +25,11 @@ describe("тестовий кластер (охоронець)", () => {
   });
 });
 
-describe.skipIf(base === null)("migrate()", () => {
+describe("migrate()", () => {
   let db: FreshDb;
   beforeAll(async () => {
-    db = await freshDatabase(base!, { migrate: false });
+    if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`);
+    db = await freshDatabase(base, { migrate: false });
   });
   afterAll(async () => db?.drop());
 
