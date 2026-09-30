@@ -1,0 +1,10 @@
+{
+  "url": "http://127.0.0.1:4210/",
+  "base": "http://127.0.0.1:3000",
+  "lang": "en",
+  "auditUrl": "http://127.0.0.1:3000/audit/aud_a182643c08460246",
+  "findings_in_ui": 8,
+  "screenshot_naturalWidth": 1440,
+  "screenshot_naturalHeight": 1000,
+  "page_errors": []
+}

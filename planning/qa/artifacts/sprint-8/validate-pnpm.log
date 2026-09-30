@@ -1,0 +1,60 @@
+
+> sitelens@0.0.0 validate /home/sitelens/clean-s8
+> tsx scripts/validate.ts
+
+pnpm validate — провайдер: scripted fake (НЕ модель); LLM-залежне = ⏭️ live, не ✅
+
+[E1] PASS
+  детерміновані x/7 = 7/7 (VERIFIED, F-DET; гейт 7/7)
+  ранг [ГЕЙТ, кр.2]: детерміновані в топ-10 = 7/7 (№2→5 №5→3 №6→4 №7→7 №8→8 №9→6 №10→1; у звіті 12 знахідок, з них гіпотез 4)
+  контроль рангу: той самий звіт у порядку scoring-v1 (лише priority desc) → 6/7 FAIL ✓ (№2→5 №5→3 №6→4 №7→7 №8→12 №9→6 №10→1)
+  LLM-лише y/3 = 3/3 (абляція: прибрано 0 опорних доказів №1/№3/№4; показник, не гейт)
+  разом 10/10 (гейт ≥ 8: виконано — залежить від LLM, ⏭️ live, у dev не гейт)
+  опорні детектори №1/№3/№4 (h1_category_overlap, term_unexplained, similar_products) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано 0); механізм абляції перевірено тестом
+  непередбачені знахідки (не гейт): немає
+  не вимірюється тут: 7 мутантів мовчать і двійник — `pnpm run audit:fixture` / S1a (E1, SCORING_SPEC §8.1)
+  ⏭️ live: E1_llm=3/3 і сума 10/10: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)
+
+[E2] PASS
+  валідність: 3 прогони cache_mode=bypass, cache_read_tokens = 0/0/0, читань кешу 0/0/0 (кеш прогріто: 16 записів) → дійсні
+  контроль лічильника: cache_mode=use на тому ж кеші → cache_read_tokens=49175 > 0 → «недійсний» (перевірка вміє впасти)
+  E2(а) повний звіт [ГЕЙТ]: Jcat mean/min 1.000/1.000 (≥ 0.6/0.43), Jpg mean/min 1.000/1.000, |K3|=3 (≥ 3)
+  E2(б) лише LLM-знахідки [показник]: Jcat mean 1.000 (ціль ≥ 0.4: так), Jpg mean 1.000, розмір підмножин 4/4/4
+  контроль E2(б): нестабільний оцінювач на тому ж замороженому знімку → E2(б) Jcat mean 0.000 < 0.4 ✓ (показник вміє впасти); E2(а) при цьому PASS (обмеження: E2(а) на shop нечутливий до LLM — топ-5 детерміновані; E2(б) — показник, не гейт, G0-8)
+  RBO(p=0.8) топ-10 [інформативно]: 1.000/1.000/1.000 (середнє 1.000)
+  топ-5 (прогін 1): pricing|category|not_in_first_viewport · pricing|product|not_in_first_viewport · cta|product|below_fold · accessibility|*|axe:button-name|header/button · shipping|product|deep_link_only
+  ⏭️ live: стабільність LLM-знахідок (E2(б), RBO): оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1); fake детермінований → J=1 доводить обв'язку, не стабільність моделі
+
+[E3a] PASS
+  чистих сторінок 7; знахідок усього 0; STRONG/VERIFIED без F-DET: 0 (гейт 0); terminology/value_proposition (LLM): 0 (гейт 0); LLM HYPOTHESIS на сторінку max 0 (гейт ≤ 2); F-DET-знахідок: 0 (гейт 0)
+  відхилено кодом friction без перевіреного доказу (§23): 0
+  ⏭️ live: специфічність живої моделі на чистих сторінках: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)
+
+[E3c] ⏭️ DEFERRED (live)
+  ⏭️ dev: кодом гірше в 2 з 5 < 4 → гейт ≥ 4/5 не закривається без живої моделі (FAIL за кодом; статус ⏭️ live, не PASS)
+  КОДОМ (F-DET/F-SUP/F-BRW) гірше в 2/5: shipping removed, CTA less visible; лише LLM 3/5
+    shipping removed: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]
+    CTA less visible: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]
+    vague headline: D 0→67, нових STRONG/VERIFIED 0, worse=так [llm]
+    comparison help removed: D 0→69, нових STRONG/VERIFIED 0, worse=так [llm]
+    trust hidden: D 0→124, нових STRONG/VERIFIED 0, worse=так [llm]
+  обв'язка (НЕ статус): з fake-оцінювачем гірше в 5 з 5. Правила fake написано під ці самі 5 змін деградації (comparison = «немає цін на картках», trust = «немає "Про нас" і гарантії», headline = H1 без основ сайту) — кругова перевірка плумбінгу, не вимір
+  шум решти категорій |ΔD| (інформативно): accessibility=52
+  сліпий прогін: нейтральні хости site-a.test (база) / site-b.test (копія), слова «degraded» немає в URL/тексті/заголовках (перевіряє тест фікстури)
+  ⏭️ live: LLM-виміри (headline, comparison, trust) і сам гейт ≥ 4/5: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1). Код сам дає 2/5 < 4: без живої LLM гейт E3c недосяжний за побудовою (DEV-77)
+
+[E4] PASS
+  повний прогін: 16/16 викликів, 49175 токенів ≤ MAX_AUDIT_TOKENS 1650000; позначки немає ✓
+  обмежений (MAX_AUDIT_TOKENS=19670): 5/16 викликів, 14839 токенів; етап snapshot_sessions=budget_limited, банер «обмежено бюджетом» є ✓
+  лічильник у звіті (OBSERVED) = лічильник клієнта: 14839 = 14839; $ не показується (немає дати прайсу, G0-24)
+  контроль: та сама обрізка без банера → E4 FAIL ✓ (перевірка вміє впасти)
+  ⏭️ live: фактична вартість аудиту на живій моделі й $ (⏭️ S7, потрібен ключ і дата прайсу)
+
+токени: 650788/2000000 (MAX_VALIDATE_TOKENS), викликів провайдера 213
+ВЕРДИКТ (dev): PASS — обв'язка працює; якість моделі не перевірено (⏭️ live); не закрито в dev (⏭️): E3c
+
+артефакти: /tmp/sitelens-artifacts-1001/sprint-4/validate (тимчасові; SL_WRITE_ARTIFACTS=1 → planning/qa/artifacts/)
+
+real	1m9.848s
+user	0m23.066s
+sys	0m6.195s

@@ -70,7 +70,7 @@ beforeAll(async () => {
   await registerHandlers(rt);
   await listenApi("none");
   // next dev в api-режимі: SITELENS_SOURCE НЕ задано (за замовчуванням api), rewrites /api/* → Fastify
-  const env = { ...process.env, SITELENS_API_URL: `http://127.0.0.1:${API_PORT}`, NEXT_TELEMETRY_DISABLED: "1" } as NodeJS.ProcessEnv;
+  const env = { ...process.env, SITELENS_API_URL: `http://127.0.0.1:${API_PORT}`, NEXT_TELEMETRY_DISABLED: "1", SITELENS_NEXT_DIST: `.next-e2e-${WEB_PORT}` } as NodeJS.ProcessEnv;
   delete env["SITELENS_SOURCE"];
   next = spawn(path.join(WEB, "node_modules/.bin/next"), ["dev", "-H", "127.0.0.1", "-p", String(WEB_PORT)], { cwd: WEB, env, stdio: ["ignore", "pipe", "pipe"] });
   next.stdout?.on("data", (d) => (nextLog += String(d)));

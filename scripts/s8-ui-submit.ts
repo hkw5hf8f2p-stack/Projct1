@@ -1,4 +1,4 @@
-/** S8 (QA): подання URL фікстури через справжній UI (web :3000 -> api :3001 -> worker) і доказ по кліку. Використання: tsx scripts/s8-ui-submit.ts <outDir> [url] */
+/** S8 (QA): подання URL фікстури через справжній UI (web :3000 -> api :3001 -> worker) і доказ по кліку. Використання: tsx scripts/s8-ui-submit.ts <outDir> [url] [uk|en] */
 import fs from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright";
@@ -6,13 +6,15 @@ import { chromium } from "playwright";
 const out = path.resolve(process.argv[2] ?? "planning/qa/artifacts/sprint-8/ui");
 const url = process.argv[3] ?? "http://127.0.0.1:4210/";
 const BASE = process.env["SL_WEB"] ?? "http://127.0.0.1:3000";
+const lang = process.argv[4] ?? "uk";
 fs.mkdirSync(out, { recursive: true });
 const b = await chromium.launch();
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
+await ctx.addCookies([{ name: "sl_lang", value: lang, url: BASE }]);
 const page = await ctx.newPage();
 const errs: string[] = [];
 page.on("pageerror", (e) => errs.push(e.message));
-const res: Record<string, unknown> = { url, base: BASE };
+const res: Record<string, unknown> = { url, base: BASE, lang };
 await page.goto(`${BASE}/`);
 await page.getByTestId("url-input").fill(url);
 await page.screenshot({ path: path.join(out, "01-landing-filled.png") });

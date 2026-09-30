@@ -11,7 +11,7 @@ const NO_ASCII_WORD_BOUNDARY = [
 ];
 
 export default tseslint.config(
-  { ignores: ["node_modules/**", "dist/**", "**/.next/**", "apps/web/next-env.d.ts", "planning/**", "fixtures/**", "**/artifacts/**", "packages/**/page-scripts/**"] },
+  { ignores: ["node_modules/**", "dist/**", "**/.next*/**", "apps/web/next-env.d.ts", "planning/**", "fixtures/**", "**/artifacts/**", "packages/**/page-scripts/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   { rules: { "@typescript-eslint/no-explicit-any": "error" } },

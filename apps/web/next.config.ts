@@ -9,7 +9,12 @@ import type { NextConfig } from "next";
 const source = process.env["SITELENS_SOURCE"] === "fixture" ? "fixture" : "api";
 const apiUrl = process.env["SITELENS_API_URL"] ?? "http://127.0.0.1:3001";
 
+// S8 (QA): окремий distDir на кожен `next dev` — Next 16 не дозволяє двох dev-серверів в одному distDir («Another next dev server is already running»);
+// тести web-e2e (3100/3131/3141) біжать паралельно в `pnpm test`. За замовчуванням `.next`.
+const distDir = process.env["SITELENS_NEXT_DIST"] ?? ".next";
+
 const config: NextConfig = {
+  distDir,
   reactStrictMode: true,
   env: { NEXT_PUBLIC_SITELENS_SOURCE: source },
   transpilePackages: ["@sitelens/schemas"],

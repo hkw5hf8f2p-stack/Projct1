@@ -1,0 +1,248 @@
+
+> sitelens@0.0.0 test /home/sitelens/clean-s8
+> vitest run --configLoader runner
+
+
+ RUN  v3.2.7 /home/sitelens/clean-s8
+
+ ✓ apps/worker/test/web-api-token.e2e.test.ts (2 tests) 17502ms
+   ✓ скриншоти в UI при ACCESS_TOKEN (DEV-80) > з токеном у sessionStorage усі thumb-и завантажені; у URL-ах немає ACCESS_TOKEN; сторінка без токена просить його й не показує скриншотів  6467ms
+ ✓ apps/web/test/e2e.test.ts (44 tests) 250245ms
+   ✓ e2e §54: лендінг → прогрес → звіт → знахідка → доказ із регіоном > прогін 1/3  7558ms
+   ✓ e2e §54: лендінг → прогрес → звіт → знахідка → доказ із регіоном > прогін 2/3  7267ms
+   ✓ e2e §54: лендінг → прогрес → звіт → знахідка → доказ із регіоном > прогін 3/3  7537ms
+   ✓ лендінг: помилки (§48) і стани > порожній ввід, javascript:, SSRF-адреса (відповідь API), rate limit; кнопка повертається  1394ms
+   ✓ лендінг: помилки (§48) і стани > завантаження: кнопка disabled з «Запускаємо…» під час сабміту  750ms
+   ✓ прогрес і помилки аудиту > queued / running / running_partial  2527ms
+   ✓ прогрес і помилки аудиту > 12 класів §48: кожен показує клас, переклад і НЕ показує звіт/фабрикацію  10188ms
+   ✓ прогрес і помилки аудиту > звіт недоступний (500), звіту немає (404), невідомий аудит, невалідна схема, loading-скелет  8539ms
+   ✓ прогрес і помилки аудиту > ACCESS_TOKEN: 401 → форма токена → неправильний токен відхилено → правильний відкриває звіт  2110ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > completed × 1440-light-uk: 7 вкладок  5823ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > completed × 1440-dark-uk: 7 вкладок  3967ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > completed × 390-light-uk: 7 вкладок  3543ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > completed × 390-dark-uk: 7 вкладок  3557ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > nollm × 1440-light-uk: 7 вкладок  3394ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > nollm × 1440-dark-uk: 7 вкладок  3402ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > nollm × 390-light-uk: 7 вкладок  3509ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > nollm × 390-dark-uk: 7 вкладок  3674ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > clean × 1440-light-uk: 7 вкладок  3375ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > clean × 1440-dark-uk: 7 вкладок  2659ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > clean × 390-light-uk: 7 вкладок  2684ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > clean × 390-dark-uk: 7 вкладок  2672ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > partial × 1440-light-uk: 7 вкладок  3668ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > partial × 1440-dark-uk: 7 вкладок  4174ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > partial × 390-light-uk: 7 вкладок  3646ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > partial × 390-dark-uk: 7 вкладок  3765ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > budget × 1440-light-uk: 7 вкладок  4005ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > budget × 1440-dark-uk: 7 вкладок  4302ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > budget × 390-light-uk: 7 вкладок  3764ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > budget × 390-dark-uk: 7 вкладок  4198ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > early × 1440-light-uk: 7 вкладок  3628ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > early × 1440-dark-uk: 7 вкладок  4198ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > early × 390-light-uk: 7 вкладок  3413ms
+   ✓ критерії 2–4 на всіх заповнених станах: мітки, overflow, guard, дисклеймери > early × 390-dark-uk: 7 вкладок  3659ms
+   ✓ контролі: детектори вміють падати (позитивний випадок) > мітка, сирий текст, overflow, guard «+12 % conversion», axe  3788ms
+   ✓ критерій 3: axe власного UI (10 поверхонь × light/dark) > 0 critical/serious  68698ms
+   ✓ критерій 7: доказ по кліку відкриває правильний скриншот із регіоном (усі знахідки фікстури) > кожна знахідка completed + nollm  13361ms
+   ✓ критерій 7: доказ по кліку відкриває правильний скриншот із регіоном (усі знахідки фікстури) > артефакт видалено → lightbox показує стан помилки, не порожню картинку  1718ms
+   ✓ критерій 7: доказ по кліку відкриває правильний скриншот із регіоном (усі знахідки фікстури) > евіденс без скриншота (сесія) — lightbox/рядок пояснює, а не ламається  1657ms
+   ✓ контроли: фільтри, сортування, клавіатура, мова, тема > кожен фільтр окремо == незалежний розрахунок; комбінація з 0 результатів; скидання; сортування  3625ms
+   ✓ контроли: фільтри, сортування, клавіатура, мова, тема > клавіатура: стрілки між вкладками, Tab у lightbox залишається всередині, Esc повертає фокус  2403ms
+   ✓ контроли: фільтри, сортування, клавіатура, мова, тема > мова: перемикач uk→en міняє підписи на всіх вкладках без сирих ключів; тема перемикається  2446ms
+   ✓ контроли: фільтри, сортування, клавіатура, мова, тема > текст у dark видимий: контраст тексту/фону основних елементів ≥ 4.5 у обох темах (за обчисленими стилями)  2712ms
+ ✓ apps/worker/test/web-api.e2e.test.ts (5 tests) 200976ms
+   ✓ режим api: жодного фікстурного маршруту > UI у api-режимі: лендінг без плашки fixture-mode; /api/dev/* не існує (404), /api/health проходить через rewrite до Fastify  2525ms
+   ✓ e2e §54 через API: лендінг → прогрес → звіт → знахідка → доказ зі скриншотом (fixtures/shop) > прогін 1/3 (none, uk)  61858ms
+   ✓ e2e §54 через API: лендінг → прогрес → звіт → знахідка → доказ зі скриншотом (fixtures/shop) > прогін 2/3 (none, en)  58714ms
+   ✓ e2e §54 через API: лендінг → прогрес → звіт → знахідка → доказ зі скриншотом (fixtures/shop) > прогін 3/3 (replay, uk)  69011ms
+ ✓ apps/worker/test/report.e2e.test.ts (17 tests) 550181ms
+   ✓ A. llm_mode=none: fixtures/shop ×3 через API > 3 аудити → completed; GET /report валідний за контрактом Report; етапи LLM skipped, report done  199240ms
+   ✓ A. llm_mode=none: fixtures/shop ×3 через API > критерій 7: сканер guard по JSON звіту з API — чисто; контроль: підкладене «+12 % конверсії» / «+12% conversion» у текстове поле → ловить  849ms
+   ✓ B. scripted-fake LLM: профіль → задачі → лінзи → матриця → snapshot + журнали → агрегація → звіт > 3 аудити: усі LLM-етапи done, сценарії snapshot виконано, журнали виконано fake-виконавцем; звіт валідний  208801ms
+   ✓ B. scripted-fake LLM: профіль → задачі → лінзи → матриця → snapshot + журнали → агрегація → звіт > run_browser_scenario без виконавця: чиста поведінка — `skipped` з причиною journal_executor_unavailable, етап browser_sessions skipped, аудит completed зі знахідками snapshot  69477ms
+   ✓ B. scripted-fake LLM: профіль → задачі → лінзи → матриця → snapshot + журнали → агрегація → звіт > бюджет: MAX_AUDIT_TOKENS (40 000) вичерпано посеред аудиту → етап budget_limited з причиною, аудит completed, звіт валідний (не «done»)  67991ms
+ ✓ apps/worker/test/pipeline.e2e.test.ts (5 tests) 106643ms
+   ✓ конвеєр S2 наскрізно > нормальний сайт (4 сторінки): completed; crawl/capture/lighthouse/accessibility done; LLM-етапи skipped (none); докази й артефакти є  32211ms
+   ✓ конвеєр S2 наскрізно > КРИТЕРІЙ 2 — частковий збій: одна сторінка з HTTP 500 + зламаний Lighthouse → аудит completed з позначками, 0 доказів зі збійної сторінки  23591ms
+   ✓ конвеєр S2 наскрізно > контроль критерію 2: збій САМОГО сіда → аудит failed з класом і повідомленням, 0 доказів (сайт-рівневий збій, не пропущений)  3853ms
+   ✓ конвеєр S2 наскрізно > КРИТЕРІЙ 4 — повтор: 2 прогони одного URL → 2 незалежні AuditRun; дані першого незмінні (хеш до/після)  43797ms
+ ✓ packages/browser/test/audit.test.ts (27 tests) 627036ms
+   ✓ аудит фікстур (браузер) > НЕГАТИВ: shop-clean (≥ 3 чисті сторінки §57 + доставка + про нас) → 0 доказів і 0 знахідок на D і M  22344ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M2 (№2): детектор shipping_depth мовчить, решта детекторів — той самий набір  42045ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M5 (№5): детектор cta_below_fold мовчить, решта детекторів — той самий набір  42567ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M6 (№6): детектор axe:button-name|axe:link-name|axe:label мовчить, решта детекторів — той самий набір  40032ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M7 (№7): детектор horizontal_overflow мовчить, решта детекторів — той самий набір  37221ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M8 (№8): детектор oversized_image мовчить, решта детекторів — той самий набір  41231ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M9 (№9): детектор axe:image-alt мовчить, решта детекторів — той самий набір  37023ms
+   ✓ аудит фікстур (браузер) > МУТАНТ M10 (№10): детектор price_first_viewport мовчить, решта детекторів — той самий набір  34629ms
+   ✓ аудит фікстур (браузер) > СТАБІЛЬНІСТЬ: 3 прогони поспіль → ідентичний набір (id/селектор/регіон) і побайтово однакові evidence/findings  69030ms
+   ✓ аудит фікстур (браузер) > МЕТАМОРФНИЙ зріз (повний набір — `pnpm run audit:metamorphic`): U5+V2 → S₀ і типи як на базі; R1 → /cart-view = cart без №2/№5/№10; старий код (v1) на U5+V2 втрачає №2/№5/№10  106499ms
+   ✓ аудит фікстур (браузер) > КОНТРОЛЬ DEV-17/19: один заблокований POST на завантаженні → відсутність ціни/доставки = HYPOTHESIS (ET-INC), не VERIFIED  34157ms
+   ✓ аудит фікстур (браузер) > КОНТРОЛЬ DEV-19: банер не закривається → cta_below_fold = ET-INC (HYPOTHESIS), incomplete_reasons=banner_open  43416ms
+   ✓ аудит фікстур (браузер) > НЕ-GET: клік «в кошик» і «надіслати» → фікстура 0 не-GET, блоки залоговано; контроль без шару блоку дає не-GET  1894ms
+   ✓ аудит фікстур (браузер) > DENY-LIST: GET add-to-cart/logout/delete через crawl → 0 звернень; контроль (прямий GET) → 1 кожен  34966ms
+ ✓ scripts/validate/validate.browser.test.ts (6 tests) 74663ms
+   ✓ повний validate на браузерних знімках > аудити shop, site-a (чиста), site-b (деградована) і validate: 4 перевірки PASS (dev), E3c ⏭️ DEFERRED (код 2/5 < 4/5, DEV-77)  73874ms
+   ✓ SSRF: нейтральні хости не розширюють дозволів > дозволено рівно site-a.test:4213 / site-b.test:4214 → loopback; 127.0.0.1:4213, site-c.test, site-a.test на іншому порту — блок  619ms
+ ✓ packages/browser/test/ethics.test.ts (15 tests) 74504ms
+   ✓ інтеграція: robots.txt, чесний UA, пауза, бот-захист на fixtures/bot > robots.txt: Disallow → сторінка не береться (0 запитів до сервера), Allow довшим правилом → береться; UA чесний; robots — через захищений браузер  22122ms
+   ✓ інтеграція: robots.txt, чесний UA, пауза, бот-захист на fixtures/bot > контроль: без enforceRobots той самий crawl бере /private/secret (перевірка вміє впасти)  25086ms
+   ✓ інтеграція: robots.txt, чесний UA, пауза, бот-захист на fixtures/bot > бот-захист: cf/captcha/429/503/403 → помилка сторінки з ознаками, 0 доказів і 0 знахідок на них; нормальна сторінка з reCAPTCHA-віджетом — не помилка  24267ms
+   ✓ інтеграція: robots.txt, чесний UA, пауза, бот-захист на fixtures/bot > сайт цілком за бот-захистом: seed → site_error, 0 доказів, 0 знахідок, посилання не збираються  2230ms
+ ✓ packages/browser/test/lighthouse.test.ts (8 tests) 58770ms
+   ✓ Lighthouse за проксі: канарка (V14) > prod: Lighthouse на probe-сторінці → канарка 0, лог проксі містить запити Lighthouse, env чистий, пісочниця, Evidence BENCHMARKED  8195ms
+   ✓ Lighthouse за проксі: канарка (V14) > контроль (а): той самий Chrome/Lighthouse БЕЗ прапорців проксі → канарка отримує запити  7245ms
+   ✓ Lighthouse за проксі: канарка (V14) > контроль (в): проксі є, але без <-loopback> → Chrome Lighthouse іде на канарку напряму  6936ms
+   ✓ Lighthouse за проксі: канарка (V14) > контроль env: chrome-launcher за замовчуванням передає весь process.env (фейкові секрети) і --disable-setuid-sandbox  523ms
+   ✓ Lighthouse: не-GET до публічної цілі — CDP Fetch guard (S1b-Fix п.4, DEV-51) > контроль: той самий прогін БЕЗ CDP guard → ціль отримує не-GET (детектор уміє впасти)  7033ms
+   ✓ Lighthouse: не-GET до публічної цілі — CDP Fetch guard (S1b-Fix п.4, DEV-51) > захищений прогін (за замовчуванням): 0 не-GET до цілі, Lighthouse дає оцінки, guard залогував блоки  6876ms
+   ✓ ізоляція збою Lighthouse > зламаний Lighthouse (виняток / зависання / поганий CHROME_PATH) → ok:false без винятку, Chrome прибрано; паралельне захоплення SecureBrowser — 3 Evidence  5333ms
+   ✓ фікстура shop: Lighthouse за проксі → BENCHMARKED Evidence > fixture-режим з точковим allow-list: desktop + mobile; prod-режим (без allow-list) → фікстура заблокована  16460ms
+ ✓ apps/worker/test/taxonomy.e2e.test.ts (15 tests) 58038ms
+   ✓ §48: 12 класів через справжній браузер > контроль: нормальна сторінка захоплюється (предикат уміє й пропускати)  2803ms
+   ✓ §48: 12 класів через справжній браузер > invalid_url: адресу поза allowlist блокує egress-проксі (worker-шар SSRF), не 403  1046ms
+   ✓ §48: 12 класів через справжній браузер > dns_failure: .invalid-домен  1209ms
+   ✓ §48: 12 класів через справжній браузер > bot_protection: імітація Cloudflare-challenge (403 + cf-mitigated)  1235ms
+   ✓ §48: 12 класів через справжній браузер > captcha: сторінка з reCAPTCHA  1254ms
+   ✓ §48: 12 класів через справжній браузер > unsupported_site: HTTP 500 / 404 / application/pdf  3341ms
+   ✓ §48: 12 класів через справжній браузер > empty_page: 200 з порожнім body  1166ms
+   ✓ §48: 12 класів через справжній браузер > js_rendering_failure: порожній #app + виняток у скрипті  1080ms
+   ✓ §48: 12 класів через справжній браузер > browser_crash: браузер вбито (SIGKILL) посеред навігації  6800ms
+   ✓ §48: 12 класів через справжній браузер > page_crash: рендерер вкладки вбито (SIGKILL) посеред навігації  6663ms
+   ✓ §48: 12 класів через справжній браузер > timeout: сервер не відповідає (навігація 30 с)  30586ms
+ ✓ packages/browser/test/ssrf-vectors.test.ts (11 tests) 47736ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R0 контроль без захисту: сторінка з 127.0.0.1 → канарка отримує браузерні вектори  5293ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R1 secureLaunch prod (обидва шари): 0 звернень до канарки, кожен вектор залоговано  5795ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R2 лише шар 1 (без context.route/routeWebSocket, SW allow): 0 звернень — проксі сам тримає beacon/ping/WS  5336ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R3 контроль прапорця: проксі без <-loopback> → loopback-вектори обходять проксі й доходять до канарки  5336ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R4 контроль резолв-векторів: наївний проксі («перевір 1-й резолв, підключись за новим») → rebinding доходить до канарки  5168ms
+   ✓ SSRF-вектори наскрізно (S1b, ≥ 25, кожен із контролем) > R5 fixture (точковий allow-list origin атакувальника, secure context): SW заблоковано (SecurityError), скрипт SW не запитано, канарка 0  5512ms
+   ✓ SW-1: реєстрація Service Worker в обхід блоку і не-GET із SW (S1b) > контроль: Playwright serviceWorkers:'block' (стара конфігурація S1a) → prototype/iframe-обхід реєструє SW, POST із SW доходить до цілі  5164ms
+   ✓ SW-1: реєстрація Service Worker в обхід блоку і не-GET із SW (S1b) > SecureBrowser: усі 3 варіанти → SecurityError, ціль не отримала жодного запиту SW; шар 2 без lockdown теж рубає скрипт SW  10070ms
+ ✓ packages/browser/test/journey.test.ts (26 tests) 21094ms
+   ✓ КОНТРОЛЬ без фільтра: ті самі дії доходять до фікстури (перевірка вміє впасти) > __controlNoFilter → GET /logout, add-to-cart, action=delete у лозі; POST (кнопка «Додати в кошик») блокує лише шар 2 secureLaunch  2840ms
+   ✓ шар 3 (мережа): JS-навігація й fetch на deny-list, cross-origin, target=_blank, window.open > З ФІЛЬТРОМ: GET /logout і fetch add-to-cart від JS не доходять; cross-origin навігація скасована; target=_blank відкрито у тій самій вкладці; popup не створюється  1474ms
+   ✓ шар 3 (мережа): JS-навігація й fetch на deny-list, cross-origin, target=_blank, window.open > КОНТРОЛЬ без фільтра: ті самі JS-дії доходять (logout, add-to-cart fetch, cross-origin у канарку — лише проксі тримає allowlist)  1352ms
+   ✓ shop-clean: чиста сторінка — ціна й доставка на самому товарі > швидкий шлях дає «кошик» true (позитивний контроль до hostile/quick на shop, де partial); 0 станозмінних GET  752ms
+   ✓ плумбінг з packages/llm: agentTurn + ScriptedFakeProvider як AgentDriver (replay-агент без живого LLM) > кожен крок — один виклик agentTurn (логічний ключ prompt_id|page_url|lens|task|step); фільтр і облік — код; success «кошик» рахує код, не «модель»  1608ms
+ ✓ scripts/validate/validate.test.ts (32 tests) 10568ms
+   ✓ (б) знімок не заморожений → три різні топи → E2 FAIL > E2 = FAIL за J і K3, але прогони ДІЙСНІ (кеш обійдено); вердикт FAIL  548ms
+   ✓ (б) знімок не заморожений → три різні топи → E2 FAIL > нестабільний ОЦІНЮВАЧ на замороженому знімку: E2(а) лишається PASS (топ-5 — детерміновані), E2(б) показує низьку стабільність LLM-знахідок  645ms
+   ✓ (в) cache_read_tokens > 0 → E2 «недійсний» > прогін 2 у cache_mode=use на прогрітому кеші → INVALID (не PASS і не «FAIL метрик»), вердикт FAIL  639ms
+   ✓ E3c dev-статус лише за кодом (DEV-77): fake у статус не входить > silent-оцінювач на degraded: dev-статус ТОЙ САМИЙ (fake не впливає); strict-live → FAIL (2 < 4); strict-live з fake → PASS (обв'язка)  318ms
+   ✓ CLI: непідтримуваний провайдер → код 3 із ⏭️, без запуску браузера > --provider replay і --provider anthropic  4032ms
+ ✓ packages/browser/test/secure-browser.test.ts (10 tests) 16258ms
+   ✓ канарка 127.0.0.2:4199 (G0-3, DEV-8) > (а) контроль БЕЗ проксі: канарка отримує запити від img/css/iframe/fetch/redirect/popup  2254ms
+   ✓ канарка 127.0.0.2:4199 (G0-3, DEV-8) > (б) prod-режим через проксі: 0 звернень до канарки, сторінка завантажилась, кожна спроба залогована як deny  2128ms
+   ✓ канарка 127.0.0.2:4199 (G0-3, DEV-8) > (б2) fixture-режим: дозволено рівно origin фікстури, канарка на іншому loopback — 0  2094ms
+   ✓ канарка 127.0.0.2:4199 (G0-3, DEV-8) > (в) контроль БЕЗ <-loopback>: Chromium обходить проксі для loopback → канарка отримує запит (прапорець потрібен)  2100ms
+   ✓ шар 2: не-GET/HEAD і WebSocket (G0-11, DEV-12) > контроль: той самий проксі, контекст БЕЗ шару 2 → сервер отримує не-GET і WS upgrade (FAIL)  2141ms
+   ✓ шар 2: не-GET/HEAD і WebSocket (G0-11, DEV-12) > захищений контекст: сервер 0 не-GET, 0 WS; лог блоків ≥1 на кожну спробу  2058ms
+   ✓ середовище й пісочниця процесу Chromium (G0-4) > secureLaunch: 0 секретів у environ усіх читаних процесів дерева, env лише з білого списку, без --no-sandbox, seccomp-пісочниця активна  364ms
+   ✓ інтеграція: captureSlice/auditSite лише через SecureBrowser > defective.html → ті самі 3 Evidence, що й у slice-тесті; сирий Browser → помилка типу і runtime-виняток  2590ms
+ ✓ packages/browser/test/worker-bypass.test.ts (4 tests) 5327ms
+   ✓ worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50) > контроль raw (без шару 2): POST доходить до цілі з КОЖНОГО варіанта — детектор уміє впасти  1953ms
+   ✓ worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50) > контроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов  1522ms
+   ✓ worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50) > SecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано  1376ms
+ ✓ packages/browser/test/popup-hang.test.ts (2 tests) 43269ms
+   ✓ window.open не вішає captureViewport > 20/20 захоплень із замком завершуються; канарка 0 звернень (popup не робить запитів)  34890ms
+   ✓ window.open не вішає captureViewport > КОНТРОЛЬ без замка: зависання відтворюється (≥ 1 із 25 спроб) — перевірка вміє впасти  8150ms
+ ✓ packages/browser/test/slice.test.ts (6 tests) 10951ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > ПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport  2628ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > НЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень  1913ms
+   ✓ S1a slice: наскрізний зріз на фікстурі > детермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон)  5843ms
+ ✓ packages/browser/test/net-proxy-limits.test.ts (10 tests) 5239ms
+   ✓ автентифікація клієнтів проксі (peer-check нащадків worker + токен) > сторонній процес без токена → 407; нащадок worker → 200; контроль clientAuth=open → сторонній проходить  1179ms
+   ✓ ліміти проксі > CONNECT-тунель: maxResponseBytes і maxConnectionMs обривають потік; контроль — без ліміту тунель живий  2417ms
+   ✓ ліміти проксі > idleTimeoutMs і connectTimeoutMs: мовчазний upstream і «чорна діра» → обрив/502 у межах ліміту  719ms
+   ✓ ліміти проксі > maxConnections: понад ліміт одночасних з'єднань — розрив і запис; контроль: ліміт 10 → усі 3 працюють  816ms
+ ✓ apps/api/test/report.test.ts (24 tests) 5175ms
+   ✓ GET /api/audits/:id/report > збережений валідний звіт → 200, JSON проходить Report і дорівнює збереженому; no-store  2163ms
+ ✓ packages/llm/test/lenses.test.ts (8 tests) 4256ms
+   ✓ C5: покриття обов'язкових полюсів (1000 випадкових наборів) > КОЖЕН полюс, який є серед кандидатів, покрито вибіркою; якщо кандидата немає — прапорець pole_unmet (100 %)  1257ms
+   ✓ C5: покриття обов'язкових полюсів (1000 випадкових наборів) > 1000 наборів, у яких генератор дав представника КОЖНОГО полюса: покрито 7/7 у 1000/1000 (100 %)  1459ms
+   ✓ C5: покриття обов'язкових полюсів (1000 випадкових наборів) > контроль: чистий farthest-point БЕЗ кроку полюсів НЕ покриває полюси в частині тих самих наборів (потреба C5; предикат уміє впасти)  1125ms
+   ✓ C5: покриття обов'язкових полюсів (1000 випадкових наборів) > інваріантність до порядку кандидатів (перестановка → та сама вибірка id)  357ms
+ ✓ apps/api/test/api.test.ts (15 tests) 2929ms
+   ✓ ACCESS_TOKEN і ліміт на годину (B2) > ліміт/год спрацьовує лише коли токен задано; лічильник у БД (переживає рестарт API)  433ms
+ ✓ packages/llm/test/report-guard.test.ts (23 tests) 3517ms
+   ✓ dev-корпус guard-у (planning/eval/guard-corpus) > критерій 4 (dev): 100 % заборонених зловлено, 100 % дозволених пропущено  841ms
+   ✓ G0-26: межі слів — лише Unicode-класи > ≥ 10 UK-речень корпусу: guard із ASCII-межею їх ПРОПУСКАЄ, наш — ЛОВИТЬ (корпус уміє впасти)  1053ms
+   ✓ G0-26: межі слів — лише Unicode-класи > лінт: літерал, рядок і шаблон з ASCII-межею у файлі guard → помилка (3 форми)  966ms
+   ✓ G0-26: межі слів — лише Unicode-класи > лінт: Unicode-межі проходять; поза каталогом guard правило не діє; файли guard чисті  504ms
+ ✓ packages/db/test/embedded.test.ts (2 tests) 3857ms
+   ✓ DbDaemon > старт → PID-файл збігається з фактичним postmaster; kill -9 → stale pid прибирається; повторний старт зберігає дані  3553ms
+ ✓ apps/worker/test/journal-runner.test.ts (3 tests) 3682ms
+   ✓ run_browser_scenario: адаптер runJourney + agentTurn > дія «Вийти» (GET /logout) відхиляється кодом; журнал завершується; 0 не-GET; сесія й файли є; LLM-виклики враховані  2499ms
+   ✓ run_browser_scenario: адаптер runJourney + agentTurn > контроль: той самий крок «Вийти» БЕЗ кодового фільтра доходить до сайту (logout > 0) — перевірка вміє впасти  576ms
+   ✓ run_browser_scenario: адаптер runJourney + agentTurn > збій LLM-кроку (невалідна відповідь після repair) → статус failed з причиною, не виняток (аудит не падає)  530ms
+ ✓ packages/llm/test/injection.test.ts (14 tests) 3003ms
+   ✓ ізоляція: текст сторінки — дані (G0-12) > запит оцінювача: ін'єкція лише всередині PAGE_DATA-блоку; один відкриваючий і один закриваючий делімітер  365ms
+   ✓ кодовий фільтр G0-11 (packages/browser/src/agent): ін'єкція → 0 заборонених дій > З ФІЛЬТРОМ: 0 заборонених дій, 0 запитів поза allowlist (канарка), 0 звернень до deny-list у лозі фікстури; легітимний /shipping виконано  1018ms
+   ✓ кодовий фільтр G0-11 (packages/browser/src/agent): ін'єкція → 0 заборонених дій > КОНТРОЛЬ без фільтра: ті самі кроки → GET /logout, ?add-to-cart=, ?action=delete ДОХОДЯТЬ до фікстури (предикат уміє впасти); cross-origin зупиняє вже проксі (allowlist)  1543ms
+ ✓ packages/db/test/migrate.test.ts (7 tests) 3558ms
+   ✓ migrate() > зміна застосованого файлу → відмова (forward-only), БД не псується  522ms
+ ✓ packages/llm/test/budget.test.ts (7 tests) 2403ms
+   ✓ бюджет E4 (MAX_AUDIT_TOKENS) > повний бюджет: потрібно N токенів; лічильник = сума по викликах (розбіжність 0)  1540ms
+   ✓ бюджет E4 (MAX_AUDIT_TOKENS) > розгортка 1…99 % потрібного: у КОЖНОМУ прогоні є зупинка з позначкою, used ≤ max, розбіжність лічильника 0; на 100 % зупинки немає  819ms
+ ✓ packages/pipeline/test/artifacts.test.ts (4 tests) 2624ms
+ ✓ packages/llm/test/hostile.test.ts (35 tests) 2026ms
+   ✓ ворожий набір S3: 0 протекло > H04 invented_percent: вигаданий відсоток у offering_summary  1437ms
+ ✓ packages/llm/test/pipeline.test.ts (11 tests) 1797ms
+   ✓ інтеграційний прогін етапів на replay (критерій 1) > fixtures/shop: 4 етапи done; 100 % LLM-викликів із кешу; 0 звернень до провайдерів за МЕРЕЖЕВИМ ЖУРНАЛОМ  1555ms
+ ✓ packages/llm/test/replay-s4.test.ts (5 tests) 1544ms
+   ✓ replay S4: snapshot-evaluator-v1, browser-agent-v1, finding-aggregator-v1, recommendation-v1 > 6 записів відтворюються з кешу: усі етапи done, усі виклики source=cache (0 звернень до провайдера)  1496ms
+ ✓ packages/llm/test/stages.test.ts (10 tests) 1565ms
+   ✓ генерація лінз: запит недостатніх полюсів (§9.4) і прапорці > немає P6 серед кандидатів → ОДИН додатковий запит про відсутній полюс → покрито, poles_requested_again  1305ms
+ ✓ packages/llm/test/guard-corpus.test.ts (190 tests) 1512ms
+   ✓ guard dev-корпус > відхиляє: word_fraction/uk: Приблизно дві третини відвідувачів не помічають кнопку на мобільному.  930ms
+ ✓ packages/db/test/procs.test.ts (11 tests) 1428ms
+   ✓ cleanupOrphansFromFile > власник мертвий → записана дитина вбита; НЕзаписаний чужий процес з тим самим іменем живий  324ms
+   ✓ журнал спавнів (обгортка Chrome Lighthouse) > cleanupSpawnLog вбиває ЛИШЕ запис із тим самим starttime і браузер-подібним comm; решту (чужий, без start, інший start, не-браузер) не чіпає  329ms
+ ✓ scripts/guard-sealed.test.ts (7 tests) 962ms
+   ✓ guard-sealed на dev-корпусі тієї ж форми > PASS: SHA збігся → агрегати 100 %/100 %, тексти кейсів у виході відсутні  782ms
+ ✓ packages/reporting/test/guard.test.ts (21 tests) 917ms
+ ✓ packages/llm/test/matrix.test.ts (11 tests) 942ms
+   ✓ матриця сценаріїв (SCORING_SPEC §10.2, G0-20) > 300 випадкових комбінацій (лінзи з полюсами × 4–7 задач): порушень 0  859ms
+ ✓ packages/reporting/test/build-report.test.ts (19 tests) 856ms
+   ✓ детермінізм звіту (критерій 6) > 3 прогони й перестановка доказів → байт-ідентичний звіт  355ms
+ ✓ packages/schemas/test/report-contract.test.ts (75 tests) 652ms
+ ✓ apps/web/test/unit.test.ts (14 tests) 259ms
+ ✓ packages/llm/test/sim.test.ts (23 tests) 718ms
+   ✓ validateAgentTurn: семантика кроку > коректний click / scroll / back проходять; stop_* потребує result і навпаки  369ms
+   ✓ тексти знахідок: числа лише плейсхолдерами, «немає підтримки» — валідний результат > validateTextFields: цифра, числівник, чужий плейсхолдер, прогноз → порушення; коректний текст із плейсхолдером — ні  323ms
+ ✓ packages/browser/test/net-proxy.test.ts (6 tests) 119ms
+ ✓ packages/schemas/test/artifacts-s1a.test.ts (25 tests) 124ms
+ ✓ packages/browser/test/net-proxy-testzone.test.ts (5 tests) 97ms
+ ✓ packages/llm/test/adapters.test.ts (33 tests) 144ms
+ ✓ scripts/scan-todo.test.ts (4 tests) 57ms
+ ✓ scripts/scan-secrets.test.ts (4 tests) 84ms
+ ✓ packages/browser/test/page-type.test.ts (46 tests) 63ms
+ ✓ packages/llm/test/prompts.test.ts (16 tests) 26ms
+ ✓ packages/scoring/test/aggregate.test.ts (19 tests) 24ms
+ ✓ packages/browser/test/net-classify.test.ts (129 tests) 35ms
+ ✓ packages/browser/test/action-filter.test.ts (91 tests) 38ms
+ ✓ packages/schemas/test/migration-consistency.test.ts (17 tests) 22ms
+ ✓ scripts/scan-claims.test.ts (18 tests) 24ms
+ ✓ packages/llm/test/cache.test.ts (28 tests) 63ms
+ ✓ packages/scoring/test/rank-band.test.ts (11 tests) 14ms
+ ✓ packages/schemas/test/entities.test.ts (14 tests) 24ms
+ ✓ packages/scoring/test/validation.test.ts (43 tests) 25ms
+ ✓ packages/browser/test/live-preflight.test.ts (1 test) 23ms
+ ✓ scripts/validate/degraded.test.ts (10 tests) 30ms
+ ✓ packages/scoring/test/priority.test.ts (30 tests) 18ms
+ ✓ packages/pipeline/test/taxonomy.test.ts (26 tests) 20ms
+ ✓ packages/pipeline/test/config.test.ts (64 tests) 18ms
+ ✓ packages/scoring/test/confidence.test.ts (25 tests) 12ms
+ ✓ scripts/artifact-dir.test.ts (2 tests) 4ms
+ ✓ packages/pipeline/test/progress.test.ts (6 tests) 6ms
+
+ Test Files  66 passed (66)
+      Tests  1457 passed (1457)
+   Start at  07:07:36
+   Duration  765.52s (transform 4.14s, setup 0ms, collect 43.89s, tests 2230.30s, environment 16ms, prepare 6.00s)
+
+
+real	12m46.704s
+user	10m23.008s
+sys	2m52.813s

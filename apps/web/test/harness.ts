@@ -24,7 +24,7 @@ export async function startWeb(): Promise<void> {
   if (await up()) return;
   child = spawn(path.join(WEB, "node_modules/.bin/next"), ["dev", "-H", "127.0.0.1", "-p", String(PORT)], {
     cwd: WEB,
-    env: { ...process.env, SITELENS_SOURCE: "fixture", NEXT_TELEMETRY_DISABLED: "1" },
+    env: { ...process.env, SITELENS_SOURCE: "fixture", NEXT_TELEMETRY_DISABLED: "1", SITELENS_NEXT_DIST: `.next-e2e-${PORT}` },
     stdio: ["ignore", "pipe", "pipe"],
   });
   child.stdout?.on("data", (d) => (log += String(d)));

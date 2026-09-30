@@ -194,3 +194,368 @@ $ worker.log (jobs)
 {"ts":"2026-09-30T05:53:46.094Z","level":"info","msg":"job done","queue":"capture_page","job":"22866bb7-f21c-489d-a69c-5b86c2bff91f","audit":"aud_9275e26a7672a7fc","retry":0,"ms":2463}
 - stopped api/worker/web/fixtures (kill of own pnpm PIDs 23519 23520 23521 23539)
 ### 05:55:53Z pnpm test (полний, від sitelens) -> /home/sitelens/clean-s8-run/test-full.log
+
+### PASS 1 (HEAD af45c58) pnpm test (повний, від sitelens): результат
+ Test Files  1 failed | 61 passed (62)
+      Tests  5 failed | 1422 passed (1427)
+   Duration  830.32s (transform 3.76s, setup 0ms, collect 41.00s, tests 2141.07s, environment 19ms, prepare 5.45s)
+real	13m51.690s
+Червоні тести (5): apps/web/test/e2e.test.ts — «e2e §54 прогін 1/3, 2/3, 3/3», «критерій 3 axe власного UI», «критерій 7 доказ по кліку»: TimeoutError: waiting for [data-testid=lightbox][data-state=loaded]
+Повторний прогін e2e.test.ts окремо (без паралельних файлів): ті самі 3+ падіння (e2e-alone.log) — не інтерференція.
+ПРИЧИНА (перевірено): у чистій копії немає apps/web/src/app/api/dev/audits/[id]/artifacts/[...path]/route.ts — файл ігнорується .gitignore (правило 'artifacts/' на рядку 10), тому НІКОЛИ не був закомічений. На робочому дереві розробників файл є, тому S5-гейт був зелений. У чистій копії fixture-режим UI не віддає скриншоти -> lightbox не завантажується.
+DEFECT-P1 (не README, репозиторій): .gitignore ховав маршрут UI. Виправлення: у .gitignore додано '!apps/web/src/app/api/**/artifacts/' і '!apps/web/src/app/api/**/artifacts/**'; файл тепер untracked (потрібен git add + commit оркестратором). git status --ignored: більше жодного прихованого вихідного файлу.
+
+################################################################################
+### PASS 2 — повторна чиста копія (HEAD , містить DEV-80 і сканери) з виправленим README
+# Незакомічені виправлення скопійовано ВРУЧНУ з /home/user/Projct1 у клон (git pull неможливий — зміни не закомічені): README.md, .gitignore,
+#   apps/web/src/app/api/dev/audits/[id]/artifacts/[...path]/route.ts (untracked), scripts/s8-*.ts (QA-скрипти).
+# Каталог /home/sitelens/clean-s8 створено заново (rm -rf + git clone), окремий store /home/sitelens/clean-s8-store, кеш /home/sitelens/clean-s8-cache.
+################################################################################
+
+### 06:15:37Z P2 README 1/8: pnpm install (run-as-sitelens, окремий store)
+$ bash scripts/run-as-sitelens.sh pnpm install --store-dir /home/sitelens/clean-s8-store
+Scope: all 11 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +365
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 365, reused 0, downloaded 105, added 91
+Progress: resolved 365, reused 0, downloaded 198, added 137
+Progress: resolved 365, reused 0, downloaded 346, added 240
+Progress: resolved 365, reused 0, downloaded 362, added 256
+Progress: resolved 365, reused 0, downloaded 364, added 364
+Progress: resolved 365, reused 0, downloaded 365, added 365, done
+.../@embedded-postgres/linux-x64 postinstall$ node scripts/hydrate-symlinks.js
+.../esbuild@0.28.2/node_modules/esbuild postinstall$ node install.js
+.../@embedded-postgres/linux-x64 postinstall: Done
+.../esbuild@0.28.2/node_modules/esbuild postinstall: Done
+
+devDependencies:
++ @axe-core/playwright 4.13.0
++ @eslint/js 9.39.5
++ @types/node 22.20.4
++ @types/pg 8.23.1
++ eslint 9.39.5
++ lighthouse 13.5.0
++ pg 8.23.0
++ pg-boss 12.35.0
++ playwright 1.56.1
++ playwright-core 1.56.1
++ tsx 4.23.15
++ typescript 5.9.3
++ typescript-eslint 8.71.0
++ vitest 3.2.7
+
+Done in 7.1s using pnpm v10.33.0
+[exit 0]
+# P2 README 2/8: 'pnpm exec playwright install chromium' ПРОПУЩЕНО згідно README (Chromium 1194 наперед у /opt/pw-browsers, CDN закритий — DEV-23; поведінку без мережі задокументовано в pass 1)
+
+### 06:15:44Z P2 README 3/8: pnpm run doctor
+$ bash scripts/run-as-sitelens.sh pnpm run doctor
+
+> sitelens@0.0.0 doctor /home/sitelens/clean-s8
+> tsx scripts/doctor.ts
+
+PASS node: Node 22.22.2 (потрібно major >= 22)
+PASS pnpm: pnpm 10.33.0, packageManager=pnpm@10.33.0
+INFO platform: linux x64, uid=1001, rosetta=n/a
+PASS chromium_installed: playwright-core 1.56.1 потребує chromium r1194 (141.0.7390.37) + headless-shell r1194; PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers; chromium=true, headless_shell=true; вміст: [.links, chromium, chromium-1194, chromium_headless_shell-1194, ffmpeg-1011]
+PASS chromium_sandbox: Chromium 141.0.7390.37 стартував із chromiumSandbox:true; --no-sandbox у cmdline: false; uid=1001
+PASS axe: @axe-core/playwright 4.13.0, axe-core 4.13.0
+PASS lighthouse: lighthouse 13.5.0 імпортується (engines node >=22.19)
+INFO postgres_options: system PG версії: [16] (Ver Cluster Port Status Owner    Data directory              Log file
+16  main    5432 down   postgres /var/lib/postgresql/16/main /var/log/postgresql/postgresql-16-main.log); @embedded-postgres/linux-x64@18.4.0-beta.17. S1a не стартує БД.
+INFO internet: registry.npmjs.org=200, example.com=ERR(curl: (56) CONNECT tunnel failed, response 403) → живі публічні сайти НЕдоступні (живі пас-и ⏭️)
+INFO docker: клієнт: Docker version 29.3.1, build c2be9cc; демон: недоступний
+
+DOCTOR PASS → planning/qa/artifacts/sprint-1a/doctor.json
+[exit 0]
+
+### 06:15:49Z P2 README 4/8: cp .env.example .env
+$ bash scripts/run-as-sitelens.sh cp .env.example .env
+[exit 0]
+
+### 06:15:49Z P2 README 5/8: pnpm db:start
+$ bash scripts/run-as-sitelens.sh pnpm db:start
+
+> sitelens@0.0.0 db:start /home/sitelens/clean-s8
+> tsx packages/db/src/cli.ts start
+
+{"running":true,"pid":28097,"port":54329,"stale_pid_file_removed":false,"started":true,"initialised":true}
+[exit 0]
+
+### 06:15:51Z P2 README 6/8: pnpm db:migrate
+$ bash scripts/run-as-sitelens.sh pnpm db:migrate
+
+> sitelens@0.0.0 db:migrate /home/sitelens/clean-s8
+> tsx packages/db/src/cli.ts migrate
+
+{"applied":["001_init.sql","002_pipeline.sql","003_report.sql"],"skipped":[]}
+[exit 0]
+
+### 06:16:12Z P2 README 7/8: pnpm fixtures / api / worker / web (з SITELENS_FIXTURE_MODE=1, ORIGINS 4210–4213 через SL_PASS_VARS); логи /home/sitelens/clean-s8-run/*.log
+$ lsof -nP -iTCP -sTCP:LISTEN (sitelens-процеси)
+postgres  28097 sitelens    8u  IPv4 2656635      0t0  TCP 127.0.0.1:54329 (LISTEN)
+node      28328 sitelens   36u  IPv4 2657698      0t0  TCP 127.0.0.1:3001 (LISTEN)
+node      28343 sitelens   31u  IPv4 2656053      0t0  TCP 127.0.0.1:4210 (LISTEN)
+node      28343 sitelens   32u  IPv4 2656054      0t0  TCP 127.0.0.1:4211 (LISTEN)
+node      28343 sitelens   33u  IPv4 2656055      0t0  TCP 127.0.0.1:4212 (LISTEN)
+node      28343 sitelens   34u  IPv4 2656056      0t0  TCP 127.0.0.1:4213 (LISTEN)
+node      28343 sitelens   35u  IPv4 2656060      0t0  TCP 127.0.0.1:4214 (LISTEN)
+$ /proc/net/tcp LISTEN (hex addr:port -> 127.0.0.1?)
+127.0.0.1:3000
+127.0.0.1:3001
+127.0.0.1:4210
+127.0.0.1:4211
+127.0.0.1:4212
+127.0.0.1:4213
+127.0.0.1:4214
+127.0.0.1:54329
+(усі — 127.0.0.1; жодного 0.0.0.0/* для наших портів)
+api.log:
+"msg":"api started","pid":28328,"listen":{"host":"127.0.0.1","port":3001,"exposed":false}
+worker.log:
+"msg":"worker started","pid":28327
+
+### 06:16:38Z P2 UI: подання http://127.0.0.1:4210/ через UI (uk)
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s8-ui-submit.ts /home/sitelens/clean-s8-out/ui http://127.0.0.1:4210/ uk
+{"url":"http://127.0.0.1:4210/","base":"http://127.0.0.1:3000","lang":"uk","auditUrl":"http://127.0.0.1:3000/audit/aud_5eab2ac336750ff2","findings_in_ui":8,"screenshot_naturalWidth":1440,"screenshot_naturalHeight":1000,"page_errors":[]}
+[exit 0]
+
+### 06:18:01Z P2 UI: подання http://127.0.0.1:4210/ через UI (en) — для en-рядка матриці
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s8-ui-submit.ts /home/sitelens/clean-s8-out/ui-en http://127.0.0.1:4210/ en
+{"url":"http://127.0.0.1:4210/","base":"http://127.0.0.1:3000","lang":"en","auditUrl":"http://127.0.0.1:3000/audit/aud_a182643c08460246","findings_in_ui":8,"screenshot_naturalWidth":1440,"screenshot_naturalHeight":1000,"page_errors":[]}
+[exit 0]
+
+### 06:19:14Z P2 SQL: 0 знахідок без доказу + контроль
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s8-sql.ts
+
+-- аудити
+SELECT id, status, llm_mode, error IS NOT NULL AS has_error, stage_status FROM audit_runs ORDER BY created_at
+=> [{"id":"aud_5eab2ac336750ff2","status":"completed","llm_mode":"none","has_error":false,"stage_status":{"crawl":{"reason":"сторінок захоплено 11, збійних 0, пропущено 8","status":"done","updated_at":"2026-09-30T06:17:23.838Z"},"tasks":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:43.810Z"},"lenses":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:44.812Z"},"report":{"reason":"знахідок 8, позитивів 0, доказів 36","status":"done","updated_at":"2026-09-30T06:17:49.380Z"},"capture":{"status":"done","updated_at":"2026-09-30T06:17:23.839Z"},"aggregate":{"reason":"докази зведено (42 детермінованих, 0 синтетичних; оновлено 25); знахідок 8, відхилено тверджень без доказу 0","status":"done","updated_at":"2026-09-30T06:17:46.922Z"},"lighthouse":{"status":"done","updated_at":"2026-09-30T06:17:42.669Z"},"site_profile":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:42.813Z"},"accessibility":{"status":"done","updated_at":"2026-09-30T06:17:42.670Z"},"scenario_matrix":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:45.816Z"},"browser_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:46.862Z"},"snapshot_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:17:46.861Z"}}},{"id":"aud_a182643c08460246","status":"completed","llm_mode":"none","has_error":false,"stage_status":{"crawl":{"reason":"сторінок захоплено 11, збійних 0, пропущено 8","status":"done","updated_at":"2026-09-30T06:18:47.676Z"},"tasks":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:08.580Z"},"lenses":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:09.580Z"},"report":{"reason":"знахідок 8, позитивів 0, доказів 36","status":"done","updated_at":"2026-09-30T06:19:12.751Z"},"capture":{"status":"done","updated_at":"2026-09-30T06:18:47.678Z"},"aggregate":{"reason":"докази зведено (42 детермінованих, 0 синтетичних; оновлено 25); знахідок 8, відхилено тверджень без доказу 0","status":"done","updated_at":"2026-09-30T06:19:11.715Z"},"lighthouse":{"status":"done","updated_at":"2026-09-30T06:19:06.668Z"},"site_profile":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:07.577Z"},"accessibility":{"status":"done","updated_at":"2026-09-30T06:19:06.669Z"},"scenario_matrix":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:10.587Z"},"browser_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:11.649Z"},"snapshot_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T06:19:11.647Z"}}}]
+
+-- знахідок усього
+SELECT count(*)::int AS findings FROM findings
+=> [{"findings":16}]
+
+-- ЗНАХІДОК БЕЗ ДОКАЗУ (має бути 0)
+SELECT count(*)::int AS findings_without_evidence FROM findings f WHERE NOT EXISTS (SELECT 1 FROM finding_evidence fe WHERE fe.audit_run_id=f.audit_run_id AND fe.finding_id=f.id AND fe.role='support')
+=> [{"findings_without_evidence":0}]
+
+-- докази
+SELECT source_class, count(*)::int FROM evidence GROUP BY 1 ORDER BY 1
+=> [{"source_class":"BENCHMARKED","count":38},{"source_class":"OBSERVED","count":46}]
+
+-- черга: задачі
+SELECT kind, status, count(*)::int FROM audit_jobs GROUP BY 1,2 ORDER BY 1,2
+=> [{"kind":"accessibility","status":"done","count":22},{"kind":"capture","status":"done","count":22},{"kind":"lighthouse","status":"done","count":6}]
+
+-- рекомендації без знахідки (має бути 0)
+SELECT count(*)::int AS orphan_recs FROM recommendations r WHERE NOT EXISTS (SELECT 1 FROM findings f WHERE f.audit_run_id=r.audit_run_id AND f.id=r.finding_id)
+=> [{"orphan_recs":0}]
+
+-- звіт збережено
+SELECT audit_run_id, report_sha256, guard_events, jsonb_array_length(rejected) AS rejected FROM audit_reports
+=> [{"audit_run_id":"aud_5eab2ac336750ff2","report_sha256":"63f9e2e5291d4d534b8eeaeee4c2c9463ddaf02b05687765fe11090c00a84e25","guard_events":0,"rejected":0},{"audit_run_id":"aud_a182643c08460246","report_sha256":"91bc4912fbbd5e662cf90c00c1847402b3fbb71fc0e23270a9410a4410a41266","guard_events":0,"rejected":0}]
+
+-- КОНТРОЛЬ (у транзакції з підкладеною знахідкою без доказу) -> має бути 1
+SELECT count(*)::int AS findings_without_evidence FROM findings f WHERE NOT EXISTS (SELECT 1 FROM finding_evidence fe WHERE fe.audit_run_id=f.audit_run_id AND fe.finding_id=f.id AND fe.role='support')
+=> [{"findings_without_evidence":1}]
+
+-- COMMIT відхилено тригером §23: finding fnd_qacontrol0001 has no supporting evidence (SPEC §23)
+
+-- після ROLLBACK: підкладеної знахідки немає
+SELECT count(*)::int AS ctl FROM findings WHERE id='fnd_qacontrol0001'
+=> [{"ctl":0}]
+[exit 0]
+### P2 matrix: web :3000 зупинено (kill власних PID); матриця uk 196 PASS + 20 N/A + en 10 PASS — див. planning/qa/artifacts/sprint-8/matrix/ (run.log, matrix.json)
+
+### 06:52:23Z P2 контроль-0: slice.test.ts на НЕзламаному коді (має бути зелений)
+$ bash scripts/run-as-sitelens.sh pnpm exec vitest run --configLoader runner packages/browser/test/slice.test.ts
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/sitelens/clean-s8[39m
+
+ [32m✓[39m packages/browser/test/slice.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 9134[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport [33m 1723[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mНЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень [33m 1585[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mдетермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон) [33m 5396[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 06:52:24
+[2m   Duration [22m 11.27s[2m (transform 533ms, setup 0ms, collect 1.82s, tests 9.13s, environment 0ms, prepare 77ms)[22m
+
+[exit 0]
+### P2 контроль-1: СВІДОМО ЗЛАМАНО детектор overflow (packages/browser/src/detectors/overflow.ts:69: '> vw + TOL' -> '> vw + 1000000'), лише в чистій копії
+
+### 06:52:43Z P2 контроль-1: slice.test.ts на ЗЛАМАНОМУ детекторі (очікується червоний)
+$ bash scripts/run-as-sitelens.sh pnpm exec vitest run --configLoader runner packages/browser/test/slice.test.ts
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/sitelens/clean-s8[39m
+
+ [31m❯[39m packages/browser/test/slice.test.ts [2m([22m[2m6 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 8742[2mms[22m[39m
+[31m   [31m×[31m S1a slice: наскрізний зріз на фікстурі[2m > [22mПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport[39m[33m 1706[2mms[22m[39m
+[31m     → expected false to be true // Object.is equality[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mНЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень [33m 1430[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mдетермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон) [33m 5183[2mms[22m[39m
+[31m   [31m×[31m S1a slice: наскрізний зріз на фікстурі[2m > [22mмутант: елемент виступає, але обрізаний предком overflow-x:hidden → детектор мовчить[39m[32m 75[2mms[22m[39m
+[31m     → expected false to be true // Object.is equality[39m
+   [32m✓[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mзахоплення відмовляє нелокальному URL (SSRF-ядро — крок 3)[32m 3[2mms[22m[39m
+   [32m✓[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mсирий playwright Browser у captureSlice: помилка типу і runtime-виняток[32m 129[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m packages/browser/test/slice.test.ts[2m > [22mS1a slice: наскрізний зріз на фікстурі[2m > [22mПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport
+[31m[1mAssertionError[22m: expected false to be true // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+[36m [2m❯[22m packages/browser/test/slice.test.ts:[2m38:58[22m[39m
+    [90m 36| [39m
+    [90m 37| [39m    [34mexpect[39m(r[33m.[39mdetector_summary[33m.[39mdesktop[33m.[39moverflow[33m.[39moverflows)[33m.[39m[34mtoBe[39m([35mfalse[39m)[33m;[39m
+    [90m 38| [39m    [34mexpect[39m(r[33m.[39mdetector_summary[33m.[39mmobile[33m.[39moverflow[33m.[39moverflows)[33m.[39m[34mtoBe[39m([35mtrue[39m)[33m;[39m
+    [90m   | [39m                                                         [31m^[39m
+    [90m 39| [39m    expect(r.detector_summary.mobile.overflow.overflow_px).toBeGreater…
+    [90m 40| [39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m packages/browser/test/slice.test.ts[2m > [22mS1a slice: наскрізний зріз на фікстурі[2m > [22mмутант: елемент виступає, але обрізаний предком overflow-x:hidden → детектор мовчить
+[31m[1mAssertionError[22m: expected false to be true // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+[36m [2m❯[22m packages/browser/test/slice.test.ts:[2m99:27[22m[39m
+    [90m 97| [39m    await page.setContent(`<body style="margin:0"><div style="width:10…
+    [90m 98| [39m    [35mconst[39m res [33m=[39m [35mawait[39m [34mdetectHorizontalOverflow[39m(page)[33m;[39m
+    [90m 99| [39m    [34mexpect[39m(res[33m.[39moverflows)[33m.[39m[34mtoBe[39m([35mtrue[39m)[33m;[39m
+    [90m   | [39m                          [31m^[39m
+    [90m100| [39m    [34mexpect[39m(res[33m.[39moffenders[[34m0[39m][33m?.[39mselector)[33m.[39m[34mtoBe[39m([32m"#w"[39m)[33m;[39m
+    [90m101| [39m    [35mawait[39m context[33m.[39m[34mclose[39m()[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m4 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 06:52:44
+[2m   Duration [22m 11.02s[2m (transform 554ms, setup 0ms, collect 1.86s, tests 8.74s, environment 0ms, prepare 92ms)[22m
+
+[exit 1]
+### P2 контроль-2: детектор повернуто (git checkout -- overflow.ts; git status по packages/ чистий)
+
+### 06:53:01Z P2 контроль-2: slice.test.ts після повернення (має бути знову зелений)
+$ bash scripts/run-as-sitelens.sh pnpm exec vitest run --configLoader runner packages/browser/test/slice.test.ts
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/sitelens/clean-s8[39m
+
+ [32m✓[39m packages/browser/test/slice.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 9109[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mПОЗИТИВ: defective.html → overflow лише на mobile + image-alt на обох viewport [33m 1702[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mНЕГАТИВ: clean.html → 0 evidence, 0 overflow, 0 axe-порушень [33m 1501[2mms[22m[39m
+   [33m[2m✓[22m[39m S1a slice: наскрізний зріз на фікстурі[2m > [22mдетермінізм: 3 прогони дають ідентичний набір Evidence (id, селектор, регіон) [33m 5509[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 06:53:02
+[2m   Duration [22m 11.29s[2m (transform 544ms, setup 0ms, collect 1.82s, tests 9.11s, environment 0ms, prepare 91ms)[22m
+
+[exit 0]
+- P2: api/worker/fixtures зупинено (kill власних PID) перед pnpm test
+### 06:53:35Z P2 pnpm test (повний, від sitelens) -> pnpm-test-full.log
+
+### P2 pnpm test (повний) РЕЗУЛЬТАТ 1: Test Files 1 failed | 65 passed (66); Tests 1455 passed | 2 skipped (1457) — див. pass2-run1-pnpm-test-full.log
+Червоний файл: apps/worker/test/web-api-token.e2e.test.ts (suite-level, 2 тести skipped): "next dev не піднявся: ⨯ Another next dev server is already running (порт 3100, Dir apps/web)".
+ПРИЧИНА (перевірено по логу): три тестові файли (apps/web/test/e2e.test.ts :3100, apps/worker/test/web-api.e2e.test.ts :3131, web-api-token.e2e.test.ts :3141) запускають `next dev` в ОДНОМУ каталозі apps/web/.next; Next 16 забороняє два dev-сервери в одному distDir; vitest ганяє файли паралельно -> гонка, результат залежить від порядку старту.
+DEFECT-P1 (тести): `pnpm test` (команда з README) недетермінований. Виправлення (QA, мінімальне): apps/web/next.config.ts — distDir з env SITELENS_NEXT_DIST (типово .next); три тестові спавнери передають SITELENS_NEXT_DIST=.next-e2e-<порт>; .gitignore: .next-*/. Файли скопійовано в клон вручну (не закомічено).
+### 07:07:35Z P2 pnpm test (повний) ПРОГІН 2 після виправлення distDir
+### P2 pnpm test (повний) РЕЗУЛЬТАТ (прогін 2 після виправлення distDir): 
+ Test Files  66 passed (66)
+      Tests  1457 passed (1457)
+   Duration  765.52s (transform 4.14s, setup 0ms, collect 43.89s, tests 2230.30s, environment 16ms, prepare 6.00s)
+real	12m46.704s
+### 07:20:41Z P2 pnpm validate (bash scripts/run-as-sitelens.sh pnpm validate) -> validate.log
+
+### pnpm validate: вивід (повний) -> validate-pnpm.log
+[E1] PASS
+[E2] PASS
+[E3a] PASS
+[E3c] ⏭️ DEFERRED (live)
+[E4] PASS
+ВЕРДИКТ (dev): PASS — обв'язка працює; якість моделі не перевірено (⏭️ live); не закрито в dev (⏭️): E3c
+real	1m9.848s
+
+### 07:22:38Z P2 pnpm typecheck
+$ bash scripts/run-as-sitelens.sh pnpm typecheck
+
+> sitelens@0.0.0 typecheck /home/sitelens/clean-s8
+> tsc -p tsconfig.json && tsc -p apps/web/tsconfig.json
+
+scripts/s8-matrix.ts(12,79): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+scripts/s8-matrix.ts(207,280): error TS2532: Object is possibly 'undefined'.
+scripts/s8-matrix.ts(209,22): error TS2488: Type 'NodeListOf<Element>' must have a '[Symbol.iterator]()' method that returns an iterator.
+ ELIFECYCLE  Command failed with exit code 2.
+[exit 2]
+
+### 07:22:49Z P2 pnpm lint
+$ bash scripts/run-as-sitelens.sh pnpm lint
+
+> sitelens@0.0.0 lint /home/sitelens/clean-s8
+> eslint .
+
+
+/home/sitelens/clean-s8/apps/web/.next-e2e-3100/dev/build/chunks/[root-of-the-server]__0fy95ld._.js
+    1:1    error  'module' is not defined                                                                                              no-undef
+    2:85   error  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+    4:53   error  A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+    4:53   error  'require' is not defined                                                                                             no-undef
+[... вивід обрізано QA: 30163 problems (30031 errors) — усі у згенерованих каталогах apps/web/.next-e2e-*/ (нові distDir тестів, P1-B); 1 реальна помилка no-explicit-any у scripts/s8-matrix.ts:254 (QA-скрипт). Виправлено: eslint.config.js ignores **/.next*/**, типи в скрипті; повторний lint — див. нижче: exit 0]
+[exit 1]
+DEFECT (ланцюжок P1-B): нові distDir .next-e2e-* потрапили під eslint; виправлено ignores. QA-скрипти s8-*.ts мали 3 помилки typecheck — виправлено (див. наступні кроки).
+
+### 07:23:53Z P2 guard freeze check (scripts/guard-files.ts check; лише читає маніфест)
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/guard-files.ts check
+guard заморожено: файли збігаються з маніфестом
+[exit 0]
+
+### 07:25:12Z P2 pnpm typecheck (після виправлення QA-скриптів)
+$ bash scripts/run-as-sitelens.sh pnpm typecheck
+
+> sitelens@0.0.0 typecheck /home/sitelens/clean-s8
+> tsc -p tsconfig.json && tsc -p apps/web/tsconfig.json
+
+[exit 0]
+
+### 07:25:28Z P2 pnpm lint (eslint ігнорує .next-*/)
+$ bash scripts/run-as-sitelens.sh pnpm lint
+
+> sitelens@0.0.0 lint /home/sitelens/clean-s8
+> eslint .
+
+[exit 0]
+### README фінальна версія (додано абзац «Перевірено») скопійовано в клон; кроки README не змінювались після PASS 2
+
+### P2 worker.log: задачі, взяті з черги (pg-boss)
+job done (усього): 64
+      2 "queue":"aggregate_findings"
+      2 "queue":"build_scenario_matrix"
+      2 "queue":"build_site_profile"
+     22 "queue":"capture_page"
+      2 "queue":"crawl_site"
+      2 "queue":"generate_lenses"
+      2 "queue":"generate_report"
+      2 "queue":"generate_tasks"
+     22 "queue":"run_accessibility"
+      6 "queue":"run_lighthouse"
+{"ts":"2026-09-30T06:16:44.901Z","level":"info","msg":"job done","queue":"capture_page","job":"4a0109ce-2b48-41a0-a396-261ec5e91fc2","audit":"aud_5eab2ac336750ff2","retry":0,"ms":2915}
+{"ts":"2026-09-30T06:16:48.619Z","level":"info","msg":"job done","queue":"capture_page","job":"1197b8e1-259b-4410-849d-8c083203e26d","audit":"aud_5eab2ac336750ff2","retry":0,"ms":2710}
+{"ts":"2026-09-30T06:17:49.383Z","level":"info","msg":"job done","queue":"generate_report","job":"8abc2b89-c6ba-4d84-8eea-b4f2509d9bcd","audit":"aud_5eab2ac336750ff2","retry":0,"ms":1574}
+{"ts":"2026-09-30T06:19:12.755Z","level":"info","msg":"job done","queue":"generate_report","job":"33a1adb7-7442-45a7-8bd0-311ff6a8ad55","audit":"aud_a182643c08460246","retry":0,"ms":170}
+### 07:27:39Z кінець: db:stop, усі процеси клону зупинено; клон лишено в /home/sitelens/clean-s8 (не видалено)

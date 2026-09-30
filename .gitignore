@@ -3,6 +3,7 @@ node_modules/
 .env.*
 !.env.example
 .next/
+.next-*/
 dist/
 coverage/
 data/
@@ -17,3 +18,7 @@ test-results/
 # S1a: артефакти доказів у planning/qa/artifacts комітяться (малі); правило artifacts/ вище їх ігнорує
 !planning/qa/artifacts/
 !planning/qa/artifacts/**
+
+# S8 (QA, clean-clone дефект): правило artifacts/ вище ховало маршрут UI apps/web/src/app/api/dev/audits/[id]/artifacts/ -> не потрапляв у git -> скриншоти в fixture-режимі UI не вантажились у чистій копії
+!apps/web/src/app/api/**/artifacts/
+!apps/web/src/app/api/**/artifacts/**

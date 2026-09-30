@@ -1,7 +1,8 @@
 {
   "url": "http://127.0.0.1:4210/",
   "base": "http://127.0.0.1:3000",
-  "auditUrl": "http://127.0.0.1:3000/audit/aud_9275e26a7672a7fc",
+  "lang": "uk",
+  "auditUrl": "http://127.0.0.1:3000/audit/aud_5eab2ac336750ff2",
   "findings_in_ui": 8,
   "screenshot_naturalWidth": 1440,
   "screenshot_naturalHeight": 1000,
