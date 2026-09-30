@@ -1,0 +1,12 @@
+{
+  "url": "https://kredens.com.ua/robots.txt",
+  "status": null,
+  "fetch": "unreachable",
+  "rules_for_user_agent": [],
+  "disallowed_skipped": [
+    {
+      "url": "https://kredens.com.ua/",
+      "rule": "robots_unreachable"
+    }
+  ]
+}

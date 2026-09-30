@@ -1,0 +1,7 @@
+
+> sitelens@0.0.0 audit:live /home/user/Projct1
+> tsx scripts/audit-live.ts -- https://kredens.com.ua/ --out-dir planning/qa/artifacts/kredens/run1
+
+live: https://kredens.com.ua/ → /home/user/Projct1/planning/qa/artifacts/kredens/run1 (аудит 1/5 за 2026-09-30 UTC; UA SiteLensBot/0.1 (+https://sitelens.invalid/bot; contact: bot-contact@sitelens.invalid) audit-only, GET-only)
+live: 0 сторінок, 0 доказів, 0 знахідок, помилок 1 (САЙТ: robots_disallow/robots_disallow)
+ ELIFECYCLE  Command failed with exit code 4.

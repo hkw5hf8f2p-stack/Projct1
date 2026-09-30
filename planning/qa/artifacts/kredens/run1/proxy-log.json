@@ -1,0 +1,43 @@
+[
+  {
+    "ts": "2026-09-30T08:52:46.901Z",
+    "via": "connect",
+    "method": "CONNECT",
+    "host": "kredens.com.ua",
+    "port": 443,
+    "resolved": [
+      {
+        "ip": "104.21.90.182",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "172.67.203.208",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "2606:4700:3035:0:0:0:ac43:cbd0",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      },
+      {
+        "ip": "2606:4700:3035:0:0:0:6815:5ab6",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      }
+    ],
+    "decision": "allow",
+    "reason": "усі адреси дозволені; TCP до перевіреної IP",
+    "connected_ip": "104.21.90.182",
+    "peer_pid": 1412
+  }
+]

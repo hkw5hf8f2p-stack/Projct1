@@ -1,0 +1,18 @@
+{
+  "min_delay_ms": 1500,
+  "max_concurrent_pages_per_host": 1,
+  "per_host": {
+    "kredens.com.ua": {
+      "navigations": 1,
+      "min_gap_ms": null
+    }
+  },
+  "hits": [
+    {
+      "host": "kredens.com.ua",
+      "url": "https://kredens.com.ua/robots.txt",
+      "ts": "2026-09-30T08:52:46.883Z",
+      "gap_ms": null
+    }
+  ]
+}

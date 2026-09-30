@@ -1,0 +1,60 @@
+{
+  "schema": "sitelens-live-summary/v1",
+  "url": "https://kredens.com.ua/",
+  "host": "kredens.com.ua",
+  "ethics": {
+    "user_agent": "SiteLensBot/0.1 (+https://sitelens.invalid/bot; contact: bot-contact@sitelens.invalid) audit-only, GET-only",
+    "min_delay_ms": 1500,
+    "daily": {
+      "count": 1,
+      "limit": 5,
+      "day": "2026-09-30"
+    },
+    "robots": {
+      "url": "https://kredens.com.ua/robots.txt",
+      "status": null,
+      "fetch": "unreachable"
+    },
+    "host_hits": {
+      "kredens.com.ua": {
+        "navigations": 1,
+        "min_gap_ms": null
+      }
+    },
+    "max_concurrent_pages_per_host": 1
+  },
+  "pages": [],
+  "errors": [
+    {
+      "page_url": "https://kredens.com.ua/",
+      "code": "robots_disallow",
+      "kind": "robots_disallow",
+      "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+      "signals": [
+        "robots_unreachable"
+      ],
+      "http_status": null,
+      "viewports": []
+    }
+  ],
+  "site_error": {
+    "page_url": "https://kredens.com.ua/",
+    "code": "robots_disallow",
+    "kind": "robots_disallow",
+    "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+    "signals": [
+      "robots_unreachable"
+    ],
+    "http_status": null,
+    "viewports": []
+  },
+  "evidence": 0,
+  "findings": 0,
+  "blocked_requests_per_page": [],
+  "proxy_decisions": {
+    "total": 1,
+    "deny": 0
+  },
+  "seconds": 0,
+  "note": "precision живих тверджень — не тут: її звіряють sl-qa-tester і sl-critic незалежно зі скриншотами (S1b, real-env pass)"
+}
