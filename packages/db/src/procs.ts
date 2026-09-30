@@ -1,7 +1,7 @@
 /**
  * Учет власних процесів (G0-28): PID-файл із `starttime` (захист від повторного використання PID),
  * обхід нащадків через /proc, вбивство ЛИШЕ записаних процесів. Ніколи pkill -f / killall.
- * Linux (/proc). На macOS `readStart` повертає null — тоді збіг перевіряється лише за PID + іменем (`ps`), див. README Known limitations.
+ * Linux — /proc; macOS/BSD — `ps` (ppid, state, lstart, comm) з тими самими полями, тож облік PID+start працює й там.
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
@@ -24,6 +24,7 @@ export interface PidFile {
 }
 
 export function readStat(pid: number): { comm: string; ppid: number; start: string; state: string } | null {
+  if (process.platform !== "linux") return readStatPs(pid);
   try {
     const s = readFileSync(`/proc/${pid}/stat`, "utf8");
     const rp = s.lastIndexOf(")");
@@ -35,15 +36,21 @@ export function readStat(pid: number): { comm: string; ppid: number; start: stri
   }
 }
 
-export function procStart(pid: number): string | null {
-  const s = readStat(pid);
-  if (s) return s.start;
-  if (process.platform === "linux") return null;
+/** macOS/BSD: немає /proc — ті самі поля з `ps`. comm нормалізовано до базового імені (ps на macOS дає повний шлях). */
+function readStatPs(pid: number): { comm: string; ppid: number; start: string; state: string } | null {
   try {
-    return execFileSync("ps", ["-o", "lstart=", "-p", String(pid)], { encoding: "utf8" }).trim() || null;
+    const out = execFileSync("ps", ["-o", "ppid=,state=,lstart=,comm=", "-p", String(pid)], { encoding: "utf8" }).trim();
+    // lstart — 5 полів («Wed Sep 30 11:48:02 2026»), comm — решта рядка (може містити пробіли у шляху)
+    const m = /^(\d+)\s+(\S+)\s+(\S+\s+\S+\s+\d+\s+[\d:]+\s+\d+)\s+(.+)$/.exec(out);
+    if (!m) return null;
+    return { ppid: Number(m[1]), state: m[2]!.slice(0, 1), start: m[3]!, comm: path.basename(m[4]!.trim()) };
   } catch {
     return null;
   }
+}
+
+export function procStart(pid: number): string | null {
+  return readStat(pid)?.start || null;
 }
 
 /** Процес жив і це той самий процес (PID+start збігаються). Без start — лише PID. */
