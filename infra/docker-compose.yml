@@ -1,0 +1,23 @@
+# UNVERIFIED: never run; see README Known limitations
+# Альтернатива embedded-postgres для машин із Docker (DEV-2). Лише PostgreSQL для локальної розробки; API і worker запускаються pnpm-ом на хості.
+# Порт публікується ТІЛЬКИ на loopback. Облікові дані — локальні, для розробки (див. .env.example: DATABASE_URL).
+# Використання (неперевірено): docker compose -f infra/docker-compose.yml up -d  →  DATABASE_URL=postgres://sitelens:sitelens@127.0.0.1:54329/sitelens  →  pnpm db:migrate
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sitelens
+      POSTGRES_PASSWORD: sitelens
+      POSTGRES_DB: sitelens
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - sitelens-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sitelens -d sitelens"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  sitelens-pgdata:

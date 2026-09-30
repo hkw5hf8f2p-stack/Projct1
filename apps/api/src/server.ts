@@ -42,7 +42,6 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"] },
     bodyLimit: 8 * 1024,
     trustProxy: false,
-    disableRequestLogging: false,
   });
 
   app.addHook("onRequest", async (req, reply) => {
@@ -126,8 +125,8 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     if (!a) return reply;
     const p = (
       await pool.query(
-        `SELECT (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND technical_json->'capture_error' IS NULL AND technical_json->'page_error' IS NULL)::int AS pages_captured,
-                (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND (technical_json->'capture_error' IS NOT NULL OR technical_json->'page_error' IS NOT NULL))::int AS pages_failed,
+        `SELECT (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND NOT (technical_json ? 'capture_error'))::int AS pages_captured,
+                (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND technical_json ? 'capture_error')::int AS pages_failed,
                 (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' AND status = 'done')::int AS lighthouse_done,
                 (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' AND status = 'failed')::int AS lighthouse_failed`,
         [a.id],

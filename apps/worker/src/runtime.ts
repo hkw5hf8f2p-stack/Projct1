@@ -19,6 +19,8 @@ export interface Runtime {
   /** режим і ін'єкції, з якими запускається браузер/Lighthouse */
   netOptions(): { mode: "prod" | "fixture"; fixtureOrigins?: string[]; allowFixtureLoopback?: boolean; resolver?: Resolver; dial?: Dialer };
   hasFault(name: string, url?: string): boolean;
+  /** збої навігаційних запитів і краші вкладок усіх контекстів цього браузера (потрібні, коли captureViewport кидає виняток і власних даних не лишає) */
+  nav: { failures: Array<{ url: string; failure: string }>; crashes: number };
   log(level: "info" | "warn" | "error", msg: string, extra?: Record<string, unknown>): void;
   close(): Promise<void>;
 }
@@ -54,13 +56,26 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
   const netOptions = () => (fixture
     ? { mode: "fixture" as const, fixtureOrigins: cfg.fixtureOrigins, allowFixtureLoopback: true, resolver, dial }
     : { mode: "prod" as const, resolver, dial });
+  const nav: Runtime["nav"] = { failures: [], crashes: 0 };
+  const instrument = (sb: SecureBrowser): SecureBrowser => {
+    const orig = sb.newContext.bind(sb);
+    sb.newContext = async (options) => {
+      const ctx = await orig(options);
+      ctx.on("requestfailed", (r) => {
+        if (r.isNavigationRequest() && nav.failures.length < 500) nav.failures.push({ url: r.url(), failure: r.failure()?.errorText ?? "unknown" });
+      });
+      ctx.on("page", (p) => p.on("crash", () => void nav.crashes++));
+      return ctx;
+    };
+    return sb;
+  };
   const rt: Runtime = {
-    cfg, pool, boss, gate,
+    cfg, pool, boss, gate, nav,
     userAgent: fixture ? undefined : HONEST_USER_AGENT,
     async getBrowser() {
       if (browser && browser.browser.isConnected()) return browser;
       if (browser) await rt.resetBrowser();
-      launching ??= secureLaunch(netOptions()).then((b) => (browser = b)).finally(() => (launching = null));
+      launching ??= secureLaunch(netOptions()).then((b) => (browser = instrument(b))).finally(() => (launching = null));
       return launching;
     },
     async resetBrowser() {

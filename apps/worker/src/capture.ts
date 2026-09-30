@@ -36,6 +36,8 @@ function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: st
 async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, runDir: string): Promise<{ ok: true; cap: ViewportCapture; timing: Record<string, number | null> } | { ok: false; failure: Classified; http_status: number | null }> {
   let sb = await rt.getBrowser();
   const from = sb.proxy.log.length;
+  const navFrom = rt.nav.failures.length;
+  const crashesFrom = rt.nav.crashes;
   try {
     if (rt.hasFault("page_crash", url)) throw new Error("Page crashed (fault injection: simulated)");
     if (rt.hasFault("browser_crash", url)) throw new Error("Target page, context or browser has been closed (fault injection: simulated)");
@@ -47,8 +49,19 @@ async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, run
     return { ok: true, cap: r.capture, timing: r.timing };
   } catch (e) {
     if (e instanceof ClassifiedError) return { ok: false, failure: { errorClass: e.errorClass, detail: e.detail }, http_status: null };
-    sb = await rt.getBrowser().catch(() => sb);
-    return { ok: false, failure: classifyThrown(e, { browserConnected: sb.browser.isConnected() }), http_status: null };
+    // captureViewport кинув (напр. «Execution context was destroyed» після невдалої навігації): класифікуємо за тим, що бачили самі
+    const connected = sb.browser.isConnected();
+    if (rt.nav.crashes > crashesFrom) return { ok: false, failure: { errorClass: "page_crash", detail: "вкладка аварійно завершилась (Playwright: crash)" }, http_status: null };
+    if (connected) {
+      const failures = rt.nav.failures.slice(navFrom).map((f) => f.failure);
+      const host = new URL(url).hostname;
+      const proxy = sb.proxy.log.slice(from).map((d) => ({ host: d.host, decision: d.decision, reason: d.reason }));
+      if (failures.length > 0 || proxy.some((p) => p.host === host && p.decision !== "allow")) {
+        const c = classifyCapture({ navigation_completed: false, http_status: null, content_type: null, document_failures: failures, visible_text_length: 0, visible_links: 0, js_error_count: 0, console_error_count: 0, visible_text_sample: "", bot: { blocked: false, kind: null, signals: [] }, proxy, target_host: host });
+        if (c) return { ok: false, failure: c, http_status: null };
+      }
+    }
+    return { ok: false, failure: classifyThrown(e, { browserConnected: connected }), http_status: null };
   }
 }
 

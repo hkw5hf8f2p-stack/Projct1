@@ -79,6 +79,7 @@ export function classifyCapture(s: CaptureSignals): Classified | null {
   // 2. мережеві збої документа
   if (!s.navigation_completed || s.http_status === null) {
     if (LOOP_RE.test(fails)) return { errorClass: "redirect_loop", detail: fails };
+    if (/ERR_ABORTED/i.test(fails) && !/ERR_CERT|ERR_SSL/i.test(fails) && !upErr) return { errorClass: "unsupported_site", detail: `навігацію перервано (${fails}): ймовірно не HTML-сторінка (завантаження файлу)` };
     if (SSL_RE.test(fails)) return { errorClass: "ssl_failure", detail: fails };
     if (DNS_RE.test(fails)) return { errorClass: "dns_failure", detail: fails };
     if (upErr && DNS_RE.test(upErr.reason)) return { errorClass: "dns_failure", detail: upErr.reason };
