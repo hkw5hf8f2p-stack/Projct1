@@ -126,7 +126,7 @@ describe("тексти моделі доходять до звіту (scripted-f
     expect(report.findings.filter((f) => f.title.template_id === "finding.title.generic")).toEqual([]);
     // E4: токени llm_calls = лічильник аудиту (виклики текстів знахідок враховано)
     const c = (await db.pool.query("SELECT coalesce(sum(input_tokens),0)::bigint AS i, coalesce(sum(output_tokens),0)::bigint AS o, count(*) FILTER (WHERE prompt_version IN ('finding-aggregator-v1','recommendation-v1'))::int AS n FROM llm_calls WHERE audit_run_id = $1", [id])).rows[0];
-    const a = (await getAudit(db.pool, id))!;
+    const a = (await db.pool.query("SELECT tokens_input, tokens_output FROM audit_runs WHERE id = $1", [id])).rows[0];
     expect(c.n).toBe(rows.length * 2);
     expect(Number(a.tokens_input)).toBe(Number(c.i));
     expect(Number(a.tokens_output)).toBe(Number(c.o));
