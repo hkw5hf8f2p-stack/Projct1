@@ -3,7 +3,7 @@
  *
  * Шар 1 — egress-проксі як єдиний вихід (`--proxy-server`, `--proxy-bypass-list=<-loopback>`, WebRTC лише через
  * проксі, без QUIC). Шар 2 — у кожному контексті: блок не-GET/HEAD до всіх origin з логом, Service Workers block,
- * WebSocket → close. Процес: `chromiumSandbox: true` (без фолбеку), env — білий список, тимчасові HOME/TMPDIR,
+ * SharedWorker block (DEV-50), WebSocket → close. Процес: `chromiumSandbox: true` (без фолбеку), env — білий список, тимчасові HOME/TMPDIR,
  * тимчасовий профіль (Playwright `launch()` створює свіжий user-data-dir і видаляє його при close).
  */
 import { mkdir, mkdtemp, rm } from "node:fs/promises";
@@ -134,10 +134,32 @@ export const SW_LOCKDOWN_SCRIPT = `(() => { try {
   Object.defineProperty(C.prototype, "register", { value: deny, writable: false, configurable: false });
 } catch (e) {} })();`;
 
-/** Шар 2 на контексті: не-GET/HEAD → abort + лог (включно з мережею SW); WebSocket → close + лог; SW → лог. */
-export async function applyContextGuards(context: BrowserContext, blocked: BlockedRequest[], o: { swLockdown?: boolean } = {}): Promise<void> {
+/**
+ * Блок SharedWorker (S1b-Fix, знахідка критика S1b-1; DEV-50). Playwright НЕ бачить мережу SharedWorker: ні
+ * `context.route`, ні подій request (на відміну від dedicated Worker — його мережа, включно з module/blob/вкладеним
+ * worker і worker із about:blank-iframe, іде через `context.route`, доведено `worker-bypass.test.ts`). POST/PUT із
+ * SharedWorker доходив до цілі під SecureBrowser. Тому конструктор `SharedWorker` замінено на `globalThis` (у КОЖНОМУ
+ * документі, включно з about:blank/srcdoc-iframe і popup) на функцію, що кидає SecurityError; властивість
+ * non-writable + non-configurable (сторінка не може ні перевизначити, ні видалити). Інтерфейс-об'єкт живе лише на
+ * global (не на прототипі), тож іншого шляху до оригінального конструктора з realm сторінки немає; realm-и iframe/popup
+ * отримують той самий init-script. Відхилено: CDP `Target.setAutoAttach{waitForDebuggerOnStart}` — Playwright сам
+ * відпускає паузу (runIfWaitingForDebugger), пропуск POST у пробі.
+ */
+export const SHARED_WORKER_LOCKDOWN_SCRIPT = `(() => { try {
+  const deny = function SharedWorker() { throw new DOMException("SharedWorker blocked by SiteLens", "SecurityError"); };
+  Object.defineProperty(globalThis, "SharedWorker", { value: deny, writable: false, configurable: false, enumerable: false });
+} catch (e) {} })();`;
+
+/** Шар 2 на контексті: не-GET/HEAD → abort + лог (включно з мережею SW і dedicated Worker); WebSocket → close + лог; SW → лог; SharedWorker → SecurityError. */
+export async function applyContextGuards(
+  context: BrowserContext,
+  blocked: BlockedRequest[],
+  o: { swLockdown?: boolean; sharedWorkerLockdown?: boolean } = {},
+): Promise<void> {
   // swLockdown:false — лише для контрольного тесту «SW обійшов блок → його мережа все одно під шаром 2».
   if (o.swLockdown !== false) await context.addInitScript({ content: SW_LOCKDOWN_SCRIPT });
+  // sharedWorkerLockdown:false — лише для контрольного тесту worker-bypass (конфігурація до S1b-Fix: POST із SharedWorker доходить).
+  if (o.sharedWorkerLockdown !== false) await context.addInitScript({ content: SHARED_WORKER_LOCKDOWN_SCRIPT });
   context.on("serviceworker", (w) => {
     blocked.push({ ts: new Date().toISOString(), kind: "service_worker", method: "-", url: w.url(), resource_type: "service_worker", reason: "Service Worker з'явився попри блок (обхід реєстрації) — його мережа йде через шар 2 і проксі" });
   });

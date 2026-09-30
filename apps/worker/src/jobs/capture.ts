@@ -30,7 +30,7 @@ export async function captureJob(rt: Runtime, job: Job<JobData>): Promise<void> 
       await writeFile(path.join(runDir, "pages", pageId, "coverage.json"), JSON.stringify(det.coverage, null, 2) + "\n");
       await writeFile(path.join(runDir, "pages", pageId, "evidence-detectors.json"), JSON.stringify(ev, null, 2) + "\n");
       await c.query("BEGIN");
-      await upsertPage(c, auditRunId, pageRowOf(cap));
+      await upsertPage(c, auditRunId, pageRowOf(cap, out.egress_denied));
       await insertEvidence(c, auditRunId, ev.map((e) => ({ ...e, page_id: pageId })));
       await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "capture", page_url: url, status: "done", error_class: null, error: null, result_json: { page_type: cap.page_type, evidence: ev.length } });
       await c.query("COMMIT");
@@ -38,7 +38,7 @@ export async function captureJob(rt: Runtime, job: Job<JobData>): Promise<void> 
       const f = out.failure;
       const msg = humanMessage(f.errorClass, audit.language);
       await c.query("BEGIN");
-      await upsertPage(c, auditRunId, failedRow(url, pageId, f.errorClass, f.detail, audit.language, out.http_status, out.attempts));
+      await upsertPage(c, auditRunId, failedRow(url, pageId, f.errorClass, f.detail, audit.language, out.http_status, out.attempts, out.egress_denied));
       await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "capture", page_url: url, status: "failed", error_class: f.errorClass, error: `${msg} (${f.detail})`.slice(0, 1000), attempts: out.attempts, result_json: { detail: f.detail } });
       await addWarning(c, auditRunId, { stage: "capture", page_url: url, class: f.errorClass, message: msg });
       await c.query("COMMIT");

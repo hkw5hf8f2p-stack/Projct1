@@ -13,7 +13,13 @@ export const pageIdOf = (u: URL): string => {
   return raw === "" ? "index" : raw.replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase();
 };
 
-export type Outcome = { ok: true; capture: PageCapture } | { ok: false; failure: Classified; http_status: number | null; attempts: number };
+export interface EgressDenied { host: string; port: number; reason: string }
+export type Outcome = { ok: true; capture: PageCapture; egress_denied: EgressDenied[] } | { ok: false; failure: Classified; http_status: number | null; attempts: number; egress_denied: EgressDenied[] };
+
+/** Відмови egress-проксі (шар 1 SSRF) за час захоплення: доказ, що блокування відбулось (а не «нічого не прийшло»). */
+function deniedSince(sb: { proxy: { log: Array<{ host: string; port: number; decision: string; reason: string }> } }, from: number): EgressDenied[] {
+  return sb.proxy.log.slice(from).filter((d) => d.decision === "deny").slice(0, 50).map((d) => ({ host: d.host, port: d.port, reason: d.reason.slice(0, 160) }));
+}
 
 function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: string; reason: string }>, targetHost: string): CaptureSignals {
   const bot = detectBotProtection({ http_status: c.http_status, headers: c.response_headers, title: c.title, visible_text: c.visible_text, markers: c.bot_markers });
@@ -33,7 +39,9 @@ function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: st
   };
 }
 
-async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, runDir: string): Promise<{ ok: true; cap: ViewportCapture; timing: Record<string, number | null> } | { ok: false; failure: Classified; http_status: number | null }> {
+type ViewportOut = { ok: true; cap: ViewportCapture; timing: Record<string, number | null>; denied: EgressDenied[] } | { ok: false; failure: Classified; http_status: number | null; denied: EgressDenied[] };
+
+async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, runDir: string): Promise<ViewportOut> {
   let sb = await rt.getBrowser();
   const from = sb.proxy.log.length;
   const navFrom = rt.nav.failures.length;
@@ -44,24 +52,26 @@ async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, run
     const r = await captureViewport({ secure: sb, url, vp, runDir, pageId, writeShots: true, tiles: process.env["CAPTURE_TILES"] === "1", throttle: rt.gate, userAgent: rt.userAgent });
     const host = new URL(url).hostname;
     const proxy = sb.proxy.log.slice(from).map((d) => ({ host: d.host, decision: d.decision, reason: d.reason }));
+    const denied = deniedSince(sb, from);
     const failure = classifyCapture(signalsOf(r.capture, proxy, host));
-    if (failure) return { ok: false, failure, http_status: r.capture.http_status };
-    return { ok: true, cap: r.capture, timing: r.timing };
+    if (failure) return { ok: false, failure, http_status: r.capture.http_status, denied };
+    return { ok: true, cap: r.capture, timing: r.timing, denied };
   } catch (e) {
-    if (e instanceof ClassifiedError) return { ok: false, failure: { errorClass: e.errorClass, detail: e.detail }, http_status: null };
+    if (e instanceof ClassifiedError) return { ok: false, failure: { errorClass: e.errorClass, detail: e.detail }, http_status: null, denied: [] };
     // captureViewport кинув (напр. «Execution context was destroyed» після невдалої навігації): класифікуємо за тим, що бачили самі
     const connected = sb.browser.isConnected();
-    if (rt.nav.crashes > crashesFrom) return { ok: false, failure: { errorClass: "page_crash", detail: "вкладка аварійно завершилась (Playwright: crash)" }, http_status: null };
+    const denied = connected ? deniedSince(sb, from) : [];
+    if (rt.nav.crashes > crashesFrom) return { ok: false, failure: { errorClass: "page_crash", detail: "вкладка аварійно завершилась (Playwright: crash)" }, http_status: null, denied };
     if (connected) {
       const failures = rt.nav.failures.slice(navFrom).map((f) => f.failure);
       const host = new URL(url).hostname;
       const proxy = sb.proxy.log.slice(from).map((d) => ({ host: d.host, decision: d.decision, reason: d.reason }));
       if (failures.length > 0 || proxy.some((p) => p.host === host && p.decision !== "allow")) {
         const c = classifyCapture({ navigation_completed: false, http_status: null, content_type: null, document_failures: failures, visible_text_length: 0, visible_links: 0, js_error_count: 0, console_error_count: 0, visible_text_sample: "", bot: { blocked: false, kind: null, signals: [] }, proxy, target_host: host });
-        if (c) return { ok: false, failure: c, http_status: null };
+        if (c) return { ok: false, failure: c, http_status: null, denied };
       }
     }
-    return { ok: false, failure: classifyThrown(e, { browserConnected: connected }), http_status: null };
+    return { ok: false, failure: classifyThrown(e, { browserConnected: connected }), http_status: null, denied };
   }
 }
 
@@ -72,12 +82,13 @@ export async function capturePageFlow(rt: Runtime, o: { url: string; pageId: str
   for (let attempt = 1; attempt <= rt.cfg.captureAttempts; attempt++) {
     const out = await rt.gate.run(o.url, async (): Promise<Outcome> => {
       const d = await oneViewport(rt, o.url, o.pageId, "D", o.runDir);
-      if (!d.ok) return { ok: false, failure: d.failure, http_status: d.http_status, attempts: attempt };
+      if (!d.ok) return { ok: false, failure: d.failure, http_status: d.http_status, attempts: attempt, egress_denied: d.denied };
       const m = await oneViewport(rt, o.url, o.pageId, "M", o.runDir);
-      if (!m.ok) return { ok: false, failure: m.failure, http_status: m.http_status, attempts: attempt };
+      if (!m.ok) return { ok: false, failure: m.failure, http_status: m.http_status, attempts: attempt, egress_denied: [...d.denied, ...m.denied] };
       const classification = classifyPageType(d.cap, m.cap, { seed_url: o.seedUrl });
       return {
         ok: true,
+        egress_denied: [...d.denied, ...m.denied],
         capture: {
           url: o.url, path: u.pathname + u.search, page_id: o.pageId, page_type: classification.page_type, page_type_reason: classification.reason ?? null, classification, page_error: null,
           page_group: pageGroupOf(classification.page_type, u.pathname), D: d.cap, M: m.cap, timing: { D: d.timing, M: m.timing },

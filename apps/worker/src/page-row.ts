@@ -4,7 +4,7 @@ import type { PageRow } from "@sitelens/pipeline";
 import { humanMessage } from "@sitelens/pipeline";
 import { pageGroupOf, type PageCapture, type ViewportCapture } from "./browser-api.js";
 
-export function pageRowOf(p: PageCapture): PageRow {
+export function pageRowOf(p: PageCapture, egressDenied: unknown[] = []): PageRow {
   const d = p.D;
   const m = p.M;
   return {
@@ -29,16 +29,17 @@ export function pageRowOf(p: PageCapture): PageRow {
       page_error: null,
       response_headers: { D: d.response_headers, M: m.response_headers },
       metrics_ref: "page-capture.json",
+      egress_denied: egressDenied,
     },
   };
 }
 
 /** Збійна сторінка: рядок є (0 втрат для обліку), але без вмісту й доказів — §48 «не вигадувати аналіз». */
-export function failedRow(url: string, pageId: string, cls: ErrorClass, detail: string, lang: "uk" | "en", httpStatus: number | null, attempts: number): PageRow {
+export function failedRow(url: string, pageId: string, cls: ErrorClass, detail: string, lang: "uk" | "en", httpStatus: number | null, attempts: number, egressDenied: unknown[] = []): PageRow {
   return {
     id: pageId, url, page_type: "unknown", page_type_reason: "capture", title: null, http_status: httpStatus,
     desktop_screenshot: null, mobile_screenshot: null, dom_text: null, aria_snapshot: null, visible_text: null, metadata_json: {}, links_json: [],
-    technical_json: { capture_error: { class: cls, message: humanMessage(cls, lang), detail, attempts }, page_error: null },
+    technical_json: { capture_error: { class: cls, message: humanMessage(cls, lang), detail, attempts }, page_error: null, egress_denied: egressDenied },
   };
 }
 

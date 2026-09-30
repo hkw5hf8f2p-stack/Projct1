@@ -25,7 +25,10 @@
     "db:status": "tsx packages/db/src/cli.ts status",
     "db:migrate": "tsx packages/db/src/cli.ts migrate",
     "api": "tsx apps/api/src/index.ts",
-    "worker": "tsx apps/worker/src/index.ts"
+    "worker": "tsx apps/worker/src/index.ts",
+    "fixtures": "tsx scripts/serve-fixtures.ts",
+    "s2:scenarios": "tsx scripts/s2-scenarios.ts",
+    "s2:secrets": "tsx scripts/s2-secrets.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

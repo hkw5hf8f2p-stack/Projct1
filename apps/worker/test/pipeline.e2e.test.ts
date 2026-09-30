@@ -9,16 +9,16 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import type { FastifyInstance } from "fastify";
 import type { PgBoss } from "pg-boss";
-import { afterAll, beforeAll, describe, expect, inject, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { buildServer } from "../../api/src/server.js";
 import { AuditStatusResponse, CreateAuditResponse } from "@sitelens/schemas";
 import { auditDir, createBoss, loadConfig, startBoss } from "@sitelens/pipeline";
 import { startErrorsFixture, type ErrorsFixture } from "../../../fixtures/errors/server.js";
-import { freshDatabase, type FreshDb } from "../../../scripts/test-db.js";
+import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 import { registerHandlers } from "../src/handlers.js";
 import { createRuntime, type Runtime } from "../src/runtime.js";
 
-const base = inject("dbUrl");
+let cluster: TestCluster;
 process.env["LOG_LEVEL"] = "silent";
 const art = mkdtempSync(path.join(os.tmpdir(), "sl-e2e-art-"));
 let fx: ErrorsFixture;
@@ -26,8 +26,7 @@ interface Stack { db: FreshDb; boss: PgBoss; rt: Runtime; api: FastifyInstance; 
 const stacks: Stack[] = [];
 
 async function startStack(env: Record<string, string> = {}): Promise<Stack> {
-  if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`);
-  const db = await freshDatabase(base);
+  const db = await freshDatabase(cluster.url);
   const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: art, SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: fx.origin, LIGHTHOUSE_MAX_PAGES: "1", CAPTURE_ATTEMPTS: "1", ...env } as NodeJS.ProcessEnv);
   const boss = createBoss(db.url, { supervise: true, max: 8 });
   await startBoss(boss);
@@ -73,11 +72,13 @@ const digest = async (s: Stack, id: string) => {
 };
 
 beforeAll(async () => {
+  cluster = await startTestCluster();
   fx = await startErrorsFixture();
-});
+}, 90_000);
 afterAll(async () => {
   for (const s of stacks) await s.stop().catch(() => undefined);
   await fx?.close();
+  await cluster?.stop();
   rmSync(art, { recursive: true, force: true });
 });
 

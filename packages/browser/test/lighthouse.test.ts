@@ -2,7 +2,7 @@
  * Lighthouse за egress-проксі (S1b, A4, V14): канарка через Lighthouse = 0 з контролями, env/пісочниця, ізоляція збою,
  * прогін на фікстурі shop → BENCHMARKED Evidence. Без DNS і зовнішньої мережі: `attacker.test` → мок-резолвер →
  * 93.184.216.34 → ін'єктований дайлер → локальна сторінка атакувальника.
- * Артефакти: planning/qa/artifacts/sprint-1b/lighthouse/.
+ * Артефакти: planning/qa/artifacts/sprint-1b/lighthouse/ (лише з SL_WRITE_ARTIFACTS=1; інакше os.tmpdir()/sitelens-artifacts).
  */
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import http from "node:http";
@@ -27,9 +27,10 @@ import {
 import { startEgressProxy, type Dialer, type ProxyDecision, type Resolver } from "../src/net/egress-proxy.js";
 import { serveDir } from "../src/static-server.js";
 import { buildBrowserEnv, secureLaunch } from "../src/secure-launch.js";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1b/lighthouse");
+const ART = artifactDir("sprint-1b/lighthouse"); // X-1: у репо лише з SL_WRITE_ARTIFACTS=1
 const CANARY_HOST = "127.0.0.2";
 const CANARY_PORT = 4197; // окремий порт: інші тест-файли тримають 4199/4198 паралельно
 const FAKE_PUBLIC = "93.184.216.34";
@@ -48,6 +49,23 @@ fetch("http://169.254.169.254/latest/meta-data/", { mode: "no-cors" }).catch(() 
 navigator.sendBeacon && navigator.sendBeacon("http://${CANARY_HOST}:${CANARY_PORT}/lh-beacon", "x");
 try { new WebSocket("ws://${CANARY_HOST}:${CANARY_PORT}/lh-ws"); } catch (e) {}
 </script></html>`;
+
+/**
+ * S1b-Fix п.4 (DEV-51): сторінка ПУБЛІЧНОЇ цілі (attacker.test → 93.184.216.34), що сама шле не-GET на свій origin
+ * з усіх контекстів: sendBeacon, fetch POST/PUT, XHR POST, авто-submit форми POST, dedicated Worker, SharedWorker.
+ */
+const NONGET_HTML = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>lighthouse non-GET probe</title><main><h1>non-GET probe</h1><iframe title="sink" name="sink"></iframe>
+<form id="f" method="post" action="/lh-ng/form" target="sink"><input name="q" value="state-change"></form></main><script>
+navigator.sendBeacon("/lh-ng/beacon", "state-change");
+fetch("/lh-ng/fetch-post", { method: "POST", body: "state-change" }).catch(() => {});
+fetch("/lh-ng/fetch-put", { method: "PUT", body: "state-change" }).catch(() => {});
+try { const x = new XMLHttpRequest(); x.open("POST", "/lh-ng/xhr"); x.send("state-change"); } catch (e) {}
+document.getElementById("f").submit();
+try { new Worker("/lh-ng-worker.js"); } catch (e) {}
+try { new SharedWorker("/lh-ng-shared.js"); } catch (e) {}
+</script></html>`;
+const NONGET_WORKER = (kind: string) => `fetch("/lh-ng/${kind}", { method: "POST", body: "state-change" }).catch(() => {});`;
 
 interface Hit { ts: string; method: string; url: string }
 const canaryHits: Hit[] = [];
@@ -86,6 +104,9 @@ beforeAll(async () => {
     const p = (req.url ?? "/").split("?")[0];
     if (p === "/probe.html") return void res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(PROBE_HTML);
     if (p === "/redir-canary") return void res.writeHead(302, { location: `http://${CANARY_HOST}:${CANARY_PORT}/lh-redirect` }).end();
+    if (p === "/nonget.html") return void res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(NONGET_HTML);
+    const wk = /^\/lh-ng-(worker|shared)\.js$/.exec(p);
+    if (wk) return void res.writeHead(200, { "content-type": "text/javascript" }).end(NONGET_WORKER(wk[1]!));
     res.writeHead(404, { "content-type": "text/plain" }).end("nf");
   });
   await new Promise<void>((r) => attacker.listen(0, "127.0.0.1", r));
@@ -212,6 +233,47 @@ describe("Lighthouse за проксі: канарка (V14)", () => {
     expect(secretLeaks(envText)).toBe(Object.keys(FAKE).length);
     expect(cmd).toContain("--disable-setuid-sandbox");
   });
+});
+
+describe("Lighthouse: не-GET до публічної цілі — CDP Fetch guard (S1b-Fix п.4, DEV-51)", () => {
+  const nonGet = (from: number) => attackerHits.slice(from).filter((h) => h.method !== "GET" && h.method !== "HEAD" && h.url.startsWith("/lh-ng/"));
+  const run = (methodGuard: boolean) => {
+    const outDir = mkdtempSync(path.join(os.tmpdir(), "sl-lhng-"));
+    tmp.push(outDir);
+    return runLighthouseIsolated({ url: "http://attacker.test/nonget.html", mode: "prod", resolver, dial, outDir, timeoutMs: 60_000, methodGuard });
+  };
+  const out: Record<string, unknown> = {};
+  afterAll(() => save("lh-nonget.json", { scenario: "Lighthouse prod за проксі; сторінка публічної цілі шле не-GET на свій origin (beacon, fetch POST/PUT, XHR, form, Worker, SharedWorker)", ...out }));
+
+  it("контроль: той самий прогін БЕЗ CDP guard → ціль отримує не-GET (детектор уміє впасти)", async () => {
+    const from = attackerHits.length;
+    const r = await run(false);
+    await new Promise((res) => setTimeout(res, 300));
+    const hits = nonGet(from);
+    out.control_no_guard = { ...summary(r), method_guard: r.method_guard, target_non_get: hits.length, hits: hits.map((h) => `${h.method} ${h.url}`) };
+    expect(r.method_guard).toBeNull();
+    expect(hits.length).toBeGreaterThan(0);
+  }, 90_000);
+
+  it("захищений прогін (за замовчуванням): 0 не-GET до цілі, Lighthouse дає оцінки, guard залогував блоки", async () => {
+    const from = attackerHits.length;
+    const r = await run(true);
+    await new Promise((res) => setTimeout(res, 300));
+    const hits = nonGet(from);
+    const g = r.method_guard;
+    out.guarded = { ...summary(r), method_guard: g, target_non_get: hits.length, hits: hits.map((h) => `${h.method} ${h.url}`), target_get: attackerHits.slice(from).filter((h) => h.method === "GET").map((h) => h.url) };
+    expect(hits).toEqual([]);
+    expect(r.error).toBeNull();
+    expect(r.ok).toBe(true);
+    expect(g).not.toBeNull();
+    expect(g!.intercepted).toBeGreaterThan(0);
+    expect(g!.blocked.length).toBeGreaterThan(0);
+    expect(g!.blocked.every((b) => b.method !== "GET" && b.method !== "HEAD")).toBe(true);
+    expect(g!.errors).toEqual([]);
+    // кожен із 7 векторів (сторінка, форма, dedicated Worker, SharedWorker) заблоковано саме guard-ом
+    const ids = new Set(g!.blocked.map((b) => new URL(b.url).pathname));
+    for (const v of ["beacon", "fetch-post", "fetch-put", "xhr", "form", "worker", "shared"]) expect(ids.has(`/lh-ng/${v}`), v).toBe(true);
+  }, 90_000);
 });
 
 describe("ізоляція збою Lighthouse", () => {

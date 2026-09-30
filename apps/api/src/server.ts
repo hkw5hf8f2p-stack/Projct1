@@ -131,7 +131,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     if (!a) return reply;
     const rows = (
       await pool.query(
-        `SELECT p.id, p.url, p.page_type, p.page_type_reason, p.title, p.http_status, p.desktop_screenshot, p.mobile_screenshot, p.technical_json->'capture_error' AS capture_error,
+        `SELECT p.id, p.url, p.page_type, p.page_type_reason, p.title, p.http_status, p.desktop_screenshot, p.mobile_screenshot, p.technical_json->'capture_error' AS capture_error, COALESCE(p.technical_json->'egress_denied', '[]'::jsonb) AS egress_denied,
                 (SELECT count(*) FROM evidence e WHERE e.audit_run_id = p.audit_run_id AND e.page_url = p.url)::int AS evidence_count
          FROM page_artifacts p WHERE p.audit_run_id = $1 ORDER BY p.created_at, p.id`,
         [a.id],
@@ -143,7 +143,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
       pages: rows.map((r) => ({
         id: r.id, url: r.url, page_type: r.page_type, page_type_reason: r.page_type_reason, title: r.title, http_status: r.http_status,
         screenshots: gone ? null : { desktop: r.desktop_screenshot, mobile: r.mobile_screenshot },
-        capture_ok: r.capture_error === null, capture_error: r.capture_error, evidence_count: r.evidence_count,
+        capture_ok: r.capture_error === null, capture_error: r.capture_error, egress_denied: r.egress_denied, evidence_count: r.evidence_count,
       })),
     };
   });

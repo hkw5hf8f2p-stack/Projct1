@@ -12,6 +12,8 @@ install -d -o sitelens -g "$(id -gn sitelens)" "$ROOT/data"
 cd "$ROOT"
 ENVV=(HOME=/home/sitelens "PATH=$PATH" "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-/opt/pw-browsers}" CI=true)
 [ -n "${DOCTOR_OUT:-}" ] && ENVV+=("DOCTOR_OUT=$DOCTOR_OUT")
+# X-1: тести пишуть у planning/qa/artifacts лише з SL_WRITE_ARTIFACTS=1 (інакше — os.tmpdir()/sitelens-artifacts)
+[ -n "${SL_WRITE_ARTIFACTS:-}" ] && ENVV+=("SL_WRITE_ARTIFACTS=$SL_WRITE_ARTIFACTS")
 # SL_PASS_VARS="A B" — додатково передати перелічені змінні (S2: DATABASE_URL, ACCESS_TOKEN, SITELENS_FIXTURE_* тощо); решта env відкидається
 for v in ${SL_PASS_VARS:-}; do [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
 if [ "${SL_PASS_PROXY:-0}" = "1" ]; then

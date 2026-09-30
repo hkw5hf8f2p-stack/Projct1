@@ -2,11 +2,11 @@
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { afterAll, beforeAll, describe, expect, inject, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { migrate, MIGRATIONS_DIR } from "../src/index.js";
-import { freshDatabase, type FreshDb } from "../../../scripts/test-db.js";
+import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 
-const base = inject("dbUrl");
+let cluster: TestCluster;
 const tmpDirs: string[] = [];
 const copyMigrations = () => {
   const d = mkdtempSync(path.join(os.tmpdir(), "sl-mig-"));
@@ -16,20 +16,21 @@ const copyMigrations = () => {
 };
 afterAll(() => tmpDirs.forEach((d) => rmSync(d, { recursive: true, force: true })));
 
+beforeAll(async () => {
+  cluster = await startTestCluster(); // гучно падає, якщо embedded-postgres не стартує (напр. під root)
+}, 90_000);
+afterAll(async () => cluster?.stop());
+
 describe("тестовий кластер (охоронець)", () => {
-  it("embedded-postgres піднято (інакше всі DB-тести недійсні)", () => {
-    expect(base, `dbError: ${inject("dbError")}`).not.toBeNull();
-  });
-  it("глобальний setup застосував міграції з порожньої БД", () => {
-    expect(process.env["SITELENS_TEST_MIGRATIONS"]).toMatch(/001_init\.sql,002_pipeline\.sql/);
+  it("embedded-postgres піднято, міграції застосовано з порожньої БД цього прогону", () => {
+    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql"]);
   });
 });
 
 describe("migrate()", () => {
   let db: FreshDb;
   beforeAll(async () => {
-    if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`);
-    db = await freshDatabase(base, { migrate: false });
+    db = await freshDatabase(cluster.url, { migrate: false });
   });
   afterAll(async () => db?.drop());
 
@@ -65,7 +66,7 @@ describe("migrate()", () => {
 
   it("зміна застосованого файлу → відмова (forward-only), БД не псується", async () => {
     const d = copyMigrations();
-    const fresh = await freshDatabase(base!, { migrate: false });
+    const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
       await migrate(fresh.url, d);
       writeFileSync(path.join(d, "001_init.sql"), readFileSync(path.join(d, "001_init.sql"), "utf8") + "\n-- tamper\n");
@@ -77,7 +78,7 @@ describe("migrate()", () => {
 
   it("зникнення застосованого файлу → відмова", async () => {
     const d = copyMigrations();
-    const fresh = await freshDatabase(base!, { migrate: false });
+    const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
       await migrate(fresh.url, d);
       rmSync(path.join(d, "002_pipeline.sql"));
@@ -90,7 +91,7 @@ describe("migrate()", () => {
   it("збійна міграція відкочується цілком (транзакція) і не записується", async () => {
     const d = copyMigrations();
     writeFileSync(path.join(d, "003_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
-    const fresh = await freshDatabase(base!, { migrate: false });
+    const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
       await expect(migrate(fresh.url, d)).rejects.toThrow(/003_bad\.sql не застосована/);
       const t = await fresh.pool.query("SELECT to_regclass('half_done') AS t");

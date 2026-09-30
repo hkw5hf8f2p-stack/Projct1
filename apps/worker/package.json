@@ -11,9 +11,11 @@
     "@sitelens/pipeline": "workspace:*",
     "@sitelens/schemas": "workspace:*",
     "pg": "8.23.0",
-    "pg-boss": "12.35.0"
+    "pg-boss": "12.35.0",
+    "@sitelens/api": "workspace:*"
   },
   "devDependencies": {
-    "@types/pg": "8.23.1"
+    "@types/pg": "8.23.1",
+    "fastify": "5.12.5"
   }
 }

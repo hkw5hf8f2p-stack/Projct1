@@ -9,8 +9,9 @@
  *     додає на Linux сам); `--no-sandbox` заборонено інваріантом → пісочниця як у Playwright;
  *   - env — той самий білий список `buildBrowserEnv` (chrome-launcher за замовчуванням передає весь process.env);
  *   - тимчасовий профіль, видаляється після прогону.
- * Шару 2 (блок не-GET) у Lighthouse немає — DEV-12: пасивне завантаження без взаємодії; IP кожного з'єднання все одно
- * перевіряє проксі. Помилка Lighthouse ізольована: `runLighthouseIsolated` ніколи не кидає, повертає ok:false.
+ * Шар 2 (блок не-GET) у Chrome Lighthouse — окреме CDP-з'єднання з `Fetch.requestPaused` (`cdp-method-guard.ts`,
+ * DEV-51; до S1b-Fix його не було — DEV-12): не-GET/HEAD із вкладки, iframe, dedicated/Shared/Service Worker → failRequest.
+ * IP кожного з'єднання, як і раніше, перевіряє проксі. Помилка Lighthouse ізольована: `runLighthouseIsolated` ніколи не кидає, повертає ok:false.
  * Результат → Evidence BENCHMARKED (performance, accessibility) у формі SPEC §23 / SCORING_SPEC §1.
  */
 import { constants as fsc } from "node:fs";
@@ -26,6 +27,7 @@ import { startEgressProxy, type Dialer, type EgressProxy, type ProxyDecision, ty
 import { descendantsOf } from "../net/peer-check.js";
 import { loadSiteDenylist, type SiteDenylist } from "../net/site-denylist.js";
 import { buildBrowserEnv, proxyModeFrom, secureChromiumArgs } from "../secure-launch.js";
+import { attachMethodGuard, type CdpBlocked } from "./cdp-method-guard.js";
 
 export type FormFactor = "desktop" | "mobile";
 export type LighthouseFn = typeof lighthouse;
@@ -91,6 +93,8 @@ export interface RawLighthouseRun {
   chrome_alive_after: boolean;
   processes: ChromeProcInfo[];
   flags: string[];
+  /** null — guard не вмикався (лише контрольні прогони runLighthouseRaw). */
+  method_guard: { blocked: CdpBlocked[]; attached: Array<{ type: string; url: string }>; intercepted: number; errors: string[] } | null;
 }
 
 /** Мінімальна форма LHR, яку ми читаємо (lighthouse types важкі; беремо лише потрібне). */
@@ -129,9 +133,11 @@ export async function runLighthouseRaw(opts: {
   timeoutMs: number;
   lighthouseImpl?: LighthouseFn;
   secretsProbe?: string[];
+  /** CDP-блок не-GET (DEV-51). runIsolated завжди true; false/відсутній — лише контроль. */
+  methodGuard?: boolean;
 }): Promise<RawLighthouseRun> {
   const chromePath = opts.chromePath ?? chromium.executablePath();
-  const run: RawLighthouseRun = { lhr: null, chrome_pid: null, chrome_alive_after: false, processes: [], flags: opts.flags };
+  const run: RawLighthouseRun = { lhr: null, chrome_pid: null, chrome_alive_after: false, processes: [], flags: opts.flags, method_guard: null };
   // chrome-launcher не слухає 'error' від spawn: неіснуючий CHROME_PATH дав би unhandled error і повалив би worker.
   await access(chromePath, fsc.X_OK).catch(() => {
     throw new Error(`CHROME_PATH недоступний для запуску: ${chromePath}`);
@@ -148,7 +154,13 @@ export async function runLighthouseRaw(opts: {
   });
   run.chrome_pid = chrome.pid;
   let timer: NodeJS.Timeout | undefined;
+  let guard: Awaited<ReturnType<typeof attachMethodGuard>> | null = null;
   try {
+    if (opts.methodGuard) {
+      // fail-closed: без guard Lighthouse не стартує (виняток → ok:false у runLighthouseIsolated)
+      guard = await attachMethodGuard(chrome.port);
+      run.method_guard = guard;
+    }
     const lh = opts.lighthouseImpl ?? lighthouse;
     const desktop = opts.formFactor === "desktop";
     const job = lh(opts.url, {
@@ -183,6 +195,10 @@ export async function runLighthouseRaw(opts: {
     return run;
   } finally {
     if (timer) clearTimeout(timer);
+    if (guard) {
+      run.method_guard = { blocked: guard.blocked, attached: guard.attached, intercepted: guard.intercepted, errors: guard.errors };
+      await guard.close();
+    }
     try {
       chrome.kill();
     } catch {
@@ -211,6 +227,8 @@ export interface LighthouseRunOptions {
   /** Ін'єкція (тести «зламаний Lighthouse»). */
   lighthouseImpl?: LighthouseFn;
   secretsProbe?: string[];
+  /** false — ЛИШЕ контрольний тест (довести, що без guard не-GET доходить). За замовчуванням true. */
+  methodGuard?: boolean;
 }
 
 export interface LighthouseRunResult {
@@ -227,6 +245,7 @@ export interface LighthouseRunResult {
   evidence: Evidence[];
   proxy_log: ProxyDecision[];
   proxy_auth_mode: string | null;
+  method_guard: RawLighthouseRun["method_guard"];
   chrome: { pid: number | null; alive_after: boolean; flags: string[]; processes: ChromeProcInfo[]; env: Record<string, string> | null };
 }
 
@@ -299,6 +318,7 @@ export async function runLighthouseIsolated(opts: LighthouseRunOptions): Promise
     evidence: [],
     proxy_log: [],
     proxy_auth_mode: null,
+    method_guard: null,
     chrome: { pid: null, alive_after: false, flags: [], processes: [], env: null },
   };
   let proxy: EgressProxy | null = null;
@@ -325,7 +345,9 @@ export async function runLighthouseIsolated(opts: LighthouseRunOptions): Promise
       timeoutMs: opts.timeoutMs ?? 90_000,
       lighthouseImpl: opts.lighthouseImpl,
       secretsProbe: opts.secretsProbe,
+      methodGuard: opts.methodGuard !== false,
     });
+    res.method_guard = raw.method_guard;
     res.chrome.pid = raw.chrome_pid;
     res.chrome.alive_after = raw.chrome_alive_after;
     res.chrome.processes = raw.processes;

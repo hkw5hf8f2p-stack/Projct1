@@ -11,14 +11,13 @@ import net from "node:net";
 import type { AddressInfo } from "node:net";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startEgressProxy, type Dialer, type EgressProxy, type ProxyDecision, type Resolver } from "../src/net/egress-proxy.js";
 import { peerCheckAvailable } from "../src/net/peer-check.js";
 import { assertSiteAllowed, isSiteDenied, matchSiteDenylist, parseSiteDenylist, SITE_DENYLIST_ENV, loadSiteDenylist } from "../src/net/site-denylist.js";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1b/proxy");
+const ART = artifactDir("sprint-1b/proxy"); // X-1: у репо лише з SL_WRITE_ARTIFACTS=1
 const PUB4 = "93.184.216.34";
 const PUB6 = "2606:4700:4700::1111";
 /** Класифікатор повертає IPv6 у розгорнутій формі — дайлер отримує саме її. */

@@ -21,15 +21,14 @@ import net from "node:net";
 import type { AddressInfo } from "node:net";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { chromium, type BrowserContext } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { classifyHostname } from "../src/net/ip-classify.js";
 import { startEgressProxy, type Dialer, type ProxyDecision, type Resolver, type ResolvedAddress } from "../src/net/egress-proxy.js";
 import { applyContextGuards, buildBrowserEnv, buildLaunchOptions, SECURE_CONTEXT_DEFAULTS, secureLaunch, type BlockedRequest } from "../src/secure-launch.js";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1b/ssrf");
+const ART = artifactDir("sprint-1b/ssrf"); // X-1: у репо лише з SL_WRITE_ARTIFACTS=1
 const PORT = 4196; // інші тест-файли тримають 4197–4199
 const A = `http://127.0.0.2:${PORT}`;
 const FAKE_PUBLIC = "93.184.216.34";

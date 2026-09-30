@@ -1,17 +1,21 @@
 /**
  * Піднімає фікстурні сайти на фіксованих портах для прогонів через API (README «Швидкий старт», сценарії S2):
- * shop :4210, shop-clean :4211, bot :4212, errors :4213 (HTTPS :4214). Зупинка — SIGTERM/Ctrl+C. Лише 127.0.0.1.
+ * shop :B, shop-clean :B+1, bot :B+2, errors :B+3 (HTTPS :B+4), де B = FIXTURE_BASE_PORT (типово 4210). Зупинка — SIGTERM/Ctrl+C. Лише 127.0.0.1.
  */
 import { createShopCleanHandler } from "../fixtures/shop-clean/server.js";
 import { createShopHandler } from "../fixtures/shop/server.js";
 import { startFixtureServer } from "../fixtures/_shared/server.js";
 import { startBotFixture } from "../fixtures/bot/server.js";
 import { startErrorsFixture } from "../fixtures/errors/server.js";
+import { newPidFile, writePidFile } from "../packages/db/src/index.js";
+import path from "node:path";
 
-const shop = await startFixtureServer({ handler: createShopHandler({ mutant: null, control: null, transforms: null }), port: 4210 });
-const clean = await startFixtureServer({ handler: createShopCleanHandler({ transforms: null }), port: 4211 });
-const bot = await startBotFixture({ port: 4212 });
-const errors = await startErrorsFixture({ port: 4213, httpsPort: 4214 });
+const B = Number(process.env["FIXTURE_BASE_PORT"] ?? 4210);
+const shop = await startFixtureServer({ handler: createShopHandler({ mutant: null, control: null, transforms: null }), port: B });
+const clean = await startFixtureServer({ handler: createShopCleanHandler({ transforms: null }), port: B + 1 });
+const bot = await startBotFixture({ port: B + 2 });
+const errors = await startErrorsFixture({ port: B + 3, httpsPort: B + 4 });
+if (process.env["PID_DIR"]) writePidFile(path.join(process.env["PID_DIR"], "fixtures.json"), newPidFile("fixtures", process.pid, []));
 console.log(JSON.stringify({ shop: shop.origin, clean: clean.origin, bot: bot.origin, errors: errors.origin, errors_https: errors.httpsOrigin }));
 const stop = async () => { await Promise.all([shop.close(), clean.close(), bot.close(), errors.close()]); process.exit(0); };
 process.on("SIGTERM", stop);

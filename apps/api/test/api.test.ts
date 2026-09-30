@@ -3,15 +3,15 @@ import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:
 import os from "node:os";
 import path from "node:path";
 import type { FastifyInstance } from "fastify";
-import { afterAll, beforeAll, describe, expect, inject, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ApiError, AuditStatusResponse, CreateAuditResponse } from "@sitelens/schemas";
 import { createBoss, loadConfig, startBoss, upsertPage, insertEvidence, type AppConfig } from "@sitelens/pipeline";
 import type { PgBoss } from "pg-boss";
 import { buildServer, tokenOk } from "../src/server.js";
-import { freshDatabase, type FreshDb } from "../../../scripts/test-db.js";
+import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 
 process.env["LOG_LEVEL"] = "silent";
-const base = inject("dbUrl");
+let cluster: TestCluster;
 const art = mkdtempSync(path.join(os.tmpdir(), "sl-api-art-"));
 let db: FreshDb;
 let boss: PgBoss;
@@ -27,8 +27,8 @@ const post = (app: FastifyInstance, body: unknown, headers: Record<string, strin
 const count = async (sql: string, args: unknown[] = []) => Number((await db.pool.query(sql, args)).rows[0].n);
 
 beforeAll(async () => {
-  if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`); // гучно, не skip
-  db = await freshDatabase(base);
+  cluster = await startTestCluster();
+  db = await freshDatabase(cluster.url);
   boss = createBoss(db.url, { supervise: false, max: 3 });
   await startBoss(boss);
 });
@@ -36,6 +36,7 @@ afterAll(async () => {
   for (const a of apps) await a.close();
   await boss?.stop({ graceful: false, close: true }).catch(() => undefined);
   await db?.drop();
+  await cluster?.stop();
   rmSync(art, { recursive: true, force: true });
 });
 
@@ -131,7 +132,7 @@ describe("ACCESS_TOKEN і ліміт на годину (B2)", () => {
 
   it("ліміт/год спрацьовує лише коли токен задано; лічильник у БД (переживає рестарт API)", async () => {
     // окрема БД: лічильник рахує ВСІ аудити за годину
-    const d2 = await freshDatabase(base!);
+    const d2 = await freshDatabase(cluster.url);
     const b2 = createBoss(d2.url, { supervise: false, max: 2 });
     await startBoss(b2);
     try {

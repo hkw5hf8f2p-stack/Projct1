@@ -1,9 +1,11 @@
 # SSRF-вектори S1b — повний набір із контролями
 
-Автор: sl-security, 30.09.2026. Рішення: G0-3, G0-10, G0-13; DEV-8, DEV-12, DEV-13, DEV-48. Попередник: `ssrf-core.md` (S1a).
-Тест: `packages/browser/test/ssrf-vectors.test.ts` (12 тестів) + `lighthouse.test.ts` (V14) + `net-proxy*.test.ts` (рівень проксі).
+Автор: sl-security, 30.09.2026. Рішення: G0-3, G0-10, G0-13; DEV-8, DEV-12, DEV-13, DEV-48, DEV-50, DEV-51. Попередник: `ssrf-core.md` (S1a).
+Тест: `packages/browser/test/ssrf-vectors.test.ts` (11 тестів) + `worker-bypass.test.ts` (SW-2, 4 тести) + `lighthouse.test.ts` (V14, LH-NG)
++ `net-proxy*.test.ts` (рівень проксі). Виправлено 30.09 за critic S1b п.3: було «12 тестів».
 Артефакти: `planning/qa/artifacts/sprint-1b/ssrf/` (`vectors-matrix.json` — зведення; `r0…r5-*.json` — прогони; `sw1-*.json`;
-`dns-prefetch-netlog.json`), `sprint-1b/lighthouse/`, `sprint-1b/proxy/proxy-limits-auth.json`.
+`worker-bypass.json`; `dns-prefetch-netlog.json`), `sprint-1b/lighthouse/` (`lh-nonget.json`), `sprint-1b/proxy/proxy-limits-auth.json`.
+З S1b-Fix (X-1) тести пишуть сюди лише з `SL_WRITE_ARTIFACTS=1`; звичайний `pnpm test` — у `os.tmpdir()/sitelens-artifacts/`.
 
 ## Як доведено
 
@@ -46,7 +48,7 @@
 | v23 | `window.open` popup | 0/0 | 1 | R0: 1 |
 | v24 | `navigator.sendBeacon` (POST) | 0/0 | шар 2: 1; R2 проксі: 1 | R0: 1 |
 | v25 | WebSocket `ws://127.0.0.2` | 0/0 | шар 2: 1; R2 проксі CONNECT: 1 | R0: 1 (upgrade) |
-| v26 | Service Worker (install → fetch) | 0/0 | R5: SecurityError; див. SW-1 | R0: 1 (SW зареєстровано) |
+| v26 | Service Worker (install → fetch) | R1: **нерелевантний** — `attacker.test` по http не secure context → `navigator.serviceWorker` undefined, «0» порожній; R2: 0 | доказ блоку SW — лише R5 (secure context: SecurityError) і SW-1 | R0: 1 (SW зареєстровано) |
 | v27 | `<a ping>` (POST при кліку) | 0/0 | шар 2: 1; R2 проксі: 1 | R0: 1 |
 | v28–v30 | 302 (iframe), 301 (img), 307 (fetch) на 127.0.0.2 | 0/0 | по 1 | R0: по 1 |
 | v31 | ланцюг 302 → 302 → 127.0.0.2 | 0/0 | 1 | R0: 1 |
@@ -64,14 +66,20 @@
 | v52b | 302 на `10.0.0.1` | — | 1; TCP 0 | — |
 | V14 | **Lighthouse на probe-сторінці** (`lighthouse.test.ts`) | канарка 0 | проксі 24 deny, 3 allow (запити Lighthouse у лозі) | без проксі: 9; без `<-loopback>`: 9 |
 | SW-1 | обхід блоку SW + POST із SW (нижче) | 0 запитів SW | 3/3 SecurityError | стара конфігурація: POST дійшов до цілі |
+| SW-2 | не-GET із Worker/SharedWorker, 13 варіантів (нижче, `worker-bypass.test.ts`) | 0 не-GET до цілі | shared 8/8 SecurityError; dedicated 5/5 abort у шарі 2 | raw: 21 не-GET; стара конфігурація: 16 (усі з SharedWorker) |
+| LH-NG | не-GET у Chrome Lighthouse до публічної цілі: beacon, fetch POST/PUT, XHR, form, Worker, SharedWorker (`lighthouse.test.ts`) | 0 не-GET до цілі | CDP guard: 7/7 векторів у `blocked`, оцінки LH є | без guard: 7 не-GET |
 | P-1 | CONNECT до IP-літералів/metadata-імен — 403 без резолву й без TCP | — | `net-proxy.test.ts` | — |
 | P-2 | happy eyeballs: fallback лише в межах перевіреного набору, `[публічна v6, приватна v4]` → відмова | — | `net-proxy-limits.test.ts` | «лише перша адреса» пропустила б |
 | P-3 | 15 екзотичних цілей напряму в проксі: zone-id `%lo`/`%25lo`, `0`, `0x7f000002`, `127.0.0.2.`, `[::ffff:7f00:2]`, `[::]`, порт 0/70000, порожній хост, без порту, вісімковий і mapped в absolute-URI, відносний URI, `gopher:` | 15/15 → 400/403, TCP 0 | `p3-proxy-exotic-targets.json` | публічне ім'я → 200 |
 | P-4 | SITE_DENYLIST — відмова до резолву, у т.ч. піддомени/підресурси | — | `net-proxy-limits.test.ts` | без списку той самий хост → 200 |
 
-**Підсумок:** 60 векторів = 42 наскрізних із канаркою + 9 без слухача + v52b + V14 + SW-1 + 4 рівня проксі (58 — блок,
-**0 звернень** у R1/R2/R5, TCP до не-публічних IP 0) + v37/v38 (відомий DNS-витік, записано, не PASS). Кожен вектор із
-листенером показано на контролі. Критерій S1b №1 (≥ 25, 100 %, із контролем) — виконано на фікстурі.
+**Підсумок (виправлено за critic S1b п.3):** **58 перевірених пунктів, 39 із наскрізним контролем канарки** (контроль реально
+дійшов до слухача). Склад 58: 42 наскрізних рядки (v08 = 2 URL; із них 3 — v06, v44, v45 — без контролю: немає IPv6/статична
+перевірка пропускає) + 9 без слухача (v50–v58: контроль «лог + 0 TCP» не може показати пропуск — слухача немає і в R0) + v52b +
+V14 + SW-1 + 4 рівня проксі; **0 звернень** у R1/R2/R5, TCP до не-публічних IP 0. Окремо, не PASS: v37/v38 (відомий DNS-витік).
+Раніше писали «60 векторів» — це упаковка, не 60 незалежних доказів. v26 у R1 — порожній PASS (не secure context), рахується
+лише через R5/SW-1. S1b-Fix додав SW-2 і LH-NG (обидва з контролем, що впав). Критерій S1b №1 (≥ 25, 100 %, із контролем) —
+виконано на фікстурі.
 
 ## SW-1 — знахідка: `serviceWorkers:'block'` Playwright обходиться одним рядком
 
@@ -86,6 +94,31 @@ install-обробника дійшов до сервера цілі (`sw1-contr
 навіть без init-script (контроль `swLockdown:false`) шар 2 рубає скрипт SW (3 записи `service_worker`, 0 запитів).
 Залишковий ризик: опора на експериментальний прапорець Playwright — тест SW-1 впаде, якщо оновлення Playwright його прибере.
 
+## SW-2 — знахідка критика: SharedWorker обходив шар 2 (S1b-Fix, DEV-50)
+
+Клас «JS-контекст, мережа якого не йде через `context.route`» був закритий лише для SW. Проба (`worker-bypass.test.ts`,
+13 варіантів, ціль рахує кожен запит; артефакт `worker-bypass.json`):
+
+| Клас | Варіанти | raw (без шару 2) | стара конфігурація (шар 2 без lockdown) | SecureBrowser |
+|---|---|---|---|---|
+| dedicated | `new Worker(url)`, module, blob:, вкладений Worker, Worker з about:blank-iframe | 5/5 POST дійшли | **0** (Playwright маршрутизує мережу dedicated Worker через `context.route`; 5/5 у `blocked`) | **0**, 5/5 `TypeError` у воркері |
+| shared | `new SharedWorker(url)`, module, blob:, з about:blank-iframe, з iframe в iframe, `Reflect.construct` дескриптора з iframe, srcdoc-iframe, `window.open('')` popup | 8/8 (16 POST) | **8/8 — 16 POST дійшли** (Playwright не бачить мережі SharedWorker) | **0**; 8/8 `SecurityError`, скрипт воркера не запитано |
+
+**Виправлення** (`secure-launch.ts` `SHARED_WORKER_LOCKDOWN_SCRIPT`): init-script у кожному документі (включно з about:blank,
+srcdoc, popup) замінює `globalThis.SharedWorker` функцією, що кидає SecurityError; властивість non-writable + non-configurable
+(тест: `delete`/`defineProperty`/присвоєння не повертають конструктор). Маршрутизацію мережі SharedWorker довести не вдалось:
+CDP `Target.setAutoAttach{waitForDebuggerOnStart}` на browser-сесії Playwright — пауза знімається самим Playwright, POST пройшов
+у пробі → відкинуто. Залишковий ризик: новий realm, у який init-script Playwright не потрапляє (не знайдено серед 8 варіантів);
+worklet-и мережевого `fetch` не мають. Шар 1 (IP) на SharedWorker діяв і раніше.
+
+## LH-NG — не-GET у Chrome Lighthouse (S1b-Fix, DEV-51)
+
+Раніше (DEV-12) Lighthouse ішов без шару 2, а на HTTPS проксі методу не бачить. Тепер `cdp-method-guard.ts`: окреме CDP-з'єднання
+до Chrome Lighthouse, browser-рівень auto-attach з паузою старту → `Fetch.enable` на кожній вкладці/iframe/SharedWorker/SW →
+не-GET/HEAD → `Fetch.failRequest(BlockedByClient)`; fail-closed (без guard Lighthouse не стартує). Контроль без guard: ціль
+отримала 7 не-GET (beacon, fetch POST, fetch PUT, XHR, form, Worker, SharedWorker); з guard — 0, у `blocked` усі 7, оцінки
+Lighthouse ті самі (perf 1, a11y 0,87 на probe). Dedicated Worker не має домену Fetch — його POST ловить Fetch сторінки.
+
 ## v37/v38 dns-prefetch і preconnect — відомий потенційний витік
 
 Chromium з `--proxy-server` не резолвить імена сам: у R2 netlog (`HOST_RESOLVER_MANAGER_JOB`) — **0 DNS-запитів** узагалі.
@@ -99,7 +132,8 @@ Chromium з `--proxy-server` не резолвить імена сам: у R2 ne
 - IPv6 наскрізно (у контейнері немає IPv6-сокетів): mapped/`::1`/fc00 доведено логом і класифікатором, не листенером → машина з IPv6.
 - HTTP/2 coalescing і HTTPS наскрізно з реальним сертифікатом: через проксі Chromium не знає IP, тож coalescing за IP неможливий
   (аргумент, не тест) → живий пас.
-- Lighthouse: метод не блокується (DEV-12), SW у Chrome Lighthouse не блокуються init-script-ом → Lighthouse лише на одній URL,
-  пасивно; SSRF-захист (шар 1) діє (V14).
+- Lighthouse: не-GET тепер блокує CDP guard (LH-NG, DEV-51) — доведено на HTTP-фікстурі; на живому HTTPS-сайті — ⏭️ S1b-live
+  (перевірить: `method_guard.blocked` + відсутність не-GET у HAR). SW у Chrome Lighthouse init-script-ом не блокуються, але їх
+  мережа йде через Fetch guard (SW-ціль має домен Fetch) — окремим тестом не показано (unverified; перевірить: probe з SW у secure context під Lighthouse).
 - Живі сайти й справжній DNS-rebinding-сервіс (напр. rbndr) — мережа закрита (403) → ⏭️ живий пас.
 - Контейнерні egress-правила — ⏭️ deployment pass (L9).

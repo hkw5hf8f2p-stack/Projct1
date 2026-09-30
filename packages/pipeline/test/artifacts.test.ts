@@ -2,14 +2,14 @@
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { afterAll, beforeAll, describe, expect, inject, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { auditDir, auditRowCounts, deleteAuditFully, sweepExpiredArtifacts, treeStats } from "../src/artifacts.js";
 import { createBoss, enqueue, Q, startBoss } from "../src/queue.js";
 import { addWarning, insertAudit, insertEvidence, upsertJob, upsertPage } from "../src/repo.js";
-import { freshDatabase, type FreshDb } from "../../../scripts/test-db.js";
+import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 import type { PgBoss } from "pg-boss";
 
-const base = inject("dbUrl");
+let cluster: TestCluster;
 const art = mkdtempSync(path.join(os.tmpdir(), "sl-art-"));
 let db: FreshDb;
 let boss: PgBoss;
@@ -33,8 +33,8 @@ async function seedAudit(id: string, o: { expires: string; status?: "completed" 
 const jobsFor = async (id: string) => Number((await db.pool.query("SELECT count(*) AS n FROM pgboss.job WHERE data->>'auditRunId' = $1", [id])).rows[0].n);
 
 beforeAll(async () => {
-  if (!base) throw new Error(`тестова БД недоступна: ${inject("dbError")}`); // гучно, не skip
-  db = await freshDatabase(base);
+  cluster = await startTestCluster();
+  db = await freshDatabase(cluster.url);
   boss = createBoss(db.url, { supervise: false, max: 2 });
   await startBoss(boss);
   writeFileSync(outside, "НЕ ЧІПАТИ");
@@ -42,6 +42,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await boss?.stop({ graceful: false, close: true }).catch(() => undefined);
   await db?.drop();
+  await cluster?.stop();
   rmSync(art, { recursive: true, force: true });
   rmSync(outside, { force: true });
 });

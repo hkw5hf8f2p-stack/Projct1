@@ -27,9 +27,10 @@ import {
   secureLaunch,
   type BlockedRequest,
 } from "../src/secure-launch.js";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1a/canary");
+const ART = artifactDir("sprint-1a/canary"); // X-1: у репо лише з SL_WRITE_ARTIFACTS=1
 const CANARY_HOST = "127.0.0.2";
 const CANARY_PORT = 4199;
 const FAKE_PUBLIC = "93.184.216.34";
