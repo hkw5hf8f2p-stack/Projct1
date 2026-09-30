@@ -8,7 +8,7 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { descendantsOf, cmdlineOf, isSameProc, readPidFile, readStat } from "../packages/db/src/index.js";
 import { ENTRY_CORPUS, startAttacker, startCanary } from "./s2/ssrf.js";
-import { API, ART, FX, PORTS, ROOT, S2, alive, baseEnv, browserPids, http, idOf, launch, listFiles, logHas, orphanReport, pool, q, runSync, save, sh, sleep, snapshotForeign, waitFor, type ProcId } from "./s2/harness.js";
+import { API, ART, FX, PORTS, ROOT, S2, alive, baseEnv, browserPids, http, idOf, launch, listFiles, logHas, orphanReport, pool, q, runSync, save, sh, sleep, snapshotForeign, waitFor } from "./s2/harness.js";
 import { apiUp, dbDown, dbUp, fixturesUp, newestRecovery, pidOf, stack, stopGraceful, workerUp } from "./s2/stack.js";
 
 const db = pool();

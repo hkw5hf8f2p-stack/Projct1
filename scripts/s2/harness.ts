@@ -8,11 +8,13 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, wri
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pg from "pg";
+import { artifactDir } from "../artifact-dir.js";
 import { cmdlineOf, descendantsOf, isSameProc, procStart, readPidFile, readStat } from "../../packages/db/src/index.js";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const S2 = path.join(ROOT, "data/s2");
-export const ART = path.join(ROOT, "planning/qa/artifacts/sprint-2");
+/** SL_WRITE_ARTIFACTS=1 → planning/qa/artifacts/sprint-2 (свідоме оновлення доказів); інакше os.tmpdir()/… (scripts/artifact-dir.ts, X-1) */
+export const ART = artifactDir("sprint-2");
 export const PORTS = { pg: 54339, api: 3101, fx: 4310, canary: 4399, attacker: 4398 };
 export const PG_URL = `postgres://sitelens:sitelens@127.0.0.1:${PORTS.pg}/sitelens`;
 export const API = `http://127.0.0.1:${PORTS.api}`;

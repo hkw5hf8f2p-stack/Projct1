@@ -42,7 +42,7 @@ function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: st
 type ViewportOut = { ok: true; cap: ViewportCapture; timing: Record<string, number | null>; denied: EgressDenied[] } | { ok: false; failure: Classified; http_status: number | null; denied: EgressDenied[] };
 
 async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, runDir: string): Promise<ViewportOut> {
-  let sb = await rt.getBrowser();
+  const sb = await rt.getBrowser();
   const from = sb.proxy.log.length;
   const navFrom = rt.nav.failures.length;
   const crashesFrom = rt.nav.crashes;

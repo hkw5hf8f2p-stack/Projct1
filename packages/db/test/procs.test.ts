@@ -9,7 +9,11 @@ import { cleanupOrphansFromFile, descendantsOf, isSameProc, newPidFile, procStar
 const dir = mkdtempSync(path.join(os.tmpdir(), "sl-procs-"));
 const spawned: ChildProcess[] = [];
 afterEach(() => {
-  for (const c of spawned.splice(0)) if (c.pid && isSameProc({ pid: c.pid, start: null })) try { process.kill(c.pid, "SIGKILL"); } catch { /* вже немає */ }
+  for (const c of spawned.splice(0)) {
+    if (!c.pid) continue;
+    for (const d of descendantsOf(c.pid)) try { process.kill(d, "SIGKILL"); } catch { /* вже немає */ } // онуки (sh → фоновий decoy) теж
+    if (isSameProc({ pid: c.pid, start: null })) try { process.kill(c.pid, "SIGKILL"); } catch { /* вже немає */ }
+  }
 });
 process.on("exit", () => rmSync(dir, { recursive: true, force: true }));
 

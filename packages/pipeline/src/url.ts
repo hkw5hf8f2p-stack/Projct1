@@ -7,7 +7,7 @@ export type UrlCheck = { ok: true; url: string; host: string; domain: string; fi
 export function validateSubmittedUrl(input: unknown, cfg: Pick<AppConfig, "fixtureMode" | "fixtureOrigins">): UrlCheck {
   if (typeof input !== "string" || input.trim() === "") return { ok: false, reason: "URL порожній" };
   if (input.length > 2048) return { ok: false, reason: "URL довший за 2048 символів" };
-  if (/[\u0000-\u001f\u007f]/.test(input)) return { ok: false, reason: "керівні символи в URL" };
+  if ([...input].some((ch) => ch.charCodeAt(0) < 0x20 || ch.charCodeAt(0) === 0x7f)) return { ok: false, reason: "керівні символи в URL" };
   if (cfg.fixtureMode) {
     // fixture-режим (лише тести/локальні фікстури): точний allowlist origin-ів; решта проходить звичайну перевірку
     try {

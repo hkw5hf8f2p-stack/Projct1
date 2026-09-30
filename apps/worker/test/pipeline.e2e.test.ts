@@ -15,6 +15,7 @@ import { AuditStatusResponse, CreateAuditResponse } from "@sitelens/schemas";
 import { auditDir, createBoss, loadConfig, startBoss } from "@sitelens/pipeline";
 import { startErrorsFixture, type ErrorsFixture } from "../../../fixtures/errors/server.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
+import { guardTestProcesses } from "../../../scripts/test-procs.js";
 import { registerHandlers } from "../src/handlers.js";
 import { createRuntime, type Runtime } from "../src/runtime.js";
 
@@ -22,6 +23,7 @@ let cluster: TestCluster;
 process.env["LOG_LEVEL"] = "silent";
 const art = mkdtempSync(path.join(os.tmpdir(), "sl-e2e-art-"));
 let fx: ErrorsFixture;
+let guard: { stop(): number[] };
 interface Stack { db: FreshDb; boss: PgBoss; rt: Runtime; api: FastifyInstance; stop(): Promise<void> }
 const stacks: Stack[] = [];
 
@@ -72,6 +74,7 @@ const digest = async (s: Stack, id: string) => {
 };
 
 beforeAll(async () => {
+  guard = guardTestProcesses(); // Chromium/Chrome Lighthouse цього тесту — під обліком: не лишаємо сиріт навіть при аварії
   cluster = await startTestCluster();
   fx = await startErrorsFixture();
 }, 90_000);
@@ -79,6 +82,7 @@ afterAll(async () => {
   for (const s of stacks) await s.stop().catch(() => undefined);
   await fx?.close();
   await cluster?.stop();
+  guard?.stop();
   rmSync(art, { recursive: true, force: true });
 });
 

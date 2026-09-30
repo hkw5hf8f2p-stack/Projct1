@@ -8,6 +8,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { cmdlineOf, descendantsOf, readStat } from "@sitelens/db";
 import { ERROR_CLASSES, humanMessage, loadConfig, type ErrorClass } from "@sitelens/pipeline";
 import { startErrorsFixture, type ErrorsFixture } from "../../../fixtures/errors/server.js";
+import { guardTestProcesses } from "../../../scripts/test-procs.js";
 import { capturePageFlow, pageIdOf } from "../src/capture.js";
 import { createRuntime, type Runtime } from "../src/runtime.js";
 import { mkdtempSync, rmSync } from "node:fs";
@@ -16,6 +17,7 @@ import path from "node:path";
 
 let fx: ErrorsFixture;
 let rt: Runtime;
+let guard: { stop(): number[] };
 const runDir = mkdtempSync(path.join(os.tmpdir(), "sl-tax-"));
 const seen = new Map<ErrorClass, { url: string; detail: string }>();
 
@@ -42,6 +44,7 @@ const killWhenBrowserBusy = async (pick: (p: { pid: number; cmd: string }) => bo
 };
 
 beforeAll(async () => {
+  guard = guardTestProcesses();
   fx = await startErrorsFixture();
   const cfg = loadConfig({ SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: `${fx.origin},${fx.httpsOrigin}`, CAPTURE_ATTEMPTS: "1" } as NodeJS.ProcessEnv);
   rt = createRuntime(cfg, null as never, null as never);
@@ -49,6 +52,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await rt?.close();
   await fx?.close();
+  guard?.stop();
   rmSync(runDir, { recursive: true, force: true });
 });
 
