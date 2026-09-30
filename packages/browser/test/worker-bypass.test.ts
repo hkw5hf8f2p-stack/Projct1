@@ -55,7 +55,7 @@ const VARIANTS: Record<string, { klass: Klass; make: string; title: string }> = 
 };
 const page = (v: string) => `<!doctype html><title>${v}</title><body><script>
 window.__r = "pending";
-try { const w = ${VARIANTS[v]!.make};
+try { const w = window.__w = ${VARIANTS[v]!.make}; // жорстке посилання: воркер із iframe-реалму не має бути зібраний GC до відповіді
   if (w === "srcdoc") {} else { window.__r = "made:" + w.constructor.name;
   if (w.port) { w.port.onmessage = (e) => window.__r = "msg:" + e.data; w.port.start(); } else w.onmessage = (e) => window.__r = "msg:" + e.data; }
 } catch (e) { window.__r = "throw:" + e.name; }
@@ -90,19 +90,26 @@ afterAll(async () => {
   await new Promise((r) => srv.close(r));
 });
 
-/** Усі варіанти паралельно в одному контексті (URL воркерів унікальні → SharedWorker не діляться між варіантами). */
+/**
+ * Усі варіанти паралельно в одному контексті (URL воркерів унікальні → SharedWorker не діляться між варіантами).
+ * Сигнал завершення спроби — `window.__r` = "msg:<відповідь воркера>" (воркер повідомив результат POST через postMessage)
+ * або "throw:<ім'я>" (конструктор відмовив). Тайм-аут НЕ ковтається: він падає тестом з іменем варіанта (без вакуумних 0 POST).
+ */
 async function drive(name: string, ctx: BrowserContext): Promise<Record<string, string>> {
   run = name;
   const out: Record<string, string> = {};
+  const failures: string[] = [];
   try {
     await Promise.all(
       Object.keys(VARIANTS).map(async (v) => {
-        const p = await ctx.newPage();
-        await p.goto(`${origin}/p-${v}.html`).catch(() => {});
-        // чекаємо на ВІДПОВІДЬ воркера (msg:) або відмову конструктора (throw:), а не фіксований час: під навантаженням
-        // повного прогону 2 с не вистачало воркеру з about:blank-iframe (спостерігалось 30.09)
-        await p.waitForFunction(() => /^(msg|throw):/.test((window as unknown as { __r: string }).__r), undefined, { timeout: 15_000 }).catch(() => {});
-        out[v] = await p.evaluate(() => (window as unknown as { __r: string }).__r).catch((e: unknown) => "eval-error:" + String(e).slice(0, 60));
+        try {
+          const p = await ctx.newPage();
+          await p.goto(`${origin}/p-${v}.html`);
+          await p.waitForFunction(() => /^(msg|throw):/.test((window as unknown as { __r: string }).__r), undefined, { timeout: 30_000 });
+          out[v] = await p.evaluate(() => (window as unknown as { __r: string }).__r);
+        } catch (e) {
+          failures.push(`[${name}/${v}] спроба не завершилась сигналом: ${String(e).split("\n")[0]!.slice(0, 160)}`);
+        }
       }),
     );
     await new Promise((r) => setTimeout(r, 500)); // хвіст запитів із воркерів (POST на connect у SharedWorker)
@@ -110,6 +117,7 @@ async function drive(name: string, ctx: BrowserContext): Promise<Record<string, 
     await ctx.close();
     run = "";
   }
+  if (failures.length) throw new Error(failures.join("\n"));
   return out;
 }
 
@@ -141,8 +149,11 @@ describe("worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fi
     const page = await drive("raw", await sb.browser.newContext(SECURE_CONTEXT_DEFAULTS));
     const s = summary("raw");
     results.raw = { page, ...s };
-    for (const [v, c] of Object.entries(s.per)) expect(c.non_get_to_target, v).toBeGreaterThan(0);
-  }, 90_000);
+    for (const [v, c] of Object.entries(s.per)) {
+      expect(c.non_get_to_target, `raw/${v}: POST дійшов до цілі`).toBeGreaterThan(0);
+      expect(page[v], `raw/${v}: воркер повідомив статус POST`).toMatch(/^msg:(inner:)?200$/);
+    }
+  }, 120_000);
 
   it("контроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов", async () => {
     const ctx = await sb.browser.newContext(SECURE_CONTEXT_DEFAULTS);
@@ -156,7 +167,7 @@ describe("worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fi
     // dedicated: спроба POST видна шару 2 (не «тихо не відбулась»)
     for (const v of Object.keys(VARIANTS).filter((k) => VARIANTS[k]!.klass === "dedicated"))
       expect(blocked.some((b) => b.kind === "method" && b.method === "POST" && new URL(b.url).pathname.startsWith(`/wk-post/${v === "nested" ? "nested-inner" : v}`)), v).toBe(true);
-  }, 90_000);
+  }, 120_000);
 
   it("SecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано", async () => {
     const before = sb.blocked.length;
@@ -171,7 +182,7 @@ describe("worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fi
     }
     for (const [v] of byKlass(s.per, "dedicated")) expect(page[v], v).toMatch(/err:TypeError/);
     expect(blocked.filter((b) => b.kind === "method" && b.method === "POST").length).toBeGreaterThanOrEqual(byKlass(s.per, "dedicated").length);
-  }, 90_000);
+  }, 120_000);
 
   it("init-script: SharedWorker на globalThis non-writable/non-configurable — перевизначення й delete не повертають конструктор", async () => {
     const ctx = await sb.newContext();
