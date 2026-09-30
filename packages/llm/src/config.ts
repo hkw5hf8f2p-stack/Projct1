@@ -114,7 +114,7 @@ export function createClientFromEnv(env: Env, deps: ClientDeps = {}): { client: 
     const [prov, model] = (env.REPLAY_AS ?? "replay:synthetic-fixture-v1").split(/:(.*)/s);
     return { client: new LlmClient({ mode: "replay", cache, cache_identity: { provider: prov ?? "replay", model: model || "synthetic-fixture-v1" }, ...common }), config };
   }
-  const key = (config.provider === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY || (config.openai_api_mode === "chat" ? "local-no-key" : undefined)) as string;
+  const key = (config.provider === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY || (env.OPENAI_BASE_URL ? "local-no-key" : undefined)) as string;
   const cfg = { apiKey: key, model: config.model as string, fetchImpl: deps.fetchImpl, sleep: deps.sleep, baseUrl: config.provider === "anthropic" ? env.ANTHROPIC_BASE_URL : env.OPENAI_BASE_URL };
   const provider = config.provider === "anthropic" ? new AnthropicProvider(cfg) : config.openai_api_mode === "chat" ? new OpenAiChatProvider(cfg) : new OpenAiProvider(cfg);
   const cache = new ReplayCache(new DirStore(dir), ns);

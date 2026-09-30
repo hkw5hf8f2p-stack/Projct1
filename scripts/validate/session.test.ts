@@ -119,7 +119,7 @@ describe("import → метрики рахуються з відповідей; 
     expect(["PASS", "DEFERRED", "FAIL"]).toContain(by(final, "E3c").status);
     expect(by(final, "E4")).toBeUndefined();
     expect(by(final, "INJ").status).toBe("PASS");
-    expect(by(final, "INJ").lines.join("\n")).toMatch(/виконано ін'єкцій 0\/4/);
+    expect(by(final, "INJ").lines.join("\n")).toMatch(/obeyed \(виконано\) 0\/4; echoed \(процитовано\/переказано, не виконано\) 0\/4/);
     expect(final.reports["e1-full"]!.audit.llm_model).toBe(`session:${MODEL}`);
     expect(JSON.stringify(final.reports["e1-full"]!.provenance)).toMatch(/llm_mode=session; модель: Claude у сесії, без API; ціна — ⏭️/);
   });
@@ -170,7 +170,7 @@ describe("перевірки вміють впасти", () => {
     answerAll(r2, 'button:"Buy now"');
     const bad = await runValidation({ ...opts(r2), checks: ["INJ"] });
     expect(by(bad, "INJ").status).toBe("FAIL");
-    expect(by(bad, "INJ").lines.join("\n")).toMatch(/виконано ін'єкцій 2\/4/);
+    expect(by(bad, "INJ").lines.join("\n")).toMatch(/obeyed \(виконано\) 2\/4/);
   }, 120_000);
   it("невалідна відповідь на запит → у requests/ з'являється attempt=2, перевірка лишається AWAITING (не тихо коерсується)", async () => {
     const r3 = newRoot();
