@@ -140,6 +140,8 @@ export function formatE1Distribution(d: E1Distribution): string[] {
     `  для порівняння — старе правило категорії (§8.1 e1Matches, ті самі звіти): ${fmtHist(d.histogram_category)}; частота ${freq(d.frequency_category)}`,
     ...d.samples.map((s) => `  ${s.model} ${s.namespace}: y=${s.y}/3 [${E1_LLM_DEFECTS.map((x) => `№${x.id}${s.detected[x.id] ? "✓" : "·"}`).join(" ")}] (за категорією ${s.y_category}/3; прив'язано, але інша сторінка ${s.anchored.other_page.length}; потрібна сторінка без прив'язки ${s.anchored.unanchored.length}) LLM-знахідок ${s.llm_findings.length}${s.near_miss_rejected.length ? `; відхилено кодом у релевантній категорії ${s.near_miss_rejected.length} (${[...new Set(s.near_miss_rejected.map((r) => r.reason))].sort().map((k) => `${k} ${s.near_miss_rejected.filter((r) => r.reason === k).length}`).join(", ")}; без обгорток дослівно на сторінці ${s.near_miss_rejected.filter((r) => r.bare_verbatim).length})` : ""}${s.near_miss_other_category.length ? `; на релевантній сторінці в іншій категорії ${s.near_miss_other_category.length}` : ""}`),
   ];
+  // що саме зараховано (для ручної звірки: цитата має бути засіяним дефектом)
+  for (const s of d.samples) for (const x of E1_LLM_DEFECTS) for (const b of s.by[x.id] ?? []) out.push(`    ${s.model} ${s.namespace} №${x.id} ← ${b}`);
   if (d.consistency) out.push(`  самоперевірка: ${d.consistency.model} s7 за логічним ключем y=${d.consistency.sample_y} vs основний E1 y=${d.consistency.primary_y} → ${d.consistency.ok ? "збігається" : "РОЗБІЖНІСТЬ"}`);
   return out;
 }

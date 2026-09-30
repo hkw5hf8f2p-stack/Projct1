@@ -25,9 +25,9 @@ const WRAP_EDGE_RE = new RegExp(`^[\\s${WRAP_CHARS}]+|[\\s${WRAP_CHARS}]+$`, "gu
 export function normQuote(s: string): string {
   return s
     .normalize("NFKC")
-    .replace(/[­​-‍⁠﻿]/gu, "")
-    .replace(/[’ʼ‘′`]/gu, "'")
-    .replace(/[‐‑‒–—−]/gu, "-")
+    .replace(/[\u00AD\u200B-\u200D\u2060\uFEFF]/gu, "")
+    .replace(/[\u2019\u02BC\u2018\u2032`]/gu, "'")
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/gu, "-")
     .toLowerCase()
     .replace(/\s+/gu, " ")
     .trim();

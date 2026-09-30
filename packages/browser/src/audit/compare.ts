@@ -26,6 +26,8 @@ export interface ExpectedDefect {
   evidence: { type: string; source_class: string; self_confirming: boolean };
   expected_confidence: string | null;
   region_marker: string;
+  /** №1/№3/№4: текст засіяного елемента — якір зарахування E1_llm (SCORING_SPEC §14.2, DEV-91) */
+  anchors?: string[];
   mutant: string | null;
 }
 export interface Expected {

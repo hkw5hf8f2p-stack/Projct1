@@ -147,7 +147,7 @@ export function e1LlmAnchored(defects: readonly E1AnchorSpec[], findings: readon
         if (e.source_class !== "SYNTHETIC") continue;
         const onPage = d.pages.includes(e.page_path);
         const hit = e.excerpt !== null && anchorHit(e.excerpt, d.anchors);
-        if (onPage && hit) { by.push(`${f.finding_key}@${e.page_path}`); credited.add(f.finding_key); }
+        if (onPage && hit) { by.push(`${f.finding_key}@${e.page_path} «${(e.excerpt as string).slice(0, 60)}»`); credited.add(f.finding_key); }
         else if (hit) other_page.push({ id: d.id, finding_key: f.finding_key, page: e.page_path, excerpt: e.excerpt as string });
         else if (onPage) unanchored.push({ id: d.id, finding_key: f.finding_key, page: e.page_path, excerpt: e.excerpt });
       }
