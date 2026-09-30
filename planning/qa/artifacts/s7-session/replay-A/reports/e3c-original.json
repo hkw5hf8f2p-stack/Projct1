@@ -1,0 +1,2991 @@
+{
+ "schema_version": "sitelens-report/v1",
+ "scoring_version": "scoring-v2",
+ "generated_at": "2026-09-30T00:00:00Z",
+ "provenance": {
+  "kind": "audit",
+  "note": "validate; llm_mode=session; модель: Claude у сесії, без API; ціна — ⏭️"
+ },
+ "audit": {
+  "id": "aud_validate0000000",
+  "input_url": "http://site-a.test:4213/",
+  "normalized_url": "http://site-a.test:4213/",
+  "domain": "site-a.test:4213",
+  "language": "uk",
+  "llm_mode": "replay",
+  "llm_provider": "replay",
+  "llm_model": "session:claude-in-session",
+  "prompt_versions": [
+   "snapshot-evaluator-v1"
+  ],
+  "status": "completed",
+  "stage_status": {
+   "crawl": {
+    "status": "done",
+    "reason": null
+   },
+   "capture": {
+    "status": "done",
+    "reason": null
+   },
+   "accessibility": {
+    "status": "done",
+    "reason": null
+   },
+   "snapshot_sessions": {
+    "status": "done",
+    "reason": null
+   },
+   "lighthouse": {
+    "status": "skipped",
+    "reason": "lighthouse results not provided to the report builder"
+   },
+   "aggregate": {
+    "status": "done",
+    "reason": null
+   },
+   "report": {
+    "status": "done",
+    "reason": null
+   }
+  },
+  "created_at": "2026-09-30T00:00:00Z",
+  "completed_at": "2026-09-30T00:00:00Z",
+  "snapshot_at": "2026-09-30T00:00:00Z",
+  "banners": [
+   {
+    "code": "replay_not_live",
+    "stage": null,
+    "text": {
+     "template": "Синтетичні результати — відтворені записи, а не прогін живої моделі.",
+     "params": {},
+     "origin": "code",
+     "source_class": "OBSERVED",
+     "lang": "uk",
+     "template_id": "banner.replay_not_live",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   {
+    "code": "stage_skipped",
+    "stage": "lighthouse",
+    "text": {
+     "template": "Етап пропущено.",
+     "params": {},
+     "origin": "code",
+     "source_class": "OBSERVED",
+     "lang": "uk",
+     "template_id": "banner.stage_skipped",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   }
+  ]
+ },
+ "executive_summary": {
+  "primary_conversion_goal": null,
+  "top_problem_ids": [
+   "fnd_647868d26868",
+   "fnd_69a63d946f1d"
+  ],
+  "top_strength_ids": [
+   "pos_c96ea691f7e0",
+   "pos_67aa45b64e05",
+   "pos_bb5185dd778a",
+   "pos_89f4df95acae",
+   "pos_1b835e9aec71"
+  ],
+  "pages_inspected": 7,
+  "synthetic_snapshot_sessions": 16,
+  "synthetic_journeys": 0,
+  "technical_status": "partial",
+  "summary": null
+ },
+ "site_understanding": null,
+ "lenses": null,
+ "funnel": [
+  {
+   "stage": "landing",
+   "finding_ids": [],
+   "positive_ids": []
+  },
+  {
+   "stage": "understand_offering",
+   "finding_ids": [],
+   "positive_ids": []
+  },
+  {
+   "stage": "browse",
+   "finding_ids": [],
+   "positive_ids": []
+  },
+  {
+   "stage": "select",
+   "finding_ids": [
+    "fnd_69a63d946f1d"
+   ],
+   "positive_ids": []
+  },
+  {
+   "stage": "evaluate_product",
+   "finding_ids": [
+    "fnd_647868d26868"
+   ],
+   "positive_ids": [
+    "pos_c96ea691f7e0"
+   ]
+  },
+  {
+   "stage": "price_shipping_confidence",
+   "finding_ids": [],
+   "positive_ids": [
+    "pos_67aa45b64e05",
+    "pos_bb5185dd778a",
+    "pos_89f4df95acae",
+    "pos_1b835e9aec71"
+   ]
+  },
+  {
+   "stage": "cart",
+   "finding_ids": [],
+   "positive_ids": []
+  }
+ ],
+ "findings": [
+  {
+   "id": "fnd_647868d26868",
+   "finding_key": "missing_information|product|general",
+   "category": "missing_information",
+   "page_group": "product",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 1,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    }
+   ],
+   "page_count": 2,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/0/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/0/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.65,
+    "base": 0.6,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "evaluate_product",
+    "value": 0.8,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.7,
+    "tier": "ET-SYN-M"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 2,
+     "m": 8,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 55,
+    "uncapped": 55,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 78
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.65,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.8,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_e0aadafd3743",
+    "ev_f02ac11dc45b"
+   ],
+   "instances": 2,
+   "affected_task_ids": [
+    "t_buy"
+   ],
+   "affected_lens_ids": [
+    "lens_expert"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_69a63d946f1d",
+   "finding_key": "comparison|category|general",
+   "category": "comparison",
+   "page_group": "category",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 2,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/1/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/1/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.6,
+    "base": 0.55,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "select",
+    "value": 0.7,
+    "stage_source": "category"
+   },
+   "evidence_strength": {
+    "value": 0.4,
+    "tier": "ET-SYN-1"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 47,
+    "uncapped": 47,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 72
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.6,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.4,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_71301f7363fd"
+   ],
+   "instances": 1,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_expert"
+   ],
+   "executive_eligible": true
+  }
+ ],
+ "positive_findings": [
+  {
+   "id": "pos_c96ea691f7e0",
+   "key": "cta_in_first_viewport|product",
+   "category": "cta",
+   "page_group": "product",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Кнопка покупки — у першому екрані на сторінках товару",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    }
+   ],
+   "evidence_ids": [
+    "ev_12950ce3e44b",
+    "ev_88213e3b36ae",
+    "ev_5c5841b0792a",
+    "ev_062ba40fcf84",
+    "ev_195c8417a389",
+    "ev_eb6cec7d92e3"
+   ]
+  },
+  {
+   "id": "pos_67aa45b64e05",
+   "key": "images_have_alt|*",
+   "category": "accessibility",
+   "page_group": "*",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Змістові зображення мають текстову альтернативу",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/",
+     "path": "/",
+     "page_type": "homepage"
+    },
+    {
+     "url": "http://site-a.test:4213/about",
+     "path": "/about",
+     "page_type": "about"
+    },
+    {
+     "url": "http://site-a.test:4213/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    },
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/shipping",
+     "path": "/shipping",
+     "page_type": "info_shipping"
+    }
+   ],
+   "evidence_ids": [
+    "ev_859e2dfb412f",
+    "ev_40efc753c15a",
+    "ev_9c51e799bfbc",
+    "ev_8f8e041c1283",
+    "ev_af4088a844c6",
+    "ev_d0391041dfa2",
+    "ev_415d551f0ce9",
+    "ev_ecda90d26443",
+    "ev_51fee62b0d22",
+    "ev_52a6170f2f0d",
+    "ev_22280cce630a",
+    "ev_22dcd8e2ac4b",
+    "ev_6272beb7e0d9",
+    "ev_ca5629cc40f6"
+   ]
+  },
+  {
+   "id": "pos_bb5185dd778a",
+   "key": "no_horizontal_overflow|*",
+   "category": "mobile_usability",
+   "page_group": "*",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Немає прокрутки вбік на мобільному",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/",
+     "path": "/",
+     "page_type": "homepage"
+    },
+    {
+     "url": "http://site-a.test:4213/about",
+     "path": "/about",
+     "page_type": "about"
+    },
+    {
+     "url": "http://site-a.test:4213/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    },
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/shipping",
+     "path": "/shipping",
+     "page_type": "info_shipping"
+    }
+   ],
+   "evidence_ids": [
+    "ev_7315159028db",
+    "ev_fc014753a660",
+    "ev_fd353dbcaaea",
+    "ev_2870b55dd68b",
+    "ev_aaa5c8263c6c",
+    "ev_eaf8a082ce26",
+    "ev_52baa8563b0a"
+   ]
+  },
+  {
+   "id": "pos_89f4df95acae",
+   "key": "price_in_first_viewport|product",
+   "category": "pricing",
+   "page_group": "product",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Ціну видно в першому екрані на сторінках товару",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    }
+   ],
+   "evidence_ids": [
+    "ev_7e23e08b1a4a",
+    "ev_6c9a05cf19e7",
+    "ev_c70432848864",
+    "ev_7753b260f0d7",
+    "ev_56ac7ba2dcc4",
+    "ev_fd95ad22b21d"
+   ]
+  },
+  {
+   "id": "pos_1b835e9aec71",
+   "key": "shipping_on_product_page|product",
+   "category": "shipping",
+   "page_group": "product",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Інформацію про доставку показано на сторінках товару",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.shipping_on_product_page",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-a.test:4213/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-a.test:4213/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    }
+   ],
+   "evidence_ids": [
+    "ev_712901e2a0db",
+    "ev_2ce6764948db",
+    "ev_28b9b9a0a05d"
+   ]
+  }
+ ],
+ "technical": {
+  "status": "partial",
+  "lighthouse": {
+   "status": "not_run",
+   "reason": "lighthouse results not provided to the report builder",
+   "runs": []
+  },
+  "accessibility": {
+   "engine": "axe-core",
+   "version": "4.13.0",
+   "groups": [],
+   "disclaimer": "automated_a11y_not_wcag_audit"
+  }
+ },
+ "coverage": {
+  "pages": [
+   {
+    "url": "http://site-a.test:4213/",
+    "path": "/",
+    "page_type": "homepage",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/catalog",
+    "path": "/catalog",
+    "page_type": "category",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/product/glass-kettle",
+    "path": "/product/glass-kettle",
+    "page_type": "product",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/product/travel-thermos",
+    "path": "/product/travel-thermos",
+    "page_type": "product",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/product/wooden-board",
+    "path": "/product/wooden-board",
+    "page_type": "product",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/shipping",
+    "path": "/shipping",
+    "page_type": "info_shipping",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   },
+   {
+    "url": "http://site-a.test:4213/about",
+    "path": "/about",
+    "page_type": "about",
+    "page_type_reason": null,
+    "capture_complete": {
+     "D": true,
+     "M": true
+    },
+    "incomplete_reasons": []
+   }
+  ],
+  "detectors": [
+   {
+    "detector_id": "cta_below_fold",
+    "page_path": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+   },
+   {
+    "detector_id": "cta_below_fold",
+    "page_path": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+   },
+   {
+    "detector_id": "cta_below_fold",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+   },
+   {
+    "detector_id": "cta_below_fold",
+    "page_path": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+   },
+   {
+    "detector_id": "price_first_viewport",
+    "page_path": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+   },
+   {
+    "detector_id": "price_first_viewport",
+    "page_path": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+   },
+   {
+    "detector_id": "price_first_viewport",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "status": "withheld",
+    "reason": "capture_insufficient:D"
+   },
+   {
+    "detector_id": "price_first_viewport",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "status": "withheld",
+    "reason": "capture_insufficient:M"
+   },
+   {
+    "detector_id": "price_first_viewport",
+    "page_path": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+   },
+   {
+    "detector_id": "shipping_depth",
+    "page_path": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+   },
+   {
+    "detector_id": "shipping_depth",
+    "page_path": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+   },
+   {
+    "detector_id": "shipping_depth",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+   },
+   {
+    "detector_id": "shipping_depth",
+    "page_path": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+   }
+  ],
+  "withheld_findings": [],
+  "withheld_positives": [],
+  "pole_unmet": []
+ },
+ "budget": {
+  "source_class": "OBSERVED",
+  "max_audit_tokens": 1650000,
+  "used_tokens": 57581,
+  "billed_tokens": 0,
+  "cache_read_tokens": 0,
+  "llm_calls": 16,
+  "cost": null
+ },
+ "evidence": [
+  {
+   "id": "ev_e0aadafd3743",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_1346471aee74",
+   "lens_id": "lens_expert",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_f02ac11dc45b",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_cb37ff6b4dab",
+   "lens_id": "lens_expert",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_71301f7363fd",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-1",
+   "polarity": "problem",
+   "page_url": "http://site-a.test:4213/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_4915c61bab9b",
+   "lens_id": "lens_expert",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_7e23e08b1a4a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/3/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/3/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "1 299 грн",
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_6c9a05cf19e7",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/4/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/4/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "1 299 грн",
+   "artifact_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_c70432848864",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/5/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/5/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "749 грн",
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_7753b260f0d7",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/6/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/6/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "749 грн",
+   "artifact_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_56ac7ba2dcc4",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/7/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/7/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "459 грн",
+   "artifact_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_fd95ad22b21d",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/8/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/8/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "459 грн",
+   "artifact_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_12950ce3e44b",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/9/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/9/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 229,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_88213e3b36ae",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/10/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/10/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 214,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_5c5841b0792a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/11/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/11/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 229,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_062ba40fcf84",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/12/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/12/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 214,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_195c8417a389",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/13/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/13/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 229,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_eb6cec7d92e3",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:cta_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Нижній край кнопки покупки на {button_bottom_px} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "button_bottom_px": {
+      "ptr": "/evidence/14/measurement/button_bottom_px",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/14/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.cta_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "button_bottom_px": 214,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_712901e2a0db",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:shipping_on_product_page",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Видимий текст сторінки товару згадує доставку.",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.shipping_on_product_page",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Доставка й оплата",
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_2ce6764948db",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:shipping_on_product_page",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Видимий текст сторінки товару згадує доставку.",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.shipping_on_product_page",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Доставка й оплата",
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_28b9b9a0a05d",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:shipping_on_product_page",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Видимий текст сторінки товару згадує доставку.",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.shipping_on_product_page",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Доставка й оплата",
+   "artifact_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_7315159028db",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/18/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/18/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/index/390x844/viewport.png",
+   "screenshot_reference": "pages/index/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_fc014753a660",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/about",
+   "page_path": "/about",
+   "page_type": "about",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/19/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/19/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/about/390x844/viewport.png",
+   "screenshot_reference": "pages/about/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_fd353dbcaaea",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/20/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/20/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/390x844/viewport.png",
+   "screenshot_reference": "pages/catalog/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_2870b55dd68b",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/21/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/21/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_aaa5c8263c6c",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/22/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/22/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_eaf8a082ce26",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/23/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/23/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_52baa8563b0a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/shipping",
+   "page_path": "/shipping",
+   "page_type": "info_shipping",
+   "viewport": "M",
+   "detector_id": "positive:no_horizontal_overflow",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
+    "params": {
+     "scroll_width": {
+      "ptr": "/evidence/24/measurement/scroll_width",
+      "format": "int"
+     },
+     "viewport_width": {
+      "ptr": "/evidence/24/measurement/viewport_width",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.no_horizontal_overflow",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/shipping/390x844/viewport.png",
+   "screenshot_reference": "pages/shipping/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "scroll_width": 390,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_859e2dfb412f",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/25/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/25/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_40efc753c15a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/26/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/26/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/index/390x844/viewport.png",
+   "screenshot_reference": "pages/index/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_9c51e799bfbc",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/about",
+   "page_path": "/about",
+   "page_type": "about",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/27/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/27/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/about/1440x1000/viewport.png",
+   "screenshot_reference": "pages/about/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 0,
+    "total": 0
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_8f8e041c1283",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/about",
+   "page_path": "/about",
+   "page_type": "about",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/28/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/28/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/about/390x844/viewport.png",
+   "screenshot_reference": "pages/about/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 0,
+    "total": 0
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_af4088a844c6",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/29/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/29/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 3,
+    "total": 3
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_d0391041dfa2",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/30/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/30/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/390x844/viewport.png",
+   "screenshot_reference": "pages/catalog/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 3,
+    "total": 3
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_415d551f0ce9",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/31/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/31/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_ecda90d26443",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/32/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/32/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_51fee62b0d22",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/33/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/33/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_52a6170f2f0d",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/34/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/34/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_22280cce630a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/35/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/35/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_22dcd8e2ac4b",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/36/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/36/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 1,
+    "total": 1
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_6272beb7e0d9",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/shipping",
+   "page_path": "/shipping",
+   "page_type": "info_shipping",
+   "viewport": "D",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/37/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/37/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/shipping/1440x1000/viewport.png",
+   "screenshot_reference": "pages/shipping/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 0,
+    "total": 0
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_ca5629cc40f6",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-a.test:4213/shipping",
+   "page_path": "/shipping",
+   "page_type": "info_shipping",
+   "viewport": "M",
+   "detector_id": "positive:images_have_alt",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
+    "params": {
+     "with_alt": {
+      "ptr": "/evidence/38/measurement/with_alt",
+      "format": "int"
+     },
+     "total": {
+      "ptr": "/evidence/38/measurement/total",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.images_have_alt",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/shipping/390x844/viewport.png",
+   "screenshot_reference": "pages/shipping/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "with_alt": 0,
+    "total": 0
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  }
+ ],
+ "disclaimers": [
+  "automated_a11y_not_wcag_audit",
+  "no_conversion_prediction",
+  "priority_is_ranking_index",
+  "synthetic_single_model_correlated"
+ ],
+ "guard": {
+  "applied": true,
+  "version": "report-guard-v2",
+  "fields_checked": 0,
+  "events": 0,
+  "sentences_removed": 0
+ }
+}
