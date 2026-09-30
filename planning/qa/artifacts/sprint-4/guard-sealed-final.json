@@ -1,0 +1,142 @@
+{
+  "label": "final",
+  "sha256": "980327bed54c1e6082c8ea514f561553576242c4d9f463cb9ec2898bf434d4e3",
+  "guard_version": "report-guard-v2",
+  "cases": 100,
+  "hostile_recall": "41/52",
+  "clean_pass_rate": "44/48",
+  "hostile_recall_pct": 78.8,
+  "clean_pass_pct": 91.7,
+  "thresholds": {
+    "recall_min_pct": 90,
+    "clean_pass_min_pct": 90
+  },
+  "verdict": "FAIL",
+  "recall_by_category": {
+    "multiplier": {
+      "total": 6,
+      "flagged": 4
+    },
+    "multiplier_forecast_perf": {
+      "total": 2,
+      "flagged": 2
+    },
+    "uplift_paraphrase": {
+      "total": 6,
+      "flagged": 5
+    },
+    "revenue_paraphrase": {
+      "total": 6,
+      "flagged": 6
+    },
+    "tam_paraphrase": {
+      "total": 4,
+      "flagged": 4
+    },
+    "market_share": {
+      "total": 4,
+      "flagged": 3
+    },
+    "share_no_sign": {
+      "total": 6,
+      "flagged": 6
+    },
+    "fake_benchmark": {
+      "total": 6,
+      "flagged": 4
+    },
+    "word_numeral": {
+      "total": 2,
+      "flagged": 2
+    },
+    "demographic_implicit": {
+      "total": 4,
+      "flagged": 2
+    },
+    "number_not_in_evidence": {
+      "total": 2,
+      "flagged": 1
+    },
+    "synthetic_as_share": {
+      "total": 2,
+      "flagged": 0
+    },
+    "fabricated_social_proof": {
+      "total": 2,
+      "flagged": 2
+    }
+  },
+  "recall_by_lang": {
+    "en": {
+      "total": 26,
+      "flagged": 20
+    },
+    "uk": {
+      "total": 26,
+      "flagged": 21
+    }
+  },
+  "false_reject_by_category": {
+    "synthetic_count": {
+      "total": 6,
+      "flagged": 2
+    },
+    "priority": {
+      "total": 4,
+      "flagged": 0
+    },
+    "observed_measure": {
+      "total": 8,
+      "flagged": 0
+    },
+    "viewport": {
+      "total": 2,
+      "flagged": 0
+    },
+    "site_price": {
+      "total": 4,
+      "flagged": 0
+    },
+    "date": {
+      "total": 2,
+      "flagged": 0
+    },
+    "trap_lexeme": {
+      "total": 6,
+      "flagged": 0
+    },
+    "qualitative": {
+      "total": 6,
+      "flagged": 0
+    },
+    "qualitative_ordinal": {
+      "total": 2,
+      "flagged": 0
+    },
+    "benchmarked": {
+      "total": 4,
+      "flagged": 2
+    },
+    "quoted_site_claim": {
+      "total": 2,
+      "flagged": 0
+    },
+    "unknown": {
+      "total": 2,
+      "flagged": 0
+    }
+  },
+  "false_reject_by_lang": {
+    "en": {
+      "total": 24,
+      "flagged": 2
+    },
+    "uk": {
+      "total": 24,
+      "flagged": 2
+    }
+  },
+  "freeze_manifest_match": true,
+  "guard_files_sha256": "97a4fbb4dba4d773d6a62533aa3c109ae5f3a492ae6ffdc816d36268cc569499",
+  "note": "агрегати; тексти й id кейсів не виводяться. Рукописний корпус — не якість живої моделі (⏭️ live pass)"
+}
