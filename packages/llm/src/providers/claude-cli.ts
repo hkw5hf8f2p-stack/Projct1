@@ -151,14 +151,17 @@ export class ClaudeCliProvider implements LlmProvider {
 
   private result(req: LlmRequest, json: unknown, raw: string | undefined, usage: CliJson["usage"], latency_ms: number, modelUsage: Record<string, unknown> | undefined): ProviderResult {
     const hasUsage = usage !== undefined && (usage.input_tokens !== undefined || usage.output_tokens !== undefined);
-    const input = hasUsage ? (usage?.input_tokens ?? 0) + (usage?.cache_creation_input_tokens ?? 0) + (usage?.cache_read_input_tokens ?? 0) : estimateInputTokens(req);
+    // Бюджет E4 рахує вхід без cache_read: це кешований системний промпт самого CLI (~20k на виклик), а не вміст запиту
+    // SiteLens; інакше бюджет аудиту вичерпується до текстів знахідок (живий прогін kredens). cache_read — окремо в provenance.
+    const cacheRead = hasUsage ? (usage?.cache_read_input_tokens ?? 0) : 0;
+    const input = hasUsage ? (usage?.input_tokens ?? 0) + (usage?.cache_creation_input_tokens ?? 0) : estimateInputTokens(req);
     const output = hasUsage ? (usage?.output_tokens ?? 0) : estimateTextTokens(json === null ? (raw ?? "") : JSON.stringify(json));
     const actual = modelUsage ? Object.keys(modelUsage)[0] : undefined;
     return {
       json, ...(raw !== undefined ? { raw_text: raw } : {}), input_tokens: input, output_tokens: output, provider: "claude-cli", model: actual ?? this.model, latency_ms,
       synthetic: false, ...(hasUsage ? {} : { tokens_estimated: true }),
       // $ не рахуємо: підписка (total_cost_usd з CLI навмисно ігнорується)
-      provenance: { provider: "claude-cli", requested_model: this.model, actual_model: actual ?? null, transport: "claude -p (subscription)", synthetic: false, tokens_estimated: !hasUsage },
+      provenance: { provider: "claude-cli", requested_model: this.model, actual_model: actual ?? null, transport: "claude -p (subscription)", synthetic: false, tokens_estimated: !hasUsage, cache_read_input_tokens: cacheRead },
     };
   }
 }

@@ -58,12 +58,13 @@ function fakeBin(mode: string) {
 const base = { PATH: process.env["PATH"], HOME: "/tmp", ANTHROPIC_API_KEY: "sk-ant-api03-MUSTNOTLEAK", OPENAI_API_KEY: "sk-openai-MUSTNOTLEAK", DATABASE_URL: "postgres://x", CLAUDE_CODE_OAUTH_TOKEN: "oauth-token-value" };
 
 describe("claude-cli: прапорці, ізоляція, розбір виходу (фейковий бінарник)", () => {
-  it("структурований вихід: json з structured_output, токени з usage (вхід = input+cache_creation+cache_read), модель з modelUsage, $ не рахується", async () => {
+  it("структурований вихід: json з structured_output, токени з usage (вхід бюджету = input+cache_creation; cache_read — окремо в provenance), модель з modelUsage, $ не рахується", async () => {
     const f = fakeBin("ok");
     const p = new ClaudeCliProvider({ bin: f.bin, env: base });
     const r = await p.complete(tinyReq());
     expect(r.json).toEqual({ answer: "hi" });
-    expect(r).toMatchObject({ provider: "claude-cli", model: "fake-model-x", input_tokens: 2 + 1452 + 10, output_tokens: 52, synthetic: false });
+    expect(r).toMatchObject({ provider: "claude-cli", model: "fake-model-x", input_tokens: 2 + 1452, output_tokens: 52, synthetic: false });
+    expect(r.provenance).toMatchObject({ cache_read_input_tokens: 10 });
     expect(r.tokens_estimated).toBeUndefined();
     expect(r.provenance).toMatchObject({ provider: "claude-cli", requested_model: "cli-default", actual_model: "fake-model-x", tokens_estimated: false });
     expect(JSON.stringify(r)).not.toMatch(/total_cost|0\.5/);
