@@ -2,71 +2,32 @@
  * Кодові перевірки виходу LLM (SPEC §34, §63, §8; G0-12; DEV-7 «код перевіряє, LLM не вирішує»).
  * Кожне порушення — рядок `<rule>: <опис>`. Межі слів лише через `(?<!\p{L})…(?!\p{L})` (G0-26), не `\b`.
  */
+import { numericViolations, demographicViolations } from "./report-rules.js";
 export type Issue = string;
 export const ruleOf = (issue: Issue): string => issue.split(":", 1)[0] ?? issue;
 
 const L = "(?<![\\p{L}\\p{N}])";
 const R = "(?![\\p{L}\\p{N}])";
-const word = (alts: string[]) => new RegExp(`${L}(?:${alts.join("|")})${R}`, "iu");
 const stem = (alts: string[]) => new RegExp(`${L}(?:${alts.join("|")})\\p{L}*${R}`, "iu");
 
 export const norm = (s: string): string => s.normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
 
-// ---------------------------------------------------------------- вигадані числа (§4, §63)
-const PERCENT_RE = /(?<![\p{L}\p{N}])(\d+(?:[.,]\d+)?)\s?(?:%|відсотк\p{L}*|percent|per cent)/giu;
-const MARKET_TERMS = [
-  word(["TAM", "SAM", "SOM"]),
-  stem(["market size", "market share", "розмір\\s+ринку", "обсяг\\s+ринку", "част\\p{L}+\\s+ринку"]),
-  word(["conversion rate", "conversion uplift", "uplift", "ARPU", "CAC", "LTV"]),
-  stem(["виручк", "revenue", "конверс\\p{L}*\\s+(?:зросте|виросте|підвищ)"]),
-  /(?<![\p{L}\p{N}])\d[\d\s.,]*\s?(?:млн|млрд|тис\.?|million|billion|mln|bn)(?![\p{L}\p{N}])/iu,
-];
-
-/** відсотки, яких немає в доказах (корпус = видимий текст/метадані сторінок); TAM/uplift/виручка — ніколи */
+// ---------------------------------------------------------------- вигадані числа й демографія (S3-Fix-1: report-rules.ts)
+/** відсотки, яких немає в доказах (корпус = видимий текст/метадані сторінок); TAM/uplift/виручка/кратність/частки — ніколи */
 export function findInventedNumbers(fieldValues: string[], evidenceCorpus: string): Issue[] {
-  const out: Issue[] = [];
-  const corpus = evidenceCorpus.replace(/\s+/g, " ");
-  for (const v of fieldValues) {
-    for (const m of v.matchAll(PERCENT_RE)) {
-      const num = m[1] as string;
-      const seen = new RegExp(`(?<![\\p{L}\\p{N}])${num.replace(".", "[.,]")}\\s?(?:%|відсотк|percent|per cent)`, "iu");
-      if (!seen.test(corpus)) out.push(`invented_percent: «${m[0]}» немає в наданих доказах`);
-    }
-    for (const re of MARKET_TERMS) {
-      const m = re.exec(v);
-      if (m) out.push(`invented_tam: «${m[0].trim()}» — ринок/виручка/uplift не виводяться з доказів`);
-    }
-  }
-  return out;
+  return fieldValues.flatMap((v) => numericViolations(v, evidenceCorpus));
+}
+/** лінзи поведінкові: жодної демографії/особистих ознак і жодних відсотків/часток популяції (§8, §63) */
+export function findDemographics(fieldValues: string[]): Issue[] {
+  return fieldValues.flatMap((v) => demographicViolations(v));
 }
 
-// ---------------------------------------------------------------- демографія й «% ринку» у лінзах (§8, §63)
-const DEMO_WORDS = word([
-  "woman", "women", "man", "men", "male", "female", "girl", "girls", "boy", "boys", "gender", "elderly", "pensioner", "pensioners", "retiree", "retirees",
-  "teen", "teens", "teenager", "teenagers", "millennial", "millennials", "gen ?z", "boomer", "boomers", "middle-aged", "mom", "mother", "moms", "mothers", "dad", "father",
-  "housewife", "homemaker", "low-income", "high-income", "wealthy", "rich", "poor", "immigrant", "immigrants", "ethnic", "ethnicity", "race", "racial",
-  "christian", "muslim", "jewish", "catholic", "religious", "nationality", "\\d+[- ]?(?:year|yr)s?[- ]?old", "aged \\d+", "age \\d+",
-]);
-const DEMO_STEMS = stem([
-  "жінк", "чолов", "дівчин", "хлопц", "хлопчик", "пенсіонер", "літн", "підлітк", "молодь", "мам(?=[аиуоє])", "татус", "батьк", "матір", "домогосподар",
-  "заможн", "бідн", "малозабезпеч", "національн", "етнічн", "релігій", "християн", "мусульман", "єврей", "\\d+[- ]?річн", "віком\\s+\\d+",
-]);
-const MARKET_PCT = [
-  /\d\s?%/u, stem(["відсотк", "percent"]),
-  stem(["част\\p{L}+\\s+(?:ринку|населення|клієнтів|покупців|аудиторії)", "market share", "share of (?:the )?(?:market|population|users|customers)"]),
-  stem(["\\d+\\s+(?:of|з|із)\\s+\\d+\\s+(?:users|customers|people|покупців|клієнтів|людей)"]),
-];
-
-export function findDemographics(fieldValues: string[]): Issue[] {
-  const out: Issue[] = [];
-  for (const v of fieldValues) {
-    const d = DEMO_WORDS.exec(v) ?? DEMO_STEMS.exec(v);
-    if (d) out.push(`lens_demographics: демографічна ознака «${d[0]}» (лінза має бути поведінковою, §8)`);
-    for (const re of MARKET_PCT) {
-      const m = re.exec(v);
-      if (m) { out.push(`lens_market_percent: «${m[0].trim()}» — лінза не має відсотків/частки ринку (§8, §63)`); break; }
-    }
-  }
+// ---------------------------------------------------------------- ланцюг guard-ів за полем виходу (S3-Fix-1)
+export type GuardedField = "reason_summary" | "finding_text" | "recommendation" | "lens_description" | "site_profile";
+/** числовий guard — для всіх полів; демографія й «% ринку» — лише для лінз і профілю сайту */
+export function checkTextField(field: GuardedField, text: string, evidenceCorpus = ""): Issue[] {
+  const out = findInventedNumbers([text], evidenceCorpus);
+  if (field === "lens_description" || field === "site_profile") out.push(...findDemographics([text]));
   return out;
 }
 

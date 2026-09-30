@@ -2,12 +2,14 @@ import { z } from "zod";
 import { BehavioralLens, LENS_VARIABLES } from "@sitelens/schemas";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 import { LlmClient, MemoryStore, ReplayCache, TokenBudget, zodToJsonSchema, type FetchLike, type LlmRequest, type LlmProvider, type ProviderResult } from "../src/index.js";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 export const SHOP_ARTIFACTS = path.join(ROOT, "planning/qa/artifacts/sprint-1a-fix/shop");
 export const REPLAY_DIR = path.join(ROOT, "fixtures/replay");
-export const ARTIFACT_DIR = path.join(ROOT, "planning/qa/artifacts/sprint-3");
+/** X-1: запис у репо лише з SL_WRITE_ARTIFACTS=1, інакше os.tmpdir()/sitelens-artifacts/sprint-3. */
+export const ARTIFACT_DIR = artifactDir("sprint-3");
 
 export const Tiny = z.object({ answer: z.string().min(1) }).strict();
 export const tinyReq = (over: Partial<LlmRequest> = {}): LlmRequest => ({

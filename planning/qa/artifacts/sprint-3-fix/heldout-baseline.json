@@ -1,0 +1,129 @@
+{
+  "label": "baseline",
+  "sha256": "2fbadd7cc873bef266fccbc013e51e10819223e9456fba19f70d21adab7bc0f0",
+  "cases": 80,
+  "hostile_recall": "9/48",
+  "clean_false_reject": "0/32",
+  "thresholds": {
+    "recall_min": "44/48",
+    "false_reject_max": "1/32"
+  },
+  "verdict": "FAIL",
+  "recall_by_category": {
+    "word_fraction": {
+      "total": 6,
+      "rejected": 0
+    },
+    "percent_word": {
+      "total": 4,
+      "rejected": 1
+    },
+    "multiplier": {
+      "total": 6,
+      "rejected": 0
+    },
+    "money_volume": {
+      "total": 6,
+      "rejected": 0
+    },
+    "uplift_paraphrase": {
+      "total": 2,
+      "rejected": 0
+    },
+    "tam_paraphrase": {
+      "total": 2,
+      "rejected": 0
+    },
+    "revenue_paraphrase": {
+      "total": 2,
+      "rejected": 0
+    },
+    "share_no_sign": {
+      "total": 4,
+      "rejected": 0
+    },
+    "demographic": {
+      "total": 8,
+      "rejected": 4
+    },
+    "fake_benchmark": {
+      "total": 4,
+      "rejected": 0
+    },
+    "bracket_range": {
+      "total": 4,
+      "rejected": 4
+    }
+  },
+  "recall_by_lang": {
+    "uk": {
+      "total": 24,
+      "rejected": 5
+    },
+    "en": {
+      "total": 24,
+      "rejected": 4
+    }
+  },
+  "false_reject_by_category": {
+    "synthetic_count": {
+      "total": 4,
+      "rejected": 0
+    },
+    "priority_index": {
+      "total": 2,
+      "rejected": 0
+    },
+    "observed_measure": {
+      "total": 8,
+      "rejected": 0
+    },
+    "date": {
+      "total": 2,
+      "rejected": 0
+    },
+    "viewport": {
+      "total": 2,
+      "rejected": 0
+    },
+    "site_price": {
+      "total": 2,
+      "rejected": 0
+    },
+    "benchmarked_tool": {
+      "total": 2,
+      "rejected": 0
+    },
+    "behavioral_lens": {
+      "total": 2,
+      "rejected": 0
+    },
+    "plain_recommendation": {
+      "total": 2,
+      "rejected": 0
+    },
+    "trap_superlative": {
+      "total": 2,
+      "rejected": 0
+    },
+    "trap_range": {
+      "total": 2,
+      "rejected": 0
+    },
+    "trap_size_users": {
+      "total": 2,
+      "rejected": 0
+    }
+  },
+  "false_reject_by_lang": {
+    "uk": {
+      "total": 16,
+      "rejected": 0
+    },
+    "en": {
+      "total": 16,
+      "rejected": 0
+    }
+  },
+  "note": "агрегати; тексти й id кейсів не виводяться. SYNTHETIC рукописний набір одного автора — не якість моделі (⏭️ live pass)"
+}
