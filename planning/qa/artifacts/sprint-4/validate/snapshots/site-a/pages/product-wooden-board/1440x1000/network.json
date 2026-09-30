@@ -1,0 +1,22 @@
+[
+  {
+    "method": "GET",
+    "url": "http://site-a.test:4213/img/wooden-board.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 300,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://site-a.test:4213/product/wooden-board",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

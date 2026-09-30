@@ -1,0 +1,39 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "image-redundant-alt",
+      "impact": "minor",
+      "help": "Alternative text of images should not be repeated as text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+      "nodes": [
+        {
+          "target": "img[src$=\"glass-kettle.svg\"]",
+          "html": "<img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\">",
+          "failureSummary": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+          "rect": {
+            "x": 207,
+            "y": 155,
+            "w": 80,
+            "h": 80
+          },
+          "landmark": "main",
+          "tag": "img"
+        },
+        {
+          "target": "img[src$=\"wooden-board.svg\"]",
+          "html": "<img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\">",
+          "failureSummary": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+          "rect": {
+            "x": 207,
+            "y": 427,
+            "w": 80,
+            "h": 80
+          },
+          "landmark": "main",
+          "tag": "img"
+        }
+      ]
+    }
+  ]
+}

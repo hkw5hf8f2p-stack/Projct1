@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "http://site-a.test:4213/shipping",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

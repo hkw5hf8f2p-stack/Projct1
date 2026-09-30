@@ -1,8 +1,8 @@
 {
   "scenario": "kill9-worker-lighthouse",
-  "audit_id": "aud_07238fdd13e94a63",
+  "audit_id": "aud_e45211b5bf419b25",
   "worker_killed": {
-    "pid": 10432,
+    "pid": 11264,
     "signal": "SIGKILL",
     "audit_status_at_kill": "crawling",
     "pages_at_kill": 4,
@@ -15,39 +15,35 @@
   },
   "pre_cleanup": {
     "orphan_browser_pids_alive_right_after_kill": [
-      11053
+      13467
     ],
-    "tracked_children_in_pid_file": 7,
+    "tracked_children_in_pid_file": 6,
     "note": "контроль (обов'язковий у цьому сценарії): Chrome Lighthouse ІСНУЄ після kill -9 до прибирання — перевірка «0 сиріт» уміє показати ненуль"
   },
   "restart": {
-    "new_worker_pid": 11190,
+    "new_worker_pid": 13604,
     "recovery_report": {
-      "ts": "2026-09-30T02:41:37.477Z",
+      "ts": "2026-09-30T04:02:30.471Z",
       "file": "/home/user/Projct1/data/s2/pids/worker.json",
-      "owner_pid": 10432,
+      "owner_pid": 11264,
       "owner_was_alive": false,
-      "killed": [
-        {
-          "pid": 11053,
-          "comm": "chrome",
-          "role": "browser"
-        }
-      ],
+      "killed": [],
       "already_gone": [
-        10440,
-        10472,
-        10475,
-        10476,
-        10495,
-        10478,
-        10508
+        11435,
+        11438,
+        11439,
+        11457,
+        11441,
+        11470
       ],
       "skipped_reused_pid": [],
-      "killed_from_spawn_log": [],
-      "profile_dirs_removed": [
-        "/tmp/sl-lh-axgaCo"
-      ]
+      "killed_from_spawn_log": [
+        {
+          "pid": 13467,
+          "comm": "chrome"
+        }
+      ],
+      "profile_dirs_removed": []
     },
     "note": "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)"
   },
@@ -74,15 +70,36 @@
     "pages_found": 4,
     "pages_lost": 0,
     "pages_extra": 0,
-    "pages_duplicated": 0,
+    "evidence_expected": 6,
     "evidence_rows": 6,
-    "evidence_duplicated": 0,
-    "jobs_duplicated": 0,
-    "evidence_equal_to_baseline": true,
     "evidence_lost": 0,
     "evidence_extra": 0,
+    "evidence_set_equal_to_baseline_incl_lighthouse": true,
+    "lighthouse_rows": 2,
+    "lighthouse_rows_expected_from_baseline": 2,
+    "jobs_expected": 9,
+    "jobs_found": 9,
+    "jobs_lost": 0,
+    "jobs_extra": 0,
+    "jobs_set_equal_to_baseline": true,
+    "structural_note": "PK-лічильники (count − count(DISTINCT)) структурно нульові й не входять у pass; «0 дублів» = рівність множин із baseline",
+    "structural_pages_duplicated": 0,
+    "structural_evidence_duplicated": 0,
+    "structural_jobs_duplicated": 0,
     "missing": [],
-    "extra": []
+    "extra": [],
+    "evidence_lost_ids": [],
+    "evidence_extra_ids": [],
+    "jobs_lost_keys": [],
+    "jobs_extra_keys": []
+  },
+  "dup_control": {
+    "planted_rows": 1,
+    "detected": true,
+    "evidence_extra": 1,
+    "lighthouse_rows": 3,
+    "lighthouse_rows_expected": 2,
+    "structural_evidence_duplicated_would_have_been": 0
   },
   "queue_jobs": [
     {
@@ -131,6 +148,11 @@
       "retry_count": 0
     },
     {
+      "name": "generate_report",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
       "name": "generate_tasks",
       "state": "completed",
       "retry_count": 0
@@ -167,35 +189,15 @@
     "independent_scan": {
       "orphan_browsers": [],
       "orphan_postgres": [],
-      "foreign_browsers_untouched": [
-        14847,
-        14855,
-        14856,
-        14858,
-        14880,
-        14893,
-        14894,
-        14905,
-        14922,
-        14923,
-        14942,
-        14963,
-        15026
-      ],
+      "foreign_browsers_untouched": [],
       "foreign_browsers_before": [
-        14847,
-        14855,
-        14856,
-        14858,
-        14880,
-        14893,
-        14894,
-        14905,
-        14922,
-        14923,
-        14942,
-        14963,
-        15026
+        8512,
+        8515,
+        8516,
+        8518,
+        8533,
+        8547,
+        9207
       ],
       "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
     }

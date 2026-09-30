@@ -22,8 +22,9 @@ import { artifactDir, writeArtifacts } from "../../../scripts/artifact-dir.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 import { guardTestProcesses } from "../../../scripts/test-procs.js";
 
-const WEB_PORT = 3101;
-const API_PORT = 3111;
+process.env["LOG_LEVEL"] = "silent";
+const WEB_PORT = 3131;
+const API_PORT = 3121;
 process.env["SL_WEB_PORT"] = String(WEB_PORT);
 const { newCtx, open, pageErrors, closeBrowser } = await import("../../web/test/harness.js");
 const BASE = `http://127.0.0.1:${WEB_PORT}`;
@@ -64,7 +65,7 @@ beforeAll(async () => {
   useFakeLlm(rt, new DynamicFake({ frictionLensIds: ["l01", "l03", "l05"] }));
   rt.journalRunner = async (i) => ({
     status: "done", calls: [], non_get_blocked: 0,
-    session: { session_id: "ses_" + i.scenarioId.slice(3), success: "true", actions_used: 1, frictions: [], positive_signals: ["Шлях пройдено."], uncertainties: [], final_summary: "Журнал пройдено (fake-виконавець).", pages_seen: [new URL(i.startUrl).pathname], steps: [{ action: "stop_success", target: "", reason_summary: "Мету досягнуто.", task_progress: "Готово.", friction_detected: [] }] },
+    session: { session_id: "ses_" + i.scenarioId.slice(3), success: "partial", actions_used: 1, frictions: [{ category: "shipping", claim_kind: "cost_unknown", severity: "medium", evidence: "NOT_FOUND: вартість доставки біля ціни", page_url: i.startUrl }], positive_signals: ["Шлях пройдено."], uncertainties: [], final_summary: "Журнал пройдено (fake-виконавець).", pages_seen: [new URL(i.startUrl).pathname], steps: [{ action: "stop_success", target: "", reason_summary: "Мету досягнуто.", task_progress: "Готово.", friction_detected: [] }] },
   });
   await registerHandlers(rt);
   await listenApi("none");
@@ -122,7 +123,9 @@ describe("e2e §54 через API: лендінг → прогрес → зві�
       const auditId = decodeURIComponent(new URL(page.url()).pathname.split("/").pop()!);
       expect(auditId).toMatch(/^aud_[0-9a-f]{16}$/);
       await page.getByTestId("report").waitFor({ timeout: 8 * 60_000 });
-      const rep = await (await fetch(`${BASE}/api/audits/${auditId}/report`)).json() as { audit: { llm_mode: string; language: string }; findings: unknown[] };
+      const rep = await (await fetch(`${BASE}/api/audits/${auditId}/report`)).json() as { audit: { llm_mode: string; language: string; stage_status: Record<string, { status: string; reason: string | null }> }; findings: unknown[]; evidence: Array<{ source_class: string; session_id: string | null; level: string | null }>; lenses: { items: unknown[] } | null };
+      const journeySessions = new Set(rep.evidence.filter((e) => e.source_class === "SYNTHETIC" && e.level === "journey" && e.session_id).map((e) => e.session_id));
+      if (run.llm === "replay") expect(journeySessions.size, JSON.stringify({ stages: rep.audit.stage_status, lenses: rep.lenses?.items.length, evidence: rep.evidence.length })).toBeGreaterThan(0);
       expect(rep.audit.llm_mode).toBe(run.llm);
       expect(rep.audit.language).toBe(run.lang);
       await page.getByTestId("tab-findings").click();
@@ -150,7 +153,7 @@ describe("e2e §54 через API: лендінг → прогрес → зві�
         expect(await page.getByTestId("lens").count()).toBeGreaterThan(5);
         await page.getByTestId("tab-journey").click();
         await page.getByTestId("panel-journey").waitFor();
-        expect(await page.getByTestId("session").count()).toBeGreaterThan(0);
+        expect(await page.getByTestId("session").count()).toBe(journeySessions.size);
       }
       expect(pageErrors(page)).toEqual([]);
       summary[`run_${run.n}`] = { audit_id: auditId, llm: run.llm, lang: run.lang, findings: rep.findings.length, screenshot_request: { status: shot!.status, type: shot!.type }, natural_width: nat };

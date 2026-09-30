@@ -8,11 +8,13 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { createShopHandler, type Control, type Mutant } from "../fixtures/shop/server.js";
 import { createShopCleanHandler } from "../fixtures/shop-clean/server.js";
+import { createShopCleanDegradedHandler } from "../fixtures/shop-clean-degraded/server.js";
 import { startFixtureServer, type FixtureServer } from "../fixtures/_shared/server.js";
 import { auditSite, type AuditResult } from "../packages/browser/src/audit/run-site.js";
 import { secureLaunch, type SecureBrowser } from "../packages/browser/src/secure-launch.js";
+import type { Resolver } from "../packages/browser/src/net/egress-proxy.js";
 
-export type Site = "shop" | "clean";
+export type Site = "shop" | "clean" | "degraded";
 export interface FixtureCfg {
   site: Site;
   mutant?: Mutant | null;
@@ -26,13 +28,34 @@ export interface FixtureCfg {
 }
 
 export async function startFixture(cfg: FixtureCfg): Promise<FixtureServer> {
-  const handler = cfg.site === "shop" ? createShopHandler({ mutant: cfg.mutant ?? null, control: cfg.control ?? null, transforms: cfg.transforms ?? null, priceText: cfg.priceText }) : createShopCleanHandler({ transforms: cfg.transforms ?? null });
+  const handler =
+    cfg.site === "shop" ? createShopHandler({ mutant: cfg.mutant ?? null, control: cfg.control ?? null, transforms: cfg.transforms ?? null, priceText: cfg.priceText })
+    : cfg.site === "degraded" ? createShopCleanDegradedHandler({ transforms: cfg.transforms ?? null })
+    : createShopCleanHandler({ transforms: cfg.transforms ?? null });
   return startFixtureServer({ handler, logFile: cfg.logFile, port: cfg.port });
 }
 
-/** Захищений браузер для фікстур: дозволені рівно origin-и фікстур (mode fixture, DEV-8/DEV-13). */
-export async function launchForFixtures(ports: number[]): Promise<SecureBrowser> {
-  return secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: ports.map((p) => `http://127.0.0.1:${p}`) });
+/**
+ * Нейтральні хости сліпого прогону (DEV-74): ім'я зони `.test` → ЛИШЕ 127.0.0.1. Резолвер ін'єктується в egress-проксі
+ * (єдиний вихід Chromium); проксі й далі вимагає, щоб усі адреси були loopback, а allow-list містить рівно `host:port`.
+ * Ім'я поза таблицею → ENOTFOUND (проксі відмовить).
+ */
+export function hostMapResolver(map: Readonly<Record<string, string>>): Resolver {
+  return async (h) => {
+    const ip = map[h.toLowerCase()];
+    if (!ip) throw Object.assign(new Error(`ENOTFOUND ${h}`), { code: "ENOTFOUND" });
+    return [{ address: ip, family: 4 }];
+  };
+}
+
+/** Захищений браузер для фікстур: дозволені рівно origin-и фікстур (mode fixture, DEV-8/DEV-13). `hosts` — нейтральні `.test`-хости. */
+export async function launchForFixtures(ports: number[], hosts: ReadonlyArray<{ host: string; port: number }> = []): Promise<SecureBrowser> {
+  return secureLaunch({
+    mode: "fixture",
+    allowFixtureLoopback: true,
+    fixtureOrigins: [...ports.map((p) => `http://127.0.0.1:${p}`), ...hosts.map((h) => `http://${h.host}:${h.port}`)],
+    ...(hosts.length ? { resolver: hostMapResolver(Object.fromEntries(hosts.map((h) => [h.host, "127.0.0.1"]))) } : {}),
+  });
 }
 
 export interface AuditRunCfg extends FixtureCfg {
@@ -45,13 +68,15 @@ export interface AuditRunCfg extends FixtureCfg {
   engine?: "v1" | "v2";
   /** ліміти crawl (за замовчуванням 12/3/3) */
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
+  /** нейтральний хост замість 127.0.0.1 (сліпий прогін E3c): seed = http://<host>:<port>/; хост має бути в launchForFixtures(…, hosts) */
+  host?: string;
 }
 export async function auditFixture(cfg: AuditRunCfg): Promise<{ result: AuditResult; server: FixtureServer }> {
   const server = await startFixture(cfg);
   try {
     const result = await auditSite({
       secure: cfg.sb,
-      seedUrl: server.origin + "/",
+      seedUrl: cfg.host ? `http://${cfg.host}:${cfg.port}/` : server.origin + "/",
       runDir: cfg.runDir,
       writeShots: cfg.shots,
       tiles: cfg.tiles ?? cfg.shots,

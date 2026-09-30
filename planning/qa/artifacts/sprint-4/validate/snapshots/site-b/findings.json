@@ -1,0 +1,70 @@
+[
+  {
+    "finding_key": "accessibility|category|axe:image-redundant-alt|main/img",
+    "category": "accessibility",
+    "page_group": "category",
+    "claim_kind": "axe:image-redundant-alt",
+    "detector_ids": [
+      "axe:image-redundant-alt"
+    ],
+    "evidence_ids": [
+      "ev_95b488a93b95",
+      "ev_9c90b3f8e935",
+      "ev_ee68f6556ce0",
+      "ev_f20a011dc103"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 4,
+    "component": "main/img"
+  },
+  {
+    "finding_key": "cta|product|below_fold",
+    "category": "cta",
+    "page_group": "product",
+    "claim_kind": "below_fold",
+    "detector_ids": [
+      "cta_below_fold"
+    ],
+    "evidence_ids": [
+      "ev_56dffaa01f9c",
+      "ev_7882568d8d7c",
+      "ev_8f33aa933054",
+      "ev_a090a4a690d5",
+      "ev_a9404d1c571c",
+      "ev_f8a2221ce3f1"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  },
+  {
+    "finding_key": "shipping|product|deep_link_only",
+    "category": "shipping",
+    "page_group": "product",
+    "claim_kind": "deep_link_only",
+    "detector_ids": [
+      "shipping_depth"
+    ],
+    "evidence_ids": [
+      "ev_6f2c162186fe",
+      "ev_a65703ef2f3a",
+      "ev_ab79daef44b7",
+      "ev_d4e55c66eda8",
+      "ev_d7734e3ffc34",
+      "ev_f0786855b15b"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  }
+]

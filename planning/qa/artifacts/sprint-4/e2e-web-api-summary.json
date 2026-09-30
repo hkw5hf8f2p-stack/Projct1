@@ -1,0 +1,42 @@
+{
+  "web": "next dev, SITELENS_SOURCE api, http://127.0.0.1:3131 → http://127.0.0.1:3121",
+  "run_1": {
+    "audit_id": "aud_4724cf7c2c98f399",
+    "llm": "none",
+    "lang": "uk",
+    "findings": 8,
+    "screenshot_request": {
+      "status": 200,
+      "type": "image/png"
+    },
+    "natural_width": 1440
+  },
+  "run_2": {
+    "audit_id": "aud_5c2c0594672061c9",
+    "llm": "none",
+    "lang": "en",
+    "findings": 8,
+    "screenshot_request": {
+      "status": 200,
+      "type": "image/png"
+    },
+    "natural_width": 1440
+  },
+  "run_3": {
+    "audit_id": "aud_3b91f6c5f039b957",
+    "llm": "replay",
+    "lang": "uk",
+    "findings": 12,
+    "screenshot_request": {
+      "status": 200,
+      "type": "image/png"
+    },
+    "natural_width": 1440
+  },
+  "non_get_to_shop": {
+    "add_to_cart_get": 0,
+    "logout": 0,
+    "delete_action": 0,
+    "non_get": 0
+  }
+}

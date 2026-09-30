@@ -13,6 +13,7 @@ import { Report, type Report as ReportT } from "@sitelens/schemas";
 import { exampleReport } from "../../../packages/reporting/src/testing/example-report.js";
 import { auditDir, completeAudit, createBoss, failAudit, insertAudit, loadConfig, newAuditId, saveReport, startBoss } from "@sitelens/pipeline";
 import { buildServer } from "../src/server.js";
+import { artifactDir } from "../../../scripts/artifact-dir.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 
 process.env["LOG_LEVEL"] = "silent";
@@ -36,6 +37,8 @@ const store = async (id: string, report: unknown) => saveReport(db.pool, id, { r
 const get = (url: string) => app.inject({ method: "GET", url });
 
 let A: string, B: string;
+const attackLog: Array<{ attack: string; ref: string; status: number; leaked_secret_bytes: boolean }> = [];
+const naiveLog: Array<{ ref: string; leaks: boolean }> = [];
 beforeAll(async () => {
   cluster = await startTestCluster();
   db = await freshDatabase(cluster.url);
@@ -58,6 +61,9 @@ beforeAll(async () => {
   symlinkSync(b, path.join(a, "pages/linkdir"));
 });
 afterAll(async () => {
+  const d = artifactDir("sprint-4");
+  mkdirSync(d, { recursive: true });
+  writeFileSync(path.join(d, "api-artifacts-traversal.json"), JSON.stringify({ schema: "sitelens-s4-traversal/v1", attacks: attackLog.length, all_404: attackLog.every((x) => x.status === 404), leaked: attackLog.filter((x) => x.leaked_secret_bytes).length, control_naive_implementation_leaks: naiveLog, attack_log: attackLog }, null, 2) + "\n");
   await app?.close();
   await boss?.stop({ graceful: false, close: true }).catch(() => undefined);
   await db?.drop();
@@ -89,7 +95,7 @@ describe("GET /api/audits/:id/report", () => {
     expect(r.headers["cache-control"]).toBe("no-store");
     const parsed = Report.parse(r.json());
     expect(parsed.findings.length).toBe(rep.findings.length);
-    expect(JSON.stringify(parsed)).toBe(JSON.stringify(Report.parse(rep)));
+    expect(r.json()).toEqual(JSON.parse(JSON.stringify(Report.parse(rep))));
   });
 
   it("fail-closed: звіт, що не проходить контракт, і звіт із забороненим твердженням НЕ віддаються (503), тіло не містить тексту порушення", async () => {
@@ -126,30 +132,33 @@ describe("GET /api/audits/:id/artifacts/* (лише файли цього ауд
     expect((await get(url(A, "pages/index/notes.txt"))).statusCode).toBe(404);
   });
 
-  const ATTACKS: Array<[string, string]> = [
-    ["../B (чужий аудит)", `../${"B"}/pages/x/secret.png`],
-    ["%2e%2e/ (кодований)", `%2e%2e/${"B"}/pages/x/secret.png`],
-    ["..%2f (кодований слеш)", `..%2f${"B"}%2fpages%2fx%2fsecret.png`],
-    ["всередині шляху pages/../..", `pages/../../${"B"}/pages/x/secret.png`],
-    ["вихід із ARTIFACT_DIR", "%2e%2e%2f%2e%2e%2foutside.png"],
-    ["зворотний слеш", "pages\\..\\..\\outside.png"],
-    ["абсолютний шлях", "/etc/passwd"],
-    ["подвійний слеш", "//etc/passwd"],
-    ["NUL-байт", "pages/index/1440x1000/viewport.png%00.txt"],
-    ["символічне посилання на файл поза каталогом", "pages/evil.png"],
-    ["символічне посилання на каталог чужого аудиту", "pages/linkdir/pages/x/secret.png"],
-    ["каталог", "pages/index"],
-    ["прихований файл", "pages/index/.hidden.png"],
-    ["крапка-сегмент", "pages/./index/1440x1000/viewport.png"],
-    ["порожній сегмент", "pages//index/1440x1000/viewport.png"],
-    ["дозволене розширення в невідомому місці", "pages/index/1440x1000/nope.png"],
-    ["дуже довгий шлях", "a/".repeat(200) + "x.png"],
+  // ref будується всередині тесту (A, B — id аудитів, що з'являються в beforeAll); «./» у шляху нормалізує сам HTTP-клієнт до відправки — до обробника не доходить
+  const ATTACKS: Array<[string, () => string]> = [
+    ["../<чужий аудит>", () => `../${B}/pages/x/secret.png`],
+    ["%2e%2e/ (кодований)", () => `%2e%2e/${B}/pages/x/secret.png`],
+    ["..%2f (кодований слеш)", () => `..%2f${B}%2fpages%2fx%2fsecret.png`],
+    ["всередині шляху pages/../..", () => `pages/../../${B}/pages/x/secret.png`],
+    ["вихід із каталогу аудиту в ARTIFACT_DIR (кодований)", () => "%2e%2e%2foutside.png"],
+    ["вихід за ARTIFACT_DIR (кодований)", () => "%2e%2e%2f%2e%2e%2foutside.png"],
+    ["зворотний слеш", () => "pages\\..\\..\\outside.png"],
+    ["абсолютний шлях", () => "/etc/passwd"],
+    ["подвійний слеш", () => "//etc/passwd"],
+    ["NUL-байт", () => "pages/index/1440x1000/viewport.png%00.txt"],
+    ["символічне посилання на файл поза каталогом", () => "pages/evil.png"],
+    ["символічне посилання на каталог чужого аудиту", () => "pages/linkdir/pages/x/secret.png"],
+    ["каталог", () => "pages/index"],
+    ["прихований файл", () => "pages/index/.hidden.png"],
+    ["порожній сегмент", () => "pages//index/1440x1000/viewport.png"],
+    ["неіснуючий файл", () => "pages/index/1440x1000/nope.png"],
+    ["дуже довгий шлях", () => "a/".repeat(200) + "x.png"],
   ];
-  for (const [name, ref] of ATTACKS) {
+  for (const [name, mkRef] of ATTACKS) {
     it(`заборонено: ${name} → 404, вмісту чужого файлу немає у відповіді`, async () => {
+      const ref = mkRef();
       const r = await get(url(A, ref));
       expect(r.statusCode, `${ref} → ${r.statusCode}`).toBe(404);
       expect(r.rawPayload.includes(SECRET)).toBe(false);
+      attackLog.push({ attack: name, ref: ref.length > 60 ? ref.slice(0, 57) + "…" : ref, status: r.statusCode, leaked_secret_bytes: r.rawPayload.includes(SECRET) });
     });
   }
 
@@ -162,9 +171,10 @@ describe("GET /api/audits/:id/artifacts/* (лише файли цього ауд
 
   it("контроль: НАЇВНА реалізація (path.join без перевірки) на тих самих входах ВИТІКАЄ — атаки реальні, тест умів би впасти", () => {
     const naive = (id: string, ref: string) => { try { return readFileSync(path.join(auditDir(art, id), decodeURIComponent(ref))); } catch { return null; } };
-    expect(naive(A, `../${"B"}/pages/x/secret.png`)?.equals(SECRET)).toBe(true);
-    expect(naive(A, "%2e%2e%2f%2e%2e%2foutside.png")?.equals(SECRET)).toBe(true);
+    expect(naive(A, `../${B}/pages/x/secret.png`)?.equals(SECRET)).toBe(true);
+    expect(naive(A, "%2e%2e%2foutside.png")?.equals(SECRET)).toBe(true);
     expect(naive(A, "pages/evil.png")?.equals(SECRET)).toBe(true); // symlink: навіть «нормалізований» шлях без realpath
+    for (const ref of [`../${B}/pages/x/secret.png`, "%2e%2e%2foutside.png", "pages/evil.png"]) naiveLog.push({ ref, leaks: naive(A, ref)?.equals(SECRET) === true });
   });
 
   it("невідомий аудит → 404; TTL-видалені артефакти → 404 із поясненням", async () => {

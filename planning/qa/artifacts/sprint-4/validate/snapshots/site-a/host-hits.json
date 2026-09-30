@@ -1,0 +1,96 @@
+{
+  "min_delay_ms": 0,
+  "max_concurrent_pages_per_host": 1,
+  "per_host": {
+    "site-a.test:4213": {
+      "navigations": 14,
+      "min_gap_ms": 1292
+    }
+  },
+  "hits": [
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/",
+      "ts": "2026-09-30T04:09:18.003Z",
+      "gap_ms": null
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/",
+      "ts": "2026-09-30T04:09:19.295Z",
+      "gap_ms": 1292
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/catalog",
+      "ts": "2026-09-30T04:09:20.810Z",
+      "gap_ms": 1515
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/catalog",
+      "ts": "2026-09-30T04:09:22.280Z",
+      "gap_ms": 1470
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/glass-kettle",
+      "ts": "2026-09-30T04:09:23.698Z",
+      "gap_ms": 1418
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/glass-kettle",
+      "ts": "2026-09-30T04:09:25.236Z",
+      "gap_ms": 1538
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/travel-thermos",
+      "ts": "2026-09-30T04:09:26.812Z",
+      "gap_ms": 1576
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/travel-thermos",
+      "ts": "2026-09-30T04:09:28.363Z",
+      "gap_ms": 1551
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/wooden-board",
+      "ts": "2026-09-30T04:09:29.967Z",
+      "gap_ms": 1604
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/product/wooden-board",
+      "ts": "2026-09-30T04:09:31.399Z",
+      "gap_ms": 1432
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/shipping",
+      "ts": "2026-09-30T04:09:32.943Z",
+      "gap_ms": 1544
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/shipping",
+      "ts": "2026-09-30T04:09:34.293Z",
+      "gap_ms": 1350
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/about",
+      "ts": "2026-09-30T04:09:35.617Z",
+      "gap_ms": 1324
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/about",
+      "ts": "2026-09-30T04:09:37.061Z",
+      "gap_ms": 1444
+    }
+  ]
+}

@@ -139,6 +139,9 @@ function normalizeAllowEntry(e: string): string {
   if (!m) throw new Error(`fixture allow-list: очікується host:port, отримано «${e}»`);
   const host = m[1]!.replace(/^\[|\]$/g, "");
   if (host === "localhost") return `localhost:${m[2]}`;
+  // S4 (DEV-74): нейтральні хости сліпого прогону E3c — зарезервована зона RFC 6761 `.test` (у публічному DNS не резолвиться).
+  // Дозвіл лише на ім'я; вирішує резолвер, а `decide()` вимагає, щоб УСІ адреси були loopback (інакше відмова).
+  if (/^[a-z0-9]([a-z0-9-]*[a-z0-9])?\.test$/.test(host)) return `${host}:${m[2]}`;
   const lit = classifyIpLiteral(host);
   if (!lit || (lit.range !== "127.0.0.0/8" && lit.range !== "::1/128"))
     throw new Error(`fixture allow-list дозволяє лише loopback host:port, отримано «${e}»`);

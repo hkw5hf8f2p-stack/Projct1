@@ -1,9 +1,30 @@
 {
   "1_restart_kill9": {
     "scenarios_passed": "3/3",
-    "pages_lost_plus_evidence_lost": 0,
-    "duplicated": 0,
-    "lighthouse_rows_exactly_once": true
+    "pages_evidence_jobs_lost": 0,
+    "extra_or_duplicated_vs_baseline": 0,
+    "lighthouse_rows_per_scenario_vs_baseline": [
+      "2/2",
+      "2/2",
+      "2/2"
+    ],
+    "lighthouse_rows_exactly_once_lh_scenario": true,
+    "dup_control_detects_planted_double_lighthouse": [
+      true,
+      true,
+      true
+    ],
+    "meaning": "0 дублів = рівність множин із baseline (id сторінок, id доказів усіх типів, ключі задач); count−count(DISTINCT) по PK — structural, не рахується",
+    "run": {
+      "git_sha": "eb15d418b1c491edad74cb9b94ce11883e16167e",
+      "working_tree_dirty_files": 23,
+      "phases": [
+        "baseline",
+        "crawl",
+        "lighthouse",
+        "api"
+      ]
+    }
   },
   "2_partial_failure": {
     "status": "completed",
@@ -46,7 +67,7 @@
   },
   "8_orphans_after_kill9": {
     "orphans": 0,
-    "foreign_browsers_untouched": 24
+    "foreign_browsers_untouched": 0
   },
   "9_listen": {
     "loopback_only": true,

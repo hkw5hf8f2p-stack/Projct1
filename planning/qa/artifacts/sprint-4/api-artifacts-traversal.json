@@ -1,0 +1,124 @@
+{
+  "schema": "sitelens-s4-traversal/v1",
+  "attacks": 17,
+  "all_404": true,
+  "leaked": 0,
+  "control_naive_implementation_leaks": [
+    {
+      "ref": "../aud_2866c1cef235a667/pages/x/secret.png",
+      "leaks": true
+    },
+    {
+      "ref": "%2e%2e%2foutside.png",
+      "leaks": true
+    },
+    {
+      "ref": "pages/evil.png",
+      "leaks": true
+    }
+  ],
+  "attack_log": [
+    {
+      "attack": "../<чужий аудит>",
+      "ref": "../aud_2866c1cef235a667/pages/x/secret.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "%2e%2e/ (кодований)",
+      "ref": "%2e%2e/aud_2866c1cef235a667/pages/x/secret.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "..%2f (кодований слеш)",
+      "ref": "..%2faud_2866c1cef235a667%2fpages%2fx%2fsecret.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "всередині шляху pages/../..",
+      "ref": "pages/../../aud_2866c1cef235a667/pages/x/secret.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "вихід із каталогу аудиту в ARTIFACT_DIR (кодований)",
+      "ref": "%2e%2e%2foutside.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "вихід за ARTIFACT_DIR (кодований)",
+      "ref": "%2e%2e%2f%2e%2e%2foutside.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "зворотний слеш",
+      "ref": "pages\\..\\..\\outside.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "абсолютний шлях",
+      "ref": "/etc/passwd",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "подвійний слеш",
+      "ref": "//etc/passwd",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "NUL-байт",
+      "ref": "pages/index/1440x1000/viewport.png%00.txt",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "символічне посилання на файл поза каталогом",
+      "ref": "pages/evil.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "символічне посилання на каталог чужого аудиту",
+      "ref": "pages/linkdir/pages/x/secret.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "каталог",
+      "ref": "pages/index",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "прихований файл",
+      "ref": "pages/index/.hidden.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "порожній сегмент",
+      "ref": "pages//index/1440x1000/viewport.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "неіснуючий файл",
+      "ref": "pages/index/1440x1000/nope.png",
+      "status": 404,
+      "leaked_secret_bytes": false
+    },
+    {
+      "attack": "дуже довгий шлях",
+      "ref": "a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a…",
+      "status": 404,
+      "leaked_secret_bytes": false
+    }
+  ]
+}

@@ -76,7 +76,7 @@ const integrityOk = (i: Integrity): boolean => i.pages_lost === 0 && i.pages_ext
  */
 async function dupControl(id: string, exp: Ref) {
   const planted = "ev_00000000d0d0";
-  const n = await q(db, "INSERT INTO evidence SELECT * FROM jsonb_populate_record(NULL::evidence, to_jsonb(e) || jsonb_build_object('id', $2::text)) FROM evidence e WHERE audit_run_id = $1 AND type = 'lighthouse' ORDER BY id LIMIT 1 RETURNING id", [id, planted]);
+  const n = await q(db, "INSERT INTO evidence SELECT r.* FROM evidence e, LATERAL jsonb_populate_record(NULL::evidence, to_jsonb(e) || jsonb_build_object('id', $2::text)) r WHERE e.audit_run_id = $1 AND e.type = 'lighthouse' ORDER BY e.id LIMIT 1 RETURNING id", [id, planted]);
   try {
     const bad = await integrity(id, exp);
     return { planted_rows: n.length, detected: !integrityOk(bad) && bad.evidence_extra > 0 && bad.lighthouse_rows > bad.lighthouse_rows_expected_from_baseline, evidence_extra: bad.evidence_extra, lighthouse_rows: bad.lighthouse_rows, lighthouse_rows_expected: bad.lighthouse_rows_expected_from_baseline, structural_evidence_duplicated_would_have_been: bad.structural_evidence_duplicated };

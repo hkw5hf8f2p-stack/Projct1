@@ -18,7 +18,15 @@ const PRODUCTS: Product[] = [
   { slug: "wooden-board", id: 3, name: "Дерев'яна дошка", nameEn: "Wooden board", lead: "Дошка з бука для кухні.", leadEn: "A beech board for the kitchen.", color: "#fefcbf", price: "459 грн", priceEn: "459 UAH", oldPrice: "549 грн" },
 ];
 
+/**
+ * П'ять змін SPEC §67 (DEV-16, DEV-74). Використовує лише `fixtures/shop-clean-degraded`; за замовчуванням порожньо →
+ * вихід shop-clean не змінюється ні на байт (перевіряє scripts/validate/degraded.test.ts).
+ */
+export const DEGRADATIONS = ["shipping", "cta", "headline", "comparison", "trust"] as const;
+export type Degradation = (typeof DEGRADATIONS)[number];
+
 export interface ShopCleanOptions {
+  degrade?: readonly Degradation[];
   /** метаморфні трансформації (page-type-tests.md): id[] або "U5,V2" */
   transforms?: string | string[] | null;
   logFile?: string;
@@ -28,19 +36,22 @@ export interface ShopCleanOptions {
 export function createShopCleanHandler(opts: ShopCleanOptions = {}): SiteHandler {
   const t = parseTransforms(opts.transforms ?? null);
   const en = t.en;
+  const dg = new Set<Degradation>(opts.degrade ?? []);
   const L = (uk: string, e: string): string => (en ? e : uk);
   const scheme = makeScheme(t.u, PRODUCTS);
   const cat = scheme.category();
   const brand = L("ЧистийДім", "CleanHome");
   const NAV: Array<[string, string]> = [
     [cat, L("Каталог", "Catalog")],
-    ["/shipping", L("Доставка й оплата", "Shipping & payment")],
-    ["/about", L("Про нас", "About us")],
+    ...(dg.has("shipping") ? [] : ([["/shipping", L("Доставка й оплата", "Shipping & payment")]] as Array<[string, string]>)),
+    ...(dg.has("trust") ? [] : ([["/about", L("Про нас", "About us")]] as Array<[string, string]>)),
     ...(t.r1 ? ([["/cart-view", L("Кошик", "Cart")]] as Array<[string, string]>) : []),
   ];
+  // Деградована копія: місце прибраних футер-посилань займають нейтральні (Каталог, Головна), щоб кількість посилань не
+  // падала нижче порога «thin_text_no_navigation» класифікатора (DEV-34) — інакше головна стала б unknown(capture): пляма, не зміна §67.
   const FOOTER: Array<[string, string]> = [
-    ["/shipping", L("Доставка й оплата", "Shipping & payment")],
-    ["/about", L("Про нас", "About us")],
+    ...(dg.has("shipping") ? ([[cat, L("Каталог", "Catalog")]] as Array<[string, string]>) : ([["/shipping", L("Доставка й оплата", "Shipping & payment")]] as Array<[string, string]>)),
+    ...(dg.has("trust") ? ([["/", L("Головна", "Home")]] as Array<[string, string]>) : ([["/about", L("Про нас", "About us")]] as Array<[string, string]>)),
     ...(t.r2 ? ([["/checkout-view", L("Оформлення", "Checkout")]] as Array<[string, string]>) : []),
   ];
   const pName = (p: Product) => (en ? p.nameEn : p.name);
@@ -64,7 +75,7 @@ export function createShopCleanHandler(opts: ShopCleanOptions = {}): SiteHandler
   });
   const visible = t.k1 ? PRODUCTS.slice(0, 2) : PRODUCTS;
   const cards = (list: Product[], altBlank: boolean) =>
-    list.map((x, i) => `<li class="card"><img src="/img/${x.slug}.svg" alt="${altBlank && i === 1 ? "" : esc(pName(x))}" width="80" height="80"><div><h2><a href="${esc(scheme.product(x))}">${esc(pName(x))}</a></h2>${priceHtml(x)}</div></li>`).join("");
+    list.map((x, i) => `<li class="card"><img src="/img/${x.slug}.svg" alt="${altBlank && i === 1 ? "" : esc(pName(x))}" width="80" height="80"><div><h2><a href="${esc(scheme.product(x))}">${esc(pName(x))}</a></h2>${dg.has("comparison") ? "" : priceHtml(x)}</div></li>`).join("");
 
   return (req) => {
     const { method, url } = req;
@@ -88,17 +99,17 @@ export function createShopCleanHandler(opts: ShopCleanOptions = {}): SiteHandler
         description: L("Каталог товарів для дому.", "Catalog of home goods."),
         wide: true,
         main: `<img class="hero" src="/img/hero.jpg" alt="${esc(L("Полиці з посудом і текстилем у світлій кімнаті", "Shelves with dishes and textiles in a bright room"))}" width="1440" height="480">
-<div class="pad"><h1>${esc(L("Каталог товарів для дому", "Catalog of home goods"))}</h1><p>${esc(L("Небагато речей, але добре вибраних. Ціни й умови видно одразу.", "Few things, well chosen. Prices and terms are visible at once."))}</p><p><a href="${esc(cat)}">${esc(L("Відкрити каталог", "Open the catalog"))}</a></p>${t.k1 ? `\n<p><a href="${esc(scheme.product(PRODUCTS[2]!))}">${esc(L("Новинка", "New arrival"))}</a></p>` : ""}</div>`,
+<div class="pad"><h1>${esc(dg.has("headline") ? L("Якість, що надихає", "Quality that inspires") : L("Каталог товарів для дому", "Catalog of home goods"))}</h1><p>${esc(L("Небагато речей, але добре вибраних. Ціни й умови видно одразу.", "Few things, well chosen. Prices and terms are visible at once."))}</p><p><a href="${esc(cat)}">${esc(L("Відкрити каталог", "Open the catalog"))}</a></p>${t.k1 ? `\n<p><a href="${esc(scheme.product(PRODUCTS[2]!))}">${esc(L("Новинка", "New arrival"))}</a></p>` : ""}</div>`,
       });
     }
-    if (p === "/shipping") {
+    if (p === "/shipping" && !dg.has("shipping")) {
       return page(req, "shipping", {
         title: L("Доставка й оплата — ЧистийДім", "Shipping & payment — CleanHome"),
         description: L("Умови доставки й оплати.", "Shipping and payment terms."),
         main: `<h1>${esc(L("Доставка й оплата", "Shipping & payment"))}</h1><p>${esc(L("Доставка Новою поштою: 1–2 дні, від 70 грн. Оплата при отриманні.", "Shipping by courier: 1–2 days, from 70 UAH. Payment on delivery."))}</p>`,
       });
     }
-    if (p === "/about") {
+    if (p === "/about" && !dg.has("trust")) {
       return page(req, "about", {
         title: L("Про нас — ЧистийДім", "About us — CleanHome"),
         description: L("Про магазин.", "About the store."),
@@ -123,17 +134,18 @@ export function createShopCleanHandler(opts: ShopCleanOptions = {}): SiteHandler
       if (x) {
         const i = PRODUCTS.indexOf(x);
         const buy = buyControl(t, { i, label: ctaLabel(t, i, L("Додати в кошик", "Add to cart")), hiddenName: "slug", hiddenValue: x.slug, addHref: `${scheme.product(x)}${scheme.product(x).includes("?") ? "&" : "?"}add-to-cart=${x.id}` });
+        const desc = `<section aria-label="Опис"${dg.has("cta") ? ' style="height:1650px"' : ""}>${LOREM.map((q) => `<p>${dg.has("trust") ? q.replace(" Гарантійний талон входить у коробку.", "") : q}</p>`).join("")}</section>`;
         return page(req, `product:${x.slug}`, {
           title: `${pName(x)} — ${brand}`,
           description: pLead(x),
           headExtra: `${t.j1 ? jsonLdProduct(pName(x), pLead(x)) : ""}${t.j2 ? ogProduct() : ""}`,
           main: `<h1>${esc(pName(x))}</h1>
 <p class="price">${pPrice(x)}</p>
-${buy}
+${dg.has("cta") ? "" : buy}
 <p>${esc(pLead(x))}</p>
-<section aria-label="${esc(L("Доставка", "Shipping"))}"><p>${en ? `Shipping by courier: 1–2 days, from 70 UAH. See the <a href="/shipping">Shipping &amp; payment</a> page.` : `Доставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці <a href="/shipping">Доставка й оплата</a>.`}</p></section>
+${dg.has("shipping") ? "" : `<section aria-label="${esc(L("Доставка", "Shipping"))}"><p>${en ? `Shipping by courier: 1–2 days, from 70 UAH. See the <a href="/shipping">Shipping &amp; payment</a> page.` : `Доставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці <a href="/shipping">Доставка й оплата</a>.`}</p></section>`}
 <img class="gallery" src="/img/${x.slug}.svg" alt="${esc(pName(x))}${esc(L(" на світлому тлі", " on a light background"))}" width="390" height="240">
-<section aria-label="Опис">${LOREM.map((q) => `<p>${q}</p>`).join("")}</section>${t.r3 ? `\n<section aria-label="${esc(L("Схожі товари", "Similar products"))}"><h2>${esc(L("Схожі товари", "Similar products"))}</h2><ul class="cards">${cards(PRODUCTS, false)}</ul></section>` : ""}`,
+${desc}${dg.has("cta") ? `\n${buy}` : ""}${t.r3 ? `\n<section aria-label="${esc(L("Схожі товари", "Similar products"))}"><h2>${esc(L("Схожі товари", "Similar products"))}</h2><ul class="cards">${cards(PRODUCTS, false)}</ul></section>` : ""}`,
         });
       }
     }

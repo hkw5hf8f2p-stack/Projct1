@@ -90,10 +90,10 @@ describe("migrate()", () => {
 
   it("збійна міграція відкочується цілком (транзакція) і не записується", async () => {
     const d = copyMigrations();
-    writeFileSync(path.join(d, "003_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
+    writeFileSync(path.join(d, "004_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
     const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
-      await expect(migrate(fresh.url, d)).rejects.toThrow(/003_bad\.sql не застосована/);
+      await expect(migrate(fresh.url, d)).rejects.toThrow(/004_bad\.sql не застосована/);
       const t = await fresh.pool.query("SELECT to_regclass('half_done') AS t");
       expect(t.rows[0].t).toBeNull();
       const v = await fresh.pool.query("SELECT version FROM schema_migrations ORDER BY version");

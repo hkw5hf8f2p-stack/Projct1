@@ -1,6 +1,6 @@
 {
-  "audit_id": "aud_851079a4e6e50544",
-  "duration_ms": 56305,
+  "audit_id": "aud_6a78e4bcb083567c",
+  "duration_ms": 56304,
   "status": "completed",
   "ids": {
     "pages": [
@@ -16,8 +16,9 @@
       "product-softline-s1",
       "product-softline-s1-configure"
     ],
-    "ev": [
+    "ev_all": [
       "ev_099ac1e557ae",
+      "ev_0b6f6f3757a5",
       "ev_0fcc40c9006f",
       "ev_1de5ebab2ea2",
       "ev_1eb041bad07c",
@@ -45,6 +46,7 @@
       "ev_b38341a5da2b",
       "ev_cb087a9b31d4",
       "ev_cbe2bb8c4fbb",
+      "ev_ce832117a387",
       "ev_cf975b2c2b6e",
       "ev_d3b1fd1d5b00",
       "ev_da1aa8e5315b",
@@ -53,10 +55,39 @@
       "ev_e3a6f7d286da",
       "ev_f080ee1bb7d9",
       "ev_f120b619357a"
+    ],
+    "lh": [
+      "ev_0b6f6f3757a5",
+      "ev_ce832117a387"
+    ],
+    "jobs": [
+      "accessibility:about",
+      "accessibility:catalog",
+      "accessibility:help",
+      "accessibility:help-shipping",
+      "accessibility:index",
+      "accessibility:product-aquapro-x200",
+      "accessibility:product-aquapro-x200-configure",
+      "accessibility:product-aquapro-x220",
+      "accessibility:product-aquapro-x220-configure",
+      "accessibility:product-softline-s1",
+      "accessibility:product-softline-s1-configure",
+      "capture:about",
+      "capture:catalog",
+      "capture:help",
+      "capture:help-shipping",
+      "capture:index",
+      "capture:product-aquapro-x200",
+      "capture:product-aquapro-x200-configure",
+      "capture:product-aquapro-x220",
+      "capture:product-aquapro-x220-configure",
+      "capture:product-softline-s1",
+      "capture:product-softline-s1-configure",
+      "lighthouse:index:desktop"
     ]
   },
   "pages_equal_to_S1a_artifact": true,
   "s1a_pages": 11,
-  "evidence_rows": 36,
+  "evidence_rows": 38,
   "note": "ідентичність множини сторінок незалежному артефакту S1a (planning/qa/artifacts/sprint-1a-fix/shop/pages.json)"
 }

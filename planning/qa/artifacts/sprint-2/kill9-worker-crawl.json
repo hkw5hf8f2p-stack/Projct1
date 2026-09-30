@@ -1,8 +1,8 @@
 {
   "scenario": "kill9-worker-crawl",
-  "audit_id": "aud_43094de4629ee097",
+  "audit_id": "aud_29a757b4d7b52bae",
   "worker_killed": {
-    "pid": 18298,
+    "pid": 9641,
     "signal": "SIGKILL",
     "audit_status_at_kill": "crawling",
     "pages_at_kill": 4,
@@ -19,23 +19,24 @@
     "note": "інформативно: Playwright Chromium сам виходить, коли закривається канал (--remote-debugging-pipe); може встигнути зникнути за 700 мс"
   },
   "restart": {
-    "new_worker_pid": 19608,
+    "new_worker_pid": 11264,
     "recovery_report": {
-      "ts": "2026-09-30T02:04:04.305Z",
+      "ts": "2026-09-30T04:01:02.939Z",
       "file": "/home/user/Projct1/data/s2/pids/worker.json",
-      "owner_pid": 18298,
+      "owner_pid": 9641,
       "owner_was_alive": false,
       "killed": [],
       "already_gone": [
-        18347,
-        18350,
-        18351,
-        18369,
-        18353,
-        18382
+        9758,
+        9761,
+        9762,
+        9780,
+        9764,
+        9793
       ],
       "skipped_reused_pid": [],
-      "killed_from_spawn_log": []
+      "killed_from_spawn_log": [],
+      "profile_dirs_removed": []
     },
     "note": "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)"
   },
@@ -62,15 +63,36 @@
     "pages_found": 11,
     "pages_lost": 0,
     "pages_extra": 0,
-    "pages_duplicated": 0,
+    "evidence_expected": 38,
     "evidence_rows": 38,
-    "evidence_duplicated": 0,
-    "jobs_duplicated": 0,
-    "evidence_equal_to_baseline": true,
     "evidence_lost": 0,
     "evidence_extra": 0,
+    "evidence_set_equal_to_baseline_incl_lighthouse": true,
+    "lighthouse_rows": 2,
+    "lighthouse_rows_expected_from_baseline": 2,
+    "jobs_expected": 23,
+    "jobs_found": 23,
+    "jobs_lost": 0,
+    "jobs_extra": 0,
+    "jobs_set_equal_to_baseline": true,
+    "structural_note": "PK-лічильники (count − count(DISTINCT)) структурно нульові й не входять у pass; «0 дублів» = рівність множин із baseline",
+    "structural_pages_duplicated": 0,
+    "structural_evidence_duplicated": 0,
+    "structural_jobs_duplicated": 0,
     "missing": [],
-    "extra": []
+    "extra": [],
+    "evidence_lost_ids": [],
+    "evidence_extra_ids": [],
+    "jobs_lost_keys": [],
+    "jobs_extra_keys": []
+  },
+  "dup_control": {
+    "planted_rows": 1,
+    "detected": true,
+    "evidence_extra": 1,
+    "lighthouse_rows": 3,
+    "lighthouse_rows_expected": 2,
+    "structural_evidence_duplicated_would_have_been": 0
   },
   "queue_jobs": [
     {
@@ -154,6 +176,11 @@
       "retry_count": 0
     },
     {
+      "name": "generate_report",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
       "name": "generate_tasks",
       "state": "completed",
       "retry_count": 0
@@ -225,57 +252,15 @@
     "independent_scan": {
       "orphan_browsers": [],
       "orphan_postgres": [],
-      "foreign_browsers_untouched": [
-        2463,
-        2472,
-        2473,
-        2475,
-        2496,
-        2511,
-        2512,
-        2513,
-        2541,
-        2546,
-        2625,
-        14847,
-        14855,
-        14856,
-        14858,
-        14880,
-        14893,
-        14894,
-        14905,
-        14922,
-        14923,
-        14942,
-        14963,
-        15026
-      ],
+      "foreign_browsers_untouched": [],
       "foreign_browsers_before": [
-        2463,
-        2472,
-        2473,
-        2475,
-        2496,
-        2511,
-        2512,
-        2513,
-        2541,
-        2546,
-        2625,
-        14847,
-        14855,
-        14856,
-        14858,
-        14880,
-        14893,
-        14894,
-        14905,
-        14922,
-        14923,
-        14942,
-        14963,
-        15026
+        8512,
+        8515,
+        8516,
+        8518,
+        8533,
+        8547,
+        9207
       ],
       "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
     }

@@ -1,0 +1,92 @@
+{
+  "index": {
+    "D": {
+      "dom_content_loaded_ms": 58.70000000111759,
+      "load_ms": 90.10000000149012,
+      "first_paint_ms": 84,
+      "fcp_ms": 84,
+      "resource_count": 1,
+      "transfer_bytes": 14120
+    },
+    "M": {
+      "dom_content_loaded_ms": 36.59999999962747,
+      "load_ms": 59.59999999962747,
+      "first_paint_ms": 96,
+      "fcp_ms": 96,
+      "resource_count": 1,
+      "transfer_bytes": 14120
+    }
+  },
+  "catalog": {
+    "D": {
+      "dom_content_loaded_ms": 40.40000000037253,
+      "load_ms": 69.59999999962747,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
+      "resource_count": 3,
+      "transfer_bytes": 7385
+    },
+    "M": {
+      "dom_content_loaded_ms": 56.90000000037253,
+      "load_ms": 113.29999999888241,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 3,
+      "transfer_bytes": 7385
+    }
+  },
+  "product-glass-kettle": {
+    "D": {
+      "dom_content_loaded_ms": 55.5,
+      "load_ms": 78.29999999888241,
+      "first_paint_ms": 132,
+      "fcp_ms": 132,
+      "resource_count": 1,
+      "transfer_bytes": 7315
+    },
+    "M": {
+      "dom_content_loaded_ms": 54.20000000111759,
+      "load_ms": 54.600000001490116,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
+      "resource_count": 1,
+      "transfer_bytes": 7315
+    }
+  },
+  "product-travel-thermos": {
+    "D": {
+      "dom_content_loaded_ms": 25.09999999962747,
+      "load_ms": 30.199999999254942,
+      "first_paint_ms": 72,
+      "fcp_ms": 72,
+      "resource_count": 1,
+      "transfer_bytes": 7315
+    },
+    "M": {
+      "dom_content_loaded_ms": 32.40000000037253,
+      "load_ms": 44.90000000037253,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
+      "resource_count": 1,
+      "transfer_bytes": 7315
+    }
+  },
+  "product-wooden-board": {
+    "D": {
+      "dom_content_loaded_ms": 30.200000001117587,
+      "load_ms": 49.20000000111759,
+      "first_paint_ms": 92,
+      "fcp_ms": 92,
+      "resource_count": 1,
+      "transfer_bytes": 7277
+    },
+    "M": {
+      "dom_content_loaded_ms": 63,
+      "load_ms": 64.59999999962747,
+      "first_paint_ms": 104,
+      "fcp_ms": 104,
+      "resource_count": 1,
+      "transfer_bytes": 7277
+    }
+  }
+}

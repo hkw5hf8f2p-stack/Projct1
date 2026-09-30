@@ -1,47 +1,53 @@
 {
-  "finished_at": "2026-09-30T02:41:52.574Z",
+  "finished_at": "2026-09-30T04:03:41.695Z",
   "results": {
+    "baseline": {
+      "status": "completed",
+      "pages": 11,
+      "s1a_equal": true,
+      "evidence": 38
+    },
+    "kill9-worker-crawl": {
+      "pass": true,
+      "pages": "11/11",
+      "lost": 0,
+      "duplicates_or_extra": 0,
+      "lighthouse_rows": "2/2",
+      "dup_control_detected": true,
+      "orphans_after": 0
+    },
     "kill9-worker-lighthouse": {
       "pass": true,
       "pages": "4/4",
       "lost": 0,
-      "duplicated": 0,
+      "duplicates_or_extra": 0,
+      "lighthouse_rows": "2/2",
+      "dup_control_detected": true,
       "orphans_after": 0,
       "lighthouse_rows_exactly_once": true
+    },
+    "kill9-api": {
+      "pass": true,
+      "pages": "11/11",
+      "lost": 0,
+      "duplicates_or_extra": 0,
+      "lighthouse_rows": "2/2",
+      "dup_control_detected": true,
+      "outage_samples_failed": 33
     }
   },
   "final_orphan_scan": {
     "orphan_browsers": [],
     "orphan_postgres": [],
-    "foreign_browsers_untouched": [
-      14847,
-      14855,
-      14856,
-      14858,
-      14880,
-      14893,
-      14894,
-      14905,
-      14922,
-      14923,
-      14942,
-      14963,
-      15026
-    ],
+    "foreign_browsers_untouched": [],
     "foreign_browsers_before": [
-      14847,
-      14855,
-      14856,
-      14858,
-      14880,
-      14893,
-      14894,
-      14905,
-      14922,
-      14923,
-      14942,
-      14963,
-      15026
+      8512,
+      8515,
+      8516,
+      8518,
+      8533,
+      8547,
+      9207
     ],
     "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
   }

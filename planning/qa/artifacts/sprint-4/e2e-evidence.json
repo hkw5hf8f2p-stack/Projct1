@@ -1,8 +1,8 @@
 {
   "none_run_ids": [
-    "aud_c5d2aacdf7ebbbda",
-    "aud_44d6ff64590f5d45",
-    "aud_d2afe918c749161a"
+    "aud_936bb674874dcecb",
+    "aud_e641c6e2e18a9a19",
+    "aud_b66dd16cfb949cf3"
   ],
   "shop_state_after_none": {
     "add_to_cart_get": 0,
@@ -29,6 +29,10 @@
     "llm_calls": 33,
     "tokens_input": 58019,
     "tokens_output": 7464
+  },
+  "hostile_quote_rejected": {
+    "sessions_with_invented_quote": 5,
+    "rejected_by_code": 5
   },
   "budget_states": {
     "crawl": "done",

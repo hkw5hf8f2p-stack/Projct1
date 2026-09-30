@@ -1,25 +1,25 @@
 {
   "scenario": "kill9-api",
-  "audit_id": "aud_5629bf423a3d06d5",
+  "audit_id": "aud_06a524b4effed9ce",
   "api_killed": {
-    "pid": 18229,
+    "pid": 9522,
     "signal": "SIGKILL",
     "pages_at_kill": 3
   },
   "connection_refused_after_kill": true,
   "worker_unaffected": {
-    "pid_before": 22198,
-    "pid_after": 22198,
+    "pid_before": 13604,
+    "pid_after": 13604,
     "pages_during_api_downtime": 4,
     "progressed_while_api_dead": true
   },
   "restart": {
-    "new_api_pid": 23367
+    "new_api_pid": 14133
   },
   "poller": {
-    "samples": 193,
-    "failures": 30,
-    "first_ok_after_outage_ms": 23859,
+    "samples": 168,
+    "failures": 33,
+    "first_ok_after_outage_ms": 22460,
     "error_samples": [
       "Error: connect ECONNREFUSED 127.0.0.1:3101"
     ]
@@ -32,15 +32,36 @@
     "pages_found": 11,
     "pages_lost": 0,
     "pages_extra": 0,
-    "pages_duplicated": 0,
+    "evidence_expected": 38,
     "evidence_rows": 38,
-    "evidence_duplicated": 0,
-    "jobs_duplicated": 0,
-    "evidence_equal_to_baseline": true,
     "evidence_lost": 0,
     "evidence_extra": 0,
+    "evidence_set_equal_to_baseline_incl_lighthouse": true,
+    "lighthouse_rows": 2,
+    "lighthouse_rows_expected_from_baseline": 2,
+    "jobs_expected": 23,
+    "jobs_found": 23,
+    "jobs_lost": 0,
+    "jobs_extra": 0,
+    "jobs_set_equal_to_baseline": true,
+    "structural_note": "PK-лічильники (count − count(DISTINCT)) структурно нульові й не входять у pass; «0 дублів» = рівність множин із baseline",
+    "structural_pages_duplicated": 0,
+    "structural_evidence_duplicated": 0,
+    "structural_jobs_duplicated": 0,
     "missing": [],
-    "extra": []
+    "extra": [],
+    "evidence_lost_ids": [],
+    "evidence_extra_ids": [],
+    "jobs_lost_keys": [],
+    "jobs_extra_keys": []
+  },
+  "dup_control": {
+    "planted_rows": 1,
+    "detected": true,
+    "evidence_extra": 1,
+    "lighthouse_rows": 3,
+    "lighthouse_rows_expected": 2,
+    "structural_evidence_duplicated_would_have_been": 0
   },
   "atomic_submit": {
     "crawl_site_jobs_for_audit": 1
@@ -48,57 +69,15 @@
   "orphans_after": {
     "orphan_browsers": [],
     "orphan_postgres": [],
-    "foreign_browsers_untouched": [
-      2463,
-      2472,
-      2473,
-      2475,
-      2496,
-      2511,
-      2512,
-      2513,
-      2541,
-      2546,
-      2625,
-      14847,
-      14855,
-      14856,
-      14858,
-      14880,
-      14893,
-      14894,
-      14905,
-      14922,
-      14923,
-      14942,
-      14963,
-      15026
-    ],
+    "foreign_browsers_untouched": [],
     "foreign_browsers_before": [
-      2463,
-      2472,
-      2473,
-      2475,
-      2496,
-      2511,
-      2512,
-      2513,
-      2541,
-      2546,
-      2625,
-      14847,
-      14855,
-      14856,
-      14858,
-      14880,
-      14893,
-      14894,
-      14905,
-      14922,
-      14923,
-      14942,
-      14963,
-      15026
+      8512,
+      8515,
+      8516,
+      8518,
+      8533,
+      8547,
+      9207
     ],
     "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
   },

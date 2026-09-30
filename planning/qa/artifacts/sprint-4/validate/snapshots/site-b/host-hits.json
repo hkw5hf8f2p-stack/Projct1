@@ -1,0 +1,72 @@
+{
+  "min_delay_ms": 0,
+  "max_concurrent_pages_per_host": 1,
+  "per_host": {
+    "site-b.test:4214": {
+      "navigations": 10,
+      "min_gap_ms": 1454
+    }
+  },
+  "hits": [
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/",
+      "ts": "2026-09-30T04:09:38.537Z",
+      "gap_ms": null
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/",
+      "ts": "2026-09-30T04:09:39.994Z",
+      "gap_ms": 1457
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/catalog",
+      "ts": "2026-09-30T04:09:41.461Z",
+      "gap_ms": 1467
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/catalog",
+      "ts": "2026-09-30T04:09:43.031Z",
+      "gap_ms": 1570
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/glass-kettle",
+      "ts": "2026-09-30T04:09:44.561Z",
+      "gap_ms": 1530
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/glass-kettle",
+      "ts": "2026-09-30T04:09:46.161Z",
+      "gap_ms": 1600
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/travel-thermos",
+      "ts": "2026-09-30T04:09:47.898Z",
+      "gap_ms": 1737
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/travel-thermos",
+      "ts": "2026-09-30T04:09:49.352Z",
+      "gap_ms": 1454
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/wooden-board",
+      "ts": "2026-09-30T04:09:51.026Z",
+      "gap_ms": 1674
+    },
+    {
+      "host": "site-b.test:4214",
+      "url": "http://site-b.test:4214/product/wooden-board",
+      "ts": "2026-09-30T04:09:52.964Z",
+      "gap_ms": 1938
+    }
+  ]
+}

@@ -3,3 +3,4 @@ export * from "./tables.js";
 export * from "./score.js";
 export * from "./aggregate.js";
 export * from "./sessions.js";
+export * from "./validation.js";

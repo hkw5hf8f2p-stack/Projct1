@@ -1,0 +1,517 @@
+{
+  "schema": "sitelens-validate-result/v1",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "E1",
+      "status": "PASS",
+      "lines": [
+        "детерміновані x/7 = 7/7 (VERIFIED, F-DET; гейт 7/7)",
+        "LLM-лише y/3 = 3/3 (абляція: прибрано 0 опорних доказів №1/№3/№4; показник, не гейт)",
+        "разом 10/10 (гейт ≥ 8: виконано — залежить від LLM, ⏭️ live, у dev не гейт)",
+        "опорні детектори №1/№3/№4 (h1_category_overlap, term_unexplained, similar_products) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано 0); механізм абляції перевірено тестом",
+        "непередбачені знахідки (не гейт): немає",
+        "не вимірюється тут: 7 мутантів мовчать і двійник — `pnpm run audit:fixture` / S1a (E1, SCORING_SPEC §8.1)"
+      ],
+      "live_deferred": [
+        "E1_llm=3/3 і сума 10/10: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)"
+      ],
+      "data": {
+        "full": {
+          "detected": [
+            {
+              "id": 1,
+              "name": "headline",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "value_proposition|/|general"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "shipping",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "shipping|product|deep_link_only"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "jargon",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "terminology|product|general",
+                "terminology|category|general"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "similar_products",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "comparison|category|general"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "cta_below_fold",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "cta|product|below_fold"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "mobile_label",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "accessibility|*|axe:button-name|header/button"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "overflow",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "mobile_usability|product|horizontal_overflow"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "slow_image",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "performance|/|oversized_image"
+              ]
+            },
+            {
+              "id": 9,
+              "name": "alt",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "accessibility|product|axe:image-alt|main/img"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "late_price",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "pricing|category|not_in_first_viewport",
+                "pricing|product|not_in_first_viewport"
+              ]
+            }
+          ],
+          "det": {
+            "x": 7,
+            "of": 7
+          },
+          "llm": {
+            "y": 3,
+            "of": 3
+          },
+          "total": 10,
+          "unexpected": []
+        },
+        "ablation": {
+          "detected": [
+            {
+              "id": 1,
+              "name": "headline",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "value_proposition|/|general"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "shipping",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "shipping|product|deep_link_only"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "jargon",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "terminology|product|general",
+                "terminology|category|general"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "similar_products",
+              "deterministic": false,
+              "detected": true,
+              "by": [
+                "comparison|category|general"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "cta_below_fold",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "cta|product|below_fold"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "mobile_label",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "accessibility|*|axe:button-name|header/button"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "overflow",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "mobile_usability|product|horizontal_overflow"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "slow_image",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "performance|/|oversized_image"
+              ]
+            },
+            {
+              "id": 9,
+              "name": "alt",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "accessibility|product|axe:image-alt|main/img"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "late_price",
+              "deterministic": true,
+              "detected": true,
+              "by": [
+                "pricing|category|not_in_first_viewport",
+                "pricing|product|not_in_first_viewport"
+              ]
+            }
+          ],
+          "det": {
+            "x": 7,
+            "of": 7
+          },
+          "llm": {
+            "y": 3,
+            "of": 3
+          },
+          "total": 10,
+          "unexpected": []
+        },
+        "removed_hints": 0,
+        "gate": {
+          "det_ok": true,
+          "total_ok": true
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "status": "PASS",
+      "lines": [
+        "валідність: 3 прогони cache_mode=bypass, cache_read_tokens = 0/0/0, читань кешу 0/0/0 (кеш прогріто: 16 записів) → дійсні",
+        "контроль лічильника: cache_mode=use на тому ж кеші → cache_read_tokens=49175 > 0 → «недійсний» (перевірка вміє впасти)",
+        "E2(а) повний звіт [ГЕЙТ]: Jcat mean/min 1.000/1.000 (≥ 0.6/0.43), Jpg mean/min 1.000/1.000, |K3|=3 (≥ 3)",
+        "E2(б) лише LLM-знахідки [показник]: Jcat mean 1.000 (ціль ≥ 0.4: так), Jpg mean 1.000, розмір підмножин 4/4/4",
+        "RBO(p=0.8) топ-10 [інформативно]: 1.000/1.000/1.000 (середнє 1.000)",
+        "топ-5 (прогін 1): pricing|category|not_in_first_viewport · pricing|product|not_in_first_viewport · cta|product|below_fold · accessibility|*|axe:button-name|header/button · shipping|product|deep_link_only"
+      ],
+      "live_deferred": [
+        "стабільність LLM-знахідок (E2(б), RBO): оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1); fake детермінований → J=1 доводить обв'язку, не стабільність моделі"
+      ],
+      "data": {
+        "validity": {
+          "valid": true,
+          "reasons": []
+        },
+        "metrics": {
+          "runs": 3,
+          "jcat": [
+            1,
+            1,
+            1
+          ],
+          "jpg": [
+            1,
+            1,
+            1
+          ],
+          "jcat_mean": 1,
+          "jcat_min": 1,
+          "jpg_mean": 1,
+          "jpg_min": 1,
+          "k3": [
+            "cta|product|below_fold",
+            "pricing|category|not_in_first_viewport",
+            "pricing|product|not_in_first_viewport"
+          ],
+          "rbo10": [
+            1,
+            1,
+            1
+          ],
+          "rbo10_mean": 1,
+          "set_sizes": [
+            12,
+            12,
+            12
+          ]
+        },
+        "gate": {
+          "pass": true,
+          "failed": []
+        },
+        "llm_only": {
+          "runs": 3,
+          "jcat": [
+            1,
+            1,
+            1
+          ],
+          "jpg": [
+            1,
+            1,
+            1
+          ],
+          "jcat_mean": 1,
+          "jcat_min": 1,
+          "jpg_mean": 1,
+          "jpg_min": 1,
+          "k3": [
+            "comparison|category|general",
+            "terminology|product|general",
+            "value_proposition|/|general"
+          ],
+          "rbo10": [
+            1,
+            1,
+            1
+          ],
+          "rbo10_mean": 1,
+          "set_sizes": [
+            4,
+            4,
+            4
+          ]
+        },
+        "control": {
+          "cache_read_tokens": 49175,
+          "invalid": true
+        },
+        "top5": [
+          [
+            "pricing|category|not_in_first_viewport",
+            "pricing|product|not_in_first_viewport",
+            "cta|product|below_fold",
+            "accessibility|*|axe:button-name|header/button",
+            "shipping|product|deep_link_only"
+          ],
+          [
+            "pricing|category|not_in_first_viewport",
+            "pricing|product|not_in_first_viewport",
+            "cta|product|below_fold",
+            "accessibility|*|axe:button-name|header/button",
+            "shipping|product|deep_link_only"
+          ],
+          [
+            "pricing|category|not_in_first_viewport",
+            "pricing|product|not_in_first_viewport",
+            "cta|product|below_fold",
+            "accessibility|*|axe:button-name|header/button",
+            "shipping|product|deep_link_only"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E3a",
+      "status": "PASS",
+      "lines": [
+        "чистих сторінок 7; знахідок усього 0; STRONG/VERIFIED без F-DET: 0 (гейт 0); terminology/value_proposition (LLM): 0 (гейт 0); LLM HYPOTHESIS на сторінку max 0 (гейт ≤ 2); F-DET-знахідок: 0 (гейт 0)",
+        "відхилено кодом friction без перевіреного доказу (§23): 0"
+      ],
+      "live_deferred": [
+        "специфічність живої моделі на чистих сторінках: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)"
+      ],
+      "data": {
+        "result": {
+          "pass": true,
+          "violations": [],
+          "hypothesis_per_page": {
+            "/": 0,
+            "/catalog": 0,
+            "/product/glass-kettle": 0,
+            "/product/travel-thermos": 0,
+            "/product/wooden-board": 0,
+            "/shipping": 0,
+            "/about": 0
+          }
+        },
+        "findings": [],
+        "friction_rejections": 0
+      }
+    },
+    {
+      "id": "E3c",
+      "status": "PASS",
+      "lines": [
+        "гірше в 5 з 5 (гейт ≥ 4); з них КОДОМ (F-DET/F-SUP/F-BRW) 2/5 (dev-гейт ≥ 2: shipping, CTA); лише LLM 3/5 (⏭️ live)",
+        "  shipping removed: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]",
+        "  CTA less visible: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]",
+        "  vague headline: D 0→67, нових STRONG/VERIFIED 0, worse=так [llm]",
+        "  comparison help removed: D 0→69, нових STRONG/VERIFIED 0, worse=так [llm]",
+        "  trust hidden: D 0→124, нових STRONG/VERIFIED 0, worse=так [llm]",
+        "шум решти категорій |ΔD| (інформативно): accessibility=52",
+        "сліпий прогін: нейтральні хости site-a.test (база) / site-b.test (копія), слова «degraded» немає в URL/тексті/заголовках (перевіряє тест фікстури)"
+      ],
+      "live_deferred": [
+        "LLM-виміри (headline, comparison, trust): оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1). Код сам дає 2/5 < 4: без живої LLM гейт E3c недосяжний за побудовою"
+      ],
+      "data": {
+        "dims": [
+          {
+            "id": "shipping_removed",
+            "label": "shipping removed",
+            "d_original": 0,
+            "d_degraded": 85,
+            "new_strong_or_verified": [
+              "shipping|product|deep_link_only"
+            ],
+            "worse": true,
+            "worse_code": true,
+            "worse_llm": false,
+            "source": "code"
+          },
+          {
+            "id": "cta_less_visible",
+            "label": "CTA less visible",
+            "d_original": 0,
+            "d_degraded": 85,
+            "new_strong_or_verified": [
+              "cta|product|below_fold"
+            ],
+            "worse": true,
+            "worse_code": true,
+            "worse_llm": false,
+            "source": "code"
+          },
+          {
+            "id": "vague_headline",
+            "label": "vague headline",
+            "d_original": 0,
+            "d_degraded": 67,
+            "new_strong_or_verified": [],
+            "worse": true,
+            "worse_code": false,
+            "worse_llm": true,
+            "source": "llm"
+          },
+          {
+            "id": "comparison_help_removed",
+            "label": "comparison help removed",
+            "d_original": 0,
+            "d_degraded": 69,
+            "new_strong_or_verified": [],
+            "worse": true,
+            "worse_code": false,
+            "worse_llm": true,
+            "source": "llm"
+          },
+          {
+            "id": "trust_hidden",
+            "label": "trust hidden",
+            "d_original": 0,
+            "d_degraded": 124,
+            "new_strong_or_verified": [],
+            "worse": true,
+            "worse_code": false,
+            "worse_llm": true,
+            "source": "llm"
+          }
+        ],
+        "worse": 5,
+        "worse_code": 2,
+        "worse_llm_only": 3,
+        "pass": true,
+        "other_delta": {
+          "accessibility": 52
+        }
+      }
+    },
+    {
+      "id": "E4",
+      "status": "PASS",
+      "lines": [
+        "повний прогін: 16/16 викликів, 49175 токенів ≤ MAX_AUDIT_TOKENS 1650000; позначки немає ✓",
+        "обмежений (MAX_AUDIT_TOKENS=19670): 5/16 викликів, 14839 токенів; етап snapshot_sessions=budget_limited, банер «обмежено бюджетом» є ✓",
+        "лічильник у звіті (OBSERVED) = лічильник клієнта: 14839 = 14839; $ не показується (немає дати прайсу, G0-24)",
+        "контроль: та сама обрізка без банера → E4 FAIL ✓ (перевірка вміє впасти)"
+      ],
+      "live_deferred": [
+        "фактична вартість аудиту на живій моделі й $ (⏭️ S7, потрібен ключ і дата прайсу)"
+      ],
+      "data": {
+        "full": {
+          "max_audit_tokens": 1650000,
+          "used_tokens": 49175,
+          "cache_read_tokens": 0,
+          "llm_calls": 16,
+          "client_used_tokens": 49175,
+          "planned_calls": 16,
+          "stage_budget_limited": false,
+          "banner_budget_limited": false
+        },
+        "limited": {
+          "max_audit_tokens": 19670,
+          "used_tokens": 14839,
+          "cache_read_tokens": 0,
+          "llm_calls": 5,
+          "client_used_tokens": 14839,
+          "planned_calls": 16,
+          "stage_budget_limited": true,
+          "banner_budget_limited": true
+        },
+        "limit": 19670,
+        "tamper_detected": true
+      }
+    }
+  ],
+  "tokens": {
+    "max": 2000000,
+    "used": 503890,
+    "provider_calls": 165
+  },
+  "provider": "scripted-fake",
+  "stopped_reason": null
+}
