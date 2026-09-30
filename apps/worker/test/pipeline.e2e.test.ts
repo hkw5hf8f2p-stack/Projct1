@@ -48,7 +48,11 @@ async function startStack(env: Record<string, string> = {}): Promise<Stack> {
   return s;
 }
 const submit = async (s: Stack, url: string) => CreateAuditResponse.parse((await s.api.inject({ method: "POST", url: "/api/audits", payload: { url } })).json()).auditId;
-const status = async (s: Stack, id: string) => AuditStatusResponse.parse((await s.api.inject({ method: "GET", url: `/api/audits/${id}` })).json());
+const status = async (s: Stack, id: string) => {
+  const r = await s.api.inject({ method: "GET", url: `/api/audits/${id}` });
+  if (r.statusCode !== 200) throw new Error(`GET status ${r.statusCode}: ${r.body.slice(0, 300)}`);
+  return AuditStatusResponse.parse(r.json());
+};
 async function waitDone(s: Stack, id: string, ms = 240_000) {
   const t0 = Date.now();
   for (;;) {
@@ -78,14 +82,14 @@ afterAll(async () => {
 });
 
 describe("конвеєр S2 наскрізно", () => {
-  it("нормальний сайт (3 сторінки): completed; crawl/capture/lighthouse/accessibility done; LLM-етапи skipped (none); докази й артефакти є", async () => {
+  it("нормальний сайт (4 сторінки): completed; crawl/capture/lighthouse/accessibility done; LLM-етапи skipped (none); докази й артефакти є", async () => {
     const s = await startStack();
     const id = await submit(s, fx.origin + "/ok");
     const st = await waitDone(s, id);
     expect(st.status).toBe("completed");
     expect(st.error).toBeNull();
     expect(st.warnings).toEqual([]);
-    expect(st.progress).toMatchObject({ pages_captured: 3, pages_failed: 0, lighthouse_done: 1, lighthouse_failed: 0 });
+    expect(st.progress).toMatchObject({ pages_captured: 4, pages_failed: 0, lighthouse_done: 1, lighthouse_failed: 0 });
     for (const k of ["crawl", "capture", "lighthouse", "accessibility", "aggregate"]) expect(st.stage_status[k], k).toMatchObject({ status: "done" });
     for (const k of ["site_profile", "tasks", "lenses", "scenario_matrix"]) expect(st.stage_status[k], k).toMatchObject({ status: "skipped", reason: "no LLM provider" });
     expect(st.llm_mode).toBe("none");
@@ -94,10 +98,10 @@ describe("конвеєр S2 наскрізно", () => {
     expect(by["lighthouse"]).toBe(2); // performance + accessibility
     expect(by["axe"]).toBeGreaterThan(0);
     const dir = auditDir(art, id);
-    for (const f of ["crawl.json", "evidence.json", "pages/index/page-capture.json", "pages/index/1440x1000/fullpage.png", "pages/index/lighthouse-desktop.json"]) expect(existsSync(path.join(dir, f)), f).toBe(true);
+    for (const f of ["crawl.json", "evidence.json", "pages/ok/page-capture.json", "pages/ok/1440x1000/fullpage.png", "pages/ok/lighthouse-desktop.json"]) expect(existsSync(path.join(dir, f)), f).toBe(true);
     // API: сторінки й доказ
     const pages = (await s.api.inject({ method: "GET", url: `/api/audits/${id}/pages` })).json();
-    expect(pages.pages).toHaveLength(3);
+    expect(pages.pages).toHaveLength(4);
     const evId = (await q(s, "SELECT id FROM evidence WHERE audit_run_id = $1 AND type = 'axe' LIMIT 1", [id]))[0].id;
     const ev = (await s.api.inject({ method: "GET", url: `/api/audits/${id}/evidence/${evId}` })).json();
     expect(ev.evidence).toMatchObject({ id: evId, type: "axe", source_class: "BENCHMARKED" });
@@ -109,9 +113,9 @@ describe("конвеєр S2 наскрізно", () => {
     const st = await waitDone(s, id);
     expect(st.status).toBe("completed"); // НЕ failed
     expect(st.error).toBeNull();
-    expect(st.progress).toMatchObject({ pages_captured: 3, pages_failed: 1, lighthouse_done: 0, lighthouse_failed: 1 });
+    expect(st.progress).toMatchObject({ pages_captured: 4, pages_failed: 1, lighthouse_done: 0, lighthouse_failed: 1 });
     expect(st.stage_status["capture"]).toMatchObject({ status: "done" });
-    expect(String((st.stage_status["capture"] as { reason?: string }).reason)).toMatch(/1 з 4 сторінок не захоплено/);
+    expect(String((st.stage_status["capture"] as { reason?: string }).reason)).toMatch(/1 з 5 сторінок не захоплено/);
     expect(st.stage_status["lighthouse"]).toMatchObject({ status: "failed" });
     const w = st.warnings;
     expect(w.find((x) => x.stage === "capture")).toMatchObject({ class: "unsupported_site", page_url: fx.origin + "/e/500" });
