@@ -34,6 +34,22 @@ export interface AuditOptions {
   limits?: { maxPages: number; maxDepth: number; maxProducts: number };
   /** 'v1' — старий класифікатор (7c5cae8): ЛИШЕ контроль метаморфного набору; за замовчуванням 'v2' (page-type-spec.md) */
   engine?: "v1" | "v2";
+  /**
+   * Прогрес по сторінці (S2-борг): викликається після захоплення кожної сторінки (D+M) — і успішної, і з `page_error`.
+   * Збій колбека НЕ валить аудит (§48). `index` — порядковий номер захоплення (0-based), `total_limit` — стеля crawl.
+   */
+  onPage?: (p: PageProgress) => void | Promise<void>;
+}
+
+export interface PageProgress {
+  index: number;
+  total_limit: number;
+  url: string;
+  path: string;
+  page_id: string;
+  page_type: string;
+  page_error: PageError | null;
+  capture_complete: boolean;
 }
 
 export interface AuditResult {
@@ -114,6 +130,7 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
   let robots: { policy: RobotsPolicy; status: number | null; url: string } | null = null;
   if (o.ethics?.enforceRobots) robots = await fetchRobots(o.secure, new URL(o.seedUrl).origin, o.ethics.userAgent, gate);
 
+  let capturedCount = 0;
   const capturePage = async (url: string): Promise<PageCapture> => {
     const u = new URL(url);
     const pageId = pageIdOf(u);
@@ -140,7 +157,14 @@ export async function auditSite(o: AuditOptions): Promise<AuditResult> {
     const type = page_error ? "unknown" : classification ? classification.page_type : classifyPageTypeV1(d.capture);
     const reason = page_error ? "capture" : (classification?.reason ?? null);
     const pathOnly = u.pathname + u.search;
-    return { url, path: pathOnly, page_id: pageId, page_type: type, page_type_reason: reason, classification, page_error, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
+    const captured: PageCapture = { url, path: pathOnly, page_id: pageId, page_type: type, page_type_reason: reason, classification, page_error, page_group: pageGroupOf(type, u.pathname), D: d.capture, M: m.capture, timing: { D: d.timing, M: m.timing } };
+    if (o.onPage) {
+      try {
+        await o.onPage({ index: capturedCount, total_limit: (o.limits ?? CRAWL_LIMITS).maxPages, url, path: pathOnly, page_id: pageId, page_type: type, page_error, capture_complete: d.capture.completeness.capture_complete && m.capture.completeness.capture_complete });
+      } catch { /* прогрес не має валити аудит (§48) */ }
+    }
+    capturedCount++;
+    return captured;
   };
 
   // 1 сторінка одночасно на хост: усе захоплення сторінки (D+M) під HostGate.run; пауза — перед кожною навігацією

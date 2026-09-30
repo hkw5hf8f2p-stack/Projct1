@@ -27,6 +27,7 @@ let guard: { stop(): number[] };
 interface Stack { db: FreshDb; boss: PgBoss; rt: Runtime; api: FastifyInstance; stop(): Promise<void> }
 const stacks: Stack[] = [];
 let lighthouseZodIssues: string[] = [];
+let lighthouseRowsChecked = 0;
 
 async function startStack(env: Record<string, string> = {}): Promise<Stack> {
   const db = await freshDatabase(cluster.url);
@@ -115,6 +116,7 @@ describe("конвеєр S2 наскрізно", () => {
     }
     expect(Object.keys(bad).filter((t) => t !== "lighthouse"), JSON.stringify(bad)).toEqual([]); // dom/axe/screenshot — валідні
     lighthouseZodIssues = bad["lighthouse"] ?? [];
+    lighthouseRowsChecked = rows.filter((r) => r.type === "lighthouse").length;
     // API: сторінки й доказ
     const pages = (await s.api.inject({ method: "GET", url: `/api/audits/${id}/pages` })).json();
     expect(pages.pages).toHaveLength(4);
@@ -179,10 +181,9 @@ describe("конвеєр S2 наскрізно", () => {
   }, 240_000);
 });
 
-describe("відкриті питання контракту (фіксуємо як є)", () => {
-  it("рядки Lighthouse проти Zod Evidence: результат перевірки записано, не приховано", () => {
-    // Якщо тут непорожньо — Lighthouse-доказ S1b не відповідає схемі Evidence (claim_kind/category) → питання до sl-eval-science/S1b, не до S2.
-    console.info("lighthouse evidence Zod issues:", JSON.stringify(lighthouseZodIssues));
-    expect(Array.isArray(lighthouseZodIssues)).toBe(true);
+describe("контракт Evidence для Lighthouse (DEV-68, борг S2 закрито)", () => {
+  it("рядки Lighthouse з БД проходять Zod Evidence (claim_kind lighthouse_category_score): 0 порушень; є що перевіряти (2 рядки в першому тесті)", () => {
+    expect(lighthouseZodIssues).toEqual([]);
+    expect(lighthouseRowsChecked).toBe(2);
   });
 });
