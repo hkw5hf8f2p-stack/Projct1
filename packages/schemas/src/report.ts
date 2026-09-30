@@ -184,6 +184,13 @@ export const ALWAYS_APPLICABLE = ["severity", "funnel_proximity", "evidence_stre
 export const PRIORITY_EPS = 1e-9;
 /** SCORING_SPEC §6.3 */
 export const roundHalfUp = (x: number): number => Math.floor(x + 0.5 + PRIORITY_EPS);
+/**
+ * SCORING_SPEC §6.5, DEV-76 (scoring-v2): смуга ранжування — перший ключ порядку звіту. VERIFIED (перевірений кодом факт) = 1,
+ * STRONG_HYPOTHESIS і HYPOTHESIS = 0. Priority порівнюється лише всередині смуги.
+ */
+export const RANK_BAND = { VERIFIED: 1, STRONG_HYPOTHESIS: 0, HYPOTHESIS: 0 } as const;
+/** з якої версії скорингу порядок звіту — «смуга, потім priority» (раніше — лише priority desc) */
+export const scoringMajor = (v: string): number => Number(/^scoring-v(\d+)$/.exec(v)?.[1] ?? 0);
 
 export const PriorityComponent = z
   .object({
@@ -509,10 +516,15 @@ export function reportProblems(r: z.infer<typeof ReportObject>): Array<{ path: (
   r.positive_findings.forEach((p, i) => {
     for (const id of p.evidence_ids) if (ev.get(id)?.polarity !== "positive") bad(`позитив ${p.key}: доказ ${id} відсутній або не positive`, ["positive_findings", i]);
   });
-  // 2. ранги 1..n, пріоритет не зростає за рангом
+  // 2. ранги 1..n; scoring-v2+ (DEV-76): смуга VERIFIED перед гіпотезами, у смузі priority не зростає; scoring-v1: лише priority desc
+  const banded = scoringMajor(r.scoring_version) >= 2;
   r.findings.forEach((f, i) => {
     if (f.rank !== i + 1) bad("rank ≠ позиція", ["findings", i, "rank"]);
-    if (i > 0 && (r.findings[i - 1] as { priority: { value: number } }).priority.value < f.priority.value) bad("порядок не за priority desc", ["findings", i]);
+    if (i === 0) return;
+    const prev = r.findings[i - 1] as { priority: { value: number }; confidence: { level: keyof typeof RANK_BAND } };
+    const bPrev = banded ? RANK_BAND[prev.confidence.level] : 0, bCur = banded ? RANK_BAND[f.confidence.level] : 0;
+    if (bPrev < bCur) bad("порядок: гіпотеза вище перевіреного факту (смуга VERIFIED перша, DEV-76)", ["findings", i]);
+    else if (bPrev === bCur && prev.priority.value < f.priority.value) bad("порядок не за priority desc у межах смуги", ["findings", i]);
   });
   const ids = new Set(r.findings.map((f) => f.id));
   const keys = new Set(r.findings.map((f) => f.finding_key));

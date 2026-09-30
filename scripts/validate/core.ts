@@ -10,8 +10,8 @@ import { MemoryStore, loadPagesFromArtifacts, type PageInput } from "../../packa
 import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
 import type { Report } from "../../packages/schemas/src/index.js";
 import {
-  E1_GATE, E2_THRESHOLDS, E3A_LIMITS, E3C_THRESHOLDS, e1, e1Gate, e2Gate, e2Metrics, e2Validity, e3a, e3c, e4, isLlmOnly,
-  type E1Result, type E2Gate, type E2Metrics, type E2Validity, type E3aResult, type E3cResult, type E4Result, type VFinding,
+  E1_GATE, E1_RANK_GATE, E2_THRESHOLDS, E3A_LIMITS, E3C_THRESHOLDS, e1, e1Gate, e1RankGate, e2Gate, e2Metrics, e2Validity, e3a, e3c, e4, isLlmOnly, rerankV1,
+  type E1RankResult, type E1Result, type E2Gate, type E2Metrics, type E2Validity, type E3aResult, type E3cResult, type E4Result, type VFinding,
 } from "../../packages/scoring/src/index.js";
 import { toVFindings } from "./adapt.js";
 import { plannedCalls, runSnapshotSessions, type EvalRun, type EvaluatorSpec } from "./evaluator.js";
@@ -104,7 +104,25 @@ export async function buildRunReport(snap: LoadedSnapshot, label: string, o: Run
 
 // ------------------------------------------------------------------------------------------------ результати перевірок
 export type CheckId = "E1" | "E2" | "E3a" | "E3c" | "E4";
-export type Status = "PASS" | "FAIL" | "INVALID" | "NOT_RUN";
+/** DEFERRED — гейт не можна закрити без живої моделі (⏭️ live); не PASS і не FAIL, у вердикті перелічується окремо */
+export type Status = "PASS" | "FAIL" | "INVALID" | "NOT_RUN" | "DEFERRED";
+
+/**
+ * Статус E3c (DEV-77). Поріг один, зафіксований до S4: Σ worse ≥ 4/5 (SCORING_SPEC §8.3). Dev (без --strict-live): рахуються
+ * ЛИШЕ виміри, підтверджені кодом (F-DET/F-SUP/F-BRW); fake-LLM у статус не входить (його правила — дзеркало деградації).
+ * Код ≥ 4 → PASS; інакше DEFERRED (⏭️: закриває лише живий пас). strict-live: усі виміри (код + жива модель) ≥ 4 → PASS, інакше FAIL.
+ */
+export function e3cStatus(res: Pick<E3cResult, "worse" | "worse_code">, strictLive: boolean): { status: Status; label: string } {
+  const min = E3C_THRESHOLDS.min_worse;
+  if (strictLive) {
+    return res.worse >= min
+      ? { status: "PASS", label: `гірше в ${res.worse} з 5 (гейт ≥ ${min}, strict-live: код + модель) → PASS` }
+      : { status: "FAIL", label: `гірше в ${res.worse} з 5 < ${min} (strict-live: код + модель) → FAIL` };
+  }
+  return res.worse_code >= min
+    ? { status: "PASS", label: `dev: кодом гірше в ${res.worse_code} з 5 (гейт ≥ ${min}) → PASS без LLM` }
+    : { status: "DEFERRED", label: `⏭️ dev: кодом гірше в ${res.worse_code} з 5 < ${min} → гейт ≥ ${min}/5 не закривається без живої моделі (FAIL за кодом; статус ⏭️ live, не PASS)` };
+}
 export interface CheckResult {
   id: CheckId;
   status: Status;
@@ -167,11 +185,17 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       const rAbl: E1Result = e1(ablated.findings);
       const detOk = rFull.det.x === E1_GATE.det_of;
       const totalOk = e1Gate(rFull);
-      const status: Status = detOk && (!opts.strict_live || totalOk) ? "PASS" : "FAIL";
+      // критерій S4 №2 (DEV-76): 7/7 детермінованих у топ-10 ПОВНОГО звіту з гіпотезами; контроль — той самий звіт у порядку scoring-v1
+      const rank: E1RankResult = e1RankGate(full.findings);
+      const rankV1: E1RankResult = e1RankGate(rerankV1(full.findings));
+      const status: Status = detOk && rank.pass && (!opts.strict_live || totalOk) ? "PASS" : "FAIL";
+      const rankLine = (r: E1RankResult) => r.ranks.map((x) => `№${x.id}→${x.rank ?? "—"}`).join(" ");
       checks.push({
         id: "E1", status,
         lines: [
           `детерміновані x/7 = ${rFull.det.x}/${rFull.det.of} (VERIFIED, F-DET; гейт ${E1_GATE.det_of}/7)`,
+          `ранг [ГЕЙТ, кр.2]: детерміновані в топ-${E1_RANK_GATE.top} = ${rank.in_top}/${rank.of} (${rankLine(rank)}; у звіті ${rank.findings} знахідок, з них гіпотез ${rank.hypotheses}${rank.findings <= E1_RANK_GATE.top ? " — ≤ 10, гейт тривіальний за побудовою" : ""})`,
+          `контроль рангу: той самий звіт у порядку scoring-v1 (лише priority desc) → ${rankV1.in_top}/${rankV1.of} ${rankV1.pass ? "PASS (контроль НЕ впав: гіпотез замало, щоб перевірити правило)" : `FAIL ✓ (${rankLine(rankV1)})`}`,
           `LLM-лише y/3 = ${rAbl.llm.y}/${rAbl.llm.of} (абляція: прибрано ${abl.removed} опорних доказів №1/№3/№4; показник, не гейт)`,
           `разом ${rFull.total}/10 (гейт ≥ ${E1_GATE.min_total}: ${totalOk ? "виконано" : "не виконано"} — залежить від LLM, ${opts.strict_live ? "ГЕЙТ (strict-live)" : "⏭️ live, у dev не гейт"})`,
           `опорні детектори №1/№3/№4 (${SUPPORT_HINT_DETECTORS.join(", ")}) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано ${abl.removed}); механізм абляції перевірено тестом`,
@@ -179,7 +203,7 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
           `не вимірюється тут: 7 мутантів мовчать і двійник — \`pnpm run audit:fixture\` / S1a (E1, SCORING_SPEC §8.1)`,
         ],
         live_deferred: [`E1_llm=${rAbl.llm.y}/3 і сума ${rFull.total}/10: ${LIVE_LLM}`],
-        data: { full: rFull, ablation: rAbl, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk } },
+        data: { full: rFull, ablation: rAbl, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk, rank_ok: rank.pass }, rank, rank_v1_control: rankV1 },
       });
     }
 
@@ -198,6 +222,13 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       // позитивний контроль лічильника: use на прогрітому кеші МАЄ дати cache_read_tokens > 0 (інакше перевірка не вміла б впасти)
       const control = await buildRunReport(shop, "e2-control-use", { spec: honest(), cache_mode: "use", max_audit_tokens: maxAudit, meter, store });
       const controlInvalid = !e2Validity([control.counters, control.counters, control.counters]).valid && control.counters.cache_read_tokens > 0;
+      // контроль E2(б) (кр.8, сценарій (б) у чутливій формі): НЕСТАБІЛЬНИЙ оцінювач на ТОМУ САМОМУ замороженому знімку.
+      // Показник E2(б) мусить упасти нижче цілі; E2(а) при цьому може лишитися PASS (топ-5 — детерміновані) — це видно в рядку.
+      const unstable: RunResult[] = [];
+      for (let i = 0; i < 3; i++) unstable.push(await buildRunReport(shop, `e2-control-unstable${i + 1}`, { spec: { kind: "unstable", run: i }, cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
+      const mu: E2Metrics = e2Metrics(unstable.map((r) => r.findings.filter(isLlmOnly)));
+      const gu: E2Gate = e2Gate(e2Metrics(unstable.map((r) => r.findings)));
+      const unstableCaught = mu.jcat_mean < E2_THRESHOLDS.llm_jcat_mean_target;
       const status: Status = !validity.valid ? "INVALID" : gate.pass ? "PASS" : "FAIL";
       const llmEmpty = mb.set_sizes.every((n) => n === 0);
       checks.push({
@@ -209,11 +240,12 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
           `контроль лічильника: cache_mode=use на тому ж кеші → cache_read_tokens=${control.counters.cache_read_tokens} > 0 → «недійсний» ${controlInvalid ? "(перевірка вміє впасти)" : "— КОНТРОЛЬ НЕ СПРАЦЮВАВ"}`,
           `E2(а) повний звіт [ГЕЙТ]: Jcat mean/min ${f3(m.jcat_mean)}/${f3(m.jcat_min)} (≥ ${E2_THRESHOLDS.jcat_mean}/${E2_THRESHOLDS.jcat_min}), Jpg mean/min ${f3(m.jpg_mean)}/${f3(m.jpg_min)}, |K3|=${m.k3.length} (≥ ${E2_THRESHOLDS.k3_min})${gate.pass ? "" : " ✗ " + gate.failed.join("; ")}`,
           `E2(б) лише LLM-знахідки [показник]: ${llmEmpty ? "LLM-знахідок немає (J тривіально 1 — НЕ доказ стабільності)" : `Jcat mean ${f3(mb.jcat_mean)} (ціль ≥ ${E2_THRESHOLDS.llm_jcat_mean_target}: ${mb.jcat_mean >= E2_THRESHOLDS.llm_jcat_mean_target ? "так" : "ні"}), Jpg mean ${f3(mb.jpg_mean)}, розмір підмножин ${mb.set_sizes.join("/")}`}`,
+          `контроль E2(б): нестабільний оцінювач на тому ж замороженому знімку → E2(б) Jcat mean ${f3(mu.jcat_mean)} ${unstableCaught ? `< ${E2_THRESHOLDS.llm_jcat_mean_target} ✓ (показник вміє впасти)` : `≥ ${E2_THRESHOLDS.llm_jcat_mean_target} — КОНТРОЛЬ НЕ СПРАЦЮВАВ`}; E2(а) при цьому ${gu.pass ? "PASS (обмеження: E2(а) на shop нечутливий до LLM — топ-5 детерміновані; E2(б) — показник, не гейт, G0-8)" : "FAIL"}`,
           `RBO(p=0.8) топ-10 [інформативно]: ${m.rbo10.map(f3).join("/")} (середнє ${f3(m.rbo10_mean)})`,
           `топ-5 (прогін 1): ${runs[0]!.findings.slice().sort((a, b) => a.rank - b.rank).slice(0, 5).map((f) => f.finding_key).join(" · ")}`,
         ],
         live_deferred: [`стабільність LLM-знахідок (E2(б), RBO): ${LIVE_LLM}; fake детермінований → J=1 доводить обв'язку, не стабільність моделі`],
-        data: { validity, metrics: m, gate, llm_only: mb, control: { cache_read_tokens: control.counters.cache_read_tokens, invalid: controlInvalid }, top5: runs.map((r) => r.findings.slice().sort((a, b) => a.rank - b.rank).slice(0, 5).map((f) => f.finding_key)) },
+        data: { validity, metrics: m, gate, llm_only: mb, control: { cache_read_tokens: control.counters.cache_read_tokens, invalid: controlInvalid }, control_unstable: { llm_only: mu, gate_a_pass: gu.pass, caught: unstableCaught }, top5: runs.map((r) => r.findings.slice().sort((a, b) => a.rank - b.rank).slice(0, 5).map((f) => f.finding_key)) },
       });
     }
 
@@ -245,19 +277,18 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
         const a = keep(await buildRunReport(clean, "e3c-original", { spec: ev("e3c"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
         const b = keep(await buildRunReport(degraded, "e3c-degraded", { spec: ev("e3c"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
         const res: E3cResult = e3c(a.findings, b.findings);
-        const CODE_DIMS_EXPECTED = 2; // shipping + cta: обидва мають ловитися детекторами (порогів не змінювати після прогону)
-        const codeOk = res.worse_code >= CODE_DIMS_EXPECTED;
-        const totalOk = res.worse >= E3C_THRESHOLDS.min_worse;
-        const status: Status = totalOk && codeOk ? "PASS" : "FAIL";
+        const st = e3cStatus(res, !!opts.strict_live);
         checks.push({
-          id: "E3c", status,
+          id: "E3c", status: st.status,
           lines: [
-            `гірше в ${res.worse} з 5 (гейт ≥ ${E3C_THRESHOLDS.min_worse}); з них КОДОМ (F-DET/F-SUP/F-BRW) ${res.worse_code}/5 (dev-гейт ≥ ${CODE_DIMS_EXPECTED}: shipping, CTA); лише LLM ${res.worse_llm_only}/5 (⏭️ live)`,
+            st.label,
+            `КОДОМ (F-DET/F-SUP/F-BRW) гірше в ${res.worse_code}/5: ${res.dims.filter((d) => d.worse_code).map((d) => d.label).join(", ") || "жодного"}; лише LLM ${res.worse_llm_only}/5`,
             ...res.dims.map((d) => `  ${d.label}: D ${d.d_original}→${d.d_degraded}, нових STRONG/VERIFIED ${d.new_strong_or_verified.length}, worse=${d.worse ? "так" : "ні"} [${d.source}]`),
+            `обв'язка (НЕ статус): з fake-оцінювачем гірше в ${res.worse} з 5. Правила fake написано під ці самі 5 змін деградації (comparison = «немає цін на картках», trust = «немає "Про нас" і гарантії», headline = H1 без основ сайту) — кругова перевірка плумбінгу, не вимір`,
             `шум решти категорій |ΔD| (інформативно): ${Object.entries(res.other_delta).map(([k, v]) => `${k}=${v}`).join(", ") || "немає"}`,
             `сліпий прогін: нейтральні хости site-a.test (база) / site-b.test (копія), слова «degraded» немає в URL/тексті/заголовках (перевіряє тест фікстури)`,
           ],
-          live_deferred: [`LLM-виміри (headline, comparison, trust): ${LIVE_LLM}. Код сам дає ${res.worse_code}/5 < 4: без живої LLM гейт E3c недосяжний за побудовою`],
+          live_deferred: [`LLM-виміри (headline, comparison, trust) і сам гейт ≥ ${E3C_THRESHOLDS.min_worse}/5: ${LIVE_LLM}. Код сам дає ${res.worse_code}/5 < ${E3C_THRESHOLDS.min_worse}: без живої LLM гейт E3c недосяжний за побудовою (DEV-77)`],
           data: res,
         });
       }
@@ -308,14 +339,15 @@ export function formatResult(r: ValidateResult): string {
   const out: string[] = [];
   out.push(`pnpm validate — провайдер: scripted fake (НЕ модель); LLM-залежне = ⏭️ live, не ✅`);
   for (const c of r.checks) {
-    const mark = c.status === "PASS" ? "PASS" : c.status === "NOT_RUN" ? "NOT RUN" : c.status;
+    const mark = c.status === "PASS" ? "PASS" : c.status === "NOT_RUN" ? "NOT RUN" : c.status === "DEFERRED" ? "⏭️ DEFERRED (live)" : c.status;
     out.push(`\n[${c.id}] ${mark}`);
     for (const l of c.lines) out.push(`  ${l}`);
     for (const d of c.live_deferred) out.push(`  ⏭️ live: ${d}`);
   }
   out.push(`\nтокени: ${r.tokens.used}/${r.tokens.max} (MAX_VALIDATE_TOKENS), викликів провайдера ${r.tokens.provider_calls}`);
   if (r.stopped_reason) out.push(`ЗУПИНЕНО: ${r.stopped_reason}`);
-  out.push(`ВЕРДИКТ (dev): ${r.verdict}${r.verdict === "PASS" ? " — обв'язка працює; якість моделі не перевірено (⏭️ live)" : ""}`);
+  const deferred = r.checks.filter((c) => c.status === "DEFERRED").map((c) => c.id);
+  out.push(`ВЕРДИКТ (dev): ${r.verdict}${r.verdict === "PASS" ? ` — обв'язка працює; якість моделі не перевірено (⏭️ live)${deferred.length ? `; не закрито в dev (⏭️): ${deferred.join(", ")}` : ""}` : ""}`);
   return out.join("\n");
 }
 

@@ -11,6 +11,7 @@ import {
 import { aggregate, funnel, SCORING_VERSION, type ScoredFinding } from "@sitelens/scoring";
 import type { GuardedField } from "@sitelens/llm";
 import { GUARD_VERSION, guardLlmTextSync, scanReport } from "./guard.js";
+import { guardText } from "@sitelens/llm";
 import { positiveFindings } from "./positives.js";
 import {
   AXE_TEMPLATES, BANNER_TEXT, EVIDENCE_TEMPLATES, FINDING_TEMPLATES, GENERIC_TEMPLATES, POSITIVE_TEMPLATES, codeText, type FindingTemplates,
@@ -76,6 +77,28 @@ function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, ava
   return {
     template: text, params, origin: "llm", source_class: t.source_class, lang, template_id: t.prompt_id, guard,
   };
+}
+
+/**
+ * Продуктовий шлях ОДНОГО LLM-тексту — для вимірювання на корпусах (scripts/guard-sealed.ts --path product), без зміни логіки:
+ * (1) `llmText` як у buildReport: структурне правило чисел (цифра/числівник → поле відхилено цілком), плейсхолдери лише з
+ * FINDING_VARS, далі лексичний guard із видаленням порушних речень; (2) сканер звіту на шаблоні результату (`guardText`
+ * структурно, як `scanReport` у GET /report): порушення → звіт не віддається (fail-closed, 503).
+ * `delivered` — текст, який дійшов би до користувача без змін; інакше `null`/змінений текст і причина.
+ */
+export function productLlmTextPath(text: string, o: { lang: Lang; field: GuardedField }): { outcome: "delivered" | "rejected_structural" | "rejected_placeholder" | "sentences_removed" | "dropped" | "withheld_by_scan"; delivered: string | null } {
+  const rej: StructuralRejection[] = [];
+  const gs: GuardState = { on: true, fields: 0, interventions: 0, sentences_removed: 0 };
+  const isFinding = o.field !== "lens_description" && o.field !== "site_profile";
+  const where = o.field === "lens_description" ? "lens:corpus:description" : o.field === "site_profile" ? "site_understanding:corpus" : "finding:corpus:problem";
+  const t: LlmText = { text, source_class: "INFERRED", prompt_id: "corpus", guard_status: "pending" };
+  const out = llmText(t, o.lang, isFinding ? "/findings/0" : null, new Set(isFinding ? Object.keys(FINDING_VARS) : []), where, rej, gs);
+  if (!out) {
+    const r = rej[0]?.reason ?? "";
+    return { outcome: r.startsWith("number:") ? "rejected_structural" : r.startsWith("placeholder:") ? "rejected_placeholder" : "dropped", delivered: null };
+  }
+  if (!guardText(out.template, { field: o.field }).ok) return { outcome: "withheld_by_scan", delivered: null };
+  return { outcome: out.template === text ? "delivered" : "sentences_removed", delivered: out.template };
 }
 
 const prim = (m: Record<string, unknown> | undefined): Record<string, number | string | boolean | null> =>

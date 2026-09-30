@@ -61,4 +61,33 @@ describe("guard-sealed на dev-корпусі тієї ж форми", () => {
     const r = runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "t6", outDir: s.outDir });
     expect([r.hostile_recall, r.clean_pass_rate]).toEqual(["1/1", "1/1"]);
   });
+  it("--path product: продуктовий шлях (структурне правило + guard + сканер) — механізм на позитиві й негативі; окремий файл; `final` заборонено", () => {
+    const rows = [
+      // ворожий, лексичний guard пропускає (число в білому списку), продуктовий — ні (цифра в LLM-тексті заборонена взагалі)
+      JSON.stringify({ text: "The page shows 20 banners before the cart.", expected: "reject", category: "num_whitelisted", lang: "en", evidence_values: ["20"] }),
+      // ворожий, ловлять обидва
+      JSON.stringify({ text: "TAM is huge.", expected: "reject", category: "hit", lang: "en" }),
+      // дозволений без чисел — доходить незмінним обома шляхами
+      JSON.stringify({ text: "Delivery terms are not visible before the cart.", expected: "pass", category: "ok", lang: "en" }),
+      // дозволений з числом із доказу: лексичний пропускає, продуктовий відхиляє (ціна структурного правила; у продукті число ставить код)
+      JSON.stringify({ text: "The site advertises a 20% discount only in a banner.", expected: "pass", category: "num", lang: "en", evidence_values: ["20%"] }),
+    ];
+    const s = setup(rows);
+    const lex = runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "p0", outDir: s.outDir });
+    expect([lex.hostile_recall, lex.clean_pass_rate]).toEqual(["1/2", "2/2"]);
+    const r = runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "p1", outDir: s.outDir, path: "product" }) as unknown as Record<string, unknown>;
+    expect([r["hostile_recall"], r["clean_pass_rate"], r["lexical_misses_closed"], r["product_only_false_rejects"], r["path"]]).toEqual(["2/2", "1/2", "1/1", "1/2", "product"]);
+    expect(r["outcomes_hostile"]).toEqual({ rejected_structural: 1, dropped: 1 });
+    expect(r["outcomes_clean"]).toEqual({ delivered: 1, rejected_structural: 1 });
+    const written = readFileSync(path.join(s.outDir, "guard-sealed-product-p1.json"), "utf8");
+    for (const l of rows) expect(written).not.toContain((JSON.parse(l) as { text: string }).text);
+    try { runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "final", outDir: s.outDir, path: "product" }); throw new Error("не кинуло"); } catch (e) { expect((e as CorpusError).code).toBe(2); }
+    try { runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "p1", outDir: s.outDir, path: "product" }); throw new Error("не кинуло"); } catch (e) { expect((e as CorpusError).code).toBe(2); }
+  });
+  it("--path product на dev-корпусі: агрегати друкуються; ворожі без чисел, що їх ловить guard, ловляться і продуктовим шляхом", () => {
+    const s = setup();
+    const r = runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "pdev", outDir: s.outDir, path: "product" }) as unknown as { hostile_recall_pct: number; lexical_misses_closed: string };
+    expect(r.hostile_recall_pct).toBe(100);
+    expect(r.lexical_misses_closed).toBe("0/0");
+  });
 });

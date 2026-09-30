@@ -7,6 +7,8 @@
       "status": "PASS",
       "lines": [
         "детерміновані x/7 = 7/7 (VERIFIED, F-DET; гейт 7/7)",
+        "ранг [ГЕЙТ, кр.2]: детерміновані в топ-10 = 7/7 (№2→5 №5→3 №6→4 №7→7 №8→8 №9→6 №10→1; у звіті 12 знахідок, з них гіпотез 4)",
+        "контроль рангу: той самий звіт у порядку scoring-v1 (лише priority desc) → 6/7 FAIL ✓ (№2→5 №5→3 №6→4 №7→7 №8→12 №9→6 №10→1)",
         "LLM-лише y/3 = 3/3 (абляція: прибрано 0 опорних доказів №1/№3/№4; показник, не гейт)",
         "разом 10/10 (гейт ≥ 8: виконано — залежить від LLM, ⏭️ live, у dev не гейт)",
         "опорні детектори №1/№3/№4 (h1_category_overlap, term_unexplained, similar_products) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано 0); механізм абляції перевірено тестом",
@@ -232,7 +234,110 @@
         "removed_hints": 0,
         "gate": {
           "det_ok": true,
-          "total_ok": true
+          "total_ok": true,
+          "rank_ok": true
+        },
+        "rank": {
+          "ranks": [
+            {
+              "id": 2,
+              "name": "shipping",
+              "rank": 5,
+              "finding_key": "shipping|product|deep_link_only"
+            },
+            {
+              "id": 5,
+              "name": "cta_below_fold",
+              "rank": 3,
+              "finding_key": "cta|product|below_fold"
+            },
+            {
+              "id": 6,
+              "name": "mobile_label",
+              "rank": 4,
+              "finding_key": "accessibility|*|axe:button-name|header/button"
+            },
+            {
+              "id": 7,
+              "name": "overflow",
+              "rank": 7,
+              "finding_key": "mobile_usability|product|horizontal_overflow"
+            },
+            {
+              "id": 8,
+              "name": "slow_image",
+              "rank": 8,
+              "finding_key": "performance|/|oversized_image"
+            },
+            {
+              "id": 9,
+              "name": "alt",
+              "rank": 6,
+              "finding_key": "accessibility|product|axe:image-alt|main/img"
+            },
+            {
+              "id": 10,
+              "name": "late_price",
+              "rank": 1,
+              "finding_key": "pricing|category|not_in_first_viewport"
+            }
+          ],
+          "in_top": 7,
+          "of": 7,
+          "pass": true,
+          "findings": 12,
+          "hypotheses": 4
+        },
+        "rank_v1_control": {
+          "ranks": [
+            {
+              "id": 2,
+              "name": "shipping",
+              "rank": 5,
+              "finding_key": "shipping|product|deep_link_only"
+            },
+            {
+              "id": 5,
+              "name": "cta_below_fold",
+              "rank": 3,
+              "finding_key": "cta|product|below_fold"
+            },
+            {
+              "id": 6,
+              "name": "mobile_label",
+              "rank": 4,
+              "finding_key": "accessibility|*|axe:button-name|header/button"
+            },
+            {
+              "id": 7,
+              "name": "overflow",
+              "rank": 7,
+              "finding_key": "mobile_usability|product|horizontal_overflow"
+            },
+            {
+              "id": 8,
+              "name": "slow_image",
+              "rank": 12,
+              "finding_key": "performance|/|oversized_image"
+            },
+            {
+              "id": 9,
+              "name": "alt",
+              "rank": 6,
+              "finding_key": "accessibility|product|axe:image-alt|main/img"
+            },
+            {
+              "id": 10,
+              "name": "late_price",
+              "rank": 1,
+              "finding_key": "pricing|category|not_in_first_viewport"
+            }
+          ],
+          "in_top": 6,
+          "of": 7,
+          "pass": false,
+          "findings": 12,
+          "hypotheses": 4
         }
       }
     },
@@ -244,6 +349,7 @@
         "контроль лічильника: cache_mode=use на тому ж кеші → cache_read_tokens=49175 > 0 → «недійсний» (перевірка вміє впасти)",
         "E2(а) повний звіт [ГЕЙТ]: Jcat mean/min 1.000/1.000 (≥ 0.6/0.43), Jpg mean/min 1.000/1.000, |K3|=3 (≥ 3)",
         "E2(б) лише LLM-знахідки [показник]: Jcat mean 1.000 (ціль ≥ 0.4: так), Jpg mean 1.000, розмір підмножин 4/4/4",
+        "контроль E2(б): нестабільний оцінювач на тому ж замороженому знімку → E2(б) Jcat mean 0.000 < 0.4 ✓ (показник вміє впасти); E2(а) при цьому PASS (обмеження: E2(а) на shop нечутливий до LLM — топ-5 детерміновані; E2(б) — показник, не гейт, G0-8)",
         "RBO(p=0.8) топ-10 [інформативно]: 1.000/1.000/1.000 (середнє 1.000)",
         "топ-5 (прогін 1): pricing|category|not_in_first_viewport · pricing|product|not_in_first_viewport · cta|product|below_fold · accessibility|*|axe:button-name|header/button · shipping|product|deep_link_only"
       ],
@@ -329,6 +435,39 @@
           "cache_read_tokens": 49175,
           "invalid": true
         },
+        "control_unstable": {
+          "llm_only": {
+            "runs": 3,
+            "jcat": [
+              0,
+              0,
+              0
+            ],
+            "jpg": [
+              0,
+              0,
+              1
+            ],
+            "jcat_mean": 0,
+            "jcat_min": 0,
+            "jpg_mean": 0.3333333333333333,
+            "jpg_min": 0,
+            "k3": [],
+            "rbo10": [
+              0,
+              0,
+              0
+            ],
+            "rbo10_mean": 0,
+            "set_sizes": [
+              2,
+              3,
+              2
+            ]
+          },
+          "gate_a_pass": true,
+          "caught": true
+        },
         "top5": [
           [
             "pricing|category|not_in_first_viewport",
@@ -384,19 +523,21 @@
     },
     {
       "id": "E3c",
-      "status": "PASS",
+      "status": "DEFERRED",
       "lines": [
-        "гірше в 5 з 5 (гейт ≥ 4); з них КОДОМ (F-DET/F-SUP/F-BRW) 2/5 (dev-гейт ≥ 2: shipping, CTA); лише LLM 3/5 (⏭️ live)",
+        "⏭️ dev: кодом гірше в 2 з 5 < 4 → гейт ≥ 4/5 не закривається без живої моделі (FAIL за кодом; статус ⏭️ live, не PASS)",
+        "КОДОМ (F-DET/F-SUP/F-BRW) гірше в 2/5: shipping removed, CTA less visible; лише LLM 3/5",
         "  shipping removed: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]",
         "  CTA less visible: D 0→85, нових STRONG/VERIFIED 1, worse=так [code]",
         "  vague headline: D 0→67, нових STRONG/VERIFIED 0, worse=так [llm]",
         "  comparison help removed: D 0→69, нових STRONG/VERIFIED 0, worse=так [llm]",
         "  trust hidden: D 0→124, нових STRONG/VERIFIED 0, worse=так [llm]",
+        "обв'язка (НЕ статус): з fake-оцінювачем гірше в 5 з 5. Правила fake написано під ці самі 5 змін деградації (comparison = «немає цін на картках», trust = «немає \"Про нас\" і гарантії», headline = H1 без основ сайту) — кругова перевірка плумбінгу, не вимір",
         "шум решти категорій |ΔD| (інформативно): accessibility=52",
         "сліпий прогін: нейтральні хости site-a.test (база) / site-b.test (копія), слова «degraded» немає в URL/тексті/заголовках (перевіряє тест фікстури)"
       ],
       "live_deferred": [
-        "LLM-виміри (headline, comparison, trust): оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1). Код сам дає 2/5 < 4: без живої LLM гейт E3c недосяжний за побудовою"
+        "LLM-виміри (headline, comparison, trust) і сам гейт ≥ 4/5: оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1). Код сам дає 2/5 < 4: без живої LLM гейт E3c недосяжний за побудовою (DEV-77)"
       ],
       "data": {
         "dims": [
@@ -509,8 +650,8 @@
   ],
   "tokens": {
     "max": 2000000,
-    "used": 503890,
-    "provider_calls": 165
+    "used": 650788,
+    "provider_calls": 213
   },
   "provider": "scripted-fake",
   "stopped_reason": null

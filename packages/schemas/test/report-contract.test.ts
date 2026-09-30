@@ -86,6 +86,26 @@ describe("Zod-інваріанти (крос-польові): приклад п�
     expect(got.length, "порушення мало бути відхилене").toBeGreaterThan(0);
     expect(got.join("\n")).toMatch(re);
   });
+  it("DEV-76 (scoring-v2): VERIFIED нижче гіпотези з тим самим priority → відхилено; той самий порядок у scoring-v1 — ні (контроль)", () => {
+    const swap = (r: ReportT) => {
+      const i = r.findings.findIndex((f) => f.confidence.level !== "VERIFIED");
+      const [v, h] = [r.findings[i - 1]!, r.findings[i]!];
+      expect(v.confidence.level).toBe("VERIFIED");
+      expect(h.priority.value).toBe(v.priority.value); // priority desc не порушено — ловить саме смуга
+      [r.findings[i - 1], r.findings[i]] = [h, v];
+      h.rank = i;
+      v.rank = i + 1;
+    };
+    const v2 = clone();
+    expect(v2.scoring_version).toBe("scoring-v2");
+    swap(v2);
+    expect(issues(v2).join("\n")).toMatch(/гіпотеза вище перевіреного факту/);
+    const v1 = clone();
+    v1.scoring_version = "scoring-v1";
+    swap(v1);
+    expect(issues(v1).filter((x) => /порядок/.test(x))).toEqual([]);
+    expect(issues(clone())).toEqual([]);
+  });
   it("у контракті немає поля «% confidence» / uplift / conversion-прогнозу", () => {
     const keys = JSON.stringify(schemaFile).match(/"[a-z_]+":/g) ?? [];
     expect(keys.filter((k) => /percent|uplift|conversion_rate|revenue|confidence_pct/.test(k))).toEqual([]);

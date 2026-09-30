@@ -1,90 +1,90 @@
 {
   "index": {
     "D": {
-      "dom_content_loaded_ms": 58.70000000111759,
-      "load_ms": 90.10000000149012,
-      "first_paint_ms": 84,
-      "fcp_ms": 84,
+      "dom_content_loaded_ms": 19.800000000745058,
+      "load_ms": 23.599999997764826,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
       "resource_count": 1,
       "transfer_bytes": 14120
     },
     "M": {
-      "dom_content_loaded_ms": 36.59999999962747,
-      "load_ms": 59.59999999962747,
-      "first_paint_ms": 96,
-      "fcp_ms": 96,
+      "dom_content_loaded_ms": 21.700000002980232,
+      "load_ms": 26.300000000745058,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
       "resource_count": 1,
       "transfer_bytes": 14120
     }
   },
   "catalog": {
     "D": {
-      "dom_content_loaded_ms": 40.40000000037253,
-      "load_ms": 69.59999999962747,
-      "first_paint_ms": 76,
-      "fcp_ms": 76,
+      "dom_content_loaded_ms": 25,
+      "load_ms": 52.5,
+      "first_paint_ms": 72,
+      "fcp_ms": 72,
       "resource_count": 3,
       "transfer_bytes": 7385
     },
     "M": {
-      "dom_content_loaded_ms": 56.90000000037253,
-      "load_ms": 113.29999999888241,
-      "first_paint_ms": 68,
-      "fcp_ms": 68,
+      "dom_content_loaded_ms": 26.899999998509884,
+      "load_ms": 50.80000000074506,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
       "resource_count": 3,
       "transfer_bytes": 7385
     }
   },
   "product-glass-kettle": {
     "D": {
-      "dom_content_loaded_ms": 55.5,
-      "load_ms": 78.29999999888241,
-      "first_paint_ms": 132,
-      "fcp_ms": 132,
+      "dom_content_loaded_ms": 21.900000002235174,
+      "load_ms": 35.5,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
       "resource_count": 1,
       "transfer_bytes": 7315
     },
     "M": {
-      "dom_content_loaded_ms": 54.20000000111759,
-      "load_ms": 54.600000001490116,
-      "first_paint_ms": 76,
-      "fcp_ms": 76,
+      "dom_content_loaded_ms": 20.5,
+      "load_ms": 30.5,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
       "resource_count": 1,
       "transfer_bytes": 7315
     }
   },
   "product-travel-thermos": {
     "D": {
-      "dom_content_loaded_ms": 25.09999999962747,
-      "load_ms": 30.199999999254942,
+      "dom_content_loaded_ms": 25.699999999254942,
+      "load_ms": 33.399999998509884,
       "first_paint_ms": 72,
       "fcp_ms": 72,
       "resource_count": 1,
       "transfer_bytes": 7315
     },
     "M": {
-      "dom_content_loaded_ms": 32.40000000037253,
-      "load_ms": 44.90000000037253,
-      "first_paint_ms": 76,
-      "fcp_ms": 76,
+      "dom_content_loaded_ms": 22.399999998509884,
+      "load_ms": 36.19999999925494,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
       "resource_count": 1,
       "transfer_bytes": 7315
     }
   },
   "product-wooden-board": {
     "D": {
-      "dom_content_loaded_ms": 30.200000001117587,
-      "load_ms": 49.20000000111759,
-      "first_paint_ms": 92,
-      "fcp_ms": 92,
+      "dom_content_loaded_ms": 26,
+      "load_ms": 41,
+      "first_paint_ms": 80,
+      "fcp_ms": 80,
       "resource_count": 1,
       "transfer_bytes": 7277
     },
     "M": {
-      "dom_content_loaded_ms": 63,
-      "load_ms": 64.59999999962747,
-      "first_paint_ms": 104,
-      "fcp_ms": 104,
+      "dom_content_loaded_ms": 23.599999997764826,
+      "load_ms": 37.79999999701977,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
       "resource_count": 1,
       "transfer_bytes": 7277
     }

@@ -112,6 +112,40 @@ export function e1Gate(r: E1Result): boolean {
   return r.total >= E1_GATE.min_total && r.det.x === E1_GATE.det_of;
 }
 
+// ------------------------------------------------------------------------------------------------ E1-rank (критерій S4 №2, DEV-76)
+/**
+ * Гейт рангу: кожен із 7 детермінованих дефектів має VERIFIED F-DET-знахідку з рангом ≤ 10 у ПОВНОМУ звіті (з гіпотезами).
+ * Поріг «топ-10» — із SPRINT_PLAN S4 кр.2 (зафіксовано до S4), не з результату. Недетектований дефект = ранг null = FAIL.
+ */
+export const E1_RANK_GATE = { top: 10 } as const;
+export interface E1RankResult {
+  ranks: Array<{ id: number; name: string; rank: number | null; finding_key: string | null }>;
+  in_top: number;
+  of: number;
+  pass: boolean;
+  /** скільки знахідок у звіті (≤ 10 → гейт тривіальний за побудовою, це видно в рядку) */
+  findings: number;
+  /** скільки гіпотез (STRONG/HYPOTHESIS) у звіті */
+  hypotheses: number;
+}
+export function e1RankGate(findings: readonly VFinding[], top: number = E1_RANK_GATE.top): E1RankResult {
+  const ranks = E1_TABLE.filter((d) => d.deterministic).map((d) => {
+    const hits = findings.filter((f) => e1Matches(d, f) && f.confidence === "VERIFIED" && f.families.includes("F-DET")).sort((a, b) => a.rank - b.rank);
+    const best = hits[0];
+    return { id: d.id, name: d.name, rank: best ? best.rank : null, finding_key: best ? best.finding_key : null };
+  });
+  const in_top = ranks.filter((r) => r.rank !== null && r.rank <= top).length;
+  return { ranks, in_top, of: ranks.length, pass: in_top === ranks.length, findings: findings.length, hypotheses: findings.filter((f) => f.confidence !== "VERIFIED").length };
+}
+
+/** Перерахунок рангу за порядком scoring-v1 (priority desc, впевненість, finding_key) — лише для контролю, що гейт рангу вміє впасти */
+export function rerankV1(findings: readonly VFinding[]): VFinding[] {
+  const cmp = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
+  return [...findings]
+    .sort((a, b) => b.priority - a.priority || confRank(b.confidence) - confRank(a.confidence) || a.rank - b.rank || cmp(a.finding_key, b.finding_key))
+    .map((f, i) => ({ ...f, rank: i + 1 }));
+}
+
 // ------------------------------------------------------------------------------------------------ E2 (§8.2)
 export function jaccard<T>(a: ReadonlySet<T>, b: ReadonlySet<T>): number {
   if (a.size === 0 && b.size === 0) return 1;

@@ -4,7 +4,11 @@
  */
 import { PRIORITY_BASE_WEIGHTS, type CATEGORIES, type FUNNEL_STAGES, type PAGE_TYPES } from "@sitelens/schemas";
 
-export const SCORING_VERSION = "scoring-v1" as const;
+/**
+ * scoring-v2 (DEV-76): числа знахідок (formula `scoring-v1/redistributed`, таблиці, кеп DEV-60) НЕ змінено; змінено лише
+ * порядок звіту — смуга впевненості (VERIFIED над гіпотезами) іде ПЕРЕД priority (SCORING_SPEC §6.5).
+ */
+export const SCORING_VERSION = "scoring-v2" as const;
 export const EPS = 1e-9;
 
 type Category = (typeof CATEGORIES)[number];
@@ -65,6 +69,13 @@ export const PAGE_STAGE: Record<PageType, FunnelStage> = {
 };
 
 export const CONFIDENCE_RANK = { VERIFIED: 3, STRONG_HYPOTHESIS: 2, HYPOTHESIS: 1 } as const;
+
+/**
+ * §6.5 смуга ранжування (DEV-76, scoring-v2): перевірений факт (VERIFIED) — смуга 1, гіпотези (STRONG і HYPOTHESIS) — 0.
+ * Лексикографічно першою: без калібрування немає P(гіпотеза істинна), тож будь-який обмін «severity гіпотези проти
+ * впевненості факту» був би некаліброваним числом. Всередині смуги — priority за формулою. Єдине джерело — @sitelens/schemas.
+ */
+export { RANK_BAND } from "@sitelens/schemas";
 
 /** §2: claim_kind про сприйняття — виняток із правила суперечності (детектор перевіряє лише наявність) */
 export const PERCEPTUAL_CLAIM_KINDS: ReadonlySet<string> = new Set(["noticed_but_unclear", "visible_but_not_salient"]);

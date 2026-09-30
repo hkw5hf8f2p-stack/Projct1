@@ -7,7 +7,7 @@ import {
   confidence, coverage, evidenceStrength, funnel, priority, ratio, severity, tiersInGroup,
   type Category, type ConfidenceResult, type CoverageResult, type PageType, type PriorityOut, type SessionObs, type SeverityResult, type StrengthResult, type Tier,
 } from "./score.js";
-import { CONFIDENCE_RANK } from "./tables.js";
+import { CONFIDENCE_RANK, RANK_BAND } from "./tables.js";
 
 const cmp = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
 const pathOf = (e: Evidence): string => e.page_path ?? new URL(e.page_url).pathname;
@@ -58,8 +58,16 @@ export interface AggregateInput {
   counter?: Readonly<Record<string, readonly Evidence[]>>;
 }
 
-/** §6.5 порядок */
+/**
+ * §6.5 порядок (scoring-v2, DEV-76): спершу смуга впевненості (VERIFIED над гіпотезами), далі — як у scoring-v1.
+ * Правило без параметрів: жодного порогу, який можна підігнати під конкретну знахідку.
+ */
 export function compareFindings(a: ScoredFinding, b: ScoredFinding): number {
+  return RANK_BAND[b.confidence.level] - RANK_BAND[a.confidence.level] || compareFindingsV1(a, b);
+}
+
+/** Порядок scoring-v1 (лише priority desc + tie-break). Лишено для контролю «гейт рангу вміє впасти» (validate E1, тести). */
+export function compareFindingsV1(a: ScoredFinding, b: ScoredFinding): number {
   return (
     b.priority.value - a.priority.value ||
     CONFIDENCE_RANK[b.confidence.level] - CONFIDENCE_RANK[a.confidence.level] ||

@@ -1,6 +1,6 @@
 {
  "schema_version": "sitelens-report/v1",
- "scoring_version": "scoring-v1",
+ "scoring_version": "scoring-v2",
  "generated_at": "2026-09-30T00:00:00Z",
  "provenance": {
   "kind": "audit",
@@ -94,9 +94,9 @@
   "top_problem_ids": [
    "fnd_8319e2fcf7be",
    "fnd_14b9ab0650ce",
+   "fnd_e12b933e79aa",
    "fnd_69a63d946f1d",
-   "fnd_47b24e9f41f6",
-   "fnd_7ea00ac1b77f"
+   "fnd_47b24e9f41f6"
   ],
   "top_strength_ids": [
    "pos_67aa45b64e05",
@@ -589,13 +589,221 @@
    "executive_eligible": true
   },
   {
+   "id": "fnd_e12b933e79aa",
+   "finding_key": "accessibility|category|axe:image-redundant-alt|main/img",
+   "category": "accessibility",
+   "page_group": "category",
+   "claim_kind": "axe:image-redundant-alt",
+   "component": "main/img",
+   "rank": 3,
+   "pages": [
+    {
+     "url": "http://site-b.test:4214/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Автоматична перевірка доступності не пройдена: {rule}",
+    "params": {
+     "rule": {
+      "ptr": "/findings/2/claim_kind",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "finding.title.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "axe-core позначив елементи за цим правилом. Позначених елементів у захопленнях: {instances}. Сторінок: {page_count}.",
+    "params": {
+     "instances": {
+      "ptr": "/findings/2/instances",
+      "format": "int"
+     },
+     "page_count": {
+      "ptr": "/findings/2/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "finding.problem.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": {
+    "template": "Елементи без доступної назви чи текстової альтернативи незрозумілі користувачам екранних читачів.",
+    "params": {},
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "finding.why.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "recommendation": {
+    "recommended_change": {
+     "template": "Виправте позначені елементи за описом на сторінці правила, посилання — у доказі.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.axe",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Повторіть автоматичну перевірку й протестуйте сторінку екранним читачем. Автоматична перевірка не є повним аудитом WCAG.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.axe",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "VERIFIED",
+    "rule": "C3-VERIFIED-DET",
+    "families": [
+     "F-DET"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.25,
+    "base": 0.2,
+    "base_source": "axe_impact",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "browse",
+    "value": 0.55,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 1,
+    "tier": "ET-DET"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 0,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 0,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 0,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": false
+   },
+   "priority": {
+    "value": 52,
+    "uncapped": 52,
+    "cap": null,
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.4615384615384615,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.55,
+      "effective_weight": 0.3076923076923077,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": false,
+      "value": null,
+      "effective_weight": 0,
+      "na_reason": "verified_synthetic_not_scored"
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": false,
+      "value": null,
+      "effective_weight": 0,
+      "na_reason": "verified_synthetic_not_scored"
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 1,
+      "effective_weight": 0.23076923076923075,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_95b488a93b95",
+    "ev_9c90b3f8e935",
+    "ev_ee68f6556ce0",
+    "ev_f20a011dc103"
+   ],
+   "instances": 4,
+   "affected_task_ids": [],
+   "affected_lens_ids": [],
+   "executive_eligible": true
+  },
+  {
    "id": "fnd_69a63d946f1d",
    "finding_key": "comparison|category|general",
    "category": "comparison",
    "page_group": "category",
    "claim_kind": "general",
    "component": null,
-   "rank": 3,
+   "rank": 4,
    "pages": [
     {
      "url": "http://site-b.test:4214/catalog",
@@ -608,7 +816,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/2/category",
+      "ptr": "/findings/3/category",
       "format": "text"
      }
     },
@@ -626,7 +834,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/2/page_count",
+      "ptr": "/findings/3/page_count",
       "format": "int"
      }
     },
@@ -795,7 +1003,7 @@
    "page_group": "/",
    "claim_kind": "general",
    "component": null,
-   "rank": 4,
+   "rank": 5,
    "pages": [
     {
      "url": "http://site-b.test:4214/",
@@ -808,7 +1016,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/3/category",
+      "ptr": "/findings/4/category",
       "format": "text"
      }
     },
@@ -826,7 +1034,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/3/page_count",
+      "ptr": "/findings/4/page_count",
       "format": "int"
      }
     },
@@ -995,7 +1203,7 @@
    "page_group": "product",
    "claim_kind": "general",
    "component": null,
-   "rank": 5,
+   "rank": 6,
    "pages": [
     {
      "url": "http://site-b.test:4214/product/glass-kettle",
@@ -1013,7 +1221,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/4/category",
+      "ptr": "/findings/5/category",
       "format": "text"
      }
     },
@@ -1031,7 +1239,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/4/page_count",
+      "ptr": "/findings/5/page_count",
       "format": "int"
      }
     },
@@ -1200,7 +1408,7 @@
    "page_group": "/",
    "claim_kind": "general",
    "component": null,
-   "rank": 6,
+   "rank": 7,
    "pages": [
     {
      "url": "http://site-b.test:4214/",
@@ -1213,7 +1421,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/5/category",
+      "ptr": "/findings/6/category",
       "format": "text"
      }
     },
@@ -1231,7 +1439,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/5/page_count",
+      "ptr": "/findings/6/page_count",
       "format": "int"
      }
     },
@@ -1389,214 +1597,6 @@
     "lens_novice",
     "lens_price"
    ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_e12b933e79aa",
-   "finding_key": "accessibility|category|axe:image-redundant-alt|main/img",
-   "category": "accessibility",
-   "page_group": "category",
-   "claim_kind": "axe:image-redundant-alt",
-   "component": "main/img",
-   "rank": 7,
-   "pages": [
-    {
-     "url": "http://site-b.test:4214/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Автоматична перевірка доступності не пройдена: {rule}",
-    "params": {
-     "rule": {
-      "ptr": "/findings/6/claim_kind",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "finding.title.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "axe-core позначив елементи за цим правилом. Позначених елементів у захопленнях: {instances}. Сторінок: {page_count}.",
-    "params": {
-     "instances": {
-      "ptr": "/findings/6/instances",
-      "format": "int"
-     },
-     "page_count": {
-      "ptr": "/findings/6/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "finding.problem.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": {
-    "template": "Елементи без доступної назви чи текстової альтернативи незрозумілі користувачам екранних читачів.",
-    "params": {},
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "finding.why.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "recommendation": {
-    "recommended_change": {
-     "template": "Виправте позначені елементи за описом на сторінці правила, посилання — у доказі.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.axe",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Повторіть автоматичну перевірку й протестуйте сторінку екранним читачем. Автоматична перевірка не є повним аудитом WCAG.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.axe",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "VERIFIED",
-    "rule": "C3-VERIFIED-DET",
-    "families": [
-     "F-DET"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.25,
-    "base": 0.2,
-    "base_source": "axe_impact",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "browse",
-    "value": 0.55,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 1,
-    "tier": "ET-DET"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 0,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 0,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 0,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": false
-   },
-   "priority": {
-    "value": 52,
-    "uncapped": 52,
-    "cap": null,
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.4615384615384615,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.55,
-      "effective_weight": 0.3076923076923077,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": false,
-      "value": null,
-      "effective_weight": 0,
-      "na_reason": "verified_synthetic_not_scored"
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": false,
-      "value": null,
-      "effective_weight": 0,
-      "na_reason": "verified_synthetic_not_scored"
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 1,
-      "effective_weight": 0.23076923076923075,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_95b488a93b95",
-    "ev_9c90b3f8e935",
-    "ev_ee68f6556ce0",
-    "ev_f20a011dc103"
-   ],
-   "instances": 4,
-   "affected_task_ids": [],
-   "affected_lens_ids": [],
    "executive_eligible": true
   }
  ],
@@ -2634,6 +2634,258 @@
    "level": null
   },
   {
+   "id": "ev_95b488a93b95",
+   "type": "axe",
+   "source_class": "BENCHMARKED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "M",
+   "detector_id": "axe:image-redundant-alt",
+   "claim_kind": "axe:image-redundant-alt",
+   "assertion": "presence",
+   "description": {
+    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
+    "params": {
+     "rule": {
+      "ptr": "/evidence/12/measurement/rule",
+      "format": "text"
+     },
+     "impact": {
+      "ptr": "/evidence/12/measurement/impact",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "evidence.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+   "artifact_reference": "pages/catalog/390x844/axe.json",
+   "screenshot_reference": "pages/catalog/390x844/viewport.png",
+   "selector": "img[src$=\"wooden-board.svg\"]",
+   "region": {
+    "x": 25,
+    "y": 412,
+    "w": 80,
+    "h": 80
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "axe_version": "4.13.0",
+    "component_landmark": "main",
+    "component_signature": "main/img",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+    "impact": "minor",
+    "nodes_in_rule": 2,
+    "rule": "image-redundant-alt",
+    "viewport_height": 844,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_9c90b3f8e935",
+   "type": "axe",
+   "source_class": "BENCHMARKED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "D",
+   "detector_id": "axe:image-redundant-alt",
+   "claim_kind": "axe:image-redundant-alt",
+   "assertion": "presence",
+   "description": {
+    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
+    "params": {
+     "rule": {
+      "ptr": "/evidence/13/measurement/rule",
+      "format": "text"
+     },
+     "impact": {
+      "ptr": "/evidence/13/measurement/impact",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "evidence.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+   "artifact_reference": "pages/catalog/1440x1000/axe.json",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": "img[src$=\"glass-kettle.svg\"]",
+   "region": {
+    "x": 207,
+    "y": 155,
+    "w": 80,
+    "h": 80
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "axe_version": "4.13.0",
+    "component_landmark": "main",
+    "component_signature": "main/img",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+    "impact": "minor",
+    "nodes_in_rule": 2,
+    "rule": "image-redundant-alt",
+    "viewport_height": 1000,
+    "viewport_width": 1440
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_ee68f6556ce0",
+   "type": "axe",
+   "source_class": "BENCHMARKED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "M",
+   "detector_id": "axe:image-redundant-alt",
+   "claim_kind": "axe:image-redundant-alt",
+   "assertion": "presence",
+   "description": {
+    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
+    "params": {
+     "rule": {
+      "ptr": "/evidence/14/measurement/rule",
+      "format": "text"
+     },
+     "impact": {
+      "ptr": "/evidence/14/measurement/impact",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "evidence.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+   "artifact_reference": "pages/catalog/390x844/axe.json",
+   "screenshot_reference": "pages/catalog/390x844/viewport.png",
+   "selector": "img[src$=\"glass-kettle.svg\"]",
+   "region": {
+    "x": 25,
+    "y": 140,
+    "w": 80,
+    "h": 80
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "axe_version": "4.13.0",
+    "component_landmark": "main",
+    "component_signature": "main/img",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+    "impact": "minor",
+    "nodes_in_rule": 2,
+    "rule": "image-redundant-alt",
+    "viewport_height": 844,
+    "viewport_width": 390
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_f20a011dc103",
+   "type": "axe",
+   "source_class": "BENCHMARKED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": "D",
+   "detector_id": "axe:image-redundant-alt",
+   "claim_kind": "axe:image-redundant-alt",
+   "assertion": "presence",
+   "description": {
+    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
+    "params": {
+     "rule": {
+      "ptr": "/evidence/15/measurement/rule",
+      "format": "text"
+     },
+     "impact": {
+      "ptr": "/evidence/15/measurement/impact",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "BENCHMARKED",
+    "lang": "uk",
+    "template_id": "evidence.axe",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+   "artifact_reference": "pages/catalog/1440x1000/axe.json",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": "img[src$=\"wooden-board.svg\"]",
+   "region": {
+    "x": 207,
+    "y": 427,
+    "w": 80,
+    "h": 80
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "axe_version": "4.13.0",
+    "component_landmark": "main",
+    "component_signature": "main/img",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+    "impact": "minor",
+    "nodes_in_rule": 2,
+    "rule": "image-redundant-alt",
+    "viewport_height": 1000,
+    "viewport_width": 1440
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
    "id": "ev_3426da2a2a82",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
@@ -3160,258 +3412,6 @@
    "lens_id": "lens_price",
    "task_id": "t_understand",
    "level": "snapshot"
-  },
-  {
-   "id": "ev_95b488a93b95",
-   "type": "axe",
-   "source_class": "BENCHMARKED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": "M",
-   "detector_id": "axe:image-redundant-alt",
-   "claim_kind": "axe:image-redundant-alt",
-   "assertion": "presence",
-   "description": {
-    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
-    "params": {
-     "rule": {
-      "ptr": "/evidence/24/measurement/rule",
-      "format": "text"
-     },
-     "impact": {
-      "ptr": "/evidence/24/measurement/impact",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "evidence.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
-   "artifact_reference": "pages/catalog/390x844/axe.json",
-   "screenshot_reference": "pages/catalog/390x844/viewport.png",
-   "selector": "img[src$=\"wooden-board.svg\"]",
-   "region": {
-    "x": 25,
-    "y": 412,
-    "w": 80,
-    "h": 80
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "axe_version": "4.13.0",
-    "component_landmark": "main",
-    "component_signature": "main/img",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
-    "impact": "minor",
-    "nodes_in_rule": 2,
-    "rule": "image-redundant-alt",
-    "viewport_height": 844,
-    "viewport_width": 390
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
-  },
-  {
-   "id": "ev_9c90b3f8e935",
-   "type": "axe",
-   "source_class": "BENCHMARKED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": "D",
-   "detector_id": "axe:image-redundant-alt",
-   "claim_kind": "axe:image-redundant-alt",
-   "assertion": "presence",
-   "description": {
-    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
-    "params": {
-     "rule": {
-      "ptr": "/evidence/25/measurement/rule",
-      "format": "text"
-     },
-     "impact": {
-      "ptr": "/evidence/25/measurement/impact",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "evidence.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
-   "artifact_reference": "pages/catalog/1440x1000/axe.json",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": "img[src$=\"glass-kettle.svg\"]",
-   "region": {
-    "x": 207,
-    "y": 155,
-    "w": 80,
-    "h": 80
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "axe_version": "4.13.0",
-    "component_landmark": "main",
-    "component_signature": "main/img",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
-    "impact": "minor",
-    "nodes_in_rule": 2,
-    "rule": "image-redundant-alt",
-    "viewport_height": 1000,
-    "viewport_width": 1440
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
-  },
-  {
-   "id": "ev_ee68f6556ce0",
-   "type": "axe",
-   "source_class": "BENCHMARKED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": "M",
-   "detector_id": "axe:image-redundant-alt",
-   "claim_kind": "axe:image-redundant-alt",
-   "assertion": "presence",
-   "description": {
-    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
-    "params": {
-     "rule": {
-      "ptr": "/evidence/26/measurement/rule",
-      "format": "text"
-     },
-     "impact": {
-      "ptr": "/evidence/26/measurement/impact",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "evidence.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
-   "artifact_reference": "pages/catalog/390x844/axe.json",
-   "screenshot_reference": "pages/catalog/390x844/viewport.png",
-   "selector": "img[src$=\"glass-kettle.svg\"]",
-   "region": {
-    "x": 25,
-    "y": 140,
-    "w": 80,
-    "h": 80
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "axe_version": "4.13.0",
-    "component_landmark": "main",
-    "component_signature": "main/img",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
-    "impact": "minor",
-    "nodes_in_rule": 2,
-    "rule": "image-redundant-alt",
-    "viewport_height": 844,
-    "viewport_width": 390
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
-  },
-  {
-   "id": "ev_f20a011dc103",
-   "type": "axe",
-   "source_class": "BENCHMARKED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": "D",
-   "detector_id": "axe:image-redundant-alt",
-   "claim_kind": "axe:image-redundant-alt",
-   "assertion": "presence",
-   "description": {
-    "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
-    "params": {
-     "rule": {
-      "ptr": "/evidence/27/measurement/rule",
-      "format": "text"
-     },
-     "impact": {
-      "ptr": "/evidence/27/measurement/impact",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "evidence.axe",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
-   "artifact_reference": "pages/catalog/1440x1000/axe.json",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": "img[src$=\"wooden-board.svg\"]",
-   "region": {
-    "x": 207,
-    "y": 427,
-    "w": 80,
-    "h": 80
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "axe_version": "4.13.0",
-    "component_landmark": "main",
-    "component_signature": "main/img",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
-    "impact": "minor",
-    "nodes_in_rule": 2,
-    "rule": "image-redundant-alt",
-    "viewport_height": 1000,
-    "viewport_width": 1440
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
   },
   {
    "id": "ev_7e23e08b1a4a",

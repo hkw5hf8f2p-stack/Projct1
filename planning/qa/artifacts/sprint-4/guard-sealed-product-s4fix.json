@@ -1,0 +1,185 @@
+{
+  "label": "s4fix",
+  "sha256": "980327bed54c1e6082c8ea514f561553576242c4d9f463cb9ec2898bf434d4e3",
+  "freeze_manifest_match": true,
+  "guard_files_sha256": "97a4fbb4dba4d773d6a62533aa3c109ae5f3a492ae6ffdc816d36268cc569499",
+  "guard_version": "report-guard-v2",
+  "cases": 100,
+  "hostile_recall": "44/52",
+  "clean_pass_rate": "16/48",
+  "hostile_recall_pct": 84.6,
+  "clean_pass_pct": 33.3,
+  "thresholds": {
+    "recall_min_pct": 90,
+    "clean_pass_min_pct": 90
+  },
+  "verdict": "FAIL",
+  "recall_by_category": {
+    "multiplier": {
+      "total": 6,
+      "flagged": 4
+    },
+    "multiplier_forecast_perf": {
+      "total": 2,
+      "flagged": 2
+    },
+    "uplift_paraphrase": {
+      "total": 6,
+      "flagged": 5
+    },
+    "revenue_paraphrase": {
+      "total": 6,
+      "flagged": 6
+    },
+    "tam_paraphrase": {
+      "total": 4,
+      "flagged": 4
+    },
+    "market_share": {
+      "total": 4,
+      "flagged": 3
+    },
+    "share_no_sign": {
+      "total": 6,
+      "flagged": 6
+    },
+    "fake_benchmark": {
+      "total": 6,
+      "flagged": 4
+    },
+    "word_numeral": {
+      "total": 2,
+      "flagged": 2
+    },
+    "demographic_implicit": {
+      "total": 4,
+      "flagged": 2
+    },
+    "number_not_in_evidence": {
+      "total": 2,
+      "flagged": 2
+    },
+    "synthetic_as_share": {
+      "total": 2,
+      "flagged": 2
+    },
+    "fabricated_social_proof": {
+      "total": 2,
+      "flagged": 2
+    }
+  },
+  "recall_by_lang": {
+    "en": {
+      "total": 26,
+      "flagged": 22
+    },
+    "uk": {
+      "total": 26,
+      "flagged": 22
+    }
+  },
+  "false_reject_by_category": {
+    "synthetic_count": {
+      "total": 6,
+      "flagged": 6
+    },
+    "priority": {
+      "total": 4,
+      "flagged": 4
+    },
+    "observed_measure": {
+      "total": 8,
+      "flagged": 8
+    },
+    "viewport": {
+      "total": 2,
+      "flagged": 2
+    },
+    "site_price": {
+      "total": 4,
+      "flagged": 4
+    },
+    "date": {
+      "total": 2,
+      "flagged": 2
+    },
+    "trap_lexeme": {
+      "total": 6,
+      "flagged": 0
+    },
+    "qualitative": {
+      "total": 6,
+      "flagged": 0
+    },
+    "qualitative_ordinal": {
+      "total": 2,
+      "flagged": 0
+    },
+    "benchmarked": {
+      "total": 4,
+      "flagged": 4
+    },
+    "quoted_site_claim": {
+      "total": 2,
+      "flagged": 2
+    },
+    "unknown": {
+      "total": 2,
+      "flagged": 0
+    }
+  },
+  "false_reject_by_lang": {
+    "en": {
+      "total": 24,
+      "flagged": 16
+    },
+    "uk": {
+      "total": 24,
+      "flagged": 16
+    }
+  },
+  "path": "product",
+  "lexical_misses_closed": "3/11",
+  "lexical_misses_closed_by_category": {
+    "multiplier": {
+      "total": 2,
+      "flagged": 0
+    },
+    "market_share": {
+      "total": 1,
+      "flagged": 0
+    },
+    "fake_benchmark": {
+      "total": 2,
+      "flagged": 0
+    },
+    "demographic_implicit": {
+      "total": 2,
+      "flagged": 0
+    },
+    "number_not_in_evidence": {
+      "total": 1,
+      "flagged": 1
+    },
+    "synthetic_as_share": {
+      "total": 2,
+      "flagged": 2
+    },
+    "uplift_paraphrase": {
+      "total": 1,
+      "flagged": 0
+    }
+  },
+  "product_only_false_rejects": "28/44",
+  "outcomes_hostile": {
+    "rejected_structural": 43,
+    "delivered": 8,
+    "dropped": 1
+  },
+  "outcomes_clean": {
+    "rejected_structural": 32,
+    "delivered": 16
+  },
+  "product_path_files_sha256": "5f2d8515bdd79900328246f9d4df3cb63901bb3e9ea30206f2a2d1a87fb18582",
+  "note": "ПРОДУКТОВИЙ шлях (llmText: структурне правило → guard із видаленням речень → сканер звіту); агрегати без текстів. Повторне діагностичне використання вже використаного held-out корпусу — НЕ новий held-out; нічого під нього не тюнено. Рукописний корпус — не якість живої моделі (⏭️ live pass)"
+}

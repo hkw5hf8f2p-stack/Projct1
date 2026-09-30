@@ -1,6 +1,6 @@
 {
   "schema_version": "sitelens-report/v1",
-  "scoring_version": "scoring-v1",
+  "scoring_version": "scoring-v2",
   "generated_at": "2026-09-30T00:00:00Z",
   "provenance": {
     "kind": "example_fixture",

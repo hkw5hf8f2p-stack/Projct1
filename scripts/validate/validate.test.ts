@@ -1,10 +1,12 @@
 /**
- * `pnpm validate` — критерій S4 №8: FAIL на 4/4 підкладених поганих сценаріях і PASS на коректному fake-наборі, без браузера
- * (закомічені знімки sprint-1a-fix: shop, shop-clean). Кожна перевірка показана і на позитиві, і на негативі.
+ * `pnpm validate` — критерій S4 №8 (чесно: 3 FAIL + 1 показник) і PASS на коректному fake-наборі, без браузера
+ * (закомічені знімки sprint-1a-fix: shop, shop-clean; E3c — sprint-4/validate/snapshots site-a/site-b). Кожна перевірка — позитив і негатив.
  *  (а) оцінювач вигадує terminology на чистій сторінці → E3a FAIL
- *  (б) знімок не заморожений → три різні топи → E2 FAIL
+ *  (б) три різні топи → E2 FAIL (тривіально: різні знімки). Чутлива форма — нестабільний ОЦІНЮВАЧ на ЗАМОРОЖЕНОМУ знімку:
+ *      E2(б) Jcat < 0.4 (показник падає й це видно), але E2(а) PASS — E2(б) за G0-8 не гейт (відоме обмеження)
  *  (в) cache_read_tokens > 0 → E2 «недійсний» (INVALID)
- *  (г) абляція: LLM-лише 0/3 → показник 0/3 видно, у dev не гейт
+ *  (г) абляція: LLM-лише 0/3 → показник 0/3 видно, у dev не гейт (з --strict-live → FAIL)
+ * Плюс гейт рангу E1 (кр.2, DEV-76) з контролем scoring-v1 і E3c dev-статус лише за кодом (DEV-77).
  * Плюс: жорсткий MAX_VALIDATE_TOKENS зі стопом, обхід кешу доведено лічильником, replay-плумбінг, механізм абляції, правила fake-оцінювача.
  */
 import { spawnSync } from "node:child_process";
@@ -12,12 +14,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { beforeAll, describe, expect, it } from "vitest";
 import { MemoryStore, loadPagesFromArtifacts } from "../../packages/llm/src/index.js";
-import { ablateHints, loadSnapshot, runValidation, formatResult, buildRunReport, ValidateMeter, ValidateBudgetStop, type CheckResult, type ValidateResult } from "./core.js";
+import { ablateHints, e3cStatus, loadSnapshot, runValidation, formatResult, buildRunReport, ValidateMeter, ValidateBudgetStop, type CheckResult, type ValidateResult } from "./core.js";
 import { VALIDATE_LENSES, pagesToEvaluate, plannedCalls, runSnapshotSessions, type EvaluatorSpec } from "./evaluator.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const A = (s: string) => path.join(ROOT, "planning/qa/artifacts/sprint-1a-fix", s);
 const SNAP = { shop: A("shop"), clean: A("shop-clean") };
+const V = (s: string) => path.join(ROOT, "planning/qa/artifacts/sprint-4/validate/snapshots", s);
 const CHECKS = ["E1", "E2", "E3a", "E4"] as const;
 const by = (r: ValidateResult, id: string): CheckResult => r.checks.find((c) => c.id === id) as CheckResult;
 
@@ -39,6 +42,20 @@ describe("коректний fake-набір → PASS (E1, E2, E3a, E4)", () => 
     expect(d.full.total).toBe(10);
     expect(by(good, "E1").lines.join("\n")).toMatch(/детерміновані x\/7 = 7\/7/);
     expect(by(good, "E1").lines.join("\n")).toMatch(/LLM-лише y\/3 = 3\/3/);
+  });
+  it("E1 гейт рангу (кр.2, DEV-76): 7/7 у топ-10 на повному звіті з 4 гіпотезами; контроль scoring-v1 на тому ж звіті → FAIL, №8 → 12", () => {
+    const d = by(good, "E1").data as { rank: { pass: boolean; in_top: number; findings: number; hypotheses: number; ranks: Array<{ id: number; rank: number | null }> }; rank_v1_control: { pass: boolean; in_top: number; ranks: Array<{ id: number; rank: number | null }> } };
+    expect([d.rank.pass, d.rank.in_top, d.rank.findings, d.rank.hypotheses]).toEqual([true, 7, 12, 4]);
+    expect(d.rank.ranks.find((x) => x.id === 8)?.rank).toBe(8);
+    expect([d.rank_v1_control.pass, d.rank_v1_control.in_top]).toEqual([false, 6]);
+    expect(d.rank_v1_control.ranks.find((x) => x.id === 8)?.rank).toBe(12);
+    const txt = by(good, "E1").lines.join("\n");
+    expect(txt).toMatch(/ранг \[ГЕЙТ, кр\.2\]: детерміновані в топ-10 = 7\/7/);
+    expect(txt).toMatch(/контроль рангу: .* → 6\/7 FAIL ✓/);
+    // у звіті: усі VERIFIED вище всіх гіпотез
+    const lv = good.reports["e1-full"]!.findings.map((f) => f.confidence.level);
+    expect(lv.lastIndexOf("VERIFIED")).toBeLessThan(lv.findIndex((l) => l !== "VERIFIED"));
+    expect(good.reports["e1-full"]!.scoring_version).toBe("scoring-v2");
   });
   it("E2: 3 прогони bypass, cache_read_tokens = 0/0/0 при ПРОГРІТОМУ кеші; контроль use дає > 0", () => {
     const d = by(good, "E2").data as { validity: { valid: boolean }; control: { cache_read_tokens: number; invalid: boolean }; metrics: { jcat_mean: number; k3: string[] } };
@@ -103,6 +120,13 @@ describe("(б) знімок не заморожений → три різні т
     expect(d.metrics.jcat_mean).toBeLessThan(0.6);
     expect(d.gate.failed.some((f) => f.startsWith("Jcat_mean"))).toBe(true);
   });
+  it("вбудований контроль E2(б) у кожному validate: нестабільний оцінювач на тому ж замороженому знімку → Jcat < 0.4, рядок видно", () => {
+    const d = by(good, "E2").data as { control_unstable: { llm_only: { jcat_mean: number }; gate_a_pass: boolean; caught: boolean } };
+    expect(d.control_unstable.caught).toBe(true);
+    expect(d.control_unstable.llm_only.jcat_mean).toBeLessThan(0.4);
+    expect(d.control_unstable.gate_a_pass).toBe(true);
+    expect(by(good, "E2").lines.join("\n")).toMatch(/контроль E2\(б\): .* < 0\.4 ✓ .*E2\(а\) при цьому PASS \(обмеження/);
+  });
   it("нестабільний ОЦІНЮВАЧ на замороженому знімку: E2(а) лишається PASS (топ-5 — детерміновані), E2(б) показує низьку стабільність LLM-знахідок", async () => {
     const r = await runValidation({ snapshots: SNAP, checks: ["E2"], evaluators: { e2: (run) => ({ kind: "unstable", run }) } });
     const d = by(r, "E2").data as { llm_only: { jcat_mean: number }; gate: { pass: boolean } };
@@ -157,10 +181,51 @@ describe("(г) абляція: LLM-лише = 0/3 → показник видн�
     const strict = await runValidation({ snapshots: SNAP, checks: ["E1"], strict_live: true, evaluators: { e1: () => ({ kind: "silent" }) } });
     expect(by(strict, "E1").status).toBe("FAIL");
   });
+  it("без гіпотез (silent) у звіті 8 знахідок ≤ 10: гейт рангу тривіальний за побудовою — і це надруковано; контроль v1 теж не падає", () => {
+    const d = by(r, "E1").data as { rank: { pass: boolean; findings: number }; rank_v1_control: { pass: boolean } };
+    expect([d.rank.pass, d.rank.findings, d.rank_v1_control.pass]).toEqual([true, 8, true]);
+    expect(by(r, "E1").lines.join("\n")).toMatch(/гейт тривіальний за побудовою/);
+    expect(by(r, "E1").lines.join("\n")).toMatch(/контроль НЕ впав/);
+  });
   it("E1 падає, коли детерміновану знахідку втрачено (знімок без M2-дефекту): x/7 = 6/7 → FAIL", async () => {
     const m2 = await runValidation({ snapshots: { shop: A("mutants/M2"), clean: SNAP.clean }, checks: ["E1"] });
     expect(by(m2, "E1").status).toBe("FAIL");
     expect((by(m2, "E1").data as { full: { det: { x: number } } }).full.det.x).toBe(6);
+  });
+});
+
+describe("E3c dev-статус лише за кодом (DEV-77): fake у статус не входить", () => {
+  const E3C = { shop: SNAP.shop, clean: V("site-a"), degraded: V("site-b") };
+  let honestDev: ValidateResult;
+  beforeAll(async () => {
+    honestDev = await runValidation({ snapshots: E3C, checks: ["E3c"] });
+  });
+  it("dev: код 2/5 < 4/5 → ⏭️ DEFERRED (не PASS і не FAIL); fake 5/5 — лише рядок обв'язки; вердикт PASS із переліком ⏭️", () => {
+    const c = by(honestDev, "E3c");
+    expect(c.status).toBe("DEFERRED");
+    expect((c.data as { worse: number; worse_code: number }).worse_code).toBe(2);
+    expect((c.data as { worse: number }).worse).toBe(5);
+    expect(c.lines[0]).toMatch(/⏭️ dev: кодом гірше в 2 з 5 < 4/);
+    expect(c.lines.join("\n")).toMatch(/обв'язка \(НЕ статус\): з fake-оцінювачем гірше в 5 з 5/);
+    expect(honestDev.verdict).toBe("PASS");
+    expect(formatResult(honestDev)).toMatch(/не закрито в dev \(⏭️\): E3c/);
+  });
+  it("silent-оцінювач на degraded: dev-статус ТОЙ САМИЙ (fake не впливає); strict-live → FAIL (2 < 4); strict-live з fake → PASS (обв'язка)", async () => {
+    const silent = await runValidation({ snapshots: E3C, checks: ["E3c"], evaluators: { e3c: () => ({ kind: "silent" }) } });
+    expect(by(silent, "E3c").status).toBe("DEFERRED");
+    expect((by(silent, "E3c").data as { worse_code: number }).worse_code).toBe(2);
+    const strictSilent = await runValidation({ snapshots: E3C, checks: ["E3c"], strict_live: true, evaluators: { e3c: () => ({ kind: "silent" }) } });
+    expect(by(strictSilent, "E3c").status).toBe("FAIL");
+    expect(strictSilent.verdict).toBe("FAIL");
+    const strictFake = await runValidation({ snapshots: E3C, checks: ["E3c"], strict_live: true });
+    expect(by(strictFake, "E3c").status).toBe("PASS");
+  });
+  it("e3cStatus: таблиця (поріг ≥ 4/5 один для dev і live, SCORING_SPEC §8.3)", () => {
+    const cases: Array<[number, number, boolean, string]> = [
+      [5, 2, false, "DEFERRED"], [0, 0, false, "DEFERRED"], [4, 3, false, "DEFERRED"], [4, 4, false, "PASS"], [5, 5, false, "PASS"],
+      [3, 2, true, "FAIL"], [4, 2, true, "PASS"], [0, 0, true, "FAIL"],
+    ];
+    for (const [worse, worse_code, strict, want] of cases) expect(e3cStatus({ worse, worse_code }, strict).status, `${worse}/${worse_code}/${strict}`).toBe(want);
   });
 });
 

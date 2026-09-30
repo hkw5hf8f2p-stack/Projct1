@@ -9,6 +9,9 @@
 `priority = min( roundHalfUp(100·Σ_{i∈A} W_i·c_i / Σ_{i∈A} W_i), cap )`, `cap` лише для HYPOTHESIS:
 `round(100·(0.30·sev + 0.20·fun + 0.15)/0.65)` (DEV-60). Для VERIFIED `lens_coverage`/`session_frequency` — N/A.
 
+**Порядок звіту (scoring-v2, DEV-76):** спершу смуга (VERIFIED над STRONG/HYPOTHESIS), далі priority desc і tie-break §6.5.
+Числа priority у цьому файлі не змінилися; змінилися лише ранги там, де VERIFIED мав нижчий priority за гіпотезу.
+
 ## 1. Граничні й контрольні випадки (юніт-тести)
 
 | # | Випадок | Очікування | Тест |
@@ -28,6 +31,9 @@
 | 13 | Монотонність: кожен компонент ↑ для STRONG і HYPOTHESIS | priority не спадає | §6.2 |
 | 14 | C2: 3 «replay-прогони» з мітками low/high/medium і різною силою формулювань | ідентичні пріоритети; зміна **категорії** — змінює (контроль) | `aggregate.test.ts` C2 |
 | 15 | Детермінізм: 6 перестановок доказів і 6 перестановок сесій | байт-ідентичний вихід; зміна одного факту — інший вихід | `aggregate.test.ts` |
+| 16 | Смуга (DEV-76): найслабший можливий VERIFIED (axe minor на `other`: sev 0.10, fun 0.45) vs найсильніша STRONG (checkout /cart, 12/12 лінз, 2 контексти, блокер) | VERIFIED **42** ранг 1, STRONG **> 90** ранг 2; контроль: порядок v1 ставить STRONG першою | `rank-band.test.ts` |
+| 17 | Усередині смуги | VERIFIED між собою й гіпотези між собою — за priority desc (як у v1) | `rank-band.test.ts` |
+| 18 | Гейт рангу на рядках `e1-full` (scoring-v1) | v1: **6/7**, №8 → **12** (FAIL); ті самі знахідки у v2: **7/7**, №8 → **8** (PASS); межа: 10-те місце в топі, 11-те — ні; недетектований → FAIL | `rank-band.test.ts` |
 
 Severity-таблиця (10 рядків, включно з axe minor на `other` → 0.10, Lighthouse opportunities + oversized_image → підлога
 0.45 − 0.10 = 0.35) і воронка на типах S1a (5 рядків, DEV-59) — `priority.test.ts` «§3/§4».
@@ -64,3 +70,18 @@ Severity-таблиця (10 рядків, включно з axe minor на `othe
 
 Усі 7 детермінованих лишаються VERIFIED у топ-10 поруч із гіпотезами. Якість цих гіпотез — ⏭️ live pass (OQ-1):
 приклад доводить плумбінг і контракт, не модель.
+
+## 4. Повний звіт із fake-гіпотезами (`validate/reports/e1-full.json`, R-14, DEV-76)
+
+| Ранг v1 | Ранг v2 | finding_key | Впевненість | severity | funnel | **priority** |
+|---|---|---|---|---|---|---|
+| 1–7 | 1–7 | 7 VERIFIED (pricing ×2, cta, axe button-name, shipping, axe image-alt, overflow) | VERIFIED | 0.70–0.85 | 0.8–0.9 | 90…80 |
+| 12 | **8** | `performance\|/\|oversized_image` | VERIFIED | 0.6 | 0.3 (landing) | **60** |
+| 8 | 9 | `comparison\|category\|general` | HYPOTHESIS | 0.6 | 0.7 | 69 (cap 72) |
+| 9 | 10 | `terminology\|product\|general` | HYPOTHESIS | 0.5 | 0.8 | 68 |
+| 10 | 11 | `value_proposition\|/\|general` | HYPOTHESIS | 0.8 | 0.3 | 67 |
+| 11 | 12 | `terminology\|category\|general` | HYPOTHESIS | 0.5 | 0.55 | 63 |
+
+Детерміновані в топ-10: v1 **6/7** (FAIL кр.2), v2 **7/7**. Тепер це гейт у `validate` E1 з контролем v1. Гіпотези — відповіді
+fake, не моделі: те, скільки гіпотез дасть жива модель, перевірить лише ⏭️ live.
+

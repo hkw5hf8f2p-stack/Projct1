@@ -4,93 +4,93 @@
   "per_host": {
     "site-a.test:4213": {
       "navigations": 14,
-      "min_gap_ms": 1292
+      "min_gap_ms": 1171
     }
   },
   "hits": [
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/",
-      "ts": "2026-09-30T04:09:18.003Z",
+      "ts": "2026-09-30T05:32:53.055Z",
       "gap_ms": null
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/",
-      "ts": "2026-09-30T04:09:19.295Z",
-      "gap_ms": 1292
+      "ts": "2026-09-30T05:32:54.260Z",
+      "gap_ms": 1205
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/catalog",
-      "ts": "2026-09-30T04:09:20.810Z",
-      "gap_ms": 1515
+      "ts": "2026-09-30T05:32:55.467Z",
+      "gap_ms": 1207
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/catalog",
-      "ts": "2026-09-30T04:09:22.280Z",
-      "gap_ms": 1470
+      "ts": "2026-09-30T05:32:56.663Z",
+      "gap_ms": 1196
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/product/glass-kettle",
-      "ts": "2026-09-30T04:09:23.698Z",
-      "gap_ms": 1418
+      "ts": "2026-09-30T05:32:57.905Z",
+      "gap_ms": 1242
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/product/glass-kettle",
-      "ts": "2026-09-30T04:09:25.236Z",
-      "gap_ms": 1538
+      "ts": "2026-09-30T05:32:59.210Z",
+      "gap_ms": 1305
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/product/travel-thermos",
-      "ts": "2026-09-30T04:09:26.812Z",
-      "gap_ms": 1576
+      "ts": "2026-09-30T05:33:00.587Z",
+      "gap_ms": 1377
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/product/travel-thermos",
-      "ts": "2026-09-30T04:09:28.363Z",
-      "gap_ms": 1551
+      "ts": "2026-09-30T05:33:01.843Z",
+      "gap_ms": 1256
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/product/wooden-board",
-      "ts": "2026-09-30T04:09:29.967Z",
-      "gap_ms": 1604
-    },
-    {
-      "host": "site-a.test:4213",
-      "url": "http://site-a.test:4213/product/wooden-board",
-      "ts": "2026-09-30T04:09:31.399Z",
-      "gap_ms": 1432
-    },
-    {
-      "host": "site-a.test:4213",
-      "url": "http://site-a.test:4213/shipping",
-      "ts": "2026-09-30T04:09:32.943Z",
-      "gap_ms": 1544
-    },
-    {
-      "host": "site-a.test:4213",
-      "url": "http://site-a.test:4213/shipping",
-      "ts": "2026-09-30T04:09:34.293Z",
+      "ts": "2026-09-30T05:33:03.193Z",
       "gap_ms": 1350
     },
     {
       "host": "site-a.test:4213",
-      "url": "http://site-a.test:4213/about",
-      "ts": "2026-09-30T04:09:35.617Z",
-      "gap_ms": 1324
+      "url": "http://site-a.test:4213/product/wooden-board",
+      "ts": "2026-09-30T05:33:04.469Z",
+      "gap_ms": 1276
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/shipping",
+      "ts": "2026-09-30T05:33:05.778Z",
+      "gap_ms": 1309
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/shipping",
+      "ts": "2026-09-30T05:33:07.033Z",
+      "gap_ms": 1255
     },
     {
       "host": "site-a.test:4213",
       "url": "http://site-a.test:4213/about",
-      "ts": "2026-09-30T04:09:37.061Z",
-      "gap_ms": 1444
+      "ts": "2026-09-30T05:33:08.351Z",
+      "gap_ms": 1318
+    },
+    {
+      "host": "site-a.test:4213",
+      "url": "http://site-a.test:4213/about",
+      "ts": "2026-09-30T05:33:09.522Z",
+      "gap_ms": 1171
     }
   ]
 }

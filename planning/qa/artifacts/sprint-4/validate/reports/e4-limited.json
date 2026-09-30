@@ -1,6 +1,6 @@
 {
  "schema_version": "sitelens-report/v1",
- "scoring_version": "scoring-v1",
+ "scoring_version": "scoring-v2",
  "generated_at": "2026-09-30T00:00:00Z",
  "provenance": {
   "kind": "audit",
@@ -128,8 +128,8 @@
   {
    "stage": "landing",
    "finding_ids": [
-    "fnd_47b24e9f41f6",
-    "fnd_372ae07d45af"
+    "fnd_372ae07d45af",
+    "fnd_47b24e9f41f6"
    ],
    "positive_ids": []
   },
@@ -1586,605 +1586,13 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_69a63d946f1d",
-   "finding_key": "comparison|category|general",
-   "category": "comparison",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 8,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/7/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/7/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.6,
-    "base": 0.55,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "select",
-    "value": 0.7,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.4,
-    "tier": "ET-SYN-1"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 72,
-    "uncapped": 73,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 72
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.6,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 1,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 1,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.4,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_63e60796328c"
-   ],
-   "instances": 1,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_47b24e9f41f6",
-   "finding_key": "value_proposition|/|general",
-   "category": "value_proposition",
-   "page_group": "/",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 9,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/",
-     "path": "/",
-     "page_type": "homepage"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/8/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/8/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.8,
-    "base": 0.75,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "landing",
-    "value": 0.3,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 67,
-    "uncapped": 67,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 69
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.3,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_158fc2181af1",
-    "ev_e62d36bd8828",
-    "ev_e75fa805b608"
-   ],
-   "instances": 3,
-   "affected_task_ids": [
-    "t_understand"
-   ],
-   "affected_lens_ids": [
-    "lens_fast",
-    "lens_novice",
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_5bb354eda528",
-   "finding_key": "terminology|category|general",
-   "category": "terminology",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 10,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/9/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/9/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.5,
-    "base": 0.45,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "browse",
-    "value": 0.55,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.4,
-    "tier": "ET-SYN-1"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 63,
-    "uncapped": 67,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 63
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.55,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 1,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 1,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.4,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_d12d42b9743d"
-   ],
-   "instances": 1,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
    "id": "fnd_372ae07d45af",
    "finding_key": "performance|/|oversized_image",
    "category": "performance",
    "page_group": "/",
    "claim_kind": "oversized_image",
    "component": null,
-   "rank": 11,
+   "rank": 8,
    "pages": [
     {
      "url": "http://127.0.0.1:4210/",
@@ -2367,6 +1775,598 @@
    "instances": 2,
    "affected_task_ids": [],
    "affected_lens_ids": [],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_69a63d946f1d",
+   "finding_key": "comparison|category|general",
+   "category": "comparison",
+   "page_group": "category",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 9,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/8/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/8/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.6,
+    "base": 0.55,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "select",
+    "value": 0.7,
+    "stage_source": "category"
+   },
+   "evidence_strength": {
+    "value": 0.4,
+    "tier": "ET-SYN-1"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 72,
+    "uncapped": 73,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 72
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.6,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 1,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 1,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.4,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_63e60796328c"
+   ],
+   "instances": 1,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_novice"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_47b24e9f41f6",
+   "finding_key": "value_proposition|/|general",
+   "category": "value_proposition",
+   "page_group": "/",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 10,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/",
+     "path": "/",
+     "page_type": "homepage"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/9/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/9/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.8,
+    "base": 0.75,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "landing",
+    "value": 0.3,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.7,
+    "tier": "ET-SYN-M"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 3,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 3,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 67,
+    "uncapped": 67,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 69
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.8,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.3,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.75,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.75,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_158fc2181af1",
+    "ev_e62d36bd8828",
+    "ev_e75fa805b608"
+   ],
+   "instances": 3,
+   "affected_task_ids": [
+    "t_understand"
+   ],
+   "affected_lens_ids": [
+    "lens_fast",
+    "lens_novice",
+    "lens_price"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_5bb354eda528",
+   "finding_key": "terminology|category|general",
+   "category": "terminology",
+   "page_group": "category",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 11,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/10/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/10/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.5,
+    "base": 0.45,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "browse",
+    "value": 0.55,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.4,
+    "tier": "ET-SYN-1"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 63,
+    "uncapped": 67,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 63
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.5,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.55,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 1,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 1,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.4,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_d12d42b9743d"
+   ],
+   "instances": 1,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_novice"
+   ],
    "executive_eligible": true
   }
  ],
@@ -4757,6 +4757,164 @@
    "level": null
   },
   {
+   "id": "ev_0fcc40c9006f",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": "D",
+   "detector_id": "oversized_image",
+   "claim_kind": "oversized_image",
+   "assertion": "presence",
+   "description": {
+    "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
+    "params": {
+     "body_bytes": {
+      "ptr": "/evidence/34/measurement/body_bytes",
+      "format": "int"
+     },
+     "threshold_bytes": {
+      "ptr": "/evidence/34/measurement/threshold_bytes",
+      "format": "int"
+     },
+     "natural_w": {
+      "ptr": "/evidence/34/measurement/natural_w",
+      "format": "int"
+     },
+     "natural_h": {
+      "ptr": "/evidence/34/measurement/natural_h",
+      "format": "int"
+     },
+     "rendered_w": {
+      "ptr": "/evidence/34/measurement/rendered_w",
+      "format": "int"
+     },
+     "rendered_h": {
+      "ptr": "/evidence/34/measurement/rendered_h",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "evidence.oversized_image",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "http://127.0.0.1:4210/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 1440×480",
+   "artifact_reference": "pages/index/1440x1000/network.json",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
+   "selector": "main > img",
+   "region": {
+    "x": 0,
+    "y": 64,
+    "w": 1440,
+    "h": 480
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "body_bytes": 1700000,
+    "natural_h": 1600,
+    "natural_w": 2400,
+    "oversize_ratio": 5.56,
+    "rendered_h": 480,
+    "rendered_w": 1440,
+    "viewport_height": 1000,
+    "viewport_width": 1440,
+    "threshold_bytes": 512000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_e130204af87c",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": "M",
+   "detector_id": "oversized_image",
+   "claim_kind": "oversized_image",
+   "assertion": "presence",
+   "description": {
+    "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
+    "params": {
+     "body_bytes": {
+      "ptr": "/evidence/35/measurement/body_bytes",
+      "format": "int"
+     },
+     "threshold_bytes": {
+      "ptr": "/evidence/35/measurement/threshold_bytes",
+      "format": "int"
+     },
+     "natural_w": {
+      "ptr": "/evidence/35/measurement/natural_w",
+      "format": "int"
+     },
+     "natural_h": {
+      "ptr": "/evidence/35/measurement/natural_h",
+      "format": "int"
+     },
+     "rendered_w": {
+      "ptr": "/evidence/35/measurement/rendered_w",
+      "format": "int"
+     },
+     "rendered_h": {
+      "ptr": "/evidence/35/measurement/rendered_h",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "evidence.oversized_image",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "http://127.0.0.1:4210/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 390×480",
+   "artifact_reference": "pages/index/390x844/network.json",
+   "screenshot_reference": "pages/index/390x844/viewport.png",
+   "selector": "main > img",
+   "region": {
+    "x": 0,
+    "y": 64,
+    "w": 390,
+    "h": 480
+   },
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "body_bytes": 1700000,
+    "natural_h": 1600,
+    "natural_w": 2400,
+    "oversize_ratio": 5.13,
+    "rendered_h": 480,
+    "rendered_w": 390,
+    "viewport_height": 844,
+    "viewport_width": 390,
+    "threshold_bytes": 512000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
    "id": "ev_63e60796328c",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
@@ -4975,164 +5133,6 @@
    "lens_id": "lens_novice",
    "task_id": "t_choose",
    "level": "snapshot"
-  },
-  {
-   "id": "ev_0fcc40c9006f",
-   "type": "dom",
-   "source_class": "OBSERVED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": "D",
-   "detector_id": "oversized_image",
-   "claim_kind": "oversized_image",
-   "assertion": "presence",
-   "description": {
-    "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
-    "params": {
-     "body_bytes": {
-      "ptr": "/evidence/39/measurement/body_bytes",
-      "format": "int"
-     },
-     "threshold_bytes": {
-      "ptr": "/evidence/39/measurement/threshold_bytes",
-      "format": "int"
-     },
-     "natural_w": {
-      "ptr": "/evidence/39/measurement/natural_w",
-      "format": "int"
-     },
-     "natural_h": {
-      "ptr": "/evidence/39/measurement/natural_h",
-      "format": "int"
-     },
-     "rendered_w": {
-      "ptr": "/evidence/39/measurement/rendered_w",
-      "format": "int"
-     },
-     "rendered_h": {
-      "ptr": "/evidence/39/measurement/rendered_h",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "OBSERVED",
-    "lang": "uk",
-    "template_id": "evidence.oversized_image",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "http://127.0.0.1:4210/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 1440×480",
-   "artifact_reference": "pages/index/1440x1000/network.json",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": "main > img",
-   "region": {
-    "x": 0,
-    "y": 64,
-    "w": 1440,
-    "h": 480
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "body_bytes": 1700000,
-    "natural_h": 1600,
-    "natural_w": 2400,
-    "oversize_ratio": 5.56,
-    "rendered_h": 480,
-    "rendered_w": 1440,
-    "viewport_height": 1000,
-    "viewport_width": 1440,
-    "threshold_bytes": 512000
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
-  },
-  {
-   "id": "ev_e130204af87c",
-   "type": "dom",
-   "source_class": "OBSERVED",
-   "tier": "ET-DET",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": "M",
-   "detector_id": "oversized_image",
-   "claim_kind": "oversized_image",
-   "assertion": "presence",
-   "description": {
-    "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
-    "params": {
-     "body_bytes": {
-      "ptr": "/evidence/40/measurement/body_bytes",
-      "format": "int"
-     },
-     "threshold_bytes": {
-      "ptr": "/evidence/40/measurement/threshold_bytes",
-      "format": "int"
-     },
-     "natural_w": {
-      "ptr": "/evidence/40/measurement/natural_w",
-      "format": "int"
-     },
-     "natural_h": {
-      "ptr": "/evidence/40/measurement/natural_h",
-      "format": "int"
-     },
-     "rendered_w": {
-      "ptr": "/evidence/40/measurement/rendered_w",
-      "format": "int"
-     },
-     "rendered_h": {
-      "ptr": "/evidence/40/measurement/rendered_h",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "OBSERVED",
-    "lang": "uk",
-    "template_id": "evidence.oversized_image",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "http://127.0.0.1:4210/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 390×480",
-   "artifact_reference": "pages/index/390x844/network.json",
-   "screenshot_reference": "pages/index/390x844/viewport.png",
-   "selector": "main > img",
-   "region": {
-    "x": 0,
-    "y": 64,
-    "w": 390,
-    "h": 480
-   },
-   "capture_complete": true,
-   "incomplete_reasons": [],
-   "measurement": {
-    "body_bytes": 1700000,
-    "natural_h": 1600,
-    "natural_w": 2400,
-    "oversize_ratio": 5.13,
-    "rendered_h": 480,
-    "rendered_w": 390,
-    "viewport_height": 844,
-    "viewport_width": 390,
-    "threshold_bytes": 512000
-   },
-   "session_id": null,
-   "lens_id": null,
-   "task_id": null,
-   "level": null
   }
  ],
  "disclaimers": [
