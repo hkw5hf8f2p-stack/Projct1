@@ -14,7 +14,7 @@ import { AnthropicProvider, ClaudeCliProvider, OpenAiProvider, ProviderTimeoutEr
 import { classifyAiError } from "./ai-errors.js";
 import { scanReport } from "@sitelens/reporting";
 import {
-  AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
+  AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, reportProvider, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
@@ -183,7 +183,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
         config_json: { max_pages: cfg.maxPages, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse, ...(snap ? { ai: snap } : {}) },
       });
       // BYO AI: знімок провайдера+моделі (без ключа) — звіт показує, чим зроблено; зміна налаштувань під час аудиту на нього не діє
-      if (snap && (snap.provider === "anthropic" || snap.provider === "openai")) await c.query("UPDATE audit_runs SET llm_provider = $2, llm_model = $3 WHERE id = $1", [id, snap.provider, snap.model]);
+      if (snap && snap.kind !== "none") await c.query("UPDATE audit_runs SET llm_provider = $2, llm_model = $3 WHERE id = $1", [id, reportProvider(snap.provider, snap.kind), snap.model]);
       // §55.13: аудит і його перша задача з'являються ОДНОЧАСНО (одна транзакція) — kill -9 API посередині не лишає «сироту»
       await enqueue(boss, Q.crawl, { auditRunId: id }, { db: txDb(c) });
       await c.query("COMMIT");

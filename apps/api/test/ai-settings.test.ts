@@ -217,4 +217,19 @@ describe("знімок в AuditRun (справжній PostgreSQL)", () => {
     expect(JSON.stringify(row)).not.toContain("SECRET123");
     expect(JSON.stringify((await db.pool.query("SELECT * FROM audit_runs")).rows)).not.toContain("other-000");
   });
+  it("DEV-84: llm_provider у БД для openai_compatible і claude_cli (раніше NULL); none → NULL", async () => {
+    const env = mkEnv();
+    const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: mkdtempSync(path.join(os.tmpdir(), "sl-art-")), SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: "http://127.0.0.1:9" } as NodeJS.ProcessEnv);
+    const app = await buildServer({ cfg, pool: db.pool, boss, llmMode: "none", env });
+    apps.push(app);
+    const run = async (payload: object) => {
+      await app.inject({ method: "PUT", url: "/api/settings/ai", payload });
+      const r = await app.inject({ method: "POST", url: "/api/audits", payload: { url: "http://127.0.0.1:9/" } });
+      expect(r.statusCode, r.body).toBe(202);
+      return (await db.pool.query("SELECT llm_mode, llm_provider, llm_model FROM audit_runs WHERE id = $1", [r.json().auditId])).rows[0];
+    };
+    expect(await run({ kind: "openai_compatible", base_url: "http://127.0.0.1:11434", model: "llama3", api_key: KEY })).toEqual({ llm_mode: "live", llm_provider: "openai_compatible", llm_model: "llama3" });
+    expect(await run({ kind: "claude_cli" })).toEqual({ llm_mode: "live", llm_provider: "claude_cli", llm_model: null });
+    expect(await run({ kind: "none" })).toEqual({ llm_mode: "none", llm_provider: null, llm_model: null });
+  });
 });
