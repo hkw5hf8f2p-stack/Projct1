@@ -1,0 +1,61 @@
+{
+  "scenario": "ttl-and-delete",
+  "ttl": {
+    "expired_audit": "aud_be7fc37f3e2aaa21",
+    "files_before": 60,
+    "dir_exists_after": false,
+    "files_after": 0,
+    "fresh_audit": "aud_40b80cc15e411218",
+    "fresh_files_before": 60,
+    "fresh_files_after": 60,
+    "fresh_artifacts_deleted_at": null
+  },
+  "delete": {
+    "deleted_audit": "aud_61965899222dd117",
+    "http_status": 200,
+    "files_before": 60,
+    "files_after": 0,
+    "dir_exists_after": false,
+    "db_rows_before": 19,
+    "db_rows_after": 0,
+    "per_table_before": {
+      "page_artifacts": 4,
+      "evidence": 6,
+      "audit_jobs": 9,
+      "llm_calls": 0,
+      "customer_tasks": 0,
+      "site_profiles": 0,
+      "behavioral_lenses": 0,
+      "scenarios": 0,
+      "synthetic_sessions": 0,
+      "findings": 0,
+      "finding_evidence": 0,
+      "recommendations": 0
+    },
+    "per_table_after": {
+      "page_artifacts": 0,
+      "evidence": 0,
+      "audit_jobs": 0,
+      "llm_calls": 0,
+      "customer_tasks": 0,
+      "site_profiles": 0,
+      "behavioral_lenses": 0,
+      "scenarios": 0,
+      "synthetic_sessions": 0,
+      "findings": 0,
+      "finding_evidence": 0,
+      "recommendations": 0
+    },
+    "audit_row_after": 0,
+    "queue_jobs_before": 15,
+    "queue_jobs_after": 0,
+    "get_after_delete": 404
+  },
+  "percent_removed": {
+    "ttl_files": 100,
+    "delete_files": 100,
+    "delete_db_rows": 100,
+    "delete_queue_jobs": 100
+  },
+  "pass": true
+}

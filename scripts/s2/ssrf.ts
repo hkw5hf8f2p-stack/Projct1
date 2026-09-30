@@ -1,4 +1,7 @@
 /**
+ * ВІДОМЕ ОБМЕЖЕННЯ: вектор `window.open` тут НЕ використано — знайдено (S2), що popup інколи вішає `captureViewport` (S1b) до 60-с watchdog
+ * (repro: scripts/s2/repro-popup-hang.ts); сам вектор покриває браузерний набір S1b (packages/browser/test/ssrf-vectors.test.ts).
+ *
  * SSRF-набір S2: (1) корпус URL для ВХОДУ API (усі мають дати 400, 0 рядків, 0 звернень до канарки); (2) сторінка-атакувальник з векторами до канарки
  * 127.0.0.2:4399 для WORKER-шару (egress-проксі). Канарка лічить кожен запит (HTTP-метод+шлях) і WebSocket-апгрейд.
  */
@@ -44,7 +47,6 @@ try { navigator.sendBeacon(${JSON.stringify(c("v18-beacon"))}, "x"); } catch (e)
 try { new WebSocket(${JSON.stringify(ws + "/v19-ws")}); } catch (e) {}
 try { new EventSource(${JSON.stringify(c("v20-eventsource"))}); } catch (e) {}
 try { fetch(${JSON.stringify(c("v21-fetch-post"))}, { method: "POST", mode: "no-cors", body: "x" }); } catch (e) {}
-try { window.open(${JSON.stringify(c("v23-window-open"))}); } catch (e) {}
 try { document.getElementById("f").submit(); } catch (e) {}
 try { new Image().src = ${JSON.stringify(c("v24-new-image"))}; } catch (e) {}
 </script></main></body></html>`;

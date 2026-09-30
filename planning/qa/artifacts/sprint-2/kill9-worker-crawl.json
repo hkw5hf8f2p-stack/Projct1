@@ -1,8 +1,8 @@
 {
   "scenario": "kill9-worker-crawl",
-  "audit_id": "aud_e36d05b393aad3a2",
+  "audit_id": "aud_22c543f8b70ba62e",
   "worker_killed": {
-    "pid": 26595,
+    "pid": 32091,
     "signal": "SIGKILL",
     "audit_status_at_kill": "crawling",
     "pages_at_kill": 4,
@@ -14,29 +14,25 @@
     ]
   },
   "pre_cleanup": {
-    "orphan_browser_pids_alive_right_after_kill": [
-      26622,
-      26625,
-      26626
-    ],
+    "orphan_browser_pids_alive_right_after_kill": [],
     "tracked_children_in_pid_file": 6,
     "note": "контроль: сироти ІСНУЮТЬ до прибирання — перевірка «0 сиріт» уміє показати ненуль"
   },
   "restart": {
-    "new_worker_pid": 26943,
+    "new_worker_pid": 638,
     "recovery_report": {
-      "ts": "2026-09-30T01:10:46.372Z",
+      "ts": "2026-09-30T01:47:13.447Z",
       "file": "/home/user/Projct1/data/s2/pids/worker.json",
-      "owner_pid": 26595,
+      "owner_pid": 32091,
       "owner_was_alive": false,
       "killed": [],
       "already_gone": [
-        26622,
-        26625,
-        26626,
-        26658,
-        26645,
-        26628
+        32119,
+        32122,
+        32123,
+        32141,
+        32125,
+        32154
       ],
       "skipped_reused_pid": []
     }
@@ -256,8 +252,9 @@
         14942,
         14963,
         15026
-      ]
+      ],
+      "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
     }
   },
-  "pass": true
+  "pass": false
 }

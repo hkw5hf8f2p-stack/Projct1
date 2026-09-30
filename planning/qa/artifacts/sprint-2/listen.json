@@ -1,0 +1,21 @@
+{
+  "scenario": "listen-127.0.0.1",
+  "default_api_pid": 28846,
+  "lsof_default_api": "COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\nnode    28846 sitelens   36u  IPv4 919344      0t0  TCP 127.0.0.1:3101 (LISTEN)",
+  "all_listeners_on_api_port": [
+    "node      28846 sitelens   36u  IPv4 919344      0t0  TCP 127.0.0.1:3101 (LISTEN)"
+  ],
+  "loopback_only": true,
+  "control_host_0000_no_token": {
+    "exit_code": 3,
+    "output": "{\"level\":\"fatal\",\"msg\":\"HOST=0.0.0.0 не є loopback: слухати не-loopback дозволено лише з ACCESS_TOKEN (G0-5). Відмова стартувати.\"}\n",
+    "listening_on_3111": "nothing"
+  },
+  "control_host_0000_with_token": {
+    "lsof": "COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\nnode    30967 sitelens   34u  IPv4 929043      0t0  TCP *:3112 (LISTEN)",
+    "shows_non_loopback": true,
+    "no_token_status": 401,
+    "with_token_status": 202
+  },
+  "pass": true
+}

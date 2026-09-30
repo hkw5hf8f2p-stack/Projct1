@@ -1,21 +1,26 @@
 {
-  "finished_at": "2026-09-30T01:19:21.268Z",
+  "finished_at": "2026-09-30T01:45:35.958Z",
   "results": {
-    "kill9-api": {
+    "ssrf-via-api": {
       "pass": true,
-      "pages": "11/11",
-      "lost": 0,
-      "duplicated": 0,
-      "outage_samples_failed": 28
+      "entry_vectors": 40,
+      "entry_rejected": 40,
+      "entry_canary_hits": 0,
+      "worker_canary_hits_A": 0,
+      "worker_canary_hits_C": 0,
+      "control_B_canary_hits": 39,
+      "control_direct_canary_hit": 1
+    },
+    "listen": {
+      "pass": true,
+      "loopback_only": true,
+      "control_refused_exit": 3
     }
   },
   "final_orphan_scan": {
     "orphan_browsers": [],
     "orphan_postgres": [],
     "foreign_browsers_untouched": [
-      5392,
-      7894,
-      8370,
       14847,
       14855,
       14856,
@@ -31,9 +36,6 @@
       15026
     ],
     "foreign_browsers_before": [
-      5392,
-      7894,
-      8370,
       14847,
       14855,
       14856,

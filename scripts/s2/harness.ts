@@ -28,7 +28,7 @@ export function baseEnv(extra: Record<string, string> = {}): Record<string, stri
   return {
     PG_DATA_DIR: path.join(S2, "pg"), EMBEDDED_PG_PORT: String(PORTS.pg), DATABASE_URL: PG_URL, PID_DIR: path.join(S2, "pids"), LOG_DIR: path.join(S2, "logs"),
     ARTIFACT_DIR: path.join(S2, "artifacts"), PORT: String(PORTS.api), FIXTURE_BASE_PORT: String(PORTS.fx),
-    SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: Object.values(FX).join(","), LIGHTHOUSE_MAX_PAGES: "1", TTL_SWEEP_INTERVAL_MS: "2000", ...extra,
+    SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: [...Object.values(FX), `http://127.0.0.1:${PORTS.attacker}`].join(","), LIGHTHOUSE_MAX_PAGES: "1", TTL_SWEEP_INTERVAL_MS: "2000", ...extra,
   };
 }
 const asSitelens = (args: string[], env: Record<string, string>): { cmd: string; args: string[]; env: NodeJS.ProcessEnv } => ({

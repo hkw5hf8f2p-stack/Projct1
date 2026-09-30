@@ -1,0 +1,51 @@
+{
+  "schema": "sitelens-s4-e1/v1",
+  "source": "planning/qa/artifacts/sprint-1a-fix/shop",
+  "llm_mode": "none",
+  "deterministic": [
+    {
+      "id": 2,
+      "key": "shipping|product|deep_link_only",
+      "verified": true,
+      "rank": 5
+    },
+    {
+      "id": 5,
+      "key": "cta|product|below_fold",
+      "verified": true,
+      "rank": 3
+    },
+    {
+      "id": 6,
+      "key": "accessibility|*|axe:button-name|header/button",
+      "verified": true,
+      "rank": 4
+    },
+    {
+      "id": 7,
+      "key": "mobile_usability|product|horizontal_overflow",
+      "verified": true,
+      "rank": 7
+    },
+    {
+      "id": 8,
+      "key": "performance|/|oversized_image",
+      "verified": true,
+      "rank": 8
+    },
+    {
+      "id": 9,
+      "key": "accessibility|product|axe:image-alt|main/img",
+      "verified": true,
+      "rank": 6
+    },
+    {
+      "id": 10,
+      "key": "pricing|category|not_in_first_viewport",
+      "verified": true,
+      "rank": 1
+    }
+  ],
+  "verified_in_top10": 7,
+  "of": 7
+}

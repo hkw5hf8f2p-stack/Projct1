@@ -1,0 +1,211 @@
+{
+  "vectors": 40,
+  "rejected_400": 40,
+  "accepted": [],
+  "audit_rows_created": 0,
+  "canary_hits": 0,
+  "control_legit_url_status": 202,
+  "control_direct_canary_hit": 1,
+  "details": [
+    {
+      "url": "http://127.0.0.2:4399/entry-v01",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://127.0.0.1:4399/entry-v02",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://localhost:4399/entry-v03",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://LOCALHOST.:4399/entry-v04",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://2130706434:4399/entry-v05",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://0177.0.0.2:4399/entry-v06",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://0x7f.0.0.2:4399/entry-v07",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://127.2:4399/entry-v08",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://１２７.０.０.２:4399/entry-v09",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://ⅼocalhost:4399/entry-v10",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://127.0.0.2.:4399/entry-v11",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://0.0.0.0:4399/entry-v12",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[::ffff:127.0.0.2]:4399/entry-v13",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[::1]:4399/entry-v14",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[::ffff:7f00:2]:4399/entry-v15",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[0:0:0:0:0:ffff:127.0.0.2]/entry-v16",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://10.0.0.1/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://172.16.0.1/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://192.168.0.1/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://169.254.169.254/latest/meta-data/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://100.64.0.1/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[fe80::1]/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[fc00::1]/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://[fd00:ec2::254]/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://metadata.google.internal/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://metadata.azure.com/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://instance-data/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://intranet/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://printer.local/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://db.internal/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://user:pw@example.com:4399/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://example.com@127.0.0.2:4399/entry-v30",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "http://127.0.0.2%23@example.com/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "file:///etc/passwd",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "javascript:alert(1)",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "gopher://127.0.0.2:4399/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "ftp://example.com/",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "data:text/html,<script>1</script>",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "not a url",
+      "status": 400,
+      "class": "invalid_url"
+    },
+    {
+      "url": "",
+      "status": 400,
+      "class": "bad_request"
+    }
+  ]
+}

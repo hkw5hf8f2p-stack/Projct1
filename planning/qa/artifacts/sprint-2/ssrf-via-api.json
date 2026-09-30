@@ -1,0 +1,136 @@
+{
+  "scenario": "ssrf-via-api",
+  "entry": {
+    "vectors": 40,
+    "rejected_400": 40,
+    "accepted": [],
+    "audit_rows_created": 0,
+    "canary_hits": 0
+  },
+  "worker": {
+    "A": {
+      "label": "A: fixture-режим, канарка поза allowlist",
+      "audit_id": "aud_90bd676a6e14cce6",
+      "status": "completed",
+      "error_class": null,
+      "canary_hits": 0,
+      "canary_paths": [],
+      "egress_denied_total": 39,
+      "egress_denied_canary_host": 39,
+      "denied_sample": [
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        },
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        },
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        }
+      ],
+      "pages": [
+        {
+          "url": "http://127.0.0.1:4398/",
+          "ok": true
+        },
+        {
+          "url": "http://127.0.0.1:4398/redir",
+          "ok": false
+        }
+      ]
+    },
+    "B": {
+      "label": "B (КОНТРОЛЬ): fixture-режим, канарка В allowlist",
+      "audit_id": "aud_ee3bf34c3e27cba8",
+      "status": "completed",
+      "error_class": null,
+      "canary_hits": 39,
+      "canary_paths": [
+        "v01-img",
+        "v02-srcset",
+        "v03-script.js",
+        "v04-css",
+        "v05-prefetch",
+        "v06-preload",
+        "v07-iframe",
+        "v08-import.css",
+        "v09-bg",
+        "v11-video",
+        "v12-audio",
+        "v13-object",
+        "v14-embed",
+        "v15-fetch",
+        "v16-xhr",
+        "v20-eventsource",
+        "v21-redirect",
+        "v24-new-image"
+      ],
+      "egress_denied_total": 0,
+      "egress_denied_canary_host": 0,
+      "denied_sample": [],
+      "pages": [
+        {
+          "url": "http://127.0.0.1:4398/",
+          "ok": true
+        },
+        {
+          "url": "http://127.0.0.1:4398/redir",
+          "ok": false
+        }
+      ]
+    },
+    "C": {
+      "label": "C: prod-режим (без fixture), attacker.test → публічна IP → локальний сервер",
+      "audit_id": "aud_a96328ef5262435d",
+      "status": "completed",
+      "error_class": null,
+      "canary_hits": 0,
+      "canary_paths": [],
+      "egress_denied_total": 39,
+      "egress_denied_canary_host": 39,
+      "denied_sample": [
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        },
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        },
+        {
+          "host": "127.0.0.2",
+          "port": 4399,
+          "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)"
+        }
+      ],
+      "pages": [
+        {
+          "url": "http://attacker.test/",
+          "ok": true
+        },
+        {
+          "url": "http://attacker.test/redir",
+          "ok": false
+        }
+      ]
+    }
+  },
+  "summary": {
+    "entry_vectors": 40,
+    "entry_rejected": 40,
+    "entry_canary_hits": 0,
+    "worker_canary_hits_A": 0,
+    "worker_canary_hits_C": 0,
+    "control_B_canary_hits": 39,
+    "control_direct_canary_hit": 1
+  },
+  "pass": true
+}

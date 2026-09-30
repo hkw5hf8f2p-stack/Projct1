@@ -57,6 +57,8 @@ export interface CaptureSignals {
   /** рішення проксі для хоста цілі за час захоплення */
   proxy: ProxyDecisionLite[];
   target_host: string;
+  /** скільки тривало захоплення, мс (ERR_ABORTED після ~30 с — це тайм-аут навігації, а не завантаження файлу) */
+  elapsed_ms?: number;
 }
 export interface Classified { errorClass: ErrorClass; detail: string }
 
@@ -81,7 +83,7 @@ export function classifyCapture(s: CaptureSignals): Classified | null {
   if (!s.navigation_completed || s.http_status === null) {
     if (INVALID_RE.test(fails)) return { errorClass: "invalid_url", detail: `браузер відмовився від адреси: ${fails}` };
     if (LOOP_RE.test(fails)) return { errorClass: "redirect_loop", detail: fails };
-    if (/ERR_ABORTED/i.test(fails) && !/ERR_CERT|ERR_SSL/i.test(fails) && !upErr) return { errorClass: "unsupported_site", detail: `навігацію перервано (${fails}): ймовірно не HTML-сторінка (завантаження файлу)` };
+    if (/ERR_ABORTED/i.test(fails) && !/ERR_CERT|ERR_SSL/i.test(fails) && !upErr && (s.elapsed_ms ?? 0) < 25_000) return { errorClass: "unsupported_site", detail: `навігацію перервано (${fails}): ймовірно не HTML-сторінка (завантаження файлу)` };
     if (SSL_RE.test(fails)) return { errorClass: "ssl_failure", detail: fails };
     if (DNS_RE.test(fails)) return { errorClass: "dns_failure", detail: fails };
     if (upErr && DNS_RE.test(upErr.reason)) return { errorClass: "dns_failure", detail: upErr.reason };

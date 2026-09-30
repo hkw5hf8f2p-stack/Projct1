@@ -42,6 +42,7 @@ describe("таксономія §48", () => {
     ["redirect loop", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_TOO_MANY_REDIRECTS"] }, "redirect_loop"],
     ["timeout без помилки документа", { navigation_completed: false, http_status: null }, "timeout"],
     ["з'єднання скинуто → timeout", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_EMPTY_RESPONSE"] }, "timeout"],
+    ["ERR_ABORTED після ~30 с = тайм-аут навігації (Playwright скасував), не файл", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_ABORTED"], elapsed_ms: 30_500 }, "timeout"],
     ["завантаження файлу (ERR_ABORTED) → unsupported", { navigation_completed: false, http_status: null, document_failures: ["net::ERR_ABORTED"] }, "unsupported_site"],
     ["бот: cloudflare", { http_status: 403, bot: { blocked: true, kind: "cloudflare_challenge", signals: ["header:cf-mitigated=challenge"] } }, "bot_protection"],
     ["бот: 429", { http_status: 429, bot: { blocked: true, kind: "http_429", signals: [] } }, "bot_protection"],

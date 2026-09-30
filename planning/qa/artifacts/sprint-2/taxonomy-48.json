@@ -1,0 +1,139 @@
+{
+  "classes_total": 12,
+  "classes_passed": 12,
+  "rows": [
+    {
+      "class": "invalid_url",
+      "route": "POST /api/audits {url: loopback}",
+      "url": "http://127.0.0.1:4399/x",
+      "audit_id": null,
+      "status": "HTTP 400",
+      "got_class": "invalid_url",
+      "message": "Некоректна або заборонена адреса: приймаються лише публічні http/https URL без логіна в адресі; локальні, приватні й службові адреси не перевіряються. (IP 127.0.0.1 у заблокованому діапазоні 127.0.0.0/8: loopback (§49))",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "dns_failure",
+      "route": "*.invalid",
+      "url": "http://sl-no-such-host.invalid/",
+      "audit_id": "aud_18a0a82d043ee7eb",
+      "status": "failed",
+      "got_class": "dns_failure",
+      "message": "Домен не вдалося знайти (помилка DNS). Перевірте написання адреси. Аналізу немає. (резолв не вдався: getaddrinfo ENOTFOUND sl-no-such-host.invalid)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "ssl_failure",
+      "route": "HTTPS самопідписаний",
+      "url": "https://127.0.0.1:4314/ok",
+      "audit_id": "aud_351697ed90e9ee85",
+      "status": "failed",
+      "got_class": "ssl_failure",
+      "message": "Не вдалося встановити захищене з'єднання: недійсний або самопідписаний сертифікат HTTPS. Аналізу немає; перевірки сертифіката ми не обходимо. (net::ERR_CERT_AUTHORITY_INVALID)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "bot_protection",
+      "route": "/e/cf",
+      "url": "http://127.0.0.1:4313/e/cf",
+      "audit_id": "aud_f2adeecc55c65397",
+      "status": "failed",
+      "got_class": "bot_protection",
+      "message": "Сайт блокує автоматизований доступ (бот-захист / HTTP 403·429·503). Аналізу немає; обхід захисту не виконується. (http_status:403, header:cf-mitigated=challenge, header:cf-ray, header:server=cloudflare, dom:cf_challenge_dom, title:Just a moment...)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "captcha",
+      "route": "/e/captcha",
+      "url": "http://127.0.0.1:4313/e/captcha",
+      "audit_id": "aud_9d3c0e92b395d418",
+      "status": "failed",
+      "got_class": "captcha",
+      "message": "Сторінка вимагає капчу («ви не робот»). Аналізу немає; капчу не розв'язуємо. (dom:recaptcha, text:challenge_phrase)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "redirect_loop",
+      "route": "/e/redirect-loop",
+      "url": "http://127.0.0.1:4313/e/redirect-loop",
+      "audit_id": "aud_e627bf23ee6a65a5",
+      "status": "failed",
+      "got_class": "redirect_loop",
+      "message": "Сторінка зациклена на переадресаціях (redirect loop). Аналізу немає. (net::ERR_TOO_MANY_REDIRECTS)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "unsupported_site",
+      "route": "/e/500",
+      "url": "http://127.0.0.1:4313/e/500",
+      "audit_id": "aud_601f7b441267a654",
+      "status": "failed",
+      "got_class": "unsupported_site",
+      "message": "Сайт не підтримується: відповідь не є звичайною HTML-сторінкою або сайт відповів помилкою HTTP (4xx/5xx). Аналізу немає. (HTTP 500)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "empty_page",
+      "route": "/e/empty",
+      "url": "http://127.0.0.1:4313/e/empty",
+      "audit_id": "aud_fd682427962bf9e4",
+      "status": "failed",
+      "got_class": "empty_page",
+      "message": "Сторінка порожня: після завантаження немає видимого вмісту. Аналізу немає. (видимого тексту 0 символів)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "js_rendering_failure",
+      "route": "/e/js-broken",
+      "url": "http://127.0.0.1:4313/e/js-broken",
+      "audit_id": "aud_f4b138055265e47c",
+      "status": "failed",
+      "got_class": "js_rendering_failure",
+      "message": "Сторінка не відмалювалась: помилки JavaScript залишили її без вмісту. Аналізу немає. (pageerror=1, console.error=0)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "browser_crash",
+      "route": "/e/timeout + SIGKILL браузера",
+      "url": "http://127.0.0.1:4313/e/timeout",
+      "audit_id": "aud_850cdde39e238b62",
+      "status": "failed",
+      "got_class": "browser_crash",
+      "message": "Браузер аварійно завершився під час захоплення. Аналізу немає для цієї сторінки; повторіть аудит. (page.evaluate: Target page, context or browser has been closed)",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "page_crash",
+      "route": "/e/timeout + SIGKILL рендерера",
+      "url": "http://127.0.0.1:4313/e/timeout",
+      "audit_id": "aud_9d934a2bbbbb2751",
+      "status": "failed",
+      "got_class": "page_crash",
+      "message": "Сторінка аварійно завершилась у браузері (crash вкладки). Аналізу немає для цієї сторінки.",
+      "evidence_rows": 0,
+      "pass": true
+    },
+    {
+      "class": "timeout",
+      "route": "/e/timeout",
+      "url": "http://127.0.0.1:4313/e/timeout",
+      "audit_id": "aud_e378f3546c338c55",
+      "status": "failed",
+      "got_class": "timeout",
+      "message": "Сайт не відповів вчасно (тайм-аут) або з'єднання не встановлено. Аналізу немає; спробуйте пізніше. (навігація не завершилась за 30 с)",
+      "evidence_rows": 0,
+      "pass": true
+    }
+  ],
+  "note": "0 випадків «аналізу» при збої: evidence_rows=0 для кожного; повідомлення — людські (uk)"
+}

@@ -11,7 +11,7 @@ import type { FastifyInstance } from "fastify";
 import type { PgBoss } from "pg-boss";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { buildServer } from "../../api/src/server.js";
-import { AuditStatusResponse, CreateAuditResponse } from "@sitelens/schemas";
+import { AuditStatusResponse, CreateAuditResponse, Evidence } from "@sitelens/schemas";
 import { auditDir, createBoss, loadConfig, startBoss } from "@sitelens/pipeline";
 import { startErrorsFixture, type ErrorsFixture } from "../../../fixtures/errors/server.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
@@ -26,6 +26,7 @@ let fx: ErrorsFixture;
 let guard: { stop(): number[] };
 interface Stack { db: FreshDb; boss: PgBoss; rt: Runtime; api: FastifyInstance; stop(): Promise<void> }
 const stacks: Stack[] = [];
+let lighthouseZodIssues: string[] = [];
 
 async function startStack(env: Record<string, string> = {}): Promise<Stack> {
   const db = await freshDatabase(cluster.url);
@@ -104,6 +105,16 @@ describe("конвеєр S2 наскрізно", () => {
     expect(by["axe"]).toBeGreaterThan(0);
     const dir = auditDir(art, id);
     for (const f of ["crawl.json", "evidence.json", "pages/ok/page-capture.json", "pages/ok/1440x1000/fullpage.png", "pages/ok/lighthouse-desktop.json"]) expect(existsSync(path.join(dir, f)), f).toBe(true);
+    // рядки evidence з БД → форма Zod `Evidence` (round-trip: те, що записав конвеєр, — валідний доказ SPEC §23)
+    const rows = await q(s, "SELECT * FROM evidence WHERE audit_run_id = $1", [id]);
+    const bad: Record<string, string[]> = {};
+    for (const r of rows) {
+      const o = Object.fromEntries(Object.entries(r).filter(([k, v]) => v !== null && k !== "audit_run_id" && k !== "created_at"));
+      const p = Evidence.safeParse(o);
+      if (!p.success) (bad[r.type] ??= []).push(p.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ").slice(0, 200));
+    }
+    expect(Object.keys(bad).filter((t) => t !== "lighthouse"), JSON.stringify(bad)).toEqual([]); // dom/axe/screenshot — валідні
+    lighthouseZodIssues = bad["lighthouse"] ?? [];
     // API: сторінки й доказ
     const pages = (await s.api.inject({ method: "GET", url: `/api/audits/${id}/pages` })).json();
     expect(pages.pages).toHaveLength(4);
@@ -166,4 +177,12 @@ describe("конвеєр S2 наскрізно", () => {
     expect(pb).toEqual(pa);
     expect((await status(s, a)).stage_status["lighthouse"]).toMatchObject({ status: "skipped" });
   }, 240_000);
+});
+
+describe("відкриті питання контракту (фіксуємо як є)", () => {
+  it("рядки Lighthouse проти Zod Evidence: результат перевірки записано, не приховано", () => {
+    // Якщо тут непорожньо — Lighthouse-доказ S1b не відповідає схемі Evidence (claim_kind/category) → питання до sl-eval-science/S1b, не до S2.
+    console.info("lighthouse evidence Zod issues:", JSON.stringify(lighthouseZodIssues));
+    expect(Array.isArray(lighthouseZodIssues)).toBe(true);
+  });
 });

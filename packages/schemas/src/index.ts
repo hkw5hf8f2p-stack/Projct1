@@ -6,3 +6,5 @@ export * from "./entities.js";
 export * as later from "./later.js";
 export * from "./errors.js";
 export * from "./api.js";
+export * from "./report.js";
+export * from "./report-text.js";

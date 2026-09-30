@@ -1,0 +1,12 @@
+{
+  "name": "@sitelens/reporting",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@sitelens/browser": "workspace:*",
+    "@sitelens/schemas": "workspace:*",
+    "@sitelens/scoring": "workspace:*"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@sitelens/scoring",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@sitelens/schemas": "workspace:*"
+  }
+}

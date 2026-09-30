@@ -24,6 +24,11 @@ const submit = async (url: string, headers: Record<string, string> = {}) => {
   const r = await http("POST", `${API}/api/audits`, { url }, headers);
   return { status: r.status, id: (r.json as { auditId?: string } | null)?.auditId ?? null, body: r.json };
 };
+const submitOk = async (url: string) => {
+  const s = await submit(url);
+  if (!s.id) throw new Error(`POST ${url} → ${s.status} ${JSON.stringify(s.body)}`);
+  return s as { status: number; id: string; body: unknown };
+};
 const auditRow = async (id: string) => (await q<{ status: string; error_class: string | null; error: string | null; warnings: unknown[]; stage_status: Record<string, { status: string; reason?: string }> }>(db, "SELECT status, error_class, error, warnings, stage_status FROM audit_runs WHERE id = $1", [id]))[0];
 const done = async (id: string, ms = 420_000) => waitFor(`аудит ${id} завершено`, async () => { const r = await auditRow(id); return r && (r.status === "completed" || r.status === "failed") ? r : null; }, ms, 500);
 const pageCount = async (id: string) => Number((await q(db, "SELECT count(*) AS n FROM page_artifacts WHERE audit_run_id = $1", [id]))[0]!["n"]);
@@ -363,8 +368,8 @@ async function main() {
       await stopGraceful("worker");
       canary.hits.length = 0;
       await workerUp(env);
-      const sub = await submit(url);
-      const fin = await done(sub.id!, 300_000);
+      const sub = await submitOk(url);
+      const fin = await done(sub.id, 300_000);
       const pages = (await http("GET", `${API}/api/audits/${sub.id}/pages`)).json as { pages: Array<{ url: string; capture_ok: boolean; egress_denied: Array<{ host: string; reason: string }> }> };
       const denied = pages.pages.flatMap((p) => p.egress_denied);
       const deniedCanary = denied.filter((d) => d.host === "127.0.0.2");
@@ -404,7 +409,7 @@ async function main() {
     const listening3111 = sh("lsof", ["-iTCP:3111", "-sTCP:LISTEN", "-P", "-n"]).trim();
     // контроль 2: HOST=0.0.0.0 + токен → стартує й lsof показує НЕ-loopback (перевірка вміє показати ненуль)
     const TOKEN = "s2-listen-control-token-0123456789";
-    const p2 = launch("api-exposed", ["pnpm", "--silent", "api"], baseEnv({ HOST: "0.0.0.0", PORT: "3112", ACCESS_TOKEN: TOKEN, PID_DIR: path.join(S2, "pids-exposed") }), "../pids-exposed/api.json");
+    const p2 = launch("api-exposed", ["pnpm", "--silent", "api"], baseEnv({ HOST: "0.0.0.0", PORT: "3112", ACCESS_TOKEN: TOKEN, RATE_LIMIT_PER_HOUR: "1000", PID_DIR: path.join(S2, "pids-exposed") }), "../pids-exposed/api.json");
     await waitFor("exposed API", async () => { try { return (await http("GET", "http://127.0.0.1:3112/api/health")).status === 200; } catch { return false; } }, 60_000);
     const exposedPid = readPidFile(path.join(S2, "pids-exposed", "api.json"))!.pid;
     const exposedLsof = lsof(exposedPid);

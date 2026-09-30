@@ -21,7 +21,7 @@ function deniedSince(sb: { proxy: { log: Array<{ host: string; port: number; dec
   return sb.proxy.log.slice(from).filter((d) => d.decision === "deny").slice(0, 50).map((d) => ({ host: d.host, port: d.port, reason: d.reason.slice(0, 160) }));
 }
 
-function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: string; reason: string }>, targetHost: string): CaptureSignals {
+function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: string; reason: string }>, targetHost: string, elapsedMs: number): CaptureSignals {
   const bot = detectBotProtection({ http_status: c.http_status, headers: c.response_headers, title: c.title, visible_text: c.visible_text, markers: c.bot_markers });
   return {
     navigation_completed: c.completeness.navigation_completed,
@@ -36,6 +36,7 @@ function signalsOf(c: ViewportCapture, proxy: Array<{ host: string; decision: st
     bot: { blocked: bot.blocked, kind: bot.kind, signals: bot.signals },
     proxy,
     target_host: targetHost,
+    elapsed_ms: elapsedMs,
   };
 }
 
@@ -44,6 +45,7 @@ type ViewportOut = { ok: true; cap: ViewportCapture; timing: Record<string, numb
 async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, runDir: string): Promise<ViewportOut> {
   const sb = await rt.getBrowser();
   const from = sb.proxy.log.length;
+  const t0 = Date.now();
   const navFrom = rt.nav.failures.length;
   const crashesFrom = rt.nav.crashes;
   try {
@@ -53,7 +55,7 @@ async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, run
     const host = new URL(url).hostname;
     const proxy = sb.proxy.log.slice(from).map((d) => ({ host: d.host, decision: d.decision, reason: d.reason }));
     const denied = deniedSince(sb, from);
-    const failure = classifyCapture(signalsOf(r.capture, proxy, host));
+    const failure = classifyCapture(signalsOf(r.capture, proxy, host, Date.now() - t0));
     if (failure) return { ok: false, failure, http_status: r.capture.http_status, denied };
     return { ok: true, cap: r.capture, timing: r.timing, denied };
   } catch (e) {
@@ -67,7 +69,7 @@ async function oneViewport(rt: Runtime, url: string, pageId: string, vp: VP, run
       const host = new URL(url).hostname;
       const proxy = sb.proxy.log.slice(from).map((d) => ({ host: d.host, decision: d.decision, reason: d.reason }));
       if (failures.length > 0 || proxy.some((p) => p.host === host && p.decision !== "allow")) {
-        const c = classifyCapture({ navigation_completed: false, http_status: null, content_type: null, document_failures: failures, visible_text_length: 0, visible_links: 0, js_error_count: 0, console_error_count: 0, visible_text_sample: "", bot: { blocked: false, kind: null, signals: [] }, proxy, target_host: host });
+        const c = classifyCapture({ navigation_completed: false, http_status: null, content_type: null, document_failures: failures, elapsed_ms: Date.now() - t0, visible_text_length: 0, visible_links: 0, js_error_count: 0, console_error_count: 0, visible_text_sample: "", bot: { blocked: false, kind: null, signals: [] }, proxy, target_host: host });
         if (c) return { ok: false, failure: c, http_status: null, denied };
       }
     }

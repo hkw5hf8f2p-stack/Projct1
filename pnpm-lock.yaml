@@ -182,11 +182,36 @@ importers:
         specifier: 8.23.1
         version: 8.23.1
 
+  packages/reporting:
+    dependencies:
+      '@sitelens/browser':
+        specifier: workspace:*
+        version: link:../browser
+      '@sitelens/schemas':
+        specifier: workspace:*
+        version: link:../schemas
+      '@sitelens/scoring':
+        specifier: workspace:*
+        version: link:../scoring
+
   packages/schemas:
     dependencies:
       zod:
         specifier: 3.25.76
         version: 3.25.76
+    devDependencies:
+      ajv:
+        specifier: 8.20.0
+        version: 8.20.0
+      ajv-formats:
+        specifier: 3.0.1
+        version: 3.0.1(ajv@8.20.0)
+
+  packages/scoring:
+    dependencies:
+      '@sitelens/schemas':
+        specifier: workspace:*
+        version: link:../schemas
 
 packages:
 

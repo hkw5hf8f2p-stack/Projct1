@@ -1,0 +1,91 @@
+{
+  "auditId": "aud_c5b85709d1345018",
+  "artifacts_deleted": false,
+  "pages": [
+    {
+      "id": "partial",
+      "url": "http://127.0.0.1:4313/partial",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "title": "Частково зламаний сайт",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/partial/1440x1000/fullpage.png",
+        "mobile": "pages/partial/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 4
+    },
+    {
+      "id": "index",
+      "url": "http://127.0.0.1:4313/",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "title": "Тестовий магазин",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/index/1440x1000/fullpage.png",
+        "mobile": "pages/index/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 2
+    },
+    {
+      "id": "ok-c",
+      "url": "http://127.0.0.1:4313/ok-c",
+      "page_type": "info_shipping",
+      "page_type_reason": null,
+      "title": "Доставка і оплата",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/ok-c/1440x1000/fullpage.png",
+        "mobile": "pages/ok-c/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 0
+    },
+    {
+      "id": "e-500",
+      "url": "http://127.0.0.1:4313/e/500",
+      "page_type": "unknown",
+      "page_type_reason": "capture",
+      "title": null,
+      "http_status": 500,
+      "screenshots": {
+        "desktop": null,
+        "mobile": null
+      },
+      "capture_ok": false,
+      "capture_error": {
+        "class": "unsupported_site",
+        "detail": "HTTP 500",
+        "message": "Сайт не підтримується: відповідь не є звичайною HTML-сторінкою або сайт відповів помилкою HTTP (4xx/5xx). Аналізу немає.",
+        "attempts": 1
+      },
+      "egress_denied": [],
+      "evidence_count": 0
+    },
+    {
+      "id": "ok-b",
+      "url": "http://127.0.0.1:4313/ok-b",
+      "page_type": "info_shipping",
+      "page_type_reason": null,
+      "title": "Товари",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/ok-b/1440x1000/fullpage.png",
+        "mobile": "pages/ok-b/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 0
+    }
+  ]
+}
