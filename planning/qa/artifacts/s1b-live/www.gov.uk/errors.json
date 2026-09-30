@@ -1,0 +1,26 @@
+{
+  "site_error": {
+    "page_url": "https://www.gov.uk/",
+    "code": "robots_disallow",
+    "kind": "robots_disallow",
+    "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+    "signals": [
+      "robots_unreachable"
+    ],
+    "http_status": null,
+    "viewports": []
+  },
+  "page_errors": [
+    {
+      "page_url": "https://www.gov.uk/",
+      "code": "robots_disallow",
+      "kind": "robots_disallow",
+      "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+      "signals": [
+        "robots_unreachable"
+      ],
+      "http_status": null,
+      "viewports": []
+    }
+  ]
+}

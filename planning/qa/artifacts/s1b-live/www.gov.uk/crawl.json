@@ -1,0 +1,19 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [],
+  "engine": "v2",
+  "pages": [],
+  "skipped": [
+    {
+      "url": "https://www.gov.uk/",
+      "reason": "robots_disallow",
+      "rule": "robots_unreachable",
+      "from": ""
+    }
+  ],
+  "edges": []
+}

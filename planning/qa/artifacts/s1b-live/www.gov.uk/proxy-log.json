@@ -1,0 +1,71 @@
+[
+  {
+    "ts": "2026-09-30T08:51:33.758Z",
+    "via": "connect",
+    "method": "CONNECT",
+    "host": "www.gov.uk",
+    "port": 443,
+    "resolved": [
+      {
+        "ip": "151.101.128.144",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "151.101.64.144",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "151.101.0.144",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "151.101.192.144",
+        "family": 4,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv4"
+      },
+      {
+        "ip": "2a04:4e42:600:0:0:0:0:144",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      },
+      {
+        "ip": "2a04:4e42:200:0:0:0:0:144",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      },
+      {
+        "ip": "2a04:4e42:400:0:0:0:0:144",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      },
+      {
+        "ip": "2a04:4e42:0:0:0:0:0:144",
+        "family": 6,
+        "allowed": true,
+        "range": "global-unicast",
+        "reason": "публічна IPv6"
+      }
+    ],
+    "decision": "allow",
+    "reason": "усі адреси дозволені; TCP до перевіреної IP",
+    "connected_ip": "151.101.128.144",
+    "peer_pid": 391
+  }
+]

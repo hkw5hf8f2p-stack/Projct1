@@ -23,7 +23,7 @@ function strace(args: string[], env: Record<string, string>): { status: number |
     encoding: "utf8",
     timeout: 60_000,
   });
-  return { status: r.status, out: r.out, trace: existsSync(f) ? readFileSync(f, "utf8") : "" };
+  return { status: r.status, out: String(r.stdout) + String(r.stderr), trace: existsSync(f) ? readFileSync(f, "utf8") : "" };
 }
 const external = (trace: string) =>
   trace.split("\n").filter((l) => /(connect|sendto|sendmsg)\(/.test(l) && !/AF_UNIX|sin_addr=inet_addr\("127\.|sin6_addr=inet_pton\(AF_INET6, "::1"|AF_NETLINK/.test(l));
@@ -39,7 +39,7 @@ describe.skipIf(!haveStrace)("audit:live і SITE_DENYLIST (kredens): відмо�
     });
   }
   it("контроль: strace справді ловить зовнішній connect (curl до 192.0.2.1 — TEST-NET, пакет не піде далі таймауту 1 с)", () => {
-    const r = spawnSync("strace", ["-f", "-e", "trace=network", "-o", "/dev/stderr", "curl", "-s", "-m", "1", "http://192.0.2.1/"], { encoding: "utf8", timeout: 10_000 });
+    const r = strace(["curl", "-s", "-m", "1", "http://192.0.2.1/"], {});
     expect(external(r.trace).length).toBeGreaterThan(0);
   });
 });
