@@ -1,0 +1,63 @@
+{
+  "key": "78257a8d784801b184f52f2515ef3be11b8ba399522e8dd9e5e6899a3d30b55e",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Фраза «Небагато речей, але добре вибраних.»",
+      "Посилання «Відкрити каталог»"
+    ],
+    "understood": [
+      "Це невеликий магазин товарів для дому з добіркою речей."
+    ],
+    "unclear": [
+      "Які саме речі продаються, з першого екрана не ясно."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог», щоб побачити, що обрати.",
+    "frictions": [],
+    "positive_signals": [
+      "Простий і зрозумілий заголовок; навігація мінімальна."
+    ],
+    "uncertainties": [
+      "Сторінки за першим екраном не бачив; що саме в каталозі, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Новачок розуміє, що це магазин товарів для дому, і бачить очевидний перший крок."
+  },
+  "input_tokens": 3304,
+  "output_tokens": 196,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "78257a8d784801b184f52f2515ef3be11b8ba399522e8dd9e5e6899a3d30b55e",
+    "response_sha256": "4765d09c1b893d900a34dbd3e899bc7a87643326b163a634c61c99a4cc6cebe1",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_novice",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.847Z"
+}

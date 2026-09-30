@@ -1,0 +1,80 @@
+{
+  "key": "3be05d61f6b54520d1f26591b4a6567912c9bb2150925c37313e26f6f6d08484",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «Каталог» і три картки моделей, кожна з кнопкою «В кошик»",
+      "Опис «Фільтр для води з проточною кухонною установкою.» повторюється у двох картках",
+      "Третя модель — пом'якшувач води"
+    ],
+    "understood": [
+      "Магазин продає воду-пов'язані пристрої: фільтри й пом'якшувач"
+    ],
+    "unclear": [
+      "Що означають «система HFX» та «модуль SLT»",
+      "Яка модель підходить для мене",
+      "Різниця між X200 і X220"
+    ],
+    "likely_next_action": "Відкрити сторінку однієї з моделей, щоб прочитати більше, а не додавати в кошик одразу.",
+    "frictions": [
+      {
+        "category": "terminology",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"AquaPro X200 (система HFX)\"",
+        "tile_id": "t0"
+      },
+      {
+        "category": "product_selection",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "\"Фільтр для води з проточною кухонною установкою.\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Короткі описи в одне речення пояснюють призначення: фільтр чи пом'якшувач"
+    ],
+    "uncertainties": [
+      "Чи є на сторінках товарів поради з вибору"
+    ],
+    "success": "partial",
+    "final_summary": "Загалом зрозуміло, що це пристрої для води, але вибрати між двома майже однаково описаними фільтрами без пояснень складно."
+  },
+  "input_tokens": 3369,
+  "output_tokens": 341,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "3be05d61f6b54520d1f26591b4a6567912c9bb2150925c37313e26f6f6d08484__fefb54",
+    "response_sha256": "830acb45b05812027040e011fef395ad922a6324b7adfbbb9e6cd69e03019e8a",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.404Z"
+}

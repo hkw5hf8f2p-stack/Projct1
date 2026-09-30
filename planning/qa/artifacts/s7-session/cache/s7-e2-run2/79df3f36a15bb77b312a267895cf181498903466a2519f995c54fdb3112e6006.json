@@ -1,0 +1,79 @@
+{
+  "key": "79df3f36a15bb77b312a267895cf181498903466a2519f995c54fdb3112e6006",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «Каталог» і три картки моделей, кожна з кнопкою «В кошик»",
+      "Опис «Фільтр для води з проточною кухонною установкою.» повторюється у двох картках",
+      "Третя модель — пом'якшувач води"
+    ],
+    "understood": [
+      "Три моделі з кнопкою «В кошик», ціни не вказані"
+    ],
+    "unclear": [
+      "Вартість кожної моделі",
+      "Чи є додаткові платежі"
+    ],
+    "likely_next_action": "Відкрити картку товару в пошуках ціни, не додаючи в кошик наосліп.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціни на картках товарів у каталозі",
+        "tile_id": "t0"
+      },
+      {
+        "category": "cta",
+        "claim_kind": "ambiguous_label",
+        "severity": "low",
+        "evidence": "\"В кошик\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Список коротий, а описи зрозумілі"
+    ],
+    "uncertainties": [
+      "Чи показується ціна на сторінці товару або лише в кошику"
+    ],
+    "success": "false",
+    "final_summary": "Мета знати повну ціну до кошика не досягається: на картках каталогу цін немає, а кнопка «В кошик» іде першою."
+  },
+  "input_tokens": 3368,
+  "output_tokens": 298,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "79df3f36a15bb77b312a267895cf181498903466a2519f995c54fdb3112e6006__fefb54",
+    "response_sha256": "e2ac75777dac99ad41ae3e06ac8f9c2b7cb52c38047044467d5a3d073d1c5239",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.406Z"
+}

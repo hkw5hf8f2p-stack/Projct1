@@ -1,0 +1,89 @@
+{
+  "key": "3be05d61f6b54520d1f26591b4a6567912c9bb2150925c37313e26f6f6d08484",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Три картки: AquaPro X200, AquaPro X220, Softline S1",
+      "Кнопки «В кошик» біля кожної моделі",
+      "Посилання «Очистити порівняння»",
+      "Опис однаковий для двох AquaPro"
+    ],
+    "understood": [
+      "AquaPro — фільтри для води, Softline S1 — пом'якшувач води",
+      "Товар можна одразу додати в кошик"
+    ],
+    "unclear": [
+      "Чим відрізняються X200 і X220: опис ідентичний",
+      "Ціна в картках не показана",
+      "Що означають «система HFX» і «модуль SLT»"
+    ],
+    "likely_next_action": "Відкрити першу модель, щоб прочитати, що це за пристрій, і лише потім розглядати кошик.",
+    "frictions": [
+      {
+        "category": "comparison",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Фільтр для води з проточною кухонною установкою.\"",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціна товарів у картках каталогу",
+        "tile_id": "t0"
+      },
+      {
+        "category": "terminology",
+        "claim_kind": "general",
+        "severity": "low",
+        "evidence": "\"AquaPro X200 (система HFX)\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Короткий каталог із трьох позицій, кнопки «В кошик» помітні"
+    ],
+    "uncertainties": [
+      "Характеристик на сторінках товарів на цьому знімку немає — UNKNOWN"
+    ],
+    "success": "partial",
+    "final_summary": "Каталог короткий і зрозумілий за структурою, але між двома AquaPro немає видимої різниці й немає цін, тому обрати відповідний товар можна лише частково."
+  },
+  "input_tokens": 3369,
+  "output_tokens": 404,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "3be05d61f6b54520d1f26591b4a6567912c9bb2150925c37313e26f6f6d08484",
+    "response_sha256": "71ed43ac8982ae0ce9577b63fead97552be4574f235f4c7fc485a17c486c8429",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:13.816Z"
+}

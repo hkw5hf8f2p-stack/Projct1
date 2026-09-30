@@ -1,0 +1,1 @@
+{"step": {"action": "navigate_internal_link", "target": "link:\"delivery page\"", "reason_summary": "The page says delivery terms are on the delivery page; open it to read them.", "task_progress": "Price and Add to cart seen; delivery terms not yet read.", "friction_detected": ["shipping"], "confidence": 0.85}, "result": null}

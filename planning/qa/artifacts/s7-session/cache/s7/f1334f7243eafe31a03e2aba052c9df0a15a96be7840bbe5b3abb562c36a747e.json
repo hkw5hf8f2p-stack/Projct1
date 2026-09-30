@@ -1,0 +1,63 @@
+{
+  "key": "f1334f7243eafe31a03e2aba052c9df0a15a96be7840bbe5b3abb562c36a747e",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Обіцянка «Ціни й умови видно одразу.»",
+      "Посилання «Відкрити каталог»"
+    ],
+    "understood": [
+      "Це каталог товарів для дому; ціни, за текстом, видно одразу."
+    ],
+    "unclear": [
+      "Самих цін на першому екрані немає, обіцянка перевіряється лише в каталозі."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог», щоб побачити ціни.",
+    "frictions": [],
+    "positive_signals": [
+      "Прямо заявлена прозорість цін і умов."
+    ],
+    "uncertainties": [
+      "Чи справді ціни й умови видно одразу — неперевірене без каталогу."
+    ],
+    "success": "true",
+    "final_summary": "Що продається, зрозуміло; ціни очікуються в каталозі."
+  },
+  "input_tokens": 3302,
+  "output_tokens": 188,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "f1334f7243eafe31a03e2aba052c9df0a15a96be7840bbe5b3abb562c36a747e",
+    "response_sha256": "f1ecca682b9d4660bd1db5d8ab66f043cb26cc80eac83030ceb8d23f1e526aa7",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.849Z"
+}

@@ -1,0 +1,73 @@
+{
+  "key": "145af90a94acfe13fc1eccac68feef0e2c9abdad979e7afd02e030ddd0fe896a",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Логотип «ЧистийДім» і посилання «Каталог» у шапці.",
+      "Велике декоративне зображення з кольоровими прямокутниками.",
+      "Заголовок «Якість, що надихає».",
+      "Посилання «Відкрити каталог»."
+    ],
+    "understood": [
+      "Текст стверджує, що ціни й умови видно одразу."
+    ],
+    "unclear": [
+      "Ціни на першому екрані не показано, хоча сказано, що вони видні одразу.",
+      "Що саме продається."
+    ],
+    "likely_next_action": "Відкрити каталог, щоб побачити ціни.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "medium",
+        "evidence": "\"Ціни й умови видно одразу.\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Заявлена прозорість цін і умов."
+    ],
+    "uncertainties": [
+      "Показано лише перше вікно сторінки; вміст нижче невідомий."
+    ],
+    "success": "partial",
+    "final_summary": "Сайт обіцяє видимі ціни, але на першому екрані жодної ціни немає. Щоб дізнатися вартість, потрібен перехід у каталог."
+  },
+  "input_tokens": 3288,
+  "output_tokens": 265,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "145af90a94acfe13fc1eccac68feef0e2c9abdad979e7afd02e030ddd0fe896a",
+    "response_sha256": "65bd7ec312b3ccb5114dd4a8ef671e5da43e6de946b6f3f452366e0286f53b9e",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "4fba0727473b79128598a0eac74aeff2fe4dd74c1ef6c36060578a75b96b894a"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.982Z"
+}

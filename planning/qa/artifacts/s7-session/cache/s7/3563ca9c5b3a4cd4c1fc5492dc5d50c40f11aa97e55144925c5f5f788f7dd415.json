@@ -1,0 +1,72 @@
+{
+  "key": "3563ca9c5b3a4cd4c1fc5492dc5d50c40f11aa97e55144925c5f5f788f7dd415",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Ціна 749 грн і кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Довгий описовий текст нижче"
+    ],
+    "understood": [
+      "Термос за 749 грн; «Тримає тепло дванадцять годин.»",
+      "Опис загальний."
+    ],
+    "unclear": [
+      "Конкретних технічних характеристик (наприклад, об'єм, матеріал) немає."
+    ],
+    "likely_next_action": "Шукати технічні дані; за їх відсутності відкласти рішення.",
+    "frictions": [
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: технічні характеристики термоса (об'єм, матеріал корпусу)",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Заява про час утримання тепла названа явно."
+    ],
+    "uncertainties": [
+      "Характеристик на сторінці не знайшов; чи вони є деінде, невідомо."
+    ],
+    "success": "partial",
+    "final_summary": "Для досвідченого читача характеристик замало; загальні фрази замінюють параметри."
+  },
+  "input_tokens": 3515,
+  "output_tokens": 255,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "3563ca9c5b3a4cd4c1fc5492dc5d50c40f11aa97e55144925c5f5f788f7dd415",
+    "response_sha256": "a9488fcfd0289a68cafad23ed970ed71521187dd6c24182c09170b0ece0b0922",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/travel-thermos",
+      "lens_id": "lens_expert",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "fdab7cfce539ad01bcf4e30082a9f18c8091163c214f0908922e7e663880f5a4"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.887Z"
+}

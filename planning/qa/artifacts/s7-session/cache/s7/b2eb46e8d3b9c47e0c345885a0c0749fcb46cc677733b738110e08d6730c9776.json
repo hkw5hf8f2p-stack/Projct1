@@ -1,0 +1,74 @@
+{
+  "key": "b2eb46e8d3b9c47e0c345885a0c0749fcb46cc677733b738110e08d6730c9776",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва «ТехноДім» і навігація: Каталог, Про нас",
+      "Заголовок «Ідеї, що змінюють будні»",
+      "Посилання «Переглянути асортимент»",
+      "Велика кольорова ілюстрація без зображень товарів"
+    ],
+    "understood": [
+      "Це інтернет-магазин речей для дому",
+      "Наступний крок — перейти до асортименту"
+    ],
+    "unclear": [
+      "Що саме продається: категорії товарів на першому екрані не названо",
+      "Що означає «речі, які роблять день простішим»"
+    ],
+    "likely_next_action": "Натиснути «Переглянути асортимент» або «Каталог», щоб побачити, що продається.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Ми підбираємо речі, які роблять день простішим.\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Один зрозумілий заголовок і помітне посилання на асортимент"
+    ],
+    "uncertainties": [
+      "Про сторінку нижче першого екрана нічого не відомо"
+    ],
+    "success": "partial",
+    "final_summary": "За першим екраном ясно, що є магазин і посилання на асортимент, але що саме продається — невідомо; швидкий користувач піде в каталог."
+  },
+  "input_tokens": 3295,
+  "output_tokens": 306,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "b2eb46e8d3b9c47e0c345885a0c0749fcb46cc677733b738110e08d6730c9776",
+    "response_sha256": "4aefd4b221db51e913998416a8473be99b1839de3a13b3ee1e1f42c1fac944d6",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:13.810Z"
+}

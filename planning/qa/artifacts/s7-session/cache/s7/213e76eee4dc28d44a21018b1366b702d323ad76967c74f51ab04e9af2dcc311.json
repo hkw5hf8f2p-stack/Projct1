@@ -1,0 +1,62 @@
+{
+  "key": "213e76eee4dc28d44a21018b1366b702d323ad76967c74f51ab04e9af2dcc311",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Ясна кнопка-посилання «Відкрити каталог»"
+    ],
+    "understood": [
+      "Це магазин товарів для дому, вхід у каталог одним кліком."
+    ],
+    "unclear": [
+      "Конкретні товари й ціни на цьому екрані не показані."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог».",
+    "frictions": [],
+    "positive_signals": [
+      "Короткий текст і один явний наступний крок."
+    ],
+    "uncertainties": [
+      "Сторінки за першим екраном не бачив; що саме в каталозі, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Зрозуміло, що це каталог товарів для дому, і куди йти далі."
+  },
+  "input_tokens": 3298,
+  "output_tokens": 170,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "213e76eee4dc28d44a21018b1366b702d323ad76967c74f51ab04e9af2dcc311",
+    "response_sha256": "ccad6e33582301961e86362f34448755713cce37ba507435694fb973f7a93f08",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.851Z"
+}

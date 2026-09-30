@@ -1,0 +1,63 @@
+{
+  "key": "05363764daa41ad4289e4a7d597a702e96eb05e721c48a3d5a96b53379ec26c6",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Кнопка-посилання «Відкрити каталог»",
+      "Велике декоративне зображення без товарів"
+    ],
+    "understood": [
+      "Це каталог товарів для дому магазину ЧистийДім."
+    ],
+    "unclear": [
+      "Які саме товари та характеристики — на першому екрані не видно."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог», щоб побачити моделі й порівняти характеристики.",
+    "frictions": [],
+    "positive_signals": [
+      "Заголовок прямо називає, що пропонується."
+    ],
+    "uncertainties": [
+      "Сторінки за першим екраном не бачив; що саме в каталозі, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Перший екран пояснює, що це каталог товарів для дому. Для порівняння моделей потрібен каталог, але для розуміння пропозиції цього достатньо."
+  },
+  "input_tokens": 3303,
+  "output_tokens": 218,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "05363764daa41ad4289e4a7d597a702e96eb05e721c48a3d5a96b53379ec26c6",
+    "response_sha256": "b6de02d8e406737d7b5820665df84ea931bbfec9935b057b9fd5453becf66b8d",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_expert",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.853Z"
+}

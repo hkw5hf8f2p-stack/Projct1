@@ -1,0 +1,72 @@
+{
+  "key": "a8621595530d5c98d0d95e04cacfccf8c90957decfe6199765abb77c2dc848a6",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "AquaPro X200 (система HFX)",
+      "Посилання «Налаштувати комплектацію»",
+      "Довгі абзаци тексту"
+    ],
+    "understood": [
+      "Фільтр для води; є кошик і налаштування комплектації"
+    ],
+    "unclear": [
+      "Ціна",
+      "Де кнопка додавання в кошик на першому екрані"
+    ],
+    "likely_next_action": "Прокрутити до «Додати в кошик» або піти в каталог, якщо ціни не знайде.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "high",
+        "evidence": "NOT_FOUND: ціна товару на першому екрані",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Заголовок і призначення видно одразу"
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є в тексті, але на першому екрані її не видно"
+    ],
+    "success": "partial",
+    "final_summary": "Швидко зрозуміло, що це за товар, але ціни немає, а кнопка кошика не видна на першому екрані."
+  },
+  "input_tokens": 3508,
+  "output_tokens": 239,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "a8621595530d5c98d0d95e04cacfccf8c90957decfe6199765abb77c2dc848a6__97042e",
+    "response_sha256": "bc9074bc7d49a76a9b95b8703947ea7d192a9ba75d26994733e1afd1496fb754",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "645bc8d826c8730120ee16c96691c76c42699574f6813058ecce22f7dd6b53da"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.296Z"
+}

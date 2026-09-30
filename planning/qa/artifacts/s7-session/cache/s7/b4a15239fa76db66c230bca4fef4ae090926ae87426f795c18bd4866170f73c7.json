@@ -1,0 +1,65 @@
+{
+  "key": "b4a15239fa76db66c230bca4fef4ae090926ae87426f795c18bd4866170f73c7",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Логотип «ЧистийДім» і посилання «Каталог» у шапці.",
+      "Велике декоративне зображення з кольоровими прямокутниками.",
+      "Заголовок «Якість, що надихає».",
+      "Посилання «Відкрити каталог»."
+    ],
+    "understood": [
+      "Магазин із невеликим вибором речей; шлях до каталогу очевидний."
+    ],
+    "unclear": [
+      "Які саме речі продаються."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог».",
+    "frictions": [],
+    "positive_signals": [
+      "Одна ясна дія: «Відкрити каталог».",
+      "Мінімум тексту й відволікань."
+    ],
+    "uncertainties": [
+      "Показано лише перше вікно сторінки; вміст нижче невідомий."
+    ],
+    "success": "true",
+    "final_summary": "Екран простий, з єдиною очевидною дією. Швидкий користувач одразу переходить до каталогу."
+  },
+  "input_tokens": 3285,
+  "output_tokens": 206,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "b4a15239fa76db66c230bca4fef4ae090926ae87426f795c18bd4866170f73c7",
+    "response_sha256": "a2c116fb56875b5465b76abbf210501df57ca9bf2f5845661ed0ab8fd25284df",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "4fba0727473b79128598a0eac74aeff2fe4dd74c1ef6c36060578a75b96b894a"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.985Z"
+}

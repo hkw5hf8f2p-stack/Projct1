@@ -1,0 +1,79 @@
+{
+  "key": "79df3f36a15bb77b312a267895cf181498903466a2519f995c54fdb3112e6006",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Три картки з кнопками \"В кошик\"",
+      "Жодної ціни на картках"
+    ],
+    "understood": [
+      "Товари можна додати в кошик, не бачачи вартості"
+    ],
+    "unclear": [
+      "Ціни всіх трьох моделей",
+      "Різниця між X200 і X220",
+      "Загальна вартість із доставкою"
+    ],
+    "likely_next_action": "Не додавати в кошик; відкрити картку в пошуках ціни.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "NOT_FOUND: ціни на картках товарів у каталозі",
+        "tile_id": "t0"
+      },
+      {
+        "category": "product_selection",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Фільтр для води з проточною кухонною установкою.\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Три моделі, легко охопити поглядом"
+    ],
+    "uncertainties": [
+      "Ціни можуть бути на сторінках товарів або в кошику"
+    ],
+    "success": "false",
+    "final_summary": "У каталозі немає жодної ціни, а два фільтри описані однаково, тож обрати вигідний варіант неможливо."
+  },
+  "input_tokens": 3368,
+  "output_tokens": 298,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "79df3f36a15bb77b312a267895cf181498903466a2519f995c54fdb3112e6006__44bcef",
+    "response_sha256": "7774438658a45d3765550cd8b7526ad4b278181b5f7c1686a9e6f3e5dcaae867",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.532Z"
+}

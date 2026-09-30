@@ -1,0 +1,62 @@
+{
+  "key": "2ac578f13b5a7ec110327102370d15a80efb87a19f60a22040f7b862925d9d22",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Список із трьох товарів з цінами",
+      "Назви-посилання"
+    ],
+    "understood": [
+      "Можна швидко обрати один із трьох товарів."
+    ],
+    "unclear": [
+      "Різниця між товарами на цьому екрані не пояснена."
+    ],
+    "likely_next_action": "Відкрити одну з карток, наприклад «Дорожній термос».",
+    "frictions": [],
+    "positive_signals": [
+      "Короткий список, легко сканувати."
+    ],
+    "uncertainties": [
+      "Опису товарів у каталозі немає."
+    ],
+    "success": "true",
+    "final_summary": "Каталог короткий і зрозумілий; товар можна обрати й перейти до нього."
+  },
+  "input_tokens": 3296,
+  "output_tokens": 154,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "2ac578f13b5a7ec110327102370d15a80efb87a19f60a22040f7b862925d9d22",
+    "response_sha256": "89f44494392647d236ee3acb07f648dfcf6045447c02f5e4c3350ea0f1e9abea",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/catalog",
+      "lens_id": "lens_fast",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "6170a07e08ed9d47985a3325d4010be72ee6353729520ddc52786de462a8a7a5"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.866Z"
+}

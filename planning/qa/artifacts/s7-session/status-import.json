@@ -1,0 +1,53 @@
+{
+  "command": "import",
+  "scenarios": [
+    "fixture-shop",
+    "shop-clean",
+    "shop-clean-degraded",
+    "injection"
+  ],
+  "verdict": "PASS",
+  "model": "claude-in-session",
+  "banner": "модель: Claude у сесії, без API; ціна — ⏭️",
+  "requests_total": 100,
+  "images_total": 13,
+  "awaiting_answer": 0,
+  "per_scenario": {
+    "fixture-shop": {
+      "requests": 64,
+      "images": 4,
+      "new_this_run": 0,
+      "answered": 64,
+      "cached": 64,
+      "attempt2": 0,
+      "awaiting_answer": 0
+    },
+    "shop-clean": {
+      "requests": 16,
+      "images": 4,
+      "new_this_run": 0,
+      "answered": 16,
+      "cached": 16,
+      "attempt2": 0,
+      "awaiting_answer": 0
+    },
+    "shop-clean-degraded": {
+      "requests": 32,
+      "images": 8,
+      "new_this_run": 0,
+      "answered": 32,
+      "cached": 32,
+      "attempt2": 0,
+      "awaiting_answer": 0
+    },
+    "injection": {
+      "requests": 4,
+      "images": 1,
+      "new_this_run": 0,
+      "answered": 4,
+      "cached": 4,
+      "attempt2": 0,
+      "awaiting_answer": 0
+    }
+  }
+}

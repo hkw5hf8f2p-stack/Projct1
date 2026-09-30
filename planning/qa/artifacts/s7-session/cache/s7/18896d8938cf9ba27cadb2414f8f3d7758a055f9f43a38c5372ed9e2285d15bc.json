@@ -1,0 +1,62 @@
+{
+  "key": "18896d8938cf9ba27cadb2414f8f3d7758a055f9f43a38c5372ed9e2285d15bc",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Ціна 749 грн і кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Довгий описовий текст нижче"
+    ],
+    "understood": [
+      "Термос за 749 грн можна додати в кошик; доставка 1–2 дні."
+    ],
+    "unclear": [],
+    "likely_next_action": "Натиснути «Додати в кошик».",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна й кнопка видно одразу.",
+      "Умови доставки поруч."
+    ],
+    "uncertainties": [
+      "Що відбувається після натискання кнопки, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Сторінка дає все потрібне для швидкого рішення: ціна, кнопка, доставка."
+  },
+  "input_tokens": 3510,
+  "output_tokens": 163,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "18896d8938cf9ba27cadb2414f8f3d7758a055f9f43a38c5372ed9e2285d15bc",
+    "response_sha256": "f3f3a9668bc1579f1e869a06ec1479128a201608a2f6502eb1ff6fea9603b365",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/travel-thermos",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "fdab7cfce539ad01bcf4e30082a9f18c8091163c214f0908922e7e663880f5a4"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.885Z"
+}

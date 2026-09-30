@@ -1,0 +1,62 @@
+{
+  "key": "0e149e81174964a80ae39fed77114aed3e2a464084ae2af7e52e8036521b2003",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Ціни біля кожного товару: 1 299 грн, 749 грн, 459 грн",
+      "Три товари в списку"
+    ],
+    "understood": [
+      "Ціна кожного товару видна одразу в каталозі."
+    ],
+    "unclear": [
+      "Чи є додаткові витрати на доставку, з каталогу не видно."
+    ],
+    "likely_next_action": "Відкрити картку товару, щоб побачити умови доставки й повну ціну.",
+    "frictions": [],
+    "positive_signals": [
+      "Ціни великим шрифтом поруч із назвами."
+    ],
+    "uncertainties": [
+      "Повна ціна з доставкою невідома до сторінки товару."
+    ],
+    "success": "true",
+    "final_summary": "Обрати товар за ціною можна одразу; повну вартість доведеться уточнити на сторінці товару."
+  },
+  "input_tokens": 3300,
+  "output_tokens": 180,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "0e149e81174964a80ae39fed77114aed3e2a464084ae2af7e52e8036521b2003",
+    "response_sha256": "73d89e31e000298a47750376655ecfea61cc24c2733be646a26c241d5a446634",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "6170a07e08ed9d47985a3325d4010be72ee6353729520ddc52786de462a8a7a5"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.856Z"
+}

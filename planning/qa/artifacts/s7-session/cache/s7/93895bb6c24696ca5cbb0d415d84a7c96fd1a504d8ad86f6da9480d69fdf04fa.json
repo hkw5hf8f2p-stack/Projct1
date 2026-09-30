@@ -1,0 +1,65 @@
+{
+  "key": "93895bb6c24696ca5cbb0d415d84a7c96fd1a504d8ad86f6da9480d69fdf04fa",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог».",
+      "Три картки: «Скляний чайник», «Дорожній термос», «Дерев'яна дошка».",
+      "Кожна картка має мініатюру й назву-посилання."
+    ],
+    "understood": [
+      "Це три товари для дому; назви зрозумілі."
+    ],
+    "unclear": [
+      "Чим товари відрізняються й що обрати."
+    ],
+    "likely_next_action": "Відкрити «Скляний чайник» або інший товар, що здався зрозумілим.",
+    "frictions": [],
+    "positive_signals": [
+      "Назви товарів прості й зрозумілі.",
+      "Невеликий вибір не перевантажує."
+    ],
+    "uncertainties": [
+      "Показано лише перше вікно сторінки; вміст нижче невідомий.",
+      "Чи потрібні описи або ціни на картках, для цієї лінзи невідомо."
+    ],
+    "success": "partial",
+    "final_summary": "Вибір невеликий, назви зрозумілі, тож перейти до товару легко. Проте що саме обрати, каталог не підказує."
+  },
+  "input_tokens": 3282,
+  "output_tokens": 227,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "93895bb6c24696ca5cbb0d415d84a7c96fd1a504d8ad86f6da9480d69fdf04fa",
+    "response_sha256": "f8a44e53c5f4cc157d2dfb48953c448b2939732abc50b70d867a8d8d8f5c3dd3",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "0b9a2eec6c073b1f5464f801a343a71fc90331a72027a1c2c17dcc9ab2e4d581"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.989Z"
+}

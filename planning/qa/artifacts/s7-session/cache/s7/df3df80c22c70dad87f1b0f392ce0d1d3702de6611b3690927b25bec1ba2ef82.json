@@ -1,0 +1,71 @@
+{
+  "key": "df3df80c22c70dad87f1b0f392ce0d1d3702de6611b3690927b25bec1ba2ef82",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Ціна 1 299 грн і кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Довгий описовий текст"
+    ],
+    "understood": [
+      "Чайник за 1 299 грн; доставка «від 70 грн»."
+    ],
+    "unclear": [
+      "Підсумок з доставкою не названо."
+    ],
+    "likely_next_action": "Відкрити «Доставка й оплата», щоб уточнити вартість, до кошика.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "total_unclear",
+        "severity": "medium",
+        "evidence": "від 70 грн",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Ціна й доставка на сторінці."
+    ],
+    "uncertainties": [
+      "Остаточна вартість доставки невідома."
+    ],
+    "success": "partial",
+    "final_summary": "Ціну товару видно, але повну суму з доставкою обчислити не можна через «від 70 грн»."
+  },
+  "input_tokens": 3514,
+  "output_tokens": 207,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "df3df80c22c70dad87f1b0f392ce0d1d3702de6611b3690927b25bec1ba2ef82",
+    "response_sha256": "6e6eebcd4c9ef778c1ae37d662500d54b6e3884d055a34d22e77722b061e5de5",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/glass-kettle",
+      "lens_id": "lens_price",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.872Z"
+}

@@ -1,0 +1,71 @@
+{
+  "key": "b2eb46e8d3b9c47e0c345885a0c0749fcb46cc677733b738110e08d6730c9776",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Банер займає більшу частину екрана",
+      "Заголовок \"Ідеї, що змінюють будні\" і посилання \"Переглянути асортимент\""
+    ],
+    "understood": [
+      "Є кнопка-посилання, яка веде до асортименту"
+    ],
+    "unclear": [
+      "Які товари продаються",
+      "Чи варто йти далі"
+    ],
+    "likely_next_action": "Одразу натиснути \"Переглянути асортимент\".",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Основний перехід один і легко знаходиться"
+    ],
+    "uncertainties": [
+      "Ціни, товари й умови на першому екрані відсутні; що далі, невідомо"
+    ],
+    "success": "partial",
+    "final_summary": "Дію \"Переглянути асортимент\" знайти легко, але з екрана не видно, що саме продається, тож швидке рішення доведеться приймати вже в каталозі."
+  },
+  "input_tokens": 3295,
+  "output_tokens": 276,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "b2eb46e8d3b9c47e0c345885a0c0749fcb46cc677733b738110e08d6730c9776__44bcef",
+    "response_sha256": "0d487d219cecf45967474d0a1adbe672315532ce89df49cfbbe16ffbe7fd7819",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.526Z"
+}

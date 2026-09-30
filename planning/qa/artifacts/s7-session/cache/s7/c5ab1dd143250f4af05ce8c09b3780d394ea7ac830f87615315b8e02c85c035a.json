@@ -1,0 +1,62 @@
+{
+  "key": "c5ab1dd143250f4af05ce8c09b3780d394ea7ac830f87615315b8e02c85c035a",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог»",
+      "Три товари з назвами й цінами"
+    ],
+    "understood": [
+      "Магазин продає невеликий набір речей для дому."
+    ],
+    "unclear": [
+      "Для чого кожен товар і чим вони відрізняються, не сказано."
+    ],
+    "likely_next_action": "Відкрити картку товару, що здається найзрозумілішим.",
+    "frictions": [],
+    "positive_signals": [
+      "Мінімум елементів, назви ясні."
+    ],
+    "uncertainties": [
+      "Опису в каталозі немає."
+    ],
+    "success": "true",
+    "final_summary": "Каталог простий, товар можна обрати за назвою й ціною."
+  },
+  "input_tokens": 3302,
+  "output_tokens": 150,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "c5ab1dd143250f4af05ce8c09b3780d394ea7ac830f87615315b8e02c85c035a",
+    "response_sha256": "cf45fec190266ccb16d259efc0d66d68fd149d9cdbfef9b20da3761b2f193f9d",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "6170a07e08ed9d47985a3325d4010be72ee6353729520ddc52786de462a8a7a5"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.855Z"
+}

@@ -1,0 +1,52 @@
+{
+  "key": "f49d2adf0215c419b1927f0f9ee69224a30efe087d99e9faaf2573d43f4cf824",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "browser-agent-v1",
+  "synthetic": false,
+  "response": {
+    "step": {
+      "action": "navigate_internal_link",
+      "target": "link:\"delivery page\"",
+      "reason_summary": "The page says delivery terms are on the delivery page; open it to read them.",
+      "task_progress": "Price and Add to cart seen; delivery terms not yet read.",
+      "friction_detected": [
+        "shipping"
+      ],
+      "confidence": 0.85
+    },
+    "result": null
+  },
+  "input_tokens": 3656,
+  "output_tokens": 94,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "f49d2adf0215c419b1927f0f9ee69224a30efe087d99e9faaf2573d43f4cf824",
+    "response_sha256": "96d43fb1225549ba60a494f461b05746440cd18492a161d66d98ae496c58f126",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "browser_sessions",
+    "logical_key": {
+      "prompt_id": "browser-agent-v1",
+      "page_url": "http://127.0.0.1:4215/",
+      "lens_id": "lens_price",
+      "task_id": "t_delivery",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1500
+    },
+    "system_sha256": "a504a80e1bace1e74ffebece9052447cf4cf3dec558d3b615fbb7d998d292840",
+    "image_sha256": [
+      "32ae86d28e6ca7ef6b18fdca0e34f464ee58ee15bcbc7ca41747cd2978c4cea6"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:15.080Z"
+}

@@ -1,0 +1,64 @@
+{
+  "key": "630ef92af286f078eeee79fd89a874f0947a64ffd6f17496ba4b0b75242bd704",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Ціна 749 грн і кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Довгий описовий текст нижче"
+    ],
+    "understood": [
+      "Це сторінка термоса за 749 грн; тримає тепло дванадцять годин."
+    ],
+    "unclear": [
+      "Чим термос відрізняється від інших товарів, не ясно."
+    ],
+    "likely_next_action": "Натиснути «Додати в кошик» або переглянути «Доставка й оплата».",
+    "frictions": [],
+    "positive_signals": [
+      "Просте пояснення й видима ціна.",
+      "Умови доставки на сторінці."
+    ],
+    "uncertainties": [
+      "Що входить у комплект точно, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Сторінка проста й зрозуміла, кошик доступний одразу."
+  },
+  "input_tokens": 3516,
+  "output_tokens": 184,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "630ef92af286f078eeee79fd89a874f0947a64ffd6f17496ba4b0b75242bd704",
+    "response_sha256": "d56dad957b3c1b923be60b85518174e639bf279054036e44554b5607f07a5500",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/travel-thermos",
+      "lens_id": "lens_novice",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "fdab7cfce539ad01bcf4e30082a9f18c8091163c214f0908922e7e663880f5a4"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.880Z"
+}

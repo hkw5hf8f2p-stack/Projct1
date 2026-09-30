@@ -198,3 +198,4 @@ select { min-width: 0; }
 .ai-settings input[type="text"], .ai-settings input[type="url"], .ai-settings input[type="password"] { width: 100%; box-sizing: border-box; }
 .ai-settings code { background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; padding: 0 4px; }
 a.btn { display: inline-flex; align-items: center; text-decoration: none; }
+.radio-card { font-weight: 400; } .radio-card strong { font-weight: 700; }

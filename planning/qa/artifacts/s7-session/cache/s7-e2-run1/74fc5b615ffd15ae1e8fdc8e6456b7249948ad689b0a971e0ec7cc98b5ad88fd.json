@@ -1,0 +1,72 @@
+{
+  "key": "74fc5b615ffd15ae1e8fdc8e6456b7249948ad689b0a971e0ec7cc98b5ad88fd",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва ТехноДім",
+      "Заголовок «Ідеї, що змінюють будні»",
+      "Посилання «Переглянути асортимент»"
+    ],
+    "understood": [
+      "Це якийсь магазин із підбіркою речей"
+    ],
+    "unclear": [
+      "Що саме продається: техніка, аксесуари чи щось інше",
+      "Кому й для чого ці речі"
+    ],
+    "likely_next_action": "Натиснути «Переглянути асортимент», щоб побачити, що є в магазині.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Проста мова й одна зрозуміла кнопка переходу"
+    ],
+    "uncertainties": [
+      "Реальний асортимент не показано на першому екрані"
+    ],
+    "success": "partial",
+    "final_summary": "Першого екрана достатньо, щоб зрозуміти, що це магазин, але не що саме в ньому продається. Потрібен перехід до каталогу."
+  },
+  "input_tokens": 3300,
+  "output_tokens": 254,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "74fc5b615ffd15ae1e8fdc8e6456b7249948ad689b0a971e0ec7cc98b5ad88fd__97042e",
+    "response_sha256": "28d457e2d0a1d1916e235b4347068c9827fa6704e293c9cce79f5aff4f323470",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_novice",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.274Z"
+}

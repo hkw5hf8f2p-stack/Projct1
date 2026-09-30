@@ -1,0 +1,89 @@
+{
+  "key": "7602ce1a896adcecca5ea2d14f3eb964f2d3085dcac4245086bd4be5640e0e19",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва AquaPro X220 (система HFX) і опис \"Фільтр для води з проточною кухонною установкою.\"",
+      "Посилання \"Налаштувати комплектацію\" і \"Прибрати з порівняння\"",
+      "Довгі абзаци про догляд, гарантійний талон і інструкцію українською"
+    ],
+    "understood": [
+      "Це проточний кухонний фільтр для води",
+      "Змінні вузли замінюються без інструментів"
+    ],
+    "unclear": [
+      "Технічні характеристики: продуктивність, ступені очищення, ресурс",
+      "Що означає \"система HFX\"",
+      "Чим ця модель відрізняється від інших у каталозі"
+    ],
+    "likely_next_action": "Повернутися в Каталог і порівняти моделі; додавати в кошик без характеристик не став би.",
+    "frictions": [
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "NOT_FOUND: технічні характеристики (продуктивність, ступені фільтрації, ресурс картриджів, розміри)",
+        "tile_id": "t0"
+      },
+      {
+        "category": "terminology",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Модель створено для щоденного використання вдома й у поїздках.\"",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціна товару у видимій частині сторінки",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Є інформація про гарантійний талон та інструкцію українською"
+    ],
+    "uncertainties": [
+      "Кнопка \"Додати в кошик\" є в тексті сторінки, але жодна плитка її не показує",
+      "Ціна й таблиця характеристик можуть бути нижче видимих плиток"
+    ],
+    "success": "false",
+    "final_summary": "Для рішення про кошик бракує характеристик і ціни, а опис здебільшого загальний. Кнопка \"Додати в кошик\" є в тексті, але на знімку її не видно."
+  },
+  "input_tokens": 3512,
+  "output_tokens": 505,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "7602ce1a896adcecca5ea2d14f3eb964f2d3085dcac4245086bd4be5640e0e19__44bcef",
+    "response_sha256": "37f0a932e69cd0393104847d04428844a5d6ddfeb137d0e7dc1e031a4ab2c442",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "lens_id": "lens_expert",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f3c08701edc8733ad85d4c041a3703ae7eac71be2be7d55db1bb05a0ac35c92"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.560Z"
+}

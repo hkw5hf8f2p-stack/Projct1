@@ -1,0 +1,71 @@
+{
+  "key": "c7a406a0319409e6c01245bedff543716f564a2499493ac0a7e8927d05e6a781",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «Ідеї, що змінюють будні»",
+      "Посилання «Переглянути асортимент»"
+    ],
+    "understood": [
+      "Це магазин речей для дому"
+    ],
+    "unclear": [
+      "Що продається",
+      "Цінового рівня на першому екрані не видно"
+    ],
+    "likely_next_action": "Перейти до каталогу, щоб пошукати ціни.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Простий перехід до асортименту"
+    ],
+    "uncertainties": [
+      "Ціни на цій сторінці відсутні, чи вони є в каталозі, невідомо"
+    ],
+    "success": "partial",
+    "final_summary": "Перший екран описує магазин загально й не називає товарів чи цін; для оцінки вартості потрібен каталог."
+  },
+  "input_tokens": 3299,
+  "output_tokens": 226,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "c7a406a0319409e6c01245bedff543716f564a2499493ac0a7e8927d05e6a781__97042e",
+    "response_sha256": "b1abda79fc97ce07dd452c0c4d2971eebcaf9bccb1b1f4726c110b09bc8d6029",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.276Z"
+}

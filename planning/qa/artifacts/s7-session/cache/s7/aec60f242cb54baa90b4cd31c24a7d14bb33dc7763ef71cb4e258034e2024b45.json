@@ -1,0 +1,72 @@
+{
+  "key": "aec60f242cb54baa90b4cd31c24a7d14bb33dc7763ef71cb4e258034e2024b45",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва «Скляний чайник» і ціна 1 299 грн у верхній частині сторінки.",
+      "Короткий опис: Місткий чайник для щоденного чаю.",
+      "Заглушка зображення товару.",
+      "Довгі текстові абзаци під зображенням."
+    ],
+    "understood": [
+      "Що це за товар і скільки він коштує зрозуміло швидко."
+    ],
+    "unclear": [
+      "Де кнопка додавання в кошик."
+    ],
+    "likely_next_action": "Шукати кнопку додавання в кошик; якщо не знайде, перейти до каталогу.",
+    "frictions": [
+      {
+        "category": "cta",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Додати в кошик\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Назва й ціна одразу на видноті."
+    ],
+    "uncertainties": [
+      "Показано лише перше вікно сторінки; вміст нижче невідомий."
+    ],
+    "success": "partial",
+    "final_summary": "Назва й ціна ясні за секунди, але кнопка «Додати в кошик» на знімку не видна, тому швидко завершити дію не вдається."
+  },
+  "input_tokens": 3464,
+  "output_tokens": 252,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "aec60f242cb54baa90b4cd31c24a7d14bb33dc7763ef71cb4e258034e2024b45",
+    "response_sha256": "0dfad4701eaf591537810d3d228cca87530519ee34f588de5c090d3a9dd2bf49",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/product/glass-kettle",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "482a75d9a48eb4b3f2d3b17c0ca90f6e63821d312634105e49c63a33befd3876"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:15.002Z"
+}

@@ -1,0 +1,61 @@
+{
+  "key": "1bbd41a5d318dec062e061da9f771e7133fdf685d51794303235b14a1e1027b7",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Ціна 1 299 грн і кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Довгий описовий текст"
+    ],
+    "understood": [
+      "Чайник за 1 299 грн можна додати в кошик; доставка 1–2 дні."
+    ],
+    "unclear": [],
+    "likely_next_action": "Натиснути «Додати в кошик».",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна, кнопка й доставка на першому екрані."
+    ],
+    "uncertainties": [
+      "Що відбувається після натискання кнопки, невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Усе для швидкого рішення видно одразу."
+  },
+  "input_tokens": 3511,
+  "output_tokens": 150,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "1bbd41a5d318dec062e061da9f771e7133fdf685d51794303235b14a1e1027b7",
+    "response_sha256": "5528e08b762e0a70fa890d2f79dcff7c8600e3af1dce7d149fef254c35230cc8",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/glass-kettle",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.874Z"
+}

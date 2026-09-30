@@ -1,0 +1,88 @@
+{
+  "key": "6af71e64a151dd26cc91e2bb94c939ff4d0b7bb29b92b11d8c21e193b4967f04",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Три картки: AquaPro X200, AquaPro X220, Softline S1",
+      "Однаковий опис у X200 і X220",
+      "Кнопка \"В кошик\" на кожній картці",
+      "Посилання \"Очистити порівняння\""
+    ],
+    "understood": [
+      "Дві моделі фільтра для води й один пом'якшувач"
+    ],
+    "unclear": [
+      "Чим X200 відрізняється від X220",
+      "Що таке \"система HFX\" і \"модуль SLT\"",
+      "Де таблиця порівняння характеристик"
+    ],
+    "likely_next_action": "Відкрити сторінки моделей X200 і X220 у пошуках відмінностей.",
+    "frictions": [
+      {
+        "category": "comparison",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "\"Фільтр для води з проточною кухонною установкою.\"",
+        "tile_id": "t0"
+      },
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "NOT_FOUND: характеристики та ціни на картках моделей",
+        "tile_id": "t0"
+      },
+      {
+        "category": "terminology",
+        "claim_kind": "general",
+        "severity": "low",
+        "evidence": "\"Softline S1 (модуль SLT)\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Три моделі в короткому списку, легко охопити"
+    ],
+    "uncertainties": [
+      "Чи є порівняльна таблиця, невідомо; посилання \"Очистити порівняння\" згадує порівняння, але елементів вибору не видно"
+    ],
+    "success": "partial",
+    "final_summary": "Список короткий, але дві моделі описано ідентично, характеристик і цін немає, тож обрати між X200 і X220 без переходу на сторінки неможливо."
+  },
+  "input_tokens": 3368,
+  "output_tokens": 420,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "6af71e64a151dd26cc91e2bb94c939ff4d0b7bb29b92b11d8c21e193b4967f04__44bcef",
+    "response_sha256": "02893e96891a6a14bb7efada48aaacbc9733f21be59c8e2d631548e1b9ca1b05",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_expert",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.538Z"
+}

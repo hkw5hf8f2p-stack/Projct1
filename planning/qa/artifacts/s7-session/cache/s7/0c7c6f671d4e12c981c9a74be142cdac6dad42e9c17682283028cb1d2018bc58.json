@@ -1,0 +1,73 @@
+{
+  "key": "0c7c6f671d4e12c981c9a74be142cdac6dad42e9c17682283028cb1d2018bc58",
+  "provider": "session",
+  "model": "claude-in-session",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Логотип «ЧистийДім» і посилання «Каталог» у шапці.",
+      "Велике декоративне зображення з кольоровими прямокутниками.",
+      "Заголовок «Якість, що надихає».",
+      "Посилання «Відкрити каталог»."
+    ],
+    "understood": [
+      "Це магазин товарів для дому (за мета-описом «Каталог товарів для дому»); конкретних товарів на екрані немає."
+    ],
+    "unclear": [
+      "Які саме товари продаються.",
+      "Де обіцяні ціни й умови."
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог».",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Якість, що надихає\"",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Є явне посилання «Відкрити каталог»."
+    ],
+    "uncertainties": [
+      "Показано лише перше вікно сторінки; вміст нижче невідомий."
+    ],
+    "success": "partial",
+    "final_summary": "Перший екран не називає товарів; заголовок загальний. Шлях у каталог очевидний, тож пропозицію можна з'ясувати за один клік."
+  },
+  "input_tokens": 3289,
+  "output_tokens": 270,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "0c7c6f671d4e12c981c9a74be142cdac6dad42e9c17682283028cb1d2018bc58",
+    "response_sha256": "edd199cfd7c6af7ea0c3a209639e74e20bcac89b06729cd84b64701cc4ff8a47",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/",
+      "lens_id": "lens_expert",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "4fba0727473b79128598a0eac74aeff2fe4dd74c1ef6c36060578a75b96b894a"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:26:14.986Z"
+}
