@@ -12,7 +12,8 @@
     "@sitelens/schemas": "workspace:*",
     "pg": "8.23.0",
     "pg-boss": "12.35.0",
-    "@sitelens/api": "workspace:*"
+    "@sitelens/api": "workspace:*",
+    "playwright": "1.56.1"
   },
   "devDependencies": {
     "@types/pg": "8.23.1",

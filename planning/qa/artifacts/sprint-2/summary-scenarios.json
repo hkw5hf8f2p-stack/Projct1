@@ -1,6 +1,55 @@
 {
-  "finished_at": "2026-09-30T01:45:35.958Z",
+  "finished_at": "2026-09-30T02:13:06.644Z",
   "results": {
+    "baseline": {
+      "status": "completed",
+      "pages": 11,
+      "s1a_equal": true,
+      "evidence": 36
+    },
+    "kill9-worker-crawl": {
+      "pass": true,
+      "pages": "11/11",
+      "lost": 0,
+      "duplicated": 0,
+      "orphans_after": 0
+    },
+    "kill9-worker-lighthouse": {
+      "pass": true,
+      "pages": "4/4",
+      "lost": 0,
+      "duplicated": 0,
+      "orphans_after": 0,
+      "lighthouse_rows_exactly_once": true
+    },
+    "kill9-api": {
+      "pass": true,
+      "pages": "11/11",
+      "lost": 0,
+      "duplicated": 0,
+      "outage_samples_failed": 30
+    },
+    "partial-failure": {
+      "pass": true,
+      "status": "completed",
+      "audits_failed": 0
+    },
+    "taxonomy-48": {
+      "passed": "12/12",
+      "zero_analysis_on_failure": true
+    },
+    "repeat": {
+      "pass": true,
+      "independent_runs": 2,
+      "first_unchanged": true
+    },
+    "ttl-and-delete": {
+      "pass": true,
+      "ttl_files": 100,
+      "delete_files": 100,
+      "delete_db_rows": 100,
+      "delete_queue_jobs": 100
+    },
     "ssrf-via-api": {
       "pass": true,
       "entry_vectors": 40,
@@ -21,6 +70,17 @@
     "orphan_browsers": [],
     "orphan_postgres": [],
     "foreign_browsers_untouched": [
+      2463,
+      2472,
+      2473,
+      2475,
+      2496,
+      2511,
+      2512,
+      2513,
+      2541,
+      2546,
+      2625,
       14847,
       14855,
       14856,
@@ -36,6 +96,17 @@
       15026
     ],
     "foreign_browsers_before": [
+      2463,
+      2472,
+      2473,
+      2475,
+      2496,
+      2511,
+      2512,
+      2513,
+      2541,
+      2546,
+      2625,
       14847,
       14855,
       14856,

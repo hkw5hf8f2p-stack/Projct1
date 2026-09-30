@@ -63,7 +63,7 @@ const loadBaseline = async () => {
   throw new Error("немає baseline: запустіть фазу baseline");
 };
 
-async function killScenario(name: string, opts: { url: string; trigger: (w: number, id: string) => Promise<unknown>; expectPages: string[]; expectEv: string[] | null }) {
+async function killScenario(name: string, opts: { requireOrphanControl: boolean; url: string; trigger: (w: number, id: string) => Promise<unknown>; expectPages: string[]; expectEv: string[] | null }) {
   const w1 = pidOf("worker")!;
   const sub = await submit(opts.url);
   const id = sub.id!;
@@ -91,12 +91,12 @@ async function killScenario(name: string, opts: { url: string; trigger: (w: numb
   const orph = orphanReport(foreign, [w2], pidOf("postgres"));
   const out = {
     scenario: name, audit_id: id, worker_killed: { pid: w1, signal: "SIGKILL", audit_status_at_kill: statusAtKill, pages_at_kill: pagesAtKill, active_queue_jobs_after_kill: activeJobs },
-    pre_cleanup: { orphan_browser_pids_alive_right_after_kill: orphansImmediately, tracked_children_in_pid_file: trackedKids.length, note: "контроль: сироти ІСНУЮТЬ до прибирання — перевірка «0 сиріт» уміє показати ненуль" },
-    restart: { new_worker_pid: w2, recovery_report: rec },
+    pre_cleanup: { orphan_browser_pids_alive_right_after_kill: orphansImmediately, tracked_children_in_pid_file: trackedKids.length, note: opts.requireOrphanControl ? "контроль (обов'язковий у цьому сценарії): Chrome Lighthouse ІСНУЄ після kill -9 до прибирання — перевірка «0 сиріт» уміє показати ненуль" : "інформативно: Playwright Chromium сам виходить, коли закривається канал (--remote-debugging-pipe); може встигнути зникнути за 700 мс" },
+    restart: { new_worker_pid: w2, recovery_report: rec, note: "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)" },
     final: { status: fin.status, stage_status_keys: Object.keys(fin.stage_status), warnings: fin.warnings },
     integrity: integ, queue_jobs: jobs,
     orphans_after: { tracked_pids_still_alive: trackedAlive, descendants_of_dead_worker_still_alive: descAlive, independent_scan: orph },
-    pass: fin.status === "completed" && integ.pages_lost === 0 && integ.pages_extra === 0 && integ.pages_duplicated === 0 && integ.evidence_duplicated === 0 && integ.jobs_duplicated === 0 && (integ.evidence_lost ?? 0) === 0 && (integ.evidence_extra ?? 0) === 0 && trackedAlive.length === 0 && descAlive.length === 0 && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && orphansImmediately.length > 0 && auditMidState !== "completed",
+    pass: fin.status === "completed" && integ.pages_lost === 0 && integ.pages_extra === 0 && integ.pages_duplicated === 0 && integ.evidence_duplicated === 0 && integ.jobs_duplicated === 0 && (integ.evidence_lost ?? 0) === 0 && (integ.evidence_extra ?? 0) === 0 && trackedAlive.length === 0 && descAlive.length === 0 && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && (!opts.requireOrphanControl || orphansImmediately.length > 0) && auditMidState !== "completed",
   };
   const st = await http("GET", `${API}/api/audits/${id}`);
   save(`${name}.json`, out);
@@ -140,7 +140,7 @@ async function main() {
   if (want("crawl")) {
     const b = await loadBaseline();
     await killScenario("kill9-worker-crawl", {
-      url: FX.shop + "/", expectPages: b.pages, expectEv: b.ev,
+      requireOrphanControl: false, url: FX.shop + "/", expectPages: b.pages, expectEv: b.ev,
       trigger: async (_w, id) => { await waitFor("≥ 4 сторінки й crawling", async () => (await pageCount(id)) >= 4 && (await auditRow(id))!.status === "crawling" ? true : null, 180_000, 200); await waitFor("браузер живий", () => (workerBrowsers(pidOf("worker")!).length > 0) || null, 30_000, 100); },
     });
   }
@@ -152,7 +152,7 @@ async function main() {
     const refPages = await pageIds(ref.id!);
     const refEv = await evIds(ref.id!);
     await killScenario("kill9-worker-lighthouse", {
-      url: FX.errors + "/ok", expectPages: refPages, expectEv: refEv,
+      requireOrphanControl: true, url: FX.errors + "/ok", expectPages: refPages, expectEv: refEv,
       trigger: async (w) => { await waitFor("Chrome Lighthouse запущено (профіль sl-lh-)", () => descendantsOf(w).some((p) => cmdlineOf(p).includes("/sl-lh-")) || null, 240_000, 50); },
     });
     const id = (JSON.parse(readFileSync(path.join(ART, "kill9-worker-lighthouse.json"), "utf8")) as { audit_id: string }).audit_id;

@@ -1,17 +1,17 @@
 {
   "scenario": "ttl-and-delete",
   "ttl": {
-    "expired_audit": "aud_be7fc37f3e2aaa21",
+    "expired_audit": "aud_74d2d00a152481ec",
     "files_before": 60,
     "dir_exists_after": false,
     "files_after": 0,
-    "fresh_audit": "aud_40b80cc15e411218",
+    "fresh_audit": "aud_673f4b0f21512982",
     "fresh_files_before": 60,
     "fresh_files_after": 60,
     "fresh_artifacts_deleted_at": null
   },
   "delete": {
-    "deleted_audit": "aud_61965899222dd117",
+    "deleted_audit": "aud_60f4c713a6ab140a",
     "http_status": 200,
     "files_before": 60,
     "files_after": 0,

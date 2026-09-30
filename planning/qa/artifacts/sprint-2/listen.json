@@ -1,9 +1,9 @@
 {
   "scenario": "listen-127.0.0.1",
-  "default_api_pid": 28846,
-  "lsof_default_api": "COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\nnode    28846 sitelens   36u  IPv4 919344      0t0  TCP 127.0.0.1:3101 (LISTEN)",
+  "default_api_pid": 23367,
+  "lsof_default_api": "COMMAND   PID     USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME\nnode    23367 sitelens   34u  IPv4 1066022      0t0  TCP 127.0.0.1:3101 (LISTEN)",
   "all_listeners_on_api_port": [
-    "node      28846 sitelens   36u  IPv4 919344      0t0  TCP 127.0.0.1:3101 (LISTEN)"
+    "node      23367 sitelens   34u  IPv4 1066022      0t0  TCP 127.0.0.1:3101 (LISTEN)"
   ],
   "loopback_only": true,
   "control_host_0000_no_token": {
@@ -12,7 +12,7 @@
     "listening_on_3111": "nothing"
   },
   "control_host_0000_with_token": {
-    "lsof": "COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\nnode    30967 sitelens   34u  IPv4 929043      0t0  TCP *:3112 (LISTEN)",
+    "lsof": "COMMAND  PID     USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME\nnode    3499 sitelens   34u  IPv4 1123405      0t0  TCP *:3112 (LISTEN)",
     "shows_non_loopback": true,
     "no_token_status": 401,
     "with_token_status": 202

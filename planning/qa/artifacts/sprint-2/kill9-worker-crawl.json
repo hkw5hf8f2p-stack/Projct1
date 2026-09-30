@@ -1,8 +1,8 @@
 {
   "scenario": "kill9-worker-crawl",
-  "audit_id": "aud_22c543f8b70ba62e",
+  "audit_id": "aud_43094de4629ee097",
   "worker_killed": {
-    "pid": 32091,
+    "pid": 18298,
     "signal": "SIGKILL",
     "audit_status_at_kill": "crawling",
     "pages_at_kill": 4,
@@ -16,26 +16,28 @@
   "pre_cleanup": {
     "orphan_browser_pids_alive_right_after_kill": [],
     "tracked_children_in_pid_file": 6,
-    "note": "контроль: сироти ІСНУЮТЬ до прибирання — перевірка «0 сиріт» уміє показати ненуль"
+    "note": "інформативно: Playwright Chromium сам виходить, коли закривається канал (--remote-debugging-pipe); може встигнути зникнути за 700 мс"
   },
   "restart": {
-    "new_worker_pid": 638,
+    "new_worker_pid": 19608,
     "recovery_report": {
-      "ts": "2026-09-30T01:47:13.447Z",
+      "ts": "2026-09-30T02:04:04.305Z",
       "file": "/home/user/Projct1/data/s2/pids/worker.json",
-      "owner_pid": 32091,
+      "owner_pid": 18298,
       "owner_was_alive": false,
       "killed": [],
       "already_gone": [
-        32119,
-        32122,
-        32123,
-        32141,
-        32125,
-        32154
+        18347,
+        18350,
+        18351,
+        18369,
+        18353,
+        18382
       ],
-      "skipped_reused_pid": []
-    }
+      "skipped_reused_pid": [],
+      "killed_from_spawn_log": []
+    },
+    "note": "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)"
   },
   "final": {
     "status": "completed",
@@ -224,6 +226,17 @@
       "orphan_browsers": [],
       "orphan_postgres": [],
       "foreign_browsers_untouched": [
+        2463,
+        2472,
+        2473,
+        2475,
+        2496,
+        2511,
+        2512,
+        2513,
+        2541,
+        2546,
+        2625,
         14847,
         14855,
         14856,
@@ -239,6 +252,17 @@
         15026
       ],
       "foreign_browsers_before": [
+        2463,
+        2472,
+        2473,
+        2475,
+        2496,
+        2511,
+        2512,
+        2513,
+        2541,
+        2546,
+        2625,
         14847,
         14855,
         14856,
@@ -256,5 +280,5 @@
       "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
     }
   },
-  "pass": false
+  "pass": true
 }

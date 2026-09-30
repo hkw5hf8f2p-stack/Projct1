@@ -40,7 +40,7 @@ export async function lighthouseJob(rt: Runtime, job: Job<JobData>): Promise<voi
       await rt.gate.wait(url);
       return runLighthouseIsolated({
         url, formFactor, mode: net.mode, fixtureOrigins: net.fixtureOrigins, allowFixtureLoopback: net.allowFixtureLoopback, resolver: net.resolver, dial: net.dial,
-        outDir: path.join(runDir, "pages", pageId), lhrName: `lighthouse-${formFactor}.json`, timeoutMs: rt.cfg.lighthouse.timeoutMs,
+        chromePath: rt.chromeWrapper.script, outDir: path.join(runDir, "pages", pageId), lhrName: `lighthouse-${formFactor}.json`, timeoutMs: rt.cfg.lighthouse.timeoutMs,
         ...(broken ? { lighthouseImpl: (async () => { throw new Error("Lighthouse зламано навмисно (fault injection lighthouse_broken)"); }) as never } : {}),
       });
     });

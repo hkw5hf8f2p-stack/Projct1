@@ -1,0 +1,2656 @@
+[
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 25,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 12,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 21,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 198,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 34,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 3,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 118,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 25,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 12,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 21,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 198,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 34,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 3,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 118,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 25,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 12,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 21,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 198,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 34,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 3,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 118,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 25,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 12,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 21,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 198,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 34,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 3,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "completed",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 118,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 141,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 33,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 101,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 141,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 33,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 101,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 141,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 33,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 101,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 141,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 33,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "nollm",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 101,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 7,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 94,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 89,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 7,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 94,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 89,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 7,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 94,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 89,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 14,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 7,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 94,
+    "unlabeled": 0,
+    "orphans": [
+      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
+    ],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 2,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "clean",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 89,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 200,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 5,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 120,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 200,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 5,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 120,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 200,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 5,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 120,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 10,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 23,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 200,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 5,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "partial",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 120,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 13,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 22,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 13,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 22,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 13,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 22,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 27,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 13,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 22,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_single_model_correlated"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 36,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "budget",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "overview",
+    "claims": 26,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "lenses",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "journey",
+    "claims": 16,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "technical",
+    "claims": 35,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-light-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "overview",
+    "claims": 26,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "lenses",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "journey",
+    "claims": 16,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": [],
+    "hasSyntheticCaveats": true
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "technical",
+    "claims": 35,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "1440-dark-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "overview",
+    "claims": 26,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "lenses",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "journey",
+    "claims": 16,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "technical",
+    "claims": 35,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-light-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "overview",
+    "claims": 26,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "lenses",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "lenses_not_population_shares"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "journey",
+    "claims": 16,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "findings",
+    "claims": 199,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "technical",
+    "claims": 35,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [
+      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
+    ],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "experiments",
+    "claims": 4,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ],
+    "missingDisclaimers": []
+  },
+  {
+    "variant": "early",
+    "env": "390-dark-uk",
+    "tab": "evidence",
+    "claims": 119,
+    "unlabeled": 0,
+    "orphans": [],
+    "overflow": 0,
+    "bad": [],
+    "guardIssues": [],
+    "disclaimers": [],
+    "missingDisclaimers": []
+  }
+]

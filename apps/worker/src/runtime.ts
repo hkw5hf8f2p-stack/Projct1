@@ -6,6 +6,7 @@ import { HostGate, HONEST_USER_AGENT, type Resolver, type Dialer } from "./brows
 import net from "node:net";
 import dns from "node:dns";
 import type { AppConfig } from "@sitelens/pipeline";
+import { ensureChromeWrapper } from "./chrome-wrapper.js";
 
 export interface Runtime {
   cfg: AppConfig;
@@ -19,6 +20,8 @@ export interface Runtime {
   /** режим і ін'єкції, з якими запускається браузер/Lighthouse */
   netOptions(): { mode: "prod" | "fixture"; fixtureOrigins?: string[]; allowFixtureLoopback?: boolean; resolver?: Resolver; dial?: Dialer };
   hasFault(name: string, url?: string): boolean;
+  /** обгортка Chrome Lighthouse з обліком PID до exec (chrome-launcher не прив'язує Chrome до батька) */
+  chromeWrapper: { script: string; spawnLog: string };
   /** збої навігаційних запитів і краші вкладок усіх контекстів цього браузера (потрібні, коли captureViewport кидає виняток і власних даних не лишає) */
   nav: { failures: Array<{ url: string; failure: string }>; crashes: number };
   log(level: "info" | "warn" | "error", msg: string, extra?: Record<string, unknown>): void;
@@ -57,6 +60,7 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
     ? { mode: "fixture" as const, fixtureOrigins: cfg.fixtureOrigins, allowFixtureLoopback: true, resolver, dial }
     : { mode: "prod" as const, resolver, dial });
   const nav: Runtime["nav"] = { failures: [], crashes: 0 };
+  const chromeWrapper = ensureChromeWrapper(cfg.pidDir);
   const instrument = (sb: SecureBrowser): SecureBrowser => {
     const orig = sb.newContext.bind(sb);
     sb.newContext = async (options) => {
@@ -70,7 +74,7 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
     return sb;
   };
   const rt: Runtime = {
-    cfg, pool, boss, gate, nav,
+    cfg, pool, boss, gate, nav, chromeWrapper,
     userAgent: fixture ? undefined : HONEST_USER_AGENT,
     async getBrowser() {
       if (browser && browser.browser.isConnected()) return browser;

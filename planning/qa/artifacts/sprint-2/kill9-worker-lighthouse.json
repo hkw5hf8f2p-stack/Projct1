@@ -1,8 +1,8 @@
 {
   "scenario": "kill9-worker-lighthouse",
-  "audit_id": "aud_a5c373f5688098d8",
+  "audit_id": "aud_83df662bf76bc5e7",
   "worker_killed": {
-    "pid": 8735,
+    "pid": 19608,
     "signal": "SIGKILL",
     "audit_status_at_kill": "crawling",
     "pages_at_kill": 4,
@@ -15,35 +15,36 @@
   },
   "pre_cleanup": {
     "orphan_browser_pids_alive_right_after_kill": [
-      9396
+      22023
     ],
-    "tracked_children_in_pid_file": 7,
-    "note": "контроль: сироти ІСНУЮТЬ до прибирання — перевірка «0 сиріт» уміє показати ненуль"
+    "tracked_children_in_pid_file": 6,
+    "note": "контроль (обов'язковий у цьому сценарії): Chrome Lighthouse ІСНУЄ після kill -9 до прибирання — перевірка «0 сиріт» уміє показати ненуль"
   },
   "restart": {
-    "new_worker_pid": 9531,
+    "new_worker_pid": 22198,
     "recovery_report": {
-      "ts": "2026-09-30T01:17:50.714Z",
+      "ts": "2026-09-30T02:05:35.046Z",
       "file": "/home/user/Projct1/data/s2/pids/worker.json",
-      "owner_pid": 8735,
+      "owner_pid": 19608,
       "owner_was_alive": false,
-      "killed": [
-        {
-          "pid": 9396,
-          "comm": "chrome",
-          "role": "browser"
-        }
-      ],
+      "killed": [],
       "already_gone": [
-        8762,
-        8765,
-        8766,
-        8797,
-        8784,
-        8768
+        19783,
+        19786,
+        19787,
+        19804,
+        19789,
+        19818
       ],
-      "skipped_reused_pid": []
-    }
+      "skipped_reused_pid": [],
+      "killed_from_spawn_log": [
+        {
+          "pid": 22023,
+          "comm": "chrome"
+        }
+      ]
+    },
+    "note": "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)"
   },
   "final": {
     "status": "completed",
@@ -162,9 +163,17 @@
       "orphan_browsers": [],
       "orphan_postgres": [],
       "foreign_browsers_untouched": [
-        5392,
-        7894,
-        8370,
+        2463,
+        2472,
+        2473,
+        2475,
+        2496,
+        2511,
+        2512,
+        2513,
+        2541,
+        2546,
+        2625,
         14847,
         14855,
         14856,
@@ -180,9 +189,17 @@
         15026
       ],
       "foreign_browsers_before": [
-        5392,
-        7894,
-        8370,
+        2463,
+        2472,
+        2473,
+        2475,
+        2496,
+        2511,
+        2512,
+        2513,
+        2541,
+        2546,
+        2625,
         14847,
         14855,
         14856,

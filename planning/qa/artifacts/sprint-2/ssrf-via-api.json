@@ -10,7 +10,7 @@
   "worker": {
     "A": {
       "label": "A: fixture-режим, канарка поза allowlist",
-      "audit_id": "aud_90bd676a6e14cce6",
+      "audit_id": "aud_c7bb2e8ae9a0d126",
       "status": "completed",
       "error_class": null,
       "canary_hits": 0,
@@ -47,7 +47,7 @@
     },
     "B": {
       "label": "B (КОНТРОЛЬ): fixture-режим, канарка В allowlist",
-      "audit_id": "aud_ee3bf34c3e27cba8",
+      "audit_id": "aud_28e005db8e968101",
       "status": "completed",
       "error_class": null,
       "canary_hits": 39,
@@ -87,7 +87,7 @@
     },
     "C": {
       "label": "C: prod-режим (без fixture), attacker.test → публічна IP → локальний сервер",
-      "audit_id": "aud_a96328ef5262435d",
+      "audit_id": "aud_9e20e0d371940050",
       "status": "completed",
       "error_class": null,
       "canary_hits": 0,

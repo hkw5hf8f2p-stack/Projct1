@@ -30,7 +30,7 @@ let lighthouseZodIssues: string[] = [];
 
 async function startStack(env: Record<string, string> = {}): Promise<Stack> {
   const db = await freshDatabase(cluster.url);
-  const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: art, SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: fx.origin, LIGHTHOUSE_MAX_PAGES: "1", CAPTURE_ATTEMPTS: "1", ...env } as NodeJS.ProcessEnv);
+  const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: art, PID_DIR: path.join(art, "pids"), SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: fx.origin, LIGHTHOUSE_MAX_PAGES: "1", CAPTURE_ATTEMPTS: "1", ...env } as NodeJS.ProcessEnv);
   const boss = createBoss(db.url, { supervise: true, max: 8 });
   await startBoss(boss);
   const rt = createRuntime(cfg, db.pool, boss);

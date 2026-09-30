@@ -1,27 +1,26 @@
 {
   "scenario": "kill9-api",
-  "audit_id": "aud_432cc3ab219a7481",
+  "audit_id": "aud_5629bf423a3d06d5",
   "api_killed": {
-    "pid": 11294,
+    "pid": 18229,
     "signal": "SIGKILL",
     "pages_at_kill": 3
   },
   "connection_refused_after_kill": true,
   "worker_unaffected": {
-    "pid_before": 11358,
-    "pid_after": 11358,
+    "pid_before": 22198,
+    "pid_after": 22198,
     "pages_during_api_downtime": 4,
     "progressed_while_api_dead": true
   },
   "restart": {
-    "new_api_pid": 11708
+    "new_api_pid": 23367
   },
   "poller": {
-    "samples": 172,
-    "failures": 28,
-    "first_ok_after_outage_ms": 20996,
+    "samples": 193,
+    "failures": 30,
+    "first_ok_after_outage_ms": 23859,
     "error_samples": [
-      "SocketError: other side closed",
       "Error: connect ECONNREFUSED 127.0.0.1:3101"
     ]
   },
@@ -50,9 +49,17 @@
     "orphan_browsers": [],
     "orphan_postgres": [],
     "foreign_browsers_untouched": [
-      5392,
-      7894,
-      8370,
+      2463,
+      2472,
+      2473,
+      2475,
+      2496,
+      2511,
+      2512,
+      2513,
+      2541,
+      2546,
+      2625,
       14847,
       14855,
       14856,
@@ -68,9 +75,17 @@
       15026
     ],
     "foreign_browsers_before": [
-      5392,
-      7894,
-      8370,
+      2463,
+      2472,
+      2473,
+      2475,
+      2496,
+      2511,
+      2512,
+      2513,
+      2541,
+      2546,
+      2625,
       14847,
       14855,
       14856,

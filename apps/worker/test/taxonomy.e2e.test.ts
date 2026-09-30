@@ -46,7 +46,7 @@ const killWhenBrowserBusy = async (pick: (p: { pid: number; cmd: string }) => bo
 beforeAll(async () => {
   guard = guardTestProcesses();
   fx = await startErrorsFixture();
-  const cfg = loadConfig({ SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: `${fx.origin},${fx.httpsOrigin}`, CAPTURE_ATTEMPTS: "1" } as NodeJS.ProcessEnv);
+  const cfg = loadConfig({ PID_DIR: path.join(runDir, "pids"), SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: `${fx.origin},${fx.httpsOrigin}`, CAPTURE_ATTEMPTS: "1" } as NodeJS.ProcessEnv);
   rt = createRuntime(cfg, null as never, null as never);
 });
 afterAll(async () => {

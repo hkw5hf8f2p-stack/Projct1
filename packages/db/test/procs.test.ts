@@ -1,9 +1,10 @@
 /** PID-облік (G0-28): прибирання лише записаних процесів мертвого власника; чужі, живий власник і повторно використаний PID — не чіпаємо. */
 import { spawn, type ChildProcess } from "node:child_process";
-import { copyFileSync, mkdtempSync, rmSync } from "node:fs";
+import { copyFileSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import { cleanupSpawnLog, parseSpawnLog } from "../src/procwatch.js";
 import { cleanupOrphansFromFile, descendantsOf, isSameProc, newPidFile, procStart, readStat, survivors, writePidFile, type TrackedProc } from "../src/procs.js";
 
 const dir = mkdtempSync(path.join(os.tmpdir(), "sl-procs-"));
@@ -126,5 +127,30 @@ describe("зомбі", () => {
     expect(z, "зомбі виник").toBeDefined();
     expect(isSameProc({ pid: z!, start: procStart(z!) })).toBe(false);
     expect(isSameProc({ pid: sh.pid!, start: procStart(sh.pid!) })).toBe(true);
+  });
+});
+
+describe("журнал спавнів (обгортка Chrome Lighthouse)", () => {
+  it("parseSpawnLog читає `pid start`, ігнорує сміття", () => {
+    const f = path.join(dir, "spawns-a.log");
+    writeFileSync(f, "123 456\n789\nгарбадж\n  42 7  \n");
+    expect(parseSpawnLog(f)).toEqual([{ pid: 123, start: "456" }, { pid: 789, start: null }, { pid: 42, start: "7" }]);
+    expect(parseSpawnLog(path.join(dir, "nope.log"))).toEqual([]);
+  });
+
+  it("cleanupSpawnLog вбиває ЛИШЕ запис із тим самим starttime і браузер-подібним comm; решту (чужий, без start, інший start, не-браузер) не чіпає", async () => {
+    const mine = start();
+    const wrongStart = start();
+    const noStart = start();
+    const notBrowser = start("/bin/sleep");
+    const foreign = start();
+    await new Promise((r) => setTimeout(r, 100));
+    const f = path.join(dir, "spawns-b.log");
+    writeFileSync(f, [`${mine.pid} ${procStart(mine.pid!)}`, `${wrongStart.pid} 1`, `${noStart.pid}`, `${notBrowser.pid} ${procStart(notBrowser.pid!)}`].join("\n") + "\n");
+    const killed = cleanupSpawnLog(f);
+    await new Promise((r) => setTimeout(r, 200));
+    expect(killed.map((k) => k.pid)).toEqual([mine.pid]);
+    expect(alive(mine.pid!)).toBe(false);
+    for (const c of [wrongStart, noStart, notBrowser, foreign]) expect(alive(c.pid!), `pid ${c.pid} має лишитись`).toBe(true);
   });
 });
