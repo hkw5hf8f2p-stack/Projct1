@@ -1,4 +1,4 @@
-/** Спільне для `pnpm s7:export|import` і `pnpm validate --provider session|replay` (S7 без API, DEV-81). */
+/** Спільне для `pnpm s7:export|import` і `pnpm validate --provider session|replay` (S7 без API, DEV-82). */
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { REPO_ROOT } from "../artifact-dir.js";

@@ -8,7 +8,7 @@ import type { ImagePart, LlmProvider, LlmRequest, ProviderResult } from "../type
 import { loadImageB64 } from "./images.js";
 
 /**
- * Транспорт `session` (S7 без API-ключа, DEV-81): моделлю виступає Claude у сесії оркестратора, відповіді дають «сліпі» агенти.
+ * Транспорт `session` (S7 без API-ключа, DEV-82): моделлю виступає Claude у сесії оркестратора, відповіді дають «сліпі» агенти.
  * Двофазний, БЕЗ МЕРЕЖІ:
  *  - промах (відповіді немає) → запит пишеться в `<root>/requests/<request_id>.json` (+ зображення в `requests/img/`) і кидається
  *    `SessionAwaitingError` → етап отримує статус `awaiting_session_model` (не completed);

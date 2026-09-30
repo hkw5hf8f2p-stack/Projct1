@@ -8,7 +8,7 @@ import type { LlmProvider, LlmRequest, ProviderResult } from "../types.js";
 import { loadImageB64 } from "./images.js";
 
 /**
- * Транспорт `claude-cli` (DEV-82): SiteLens викликає локальний Claude Code CLI (`claude -p`), залогінений ПІДПИСКОЮ власника, без API-ключа.
+ * Транспорт `claude-cli` (DEV-83): SiteLens викликає локальний Claude Code CLI (`claude -p`), залогінений ПІДПИСКОЮ власника, без API-ключа.
  * Промпт (system) і JSON Schema — ті самі, що пішли б в API; відповідь → той самий JSON parse → Zod → guard → repair, що й для API.
  * Прапорці перевірено за `claude --help` v2.1.285: -p, --output-format json, --json-schema, --model, --system-prompt, --tools, --allowedTools,
  * --add-dir, --restricted, --strict-mcp-config, --disable-slash-commands, --no-session-persistence, --permission-mode. `--max-turns` у цій версії

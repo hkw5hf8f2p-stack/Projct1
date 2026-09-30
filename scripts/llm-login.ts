@@ -1,5 +1,5 @@
 /**
- * pnpm llm:login — обгортка для LLM_PROVIDER=claude-cli (DEV-82): перевіряє, що `claude` встановлено, і показує статус автентифікації
+ * pnpm llm:login — обгортка для LLM_PROVIDER=claude-cli (DEV-83): перевіряє, що `claude` встановлено, і показує статус автентифікації
  * (`claude auth status --json`). Не залогінено → підказка `claude auth login` (підписка) або `claude setup-token` (довгоживучий токен підписки).
  * `pnpm llm:login -- --run` — додатково запускає `claude auth login` інтерактивно. Токени не читаються й не друкуються.
  */

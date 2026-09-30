@@ -172,7 +172,7 @@ export interface EvalRunOptions {
   /** replay: без провайдера, лише кеш (доводить обв'язку запис→відтворення; несумісний з bypass — ConfigError) */
   mode?: "live" | "replay";
   /**
-   * S7 без API (DEV-81): замість fake-оцінювача — транспорт `session`. `export`/`import` = SessionProvider (запит → requests/, відповідь → та сама
+   * S7 без API (DEV-82): замість fake-оцінювача — транспорт `session`. `export`/`import` = SessionProvider (запит → requests/, відповідь → та сама
    * обробка, що й API, запис у кеш E5); `replay` = лише кеш сесії, промах — гучна ReplayMissError. bypass тут не діє: E2 = окремий namespace на прогін.
    */
   session?: { root: string; model: string; namespace: string; scenario: string; phase: "session" | "replay" };

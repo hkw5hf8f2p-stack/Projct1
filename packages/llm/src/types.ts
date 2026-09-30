@@ -2,7 +2,7 @@ import type { z } from "zod";
 import type { AuditStage as AuditStageZ, StageStatus as StageStatusZ } from "@sitelens/schemas";
 
 export type AuditStage = z.infer<typeof AuditStageZ>;
-/** `awaiting_session_model` — лише транспорт `session` (S7 без API): запит записано у requests/, відповіді ще немає. НЕ completed; у схему AuditRun/Report не потрапляє (DEV-81). */
+/** `awaiting_session_model` — лише транспорт `session` (S7 без API): запит записано у requests/, відповіді ще немає. НЕ completed; у схему AuditRun/Report не потрапляє (DEV-82). */
 export type StageStatus = z.infer<typeof StageStatusZ> | "awaiting_session_model";
 
 export interface TextPart { type: "text"; text: string }

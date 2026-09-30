@@ -1,5 +1,5 @@
 /**
- * Транспорт `claude-cli` (DEV-82) на ФЕЙКОВОМУ бінарнику `claude` (скрипт-заглушка): справжній `claude` тут НЕ викликається.
+ * Транспорт `claude-cli` (DEV-83) на ФЕЙКОВОМУ бінарнику `claude` (скрипт-заглушка): справжній `claude` тут НЕ викликається.
  * Форму JSON-виводу (structured_output/result/usage/modelUsage/is_error) зафіксовано одним ручним ping-викликом CLI v2.1.285; тест доводить, що адаптер
  * її розбирає, що прапорці обмежують інструменти (лише Read у tmp), що API-ключі не потрапляють у дочірній процес, і що збої (auth, таймаут, невалідний JSON) обробляються.
  */
@@ -176,7 +176,7 @@ describe("claude-cli через LlmClient: parse → Zod → repair → кеш E
     const entry = new DirStore(dir).get("t", r.calls[1]!.request_hash)!;
     expect(entry).toMatchObject({ provider: "claude-cli", model: "cli-default", synthetic: false });
     expect(entry.provenance).toMatchObject({ provider: "claude-cli", transport: "claude -p (subscription)" });
-    // replay: без провайдера. Основна (відхилена) спроба у live-режимі НЕ кешується (G0-16), тож replay того ж запиту = гучний промах — відоме обмеження, DEV-82
+    // replay: без провайдера. Основна (відхилена) спроба у live-режимі НЕ кешується (G0-16), тож replay того ж запиту = гучний промах — відоме обмеження, DEV-83
     const replay = new LlmClient({ mode: "replay", cache: new ReplayCache(new DirStore(dir, true), "t"), budget: new TokenBudget(1_000_000), cache_identity: { provider: "claude-cli", model: "cli-default" } });
     await expect(replay.call(tinyReq(), Tiny)).rejects.toThrow(/промах кешу/);
     expect(f.calls()).toHaveLength(2); // replay не викликав CLI

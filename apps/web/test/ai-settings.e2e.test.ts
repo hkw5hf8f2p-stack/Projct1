@@ -27,7 +27,7 @@ async function mockApi(page: Page, init?: Partial<AiSettingsView>): Promise<Mock
     state: { kind: "none", model: "", key_set: false, max_audit_tokens: 200000, updated_at: null, source: "none", ...init },
     puts: [], deletes: 0, checkResult: { ok: true, latency_ms: 412, model_reported: "mock-model-1" },
   };
-  await page.route(/\/settings\/ai(\/.*)?$/, async (route) => {
+  await page.route(/\/api\/(?:dev\/)?settings\/ai(?:\/.*)?$/, async (route) => {
     const req = route.request();
     const url = new URL(req.url());
     const json = (b: unknown, status = 200) => route.fulfill({ status, contentType: "application/json", body: JSON.stringify(b) });
@@ -206,7 +206,7 @@ describe("/settings/ai", () => {
     const ctx = await newCtx({ width: 390, theme: "light", lang: "en" });
     const page = await ctx.newPage();
     let fail = true;
-    await page.route(/\/settings\/ai$/, async (r) => {
+    await page.route(/\/api\/(?:dev\/)?settings\/ai$/, async (r) => {
       if (fail) return r.fulfill({ status: 500, contentType: "application/json", body: JSON.stringify({ error: { class: "internal", message: "x" } }) });
       return r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ kind: "none", model: "", key_set: false, max_audit_tokens: 100000, updated_at: null, source: "none" }) });
     });

@@ -16,7 +16,7 @@
     "fixture-shop": {
       "requests": 64,
       "images": 4,
-      "new_this_run": 64,
+      "new_this_run": 0,
       "answered": 0,
       "cached": 0,
       "attempt2": 0,
@@ -25,7 +25,7 @@
     "shop-clean": {
       "requests": 16,
       "images": 4,
-      "new_this_run": 16,
+      "new_this_run": 0,
       "answered": 0,
       "cached": 0,
       "attempt2": 0,
@@ -34,7 +34,7 @@
     "shop-clean-degraded": {
       "requests": 32,
       "images": 8,
-      "new_this_run": 32,
+      "new_this_run": 0,
       "answered": 0,
       "cached": 0,
       "attempt2": 0,
@@ -43,7 +43,7 @@
     "injection": {
       "requests": 4,
       "images": 1,
-      "new_this_run": 4,
+      "new_this_run": 0,
       "answered": 0,
       "cached": 0,
       "attempt2": 0,

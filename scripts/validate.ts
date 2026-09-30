@@ -2,7 +2,9 @@
  * pnpm validate — E1 (детерміновані x/7 і LLM-лише y/3 + абляція), E2 (3 прогони замороженого знімка, cache_mode=bypass),
  * E3a (чисті сторінки), E3c (база vs деградована копія на нейтральних хостах), E4 (MAX_AUDIT_TOKENS) за ОДИН запуск.
  * Запуск: bash scripts/run-as-sitelens.sh pnpm validate   (браузерні аудити; під root Chromium не стартує)
- * Провайдер: fake (scripted evaluator, НЕ модель). Живий/replay LLM-провайдер — ⏭️ S7 (потрібен ключ, OQ-1).
+ * Провайдер: fake (scripted evaluator, НЕ модель). Живий LLM-провайдер — ⏭️ S7 (потрібен ключ, OQ-1).
+ * S7 без API (DEV-82): `--provider session` (SessionProvider: export/import) і `--provider replay` (LLM_PROVIDER=replay REPLAY_AS=session:<SESSION_MODEL_NAME>: лише кеш сесії, промах = гучна помилка);
+ * знімки — заморожені planning/qa/artifacts/s7-session/snapshots; результати — s7-session/results-{session,replay}/. Код виходу 10 = AWAITING (чекаємо відповідей).
  * Env: MAX_VALIDATE_TOKENS (жорсткий ліміт на весь запуск; за замовчуванням 2 000 000), MAX_AUDIT_TOKENS (на аудит),
  *      SL_WRITE_ARTIFACTS=1 → planning/qa/artifacts/sprint-4/validate/, інакше os.tmpdir().
  * Прапорці: --strict-live (сума E1 ≥ 8 і LLM-виміри E3c стають гейтом), --checks E1,E2,…, --snapshots shop=…,clean=…,degraded=…
@@ -27,10 +29,10 @@ const num = (v: string | undefined, d: number): number => {
 };
 
 const provider = arg("--provider") ?? process.env["VALIDATE_PROVIDER"] ?? "fake";
-/** S7 без API (DEV-81): `--provider replay` із LLM_PROVIDER=replay + REPLAY_AS=session:<модель> → лише кеш сесії (промах = гучна помилка); `--provider session` → SessionProvider */
+/** S7 без API (DEV-82): `--provider replay` із LLM_PROVIDER=replay + REPLAY_AS=session:<модель> → лише кеш сесії (промах = гучна помилка); `--provider session` → SessionProvider */
 const sessionPhase = provider === "session" ? "session" : provider === "replay" ? "replay" : null;
 if (provider === "replay" && !(process.env["REPLAY_AS"] ?? "").startsWith("session:")) {
-  console.error("--provider replay: потрібен REPLAY_AS=session:<SESSION_MODEL_NAME> (replay-кеш транспорту session; фікстури fake-оцінювача цим не читаються)");
+  console.error("⏭️ --provider replay: потрібен REPLAY_AS=session:<SESSION_MODEL_NAME> (replay-кеш транспорту session; фікстури fake-оцінювача цим не читаються)");
   process.exit(3);
 }
 if (provider !== "fake" && !sessionPhase) {

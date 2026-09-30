@@ -1,5 +1,5 @@
 /**
- * S7 без API-ключа (DEV-81): двофазний транспорт `session`.
+ * S7 без API-ключа (DEV-82): двофазний транспорт `session`.
  *   pnpm s7:export -- <fixture-shop|shop-clean|shop-clean-degraded|injection|all>   → requests/ (+ img/), статус awaiting_session_model
  *   pnpm s7:import                                                                  → responses/ → та сама обробка, що й відповідь API → кеш E5
  * Обидві команди — той самий прогін validate на транспорті session: що відповіді є — обробляється й пишеться в кеш, чого немає — експортується запитом.

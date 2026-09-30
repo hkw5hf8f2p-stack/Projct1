@@ -169,7 +169,7 @@ describe("конфіг: модель і провайдер лише з env, бе
     const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== "node_modules" && e.name !== "test") walk(f); } else if (f.endsWith(".ts")) files.push(f); } };
     walk(path.resolve(REPLAY_DIR, "../../packages/llm"));
     expect(files.length).toBeGreaterThan(20);
-    const hits = files.filter((f) => /(?<![\w-])(claude-[a-z0-9]|gpt-[0-9a-z]|gemini-|opus-?[0-9]|sonnet-?[0-9]|haiku-?[0-9])/i.test(readFileSync(f, "utf8")));
+    const hits = files.filter((f) => /(?<![\w-])(claude-(?!cli\b)[a-z0-9]|gpt-[0-9a-z]|gemini-|opus-?[0-9]|sonnet-?[0-9]|haiku-?[0-9])/i.test(readFileSync(f, "utf8")));
     expect(hits).toEqual([]);
   });
 });

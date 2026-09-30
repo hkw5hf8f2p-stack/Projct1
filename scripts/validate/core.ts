@@ -62,7 +62,7 @@ export function ablateHints(art: AuditArtifacts): { art: AuditArtifacts; removed
   return { art: { ...art, evidence: kept }, removed: art.evidence.length - kept.length };
 }
 
-/** S7 (DEV-81): бекенд `session`. phase=session — SessionProvider (export/import, той самий код); phase=replay — лише кеш сесії */
+/** S7 (DEV-82): бекенд `session`. phase=session — SessionProvider (export/import, той самий код); phase=replay — лише кеш сесії */
 export interface SessionBackend { root: string; model: string; phase: "session" | "replay" }
 /** запити прогону записано в requests/, відповідей ще немає: перевірка не рахується (не PASS/FAIL) */
 export class RunAwaiting extends Error {
@@ -179,7 +179,7 @@ export interface ValidateOptions {
   e2CacheMode?: (run: number) => "use" | "bypass";
   /** true → «сума E1 ≥ 8» і LLM-виміри E3c стають гейтом (живий прогін S7); у dev вони лише показуються (fake) */
   strict_live?: boolean;
-  /** S7 (DEV-81): LLM-частина через транспорт session (замість scripted fake) */
+  /** S7 (DEV-82): LLM-частина через транспорт session (замість scripted fake) */
   session?: SessionBackend;
   max_validate_tokens?: number;
   max_audit_tokens?: number;
@@ -204,7 +204,7 @@ export interface ValidateResult {
 const honest = (): EvaluatorSpec => ({ kind: "honest" });
 const f3 = (x: number): string => x.toFixed(3);
 const FAKE_LLM = "оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)";
-const SESSION_LLM = "оцінювач — Claude у сесії (сліпі агенти), без API: якість = відповіді цієї моделі; адаптери API, usage/$ і конкретна продакшн-модель — ⏭️ (DEV-81)";
+const SESSION_LLM = "оцінювач — Claude у сесії (сліпі агенти), без API: якість = відповіді цієї моделі; адаптери API, usage/$ і конкретна продакшн-модель — ⏭️ (DEV-82)";
 
 export async function runValidation(opts: ValidateOptions): Promise<ValidateResult> {
   const want = new Set<CheckId>(opts.checks ?? (opts.session ? ["E1", "E2", "E3a", "E3c", "E4", "INJ"] : ["E1", "E2", "E3a", "E3c", "E4"]));
