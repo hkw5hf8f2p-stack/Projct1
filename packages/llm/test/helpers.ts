@@ -8,7 +8,7 @@ import { LlmClient, MemoryStore, ReplayCache, TokenBudget, zodToJsonSchema, type
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 export const SHOP_ARTIFACTS = path.join(ROOT, "planning/qa/artifacts/sprint-1a-fix/shop");
 export const REPLAY_DIR = path.join(ROOT, "fixtures/replay");
-/** X-1: запис у репо лише з SL_WRITE_ARTIFACTS=1, інакше os.tmpdir()/sitelens-artifacts/sprint-3. */
+/** X-1: запис у репо лише з SL_WRITE_ARTIFACTS=1, інакше os.tmpdir()/sitelens-artifacts-<uid>/sprint-3. */
 export const ARTIFACT_DIR = artifactDir("sprint-3");
 
 export const Tiny = z.object({ answer: z.string().min(1) }).strict();

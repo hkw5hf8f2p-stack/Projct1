@@ -99,11 +99,13 @@ async function drive(name: string, ctx: BrowserContext): Promise<Record<string, 
       Object.keys(VARIANTS).map(async (v) => {
         const p = await ctx.newPage();
         await p.goto(`${origin}/p-${v}.html`).catch(() => {});
-        await p.waitForTimeout(2000);
+        // чекаємо на ВІДПОВІДЬ воркера (msg:) або відмову конструктора (throw:), а не фіксований час: під навантаженням
+        // повного прогону 2 с не вистачало воркеру з about:blank-iframe (спостерігалось 30.09)
+        await p.waitForFunction(() => /^(msg|throw):/.test((window as unknown as { __r: string }).__r), undefined, { timeout: 15_000 }).catch(() => {});
         out[v] = await p.evaluate(() => (window as unknown as { __r: string }).__r).catch((e: unknown) => "eval-error:" + String(e).slice(0, 60));
       }),
     );
-    await new Promise((r) => setTimeout(r, 300)); // хвіст запитів із воркерів
+    await new Promise((r) => setTimeout(r, 500)); // хвіст запитів із воркерів (POST на connect у SharedWorker)
   } finally {
     await ctx.close();
     run = "";

@@ -2,7 +2,7 @@
  * Lighthouse за egress-проксі (S1b, A4, V14): канарка через Lighthouse = 0 з контролями, env/пісочниця, ізоляція збою,
  * прогін на фікстурі shop → BENCHMARKED Evidence. Без DNS і зовнішньої мережі: `attacker.test` → мок-резолвер →
  * 93.184.216.34 → ін'єктований дайлер → локальна сторінка атакувальника.
- * Артефакти: planning/qa/artifacts/sprint-1b/lighthouse/ (лише з SL_WRITE_ARTIFACTS=1; інакше os.tmpdir()/sitelens-artifacts).
+ * Артефакти: planning/qa/artifacts/sprint-1b/lighthouse/ (лише з SL_WRITE_ARTIFACTS=1; інакше os.tmpdir()/sitelens-artifacts-<uid>).
  */
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import http from "node:http";
@@ -105,7 +105,7 @@ beforeAll(async () => {
     if (p === "/probe.html") return void res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(PROBE_HTML);
     if (p === "/redir-canary") return void res.writeHead(302, { location: `http://${CANARY_HOST}:${CANARY_PORT}/lh-redirect` }).end();
     if (p === "/nonget.html") return void res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(NONGET_HTML);
-    const wk = /^\/lh-ng-(worker|shared)\.js$/.exec(p);
+    const wk = /^\/lh-ng-(worker|shared)\.js$/.exec(p ?? "");
     if (wk) return void res.writeHead(200, { "content-type": "text/javascript" }).end(NONGET_WORKER(wk[1]!));
     res.writeHead(404, { "content-type": "text/plain" }).end("nf");
   });

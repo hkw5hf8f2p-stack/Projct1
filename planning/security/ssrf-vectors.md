@@ -5,7 +5,7 @@
 + `net-proxy*.test.ts` (рівень проксі). Виправлено 30.09 за critic S1b п.3: було «12 тестів».
 Артефакти: `planning/qa/artifacts/sprint-1b/ssrf/` (`vectors-matrix.json` — зведення; `r0…r5-*.json` — прогони; `sw1-*.json`;
 `worker-bypass.json`; `dns-prefetch-netlog.json`), `sprint-1b/lighthouse/` (`lh-nonget.json`), `sprint-1b/proxy/proxy-limits-auth.json`.
-З S1b-Fix (X-1) тести пишуть сюди лише з `SL_WRITE_ARTIFACTS=1`; звичайний `pnpm test` — у `os.tmpdir()/sitelens-artifacts/`.
+З S1b-Fix (X-1) тести пишуть сюди лише з `SL_WRITE_ARTIFACTS=1`; звичайний `pnpm test` — у `os.tmpdir()/sitelens-artifacts-<uid>/`.
 
 ## Як доведено
 
