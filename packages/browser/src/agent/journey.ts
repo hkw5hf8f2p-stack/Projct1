@@ -467,7 +467,7 @@ export async function runJourney(o: JourneyOptions): Promise<JourneyResult> {
           if (await loc.nth(i).isVisible().catch(() => false)) { pick = loc.nth(i); pickedVisible = true; break; }
         }
         log.located = { role: t.role, name: t.name, count, picked_visible: pickedVisible };
-        const facts = (await pick.evaluate(FACTS).catch(() => null)) as RawFacts | null;
+        const facts = (await pick.evaluate((n, src) => (0, eval)(src)(n), FACTS).catch(() => null)) as RawFacts | null;
         if (!facts) { log.verdict = "not_found"; log.detail = "елемент зник"; continue; }
         log.element = { tag: facts.tag, text: facts.text.slice(0, 80), href: facts.href };
 
