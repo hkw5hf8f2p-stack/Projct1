@@ -5,9 +5,9 @@ import path from "node:path";
 import type { FastifyInstance } from "fastify";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ApiError, AuditStatusResponse, CreateAuditResponse } from "@sitelens/schemas";
-import { createBoss, loadConfig, startBoss, upsertPage, insertEvidence, type AppConfig } from "@sitelens/pipeline";
+import { auditDir, createBoss, loadConfig, startBoss, upsertPage, insertEvidence, type AppConfig } from "@sitelens/pipeline";
 import type { PgBoss } from "pg-boss";
-import { buildServer, tokenOk } from "../src/server.js";
+import { artifactTokenOk, buildServer, signArtifactToken, tokenOk } from "../src/server.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 
 process.env["LOG_LEVEL"] = "silent";
@@ -162,6 +162,60 @@ describe("ACCESS_TOKEN і ліміт на годину (B2)", () => {
       await b2.stop({ graceful: false, close: true }).catch(() => undefined);
       await d2.drop();
     }
+  });
+});
+
+describe("скриншоти при ACCESS_TOKEN: підписаний ?st= (DEV-80)", () => {
+  const TOKEN = "correct-horse-battery-staple";
+  const PNG = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==", "base64");
+  it("без токена/з хибним/чужого аудиту/прострочений → 401; чинний → 200 лише для GET артефактів цього аудиту; видача потребує Bearer; лог без st", async () => {
+    process.env["LOG_LEVEL"] = "info";
+    const chunks: string[] = [];
+    const { Writable } = await import("node:stream");
+    const stream = new Writable({ write(c, _e, cb) { chunks.push(String(c)); cb(); } });
+    const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: art, ACCESS_TOKEN: TOKEN, RATE_LIMIT_PER_HOUR: "1000" } as NodeJS.ProcessEnv);
+    const app = await buildServer({ cfg, pool: db.pool, boss, logStream: stream });
+    apps.push(app);
+    const bearer = { authorization: `Bearer ${TOKEN}` };
+    const mk = async (host: string) => {
+      const id = CreateAuditResponse.parse((await post(app, { url: `https://${host}/` }, bearer)).json()).auditId;
+      mkdirSync(path.join(auditDir(art, id), "pages/p"), { recursive: true });
+      writeFileSync(path.join(auditDir(art, id), "pages/p/shot.png"), PNG);
+      return id;
+    };
+    const A = await mk("st-a.example.org"), B = await mk("st-b.example.org");
+    const u = (id: string, q = "") => `/api/audits/${id}/artifacts/pages/p/shot.png${q}`;
+    const issued = await app.inject({ method: "POST", url: `/api/audits/${A}/artifact-token`, headers: bearer });
+    expect(issued.statusCode).toBe(200);
+    const st = issued.json().token as string;
+    expect((await app.inject({ method: "POST", url: `/api/audits/${A}/artifact-token` })).statusCode).toBe(401); // видача — лише з Bearer
+    expect((await app.inject({ method: "POST", url: `/api/audits/${A}/artifact-token?st=${st}` })).statusCode).toBe(401); // st не дає видачі нового
+    expect((await app.inject({ method: "GET", url: u(A) })).statusCode).toBe(401); // контроль: без токена — закрито
+    const ok = await app.inject({ method: "GET", url: u(A, `?st=${st}`) });
+    expect(ok.statusCode).toBe(200);
+    expect(ok.rawPayload.equals(PNG)).toBe(true);
+    expect((await app.inject({ method: "GET", url: u(B, `?st=${st}`) })).statusCode).toBe(401); // токен аудиту A не відкриває B
+    expect((await app.inject({ method: "GET", url: u(A, `?st=${st.slice(0, -1)}0`) })).statusCode).toBe(401); // підробка підпису
+    expect((await app.inject({ method: "GET", url: u(A, "?st=garbage") })).statusCode).toBe(401);
+    expect((await app.inject({ method: "GET", url: `/api/audits/${A}?st=${st}` })).statusCode).toBe(401); // не діє поза /artifacts
+    expect((await app.inject({ method: "GET", url: `/api/audits/${A}/report?st=${st}` })).statusCode).toBe(401);
+    expect((await app.inject({ method: "DELETE", url: u(A, `?st=${st}`) })).statusCode).toBe(401); // лише GET
+    // прострочення: токен, підписаний 11 хв тому
+    const old = signArtifactToken(TOKEN, A, Date.now() - 11 * 60_000).token;
+    expect(artifactTokenOk(old, TOKEN, A)).toBe(false);
+    expect(artifactTokenOk(signArtifactToken(TOKEN, A).token, TOKEN, A)).toBe(true); // контроль: свіжий проходить
+    expect((await app.inject({ method: "GET", url: u(A, `?st=${old}`) })).statusCode).toBe(401);
+    process.env["LOG_LEVEL"] = "silent";
+    const log = chunks.join("");
+    expect(log).toContain("/artifacts/pages/p/shot.png"); // контроль: запити в лозі є
+    expect(log).toContain("st=[redacted]"); // контроль: токен у URL був, але замінений
+    expect(log).not.toContain(st);
+    expect(log).not.toContain(TOKEN);
+  });
+  it("без ACCESS_TOKEN видача повертає token:null", async () => {
+    const { app } = await mkApp();
+    const id = CreateAuditResponse.parse((await post(app, { url: "https://st-none.example.org/" })).json()).auditId;
+    expect((await app.inject({ method: "POST", url: `/api/audits/${id}/artifact-token` })).json()).toEqual({ token: null, expires_at: null });
   });
 });
 

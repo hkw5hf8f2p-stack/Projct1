@@ -57,8 +57,19 @@ export const getReport = (id: string) => call<Report>(`/audits/${encodeURICompon
 
 /**
  * URL артефакту доказу (скриншот). Реальний API віддає `GET /api/audits/:id/artifacts/<path>` (DEV-71; перевірено e2e через SITELENS_SOURCE=api —
- * apps/worker/test/web-api.e2e.test.ts); у fixture-режимі його віддає dev-роут. При заданому ACCESS_TOKEN `<img>` не шле Authorization — unverified. Змінюється в одному місці — тут.
+ * apps/worker/test/web-api.e2e.test.ts); у fixture-режимі його віддає dev-роут. При заданому ACCESS_TOKEN `<img>` не шле Authorization, тому (DEV-80)
+ * додається короткоживучий підписаний `?st=` для ЦЬОГО аудиту (ensureArtifactToken); сам ACCESS_TOKEN у URL не потрапляє. Змінюється в одному місці — тут.
  */
+const artTokens = new Map<string, string>();
 export function artifactUrl(auditId: string, ref: string): string {
-  return `${BASE}/audits/${encodeURIComponent(auditId)}/artifacts/${ref.split("/").map(encodeURIComponent).join("/")}`;
+  const st = artTokens.get(auditId);
+  return `${BASE}/audits/${encodeURIComponent(auditId)}/artifacts/${ref.split("/").map(encodeURIComponent).join("/")}${st ? `?st=${encodeURIComponent(st)}` : ""}`;
+}
+/** Отримує (і кешує) токен артефактів для аудиту; без ACCESS_TOKEN у сесії — нічого не робить. Повертає ms до закінчення (0 — токена немає). */
+export async function ensureArtifactToken(auditId: string): Promise<number> {
+  if (SOURCE === "fixture" || !getToken()) return 0;
+  const r = await call<{ token: string | null; expires_at: string | null }>(`/audits/${encodeURIComponent(auditId)}/artifact-token`, { method: "POST" });
+  if (!r.ok || !r.data.token || !r.data.expires_at) return 0;
+  artTokens.set(auditId, r.data.token);
+  return Math.max(0, Date.parse(r.data.expires_at) - Date.now());
 }

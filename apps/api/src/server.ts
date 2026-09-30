@@ -2,7 +2,7 @@
  * Fastify API (SPEC §42). Слухає 127.0.0.1 (G0-5). Звіт віддається ЛИШЕ з audit_reports: перед відповіддю — Zod-контракт Report + сканер guard по всьому JSON
  * (fail-closed: якщо не пройшов — 503 report_unavailable, тіло звіту не повертається). Артефакти (скриншоти) — лише файли каталогу цього аудиту.
  */
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { lstat, realpath } from "node:fs/promises";
 import path from "node:path";
@@ -21,6 +21,27 @@ export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** реж�
 const digest = (s: string) => createHash("sha256").update(s).digest();
 export const tokenOk = (given: string | undefined, expected: string): boolean => given !== undefined && timingSafeEqual(digest(given), digest(expected));
 
+/**
+ * S8 (DEV-80): `<img>` не шле Authorization, тож скриншоти при ACCESS_TOKEN — через короткоживучий підписаний токен `?st=<exp>.<hmac>`:
+ * HMAC(ACCESS_TOKEN, «artifact-v1|<auditId>|<exp>»), TTL 10 хв, прив'язаний до ОДНОГО аудиту, приймається лише GET /api/audits/:id/artifacts/*.
+ * Сам ACCESS_TOKEN у URL ніколи не потрапляє; токен видається лише за POST /api/audits/:id/artifact-token з Authorization.
+ */
+export const ARTIFACT_TOKEN_TTL_S = 600;
+const artSig = (accessToken: string, auditId: string, exp: number) => createHmac("sha256", accessToken).update(`artifact-v1|${auditId}|${exp}`).digest("hex");
+export const signArtifactToken = (accessToken: string, auditId: string, nowMs = Date.now()): { token: string; exp: number } => {
+  const exp = Math.floor(nowMs / 1000) + ARTIFACT_TOKEN_TTL_S;
+  return { token: `${exp}.${artSig(accessToken, auditId, exp)}`, exp };
+};
+export const artifactTokenOk = (given: string | undefined, accessToken: string, auditId: string, nowMs = Date.now()): boolean => {
+  const m = given === undefined ? null : /^(\d{1,12})\.([0-9a-f]{64})$/.exec(given);
+  if (!m) return false;
+  const exp = Number(m[1]);
+  if (exp * 1000 < nowMs) return false;
+  return tokenOk(m[2], artSig(accessToken, auditId, exp));
+};
+const ART_PATH_RE = /^\/api\/audits\/([A-Za-z0-9_]+)\/artifacts\/[^?]*(?:\?(.*))?$/;
+const redactUrl = (u: string) => u.replace(/([?&]st=)[^&]*/g, "$1[redacted]");
+
 type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url" | "report_not_ready" | "report_unavailable";
 const err = (reply: FastifyReply, code: number, cls: ApiErrClass, message: string) => reply.code(code).send({ error: { class: cls, message } });
 
@@ -37,13 +58,19 @@ function statusView(a: AuditRow, progress: { pages_captured: number; pages_faile
 export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
   const { cfg, pool, boss } = deps;
   const app = Fastify({
-    logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"], ...(deps.logStream ? { stream: deps.logStream } : {}) },
+    logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"],
+      serializers: { req: (r: { method: string; url: string; headers: Record<string, unknown> }) => ({ method: r.method, url: redactUrl(r.url), headers: r.headers }) }, ...(deps.logStream ? { stream: deps.logStream } : {}) },
     bodyLimit: 8 * 1024,
     trustProxy: false,
   });
 
   app.addHook("onRequest", async (req, reply) => {
     if (!cfg.accessToken || req.url === "/api/health" || req.url.startsWith("/api/health?")) return;
+    if (req.method === "GET") {
+      const am = ART_PATH_RE.exec(req.url);
+      const st = am?.[2] ? new URLSearchParams(am[2]).get("st") ?? undefined : undefined;
+      if (am && st !== undefined && artifactTokenOk(st, cfg.accessToken, am[1]!)) return; // лише скриншоти цього аудиту (DEV-80)
+    }
     const h = req.headers.authorization;
     const given = (typeof h === "string" && /^Bearer\s+/i.test(h) ? h.replace(/^Bearer\s+/i, "") : undefined) ?? (typeof req.headers["x-access-token"] === "string" ? req.headers["x-access-token"] : undefined);
     if (!tokenOk(given, cfg.accessToken)) return err(reply, 401, "unauthorized", "Потрібен ACCESS_TOKEN (Authorization: Bearer …)");
@@ -214,6 +241,15 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
       return nf();
     }
     return reply.header("Content-Type", type).header("Cache-Control", "private, max-age=3600").header("X-Content-Type-Options", "nosniff").header("Content-Security-Policy", "default-src 'none'; sandbox").send(createReadStream(full));
+  });
+
+  // DEV-80: видає короткоживучий токен для `<img src=…?st=…>`; вимагає повноцінної автентифікації (onRequest). Без ACCESS_TOKEN токен не потрібен → null.
+  app.post<{ Params: { id: string } }>("/api/audits/:id/artifact-token", async (req, reply) => {
+    const a = await loadAudit(req.params.id, reply);
+    if (!a) return reply;
+    if (!cfg.accessToken) return reply.header("Cache-Control", "no-store").send({ token: null, expires_at: null });
+    const { token, exp } = signArtifactToken(cfg.accessToken, a.id);
+    return reply.header("Cache-Control", "no-store").send({ token, expires_at: new Date(exp * 1000).toISOString() });
   });
 
   app.delete<{ Params: { id: string } }>("/api/audits/:id", async (req, reply) => {

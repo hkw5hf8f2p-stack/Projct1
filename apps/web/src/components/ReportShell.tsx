@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { ensureArtifactToken, getToken } from "@/lib/client";
 import { useUrlParams } from "@/lib/urlstate";
 import { usePrefs } from "@/lib/prefs";
 import type { Key } from "@/lib/messages";
@@ -29,6 +30,24 @@ export function ReportShell({ report, auditId, artifactsDeleted }: { report: Rep
   const tab: TabId = isTab(q) ? q : "overview";
   const evidenceId = params.get("evidence");
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  // DEV-80: при ACCESS_TOKEN скриншоти показуються лише після видачі короткоживучого токена артефактів (інакше `<img>` дав би 401 і назавжди failed)
+  const [artReady, setArtReady] = useState(() => !getToken());
+  useEffect(() => {
+    if (!getToken()) return;
+    let stop = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const tick = async () => {
+      const ttl = await ensureArtifactToken(auditId);
+      if (stop) return;
+      setArtReady(true);
+      timer = setTimeout(() => void tick(), ttl > 60_000 ? ttl - 60_000 : 30_000); // оновлення за хвилину до закінчення
+    };
+    void tick();
+    return () => {
+      stop = true;
+      if (timer) clearTimeout(timer);
+    };
+  }, [auditId]);
 
   const setTab = useCallback((id: TabId) => setParams({ tab: id === "overview" ? null : id }), [setParams]);
   const ctx = useMemo(
@@ -72,6 +91,7 @@ export function ReportShell({ report, auditId, artifactsDeleted }: { report: Rep
   const partial = audit.banners.some((b) => b.code === "stage_failed" || b.code === "budget_limited");
   const ev = evidenceId ? report.evidence.find((e) => e.id === evidenceId) ?? null : null;
 
+  if (!artReady) return <p className="muted small" role="status" data-testid="artifact-token-wait">…</p>;
   return (
     <ReportContext.Provider value={ctx}>
       <div data-testid="report" data-llm-mode={audit.llm_mode} data-provenance={report.provenance.kind}>

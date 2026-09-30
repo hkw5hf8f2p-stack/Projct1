@@ -22,7 +22,8 @@ export const PATTERNS: Array<[string, string]> = [
 
 /** Пояснені збіги: файл (regex) + регекс рядка + причина. Усе інше — непояснений збіг. */
 export const ALLOW: Array<{ file: RegExp; line: RegExp; why: string }> = [
-  { file: /^(\.env\.example|infra\/docker-compose\.yml|packages\/db\/src\/env\.ts|scripts\/s2\/harness\.ts)$/, line: /postgres:\/\/sitelens:sitelens@127\.0\.0\.1/, why: "фіксовані локальні облікові дані embedded-кластера (лише loopback, data/pg проєкту); задокументовано в .env.example" },
+  { file: /^(\.env\.example|infra\/docker-compose\.yml|packages\/db\/src\/env\.ts|scripts\/s2\/harness\.ts|scripts\/s8-sql\.ts|scripts\/scan-secrets\.test\.ts)$/, line: /postgres:\/\/sitelens:sitelens@127\.0\.0\.1/, why: "фіксовані локальні облікові дані embedded-кластера (лише loopback, data/pg проєкту); задокументовано в .env.example" },
+  { file: /^scripts\/scan-secrets\.test\.ts$/, line: /(sk-ant-api03-|assigned_secret: |private_key_block: |hunter2|AKIA|ghp_|eyJ)|"sk-"/, why: "S8: підкладені фейкові значення — позитивні випадки тесту сканера секретів (доводять, що він уміє знаходити); зібрані з частин у коді" },
   { file: /^packages\/llm\/test\/(adapters|cache)\.test\.ts$/, line: /sk-ant-api03-(SECRETSECRETSECRET1234|ECHOECHOECHO9999)/, why: "фейкові ключі — тест редагування (redaction) ключів у логах/записах" },
   { file: /^packages\/browser\/test\/(lighthouse|secure-browser)\.test\.ts$/, line: /(sk-fake-lh-7f3a9c|fake-lh-pw|sk-ant-FAKE-|FAKEPASS)/, why: "фейкові значення — тест, що env браузера/Lighthouse не містить секретів" },
   { file: /^packages\/browser\/test\/net-proxy-limits\.test\.ts$/, line: /hidden-s66-shop\.example/, why: "ім'я хоста в тесті SITE_DENYLIST (не секрет; збіг за шаблоном `secret = \"…\"`)" },
