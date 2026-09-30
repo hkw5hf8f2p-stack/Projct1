@@ -1,5 +1,5 @@
 {
-  "key": "6455bac095759fbf083adc6553f7c2eb33366832ae16ce6bd5ee99806084c099",
+  "key": "8e3dd87c479d06890750af00a4d29ac9084d5525401765a6a18627b31084d58e",
   "provider": "replay",
   "model": "synthetic-fixture-v1",
   "prompt_id": "snapshot-evaluator-v1",
@@ -32,7 +32,7 @@
     "success": "partial",
     "final_summary": "Сторінка підходить для задачі."
   },
-  "input_tokens": 1839,
+  "input_tokens": 1872,
   "output_tokens": 142,
   "request_summary": {
     "stage": "snapshot_sessions",

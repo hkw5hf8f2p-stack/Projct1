@@ -6,7 +6,7 @@ import { findInjectionEcho, type Issue } from "../guards/text.js";
 import { pageCorpus, wrapDerivedData, wrapPageData, type PageInput } from "../page-input.js";
 import { AgentTurnLlm, CLAIM_KIND_LIST, SCROLL_TARGETS, parseSemanticTarget, type SemanticTarget } from "../sim-schemas.js";
 import type { ImagePart } from "../types.js";
-import { buildRequest, LANG_NAME } from "./prompt-util.js";
+import { a11yOutlineText, buildRequest, LANG_NAME } from "./prompt-util.js";
 import type { TaskBrief } from "./snapshot-eval.js";
 import { done, guardStage, type StageContext, type StageResult } from "./types.js";
 
@@ -48,7 +48,7 @@ export async function agentTurn(ctx: StageContext, input: AgentTurnInput): Promi
         LANGUAGE: ctx.language, LANGUAGE_NAME: LANG_NAME[ctx.language], CATEGORIES: CATEGORIES.join(", "), CLAIM_KINDS: JSON.stringify(CLAIM_KIND_LIST),
         LENS_DATA: wrapDerivedData(JSON.stringify(input.lens, null, 1)), TASK_DATA: wrapDerivedData(JSON.stringify(input.task, null, 1)),
         REMAINING: String(input.remaining), CURRENT_URL: input.page.url, HISTORY_DATA: wrapDerivedData(JSON.stringify(input.history, null, 1)),
-        A11Y_DATA: wrapDerivedData(input.a11y_outline), PAGE_DATA: wrapPageData([input.page]),
+        A11Y_DATA: wrapDerivedData(a11yOutlineText(input.a11y_outline)), PAGE_DATA: wrapPageData([input.page]),
       },
       logical: { page_url: input.page.url, lens_id: input.lens.id, task_id: input.task.id, step: input.step },
     });

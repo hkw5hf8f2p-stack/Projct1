@@ -7,7 +7,7 @@ import { pageCorpus, wrapDerivedData, wrapPageData, type PageInput } from "../pa
 import { CLAIM_KIND_LIST, SnapshotEvalLlm } from "../sim-schemas.js";
 import { CATEGORIES, isClaimKindFor } from "@sitelens/schemas";
 import type { ImagePart } from "../types.js";
-import { buildRequest, LANG_NAME } from "./prompt-util.js";
+import { a11yOutlineText, buildRequest, LANG_NAME } from "./prompt-util.js";
 import { done, guardStage, type StageContext, type StageResult } from "./types.js";
 
 /** Тайл D4: t0 = перше вікно; далі тайли висотою вікна з перекриттям (`tiles/manifest.json` S1a). Full-page скриншот моделі не віддається. */
@@ -60,7 +60,7 @@ export async function evaluateSnapshot(ctx: StageContext, input: SnapshotInput):
       vars: {
         LANGUAGE: ctx.language, LANGUAGE_NAME: LANG_NAME[ctx.language], CATEGORIES: CATEGORIES.join(", "), CLAIM_KINDS: JSON.stringify(CLAIM_KIND_LIST),
         LENS_DATA: lensData, TASK_DATA: wrapDerivedData(JSON.stringify(input.task, null, 1)), TILE_LIST: tileList,
-        A11Y_DATA: wrapDerivedData(input.a11y_outline), PAGE_DATA: wrapPageData([input.page]),
+        A11Y_DATA: wrapDerivedData(a11yOutlineText(input.a11y_outline)), PAGE_DATA: wrapPageData([input.page]),
       },
       logical: { page_url: input.page.url, lens_id: input.lens.id, task_id: input.task.id, step: 0 },
     });
