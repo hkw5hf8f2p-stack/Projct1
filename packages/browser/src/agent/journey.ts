@@ -17,7 +17,7 @@ import type { Locator, Page, Request } from "playwright";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { WINDOW_OPEN_LOCK_SCRIPT } from "../audit/capture-page.js";
 import { handleBanner } from "../audit/banner.js";
-import { CTA_SRC, PRICE_RE, SHIP_RE } from "../audit/patterns.js";
+import { CTA_SRC, PRICE_EXCL_SRC, PRICE_SRC, SHIP_RE } from "../audit/patterns.js";
 import { VIEWPORT_SPECS, type BannerRecord, type VP } from "../audit/types.js";
 import { checkAction, checkElement, denyUrl, sameOrigin, type ElementFacts, type SemanticTarget } from "./action-filter.js";
 
@@ -225,6 +225,22 @@ const FACTS = `((n) => {
 })`;
 interface RawFacts extends ElementFacts { blank: boolean; visible: boolean; disabled: boolean }
 
+const PRICE_G = new RegExp(PRICE_SRC, "giu");
+const PRICE_EXCL = new RegExp(PRICE_EXCL_SRC, "iu");
+/**
+ * Ціна ТОВАРУ відома: є цінове значення, перед яким (25 знаків) немає «від/from/економія/знижка/save» і біля якого (±40) немає слів про доставку
+ * («від 70 грн» на сторінці доставки — вартість доставки, не ціна товару; виявлено першим прогоном тесту).
+ */
+export function productPriceKnown(text: string): boolean {
+  for (const m of text.matchAll(PRICE_G)) {
+    const i = m.index ?? 0;
+    if (PRICE_EXCL.test(text.slice(Math.max(0, i - 25), i))) continue;
+    if (SHIP_RE.test(text.slice(Math.max(0, i - 40), i + m[0].length + 40))) continue;
+    return true;
+  }
+  return false;
+}
+
 /** role:"name" → Playwright-локатор (§11): getByRole / getByText / getByLabel; спершу exact, потім підрядок без регістру. */
 export function locatorFor(page: Page, t: SemanticTarget, exact: boolean): Locator {
   switch (t.role) {
@@ -371,14 +387,36 @@ export async function runJourney(o: JourneyOptions): Promise<JourneyResult> {
       }
     }
 
+    let lastGoodUrl = o.startUrl;
+    let recovered = 0;
+    let navFailed = false;
+    page.on("requestfailed", (r) => {
+      try { if (r.isNavigationRequest() && r.frame() === page.mainFrame()) navFailed = true; } catch { /* ignore */ }
+    });
+    /**
+     * Скасована фільтром або відхилена проксі головна навігація лишає сторінку «мертвою» (error page, `page.url()` при цьому = URL-мета,
+     * а не chrome-error://). Ознака — `requestfailed` головного документа; повертаємось на останню нормальну сторінку, щоб агент не застряг.
+     */
+    const recover = async () => {
+      if (!navFailed) return;
+      navFailed = false;
+      const isErr = (await page.evaluate(`!!document.querySelector('#main-frame-error, body.neterror, .neterror')`).catch(() => true)) as boolean;
+      if (!isErr && page.url() === lastGoodUrl) return;
+      recovered++;
+      await o.throttle?.wait(lastGoodUrl);
+      await page.goto(lastGoodUrl, { waitUntil: "load", timeout: 15_000 }).catch(() => undefined);
+      navFailed = false;
+    };
     const observe = async (n: number, remaining: number): Promise<AgentObservation> => {
+      await recover();
       const url = page.url();
+      if (/^https?:/.test(url)) lastGoodUrl = url;
       const title = await page.title().catch(() => "");
       const outline = clip(await page.locator("body").ariaSnapshot().catch(() => ""), 8000);
       const text = (await page.evaluate(`document.body ? document.body.innerText : ''`).catch(() => "")) as string;
       const links = (await page.evaluate(`Array.from(document.querySelectorAll('a[href]')).map((a) => (a.innerText || a.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').trim()).filter(Boolean).slice(0, 80)`).catch(() => [])) as string[];
       const cart = (await page.evaluate(`(${CART_SCAN})(${JSON.stringify(CTA_SRC)})`).catch(() => [])) as CartCandidate[];
-      observed.push({ url, cart, price: PRICE_RE.test(text), ship: SHIP_RE.test(text) });
+      observed.push({ url, cart, price: productPriceKnown(text), ship: SHIP_RE.test(text) });
       corpus += `\n${title}\n${text}\n${outline}\n${links.join("\n")}`;
       let shot: string | null = null;
       if (o.writeShots) {
@@ -525,7 +563,7 @@ export async function runJourney(o: JourneyOptions): Promise<JourneyResult> {
     });
     const files = { journey: `${dirRel}/journey.json`, session: `${dirRel}/session.json`, evidence: `${dirRel}/evidence.json` };
     const out: JourneyResult = { session, evidence, steps, cart, end_reason: endReason, net_blocks: netBlocks, method_blocks: methodBlocks, rejected_frictions: rejected, dir: dirRel, files };
-    await writeFile(path.join(o.runDir, files.journey), JSON.stringify({ session_id: sessionId, start_url: o.startUrl, origin, vp, max_steps: maxSteps, filter: filterOn, end_reason: endReason, error: failedError, cart, steps, net_blocks: netBlocks, method_blocks: methodBlocks, rejected_frictions: rejected, banner }, null, 2) + "\n");
+    await writeFile(path.join(o.runDir, files.journey), JSON.stringify({ session_id: sessionId, start_url: o.startUrl, origin, vp, max_steps: maxSteps, filter: filterOn, end_reason: endReason, error: failedError, cart, steps, net_blocks: netBlocks, recovered_from_blocked_navigation: recovered, method_blocks: methodBlocks, rejected_frictions: rejected, banner }, null, 2) + "\n");
     await writeFile(path.join(o.runDir, files.session), JSON.stringify(session, null, 2) + "\n");
     await writeFile(path.join(o.runDir, files.evidence), JSON.stringify(evidence, null, 2) + "\n");
     return out;

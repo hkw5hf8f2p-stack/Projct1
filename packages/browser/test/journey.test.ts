@@ -2,7 +2,7 @@
  * Виконавець журналів §19B/§20 на fixtures/shop (S4). Агент — scripted (доводить плумбінг, фільтр і облік, НЕ якість моделі: ⏭️ live pass).
  * 12 журналів (8–16): лог фікстури 0 не-GET, 0 GET add-to-cart/logout/delete від агента. Контроль без фільтра: ті самі кроки → GET доходять.
  */
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { Evidence, SyntheticSession } from "../../schemas/src/index.js";
@@ -11,7 +11,9 @@ import { startFixtureServer, type FixtureServer } from "../../../fixtures/_share
 import { createShopCleanHandler } from "../../../fixtures/shop-clean/server.js";
 import { artifactDir } from "../../../scripts/artifact-dir.js";
 import { secureLaunch, type SecureBrowser } from "../src/secure-launch.js";
-import { cartVerdict, runJourney, runJourneys, verifyFrictionEvidence, type AgentDecision, type AgentDriver, type JourneyResult, type JourneyTask } from "../src/agent/journey.js";
+import { BehavioralLens } from "../../schemas/src/index.js";
+import { LlmClient, ScriptedFakeProvider, TokenBudget, agentTurn, browserAgentV1, type PageInput } from "../../llm/src/index.js";
+import { cartVerdict, productPriceKnown, runJourney, runJourneys, verifyFrictionEvidence, type AgentDecision, type AgentDriver, type JourneyResult, type JourneyTask } from "../src/agent/journey.js";
 
 const ART = artifactDir("sprint-4/journeys");
 let shop: FixtureServer;
@@ -19,7 +21,10 @@ let clean: FixtureServer;
 let sb: SecureBrowser;
 
 beforeAll(async () => {
-  shop = await startShop({ port: 0 });
+  const logFile = path.join(ART, "shop-server-log.jsonl"); // лог фікстури — доказ «0 не-GET / 0 deny-list» (читається, не лише лічильник)
+  mkdirSync(ART, { recursive: true });
+  rmSync(logFile, { force: true });
+  shop = await startShop({ port: 0, logFile });
   clean = await startFixtureServer({ handler: createShopCleanHandler({ transforms: null }), port: 0 });
   sb = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [shop.origin, clean.origin] });
 });
@@ -41,7 +46,6 @@ const HOSTILE = [go("click", L("Вийти")), go("click", L("Каталог")),
 const CONTROL = [go("click", L("Вийти")), go("back"), go("click", L("Каталог")), go("click", L("В кошик")), go("click", L("Очистити порівняння")), go("click", L("AquaPro X200 (система HFX)")), go("click", 'button:"Додати в кошик"'), stop("false", [], "stop_failure")];
 
 const runDir = () => path.join(ART, "shop");
-const opts = (over: Partial<Parameters<typeof runJourney>[0]> & Pick<Parameters<typeof runJourney>[0], "lens_id" | "task" | "driver">) => ({ secure: sb, startUrl: shop.origin + "/", runDir: runDir(), audit_run_id: "aud_s4", writeShots: false, ...over });
 
 describe("пакет із 12 журналів на fixtures/shop", () => {
   let results: Array<JourneyResult | { session_id: string; error: string }> = [];
@@ -215,11 +219,96 @@ describe("cartVerdict / verifyFrictionEvidence: чиста логіка (поз�
   });
 });
 
-describe("shop-clean: той самий швидкий шлях", () => {
-  it("журнал завершується без винятків; успіх «кошик» — за фактами сторінок (виміряно, не вгадано)", async () => {
-    const r = await runJourney({ secure: sb, startUrl: clean.origin + "/", runDir: path.join(ART, "clean"), audit_run_id: "aud_s4", lens_id: "l1", task: task("t6", "add_to_cart"), driver: scripted(CART_QUICK), writeShots: false });
+describe("шар 3 (мережа): JS-навігація й fetch на deny-list, cross-origin, target=_blank, window.open", () => {
+  const html = (b: string) => `<!doctype html><meta charset="utf-8"><title>t</title><body>${b}</body>`;
+  const handler = (ext: string) => (req: { url: URL }): { status: number; body: string } | null => {
+    const p = req.url.pathname;
+    if (p === "/") return { status: 200, body: html(`<h1>Home</h1>
+<button onclick="location.href='/logout'">Go A</button>
+<button onclick="location.href='${ext}/x'">Go B</button>
+<button onclick="fetch('/?add-to-cart=9').then(()=>{document.title='fetched'})">Go C</button>
+<button onclick="window.open('/page2'); document.body.dataset.opened = String(window.open('/page2'))">Go D</button>
+<a href="/page2" target="_blank">Open in tab</a>`) };
+    if (p === "/page2") return { status: 200, body: html("<h1>Page two</h1>") };
+    if (p === "/logout") return { status: 200, body: html("<p>logged out</p>") };
+    return null;
+  };
+  const scenario = async (noFilter: boolean) => {
+    const ext = await startFixtureServer({ handler: () => ({ status: 200, body: "ext" }), port: 0 });
+    const f = await startFixtureServer({ handler: handler(ext.origin), port: 0 });
+    const sb3 = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [f.origin] });
+    try {
+      const r = await runJourney({ secure: sb3, startUrl: f.origin + "/", runDir: path.join(ART, noFilter ? "net-control" : "net"), audit_run_id: "a", lens_id: "n", task: task("t", "other", 10),
+        driver: scripted([go("click", 'button:"Go A"'), ...(noFilter ? [go("back")] : []), go("click", 'button:"Go B"'), ...(noFilter ? [go("back")] : []), go("click", 'button:"Go C"'), go("click", 'button:"Go D"'), go("click", L("Open in tab")), stop("partial")]), writeShots: false, __controlNoFilter: noFilter });
+      return { r, f, ext };
+    } finally { await sb3.close(); await f.close(); await ext.close(); }
+  };
+  it("З ФІЛЬТРОМ: GET /logout і fetch add-to-cart від JS не доходять; cross-origin навігація скасована; target=_blank відкрито у тій самій вкладці; popup не створюється", async () => {
+    const { r, f, ext } = await scenario(false);
+    expect(f.state).toEqual({ add_to_cart_get: 0, logout: 0, delete_action: 0, non_get: 0 });
+    expect(ext.log).toEqual([]);
+    expect(r.net_blocks.map((b) => `${b.kind}:${b.rule}`).sort()).toEqual(["cross_origin_navigation:cross_origin", "deny_url:add_to_cart", "deny_url:logout"]);
+    expect(r.net_blocks.some((b) => b.kind === "popup")).toBe(false);
+    const last = r.steps.find((x) => x.decision.target === L("Open in tab"))!;
+    expect(last).toMatchObject({ verdict: "executed" });
+    expect(last.url_after.endsWith("/page2")).toBe(true);
+  });
+  it("КОНТРОЛЬ без фільтра: ті самі JS-дії доходять (logout, add-to-cart fetch, cross-origin у канарку — лише проксі тримає allowlist)", async () => {
+    const { f, ext } = await scenario(true);
+    expect(f.state.logout).toBeGreaterThanOrEqual(1);
+    expect(f.state.add_to_cart_get).toBeGreaterThanOrEqual(1);
+    expect(ext.log).toEqual([]); // egress-проксі: origin поза allowlist — шар 1 (агент бачить 403 проксі, до цілі запит не дійшов)
+  });
+});
+
+describe("productPriceKnown: ціна товару, а не вартість доставки", () => {
+  it.each([["Ціна: 2 499 грн", true], ["Price 2,499 UAH", true], ["<s>3 100 грн</s> 2 499 грн", true], ["Доставка Новою поштою: 1–2 дні, від 70 грн. Оплата при отриманні.", false], ["Shipping from 70 UAH", false], ["Економія 500 грн", false], ["Гарантія 2 роки", false]] as Array<[string, boolean]>)("«%s» → %s", (t, r) => { expect(productPriceKnown(t)).toBe(r); });
+});
+
+describe("shop-clean: чиста сторінка — ціна й доставка на самому товарі", () => {
+  it("швидкий шлях дає «кошик» true (позитивний контроль до hostile/quick на shop, де partial); 0 станозмінних GET", async () => {
+    const r = await runJourney({ secure: sb, startUrl: clean.origin + "/", runDir: path.join(ART, "clean"), audit_run_id: "aud_s4", lens_id: "l1", task: task("t6", "add_to_cart"), driver: scripted([go("click", L("Каталог")), go("click", L("Скляний чайник")), go("click", 'button:"Додати в кошик"'), stop("true")]), writeShots: false });
     expect(r.session.status).toBe("done");
+    expect(r.cart).toMatchObject({ button_found: true, reachable: true, price_known_before: true, shipping_known_before: true, success: "true" });
     expect(clean.state).toEqual({ add_to_cart_get: 0, logout: 0, delete_action: 0, non_get: 0 });
-    console.log("clean cart:", JSON.stringify(r.cart), r.steps.map((s) => s.verdict + ":" + (s.located?.name ?? "")).join(" | "));
+  });
+});
+
+describe("плумбінг з packages/llm: agentTurn + ScriptedFakeProvider як AgentDriver (replay-агент без живого LLM)", () => {
+  const lens = BehavioralLens.parse({
+    id: "lens_a", audit_run_id: "aud", name: "Обережний", description: "Перевіряє все перед покупкою", category_knowledge: 0.3, price_sensitivity: 0.7, trust_requirement: 0.8, decision_speed: 0.3,
+    detail_preference: 0.7, visual_sensitivity: 0.5, comparison_tendency: 0.6, risk_aversion: 0.8, convenience_priority: 0.5, social_proof_need: 0.5, primary_goal: "Знати повну ціну", likely_questions: [], likely_objections: [],
+  });
+  const brief = { id: "t6", name: "Add to cart", goal: "Reach the add-to-cart control knowing price and delivery", task_type: "add_to_cart" };
+  const step = (action: string, target: string) => ({ step: { action, target, reason_summary: "Next useful page.", task_progress: "Moving on.", friction_detected: [], confidence: 0.6 }, result: null });
+  it("кожен крок — один виклик agentTurn (логічний ключ prompt_id|page_url|lens|task|step); фільтр і облік — код; success «кошик» рахує код, не «модель»", async () => {
+    const s2 = await startShop({ port: 0 }); // ключі replay залежать від origin
+    const sb2 = await secureLaunch({ mode: "fixture", allowFixtureLoopback: true, fixtureOrigins: [s2.origin] });
+    try {
+      const b = s2.origin;
+      const key = (url: string, n: number) => ({ prompt_id: browserAgentV1.id, page_url: url, lens_id: "lens_a", task_id: "t6", step: n });
+      const provider = ScriptedFakeProvider.from([
+        [key(b + "/", 0), { response: step("click", 'link:"Вийти"') }],
+        [key(b + "/", 1), { response: step("click", 'link:"Каталог"') }],
+        [key(b + "/catalog", 2), { response: step("navigate_internal_link", 'link:"AquaPro X200 (система HFX)"') }],
+        [key(b + "/product/aquapro-x200", 3), { response: step("click", 'button:"Додати в кошик"') }],
+        [key(b + "/product/aquapro-x200", 4), { response: { step: { action: "stop_success", target: "", reason_summary: "The add-to-cart control is reachable.", task_progress: "Control found.", friction_detected: [], confidence: 0.7 },
+          result: { success: "true", frictions: [], positive_signals: ["The add-to-cart control is easy to find."], uncertainties: [], final_summary: "The control was found; price and delivery were not confirmed first." } } }],
+      ]);
+      const ctx = { audit_run_id: "aud_s4", language: "en" as const, client: new LlmClient({ mode: "fake", provider, budget: new TokenBudget(5_000_000) }) };
+      const driver: AgentDriver = async (obs) => {
+        const page: PageInput = { id: "p", url: obs.url, page_type: "unknown", title: obs.title, meta_description: "", headings: [], visible_text: obs.visible_text, link_texts: obs.link_texts, image: null };
+        const r = await agentTurn(ctx, { page, lens, task: brief, a11y_outline: obs.a11y_outline, history: obs.history, remaining: obs.remaining, step: obs.step });
+        if (r.status !== "done" || !r.output) throw new Error("agent stage failed: " + JSON.stringify(r.rejected.map((x) => x.rule)));
+        return { step: r.output.turn.step, result: r.output.turn.result };
+      };
+      const r = await runJourney({ secure: sb2, startUrl: b + "/", runDir: path.join(ART, "llm-plumbing"), audit_run_id: "aud_s4", lens_id: "lens_a", task: task("t6", "add_to_cart"), driver, writeShots: false });
+      expect(r.steps.map((x) => `${x.verdict}:${x.rule ?? ""}`)).toEqual(["blocked:logout", "executed:", "executed:", "found_not_clicked:commercial_cta", "stop:"]);
+      expect(r.end_reason).toBe("stop_success");
+      expect(r.session).toMatchObject({ status: "done", actions_used: 4, success: "partial" }); // код: ціни/доставки до кнопки не було, попри stop_success/true від «моделі»
+      expect(r.session.positive_signals).toHaveLength(1);
+      expect(provider.received).toHaveLength(5);
+      expect(s2.state).toEqual({ add_to_cart_get: 0, logout: 0, delete_action: 0, non_get: 0 });
+    } finally { await sb2.close(); await s2.close(); }
   });
 });
