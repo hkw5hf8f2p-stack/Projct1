@@ -2,22 +2,22 @@
   "auth": {
     "orphan_no_token": {
       "status": 407,
-      "pid": 14345
+      "pid": 1694
     },
     "orphan_with_token": {
       "status": 200,
-      "pid": 14370
+      "pid": 1750
     },
     "child_no_token": {
       "status": 200,
-      "pid": 14387
+      "pid": 1779
     },
     "in_process_no_token": 407,
     "in_process_token": 200,
     "wrong_token": 407,
     "control_open_orphan": {
       "status": 200,
-      "pid": 14395
+      "pid": 1787
     },
     "proxy_log": [
       {
@@ -25,7 +25,7 @@
         "host": "public.test",
         "port": 443,
         "decision": "unauthorized",
-        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 14290",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1639",
         "connected_ip": null,
         "peer_pid": null
       },
@@ -45,14 +45,14 @@
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
         "connected_ip": "93.184.216.34",
-        "peer_pid": 14387
+        "peer_pid": 1779
       },
       {
         "via": "connect",
         "host": "public.test",
         "port": 443,
         "decision": "unauthorized",
-        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 14290",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1639",
         "connected_ip": null,
         "peer_pid": null
       },
@@ -70,7 +70,7 @@
         "host": "public.test",
         "port": 443,
         "decision": "unauthorized",
-        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 14290",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1639",
         "connected_ip": null,
         "peer_pid": null
       }
@@ -128,16 +128,16 @@
     "by_time": {
       "status": 200,
       "bytes": 11,
-      "closedMs": 604
+      "closedMs": 603
     },
     "by_bytes": {
       "status": 200,
       "bytes": 5,
-      "closedMs": 303
+      "closedMs": 305
     },
     "control": {
       "status": 200,
-      "bytes": 28,
+      "bytes": 29,
       "closedMs": 1502
     },
     "log_time": [
@@ -187,13 +187,13 @@
       "bytes": 0,
       "aborted": false
     },
-    "silent_ms": 410,
+    "silent_ms": 406,
     "hole": {
       "status": 502,
       "bytes": 0,
-      "closedMs": 314
+      "closedMs": 303
     },
-    "hole_ms": 314,
+    "hole_ms": 303,
     "log": [
       {
         "via": "http",
@@ -297,22 +297,22 @@
     "dual": {
       "status": 200,
       "bytes": 0,
-      "closedMs": 2
+      "closedMs": 3
     },
     "v6only": {
       "status": 502,
       "bytes": 0,
-      "closedMs": 2
+      "closedMs": 1
     },
     "mixed": {
       "status": 403,
       "bytes": 0,
-      "closedMs": 1
+      "closedMs": 0
     },
     "mixed2": {
       "status": 403,
       "bytes": 0,
-      "closedMs": 0
+      "closedMs": 1
     },
     "dial_calls": [
       "2606:4700:4700:0:0:0:0:1111",
