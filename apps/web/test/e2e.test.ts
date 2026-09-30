@@ -438,12 +438,13 @@ describe("контроли: фільтри, сортування, клавіат
     if (writeArtifacts()) await page.screenshot({ path: shotPath("findings-zero-results-1440-light-uk.png") });
     await page.getByTestId("filters-reset").click();
     expect(await page.getByTestId("finding").count()).toBe(F.length);
-    const prios = async () => (await page.getByTestId("finding").evaluateAll((e) => e.map((x) => Number(x.getAttribute("data-priority")))));
-    const d = await prios();
-    expect([...d].sort((a, b) => b - a)).toEqual(d);
+    // Порядок — rank контракту (смуги впевненості DEV-76), не сире priority.value.
+    const ranks = async () => (await page.getByTestId("finding").evaluateAll((e) => e.map((x) => Number(x.getAttribute("data-rank")))));
+    const d = await ranks();
+    expect([...d].sort((a, b) => a - b)).toEqual(d);
     await page.getByTestId("sort").selectOption("priority_asc");
-    const a = await prios();
-    expect([...a].sort((x, y) => x - y)).toEqual(a);
+    const a = await ranks();
+    expect([...a].sort((x, y) => y - x)).toEqual(a);
     await ctx.close();
   });
   it("клавіатура: стрілки між вкладками, Tab у lightbox залишається всередині, Esc повертає фокус", async () => {

@@ -17,7 +17,7 @@ export function FindingCard({ f, defaultOpen = false, highlight = false }: { f: 
   const evs = f.evidence_ids.map((id) => evById.get(id)).filter((e): e is NonNullable<typeof e> => !!e);
   const syn = f.synthetic;
   return (
-    <article id={`finding-${f.id}`} tabIndex={-1} className="finding" data-testid="finding" data-finding-id={f.id} data-confidence={f.confidence.level} data-priority={f.priority.value} data-category={f.category} style={highlight ? { outline: "3px solid var(--focus)" } : undefined} aria-labelledby={`finding-${f.id}-h`}>
+    <article id={`finding-${f.id}`} tabIndex={-1} className="finding" data-testid="finding" data-finding-id={f.id} data-confidence={f.confidence.level} data-priority={f.priority.value} data-rank={f.rank} data-category={f.category} style={highlight ? { outline: "3px solid var(--focus)" } : undefined} aria-labelledby={`finding-${f.id}-h`}>
       <div className="finding-head">
         <span className="chip mono" aria-label={`rank ${f.rank}`}>
           #{f.rank}

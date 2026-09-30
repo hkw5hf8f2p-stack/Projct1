@@ -1,5 +1,8 @@
 # STATE — SiteLens (читати першим)
 
+> **Оновлення 30.09.2026 (пізніше):** S2 Go після Fix; S4 Go після Fix (кр. 4 guard FAIL 78,8 % → Pivot на структурне
+> правило чисел, Known limitation); S5 Fix → повна QA-матриця в S8. **Далі: S8 (DoD з чистого git clone).**
+>
 > **Оновлення 30.09.2026:** S1b — Go-офлайн після Fix (`conclusions/sprint-1b.md`; **S1b-live блокує реальні URL
 > для користувача**); S3 — Go dev-пас (`conclusions/sprint-3.md`; guard held-out 34/48 < 44 → у S4 структурний білий
 > список чисел). S2 — у роботі. Далі: S4 ∥ каркас S5.

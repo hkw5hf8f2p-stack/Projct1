@@ -80,7 +80,8 @@ export function FindingsTab({ focusId }: { focusId: string | null }) {
   const shown = report.findings
     .filter(matches)
     .map((f, i) => ({ f, i }))
-    .sort((a, b) => (sort === "priority_desc" ? b.f.priority.value - a.f.priority.value : a.f.priority.value - b.f.priority.value) || a.i - b.i)
+    // Порядок — rank із контракту (смуги впевненості, DEV-76), не сире priority.value: інакше гіпотеза з вищим числом обганяє VERIFIED.
+    .sort((a, b) => (sort === "priority_desc" ? a.f.rank - b.f.rank : b.f.rank - a.f.rank) || a.i - b.i)
     .map((x) => x.f);
   const anyFilter = FILTERS.some((k) => val(k));
   const label = (k: FilterId, v: string): string => {
