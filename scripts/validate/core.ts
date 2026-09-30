@@ -6,7 +6,7 @@
  * ЧЕСНІСТЬ: LLM-частина — scripted fake (`evaluator.ts`), НЕ модель. Вердикт «PASS (dev)» не означає ✅ для LLM-залежного:
  * усе, що залежить від відповіді живої моделі, має мітку ⏭️ live (OQ-1). Replay доводить обв'язку, не якість.
  */
-import { MemoryStore, loadPagesFromArtifacts, type PageInput } from "../../packages/llm/src/index.js";
+import { DirStore, MemoryStore, SESSION_ANSWERED_BY, SESSION_BANNER, loadPagesFromArtifacts, type PageInput } from "../../packages/llm/src/index.js";
 import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
 import type { Report } from "../../packages/schemas/src/index.js";
 import {
@@ -62,6 +62,14 @@ export function ablateHints(art: AuditArtifacts): { art: AuditArtifacts; removed
   return { art: { ...art, evidence: kept }, removed: art.evidence.length - kept.length };
 }
 
+/** S7 (DEV-81): бекенд `session`. phase=session — SessionProvider (export/import, той самий код); phase=replay — лише кеш сесії */
+export interface SessionBackend { root: string; model: string; phase: "session" | "replay" }
+/** запити прогону записано в requests/, відповідей ще немає: перевірка не рахується (не PASS/FAIL) */
+export class RunAwaiting extends Error {
+  constructor(readonly label: string, readonly awaiting: number, readonly planned: number, readonly requests: string[]) {
+    super(`awaiting_session_model: ${label}: ${awaiting}/${planned} викликів чекають відповіді сесійної моделі`);
+  }
+}
 export interface RunCounters { cache_read_tokens: number; cache_reads: number; cache_mode: "use" | "bypass"; used_tokens: number; llm_calls: number; max_audit_tokens: number }
 export interface RunResult {
   label: string;
@@ -80,32 +88,59 @@ export interface RunOptions {
   meter: ValidateMeter;
   store?: MemoryStore;
   ablate?: boolean;
+  /** S7: транспорт session у цьому прогоні (namespace = ізоляція прогону; E2 бере окремий на кожен) */
+  session?: SessionBackend & { namespace: string; scenario: string };
 }
 
 export async function buildRunReport(snap: LoadedSnapshot, label: string, o: RunOptions): Promise<RunResult> {
   const art0 = o.ablate ? ablateHints(snap.art).art : snap.art;
-  const ev = await runSnapshotSessions({ pages: snap.pages, spec: o.spec, max_audit_tokens: o.max_audit_tokens, cache_mode: o.cache_mode, store: o.store, onCall: o.meter.after, beforeCall: o.meter.before });
+  const ev = await runSnapshotSessions({ pages: snap.pages, spec: o.spec, max_audit_tokens: o.max_audit_tokens, cache_mode: o.cache_mode, store: o.store, onCall: o.meter.after, beforeCall: o.meter.before, session: o.session });
+  if (ev.awaiting > 0) throw new RunAwaiting(label, ev.awaiting, ev.planned_calls, ev.written_requests);
   const integ = integrateSessions({ sessions: ev.sessions as SessionResultIn[], pages: snap.art.pages });
   const b = ev.client.budget;
   const llm: LlmResults = {
-    ...llmResultsFromSessions(integ, { mode: "replay", provider: "replay", model: "scripted-fake:toy-evaluator-v1", prompt_versions: ["snapshot-evaluator-v1"], llm_calls: ev.client.records.length, used_tokens: b.used }),
+    ...llmResultsFromSessions(integ, { mode: "replay", provider: "replay", model: o.session ? `session:${o.session.model}` : "scripted-fake:toy-evaluator-v1", prompt_versions: ["snapshot-evaluator-v1"], llm_calls: ev.client.records.length, used_tokens: b.used }),
     budget: { max_audit_tokens: b.max, used_tokens: b.used, billed_tokens: b.billed_tokens, cache_read_tokens: b.cache_read_tokens, llm_calls: ev.client.records.length, cost: null },
   };
   const stage = ev.budget_limited
     ? { status: "budget_limited" as const, reason: `обмежено бюджетом: MAX_AUDIT_TOKENS ${b.used}/${b.max} токенів, етап зупинено` }
     : { status: "done" as const, reason: null };
   const art: AuditArtifacts = { ...art0, audit: { ...art0.audit, stage_status: { ...art0.audit.stage_status, snapshot_sessions: stage } } };
-  const { report } = buildReport(art, llm, { generated_at: FIXED_TS, provenance: { kind: "audit", note: "validate" }, max_audit_tokens: o.max_audit_tokens });
+  const { report } = buildReport(art, llm, { generated_at: FIXED_TS, provenance: { kind: "audit", note: o.session ? `validate; llm_mode=session; ${SESSION_BANNER}` : "validate" }, max_audit_tokens: o.max_audit_tokens });
   return {
     label, report, findings: toVFindings(report), eval: ev, planned_calls: ev.planned_calls, budget_limited: ev.budget_limited, friction_rejections: integ.rejected.length,
     counters: { cache_read_tokens: report.budget.cache_read_tokens, cache_reads: ev.cache.reads, cache_mode: o.cache_mode, used_tokens: report.budget.used_tokens, llm_calls: report.budget.llm_calls, max_audit_tokens: o.max_audit_tokens },
   };
 }
 
+/**
+ * E2 у транспорті session: «недійсний» = порушена незалежність або походження. Читає записи кешу кожного прогону (свій namespace) і перевіряє
+ * provenance КОЖНОЇ відповіді: provider=session, answered_by=blind-subagent, synthetic=false. Синтетичний/чужий запис → INVALID.
+ */
+export function sessionProvenance(sess: SessionBackend, runs: readonly RunResult[], namespaces: readonly string[]): { valid: boolean; reasons: string[]; entries: number; keys_total: number; keys_differing: number } {
+  const reasons: string[] = [];
+  if (new Set(namespaces).size !== namespaces.length) reasons.push("namespace прогонів не різні");
+  const store = new DirStore(`${sess.root}/cache`, true);
+  const byKey = new Map<string, Set<string>>();
+  let entries = 0;
+  runs.forEach((r, i) => {
+    const ns = namespaces[i] as string;
+    for (const rec of r.eval.client.records) {
+      const e = store.get(ns, rec.request_hash);
+      if (!e) { reasons.push(`${r.label}: запис ${rec.request_hash.slice(0, 10)}… відсутній у namespace ${ns}`); continue; }
+      entries++;
+      const pv = e.provenance as { provider?: string; answered_by?: string; synthetic?: boolean; response_sha256?: string } | undefined;
+      if (e.synthetic !== false || pv?.provider !== "session" || pv.answered_by !== SESSION_ANSWERED_BY || pv.synthetic !== false) reasons.push(`${r.label}: запис ${rec.request_hash.slice(0, 10)}… без provenance session/${SESSION_ANSWERED_BY}/synthetic:false`);
+      if (pv?.response_sha256 && !e.rejected) { const set = byKey.get(rec.request_hash) ?? new Set<string>(); set.add(pv.response_sha256); byKey.set(rec.request_hash, set); }
+    }
+  });
+  return { valid: reasons.length === 0, reasons: [...new Set(reasons)].slice(0, 6), entries, keys_total: byKey.size, keys_differing: [...byKey.values()].filter((v) => v.size > 1).length };
+}
+
 // ------------------------------------------------------------------------------------------------ результати перевірок
-export type CheckId = "E1" | "E2" | "E3a" | "E3c" | "E4";
+export type CheckId = "E1" | "E2" | "E3a" | "E3c" | "E4" | "INJ";
 /** DEFERRED — гейт не можна закрити без живої моделі (⏭️ live); не PASS і не FAIL, у вердикті перелічується окремо */
-export type Status = "PASS" | "FAIL" | "INVALID" | "NOT_RUN" | "DEFERRED";
+export type Status = "PASS" | "FAIL" | "INVALID" | "NOT_RUN" | "DEFERRED" | "AWAITING_SESSION_MODEL";
 
 /**
  * Статус E3c (DEV-77). Поріг один, зафіксований до S4: Σ worse ≥ 4/5 (SCORING_SPEC §8.3). Dev (без --strict-live): рахуються
@@ -134,7 +169,7 @@ export interface CheckResult {
 }
 
 export interface ValidateOptions {
-  snapshots: { shop: string; clean: string; degraded?: string };
+  snapshots: { shop: string; clean: string; degraded?: string; /** S7: заморожений знімок фікстури ін'єкції (page.json + viewport.png) */ injection?: string };
   checks?: readonly CheckId[];
   /** сценарії негативних контролів: підміна оцінювача за перевіркою й номером прогону */
   evaluators?: Partial<Record<"e1" | "e2" | "e3a" | "e3c" | "e4", (run: number) => EvaluatorSpec>>;
@@ -144,16 +179,23 @@ export interface ValidateOptions {
   e2CacheMode?: (run: number) => "use" | "bypass";
   /** true → «сума E1 ≥ 8» і LLM-виміри E3c стають гейтом (живий прогін S7); у dev вони лише показуються (fake) */
   strict_live?: boolean;
+  /** S7 (DEV-81): LLM-частина через транспорт session (замість scripted fake) */
+  session?: SessionBackend;
   max_validate_tokens?: number;
   max_audit_tokens?: number;
   /** E4: частка від використаних токенів, яку виставляємо як MAX_AUDIT_TOKENS обмеженого прогону */
   e4_limit_fraction?: number;
 }
 export interface ValidateResult {
-  verdict: "PASS" | "FAIL" | "STOPPED";
+  verdict: "PASS" | "FAIL" | "STOPPED" | "AWAITING";
   checks: CheckResult[];
   tokens: { max: number; used: number; provider_calls: number };
-  provider: "scripted-fake";
+  provider: "scripted-fake" | "session";
+  /** fake | session (Claude у сесії, без API) */
+  llm_mode: "fake" | "session";
+  banner: string | null;
+  /** id запитів, записаних у requests/ під час цього прогону (лише session) */
+  requests_written: string[];
   stopped_reason: string | null;
   /** звіти прогонів (для артефактів) */
   reports: Record<string, Report>;
@@ -161,13 +203,31 @@ export interface ValidateResult {
 
 const honest = (): EvaluatorSpec => ({ kind: "honest" });
 const f3 = (x: number): string => x.toFixed(3);
-const LIVE_LLM = "оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)";
+const FAKE_LLM = "оцінювач — scripted fake, не модель: відповідь живої моделі (⏭️ live, OQ-1)";
+const SESSION_LLM = "оцінювач — Claude у сесії (сліпі агенти), без API: якість = відповіді цієї моделі; адаптери API, usage/$ і конкретна продакшн-модель — ⏭️ (DEV-81)";
 
 export async function runValidation(opts: ValidateOptions): Promise<ValidateResult> {
-  const want = new Set<CheckId>(opts.checks ?? ["E1", "E2", "E3a", "E3c", "E4"]);
+  const want = new Set<CheckId>(opts.checks ?? (opts.session ? ["E1", "E2", "E3a", "E3c", "E4", "INJ"] : ["E1", "E2", "E3a", "E3c", "E4"]));
   const meter = new ValidateMeter(opts.max_validate_tokens ?? DEFAULT_MAX_VALIDATE_TOKENS);
   const maxAudit = opts.max_audit_tokens ?? DEFAULT_MAX_AUDIT_TOKENS;
   const ev = (k: "e1" | "e2" | "e3a" | "e3c" | "e4", run = 0): EvaluatorSpec => opts.evaluators?.[k]?.(run) ?? honest();
+  const LIVE_LLM = opts.session ? SESSION_LLM : FAKE_LLM;
+  const requestsWritten: string[] = [];
+  /** режим кешу й транспорт для прогону: fake → bypass (як було); session → use у namespace (bypass несумісний із кешем сесії; E2 = окремий namespace) */
+  const mode = (ns: string, scenario: string): Pick<RunOptions, "cache_mode" | "session"> =>
+    opts.session ? { cache_mode: "use", session: { ...opts.session, namespace: ns, scenario } } : { cache_mode: "bypass" };
+  /** виконує прогони до кінця, навіть якщо котрийсь чекає відповідей: усі незалежні запити експортуються за один прохід */
+  const collect = async <T,>(jobs: Array<() => Promise<T>>): Promise<T[]> => {
+    const out: T[] = []; const waits: RunAwaiting[] = [];
+    for (const j of jobs) { try { out.push(await j()); } catch (e) { if (e instanceof RunAwaiting) { waits.push(e); requestsWritten.push(...e.requests); } else throw e; } }
+    if (waits.length) throw new RunAwaiting(waits.map((w) => w.label).join("+"), waits.reduce((a, w) => a + w.awaiting, 0), waits.reduce((a, w) => a + w.planned, 0), waits.flatMap((w) => w.requests));
+    return out;
+  };
+  const awaitingCheck = (id: CheckId, e: unknown): void => {
+    if (!(e instanceof RunAwaiting)) throw e;
+    requestsWritten.push(...e.requests);
+    checks.push({ id, status: "AWAITING_SESSION_MODEL", lines: [`awaiting_session_model: ${e.awaiting} з ${e.planned} викликів (${e.label}) чекають відповідей у responses/; нових запитів записано ${e.requests.length}`], live_deferred: [], data: { awaiting: e.awaiting, planned: e.planned, requests_written: e.requests } });
+  };
   const shop = loadSnapshot(opts.snapshots.shop);
   const clean = loadSnapshot(opts.snapshots.clean);
   const checks: CheckResult[] = [];
@@ -177,10 +237,10 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
 
   try {
     // ------------------------------------------------------------------ E1
-    if (want.has("E1")) {
-      const full = keep(await buildRunReport(shop, "e1-full", { spec: ev("e1"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
+    if (want.has("E1")) try {
+      const full = keep(await buildRunReport(shop, "e1-full", { spec: ev("e1"), ...mode("s7", "fixture-shop"), max_audit_tokens: maxAudit, meter }));
       const abl = ablateHints(shop.art);
-      const ablated = keep(await buildRunReport(shop, "e1-ablation", { spec: ev("e1"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter, ablate: true }));
+      const ablated = keep(await buildRunReport(shop, "e1-ablation", { spec: ev("e1"), ...mode("s7", "fixture-shop"), max_audit_tokens: maxAudit, meter, ablate: true }));
       const rFull: E1Result = e1(full.findings);
       const rAbl: E1Result = e1(ablated.findings);
       const detOk = rFull.det.x === E1_GATE.det_of;
@@ -207,8 +267,41 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       });
     }
 
+    catch (e) { awaitingCheck("E1", e); }
+
     // ------------------------------------------------------------------ E2
-    if (want.has("E2")) {
+    if (want.has("E2") && opts.session) try {
+      // S7: три прогони замороженого знімка з ОКРЕМИМ namespace (bypass у розумінні E2: жодного спільного кешу між прогонами; відповіді — незалежні)
+      const sess = opts.session;
+      const nss = [1, 2, 3].map((i) => `s7-e2-run${i}`);
+      const runs = await collect(nss.map((ns, i) => () => buildRunReport(opts.e2Snapshot ? loadSnapshot(opts.e2Snapshot(i)) : shop, `e2-run${i + 1}`, { spec: ev("e2", i), ...mode(ns, `fixture-shop/e2-run${i + 1}`), max_audit_tokens: maxAudit, meter }).then(keep)));
+      const prov = sessionProvenance(sess, runs, nss);
+      const m: E2Metrics = e2Metrics(runs.map((r) => r.findings));
+      const gate: E2Gate = e2Gate(m);
+      const mb: E2Metrics = e2Metrics(runs.map((r) => r.findings.filter(isLlmOnly)));
+      const unstable: RunResult[] = [];
+      for (let i = 0; i < 3; i++) unstable.push(await buildRunReport(shop, `e2-control-unstable${i + 1}`, { spec: { kind: "unstable", run: i }, cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
+      const mu: E2Metrics = e2Metrics(unstable.map((r) => r.findings.filter(isLlmOnly)));
+      const unstableCaught = mu.jcat_mean < E2_THRESHOLDS.llm_jcat_mean_target;
+      const llmEmpty = mb.set_sizes.every((n) => n === 0);
+      const status: Status = !prov.valid ? "INVALID" : gate.pass ? "PASS" : "FAIL";
+      checks.push({
+        id: "E2", status,
+        lines: [
+          prov.valid
+            ? `валідність: 3 прогони в різних namespace (${nss.join(", ")}), кожна відповідь має provenance {provider:session, answered_by:${SESSION_ANSWERED_BY}, synthetic:false}; ${prov.entries} записів, спільного кешу між прогонами немає. cache_read_tokens ≠ 0 тут НЕ є ознакою недійсності: це відтворення записаних відповідей власного namespace (replay ≠ повторне використання відповіді іншого прогону)`
+            : `НЕДІЙСНИЙ: ${prov.reasons.join("; ")}`,
+          `незалежність: для ${prov.keys_differing}/${prov.keys_total} однакових запитів відповіді між прогонами відрізняються (байтово)`,
+          `E2(а) повний звіт [ГЕЙТ]: Jcat mean/min ${f3(m.jcat_mean)}/${f3(m.jcat_min)} (≥ ${E2_THRESHOLDS.jcat_mean}/${E2_THRESHOLDS.jcat_min}), Jpg mean/min ${f3(m.jpg_mean)}/${f3(m.jpg_min)}, |K3|=${m.k3.length} (≥ ${E2_THRESHOLDS.k3_min}) → ${gate.pass ? "PASS" : "FAIL"}`,
+          `E2(б) лише LLM-знахідки [показник]: ${llmEmpty ? "LLM-знахідок немає (J тривіально 1 — НЕ доказ стабільності)" : `Jcat mean ${f3(mb.jcat_mean)} (ціль ≥ ${E2_THRESHOLDS.llm_jcat_mean_target}), розміри множин ${mb.set_sizes.join("/")}`}`,
+          `контроль E2(б) (scripted fake, не сесія): нестабільний оцінювач → E2(б) Jcat mean ${f3(mu.jcat_mean)} ${unstableCaught ? `< ${E2_THRESHOLDS.llm_jcat_mean_target} ✓ (показник вміє впасти)` : "— КОНТРОЛЬ НЕ СПРАЦЮВАВ"}`,
+          `RBO(p=0.8) топ-10 [інформативно]: ${m.rbo10.map(f3).join("/")} (середнє ${f3(m.rbo10_mean)})`,
+        ],
+        live_deferred: [`стабільність LLM-знахідок (E2(б), RBO): ${LIVE_LLM}; три «прогони» = три незалежні відповіді сліпих агентів тієї самої моделі-сесії, не три виклики API`],
+        data: { validity: prov, metrics: m, gate, llm_only: mb, control_unstable: { llm_only: mu, caught: unstableCaught }, namespaces: nss, top5: runs.map((r) => r.findings.slice().sort((a, b) => a.rank - b.rank).slice(0, 5).map((f) => f.finding_key)) },
+      });
+    } catch (e) { awaitingCheck("E2", e); }
+    if (want.has("E2") && !opts.session) {
       // прогріваємо кеш (cache_mode=use, MemoryStore), щоб обхід було що порушувати: bypass має лишити лічильник 0 попри наповнений кеш
       const store = new MemoryStore();
       await buildRunReport(shop, "e2-warmup", { spec: honest(), cache_mode: "use", max_audit_tokens: maxAudit, meter, store });
@@ -250,8 +343,8 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
     }
 
     // ------------------------------------------------------------------ E3a
-    if (want.has("E3a")) {
-      const r = keep(await buildRunReport(clean, "e3a-clean", { spec: ev("e3a"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
+    if (want.has("E3a")) try {
+      const r = keep(await buildRunReport(clean, "e3a-clean", { spec: ev("e3a"), ...mode("s7", "shop-clean"), max_audit_tokens: maxAudit, meter }));
       const res: E3aResult = e3a(r.findings, clean.art.pages.map((p) => p.path));
       const strongNoDet = r.findings.filter((f) => (f.confidence === "VERIFIED" || f.confidence === "STRONG_HYPOTHESIS") && !f.families.includes("F-DET")).length;
       const forbidden = r.findings.filter((f) => isLlmOnly(f) && (E3A_LIMITS.forbidden_categories as readonly string[]).includes(f.category)).length;
@@ -268,14 +361,19 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       });
     }
 
+    catch (e) { awaitingCheck("E3a", e); }
+
     // ------------------------------------------------------------------ E3c
-    if (want.has("E3c")) {
+    if (want.has("E3c")) try {
       if (!opts.snapshots.degraded) {
         checks.push({ id: "E3c", status: "NOT_RUN", lines: ["знімок деградованої копії не надано (потрібен браузерний аудит site-b.test)"], live_deferred: [], data: null });
       } else {
         const degraded = loadSnapshot(opts.snapshots.degraded);
-        const a = keep(await buildRunReport(clean, "e3c-original", { spec: ev("e3c"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
-        const b = keep(await buildRunReport(degraded, "e3c-degraded", { spec: ev("e3c"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter }));
+        // session: «оригінал» = ті самі запити, що E3a (той самий знімок, лінзи, задачі) → ті самі відповіді; fake: окремий bypass-прогін як було
+        const [a, b] = await collect([
+          () => buildRunReport(clean, "e3c-original", { spec: ev("e3c"), ...mode("s7", "shop-clean-degraded"), max_audit_tokens: maxAudit, meter }).then(keep),
+          () => buildRunReport(degraded, "e3c-degraded", { spec: ev("e3c"), ...mode("s7", "shop-clean-degraded"), max_audit_tokens: maxAudit, meter }).then(keep),
+        ]) as [RunResult, RunResult];
         const res: E3cResult = e3c(a.findings, b.findings);
         const st = e3cStatus(res, !!opts.strict_live);
         checks.push({
@@ -294,8 +392,22 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       }
     }
 
+    catch (e) { awaitingCheck("E3c", e); }
+
+    // ------------------------------------------------------------------ INJ (лише session)
+    if (want.has("INJ") && opts.session) try {
+      if (!opts.snapshots.injection) checks.push({ id: "INJ", status: "NOT_RUN", lines: ["знімок фікстури ін'єкції не надано"], live_deferred: [], data: null });
+      else {
+        const { runInjection } = await import("./injection.js");
+        const r = await runInjection(opts.snapshots.injection, opts.session);
+        checks.push({ id: "INJ", status: r.status, lines: r.lines, live_deferred: [`стійкість моделі до ін'єкцій на вибірці більшій за 4 виклики й на живому API: ${LIVE_LLM}`], data: r.data });
+      }
+    } catch (e) { awaitingCheck("INJ", e); }
+
     // ------------------------------------------------------------------ E4
-    if (want.has("E4")) {
+    if (want.has("E4") && opts.session) {
+      checks.push({ id: "E4", status: "NOT_RUN", lines: ["E4 у транспорті session не вимірюється: токени — оцінка за символами (estimated), не usage провайдера; обмежений прогін теж не має сенсу для відповідей, які вже записано"], live_deferred: ["E4: фактичні токени/вартість — ⏭️ (API-адаптер або claude-cli з usage)"], data: null });
+    } else if (want.has("E4")) {
       const full = await buildRunReport(shop, "e4-full", { spec: ev("e4"), cache_mode: "bypass", max_audit_tokens: maxAudit, meter });
       const limit = Math.max(1, Math.floor(full.counters.used_tokens * (opts.e4_limit_fraction ?? 0.4)));
       const lim = keep(await buildRunReport(shop, "e4-limited", { spec: ev("e4"), cache_mode: "bypass", max_audit_tokens: limit, meter }));
@@ -327,19 +439,24 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
   }
 
   const ran = new Set(checks.map((c) => c.id));
-  for (const id of ["E1", "E2", "E3a", "E3c", "E4"] as const) if (want.has(id) && !ran.has(id)) checks.push({ id, status: "NOT_RUN", lines: ["не виконано: validate зупинено лімітом MAX_VALIDATE_TOKENS"], live_deferred: [], data: null });
+  const awaitingAny = checks.some((c) => c.status === "AWAITING_SESSION_MODEL");
+  for (const id of ["E1", "E2", "E3a", "E3c", "E4", "INJ"] as const) if (want.has(id) && !ran.has(id)) checks.push({ id, status: "NOT_RUN", lines: ["не виконано: validate зупинено лімітом MAX_VALIDATE_TOKENS"], live_deferred: [], data: null });
   const bad = checks.some((c) => c.status === "FAIL" || c.status === "INVALID");
   return {
-    verdict: stopped ? "STOPPED" : bad ? "FAIL" : "PASS", checks, tokens: { max: meter.max, used: meter.used, provider_calls: meter.calls }, provider: "scripted-fake", stopped_reason: stopped, reports,
+    verdict: stopped ? "STOPPED" : bad ? "FAIL" : awaitingAny ? "AWAITING" : "PASS", checks, tokens: { max: meter.max, used: meter.used, provider_calls: meter.calls },
+    provider: opts.session ? "session" : "scripted-fake", llm_mode: opts.session ? "session" : "fake", banner: opts.session ? SESSION_BANNER : null,
+    requests_written: [...new Set(requestsWritten)], stopped_reason: stopped, reports,
   };
 }
 
 // ------------------------------------------------------------------------------------------------ вивід
 export function formatResult(r: ValidateResult): string {
   const out: string[] = [];
-  out.push(`pnpm validate — провайдер: scripted fake (НЕ модель); LLM-залежне = ⏭️ live, не ✅`);
+  out.push(r.llm_mode === "session"
+    ? `pnpm validate — llm_mode=session — ${SESSION_BANNER}. Відповіді — сліпі агенти (provenance answered_by=${SESSION_ANSWERED_BY}); токени — оцінка (estimated); адаптери API, usage/$, продакшн-модель — ⏭️`
+    : `pnpm validate — провайдер: scripted fake (НЕ модель); LLM-залежне = ⏭️ live, не ✅`);
   for (const c of r.checks) {
-    const mark = c.status === "PASS" ? "PASS" : c.status === "NOT_RUN" ? "NOT RUN" : c.status === "DEFERRED" ? "⏭️ DEFERRED (live)" : c.status;
+    const mark = c.status === "AWAITING_SESSION_MODEL" ? "AWAITING_SESSION_MODEL (не completed)" : c.status === "PASS" ? "PASS" : c.status === "NOT_RUN" ? "NOT RUN" : c.status === "DEFERRED" ? "⏭️ DEFERRED (live)" : c.status;
     out.push(`\n[${c.id}] ${mark}`);
     for (const l of c.lines) out.push(`  ${l}`);
     for (const d of c.live_deferred) out.push(`  ⏭️ live: ${d}`);
@@ -347,7 +464,7 @@ export function formatResult(r: ValidateResult): string {
   out.push(`\nтокени: ${r.tokens.used}/${r.tokens.max} (MAX_VALIDATE_TOKENS), викликів провайдера ${r.tokens.provider_calls}`);
   if (r.stopped_reason) out.push(`ЗУПИНЕНО: ${r.stopped_reason}`);
   const deferred = r.checks.filter((c) => c.status === "DEFERRED").map((c) => c.id);
-  out.push(`ВЕРДИКТ (dev): ${r.verdict}${r.verdict === "PASS" ? ` — обв'язка працює; якість моделі не перевірено (⏭️ live)${deferred.length ? `; не закрито в dev (⏭️): ${deferred.join(", ")}` : ""}` : ""}`);
+  out.push(`ВЕРДИКТ (${r.llm_mode === "session" ? "session" : "dev"}): ${r.verdict}${r.verdict === "AWAITING" ? " — чекаємо відповідей сесійної моделі (responses/), результат НЕ рахується" : ""}${r.verdict === "PASS" ? ` — обв'язка працює; якість моделі не перевірено (⏭️ live)${deferred.length ? `; не закрито в dev (⏭️): ${deferred.join(", ")}` : ""}` : ""}`);
   return out.join("\n");
 }
 

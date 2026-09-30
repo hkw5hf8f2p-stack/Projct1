@@ -2,7 +2,8 @@ import type { z } from "zod";
 import type { AuditStage as AuditStageZ, StageStatus as StageStatusZ } from "@sitelens/schemas";
 
 export type AuditStage = z.infer<typeof AuditStageZ>;
-export type StageStatus = z.infer<typeof StageStatusZ>;
+/** `awaiting_session_model` — лише транспорт `session` (S7 без API): запит записано у requests/, відповіді ще немає. НЕ completed; у схему AuditRun/Report не потрапляє (DEV-81). */
+export type StageStatus = z.infer<typeof StageStatusZ> | "awaiting_session_model";
 
 export interface TextPart { type: "text"; text: string }
 /** зображення: у запиті/ключі кешу — лише sha256 і тип; байти читає адаптер із `path`/`data_b64` в момент відправки */
@@ -45,11 +46,15 @@ export interface ProviderResult {
   latency_ms: number;
   synthetic?: boolean;
   temperature_dropped?: boolean;
+  /** токени оцінено за символами, а не взято з usage провайдера (session; claude-cli без usage) */
+  tokens_estimated?: boolean;
+  /** походження відповіді (session: answered_by, файл відповіді; claude-cli: транспорт) — потрапляє в запис кешу */
+  provenance?: Record<string, unknown>;
 }
 
 export interface CallOptions { signal?: AbortSignal }
 export interface LlmProvider {
-  readonly name: "anthropic" | "openai" | "replay" | "fake";
+  readonly name: "anthropic" | "openai" | "replay" | "fake" | "session" | "claude-cli";
   readonly model: string;
   complete(req: LlmRequest, opts?: CallOptions): Promise<ProviderResult>;
 }

@@ -73,7 +73,9 @@ export async function commitStage(pool: Pool, auditId: string, client: LlmClient
     const ids = await recordCalls(c, client, auditId, stage, res.calls);
     if (res.status === "done" && write) await write(c, ids);
     const reason = res.reason ?? (res.flags.length ? res.flags.join(", ").slice(0, 300) : undefined);
-    await setStage(c, auditId, stage, res.status, res.status === "done" ? reason : reason ?? "етап не виконано");
+    // DEV-81: `awaiting_session_model` (транспорт session) не входить у схему stage_status → в БД `skipped` із причиною «awaiting_session_model: …» (не done, не completed)
+    const dbStatus = res.status === "awaiting_session_model" ? "skipped" : res.status;
+    await setStage(c, auditId, stage, dbStatus, res.status === "done" ? reason : reason ?? "етап не виконано");
     if (after) await after(c);
   });
 }

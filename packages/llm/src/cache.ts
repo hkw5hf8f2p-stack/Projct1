@@ -28,6 +28,13 @@ export interface CacheEntry {
   synthetic: boolean;
   response: unknown;
   raw_text?: string;
+  /** запис відхиленої відповіді (лише client.record_rejected, транспорт session): replay відтворює й repair-гілку; у звіт такий запис не потрапляє */
+  rejected?: boolean;
+  issues?: string[];
+  /** походження (session: {provider,model,answered_by,synthetic:false,...}; claude-cli) */
+  provenance?: Record<string, unknown>;
+  /** токени — оцінка за символами, не usage провайдера */
+  tokens_estimated?: boolean;
   input_tokens: number;
   output_tokens: number;
   /** без байтів зображень і без ключів: лише для інспекції (SPEC §35) */

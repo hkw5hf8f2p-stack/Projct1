@@ -35,7 +35,11 @@
     "scan:secrets": "tsx scripts/scan-secrets.ts",
     "scan:claims": "tsx scripts/scan-claims.ts",
     "s2:secrets": "tsx scripts/s2-secrets.ts",
-    "s2:summary": "tsx scripts/s2-summary.ts"
+    "s2:summary": "tsx scripts/s2-summary.ts",
+    "s7:export": "tsx scripts/s7-session.ts export",
+    "s7:import": "tsx scripts/s7-session.ts import",
+    "llm:login": "tsx scripts/llm-login.ts",
+    "llm:check": "tsx scripts/llm-check.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

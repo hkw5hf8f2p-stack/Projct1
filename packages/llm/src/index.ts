@@ -18,6 +18,8 @@ export * from "./matrix/build.js";
 export * from "./providers/anthropic.js";
 export * from "./providers/openai.js";
 export * from "./providers/scripted-fake.js";
+export * from "./providers/session.js";
+export * from "./providers/claude-cli.js";
 export * from "./stages/types.js";
 export * from "./stages/build-site-profile.js";
 export * from "./stages/generate-tasks.js";

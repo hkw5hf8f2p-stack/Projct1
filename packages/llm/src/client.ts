@@ -28,6 +28,7 @@ export interface CallRecord {
   latency_ms: number;
   temperature_dropped: boolean;
   response: unknown;
+  tokens_estimated?: boolean;
 }
 
 export interface ClientOptions {
@@ -42,6 +43,8 @@ export interface ClientOptions {
   now?: () => Date;
   /** значення ключів з env: вилучаються з усього, що зберігається (записи кешу, CallRecord), навіть якщо модель їх «відлунила» */
   secrets?: readonly string[];
+  /** транспорт session: писати в кеш і ВІДХИЛЕНІ відповіді (rejected:true), щоб replay відтворив repair-гілку. Типово вимкнено (принцип G0-16: у кеш лише валідне) */
+  record_rejected?: boolean;
 }
 
 /** Результат виклику: значення пройшло Zod (і семантичні правила), або кинуто OutputInvalidError. */
@@ -114,6 +117,7 @@ export class LlmClient {
         }
       }
       rec.status = "invalid";
+      if (pending && this.o.cache && this.o.record_rejected) this.o.cache.put(pending.key, { ...pending, rejected: true, issues: issues.slice(0, 12) });
       this.log.warn("llm output rejected", { prompt_id: req.prompt_id, attempt, issues: issues.slice(0, 5) });
       if (attempt === 0) {
         // repair-повтор: той самий запит + перелік порушень (це інший вміст → інший ключ E5)
@@ -140,7 +144,7 @@ export class LlmClient {
         budget.assertCanAfford(hit.input_tokens + hit.output_tokens, `${req.prompt_id} (cache)`);
         const result: ProviderResult = { json: hit.response, raw_text: hit.raw_text, input_tokens: hit.input_tokens, output_tokens: hit.output_tokens, provider: hit.provider, model: hit.model, latency_ms: 0, synthetic: hit.synthetic };
         budget.record({ call_id, stage: req.stage, source: "cache", input_tokens: hit.input_tokens, output_tokens: hit.output_tokens });
-        return { result, rec: this.push({ ...base, provider: hit.provider, model: hit.model, source: "cache", synthetic: hit.synthetic, input_tokens: hit.input_tokens, output_tokens: hit.output_tokens, latency_ms: 0, temperature_dropped: false, response: hit.response }) };
+        return { result, rec: this.push({ ...base, provider: hit.provider, model: hit.model, source: "cache", synthetic: hit.synthetic, input_tokens: hit.input_tokens, output_tokens: hit.output_tokens, latency_ms: 0, temperature_dropped: false, response: hit.response, ...(hit.tokens_estimated ? { tokens_estimated: true } : {}) }) };
       }
     }
     if (this.mode === "replay") {
@@ -157,6 +161,7 @@ export class LlmClient {
       pending = {
         key, provider: id.provider, model: id.model, prompt_id: req.prompt_id, synthetic: result.synthetic === true,
         response: this.clean(result.json), raw_text: result.raw_text === undefined ? undefined : redact(result.raw_text, this.o.secrets ?? []), input_tokens: result.input_tokens, output_tokens: result.output_tokens,
+        ...(result.provenance ? { provenance: this.clean(result.provenance) } : {}), ...(result.tokens_estimated ? { tokens_estimated: true } : {}),
         request_summary: {
           stage: req.stage, logical_key: req.logical_key, sampling: req.sampling, system_sha256: sha256(req.system),
           image_sha256: req.content.flatMap((p) => (p.type === "image" ? [p.sha256] : [])),
@@ -164,7 +169,7 @@ export class LlmClient {
         recorded_at: (this.o.now?.() ?? new Date()).toISOString(),
       };
     }
-    return { result, pending, rec: this.push({ ...base, provider: result.provider, model: result.model, source, synthetic: result.synthetic === true, input_tokens: result.input_tokens, output_tokens: result.output_tokens, latency_ms: result.latency_ms, temperature_dropped: result.temperature_dropped === true, response: this.clean(result.json) }) };
+    return { result, pending, rec: this.push({ ...base, provider: result.provider, model: result.model, source, synthetic: result.synthetic === true, input_tokens: result.input_tokens, output_tokens: result.output_tokens, latency_ms: result.latency_ms, temperature_dropped: result.temperature_dropped === true, response: this.clean(result.json), ...(result.tokens_estimated ? { tokens_estimated: true } : {}) }) };
   }
 
   private push(r: CallRecord): CallRecord { this.records.push(r); return r; }

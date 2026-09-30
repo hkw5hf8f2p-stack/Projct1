@@ -10,9 +10,10 @@
  *   unstable           — honest + у кожному прогоні додає власний «шум» (інша категорія/сторінка) з високою впевненістю (сценарій б)
  *   silent             — завжди `no_issue` (LLM-лише = 0/3, сценарій г)
  */
+import path from "node:path";
 import { BehavioralLens } from "../../packages/schemas/src/index.js";
 import {
-  LlmClient, ReplayCache, TokenBudget, MemoryStore, evaluateSnapshot, estimateTextTokens, type LlmProvider, type LlmRequest, type PageInput, type ProviderResult,
+  DirStore, LlmClient, ReplayCache, SessionProvider, TokenBudget, MemoryStore, evaluateSnapshot, estimateTextTokens, type LlmProvider, type LlmRequest, type PageInput, type ProviderResult,
   type SnapshotSessionOut, type StageResult,
   ReplayMissError,
 } from "../../packages/llm/src/index.js";
@@ -170,6 +171,11 @@ export interface EvalRunOptions {
   language?: "uk" | "en";
   /** replay: без провайдера, лише кеш (доводить обв'язку запис→відтворення; несумісний з bypass — ConfigError) */
   mode?: "live" | "replay";
+  /**
+   * S7 без API (DEV-81): замість fake-оцінювача — транспорт `session`. `export`/`import` = SessionProvider (запит → requests/, відповідь → та сама
+   * обробка, що й API, запис у кеш E5); `replay` = лише кеш сесії, промах — гучна ReplayMissError. bypass тут не діє: E2 = окремий namespace на прогін.
+   */
+  session?: { root: string; model: string; namespace: string; scenario: string; phase: "session" | "replay" };
 }
 export interface EvalRun {
   sessions: SnapshotSessionOut[];
@@ -178,16 +184,39 @@ export interface EvalRun {
   rejected_stage_results: Array<{ page: string; lens: string; status: string; reason?: string }>;
   client: LlmClient;
   cache: ReplayCache;
+  /** скільки викликів чекають відповіді сесійної моделі (`awaiting_session_model`) */
+  awaiting: number;
+  /** id запитів, записаних у requests/ цим прогоном */
+  written_requests: string[];
+}
+
+export type SessionSpec = NonNullable<EvalRunOptions["session"]>;
+/** Клієнт транспорту session: phase=session → SessionProvider (запис запитів, обробка відповідей як API, запис у кеш); phase=replay → лише читання кешу */
+export function sessionClient(se: SessionSpec, language: "uk" | "en", maxTokens: number): { client: LlmClient; cache: ReplayCache; provider: SessionProvider | null } {
+  const cache = new ReplayCache(new DirStore(path.join(se.root, "cache"), se.phase === "replay"), se.namespace);
+  if (se.phase === "replay") {
+    return { client: new LlmClient({ mode: "replay", cache, cache_mode: "use", budget: new TokenBudget(maxTokens), cache_identity: { provider: "session", model: se.model } }), cache, provider: null };
+  }
+  const provider = new SessionProvider({ root: se.root, model: se.model, namespace: se.namespace, scenario: se.scenario, language });
+  return { client: new LlmClient({ mode: "live", provider, cache, cache_mode: "use", budget: new TokenBudget(maxTokens), record_rejected: true }), cache, provider };
 }
 
 /** Уся LLM-частина одного аудиту: snapshot-сесії всіх (сторінка × лінза) через реальний `evaluateSnapshot` + `LlmClient` */
 export async function runSnapshotSessions(o: EvalRunOptions): Promise<EvalRun> {
-  const provider = new ToyEvaluatorProvider(o.pages, o.spec, o.onCall, o.beforeCall);
-  const cache = new ReplayCache(o.store ?? new MemoryStore(), "validate-fake-v1");
-  const client = new LlmClient({
-    mode: o.mode ?? "live", ...(o.mode === "replay" ? {} : { provider }), cache, cache_mode: o.cache_mode, budget: new TokenBudget(o.max_audit_tokens),
-    cache_identity: { provider: "fake", model: provider.model },
-  });
+  let sessionProvider: SessionProvider | null = null;
+  let cache: ReplayCache;
+  let client: LlmClient;
+  if (o.session) {
+    ({ client, cache, provider: sessionProvider } = sessionClient(o.session, o.language ?? "uk", o.max_audit_tokens));
+  } else {
+    const provider = new ToyEvaluatorProvider(o.pages, o.spec, o.onCall, o.beforeCall);
+    cache = new ReplayCache(o.store ?? new MemoryStore(), "validate-fake-v1");
+    client = new LlmClient({
+      mode: o.mode ?? "live", ...(o.mode === "replay" ? {} : { provider }), cache, cache_mode: o.cache_mode, budget: new TokenBudget(o.max_audit_tokens),
+      cache_identity: { provider: "fake", model: provider.model },
+    });
+  }
+  let awaiting = 0;
   const sessions: SnapshotSessionOut[] = [];
   const results: EvalRun["rejected_stage_results"] = [];
   const list = pagesToEvaluate(o.pages);
@@ -207,6 +236,11 @@ export async function runSnapshotSessions(o: EvalRunOptions): Promise<EvalRun> {
         results.push({ page: page.url, lens: lens.id, status: r.status, reason: r.reason });
         break outer; // етап зупинено: жодних подальших викликів (E4)
       }
+      if (r.status === "awaiting_session_model") {
+        awaiting++;
+        results.push({ page: page.url, lens: lens.id, status: r.status, reason: r.reason });
+        continue; // усі незалежні запити експортуються за один прохід
+      }
       if (r.status !== "done" || !r.output) {
         results.push({ page: page.url, lens: lens.id, status: r.status, reason: r.reason });
         continue;
@@ -214,5 +248,5 @@ export async function runSnapshotSessions(o: EvalRunOptions): Promise<EvalRun> {
       sessions.push(r.output.session);
     }
   }
-  return { sessions, planned_calls: list.length * VALIDATE_LENSES.length, budget_limited: limited, rejected_stage_results: results, client, cache };
+  return { sessions, planned_calls: list.length * VALIDATE_LENSES.length, budget_limited: limited, rejected_stage_results: results, client, cache, awaiting, written_requests: sessionProvider?.written ?? [] };
 }

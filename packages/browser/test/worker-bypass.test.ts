@@ -39,7 +39,7 @@ const VARIANTS: Record<string, { klass: Klass; make: string; title: string }> = 
   module: { klass: "dedicated", title: "new Worker(url, {type:'module'})", make: `new Worker("/wk-module.js", { type: "module" })` },
   blob: { klass: "dedicated", title: "new Worker(URL.createObjectURL(blob))", make: `new Worker(URL.createObjectURL(new Blob([${JSON.stringify(WORKER("blob"))}], { type: "text/javascript" })))` },
   nested: { klass: "dedicated", title: "Worker → вкладений Worker", make: `new Worker("/wk-nested.js")` },
-  "iframe-dedicated": { klass: "dedicated", title: "Worker з about:blank-iframe (realm iframe)", make: `new (${iframe(1)}).Worker("/wk-iframe-dedicated.js")` },
+  "iframe-dedicated": { klass: "dedicated", title: "Worker з about:blank-iframe (realm iframe)", make: `new Promise((res) => { const f = document.createElement("iframe"); f.onload = () => res(new f.contentWindow.Worker("/wk-iframe-dedicated.js")); document.body.appendChild(f); })` },
   shared: { klass: "shared", title: "new SharedWorker(url)", make: `new SharedWorker("/wk-shared.js")` },
   "shared-module": { klass: "shared", title: "new SharedWorker(url, {type:'module'})", make: `new SharedWorker("/wk-shared-module.js", { type: "module" })` },
   "shared-blob": { klass: "shared", title: "new SharedWorker(URL.createObjectURL(blob))", make: `new SharedWorker(URL.createObjectURL(new Blob([${JSON.stringify(WORKER("shared-blob"))}], { type: "text/javascript" })))` },
@@ -53,12 +53,22 @@ const VARIANTS: Record<string, { klass: Klass; make: string; title: string }> = 
   },
   "popup-shared": { klass: "shared", title: "SharedWorker з window.open('') popup", make: `new (window.open("") || window).SharedWorker("/wk-popup-shared.js")` },
 };
+/**
+ * Сторінка-варіант. `make` — вираз, що дає worker/port-власника АБО Promise від нього. "iframe-dedicated" створює Worker ЛИШЕ після `load`
+ * iframe: синхронно створений у ще-порожньому about:blank realm воркер знищується, коли Chromium асинхронно підміняє початковий
+ * документ (причина флейку 1/10 на 30.09: відповіді не було жодного разу за 30 с; shared-варіанти цим не страждають — для них
+ * очікуваний результат SecurityError/POST теж стабільний, а гонка без load — сам вектор атаки).
+ */
 const page = (v: string) => `<!doctype html><title>${v}</title><body><script>
 window.__r = "pending";
-try { const w = window.__w = ${VARIANTS[v]!.make}; // жорстке посилання: воркер із iframe-реалму не має бути зібраний GC до відповіді
-  if (w === "srcdoc") {} else { window.__r = "made:" + w.constructor.name;
-  if (w.port) { w.port.onmessage = (e) => window.__r = "msg:" + e.data; w.port.start(); } else w.onmessage = (e) => window.__r = "msg:" + e.data; }
-} catch (e) { window.__r = "throw:" + e.name; }
+const attach = (w) => {
+  if (w === "srcdoc") return;
+  window.__w = w; // жорстке посилання: воркер не має бути зібраний GC до відповіді
+  window.__r = "made:" + w.constructor.name;
+  if (w.port) { w.port.onmessage = (e) => window.__r = "msg:" + e.data; w.port.start(); } else w.onmessage = (e) => window.__r = "msg:" + e.data;
+};
+try { Promise.resolve(${VARIANTS[v]!.make}).then(attach, (e) => { window.__r = "throw:" + e.name; }); }
+catch (e) { window.__r = "throw:" + e.name; }
 </script>`;
 
 interface Req { run: string; method: string; path: string; dest: string }
@@ -108,7 +118,8 @@ async function drive(name: string, ctx: BrowserContext): Promise<Record<string, 
           await p.waitForFunction(() => /^(msg|throw):/.test((window as unknown as { __r: string }).__r), undefined, { timeout: 30_000 });
           out[v] = await p.evaluate(() => (window as unknown as { __r: string }).__r);
         } catch (e) {
-          failures.push(`[${name}/${v}] спроба не завершилась сигналом: ${String(e).split("\n")[0]!.slice(0, 160)}`);
+          const seen = reqs.filter((r) => r.run === name && r.path.includes(v)).map((r) => `${r.method} ${r.path}`);
+          failures.push(`[${name}/${v}] спроба не завершилась сигналом: ${String(e).split("\n")[0]!.slice(0, 160)}; побачено ціллю: ${JSON.stringify(seen)}`);
         }
       }),
     );

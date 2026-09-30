@@ -28,3 +28,13 @@ export class OutputInvalidError extends LlmError {
 export class LlmDisabledError extends LlmError {
   constructor() { super("no LLM provider (llm_mode=none)", "llm_disabled"); }
 }
+/** транспорт `session` (S7 без API): запит записано в requests/, відповіді сесійної моделі ще немає. Не збій і не completed. */
+export class SessionAwaitingError extends LlmError {
+  constructor(readonly request_id: string, readonly key: string, readonly attempt: number, readonly request_file: string) {
+    super(`awaiting_session_model: запит ${request_id} (attempt=${attempt}) чекає відповіді сесійної моделі`, "awaiting_session_model");
+  }
+}
+/** claude-cli: не залогінено / токен недійсний (повтор не допоможе) */
+export class ProviderAuthError extends LlmError {
+  constructor(message: string) { super(message, "provider_auth"); }
+}

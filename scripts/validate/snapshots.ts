@@ -15,7 +15,8 @@ export const SHOP_PORT = 4210;
 
 export interface SnapshotDirs { shop: string; clean: string; degraded: string }
 
-export async function auditSnapshots(baseDir: string): Promise<SnapshotDirs> {
+/** shots=true (S7 session): пишуться viewport.png першого вікна — вони йдуть у запити сесійної моделі як зображення (без них тайл — заглушка без байтів) */
+export async function auditSnapshots(baseDir: string, shots = false): Promise<SnapshotDirs> {
   const dirs: SnapshotDirs = { shop: path.join(baseDir, "shop"), clean: path.join(baseDir, "site-a"), degraded: path.join(baseDir, "site-b") };
   for (const d of Object.values(dirs)) {
     rmSync(d, { recursive: true, force: true });
@@ -23,9 +24,9 @@ export async function auditSnapshots(baseDir: string): Promise<SnapshotDirs> {
   }
   const sb = await launchForFixtures([SHOP_PORT], NEUTRAL_HOSTS);
   try {
-    await auditFixture({ sb, site: "shop", port: SHOP_PORT, runDir: dirs.shop, shots: false });
-    await auditFixture({ sb, site: "clean", port: NEUTRAL_HOSTS[0].port, host: NEUTRAL_HOSTS[0].host, runDir: dirs.clean, shots: false });
-    await auditFixture({ sb, site: "degraded", port: NEUTRAL_HOSTS[1].port, host: NEUTRAL_HOSTS[1].host, runDir: dirs.degraded, shots: false });
+    await auditFixture({ sb, site: "shop", port: SHOP_PORT, runDir: dirs.shop, shots });
+    await auditFixture({ sb, site: "clean", port: NEUTRAL_HOSTS[0].port, host: NEUTRAL_HOSTS[0].host, runDir: dirs.clean, shots });
+    await auditFixture({ sb, site: "degraded", port: NEUTRAL_HOSTS[1].port, host: NEUTRAL_HOSTS[1].host, runDir: dirs.degraded, shots });
   } finally {
     await sb.close();
   }
