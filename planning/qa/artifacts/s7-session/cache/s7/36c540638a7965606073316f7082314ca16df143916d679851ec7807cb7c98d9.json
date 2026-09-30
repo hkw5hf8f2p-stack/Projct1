@@ -1,0 +1,71 @@
+{
+  "key": "36c540638a7965606073316f7082314ca16df143916d679851ec7807cb7c98d9",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «Каталог» і три товари: Скляний чайник, Дорожній термос, Дерев'яна дошка.",
+      "Кожен товар має мініатюру й посилання-назву.",
+      "Ціни та описи в картках не показані."
+    ],
+    "understood": [
+      "Це список із трьох товарів, кожен веде на власну сторінку."
+    ],
+    "unclear": [
+      "Вартість товарів у списку не видно."
+    ],
+    "likely_next_action": "Відкрити товар, щоб побачити ціну.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціни товарів у картках каталогу",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Чіткий список, назви — посилання."
+    ],
+    "uncertainties": [
+      "Що містять сторінки товарів, невідомо до переходу."
+    ],
+    "success": "partial",
+    "final_summary": "Товари можна відкрити, але ціни в каталозі не показані, тож обрати за ціною без переходів неможливо."
+  },
+  "input_tokens": 3296,
+  "output_tokens": 241,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "36c540638a7965606073316f7082314ca16df143916d679851ec7807cb7c98d9",
+    "response_sha256": "51244db133227c7fb1ae63d0499e9583b8fb1dd405eece3c23f948c0568fc286",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "0b9a2eec6c073b1f5464f801a343a71fc90331a72027a1c2c17dcc9ab2e4d581"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.463Z"
+}

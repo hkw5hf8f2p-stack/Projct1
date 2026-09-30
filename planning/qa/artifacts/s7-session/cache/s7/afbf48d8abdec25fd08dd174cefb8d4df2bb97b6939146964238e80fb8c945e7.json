@@ -1,0 +1,82 @@
+{
+  "key": "afbf48d8abdec25fd08dd174cefb8d4df2bb97b6939146964238e80fb8c945e7",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва товару «Дорожній термос» і ціна 749 грн на видноті.",
+      "Короткий опис: «Тримає тепло дванадцять годин.»",
+      "Є текстовий блок про догляд і комплектацію.",
+      "Кнопка «Додати в кошик» є в тексті сторінки, але на першому екрані її не видно."
+    ],
+    "understood": [
+      "Це сторінка одного товару з ціною.",
+      "Комплектацію можна змінити перед оформленням."
+    ],
+    "unclear": [
+      "Невідомо, чи є додаткові витрати (доставка) понад 749 грн.",
+      "Ціна комплектів змінних елементів не вказана."
+    ],
+    "likely_next_action": "Шукати інформацію про доставку й вартість наборів; без неї утриматися від додавання в кошик.",
+    "frictions": [
+      {
+        "category": "shipping",
+        "claim_kind": "cost_unknown",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: вартість і умови доставки на сторінці товару",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "total_unclear",
+        "severity": "low",
+        "evidence": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Ціна показана поруч із назвою."
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є у видимому тексті, але не показана в наданому тайлі t0: її розташування UNKNOWN.",
+      "Інформація про доставку та повернення не надана: UNKNOWN."
+    ],
+    "success": "partial",
+    "final_summary": "Ціна товару видна одразу, але повна вартість (доставка, набори) невідома, тож рішення про кошик лише часткове."
+  },
+  "input_tokens": 3485,
+  "output_tokens": 406,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "afbf48d8abdec25fd08dd174cefb8d4df2bb97b6939146964238e80fb8c945e7",
+    "response_sha256": "af999bf4aeecc97683539e16961d832786c5957e6c8f6e2327a7d5401f57ac00",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/product/travel-thermos",
+      "lens_id": "lens_price",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "7464484bfaff6f36f56f99bc8b2b6124395cbc1ee2964c9c34d8997a940eeea2"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.486Z"
+}

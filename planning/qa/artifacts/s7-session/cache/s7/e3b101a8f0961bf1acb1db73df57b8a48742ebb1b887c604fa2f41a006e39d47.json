@@ -1,0 +1,79 @@
+{
+  "key": "e3b101a8f0961bf1acb1db73df57b8a48742ebb1b887c604fa2f41a006e39d47",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Великий банер із кольоровими блоками без зрозумілих товарів.",
+      "Заголовок «Якість, що надихає».",
+      "Підзаголовок: «Небагато речей, але добре вибраних. Ціни й умови видно одразу.»",
+      "Посилання «Відкрити каталог»."
+    ],
+    "understood": [
+      "Це інтернет-магазин ЧистийДім із каталогом."
+    ],
+    "unclear": [
+      "Обіцяні ціни й умови на екрані не показані."
+    ],
+    "likely_next_action": "Перейти в каталог шукати ціни.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Ціни й умови видно одразу.",
+        "tile_id": "t0"
+      },
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Якість, що надихає",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Є чітке посилання «Відкрити каталог»."
+    ],
+    "uncertainties": [
+      "Що саме продається, з цього екрана прямо не сказано: UNKNOWN."
+    ],
+    "success": "partial",
+    "final_summary": "Сторінка обіцяє видимі ціни, але жодної ціни не показує; категорія товару теж неясна."
+  },
+  "input_tokens": 3307,
+  "output_tokens": 282,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "e3b101a8f0961bf1acb1db73df57b8a48742ebb1b887c604fa2f41a006e39d47",
+    "response_sha256": "4efbff9b9aa1826263f46fc4d23a178bbb12362ec89fb076cc537f4f360987de",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "4fba0727473b79128598a0eac74aeff2fe4dd74c1ef6c36060578a75b96b894a"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.452Z"
+}

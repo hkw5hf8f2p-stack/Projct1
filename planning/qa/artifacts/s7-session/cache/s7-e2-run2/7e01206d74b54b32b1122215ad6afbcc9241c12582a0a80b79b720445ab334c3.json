@@ -1,0 +1,72 @@
+{
+  "key": "7e01206d74b54b32b1122215ad6afbcc9241c12582a0a80b79b720445ab334c3",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Велике декоративне зображення з кольоровими прямокутниками",
+      "Заголовок «Ідеї, що змінюють будні»",
+      "Кнопка-посилання «Переглянути асортимент»",
+      "Навігація: Каталог, Про нас, Вийти"
+    ],
+    "understood": [
+      "Це інтернет-магазин ТехноДім; товари згадані лише загально як «речі»"
+    ],
+    "unclear": [
+      "Які товари продаються та за якою ціною"
+    ],
+    "likely_next_action": "Перейти до асортименту, щоб шукати ціни.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Є явний заклик «Переглянути асортимент»"
+    ],
+    "uncertainties": [
+      "Які категорії товарів у каталозі — за цим екраном UNKNOWN"
+    ],
+    "success": "partial",
+    "final_summary": "Перший екран не показує ні товарів, ні цін; це головна сторінка, тож цінової інформації тут UNKNOWN. Що продається, зрозуміло лише загально."
+  },
+  "input_tokens": 3318,
+  "output_tokens": 276,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "7e01206d74b54b32b1122215ad6afbcc9241c12582a0a80b79b720445ab334c3__fefb54",
+    "response_sha256": "03a156fd38b9bbf21c9c8070de8b8b1d46fdb8d5e37698dea5740f7cd13bdcfe",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.833Z"
+}

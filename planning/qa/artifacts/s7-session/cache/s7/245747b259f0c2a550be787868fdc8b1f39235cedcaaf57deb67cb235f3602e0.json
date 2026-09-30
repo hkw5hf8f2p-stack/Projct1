@@ -1,0 +1,67 @@
+{
+  "key": "245747b259f0c2a550be787868fdc8b1f39235cedcaaf57deb67cb235f3602e0",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог»",
+      "Три товари з назвами та цінами: 1 299 грн, 749 грн, 459 грн",
+      "Назви товарів оформлені як посилання",
+      "Кольорові заглушки замість фото"
+    ],
+    "understood": [
+      "Магазин пропонує три товари для дому",
+      "Ціна кожного товару вказана в картці",
+      "Щоб побачити деталі, треба відкрити картку товару"
+    ],
+    "unclear": [
+      "Вартість доставки не показана в каталозі"
+    ],
+    "likely_next_action": "Відкрити найдешевший товар і перевірити повну ціну з доставкою",
+    "frictions": [],
+    "positive_signals": [
+      "Ціни видно одразу в кожній картці",
+      "Короткий список без зайвого"
+    ],
+    "uncertainties": [
+      "Умови доставки на цій сторінці не видно; їх, імовірно, дасть картка товару."
+    ],
+    "success": "true",
+    "final_summary": "Каталог короткий, ціни видно біля кожного товару, тож порівняти й обрати кандидата легко; повна ціна з доставкою залишається невідомою до картки товару."
+  },
+  "input_tokens": 3315,
+  "output_tokens": 254,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "245747b259f0c2a550be787868fdc8b1f39235cedcaaf57deb67cb235f3602e0",
+    "response_sha256": "346f0397bb1765ab912919bb51bfdc6c83aa7a0c008791c163e5c4faf120c133",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "6170a07e08ed9d47985a3325d4010be72ee6353729520ddc52786de462a8a7a5"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.310Z"
+}

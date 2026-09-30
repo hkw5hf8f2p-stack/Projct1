@@ -1,0 +1,82 @@
+{
+  "key": "b1b0f0955859a515115cf2cf4d159eb7097bc44202d190a428ecb2d4699028a7",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва товару «Скляний чайник» і ціна 1 299 грн на видноті.",
+      "Короткий опис: «Місткий чайник для щоденного чаю.»",
+      "Є текстовий блок про догляд і комплектацію.",
+      "Кнопка «Додати в кошик» є в тексті сторінки, але на першому екрані її не видно."
+    ],
+    "understood": [
+      "Це сторінка одного товару з ціною.",
+      "Комплектацію можна змінити перед оформленням."
+    ],
+    "unclear": [
+      "Немає технічних характеристик (матеріали, розміри, об'єм) для порівняння моделей.",
+      "Опис загальний і не відрізняє цей товар від інших."
+    ],
+    "likely_next_action": "Шукати характеристики; не знайшовши їх, повернутися до каталогу для порівняння.",
+    "frictions": [
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: технічні характеристики товару (матеріали, розміри, об'єм) на сторінці",
+        "tile_id": "t0"
+      },
+      {
+        "category": "comparison",
+        "claim_kind": "general",
+        "severity": "low",
+        "evidence": "NOT_FOUND: спосіб порівняти цю модель з іншими моделями каталогу",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Ціна показана поруч із назвою."
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є у видимому тексті, але не показана в наданому тайлі t0: її розташування UNKNOWN.",
+      "Інформація про доставку та повернення не надана: UNKNOWN."
+    ],
+    "success": "partial",
+    "final_summary": "Для рішення про кошик бракує конкретних характеристик, тому досвідчена лінза може лише частково вирішити; ціна й опис видні."
+  },
+  "input_tokens": 3486,
+  "output_tokens": 412,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "b1b0f0955859a515115cf2cf4d159eb7097bc44202d190a428ecb2d4699028a7",
+    "response_sha256": "9a240df287e602af278e51e9414769dd1a544ae8691dc9be0ce731ce920ec4db",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/product/glass-kettle",
+      "lens_id": "lens_expert",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "482a75d9a48eb4b3f2d3b17c0ca90f6e63821d312634105e49c63a33befd3876"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.480Z"
+}

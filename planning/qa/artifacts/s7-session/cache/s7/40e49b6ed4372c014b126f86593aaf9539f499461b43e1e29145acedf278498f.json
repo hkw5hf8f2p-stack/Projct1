@@ -1,0 +1,63 @@
+{
+  "key": "40e49b6ed4372c014b126f86593aaf9539f499461b43e1e29145acedf278498f",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Підзаголовок «Небагато речей, але добре вибраних. Ціни й умови видно одразу.»",
+      "Посилання «Відкрити каталог»"
+    ],
+    "understood": [
+      "Це інтернет-каталог товарів для дому",
+      "Бренд — ЧистийДім"
+    ],
+    "unclear": [],
+    "likely_next_action": "Натиснути «Відкрити каталог»",
+    "frictions": [],
+    "positive_signals": [
+      "Заголовок прямо називає, що пропонує сайт",
+      "Є чітка дія «Відкрити каталог»"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран."
+    ],
+    "success": "true",
+    "final_summary": "За першим екраном зрозуміло, що це каталог товарів для дому, і є явне посилання в каталог."
+  },
+  "input_tokens": 3318,
+  "output_tokens": 180,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "40e49b6ed4372c014b126f86593aaf9539f499461b43e1e29145acedf278498f",
+    "response_sha256": "38714d256aef7dd32b6c7ee1262c9163a72bca5608ce74f59197aafc42705634",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.296Z"
+}

@@ -22,6 +22,19 @@ const issues = (r: unknown): string[] => {
   return p.success ? [] : p.error.issues.map((i) => i.message);
 };
 
+describe("DEV-84: audit.llm_provider", () => {
+  it("приймає всі провайдери (openai_compatible, claude_cli, session…) і null; відхиляє невідоме", () => {
+    for (const p of ["anthropic", "openai", "openai_compatible", "claude_cli", "replay", "session", null]) {
+      const r = clone(); (r.audit as { llm_provider: string | null }).llm_provider = p;
+      expect(issues(r), String(p)).toEqual([]);
+    }
+    for (const bad of ["claude-cli", "none", "gemini"]) {
+      const r = clone(); (r.audit as { llm_provider: string | null }).llm_provider = bad;
+      expect(issues(r).length, bad).toBeGreaterThan(0);
+    }
+  });
+});
+
 describe("JSON Schema звіту", () => {
   it("закомічений report.schema.json = згенерований із Zod (без дрейфу; перегенерувати: tsx scripts/gen-report-contract.ts)", () => {
     expect(schemaFile).toEqual(JSON.parse(JSON.stringify(reportJsonSchema())));

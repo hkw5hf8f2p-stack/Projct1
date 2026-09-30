@@ -1,0 +1,81 @@
+{
+  "key": "ffab0e635283735391de02ba6559a0a3d27dbacb5264b62531e3662acdf2ab53",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Каталог із картками товарів, кожна з назвою, коротким описом і кнопкою «В кошик»",
+      "Опис AquaPro X200 і AquaPro X220 однаковий",
+      "Softline S1 описано як пом'якшувач води",
+      "На картках не видно ціни"
+    ],
+    "understood": [
+      "Магазин пропонує пристрої для води: фільтри та пом'якшувач"
+    ],
+    "unclear": [
+      "Чим X200 відрізняється від X220",
+      "Скільки коштує кожна модель"
+    ],
+    "likely_next_action": "Відкрити сторінку товару, шукаючи ціну; у кошик до цього не додавати.",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціна товарів у каталозі",
+        "tile_id": "t0"
+      },
+      {
+        "category": "product_selection",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Фільтр для води з проточною кухонною установкою.",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Чіткий заголовок і зрозуміла структура карток",
+      "Кнопка «В кошик» помітна біля кожного товару"
+    ],
+    "uncertainties": [
+      "Що відбувається на сторінках товарів і чи є там ціна — за цим знімком UNKNOWN"
+    ],
+    "success": "partial",
+    "final_summary": "Обрати товар за ціною неможливо: у каталозі ціни немає, а моделі X200 та X220 не розрізняються описом."
+  },
+  "input_tokens": 3383,
+  "output_tokens": 340,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "ffab0e635283735391de02ba6559a0a3d27dbacb5264b62531e3662acdf2ab53__fefb54",
+    "response_sha256": "c37f0a84e7c55e14d09ef4bcb8480f9e294f0014c5edba5573ccb72f146d81a8",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.843Z"
+}

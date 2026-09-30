@@ -6,8 +6,8 @@
     "shop-clean-degraded",
     "injection"
   ],
-  "verdict": "PASS",
-  "model": "claude-in-session",
+  "verdict": "FAIL",
+  "model": "claude-in-session-b",
   "banner": "модель: Claude у сесії, без API; ціна — ⏭️",
   "requests_total": 100,
   "images_total": 13,

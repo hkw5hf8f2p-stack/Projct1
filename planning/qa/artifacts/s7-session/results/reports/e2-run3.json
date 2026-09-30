@@ -14,7 +14,7 @@
   "language": "uk",
   "llm_mode": "replay",
   "llm_provider": "replay",
-  "llm_model": "session:claude-in-session",
+  "llm_model": "session:claude-in-session-b",
   "prompt_versions": [
    "snapshot-evaluator-v1"
   ],
@@ -113,7 +113,8 @@
    "finding_ids": [
     "fnd_372ae07d45af",
     "fnd_47b24e9f41f6",
-    "fnd_f66590419259"
+    "fnd_f66590419259",
+    "fnd_11c5b7b7abcc"
    ],
    "positive_ids": []
   },
@@ -125,16 +126,16 @@
   {
    "stage": "browse",
    "finding_ids": [
-    "fnd_5bb354eda528",
-    "fnd_74784b13e9ac"
+    "fnd_74784b13e9ac",
+    "fnd_5bb354eda528"
    ],
    "positive_ids": []
   },
   {
    "stage": "select",
    "finding_ids": [
-    "fnd_582a3b95ec27",
-    "fnd_69a63d946f1d"
+    "fnd_69a63d946f1d",
+    "fnd_3d9900c591bd"
    ],
    "positive_ids": []
   },
@@ -144,9 +145,8 @@
     "fnd_8319e2fcf7be",
     "fnd_9a4407fa3774",
     "fnd_1b37145961bd",
-    "fnd_d601a77a9953",
-    "fnd_346b63a3672d",
-    "fnd_647868d26868"
+    "fnd_647868d26868",
+    "fnd_346b63a3672d"
    ],
    "positive_ids": []
   },
@@ -157,11 +157,7 @@
     "fnd_6112436d7252",
     "fnd_2e91c84018f1",
     "fnd_14b9ab0650ce",
-    "fnd_4bfa483ad9f5",
-    "fnd_0c822b8fecc3",
-    "fnd_900219d49599",
-    "fnd_e8f182a5517d",
-    "fnd_bea10e29db12"
+    "fnd_900219d49599"
    ],
    "positive_ids": []
   },
@@ -264,18 +260,23 @@
     "level": "VERIFIED",
     "rule": "C3-VERIFIED-DET",
     "families": [
-     "F-DET"
+     "F-DET",
+     "F-SYN"
     ],
     "contradiction": null
    },
    "severity": {
-    "value": 0.85,
+    "value": 0.95,
     "base": 0.8,
     "base_source": "category",
     "modifiers": [
      {
       "id": "MOD-PAGE-PRIMARY",
       "delta": 0.05
+     },
+     {
+      "id": "MOD-BLOCKER",
+      "delta": 0.1
      }
     ]
    },
@@ -291,21 +292,21 @@
    "synthetic": {
     "lens_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 2,
      "m": 4,
      "unit": "lenses",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "session_frequency": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 2,
      "m": 4,
      "unit": "sessions",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "task_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 1,
      "m": 1,
      "unit": "tasks",
      "disclaimer": "synthetic_single_model_correlated"
@@ -313,8 +314,8 @@
     "in_priority": false
    },
    "priority": {
-    "value": 90,
-    "uncapped": 90,
+    "value": 95,
+    "uncapped": 95,
     "cap": null,
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -322,7 +323,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.85,
+      "value": 0.95,
       "effective_weight": 0.4615384615384615,
       "na_reason": null
      },
@@ -361,12 +362,19 @@
     ]
    },
    "evidence_ids": [
+    "ev_193657433a41",
     "ev_1de5ebab2ea2",
+    "ev_9583817604e3",
     "ev_a7cd880df8a8"
    ],
-   "instances": 2,
-   "affected_task_ids": [],
-   "affected_lens_ids": [],
+   "instances": 4,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_fast",
+    "lens_price"
+   ],
    "executive_eligible": true
   },
   {
@@ -471,7 +479,8 @@
     "level": "VERIFIED",
     "rule": "C3-VERIFIED-DET",
     "families": [
-     "F-DET"
+     "F-DET",
+     "F-SYN"
     ],
     "contradiction": null
    },
@@ -498,21 +507,21 @@
    "synthetic": {
     "lens_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 2,
      "m": 4,
      "unit": "lenses",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "session_frequency": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 4,
      "m": 8,
      "unit": "sessions",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "task_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 1,
      "m": 1,
      "unit": "tasks",
      "disclaimer": "synthetic_single_model_correlated"
@@ -572,12 +581,21 @@
     "ev_1eb041bad07c",
     "ev_218a2109f9ea",
     "ev_2ce2e3d7112f",
+    "ev_2dd645077efe",
+    "ev_4859b25cc769",
+    "ev_71e28f9e4558",
     "ev_80e9e6450445",
-    "ev_b021f3c9f1f5"
+    "ev_b021f3c9f1f5",
+    "ev_cb3d1c5a5158"
    ],
-   "instances": 6,
-   "affected_task_ids": [],
-   "affected_lens_ids": [],
+   "instances": 10,
+   "affected_task_ids": [
+    "t_buy"
+   ],
+   "affected_lens_ids": [
+    "lens_fast",
+    "lens_price"
+   ],
    "executive_eligible": true
   },
   {
@@ -688,17 +706,13 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.9,
+    "value": 0.8,
     "base": 0.75,
     "base_source": "category",
     "modifiers": [
      {
       "id": "MOD-PAGE-PRIMARY",
       "delta": 0.05
-     },
-     {
-      "id": "MOD-BLOCKER",
-      "delta": 0.1
      }
     ]
    },
@@ -714,14 +728,14 @@
    "synthetic": {
     "lens_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 2,
+     "n": 1,
      "m": 4,
      "unit": "lenses",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "session_frequency": {
      "form": "n_of_m_synthetic",
-     "n": 4,
+     "n": 2,
      "m": 8,
      "unit": "sessions",
      "disclaimer": "synthetic_single_model_correlated"
@@ -736,8 +750,8 @@
     "in_priority": false
    },
    "priority": {
-    "value": 89,
-    "uncapped": 89,
+    "value": 85,
+    "uncapped": 85,
     "cap": null,
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -745,7 +759,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.9,
+      "value": 0.8,
       "effective_weight": 0.4615384615384615,
       "na_reason": null
      },
@@ -784,7 +798,6 @@
     ]
    },
    "evidence_ids": [
-    "ev_2f994d8ef21f",
     "ev_34875b3e9e2d",
     "ev_5f148bd13120",
     "ev_6e93fb9b4ca8",
@@ -792,16 +805,14 @@
     "ev_90fa85f3f031",
     "ev_9467f18511ff",
     "ev_a679645bd500",
-    "ev_a74ce6dff8ce",
     "ev_f080ee1bb7d9"
    ],
-   "instances": 10,
+   "instances": 8,
    "affected_task_ids": [
     "t_buy"
    ],
    "affected_lens_ids": [
-    "lens_fast",
-    "lens_price"
+    "lens_fast"
    ],
    "executive_eligible": true
   },
@@ -1840,26 +1851,21 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_4bfa483ad9f5",
-   "finding_key": "pricing|product|general",
-   "category": "pricing",
-   "page_group": "product",
+   "id": "fnd_47b24e9f41f6",
+   "finding_key": "value_proposition|/|general",
+   "category": "value_proposition",
+   "page_group": "/",
    "claim_kind": "general",
    "component": null,
    "rank": 9,
    "pages": [
     {
-     "url": "http://127.0.0.1:4210/product/aquapro-x200",
-     "path": "/product/aquapro-x200",
-     "page_type": "product"
-    },
-    {
-     "url": "http://127.0.0.1:4210/product/aquapro-x220",
-     "path": "/product/aquapro-x220",
-     "page_type": "product"
+     "url": "http://127.0.0.1:4210/",
+     "path": "/",
+     "page_type": "homepage"
     }
    ],
-   "page_count": 2,
+   "page_count": 1,
    "title": {
     "template": "Проблема в категорії {category}",
     "params": {
@@ -1883,617 +1889,6 @@
     "params": {
      "page_count": {
       "ptr": "/findings/8/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.95,
-    "base": 0.8,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     },
-     {
-      "id": "MOD-BLOCKER",
-      "delta": 0.1
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 6,
-     "m": 8,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 83,
-    "uncapped": 83,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 95
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.95,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.9,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_27e191ee637a",
-    "ev_a349ab490730",
-    "ev_ac187fdc02d6",
-    "ev_b5615269320c",
-    "ev_e2a71f68fb04",
-    "ev_f02fbb0b9eb7"
-   ],
-   "instances": 6,
-   "affected_task_ids": [
-    "t_buy"
-   ],
-   "affected_lens_ids": [
-    "lens_expert",
-    "lens_fast",
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_0c822b8fecc3",
-   "finding_key": "pricing|category|general",
-   "category": "pricing",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 10,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/9/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/9/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.85,
-    "base": 0.8,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 80,
-    "uncapped": 80,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 90
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.85,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.9,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_2e65095ad610",
-    "ev_a9bb2cb706f4",
-    "ev_d84b2cd1d389"
-   ],
-   "instances": 3,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_fast",
-    "lens_novice",
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_582a3b95ec27",
-   "finding_key": "product_selection|category|general",
-   "category": "product_selection",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 11,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/10/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/10/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.8,
-    "base": 0.65,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     },
-     {
-      "id": "MOD-BLOCKER",
-      "delta": 0.1
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "select",
-    "value": 0.7,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 3,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 75,
-    "uncapped": 75,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 82
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.75,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_4fde0e14e800",
-    "ev_618c786cdcca",
-    "ev_c4a04c188d57"
-   ],
-   "instances": 3,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_fast",
-    "lens_novice",
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_47b24e9f41f6",
-   "finding_key": "value_proposition|/|general",
-   "category": "value_proposition",
-   "page_group": "/",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 12,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/",
-     "path": "/",
-     "page_type": "homepage"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/11/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/11/page_count",
       "format": "int"
      }
     },
@@ -2640,10 +2035,10 @@
     ]
    },
    "evidence_ids": [
-    "ev_2401bb55fe3b",
-    "ev_9a4e4540b819",
-    "ev_9ef1e36417a9",
-    "ev_d9485bec6d78"
+    "ev_1d03b5a60fae",
+    "ev_62a2be54f138",
+    "ev_6d218fc5fd61",
+    "ev_7fb68afebf21"
    ],
    "instances": 4,
    "affected_task_ids": [
@@ -2658,11 +2053,622 @@
    "executive_eligible": true
   },
   {
+   "id": "fnd_69a63d946f1d",
+   "finding_key": "comparison|category|general",
+   "category": "comparison",
+   "page_group": "category",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 10,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/9/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/9/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.6,
+    "base": 0.55,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "select",
+    "value": 0.7,
+    "stage_source": "category"
+   },
+   "evidence_strength": {
+    "value": 0.7,
+    "tier": "ET-SYN-M"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 3,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 3,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 69,
+    "uncapped": 69,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 72
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.6,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.75,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.75,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_63e60796328c",
+    "ev_b45a5a26c9c5",
+    "ev_ff5b9ea39365"
+   ],
+   "instances": 3,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_expert",
+    "lens_fast",
+    "lens_novice"
+   ],
+   "executive_eligible": true
+  },
+  {
    "id": "fnd_900219d49599",
    "finding_key": "pricing|product|total_unclear",
    "category": "pricing",
    "page_group": "product",
    "claim_kind": "total_unclear",
+   "component": null,
+   "rank": 11,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/product/aquapro-x200",
+     "path": "/product/aquapro-x200",
+     "page_type": "product"
+    },
+    {
+     "url": "http://127.0.0.1:4210/product/aquapro-x220",
+     "path": "/product/aquapro-x220",
+     "page_type": "product"
+    }
+   ],
+   "page_count": 2,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/10/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/10/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.95,
+    "base": 0.8,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     },
+     {
+      "id": "MOD-BLOCKER",
+      "delta": 0.1
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "price_shipping_confidence",
+    "value": 0.9,
+    "stage_source": "category"
+   },
+   "evidence_strength": {
+    "value": 0.7,
+    "tier": "ET-SYN-M"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 2,
+     "m": 8,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 66,
+    "uncapped": 66,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 95
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.95,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.9,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_1b6c4c94216d",
+    "ev_cd0a5e088a6a"
+   ],
+   "instances": 2,
+   "affected_task_ids": [
+    "t_buy"
+   ],
+   "affected_lens_ids": [
+    "lens_price"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_647868d26868",
+   "finding_key": "missing_information|product|general",
+   "category": "missing_information",
+   "page_group": "product",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 12,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/product/aquapro-x200",
+     "path": "/product/aquapro-x200",
+     "page_type": "product"
+    },
+    {
+     "url": "http://127.0.0.1:4210/product/aquapro-x220",
+     "path": "/product/aquapro-x220",
+     "page_type": "product"
+    }
+   ],
+   "page_count": 2,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/11/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/11/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.65,
+    "base": 0.6,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "evaluate_product",
+    "value": 0.8,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.7,
+    "tier": "ET-SYN-M"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 2,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 4,
+     "m": 8,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 64,
+    "uncapped": 64,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 78
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.65,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.8,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.5,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.5,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.7,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_37d7d42c4048",
+    "ev_4a714eb41a0f",
+    "ev_5340af9baa1a",
+    "ev_866690b03759"
+   ],
+   "instances": 4,
+   "affected_task_ids": [
+    "t_buy"
+   ],
+   "affected_lens_ids": [
+    "lens_expert",
+    "lens_novice"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_3d9900c591bd",
+   "finding_key": "comparison|product|general",
+   "category": "comparison",
+   "page_group": "product",
+   "claim_kind": "general",
    "component": null,
    "rank": 13,
    "pages": [
@@ -2752,8 +2758,8 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.85,
-    "base": 0.8,
+    "value": 0.6,
+    "base": 0.55,
     "base_source": "category",
     "modifiers": [
      {
@@ -2763,8 +2769,8 @@
     ]
    },
    "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
+    "stage": "select",
+    "value": 0.7,
     "stage_source": "category"
    },
    "evidence_strength": {
@@ -2796,11 +2802,11 @@
     "in_priority": true
    },
    "priority": {
-    "value": 63,
-    "uncapped": 63,
+    "value": 51,
+    "uncapped": 51,
     "cap": {
      "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 90
+     "value": 72
     },
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -2808,7 +2814,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.85,
+      "value": 0.6,
       "effective_weight": 0.3,
       "na_reason": null
      },
@@ -2816,7 +2822,7 @@
       "name": "funnel_proximity",
       "base_weight": 0.2,
       "applicable": true,
-      "value": 0.9,
+      "value": 0.7,
       "effective_weight": 0.2,
       "na_reason": null
      },
@@ -2847,24 +2853,24 @@
     ]
    },
    "evidence_ids": [
-    "ev_01848b156008",
-    "ev_a620a3e216b2"
+    "ev_3c4de5835e90",
+    "ev_fe2fcbd0c1b4"
    ],
    "instances": 2,
    "affected_task_ids": [
     "t_buy"
    ],
    "affected_lens_ids": [
-    "lens_price"
+    "lens_expert"
    ],
    "executive_eligible": true
   },
   {
-   "id": "fnd_e8f182a5517d",
-   "finding_key": "shipping|product|cost_unknown",
-   "category": "shipping",
+   "id": "fnd_346b63a3672d",
+   "finding_key": "terminology|product|general",
+   "category": "terminology",
    "page_group": "product",
-   "claim_kind": "cost_unknown",
+   "claim_kind": "general",
    "component": null,
    "rank": 14,
    "pages": [
@@ -2954,8 +2960,8 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.75,
-    "base": 0.7,
+    "value": 0.5,
+    "base": 0.45,
     "base_source": "category",
     "modifiers": [
      {
@@ -2965,9 +2971,9 @@
     ]
    },
    "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
+    "stage": "evaluate_product",
+    "value": 0.8,
+    "stage_source": "page_type"
    },
    "evidence_strength": {
     "value": 0.7,
@@ -2998,11 +3004,11 @@
     "in_priority": true
    },
    "priority": {
-    "value": 60,
-    "uncapped": 60,
+    "value": 50,
+    "uncapped": 50,
     "cap": {
      "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 85
+     "value": 71
     },
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -3010,7 +3016,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.75,
+      "value": 0.5,
       "effective_weight": 0.3,
       "na_reason": null
      },
@@ -3018,7 +3024,7 @@
       "name": "funnel_proximity",
       "base_weight": 0.2,
       "applicable": true,
-      "value": 0.9,
+      "value": 0.8,
       "effective_weight": 0.2,
       "na_reason": null
      },
@@ -3049,39 +3055,34 @@
     ]
    },
    "evidence_ids": [
-    "ev_64977c406da9",
-    "ev_d1ffd09d1f8c"
+    "ev_df5ac8cf7c97",
+    "ev_e82b28b9328f"
    ],
    "instances": 2,
    "affected_task_ids": [
     "t_buy"
    ],
    "affected_lens_ids": [
-    "lens_price"
+    "lens_novice"
    ],
    "executive_eligible": true
   },
   {
-   "id": "fnd_d601a77a9953",
-   "finding_key": "cta|product|competing_ctas",
-   "category": "cta",
-   "page_group": "product",
-   "claim_kind": "competing_ctas",
+   "id": "fnd_f66590419259",
+   "finding_key": "visual_hierarchy|/|general",
+   "category": "visual_hierarchy",
+   "page_group": "/",
+   "claim_kind": "general",
    "component": null,
    "rank": 15,
    "pages": [
     {
-     "url": "http://127.0.0.1:4210/product/aquapro-x200",
-     "path": "/product/aquapro-x200",
-     "page_type": "product"
-    },
-    {
-     "url": "http://127.0.0.1:4210/product/aquapro-x220",
-     "path": "/product/aquapro-x220",
-     "page_type": "product"
+     "url": "http://127.0.0.1:4210/",
+     "path": "/",
+     "page_type": "homepage"
     }
    ],
-   "page_count": 2,
+   "page_count": 1,
    "title": {
     "template": "Проблема в категорії {category}",
     "params": {
@@ -3156,8 +3157,8 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.8,
-    "base": 0.75,
+    "value": 0.5,
+    "base": 0.45,
     "base_source": "category",
     "modifiers": [
      {
@@ -3167,8 +3168,8 @@
     ]
    },
    "funnel": {
-    "stage": "evaluate_product",
-    "value": 0.8,
+    "stage": "landing",
+    "value": 0.3,
     "stage_source": "page_type"
    },
    "evidence_strength": {
@@ -3178,7 +3179,7 @@
    "synthetic": {
     "lens_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 1,
+     "n": 2,
      "m": 4,
      "unit": "lenses",
      "disclaimer": "synthetic_single_model_correlated"
@@ -3186,7 +3187,7 @@
     "session_frequency": {
      "form": "n_of_m_synthetic",
      "n": 2,
-     "m": 8,
+     "m": 4,
      "unit": "sessions",
      "disclaimer": "synthetic_single_model_correlated"
     },
@@ -3200,11 +3201,11 @@
     "in_priority": true
    },
    "priority": {
-    "value": 59,
-    "uncapped": 59,
+    "value": 49,
+    "uncapped": 49,
     "cap": {
      "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 85
+     "value": 55
     },
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -3212,7 +3213,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.8,
+      "value": 0.5,
       "effective_weight": 0.3,
       "na_reason": null
      },
@@ -3220,7 +3221,7 @@
       "name": "funnel_proximity",
       "base_weight": 0.2,
       "applicable": true,
-      "value": 0.8,
+      "value": 0.3,
       "effective_weight": 0.2,
       "na_reason": null
      },
@@ -3228,7 +3229,7 @@
       "name": "lens_coverage",
       "base_weight": 0.2,
       "applicable": true,
-      "value": 0.25,
+      "value": 0.5,
       "effective_weight": 0.2,
       "na_reason": null
      },
@@ -3236,7 +3237,7 @@
       "name": "session_frequency",
       "base_weight": 0.15,
       "applicable": true,
-      "value": 0.25,
+      "value": 0.5,
       "effective_weight": 0.15,
       "na_reason": null
      },
@@ -3251,39 +3252,35 @@
     ]
    },
    "evidence_ids": [
-    "ev_9baef0d710af",
-    "ev_c29b89f3d3dc"
+    "ev_267c19f9b2df",
+    "ev_7d72309ae7ef"
    ],
    "instances": 2,
    "affected_task_ids": [
-    "t_buy"
+    "t_understand"
    ],
    "affected_lens_ids": [
-    "lens_fast"
+    "lens_fast",
+    "lens_novice"
    ],
    "executive_eligible": true
   },
   {
-   "id": "fnd_346b63a3672d",
-   "finding_key": "terminology|product|general",
-   "category": "terminology",
-   "page_group": "product",
+   "id": "fnd_74784b13e9ac",
+   "finding_key": "missing_information|category|general",
+   "category": "missing_information",
+   "page_group": "category",
    "claim_kind": "general",
    "component": null,
    "rank": 16,
    "pages": [
     {
-     "url": "http://127.0.0.1:4210/product/aquapro-x200",
-     "path": "/product/aquapro-x200",
-     "page_type": "product"
-    },
-    {
-     "url": "http://127.0.0.1:4210/product/aquapro-x220",
-     "path": "/product/aquapro-x220",
-     "page_type": "product"
+     "url": "http://127.0.0.1:4210/catalog",
+     "path": "/catalog",
+     "page_type": "category"
     }
    ],
-   "page_count": 2,
+   "page_count": 1,
    "title": {
     "template": "Проблема в категорії {category}",
     "params": {
@@ -3307,1007 +3304,6 @@
     "params": {
      "page_count": {
       "ptr": "/findings/15/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.5,
-    "base": 0.45,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "evaluate_product",
-    "value": 0.8,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 4,
-     "m": 8,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 59,
-    "uncapped": 59,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 71
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_33d22ab97355",
-    "ev_6753f3262044",
-    "ev_a9836b8ee4af",
-    "ev_df5ac8cf7c97",
-    "ev_e82b28b9328f",
-    "ev_fd69e0d3afe7"
-   ],
-   "instances": 6,
-   "affected_task_ids": [
-    "t_buy"
-   ],
-   "affected_lens_ids": [
-    "lens_expert",
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_bea10e29db12",
-   "finding_key": "pricing|/|not_in_first_viewport",
-   "category": "pricing",
-   "page_group": "/",
-   "claim_kind": "not_in_first_viewport",
-   "component": null,
-   "rank": 17,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/",
-     "path": "/",
-     "page_type": "homepage"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Ціни не видно в першому екрані",
-    "params": {},
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.not_in_first_viewport",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Перший екран не показує ціни. Сторінок із проблемою: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/16/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.not_in_first_viewport",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": {
-    "template": "Без видимої ціни відвідувач не може оцінити пропозицію й мусить шукати далі.",
-    "params": {},
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "finding.why.not_in_first_viewport",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "recommendation": {
-    "recommended_change": {
-     "template": "Покажіть ціну в першому екрані, поруч із назвою товару.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.not_in_first_viewport",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.not_in_first_viewport",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.85,
-    "base": 0.8,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.4,
-    "tier": "ET-SYN-1"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 58,
-    "uncapped": 58,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 90
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.85,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.9,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.4,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_8fb22c3c01cc"
-   ],
-   "instances": 1,
-   "affected_task_ids": [
-    "t_understand"
-   ],
-   "affected_lens_ids": [
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_647868d26868",
-   "finding_key": "missing_information|product|general",
-   "category": "missing_information",
-   "page_group": "product",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 18,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/product/aquapro-x200",
-     "path": "/product/aquapro-x200",
-     "page_type": "product"
-    },
-    {
-     "url": "http://127.0.0.1:4210/product/aquapro-x220",
-     "path": "/product/aquapro-x220",
-     "page_type": "product"
-    }
-   ],
-   "page_count": 2,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/17/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/17/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.65,
-    "base": 0.6,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "evaluate_product",
-    "value": 0.8,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 8,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 55,
-    "uncapped": 55,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 78
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.65,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_104c52dea972",
-    "ev_bfa37e0f1775"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_buy"
-   ],
-   "affected_lens_ids": [
-    "lens_expert"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_5bb354eda528",
-   "finding_key": "terminology|category|general",
-   "category": "terminology",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 19,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/18/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/18/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.5,
-    "base": 0.45,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "browse",
-    "value": 0.55,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 54,
-    "uncapped": 54,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 63
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.55,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_61e0ae6a43f4",
-    "ev_d12d42b9743d"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_expert",
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_69a63d946f1d",
-   "finding_key": "comparison|category|general",
-   "category": "comparison",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 20,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/19/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/19/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.6,
-    "base": 0.55,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "select",
-    "value": 0.7,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.4,
-    "tier": "ET-SYN-1"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 47,
-    "uncapped": 47,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 72
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.6,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.4,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_b45a5a26c9c5"
-   ],
-   "instances": 1,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_expert"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_74784b13e9ac",
-   "finding_key": "missing_information|category|general",
-   "category": "missing_information",
-   "page_group": "category",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 21,
-   "pages": [
-    {
-     "url": "http://127.0.0.1:4210/catalog",
-     "path": "/catalog",
-     "page_type": "category"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/20/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/20/page_count",
       "format": "int"
      }
     },
@@ -4454,7 +3450,7 @@
     ]
    },
    "evidence_ids": [
-    "ev_29565a0cd785"
+    "ev_8ab05d30aab5"
    ],
    "instances": 1,
    "affected_task_ids": [
@@ -4466,18 +3462,18 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_f66590419259",
-   "finding_key": "visual_hierarchy|/|general",
-   "category": "visual_hierarchy",
-   "page_group": "/",
+   "id": "fnd_5bb354eda528",
+   "finding_key": "terminology|category|general",
+   "category": "terminology",
+   "page_group": "category",
    "claim_kind": "general",
    "component": null,
-   "rank": 22,
+   "rank": 17,
    "pages": [
     {
-     "url": "http://127.0.0.1:4210/",
-     "path": "/",
-     "page_type": "homepage"
+     "url": "http://127.0.0.1:4210/catalog",
+     "path": "/catalog",
+     "page_type": "category"
     }
    ],
    "page_count": 1,
@@ -4485,7 +3481,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/21/category",
+      "ptr": "/findings/16/category",
       "format": "text"
      }
     },
@@ -4503,7 +3499,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/21/page_count",
+      "ptr": "/findings/16/page_count",
       "format": "int"
      }
     },
@@ -4555,17 +3551,209 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.6,
+    "value": 0.5,
     "base": 0.45,
     "base_source": "category",
     "modifiers": [
      {
       "id": "MOD-PAGE-PRIMARY",
       "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "browse",
+    "value": 0.55,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.4,
+    "tier": "ET-SYN-1"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 41,
+    "uncapped": 41,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 63
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.5,
+      "effective_weight": 0.3,
+      "na_reason": null
      },
      {
-      "id": "MOD-BLOCKER",
-      "delta": 0.1
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.55,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.4,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_d12d42b9743d"
+   ],
+   "instances": 1,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_novice"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_11c5b7b7abcc",
+   "finding_key": "missing_information|/|general",
+   "category": "missing_information",
+   "page_group": "/",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 18,
+   "pages": [
+    {
+     "url": "http://127.0.0.1:4210/",
+     "path": "/",
+     "page_type": "homepage"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/17/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/17/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.65,
+    "base": 0.6,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
      }
     ]
    },
@@ -4603,11 +3791,11 @@
     "in_priority": true
    },
    "priority": {
-    "value": 39,
-    "uncapped": 39,
+    "value": 40,
+    "uncapped": 40,
     "cap": {
      "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 60
+     "value": 62
     },
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -4615,7 +3803,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.6,
+      "value": 0.65,
       "effective_weight": 0.3,
       "na_reason": null
      },
@@ -4654,14 +3842,14 @@
     ]
    },
    "evidence_ids": [
-    "ev_6d783d0760e0"
+    "ev_3552c2c16398"
    ],
    "instances": 1,
    "affected_task_ids": [
     "t_understand"
    ],
    "affected_lens_ids": [
-    "lens_novice"
+    "lens_expert"
    ],
    "executive_eligible": true
   }
@@ -5015,13 +4203,57 @@
  "budget": {
   "source_class": "OBSERVED",
   "max_audit_tokens": 1650000,
-  "used_tokens": 61020,
-  "billed_tokens": 0,
-  "cache_read_tokens": 61020,
+  "used_tokens": 60562,
+  "billed_tokens": 60562,
+  "cache_read_tokens": 0,
   "llm_calls": 16,
   "cost": null
  },
  "evidence": [
+  {
+   "id": "ev_193657433a41",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "not_in_first_viewport",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_821dba7220fb",
+   "lens_id": "lens_fast",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
   {
    "id": "ev_1de5ebab2ea2",
    "type": "screenshot",
@@ -5074,6 +4306,50 @@
    "lens_id": null,
    "task_id": null,
    "level": null
+  },
+  {
+   "id": "ev_9583817604e3",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "not_in_first_viewport",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_f7a83fb80293",
+   "lens_id": "lens_price",
+   "task_id": "t_choose",
+   "level": "snapshot"
   },
   {
    "id": "ev_a7cd880df8a8",
@@ -5341,6 +4617,138 @@
    "level": null
   },
   {
+   "id": "ev_2dd645077efe",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
+   "page_path": "/product/aquapro-x200",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "not_in_first_viewport",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_620390332c3d",
+   "lens_id": "lens_price",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_4859b25cc769",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
+   "page_path": "/product/aquapro-x200",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "not_in_first_viewport",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_3aa4cbe61e70",
+   "lens_id": "lens_fast",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_71e28f9e4558",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+   "page_path": "/product/aquapro-x220",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "not_in_first_viewport",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_f19207eb5e5f",
+   "lens_id": "lens_price",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
    "id": "ev_80e9e6450445",
    "type": "screenshot",
    "source_class": "OBSERVED",
@@ -5447,7 +4855,7 @@
    "level": null
   },
   {
-   "id": "ev_2f994d8ef21f",
+   "id": "ev_cb3d1c5a5158",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -5457,7 +4865,7 @@
    "page_type": "product",
    "viewport": null,
    "detector_id": null,
-   "claim_kind": "below_fold",
+   "claim_kind": "not_in_first_viewport",
    "assertion": null,
    "description": {
     "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
@@ -5472,7 +4880,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": "Додати в кошик",
+   "excerpt": null,
    "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
    "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
    "selector": null,
@@ -5485,8 +4893,8 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_f19207eb5e5f",
-   "lens_id": "lens_price",
+   "session_id": "ses_df7485d69fa0",
+   "lens_id": "lens_fast",
    "task_id": "t_buy",
    "level": "snapshot"
   },
@@ -5595,11 +5003,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/11/measurement/top_px",
+      "ptr": "/evidence/16/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/11/measurement/vh",
+      "ptr": "/evidence/16/measurement/vh",
       "format": "int"
      }
     },
@@ -5656,11 +5064,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/12/measurement/top_px",
+      "ptr": "/evidence/17/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/12/measurement/vh",
+      "ptr": "/evidence/17/measurement/vh",
       "format": "int"
      }
     },
@@ -5717,11 +5125,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/13/measurement/top_px",
+      "ptr": "/evidence/18/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/13/measurement/vh",
+      "ptr": "/evidence/18/measurement/vh",
       "format": "int"
      }
     },
@@ -5778,11 +5186,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/14/measurement/top_px",
+      "ptr": "/evidence/19/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/14/measurement/vh",
+      "ptr": "/evidence/19/measurement/vh",
       "format": "int"
      }
     },
@@ -5839,11 +5247,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/15/measurement/top_px",
+      "ptr": "/evidence/20/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/15/measurement/vh",
+      "ptr": "/evidence/20/measurement/vh",
       "format": "int"
      }
     },
@@ -5884,50 +5292,6 @@
    "level": null
   },
   {
-   "id": "ev_a74ce6dff8ce",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "below_fold",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Додати в кошик",
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_620390332c3d",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
    "id": "ev_f080ee1bb7d9",
    "type": "dom",
    "source_class": "OBSERVED",
@@ -5944,11 +5308,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/17/measurement/top_px",
+      "ptr": "/evidence/21/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/17/measurement/vh",
+      "ptr": "/evidence/21/measurement/vh",
       "format": "int"
      }
     },
@@ -6005,11 +5369,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/18/measurement/rule",
+      "ptr": "/evidence/22/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/18/measurement/impact",
+      "ptr": "/evidence/22/measurement/impact",
       "format": "text"
      }
     },
@@ -6069,11 +5433,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/19/measurement/rule",
+      "ptr": "/evidence/23/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/19/measurement/impact",
+      "ptr": "/evidence/23/measurement/impact",
       "format": "text"
      }
     },
@@ -6133,11 +5497,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/20/measurement/rule",
+      "ptr": "/evidence/24/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/20/measurement/impact",
+      "ptr": "/evidence/24/measurement/impact",
       "format": "text"
      }
     },
@@ -6197,11 +5561,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/21/measurement/rule",
+      "ptr": "/evidence/25/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/21/measurement/impact",
+      "ptr": "/evidence/25/measurement/impact",
       "format": "text"
      }
     },
@@ -6261,11 +5625,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/22/measurement/rule",
+      "ptr": "/evidence/26/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/22/measurement/impact",
+      "ptr": "/evidence/26/measurement/impact",
       "format": "text"
      }
     },
@@ -6325,11 +5689,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/23/measurement/rule",
+      "ptr": "/evidence/27/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/23/measurement/impact",
+      "ptr": "/evidence/27/measurement/impact",
       "format": "text"
      }
     },
@@ -6389,11 +5753,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/24/measurement/rule",
+      "ptr": "/evidence/28/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/24/measurement/impact",
+      "ptr": "/evidence/28/measurement/impact",
       "format": "text"
      }
     },
@@ -6453,11 +5817,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/25/measurement/rule",
+      "ptr": "/evidence/29/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/25/measurement/impact",
+      "ptr": "/evidence/29/measurement/impact",
       "format": "text"
      }
     },
@@ -6517,11 +5881,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/26/measurement/rule",
+      "ptr": "/evidence/30/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/26/measurement/impact",
+      "ptr": "/evidence/30/measurement/impact",
       "format": "text"
      }
     },
@@ -6581,11 +5945,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/27/measurement/rule",
+      "ptr": "/evidence/31/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/27/measurement/impact",
+      "ptr": "/evidence/31/measurement/impact",
       "format": "text"
      }
     },
@@ -6645,11 +6009,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/28/measurement/rule",
+      "ptr": "/evidence/32/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/28/measurement/impact",
+      "ptr": "/evidence/32/measurement/impact",
       "format": "text"
      }
     },
@@ -6709,7 +6073,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/29/measurement/depth_clicks",
+      "ptr": "/evidence/33/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -6767,7 +6131,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/30/measurement/depth_clicks",
+      "ptr": "/evidence/34/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -6825,7 +6189,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/31/measurement/depth_clicks",
+      "ptr": "/evidence/35/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -6883,7 +6247,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/32/measurement/depth_clicks",
+      "ptr": "/evidence/36/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -6941,7 +6305,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/33/measurement/depth_clicks",
+      "ptr": "/evidence/37/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -6999,7 +6363,7 @@
     "template": "На сторінці немає видимого тексту чи посилання про доставку (перевірено D і M); інформацію про доставку знайдено на глибині кліків {depth_clicks}.",
     "params": {
      "depth_clicks": {
-      "ptr": "/evidence/34/measurement/depth_clicks",
+      "ptr": "/evidence/38/measurement/depth_clicks",
       "format": "int"
      }
     },
@@ -7057,11 +6421,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/35/measurement/rule",
+      "ptr": "/evidence/39/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/35/measurement/impact",
+      "ptr": "/evidence/39/measurement/impact",
       "format": "text"
      }
     },
@@ -7120,11 +6484,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/36/measurement/rule",
+      "ptr": "/evidence/40/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/36/measurement/impact",
+      "ptr": "/evidence/40/measurement/impact",
       "format": "text"
      }
     },
@@ -7183,15 +6547,15 @@
     "template": "Ширина сторінки {scroll_width} px на екрані {viewport_width} px; надлишок {overflow_px} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/37/measurement/scroll_width",
+      "ptr": "/evidence/41/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/37/measurement/viewport_width",
+      "ptr": "/evidence/41/measurement/viewport_width",
       "format": "int"
      },
      "overflow_px": {
-      "ptr": "/evidence/37/measurement/overflow_px",
+      "ptr": "/evidence/41/measurement/overflow_px",
       "format": "int"
      }
     },
@@ -7245,27 +6609,27 @@
     "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
     "params": {
      "body_bytes": {
-      "ptr": "/evidence/38/measurement/body_bytes",
+      "ptr": "/evidence/42/measurement/body_bytes",
       "format": "int"
      },
      "threshold_bytes": {
-      "ptr": "/evidence/38/measurement/threshold_bytes",
+      "ptr": "/evidence/42/measurement/threshold_bytes",
       "format": "int"
      },
      "natural_w": {
-      "ptr": "/evidence/38/measurement/natural_w",
+      "ptr": "/evidence/42/measurement/natural_w",
       "format": "int"
      },
      "natural_h": {
-      "ptr": "/evidence/38/measurement/natural_h",
+      "ptr": "/evidence/42/measurement/natural_h",
       "format": "int"
      },
      "rendered_w": {
-      "ptr": "/evidence/38/measurement/rendered_w",
+      "ptr": "/evidence/42/measurement/rendered_w",
       "format": "int"
      },
      "rendered_h": {
-      "ptr": "/evidence/38/measurement/rendered_h",
+      "ptr": "/evidence/42/measurement/rendered_h",
       "format": "int"
      }
     },
@@ -7324,27 +6688,27 @@
     "template": "Файл зображення: {body_bytes} байт (поріг {threshold_bytes}); природний розмір {natural_w} × {natural_h} px, показано {rendered_w} × {rendered_h} px.",
     "params": {
      "body_bytes": {
-      "ptr": "/evidence/39/measurement/body_bytes",
+      "ptr": "/evidence/43/measurement/body_bytes",
       "format": "int"
      },
      "threshold_bytes": {
-      "ptr": "/evidence/39/measurement/threshold_bytes",
+      "ptr": "/evidence/43/measurement/threshold_bytes",
       "format": "int"
      },
      "natural_w": {
-      "ptr": "/evidence/39/measurement/natural_w",
+      "ptr": "/evidence/43/measurement/natural_w",
       "format": "int"
      },
      "natural_h": {
-      "ptr": "/evidence/39/measurement/natural_h",
+      "ptr": "/evidence/43/measurement/natural_h",
       "format": "int"
      },
      "rendered_w": {
-      "ptr": "/evidence/39/measurement/rendered_w",
+      "ptr": "/evidence/43/measurement/rendered_w",
       "format": "int"
      },
      "rendered_h": {
-      "ptr": "/evidence/39/measurement/rendered_h",
+      "ptr": "/evidence/43/measurement/rendered_h",
       "format": "int"
      }
     },
@@ -7387,14 +6751,14 @@
    "level": null
   },
   {
-   "id": "ev_27e191ee637a",
+   "id": "ev_1d03b5a60fae",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
    "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
    "viewport": null,
    "detector_id": null,
    "claim_kind": "general",
@@ -7412,9 +6776,9 @@
      "rule_ids": []
     }
    },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "excerpt": "Ми підбираємо речі, які роблять день простішим.",
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
    "selector": null,
    "region": {
     "x": 0,
@@ -7425,57 +6789,321 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_df7485d69fa0",
-   "lens_id": "lens_fast",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_a349ab490730",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_450d904eb650",
+   "session_id": "ses_c1d97fb0b11f",
    "lens_id": "lens_novice",
+   "task_id": "t_understand",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_62a2be54f138",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Ми підбираємо речі, які роблять день простішим.",
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_1e53af8a7ab6",
+   "lens_id": "lens_expert",
+   "task_id": "t_understand",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_6d218fc5fd61",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Заходьте й дивіться самі.",
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_eb40b3590d5f",
+   "lens_id": "lens_price",
+   "task_id": "t_understand",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_7fb68afebf21",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Ми підбираємо речі, які роблять день простішим.",
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_9ee054a37565",
+   "lens_id": "lens_fast",
+   "task_id": "t_understand",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_63e60796328c",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Фільтр для води з проточною кухонною установкою.",
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_320aec6a5e29",
+   "lens_id": "lens_novice",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_b45a5a26c9c5",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Фільтр для води з проточною кухонною установкою.",
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_fbbaa2b85a94",
+   "lens_id": "lens_expert",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_ff5b9ea39365",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Фільтр для води з проточною кухонною установкою.",
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_821dba7220fb",
+   "lens_id": "lens_fast",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_1b6c4c94216d",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+   "page_path": "/product/aquapro-x220",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "total_unclear",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
+   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_f19207eb5e5f",
+   "lens_id": "lens_price",
    "task_id": "t_buy",
    "level": "snapshot"
   },
   {
-   "id": "ev_ac187fdc02d6",
+   "id": "ev_cd0a5e088a6a",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -7485,7 +7113,7 @@
    "page_type": "product",
    "viewport": null,
    "detector_id": null,
-   "claim_kind": "general",
+   "claim_kind": "total_unclear",
    "assertion": null,
    "description": {
     "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
@@ -7500,7 +7128,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": null,
+   "excerpt": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
    "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
    "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
    "selector": null,
@@ -7513,13 +7141,13 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_5e4fae287105",
-   "lens_id": "lens_expert",
+   "session_id": "ses_620390332c3d",
+   "lens_id": "lens_price",
    "task_id": "t_buy",
    "level": "snapshot"
   },
   {
-   "id": "ev_b5615269320c",
+   "id": "ev_37d7d42c4048",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -7563,7 +7191,51 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_e2a71f68fb04",
+   "id": "ev_4a714eb41a0f",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+   "page_path": "/product/aquapro-x220",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_450d904eb650",
+   "lens_id": "lens_novice",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_5340af9baa1a",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -7601,13 +7273,13 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_3aa4cbe61e70",
-   "lens_id": "lens_fast",
+   "session_id": "ses_5e4fae287105",
+   "lens_id": "lens_expert",
    "task_id": "t_buy",
    "level": "snapshot"
   },
   {
-   "id": "ev_f02fbb0b9eb7",
+   "id": "ev_866690b03759",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -7651,711 +7323,7 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_2e65095ad610",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_821dba7220fb",
-   "lens_id": "lens_fast",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_a9bb2cb706f4",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_f7a83fb80293",
-   "lens_id": "lens_price",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_d84b2cd1d389",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_320aec6a5e29",
-   "lens_id": "lens_novice",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_4fde0e14e800",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Фільтр для води з проточною кухонною установкою.",
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_f7a83fb80293",
-   "lens_id": "lens_price",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_618c786cdcca",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Фільтр для води з проточною кухонною установкою.",
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_320aec6a5e29",
-   "lens_id": "lens_novice",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_c4a04c188d57",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Фільтр для води з проточною кухонною установкою.",
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_821dba7220fb",
-   "lens_id": "lens_fast",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_2401bb55fe3b",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_c1d97fb0b11f",
-   "lens_id": "lens_novice",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_9a4e4540b819",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_9ee054a37565",
-   "lens_id": "lens_fast",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_9ef1e36417a9",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_1e53af8a7ab6",
-   "lens_id": "lens_expert",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_d9485bec6d78",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_eb40b3590d5f",
-   "lens_id": "lens_price",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_01848b156008",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "total_unclear",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_620390332c3d",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_a620a3e216b2",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "total_unclear",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_f19207eb5e5f",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_64977c406da9",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "cost_unknown",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_620390332c3d",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_d1ffd09d1f8c",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "cost_unknown",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_f19207eb5e5f",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_9baef0d710af",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "competing_ctas",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Налаштувати комплектацію",
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_df7485d69fa0",
-   "lens_id": "lens_fast",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_c29b89f3d3dc",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "competing_ctas",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Налаштувати комплектацію",
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_3aa4cbe61e70",
-   "lens_id": "lens_fast",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_33d22ab97355",
+   "id": "ev_3c4de5835e90",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -8393,13 +7361,13 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_450d904eb650",
-   "lens_id": "lens_novice",
+   "session_id": "ses_49cbde397190",
+   "lens_id": "lens_expert",
    "task_id": "t_buy",
    "level": "snapshot"
   },
   {
-   "id": "ev_6753f3262044",
+   "id": "ev_fe2fcbd0c1b4",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -8424,7 +7392,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": "Модель створено для щоденного використання вдома й у поїздках.",
+   "excerpt": "Прибрати з порівняння",
    "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
    "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
    "selector": null,
@@ -8439,50 +7407,6 @@
    "measurement": {},
    "session_id": "ses_5e4fae287105",
    "lens_id": "lens_expert",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_a9836b8ee4af",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Прибрати з порівняння",
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_21c19cd95fc7",
-   "lens_id": "lens_novice",
    "task_id": "t_buy",
    "level": "snapshot"
   },
@@ -8575,61 +7499,17 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_fd69e0d3afe7",
+   "id": "ev_267c19f9b2df",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Модель створено для щоденного використання вдома й у поїздках.",
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_49cbde397190",
-   "lens_id": "lens_expert",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_8fb22c3c01cc",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-1",
    "polarity": "problem",
    "page_url": "http://127.0.0.1:4210/",
    "page_path": "/",
    "page_type": "homepage",
    "viewport": null,
    "detector_id": null,
-   "claim_kind": "not_in_first_viewport",
+   "claim_kind": "general",
    "assertion": null,
    "description": {
     "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
@@ -8657,20 +7537,20 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_eb40b3590d5f",
-   "lens_id": "lens_price",
+   "session_id": "ses_9ee054a37565",
+   "lens_id": "lens_fast",
    "task_id": "t_understand",
    "level": "snapshot"
   },
   {
-   "id": "ev_104c52dea972",
+   "id": "ev_7d72309ae7ef",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
    "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
-   "page_path": "/product/aquapro-x200",
-   "page_type": "product",
+   "page_url": "http://127.0.0.1:4210/",
+   "page_path": "/",
+   "page_type": "homepage",
    "viewport": null,
    "detector_id": null,
    "claim_kind": "general",
@@ -8689,8 +7569,8 @@
     }
    },
    "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x200/1440x1000/viewport.png",
+   "artifact_reference": "pages/index/1440x1000/viewport.png",
+   "screenshot_reference": "pages/index/1440x1000/viewport.png",
    "selector": null,
    "region": {
     "x": 0,
@@ -8701,60 +7581,16 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_5e4fae287105",
-   "lens_id": "lens_expert",
-   "task_id": "t_buy",
+   "session_id": "ses_c1d97fb0b11f",
+   "lens_id": "lens_novice",
+   "task_id": "t_understand",
    "level": "snapshot"
   },
   {
-   "id": "ev_bfa37e0f1775",
+   "id": "ev_8ab05d30aab5",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
-   "page_path": "/product/aquapro-x220",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-aquapro-x220/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_49cbde397190",
-   "lens_id": "lens_expert",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_61e0ae6a43f4",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
+   "tier": "ET-SYN-1",
    "polarity": "problem",
    "page_url": "http://127.0.0.1:4210/catalog",
    "page_path": "/catalog",
@@ -8776,7 +7612,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": "Softline S1 (модуль SLT)",
+   "excerpt": null,
    "artifact_reference": "pages/catalog/1440x1000/viewport.png",
    "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
    "selector": null,
@@ -8798,7 +7634,7 @@
    "id": "ev_d12d42b9743d",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
+   "tier": "ET-SYN-1",
    "polarity": "problem",
    "page_url": "http://127.0.0.1:4210/catalog",
    "page_path": "/catalog",
@@ -8839,95 +7675,7 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_b45a5a26c9c5",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-1",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Фільтр для води з проточною кухонною установкою.",
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_fbbaa2b85a94",
-   "lens_id": "lens_expert",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_29565a0cd785",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-1",
-   "polarity": "problem",
-   "page_url": "http://127.0.0.1:4210/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_fbbaa2b85a94",
-   "lens_id": "lens_expert",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_6d783d0760e0",
+   "id": "ev_3552c2c16398",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-1",
@@ -8952,7 +7700,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": "Ідеї, що змінюють будні",
+   "excerpt": null,
    "artifact_reference": "pages/index/1440x1000/viewport.png",
    "screenshot_reference": "pages/index/1440x1000/viewport.png",
    "selector": null,
@@ -8965,8 +7713,8 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_c1d97fb0b11f",
-   "lens_id": "lens_novice",
+   "session_id": "ses_1e53af8a7ab6",
+   "lens_id": "lens_expert",
    "task_id": "t_understand",
    "level": "snapshot"
   }

@@ -1,0 +1,78 @@
+{
+  "key": "b27477ff414c2542ba953c778c35ff59d6c1715db24178f3fbe7a89322af0dbb",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "noticed": [
+      "Заголовок «AquaPro X200 (система HFX)», зображення-заглушка, опис і два посилання: «Налаштувати комплектацію», «Прибрати з порівняння».",
+      "Абзаци про щоденне використання, перевірку на заводі, інструкцію українською та гарантійний талон."
+    ],
+    "understood": [
+      "Це фільтр для води для кухні; є інструкція українською та гарантійний талон."
+    ],
+    "positive_signals": [
+      "Текст короткий, головне (що це за пристрій) зрозуміло з першого рядка."
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є у тексті сторінки, але її не видно на першому екрані-знімку (там порожньо під останнім абзацом); де вона — UNKNOWN."
+    ],
+    "verdict": "issues_found",
+    "unclear": [
+      "Ціна.",
+      "Де саме кнопка додавання в кошик на екрані."
+    ],
+    "likely_next_action": "Шукати кнопку «Додати в кошик» під текстом; якщо на екрані її немає, прокрутить або повернеться до каталогу, де є «В кошик».",
+    "frictions": [
+      {
+        "category": "cta",
+        "claim_kind": "below_fold",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: кнопка «Додати в кошик» видима в першому вікні (t0)",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: ціна товару в першому вікні (t0)",
+        "tile_id": "t0"
+      }
+    ],
+    "success": "partial",
+    "final_summary": "Швидко зрозуміти, що це кухонний фільтр, можна, але на першому екрані не видно ні ціни, ні кнопки додавання в кошик. Швидке рішення ускладнене."
+  },
+  "input_tokens": 3528,
+  "output_tokens": 396,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "b27477ff414c2542ba953c778c35ff59d6c1715db24178f3fbe7a89322af0dbb",
+    "response_sha256": "05c00635c51586c6adb2b46e5bd6bc2810d15f7b5ec2a610494c9f74ad4cd059",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "645bc8d826c8730120ee16c96691c76c42699574f6813058ecce22f7dd6b53da"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.211Z"
+}

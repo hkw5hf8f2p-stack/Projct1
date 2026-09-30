@@ -1,0 +1,88 @@
+{
+  "key": "33e3b2aae3d257c000fa6201262e699bfa46695023b76523cde87c57b2ddea48",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва моделі, зображення-заглушка та опис «Фільтр для води з проточною кухонною установкою.»",
+      "Посилання «Налаштувати комплектацію» та «Прибрати з порівняння«",
+      "Тексти про догляд, гарантійний талон і інструкцію українською",
+      "На знімку не видно ціни й кнопки додавання в кошик"
+    ],
+    "understood": [
+      "Це фільтр для води; комплектацію можна змінити перед оформленням"
+    ],
+    "unclear": [
+      "Ціна моделі",
+      "Що саме входить у комплектацію і чи змінює вона вартість"
+    ],
+    "likely_next_action": "Не додавати в кошик, поки не знайдено повну ціну; шукати її через «Налаштувати комплектацію».",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "high",
+        "evidence": "NOT_FOUND: ціна товару",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "total_unclear",
+        "severity": "medium",
+        "evidence": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
+        "tile_id": "t0"
+      },
+      {
+        "category": "cta",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Додати в кошик",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "У тексті є гарантійний талон та інструкція українською"
+    ],
+    "uncertainties": [
+      "У тексті є «Додати в кошик», але на наданому знімку цієї кнопки не видно — де вона розташована, UNKNOWN",
+      "Частини сторінки поза наданим знімком невідомі"
+    ],
+    "success": "false",
+    "final_summary": "Лінзі, що потребує знати повну ціну до кошика, сторінка цього не дає: ціни немає, а комплектація може її змінити (невідомо). Рішення про додавання в кошик відкладається."
+  },
+  "input_tokens": 3532,
+  "output_tokens": 448,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "33e3b2aae3d257c000fa6201262e699bfa46695023b76523cde87c57b2ddea48__fefb54",
+    "response_sha256": "c98fda885c16cfb158e23071e27b160d440ed3c269f9f828a6f5fe0ac51d34fa",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "lens_id": "lens_price",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f3c08701edc8733ad85d4c041a3703ae7eac71be2be7d55db1bb05a0ac35c92"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.869Z"
+}

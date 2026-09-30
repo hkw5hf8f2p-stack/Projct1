@@ -1,0 +1,70 @@
+{
+  "key": "eb00d98fe1a698c19cf5bed8202ed859273beaeeebd83c86f09f883bed8fbdd8",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "noticed": [
+      "Великий декоративний банер з абстрактними кольоровими прямокутниками без товарів.",
+      "Заголовок «Ідеї, що змінюють будні», короткий підпис і посилання «Переглянути асортимент»."
+    ],
+    "understood": [
+      "Це інтернет-магазин «ТехноДім»; у меню є «Каталог»."
+    ],
+    "positive_signals": [
+      "Посилання «Переглянути асортимент» одне й помітне під заголовком."
+    ],
+    "uncertainties": [
+      "Що саме продається — UNKNOWN на першому екрані; можливо, це видно в каталозі."
+    ],
+    "verdict": "issues_found",
+    "unclear": [
+      "Що продається на першому екрані."
+    ],
+    "likely_next_action": "Одразу натиснути «Переглянути асортимент».",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      }
+    ],
+    "success": "partial",
+    "final_summary": "Швидкий шлях до асортименту є, але сам перший екран не називає, що продається; довелось би перейти за посиланням."
+  },
+  "input_tokens": 3315,
+  "output_tokens": 273,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "eb00d98fe1a698c19cf5bed8202ed859273beaeeebd83c86f09f883bed8fbdd8",
+    "response_sha256": "50769b6975b88ddd85223fa96b1332950c5839195692ca5e07a961efdcaa44bc",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_fast",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.175Z"
+}

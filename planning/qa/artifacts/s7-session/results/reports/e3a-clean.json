@@ -14,7 +14,7 @@
   "language": "uk",
   "llm_mode": "replay",
   "llm_provider": "replay",
-  "llm_model": "session:claude-in-session",
+  "llm_model": "session:claude-in-session-b",
   "prompt_versions": [
    "snapshot-evaluator-v1"
   ],
@@ -349,8 +349,8 @@
     ]
    },
    "evidence_ids": [
-    "ev_e0aadafd3743",
-    "ev_f02ac11dc45b"
+    "ev_4ed715d3f34c",
+    "ev_a3b51e7a017b"
    ],
    "instances": 2,
    "affected_task_ids": [
@@ -546,7 +546,7 @@
     ]
    },
    "evidence_ids": [
-    "ev_71301f7363fd"
+    "ev_bcd57f082098"
    ],
    "instances": 1,
    "affected_task_ids": [
@@ -1035,59 +1035,15 @@
  "budget": {
   "source_class": "OBSERVED",
   "max_audit_tokens": 1650000,
-  "used_tokens": 57581,
-  "billed_tokens": 0,
-  "cache_read_tokens": 57581,
+  "used_tokens": 58885,
+  "billed_tokens": 58885,
+  "cache_read_tokens": 0,
   "llm_calls": 16,
   "cost": null
  },
  "evidence": [
   {
-   "id": "ev_e0aadafd3743",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-a.test:4213/product/glass-kettle",
-   "page_path": "/product/glass-kettle",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_1346471aee74",
-   "lens_id": "lens_expert",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_f02ac11dc45b",
+   "id": "ev_4ed715d3f34c",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -1131,7 +1087,51 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_71301f7363fd",
+   "id": "ev_a3b51e7a017b",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-a.test:4213/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_1346471aee74",
+   "lens_id": "lens_expert",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_bcd57f082098",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-1",

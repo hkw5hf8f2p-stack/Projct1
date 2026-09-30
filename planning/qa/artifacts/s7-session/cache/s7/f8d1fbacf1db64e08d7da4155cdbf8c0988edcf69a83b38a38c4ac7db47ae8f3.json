@@ -1,0 +1,72 @@
+{
+  "key": "f8d1fbacf1db64e08d7da4155cdbf8c0988edcf69a83b38a38c4ac7db47ae8f3",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "noticed": [
+      "Заголовок «Каталог» і три картки товарів: AquaPro X200, AquaPro X220, Softline S1.",
+      "Кожна картка має короткий опис і кнопку «В кошик»."
+    ],
+    "understood": [
+      "Магазин пропонує фільтри для води та пом'якшувач води."
+    ],
+    "positive_signals": [
+      "Кнопки «В кошик» помітні та на видноті в першому екрані.",
+      "Каталог короткий і легко проглядається."
+    ],
+    "uncertainties": [
+      "Що відбувається після натискання «В кошик» і що на сторінках товарів — UNKNOWN для цього екрана."
+    ],
+    "verdict": "issues_found",
+    "unclear": [
+      "Яка з моделей X200 чи X220 краща для мене.",
+      "Що станеться після «В кошик»."
+    ],
+    "likely_next_action": "Натиснути «В кошик» на першій відповідній моделі або відкрити її сторінку.",
+    "frictions": [
+      {
+        "category": "product_selection",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Фільтр для води з проточною кухонною установкою.",
+        "tile_id": "t0"
+      }
+    ],
+    "success": "partial",
+    "final_summary": "Каталог короткий, кнопки дій помітні, тож швидко діяти можна. Але дві моделі фільтра з однаковим описом не дають підстав для швидкого вибору."
+  },
+  "input_tokens": 3379,
+  "output_tokens": 301,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "f8d1fbacf1db64e08d7da4155cdbf8c0988edcf69a83b38a38c4ac7db47ae8f3",
+    "response_sha256": "98fff5c81af44d98ad50ef8ff4bae60784686e0987fbe4ebe5ca043a0166f98d",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_fast",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.191Z"
+}

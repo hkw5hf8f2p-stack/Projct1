@@ -1,0 +1,63 @@
+{
+  "key": "ed793e48fe706cc9e5a8efa33e8ab393a0bb929a6e475e2e4e97d9a33e23747f",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Назва «Скляний чайник» і ціна 1 299 грн",
+      "Помітна кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою"
+    ],
+    "understood": [
+      "Це товар «Скляний чайник» за ціною 1 299 грн",
+      "Доставка Новою поштою: 1–2 дні, від 70 грн"
+    ],
+    "unclear": [],
+    "likely_next_action": "Натиснути «Додати в кошик»",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна та кнопка додавання видно одразу",
+      "Умови доставки вказано на самій сторінці"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Назва, ціна, кнопка й доставка видно без прокрутки; швидке рішення про додавання в кошик можливе."
+  },
+  "input_tokens": 3528,
+  "output_tokens": 190,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "ed793e48fe706cc9e5a8efa33e8ab393a0bb929a6e475e2e4e97d9a33e23747f",
+    "response_sha256": "e24c4e8010f90d8ad87089e7bdd1a5e5083ca295d1e690cc5d74edfe15ce77d4",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/glass-kettle",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.327Z"
+}

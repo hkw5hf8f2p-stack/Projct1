@@ -1,0 +1,67 @@
+{
+  "key": "f4675db2841e8217746fbbfcfcdc386c5822c1ae4e2fd97ec8af3f0dc73c407f",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог»",
+      "Три товари з назвами та цінами: 1 299 грн, 749 грн, 459 грн",
+      "Назви товарів оформлені як посилання",
+      "Кольорові заглушки замість фото"
+    ],
+    "understood": [
+      "Магазин пропонує три товари для дому",
+      "Ціна кожного товару вказана в картці",
+      "Щоб побачити деталі, треба відкрити картку товару"
+    ],
+    "unclear": [
+      "Чим товари відрізняються між собою, крім назви й ціни"
+    ],
+    "likely_next_action": "Відкрити один із товарів, щоб дізнатися більше",
+    "frictions": [],
+    "positive_signals": [
+      "Ціни видно одразу в кожній картці",
+      "Короткий список без зайвого"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Каталог простий: три товари з назвами й цінами. Новачкові зрозуміло, що обирати, а деталі доступні в картках товарів."
+  },
+  "input_tokens": 3317,
+  "output_tokens": 237,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "f4675db2841e8217746fbbfcfcdc386c5822c1ae4e2fd97ec8af3f0dc73c407f",
+    "response_sha256": "2bcd04335380a68375d28c1e3c1593495796e7659bdb18d5bdd3148cf7276d79",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "6170a07e08ed9d47985a3325d4010be72ee6353729520ddc52786de462a8a7a5"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.300Z"
+}

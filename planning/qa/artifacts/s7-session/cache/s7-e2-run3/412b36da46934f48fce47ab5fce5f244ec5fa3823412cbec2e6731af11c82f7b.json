@@ -1,0 +1,84 @@
+{
+  "key": "412b36da46934f48fce47ab5fce5f244ec5fa3823412cbec2e6731af11c82f7b",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «AquaPro X220 (система HFX)»",
+      "Зображення-заглушка з назвою моделі",
+      "Посилання «Налаштувати комплектацію» та «Прибрати з порівняння»",
+      "Кілька абзаців тексту про модель"
+    ],
+    "understood": [
+      "Це фільтр для води з проточною кухонною установкою",
+      "Комплектацію можна змінити перед оформленням"
+    ],
+    "unclear": [
+      "Ціна не вказана",
+      "Які саме набори та кольори доступні і чи впливають на ціну",
+      "Чим ця модель відрізняється від сусідньої"
+    ],
+    "positive_signals": [
+      "Текст чесно каже, що пристрій робить одну справу",
+      "В комплекті є інструкція українською та гарантійний талон"
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є в тексті сторінки, але в наданому вікні її не видно; її розташування — UNKNOWN",
+      "Нижче першого вікна тайлів немає"
+    ],
+    "success": "partial",
+    "frictions": [
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "NOT_FOUND: технічні характеристики моделі",
+        "tile_id": "t0"
+      },
+      {
+        "category": "comparison",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "\"Прибрати з порівняння\"",
+        "tile_id": "t0"
+      }
+    ],
+    "likely_next_action": "Шукав би специфікації; не знайшовши, повернувся б до каталогу.",
+    "final_summary": "Опис загальний, характеристик для порівняння немає; вирішити щодо кошика на основі даних складно."
+  },
+  "input_tokens": 3533,
+  "output_tokens": 375,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "412b36da46934f48fce47ab5fce5f244ec5fa3823412cbec2e6731af11c82f7b__44bcef",
+    "response_sha256": "b70019cbf66e793c731d14478281e3d8295fb78d63afa575191baecd94a6b753",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x220",
+      "lens_id": "lens_expert",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f3c08701edc8733ad85d4c041a3703ae7eac71be2be7d55db1bb05a0ac35c92"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.982Z"
+}

@@ -1,0 +1,68 @@
+{
+  "key": "88cf123ad1a0a9c06fca6b81311823a8accd5df06369ae31b27cecf29f0bddf4",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Заголовок «Каталог товарів для дому»",
+      "Підзаголовок «Небагато речей, але добре вибраних. Ціни й умови видно одразу.»",
+      "Посилання «Відкрити каталог»",
+      "Велика абстрактна картинка з кольоровими блоками"
+    ],
+    "understood": [
+      "Це інтернет-каталог товарів для дому",
+      "Бренд — ЧистийДім",
+      "Далі можна відкрити каталог"
+    ],
+    "unclear": [
+      "Які саме товари в каталозі — картинка це не показує"
+    ],
+    "likely_next_action": "Натиснути «Відкрити каталог»",
+    "frictions": [],
+    "positive_signals": [
+      "Заголовок прямо називає, що пропонує сайт",
+      "Є чітка дія «Відкрити каталог»"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран.",
+      "Конкретні товари на першому екрані не показані."
+    ],
+    "success": "true",
+    "final_summary": "Перший екран пояснює, що це каталог товарів для дому, і веде до каталогу. Конкретні товари з'ясуються лише після переходу."
+  },
+  "input_tokens": 3324,
+  "output_tokens": 243,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "88cf123ad1a0a9c06fca6b81311823a8accd5df06369ae31b27cecf29f0bddf4",
+    "response_sha256": "38936bd8569cbb0aee07fa0280ce2d46bb2782ec190ec3f7a9384891492ef03f",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/",
+      "lens_id": "lens_novice",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "79f03dbd1d1db297d731e46bd93640cafd509658b74440dc434f36dec8f12a85"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.291Z"
+}

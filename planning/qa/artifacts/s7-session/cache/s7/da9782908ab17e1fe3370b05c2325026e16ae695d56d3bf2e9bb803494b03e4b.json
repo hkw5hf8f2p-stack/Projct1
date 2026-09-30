@@ -1,0 +1,74 @@
+{
+  "key": "da9782908ab17e1fe3370b05c2325026e16ae695d56d3bf2e9bb803494b03e4b",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Назва товару «Дорожній термос» і ціна 749 грн на видноті.",
+      "Короткий опис: «Тримає тепло дванадцять годин.»",
+      "Є текстовий блок про догляд і комплектацію.",
+      "Кнопка «Додати в кошик» є в тексті сторінки, але на першому екрані її не видно."
+    ],
+    "understood": [
+      "Це сторінка одного товару з ціною.",
+      "Комплектацію можна змінити перед оформленням."
+    ],
+    "unclear": [
+      "Де саме кнопка додавання в кошик на екрані."
+    ],
+    "likely_next_action": "Шукати кнопку «Додати в кошик» і, знайшовши, натиснути.",
+    "frictions": [
+      {
+        "category": "cta",
+        "claim_kind": "below_fold",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: кнопка «Додати в кошик» у першому вікні (t0)",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Ціна показана поруч із назвою."
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є у видимому тексті, але не показана в наданому тайлі t0: її розташування UNKNOWN.",
+      "Інформація про доставку та повернення не надана: UNKNOWN."
+    ],
+    "success": "partial",
+    "final_summary": "Назва й ціна видні одразу, але кнопки додавання в кошик на першому екрані немає, що уповільнює швидку покупку."
+  },
+  "input_tokens": 3481,
+  "output_tokens": 314,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "da9782908ab17e1fe3370b05c2325026e16ae695d56d3bf2e9bb803494b03e4b",
+    "response_sha256": "c593981fdabe887b1b8396d59a4d378b5a4747c7df1f421ce94e2d8ae490ac83",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/product/travel-thermos",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "7464484bfaff6f36f56f99bc8b2b6124395cbc1ee2964c9c34d8997a940eeea2"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.489Z"
+}

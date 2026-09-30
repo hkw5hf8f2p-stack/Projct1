@@ -1,0 +1,70 @@
+{
+  "key": "a4afd7a97b312b68e51a71ec44c49b76744e5dc925e159a2906db35b060b3abe",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Назва «Скляний чайник» і ціна 1 299 грн",
+      "Помітна кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Заглушка-зображення без реальних фото"
+    ],
+    "understood": [
+      "Це товар «Скляний чайник» за ціною 1 299 грн",
+      "Доставка Новою поштою: 1–2 дні, від 70 грн",
+      "У комплекті є інструкція українською та гарантійний талон",
+      "Остаточна сума з доставкою залежить від того, що покаже кошик"
+    ],
+    "unclear": [
+      "Точна вартість доставки, бо вказано лише «від 70 грн»"
+    ],
+    "likely_next_action": "Додати товар у кошик і подивитися підсумок",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна та кнопка додавання видно одразу",
+      "Умови доставки вказано на самій сторінці",
+      "Згадано перевірку на заводі та гарантійний талон"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо.",
+      "Підсумок замовлення в кошику не показано."
+    ],
+    "success": "true",
+    "final_summary": "Ціна й мінімальна вартість доставки видно одразу, тому рішення про кошик можна ухвалити; точний підсумок покаже кошик."
+  },
+  "input_tokens": 3532,
+  "output_tokens": 292,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "a4afd7a97b312b68e51a71ec44c49b76744e5dc925e159a2906db35b060b3abe",
+    "response_sha256": "fec25ac2a5756e62f454a98ddbaa6d59c7ca6feb7921ea3088af6faa807078e4",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/glass-kettle",
+      "lens_id": "lens_price",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.323Z"
+}

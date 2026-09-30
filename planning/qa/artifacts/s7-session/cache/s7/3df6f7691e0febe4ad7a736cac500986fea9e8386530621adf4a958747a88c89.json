@@ -1,0 +1,72 @@
+{
+  "key": "3df6f7691e0febe4ad7a736cac500986fea9e8386530621adf4a958747a88c89",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Заголовок «Каталог» і три товари: Скляний чайник, Дорожній термос, Дерев'яна дошка.",
+      "Кожен товар має мініатюру й посилання-назву.",
+      "Ціни та описи в картках не показані."
+    ],
+    "understood": [
+      "Це список із трьох товарів, кожен веде на власну сторінку."
+    ],
+    "unclear": [
+      "Чим відрізняються товари й для кого вони.",
+      "Немає коротких описів у картках."
+    ],
+    "likely_next_action": "Відкрити першу назву, щоб зрозуміти товар.",
+    "frictions": [
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: короткий опис товарів у картках каталогу",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Чіткий список, назви — посилання."
+    ],
+    "uncertainties": [
+      "Що містять сторінки товарів, невідомо до переходу."
+    ],
+    "success": "partial",
+    "final_summary": "Список простий, але без описів і цін новачку важко зрозуміти, що обрати; вибір можливий лише навмання чи через відкриття карток."
+  },
+  "input_tokens": 3298,
+  "output_tokens": 269,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "3df6f7691e0febe4ad7a736cac500986fea9e8386530621adf4a958747a88c89",
+    "response_sha256": "30a9650bbcd6b42caf973a3ea08c60008eff844cca5a24e9985b24817a22944c",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-b.test:4214/catalog",
+      "lens_id": "lens_novice",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "0b9a2eec6c073b1f5464f801a343a71fc90331a72027a1c2c17dcc9ab2e4d581"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.459Z"
+}

@@ -1,0 +1,73 @@
+{
+  "key": "ffab0e635283735391de02ba6559a0a3d27dbacb5264b62531e3662acdf2ab53",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Три картки моделей: AquaPro X200, AquaPro X220 і Softline S1",
+      "У кожної картки є кнопка «В кошик»",
+      "Посилання «Очистити порівняння» біля опису каталогу"
+    ],
+    "understood": [
+      "Це каталог із трьох моделей приладів для води"
+    ],
+    "unclear": [
+      "Ціна кожної моделі",
+      "Чи є додаткові витрати — UNKNOWN"
+    ],
+    "positive_signals": [
+      "Короткий опис під кожною назвою",
+      "Чіткі кнопки «В кошик»"
+    ],
+    "uncertainties": [
+      "Сторінка нижче першого вікна не показана; чи є там фільтри або ціни — UNKNOWN"
+    ],
+    "success": "false",
+    "frictions": [
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "high",
+        "evidence": "NOT_FOUND: ціни на картках каталогу",
+        "tile_id": "t0"
+      }
+    ],
+    "likely_next_action": "Відкрив би картку товару в пошуках ціни; додавати в кошик без ціни не став би.",
+    "final_summary": "На сторінці каталогу цін не видно, тож повну вартість до кошика лінза дізнатися не може."
+  },
+  "input_tokens": 3383,
+  "output_tokens": 262,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "ffab0e635283735391de02ba6559a0a3d27dbacb5264b62531e3662acdf2ab53__44bcef",
+    "response_sha256": "57ba0a81fb45276f16ec09314795fa047db188047ace84a21b54cc1b3fe5c95c",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/catalog",
+      "lens_id": "lens_price",
+      "task_id": "t_choose",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.952Z"
+}

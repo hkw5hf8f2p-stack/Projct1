@@ -1,0 +1,68 @@
+{
+  "key": "011e0500f5d73de92194634d359ab300260400dbc3af9f8870b4eb7030e4d3ea",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Назва «Скляний чайник» і ціна 1 299 грн",
+      "Помітна кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Заглушка-зображення без реальних фото"
+    ],
+    "understood": [
+      "Це товар «Скляний чайник» за ціною 1 299 грн",
+      "Доставка Новою поштою: 1–2 дні, від 70 грн",
+      "У комплекті є інструкція українською та гарантійний талон"
+    ],
+    "unclear": [
+      "Чи підійде товар для конкретних потреб, бо опис загальний"
+    ],
+    "likely_next_action": "Прочитати опис нижче й, якщо все зрозуміло, додати в кошик",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна та кнопка додавання видно одразу",
+      "Умови доставки вказано на самій сторінці",
+      "Згадано перевірку на заводі та гарантійний талон"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Сторінка проста й зрозуміла: видно, що це за товар, скільки коштує і як його додати в кошик. Умови доставки та гарантії подано прямо."
+  },
+  "input_tokens": 3533,
+  "output_tokens": 270,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "011e0500f5d73de92194634d359ab300260400dbc3af9f8870b4eb7030e4d3ea",
+    "response_sha256": "1791602f182ee5addb4b25a456cc1df3b5ec896e8b64f78bc495887f3c19528a",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/glass-kettle",
+      "lens_id": "lens_novice",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.319Z"
+}

@@ -1,0 +1,63 @@
+{
+  "key": "fecb357692c0824cece08493a774c42b2c4fd8a5ba674054434df5354416d299",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Назва «Дорожній термос» і ціна 749 грн",
+      "Помітна кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою"
+    ],
+    "understood": [
+      "Це товар «Дорожній термос» за ціною 749 грн",
+      "Доставка Новою поштою: 1–2 дні, від 70 грн"
+    ],
+    "unclear": [],
+    "likely_next_action": "Натиснути «Додати в кошик»",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна та кнопка додавання видно одразу",
+      "Умови доставки вказано на самій сторінці"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Назва, ціна, кнопка й доставка видно без прокрутки; швидке рішення про додавання в кошик можливе."
+  },
+  "input_tokens": 3528,
+  "output_tokens": 190,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "fecb357692c0824cece08493a774c42b2c4fd8a5ba674054434df5354416d299",
+    "response_sha256": "5555b94589966b153ac15c66e1a3159bb1a25721d2816e077b431db742d1cb8b",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/travel-thermos",
+      "lens_id": "lens_fast",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "fdab7cfce539ad01bcf4e30082a9f18c8091163c214f0908922e7e663880f5a4"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.339Z"
+}

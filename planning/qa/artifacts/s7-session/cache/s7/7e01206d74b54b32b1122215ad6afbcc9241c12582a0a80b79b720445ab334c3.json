@@ -1,0 +1,78 @@
+{
+  "key": "7e01206d74b54b32b1122215ad6afbcc9241c12582a0a80b79b720445ab334c3",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "noticed": [
+      "Великий декоративний банер з абстрактними кольоровими прямокутниками без товарів.",
+      "Заголовок «Ідеї, що змінюють будні», короткий підпис і посилання «Переглянути асортимент»."
+    ],
+    "understood": [
+      "Це інтернет-магазин «ТехноДім»; у меню є «Каталог»."
+    ],
+    "positive_signals": [
+      "Є одне зрозуміле посилання «Переглянути асортимент» і навігація «Каталог»."
+    ],
+    "uncertainties": [
+      "Що саме продається — UNKNOWN на першому екрані; можливо, це видно в каталозі."
+    ],
+    "verdict": "issues_found",
+    "unclear": [
+      "Що продається та за якими цінами (ціни не показані).",
+      "Ціновий рівень магазину."
+    ],
+    "likely_next_action": "Перейти в «Каталог» у пошуках товарів і цін.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "high",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      },
+      {
+        "category": "pricing",
+        "claim_kind": "not_in_first_viewport",
+        "severity": "low",
+        "evidence": "NOT_FOUND: будь-яка інформація про ціни на головній сторінці (t0)",
+        "tile_id": "t0"
+      }
+    ],
+    "success": "partial",
+    "final_summary": "Перший екран не називає товарів і не містить цінової інформації, тому оцінити повну вартість неможливо; відповіді треба шукати в каталозі."
+  },
+  "input_tokens": 3318,
+  "output_tokens": 349,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "7e01206d74b54b32b1122215ad6afbcc9241c12582a0a80b79b720445ab334c3",
+    "response_sha256": "54dda9756907ff49b42ca381b0aca73bde42cb2dfa2cf1326c8bf4a8c3588379",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_price",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.171Z"
+}

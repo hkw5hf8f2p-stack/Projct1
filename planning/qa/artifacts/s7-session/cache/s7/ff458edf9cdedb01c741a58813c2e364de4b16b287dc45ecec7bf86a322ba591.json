@@ -1,0 +1,80 @@
+{
+  "key": "ff458edf9cdedb01c741a58813c2e364de4b16b287dc45ecec7bf86a322ba591",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "noticed": [
+      "Заголовок «AquaPro X200 (система HFX)», зображення-заглушка, опис і два посилання: «Налаштувати комплектацію», «Прибрати з порівняння».",
+      "Абзаци про щоденне використання, перевірку на заводі, інструкцію українською та гарантійний талон."
+    ],
+    "understood": [
+      "Це фільтр для води для кухні; є інструкція українською та гарантійний талон."
+    ],
+    "positive_signals": [
+      "Прості й зрозумілі пояснення про догляд: «достатньо періодично промивати знімні частини теплою водою»."
+    ],
+    "uncertainties": [
+      "Кнопка «Додати в кошик» є у тексті сторінки, але її не видно на першому екрані-знімку (там порожньо під останнім абзацом); де вона — UNKNOWN.",
+      "Чи є на сторінці ціна — на першому екрані не видно."
+    ],
+    "verdict": "issues_found",
+    "unclear": [
+      "Що означає «система HFX».",
+      "Що дає «Налаштувати комплектацію» і чи обов'язково це робити.",
+      "Чи підходить ця модель для моєї кухні."
+    ],
+    "likely_next_action": "Прочитати опис; за нестачі пояснень повернутися до каталогу й порівняти з іншою моделлю.",
+    "frictions": [
+      {
+        "category": "terminology",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "AquaPro X200 (система HFX)",
+        "tile_id": "t0"
+      },
+      {
+        "category": "missing_information",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "NOT_FOUND: пояснення, для яких умов і кухонь підходить модель, та що таке «система HFX»",
+        "tile_id": "t0"
+      }
+    ],
+    "success": "partial",
+    "final_summary": "Новачок розуміє, що це кухонний фільтр, і бачить гарантію та інструкцію українською. Але скорочення HFX не пояснене, а зрозуміти, чи підходить модель, складно."
+  },
+  "input_tokens": 3534,
+  "output_tokens": 441,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "ff458edf9cdedb01c741a58813c2e364de4b16b287dc45ecec7bf86a322ba591",
+    "response_sha256": "c63fb0a34e8e2008c34af47aa89c9ec696cfeb7cf6c898e1f9bee43d162ec002",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/product/aquapro-x200",
+      "lens_id": "lens_novice",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "645bc8d826c8730120ee16c96691c76c42699574f6813058ecce22f7dd6b53da"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.200Z"
+}

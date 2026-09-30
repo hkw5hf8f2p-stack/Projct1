@@ -1,0 +1,80 @@
+{
+  "key": "e0a61e0ccc848d9cee420a4f928af585cf980020cc12edf144e0d5fd068509c4",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "issues_found",
+    "noticed": [
+      "Велике декоративне зображення з кольоровими прямокутниками",
+      "Заголовок «Ідеї, що змінюють будні»",
+      "Кнопка-посилання «Переглянути асортимент»",
+      "Навігація: Каталог, Про нас, Вийти"
+    ],
+    "understood": [
+      "Це інтернет-магазин ТехноДім; товари згадані лише загально як «речі»"
+    ],
+    "unclear": [
+      "Які саме товари продаються",
+      "Що означає «Вийти» в навігації"
+    ],
+    "likely_next_action": "Натиснути «Переглянути асортимент», щоб побачити, що саме продається.",
+    "frictions": [
+      {
+        "category": "value_proposition",
+        "claim_kind": "general",
+        "severity": "medium",
+        "evidence": "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі.",
+        "tile_id": "t0"
+      },
+      {
+        "category": "visual_hierarchy",
+        "claim_kind": "general",
+        "severity": "low",
+        "evidence": "Ідеї, що змінюють будні",
+        "tile_id": "t0"
+      }
+    ],
+    "positive_signals": [
+      "Є явний заклик «Переглянути асортимент»"
+    ],
+    "uncertainties": [
+      "Які категорії товарів у каталозі — за цим екраном UNKNOWN"
+    ],
+    "success": "partial",
+    "final_summary": "Це магазин речей для дому, але перший екран не називає жодного товару чи категорії; новачок змушений іти в каталог, щоб зрозуміти пропозицію."
+  },
+  "input_tokens": 3320,
+  "output_tokens": 329,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "e0a61e0ccc848d9cee420a4f928af585cf980020cc12edf144e0d5fd068509c4__97042e",
+    "response_sha256": "d2223014315b08fc09831c1a210a3cbb2872472253e594d2a04b265282992fc3",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "lens_id": "lens_novice",
+      "task_id": "t_understand",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:50.727Z"
+}

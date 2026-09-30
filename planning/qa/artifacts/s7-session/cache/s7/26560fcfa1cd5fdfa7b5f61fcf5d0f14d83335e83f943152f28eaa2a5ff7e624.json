@@ -1,0 +1,68 @@
+{
+  "key": "26560fcfa1cd5fdfa7b5f61fcf5d0f14d83335e83f943152f28eaa2a5ff7e624",
+  "provider": "session",
+  "model": "claude-in-session-b",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": false,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Назва «Дорожній термос» і ціна 749 грн",
+      "Помітна кнопка «Додати в кошик»",
+      "Рядок про доставку Новою поштою",
+      "Заглушка-зображення без реальних фото"
+    ],
+    "understood": [
+      "Це товар «Дорожній термос» за ціною 749 грн",
+      "Доставка Новою поштою: 1–2 дні, від 70 грн",
+      "У комплекті є інструкція українською та гарантійний талон"
+    ],
+    "unclear": [
+      "Чи підійде товар для конкретних потреб, бо опис загальний"
+    ],
+    "likely_next_action": "Прочитати опис нижче й, якщо все зрозуміло, додати в кошик",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна та кнопка додавання видно одразу",
+      "Умови доставки вказано на самій сторінці",
+      "Згадано перевірку на заводі та гарантійний талон"
+    ],
+    "uncertainties": [
+      "Видно лише перший екран; що нижче за нього — невідомо."
+    ],
+    "success": "true",
+    "final_summary": "Сторінка проста й зрозуміла: видно, що це за товар, скільки коштує і як його додати в кошик. Умови доставки та гарантії подано прямо."
+  },
+  "input_tokens": 3533,
+  "output_tokens": 270,
+  "provenance": {
+    "provider": "session",
+    "model": "claude-in-session-b",
+    "answered_by": "blind-subagent",
+    "synthetic": false,
+    "tokens_estimated": true,
+    "request_id": "26560fcfa1cd5fdfa7b5f61fcf5d0f14d83335e83f943152f28eaa2a5ff7e624",
+    "response_sha256": "349c54bd06d0e20a8f0e237999b562afda38865741b06cd883b58a90b556c77e",
+    "attempt": 1
+  },
+  "tokens_estimated": true,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://site-a.test:4213/product/travel-thermos",
+      "lens_id": "lens_novice",
+      "task_id": "t_buy",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "fdab7cfce539ad01bcf4e30082a9f18c8091163c214f0908922e7e663880f5a4"
+    ]
+  },
+  "recorded_at": "2026-09-30T08:32:51.333Z"
+}

@@ -14,7 +14,7 @@
   "language": "uk",
   "llm_mode": "replay",
   "llm_provider": "replay",
-  "llm_model": "session:claude-in-session",
+  "llm_model": "session:claude-in-session-b",
   "prompt_versions": [
    "snapshot-evaluator-v1"
   ],
@@ -95,12 +95,13 @@
    "fnd_8319e2fcf7be",
    "fnd_14b9ab0650ce",
    "fnd_e12b933e79aa",
-   "fnd_0c822b8fecc3",
-   "fnd_900219d49599"
+   "fnd_e8f182a5517d",
+   "fnd_0c822b8fecc3"
   ],
   "top_strength_ids": [
    "pos_67aa45b64e05",
-   "pos_bb5185dd778a"
+   "pos_bb5185dd778a",
+   "pos_89f4df95acae"
   ],
   "pages_inspected": 5,
   "synthetic_snapshot_sessions": 16,
@@ -113,9 +114,7 @@
  "funnel": [
   {
    "stage": "landing",
-   "finding_ids": [
-    "fnd_47b24e9f41f6"
-   ],
+   "finding_ids": [],
    "positive_ids": []
   },
   {
@@ -126,13 +125,15 @@
   {
    "stage": "browse",
    "finding_ids": [
-    "fnd_e12b933e79aa"
+    "fnd_e12b933e79aa",
+    "fnd_74784b13e9ac"
    ],
    "positive_ids": []
   },
   {
    "stage": "select",
    "finding_ids": [
+    "fnd_3d9900c591bd",
     "fnd_69a63d946f1d"
    ],
    "positive_ids": []
@@ -141,9 +142,7 @@
    "stage": "evaluate_product",
    "finding_ids": [
     "fnd_8319e2fcf7be",
-    "fnd_2152716f1aee",
-    "fnd_647868d26868",
-    "fnd_346b63a3672d"
+    "fnd_647868d26868"
    ],
    "positive_ids": [
     "pos_67aa45b64e05",
@@ -154,12 +153,12 @@
    "stage": "price_shipping_confidence",
    "finding_ids": [
     "fnd_14b9ab0650ce",
-    "fnd_0c822b8fecc3",
-    "fnd_900219d49599",
     "fnd_e8f182a5517d",
-    "fnd_bea10e29db12"
+    "fnd_0c822b8fecc3"
    ],
-   "positive_ids": []
+   "positive_ids": [
+    "pos_89f4df95acae"
+   ]
   },
   {
    "stage": "cart",
@@ -270,7 +269,8 @@
     "level": "VERIFIED",
     "rule": "C3-VERIFIED-DET",
     "families": [
-     "F-DET"
+     "F-DET",
+     "F-SYN"
     ],
     "contradiction": null
    },
@@ -297,21 +297,21 @@
    "synthetic": {
     "lens_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 1,
      "m": 4,
      "unit": "lenses",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "session_frequency": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 2,
      "m": 8,
      "unit": "sessions",
      "disclaimer": "synthetic_single_model_correlated"
     },
     "task_coverage": {
      "form": "n_of_m_synthetic",
-     "n": 0,
+     "n": 1,
      "m": 1,
      "unit": "tasks",
      "disclaimer": "synthetic_single_model_correlated"
@@ -369,14 +369,20 @@
    "evidence_ids": [
     "ev_56dffaa01f9c",
     "ev_7882568d8d7c",
+    "ev_843e86561118",
     "ev_8f33aa933054",
     "ev_a090a4a690d5",
     "ev_a9404d1c571c",
+    "ev_d25af24c6847",
     "ev_f8a2221ce3f1"
    ],
-   "instances": 6,
-   "affected_task_ids": [],
-   "affected_lens_ids": [],
+   "instances": 8,
+   "affected_task_ids": [
+    "t_buy"
+   ],
+   "affected_lens_ids": [
+    "lens_fast"
+   ],
    "executive_eligible": true
   },
   {
@@ -799,21 +805,26 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_0c822b8fecc3",
-   "finding_key": "pricing|category|general",
-   "category": "pricing",
-   "page_group": "category",
-   "claim_kind": "general",
+   "id": "fnd_e8f182a5517d",
+   "finding_key": "shipping|product|cost_unknown",
+   "category": "shipping",
+   "page_group": "product",
+   "claim_kind": "cost_unknown",
    "component": null,
    "rank": 4,
    "pages": [
     {
-     "url": "http://site-b.test:4214/catalog",
-     "path": "/catalog",
-     "page_type": "category"
+     "url": "http://site-b.test:4214/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-b.test:4214/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
     }
    ],
-   "page_count": 1,
+   "page_count": 2,
    "title": {
     "template": "Проблема в категорії {category}",
     "params": {
@@ -837,411 +848,6 @@
     "params": {
      "page_count": {
       "ptr": "/findings/3/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.85,
-    "base": 0.8,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 72,
-    "uncapped": 72,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 90
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.85,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.9,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_1d5643c3e5c6",
-    "ev_8ab9b2db8d5c"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_choose"
-   ],
-   "affected_lens_ids": [
-    "lens_fast",
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_900219d49599",
-   "finding_key": "pricing|product|total_unclear",
-   "category": "pricing",
-   "page_group": "product",
-   "claim_kind": "total_unclear",
-   "component": null,
-   "rank": 5,
-   "pages": [
-    {
-     "url": "http://site-b.test:4214/product/glass-kettle",
-     "path": "/product/glass-kettle",
-     "page_type": "product"
-    },
-    {
-     "url": "http://site-b.test:4214/product/travel-thermos",
-     "path": "/product/travel-thermos",
-     "page_type": "product"
-    }
-   ],
-   "page_count": 2,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/4/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/4/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.85,
-    "base": 0.8,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "price_shipping_confidence",
-    "value": 0.9,
-    "stage_source": "category"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 8,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 63,
-    "uncapped": 63,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 90
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.85,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.9,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_59df268519f6",
-    "ev_a0e63667572d"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_buy"
-   ],
-   "affected_lens_ids": [
-    "lens_price"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_e8f182a5517d",
-   "finding_key": "shipping|product|cost_unknown",
-   "category": "shipping",
-   "page_group": "product",
-   "claim_kind": "cost_unknown",
-   "component": null,
-   "rank": 6,
-   "pages": [
-    {
-     "url": "http://site-b.test:4214/product/glass-kettle",
-     "path": "/product/glass-kettle",
-     "page_type": "product"
-    },
-    {
-     "url": "http://site-b.test:4214/product/travel-thermos",
-     "path": "/product/travel-thermos",
-     "page_type": "product"
-    }
-   ],
-   "page_count": 2,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/5/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/5/page_count",
       "format": "int"
      }
     },
@@ -1388,8 +994,8 @@
     ]
    },
    "evidence_ids": [
-    "ev_aa2a3fbd1e70",
-    "ev_c2e45886b93b"
+    "ev_547c514ee67a",
+    "ev_aa61e5c6c9c4"
    ],
    "instances": 2,
    "affected_task_ids": [
@@ -1401,428 +1007,33 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_2152716f1aee",
-   "finding_key": "cta|product|general",
-   "category": "cta",
-   "page_group": "product",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 7,
-   "pages": [
-    {
-     "url": "http://site-b.test:4214/product/glass-kettle",
-     "path": "/product/glass-kettle",
-     "page_type": "product"
-    },
-    {
-     "url": "http://site-b.test:4214/product/travel-thermos",
-     "path": "/product/travel-thermos",
-     "page_type": "product"
-    }
-   ],
-   "page_count": 2,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/6/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/6/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.8,
-    "base": 0.75,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "evaluate_product",
-    "value": 0.8,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 8,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 59,
-    "uncapped": 59,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 85
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.25,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_3dac537d5ab9",
-    "ev_5ee2bc38a27b"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_buy"
-   ],
-   "affected_lens_ids": [
-    "lens_fast"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_47b24e9f41f6",
-   "finding_key": "value_proposition|/|general",
-   "category": "value_proposition",
-   "page_group": "/",
-   "claim_kind": "general",
-   "component": null,
-   "rank": 8,
-   "pages": [
-    {
-     "url": "http://site-b.test:4214/",
-     "path": "/",
-     "page_type": "homepage"
-    }
-   ],
-   "page_count": 1,
-   "title": {
-    "template": "Проблема в категорії {category}",
-    "params": {
-     "category": {
-      "ptr": "/findings/7/category",
-      "format": "text"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.title.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "problem": {
-    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
-    "params": {
-     "page_count": {
-      "ptr": "/findings/7/page_count",
-      "format": "int"
-     }
-    },
-    "origin": "code",
-    "source_class": "INFERRED",
-    "lang": "uk",
-    "template_id": "finding.problem.generic",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "why_it_matters": null,
-   "recommendation": {
-    "recommended_change": {
-     "template": "Перегляньте докази й усуньте показану ними проблему.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.change.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    },
-    "how_to_validate": {
-     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
-     "params": {},
-     "origin": "code",
-     "source_class": "BENCHMARKED",
-     "lang": "uk",
-     "template_id": "finding.validate.generic",
-     "guard": {
-      "status": "not_applicable",
-      "attempts": 0,
-      "rule_ids": []
-     }
-    }
-   },
-   "confidence": {
-    "level": "HYPOTHESIS",
-    "rule": "C3-HYP-DEFAULT",
-    "families": [
-     "F-SYN"
-    ],
-    "contradiction": null
-   },
-   "severity": {
-    "value": 0.8,
-    "base": 0.75,
-    "base_source": "category",
-    "modifiers": [
-     {
-      "id": "MOD-PAGE-PRIMARY",
-      "delta": 0.05
-     }
-    ]
-   },
-   "funnel": {
-    "stage": "landing",
-    "value": 0.3,
-    "stage_source": "page_type"
-   },
-   "evidence_strength": {
-    "value": 0.7,
-    "tier": "ET-SYN-M"
-   },
-   "synthetic": {
-    "lens_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "lenses",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "session_frequency": {
-     "form": "n_of_m_synthetic",
-     "n": 2,
-     "m": 4,
-     "unit": "sessions",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "task_coverage": {
-     "form": "n_of_m_synthetic",
-     "n": 1,
-     "m": 1,
-     "unit": "tasks",
-     "disclaimer": "synthetic_single_model_correlated"
-    },
-    "in_priority": true
-   },
-   "priority": {
-    "value": 58,
-    "uncapped": 58,
-    "cap": {
-     "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 69
-    },
-    "formula": "scoring-v1/redistributed",
-    "components": [
-     {
-      "name": "severity",
-      "base_weight": 0.3,
-      "applicable": true,
-      "value": 0.8,
-      "effective_weight": 0.3,
-      "na_reason": null
-     },
-     {
-      "name": "funnel_proximity",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.3,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "lens_coverage",
-      "base_weight": 0.2,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.2,
-      "na_reason": null
-     },
-     {
-      "name": "session_frequency",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.5,
-      "effective_weight": 0.15,
-      "na_reason": null
-     },
-     {
-      "name": "evidence_strength",
-      "base_weight": 0.15,
-      "applicable": true,
-      "value": 0.7,
-      "effective_weight": 0.15,
-      "na_reason": null
-     }
-    ]
-   },
-   "evidence_ids": [
-    "ev_58b52392008f",
-    "ev_aa54f34f63e8"
-   ],
-   "instances": 2,
-   "affected_task_ids": [
-    "t_understand"
-   ],
-   "affected_lens_ids": [
-    "lens_expert",
-    "lens_novice"
-   ],
-   "executive_eligible": true
-  },
-  {
-   "id": "fnd_bea10e29db12",
-   "finding_key": "pricing|/|not_in_first_viewport",
+   "id": "fnd_0c822b8fecc3",
+   "finding_key": "pricing|category|general",
    "category": "pricing",
-   "page_group": "/",
-   "claim_kind": "not_in_first_viewport",
+   "page_group": "category",
+   "claim_kind": "general",
    "component": null,
-   "rank": 9,
+   "rank": 5,
    "pages": [
     {
-     "url": "http://site-b.test:4214/",
-     "path": "/",
-     "page_type": "homepage"
+     "url": "http://site-b.test:4214/catalog",
+     "path": "/catalog",
+     "page_type": "category"
     }
    ],
    "page_count": 1,
    "title": {
-    "template": "Ціни не видно в першому екрані",
-    "params": {},
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/4/category",
+      "format": "text"
+     }
+    },
     "origin": "code",
     "source_class": "INFERRED",
     "lang": "uk",
-    "template_id": "finding.title.not_in_first_viewport",
+    "template_id": "finding.title.generic",
     "guard": {
      "status": "not_applicable",
      "attempts": 0,
@@ -1830,44 +1041,32 @@
     }
    },
    "problem": {
-    "template": "Перший екран не показує ціни. Сторінок із проблемою: {page_count}.",
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/8/page_count",
+      "ptr": "/findings/4/page_count",
       "format": "int"
      }
     },
     "origin": "code",
     "source_class": "INFERRED",
     "lang": "uk",
-    "template_id": "finding.problem.not_in_first_viewport",
+    "template_id": "finding.problem.generic",
     "guard": {
      "status": "not_applicable",
      "attempts": 0,
      "rule_ids": []
     }
    },
-   "why_it_matters": {
-    "template": "Без видимої ціни відвідувач не може оцінити пропозицію й мусить шукати далі.",
-    "params": {},
-    "origin": "code",
-    "source_class": "BENCHMARKED",
-    "lang": "uk",
-    "template_id": "finding.why.not_in_first_viewport",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
+   "why_it_matters": null,
    "recommendation": {
     "recommended_change": {
-     "template": "Покажіть ціну в першому екрані, поруч із назвою товару.",
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
      "params": {},
      "origin": "code",
      "source_class": "BENCHMARKED",
      "lang": "uk",
-     "template_id": "finding.change.not_in_first_viewport",
+     "template_id": "finding.change.generic",
      "guard": {
       "status": "not_applicable",
       "attempts": 0,
@@ -1880,7 +1079,7 @@
      "origin": "code",
      "source_class": "BENCHMARKED",
      "lang": "uk",
-     "template_id": "finding.validate.not_in_first_viewport",
+     "template_id": "finding.validate.generic",
      "guard": {
       "status": "not_applicable",
       "attempts": 0,
@@ -1992,11 +1191,11 @@
     ]
    },
    "evidence_ids": [
-    "ev_e90d20fb5729"
+    "ev_1b3c2acd79ae"
    ],
    "instances": 1,
    "affected_task_ids": [
-    "t_understand"
+    "t_choose"
    ],
    "affected_lens_ids": [
     "lens_price"
@@ -2010,7 +1209,7 @@
    "page_group": "product",
    "claim_kind": "general",
    "component": null,
-   "rank": 10,
+   "rank": 6,
    "pages": [
     {
      "url": "http://site-b.test:4214/product/glass-kettle",
@@ -2028,7 +1227,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/9/category",
+      "ptr": "/findings/5/category",
       "format": "text"
      }
     },
@@ -2046,7 +1245,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/9/page_count",
+      "ptr": "/findings/5/page_count",
       "format": "int"
      }
     },
@@ -2193,8 +1392,8 @@
     ]
    },
    "evidence_ids": [
-    "ev_4b581a05d7dd",
-    "ev_b61b1251a4a8"
+    "ev_267992ca9ab7",
+    "ev_532a3befa1f4"
    ],
    "instances": 2,
    "affected_task_ids": [
@@ -2206,13 +1405,13 @@
    "executive_eligible": true
   },
   {
-   "id": "fnd_346b63a3672d",
-   "finding_key": "terminology|product|general",
-   "category": "terminology",
+   "id": "fnd_3d9900c591bd",
+   "finding_key": "comparison|product|general",
+   "category": "comparison",
    "page_group": "product",
    "claim_kind": "general",
    "component": null,
-   "rank": 11,
+   "rank": 7,
    "pages": [
     {
      "url": "http://site-b.test:4214/product/glass-kettle",
@@ -2230,7 +1429,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/10/category",
+      "ptr": "/findings/6/category",
       "format": "text"
      }
     },
@@ -2248,7 +1447,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/10/page_count",
+      "ptr": "/findings/6/page_count",
       "format": "int"
      }
     },
@@ -2300,8 +1499,8 @@
     "contradiction": null
    },
    "severity": {
-    "value": 0.5,
-    "base": 0.45,
+    "value": 0.6,
+    "base": 0.55,
     "base_source": "category",
     "modifiers": [
      {
@@ -2311,9 +1510,9 @@
     ]
    },
    "funnel": {
-    "stage": "evaluate_product",
-    "value": 0.8,
-    "stage_source": "page_type"
+    "stage": "select",
+    "value": 0.7,
+    "stage_source": "category"
    },
    "evidence_strength": {
     "value": 0.7,
@@ -2344,11 +1543,11 @@
     "in_priority": true
    },
    "priority": {
-    "value": 50,
-    "uncapped": 50,
+    "value": 51,
+    "uncapped": 51,
     "cap": {
      "rule": "CAP-HYP-VERIFIED-EQUIV",
-     "value": 71
+     "value": 72
     },
     "formula": "scoring-v1/redistributed",
     "components": [
@@ -2356,7 +1555,7 @@
       "name": "severity",
       "base_weight": 0.3,
       "applicable": true,
-      "value": 0.5,
+      "value": 0.6,
       "effective_weight": 0.3,
       "na_reason": null
      },
@@ -2364,7 +1563,7 @@
       "name": "funnel_proximity",
       "base_weight": 0.2,
       "applicable": true,
-      "value": 0.8,
+      "value": 0.7,
       "effective_weight": 0.2,
       "na_reason": null
      },
@@ -2395,15 +1594,15 @@
     ]
    },
    "evidence_ids": [
-    "ev_193792fe827d",
-    "ev_41e23554b1b9"
+    "ev_33b8aeb30de2",
+    "ev_72be29b26fd1"
    ],
    "instances": 2,
    "affected_task_ids": [
     "t_buy"
    ],
    "affected_lens_ids": [
-    "lens_novice"
+    "lens_expert"
    ],
    "executive_eligible": true
   },
@@ -2414,7 +1613,7 @@
    "page_group": "category",
    "claim_kind": "general",
    "component": null,
-   "rank": 12,
+   "rank": 8,
    "pages": [
     {
      "url": "http://site-b.test:4214/catalog",
@@ -2427,7 +1626,7 @@
     "template": "Проблема в категорії {category}",
     "params": {
      "category": {
-      "ptr": "/findings/11/category",
+      "ptr": "/findings/7/category",
       "format": "text"
      }
     },
@@ -2445,7 +1644,7 @@
     "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
     "params": {
      "page_count": {
-      "ptr": "/findings/11/page_count",
+      "ptr": "/findings/7/page_count",
       "format": "int"
      }
     },
@@ -2592,7 +1791,7 @@
     ]
    },
    "evidence_ids": [
-    "ev_d3b535d75d5e"
+    "ev_5fde3bd06561"
    ],
    "instances": 1,
    "affected_task_ids": [
@@ -2600,6 +1799,202 @@
    ],
    "affected_lens_ids": [
     "lens_expert"
+   ],
+   "executive_eligible": true
+  },
+  {
+   "id": "fnd_74784b13e9ac",
+   "finding_key": "missing_information|category|general",
+   "category": "missing_information",
+   "page_group": "category",
+   "claim_kind": "general",
+   "component": null,
+   "rank": 9,
+   "pages": [
+    {
+     "url": "http://site-b.test:4214/catalog",
+     "path": "/catalog",
+     "page_type": "category"
+    }
+   ],
+   "page_count": 1,
+   "title": {
+    "template": "Проблема в категорії {category}",
+    "params": {
+     "category": {
+      "ptr": "/findings/8/category",
+      "format": "text"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.title.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "problem": {
+    "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+    "params": {
+     "page_count": {
+      "ptr": "/findings/8/page_count",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "INFERRED",
+    "lang": "uk",
+    "template_id": "finding.problem.generic",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "why_it_matters": null,
+   "recommendation": {
+    "recommended_change": {
+     "template": "Перегляньте докази й усуньте показану ними проблему.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.change.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    },
+    "how_to_validate": {
+     "template": "Запустіть A/B-тест зміненої сторінки проти поточної й порівняйте кліки «Додати в кошик». Не припускайте ефекту до тесту.",
+     "params": {},
+     "origin": "code",
+     "source_class": "BENCHMARKED",
+     "lang": "uk",
+     "template_id": "finding.validate.generic",
+     "guard": {
+      "status": "not_applicable",
+      "attempts": 0,
+      "rule_ids": []
+     }
+    }
+   },
+   "confidence": {
+    "level": "HYPOTHESIS",
+    "rule": "C3-HYP-DEFAULT",
+    "families": [
+     "F-SYN"
+    ],
+    "contradiction": null
+   },
+   "severity": {
+    "value": 0.65,
+    "base": 0.6,
+    "base_source": "category",
+    "modifiers": [
+     {
+      "id": "MOD-PAGE-PRIMARY",
+      "delta": 0.05
+     }
+    ]
+   },
+   "funnel": {
+    "stage": "browse",
+    "value": 0.55,
+    "stage_source": "page_type"
+   },
+   "evidence_strength": {
+    "value": 0.4,
+    "tier": "ET-SYN-1"
+   },
+   "synthetic": {
+    "lens_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "lenses",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "session_frequency": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 4,
+     "unit": "sessions",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "task_coverage": {
+     "form": "n_of_m_synthetic",
+     "n": 1,
+     "m": 1,
+     "unit": "tasks",
+     "disclaimer": "synthetic_single_model_correlated"
+    },
+    "in_priority": true
+   },
+   "priority": {
+    "value": 45,
+    "uncapped": 45,
+    "cap": {
+     "rule": "CAP-HYP-VERIFIED-EQUIV",
+     "value": 70
+    },
+    "formula": "scoring-v1/redistributed",
+    "components": [
+     {
+      "name": "severity",
+      "base_weight": 0.3,
+      "applicable": true,
+      "value": 0.65,
+      "effective_weight": 0.3,
+      "na_reason": null
+     },
+     {
+      "name": "funnel_proximity",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.55,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "lens_coverage",
+      "base_weight": 0.2,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.2,
+      "na_reason": null
+     },
+     {
+      "name": "session_frequency",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.25,
+      "effective_weight": 0.15,
+      "na_reason": null
+     },
+     {
+      "name": "evidence_strength",
+      "base_weight": 0.15,
+      "applicable": true,
+      "value": 0.4,
+      "effective_weight": 0.15,
+      "na_reason": null
+     }
+    ]
+   },
+   "evidence_ids": [
+    "ev_59c6e07a8ead"
+   ],
+   "instances": 1,
+   "affected_task_ids": [
+    "t_choose"
+   ],
+   "affected_lens_ids": [
+    "lens_novice"
    ],
    "executive_eligible": true
   }
@@ -2720,6 +2115,53 @@
     "ev_2870b55dd68b",
     "ev_aaa5c8263c6c",
     "ev_eaf8a082ce26"
+   ]
+  },
+  {
+   "id": "pos_89f4df95acae",
+   "key": "price_in_first_viewport|product",
+   "category": "pricing",
+   "page_group": "product",
+   "basis": "detector",
+   "confidence": "VERIFIED",
+   "title": {
+    "template": "Ціну видно в першому екрані на сторінках товару",
+    "params": {},
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.title.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "detail": null,
+   "pages": [
+    {
+     "url": "http://site-b.test:4214/product/glass-kettle",
+     "path": "/product/glass-kettle",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-b.test:4214/product/travel-thermos",
+     "path": "/product/travel-thermos",
+     "page_type": "product"
+    },
+    {
+     "url": "http://site-b.test:4214/product/wooden-board",
+     "path": "/product/wooden-board",
+     "page_type": "product"
+    }
+   ],
+   "evidence_ids": [
+    "ev_7e23e08b1a4a",
+    "ev_6c9a05cf19e7",
+    "ev_c70432848864",
+    "ev_7753b260f0d7",
+    "ev_56ac7ba2dcc4",
+    "ev_fd95ad22b21d"
    ]
   }
  ],
@@ -2869,9 +2311,9 @@
  "budget": {
   "source_class": "OBSERVED",
   "max_audit_tokens": 1650000,
-  "used_tokens": 58659,
-  "billed_tokens": 0,
-  "cache_read_tokens": 58659,
+  "used_tokens": 59257,
+  "billed_tokens": 59257,
+  "cache_read_tokens": 0,
   "llm_calls": 16,
   "cost": null
  },
@@ -2999,6 +2441,50 @@
    "level": null
   },
   {
+   "id": "ev_843e86561118",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "below_fold",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_88cb68aeec0c",
+   "lens_id": "lens_fast",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
    "id": "ev_8f33aa933054",
    "type": "dom",
    "source_class": "OBSERVED",
@@ -3015,11 +2501,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/2/measurement/top_px",
+      "ptr": "/evidence/3/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/2/measurement/vh",
+      "ptr": "/evidence/3/measurement/vh",
       "format": "int"
      }
     },
@@ -3076,11 +2562,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/3/measurement/top_px",
+      "ptr": "/evidence/4/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/3/measurement/vh",
+      "ptr": "/evidence/4/measurement/vh",
       "format": "int"
      }
     },
@@ -3137,11 +2623,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/4/measurement/top_px",
+      "ptr": "/evidence/5/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/4/measurement/vh",
+      "ptr": "/evidence/5/measurement/vh",
       "format": "int"
      }
     },
@@ -3182,6 +2668,50 @@
    "level": null
   },
   {
+   "id": "ev_d25af24c6847",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "below_fold",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "Додати в кошик",
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_99850603d4f6",
+   "lens_id": "lens_fast",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
    "id": "ev_f8a2221ce3f1",
    "type": "dom",
    "source_class": "OBSERVED",
@@ -3198,11 +2728,11 @@
     "template": "Верхній край основної кнопки покупки: {top_px} px; висота екрана: {vh} px.",
     "params": {
      "top_px": {
-      "ptr": "/evidence/5/measurement/top_px",
+      "ptr": "/evidence/7/measurement/top_px",
       "format": "int"
      },
      "vh": {
-      "ptr": "/evidence/5/measurement/vh",
+      "ptr": "/evidence/7/measurement/vh",
       "format": "int"
      }
     },
@@ -3259,7 +2789,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/6/detector_id",
+      "ptr": "/evidence/8/detector_id",
       "format": "text"
      }
     },
@@ -3317,7 +2847,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/7/detector_id",
+      "ptr": "/evidence/9/detector_id",
       "format": "text"
      }
     },
@@ -3375,7 +2905,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/8/detector_id",
+      "ptr": "/evidence/10/detector_id",
       "format": "text"
      }
     },
@@ -3433,7 +2963,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/9/detector_id",
+      "ptr": "/evidence/11/detector_id",
       "format": "text"
      }
     },
@@ -3491,7 +3021,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/10/detector_id",
+      "ptr": "/evidence/12/detector_id",
       "format": "text"
      }
     },
@@ -3549,7 +3079,7 @@
     "template": "Детектор {detector} зафіксував цей факт; див. вимір і скриншот.",
     "params": {
      "detector": {
-      "ptr": "/evidence/11/detector_id",
+      "ptr": "/evidence/13/detector_id",
       "format": "text"
      }
     },
@@ -3607,11 +3137,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/12/measurement/rule",
+      "ptr": "/evidence/14/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/12/measurement/impact",
+      "ptr": "/evidence/14/measurement/impact",
       "format": "text"
      }
     },
@@ -3670,11 +3200,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/13/measurement/rule",
+      "ptr": "/evidence/15/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/13/measurement/impact",
+      "ptr": "/evidence/15/measurement/impact",
       "format": "text"
      }
     },
@@ -3733,11 +3263,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/14/measurement/rule",
+      "ptr": "/evidence/16/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/14/measurement/impact",
+      "ptr": "/evidence/16/measurement/impact",
       "format": "text"
      }
     },
@@ -3796,11 +3326,11 @@
     "template": "Правило axe-core {rule} (вплив: {impact}) позначило цей елемент.",
     "params": {
      "rule": {
-      "ptr": "/evidence/15/measurement/rule",
+      "ptr": "/evidence/17/measurement/rule",
       "format": "text"
      },
      "impact": {
-      "ptr": "/evidence/15/measurement/impact",
+      "ptr": "/evidence/17/measurement/impact",
       "format": "text"
      }
     },
@@ -3843,10 +3373,98 @@
    "level": null
   },
   {
-   "id": "ev_1d5643c3e5c6",
+   "id": "ev_547c514ee67a",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "cost_unknown",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_607bfe378b90",
+   "lens_id": "lens_price",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_aa61e5c6c9c4",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "cost_unknown",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_1a4e0a5d53ce",
+   "lens_id": "lens_price",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_1b3c2acd79ae",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-1",
    "polarity": "problem",
    "page_url": "http://site-b.test:4214/catalog",
    "page_path": "/catalog",
@@ -3887,447 +3505,7 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_8ab9b2db8d5c",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/catalog",
-   "page_path": "/catalog",
-   "page_type": "category",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
-   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_1d503c3686c1",
-   "lens_id": "lens_fast",
-   "task_id": "t_choose",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_59df268519f6",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/glass-kettle",
-   "page_path": "/product/glass-kettle",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "total_unclear",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
-   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_607bfe378b90",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_a0e63667572d",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/travel-thermos",
-   "page_path": "/product/travel-thermos",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "total_unclear",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
-   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_1a4e0a5d53ce",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_aa2a3fbd1e70",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/glass-kettle",
-   "page_path": "/product/glass-kettle",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "cost_unknown",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_607bfe378b90",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_c2e45886b93b",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/travel-thermos",
-   "page_path": "/product/travel-thermos",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "cost_unknown",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": null,
-   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_1a4e0a5d53ce",
-   "lens_id": "lens_price",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_3dac537d5ab9",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/glass-kettle",
-   "page_path": "/product/glass-kettle",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Додати в кошик",
-   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_99850603d4f6",
-   "lens_id": "lens_fast",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_5ee2bc38a27b",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/travel-thermos",
-   "page_path": "/product/travel-thermos",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Додати в кошик",
-   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_88cb68aeec0c",
-   "lens_id": "lens_fast",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_58b52392008f",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Якість, що надихає",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_9f9097df7352",
-   "lens_id": "lens_novice",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_aa54f34f63e8",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Якість, що надихає",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_e9d097a01120",
-   "lens_id": "lens_expert",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_e90d20fb5729",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-1",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/",
-   "page_path": "/",
-   "page_type": "homepage",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "not_in_first_viewport",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "Ціни й умови видно одразу.",
-   "artifact_reference": "pages/index/1440x1000/viewport.png",
-   "screenshot_reference": "pages/index/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_73bd8c8f759a",
-   "lens_id": "lens_price",
-   "task_id": "t_understand",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_4b581a05d7dd",
+   "id": "ev_267992ca9ab7",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -4371,7 +3549,7 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_b61b1251a4a8",
+   "id": "ev_532a3befa1f4",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -4415,51 +3593,7 @@
    "level": "snapshot"
   },
   {
-   "id": "ev_193792fe827d",
-   "type": "repeated_agent_observation",
-   "source_class": "SYNTHETIC",
-   "tier": "ET-SYN-M",
-   "polarity": "problem",
-   "page_url": "http://site-b.test:4214/product/glass-kettle",
-   "page_path": "/product/glass-kettle",
-   "page_type": "product",
-   "viewport": null,
-   "detector_id": null,
-   "claim_kind": "general",
-   "assertion": null,
-   "description": {
-    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
-    "params": {},
-    "origin": "code",
-    "source_class": "SYNTHETIC",
-    "lang": "uk",
-    "template_id": "evidence.llm.fallback",
-    "guard": {
-     "status": "not_applicable",
-     "attempts": 0,
-     "rule_ids": []
-    }
-   },
-   "excerpt": "набори змінних елементів",
-   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
-   "selector": null,
-   "region": {
-    "x": 0,
-    "y": 0,
-    "w": 1440,
-    "h": 1000
-   },
-   "capture_complete": null,
-   "incomplete_reasons": [],
-   "measurement": {},
-   "session_id": "ses_54da4363c3e5",
-   "lens_id": "lens_novice",
-   "task_id": "t_buy",
-   "level": "snapshot"
-  },
-  {
-   "id": "ev_41e23554b1b9",
+   "id": "ev_33b8aeb30de2",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-M",
@@ -4484,7 +3618,7 @@
      "rule_ids": []
     }
    },
-   "excerpt": "набори змінних елементів",
+   "excerpt": null,
    "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
    "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
    "selector": null,
@@ -4497,13 +3631,57 @@
    "capture_complete": null,
    "incomplete_reasons": [],
    "measurement": {},
-   "session_id": "ses_fc459c75dc9a",
-   "lens_id": "lens_novice",
+   "session_id": "ses_e881679f7d9b",
+   "lens_id": "lens_expert",
    "task_id": "t_buy",
    "level": "snapshot"
   },
   {
-   "id": "ev_d3b535d75d5e",
+   "id": "ev_72be29b26fd1",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-M",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_39462bbc5ad2",
+   "lens_id": "lens_expert",
+   "task_id": "t_buy",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_5fde3bd06561",
    "type": "repeated_agent_observation",
    "source_class": "SYNTHETIC",
    "tier": "ET-SYN-1",
@@ -4547,6 +3725,356 @@
    "level": "snapshot"
   },
   {
+   "id": "ev_59c6e07a8ead",
+   "type": "repeated_agent_observation",
+   "source_class": "SYNTHETIC",
+   "tier": "ET-SYN-1",
+   "polarity": "problem",
+   "page_url": "http://site-b.test:4214/catalog",
+   "page_path": "/catalog",
+   "page_type": "category",
+   "viewport": null,
+   "detector_id": null,
+   "claim_kind": "general",
+   "assertion": null,
+   "description": {
+    "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+    "params": {},
+    "origin": "code",
+    "source_class": "SYNTHETIC",
+    "lang": "uk",
+    "template_id": "evidence.llm.fallback",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": null,
+   "artifact_reference": "pages/catalog/1440x1000/viewport.png",
+   "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+   "selector": null,
+   "region": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   },
+   "capture_complete": null,
+   "incomplete_reasons": [],
+   "measurement": {},
+   "session_id": "ses_037bfab22905",
+   "lens_id": "lens_novice",
+   "task_id": "t_choose",
+   "level": "snapshot"
+  },
+  {
+   "id": "ev_7e23e08b1a4a",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/27/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/27/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "1 299 грн",
+   "artifact_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_6c9a05cf19e7",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/glass-kettle",
+   "page_path": "/product/glass-kettle",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/28/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/28/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "1 299 грн",
+   "artifact_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "screenshot_reference": "pages/product-glass-kettle/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_c70432848864",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/29/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/29/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "749 грн",
+   "artifact_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_7753b260f0d7",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/travel-thermos",
+   "page_path": "/product/travel-thermos",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/30/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/30/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "749 грн",
+   "artifact_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "screenshot_reference": "pages/product-travel-thermos/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_56ac7ba2dcc4",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "D",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/31/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/31/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "459 грн",
+   "artifact_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/1440x1000/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 138,
+    "viewport_height": 1000
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
+   "id": "ev_fd95ad22b21d",
+   "type": "dom",
+   "source_class": "OBSERVED",
+   "tier": "ET-DET",
+   "polarity": "positive",
+   "page_url": "http://site-b.test:4214/product/wooden-board",
+   "page_path": "/product/wooden-board",
+   "page_type": "product",
+   "viewport": "M",
+   "detector_id": "positive:price_in_first_viewport",
+   "claim_kind": null,
+   "assertion": "presence",
+   "description": {
+    "template": "Ціну знайдено в першому екрані на {price_y} px; висота екрана: {viewport_height} px.",
+    "params": {
+     "price_y": {
+      "ptr": "/evidence/32/measurement/price_y",
+      "format": "int"
+     },
+     "viewport_height": {
+      "ptr": "/evidence/32/measurement/viewport_height",
+      "format": "int"
+     }
+    },
+    "origin": "code",
+    "source_class": "OBSERVED",
+    "lang": "uk",
+    "template_id": "positive.evidence.price_in_first_viewport",
+    "guard": {
+     "status": "not_applicable",
+     "attempts": 0,
+     "rule_ids": []
+    }
+   },
+   "excerpt": "459 грн",
+   "artifact_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "screenshot_reference": "pages/product-wooden-board/390x844/viewport.png",
+   "selector": null,
+   "region": null,
+   "capture_complete": true,
+   "incomplete_reasons": [],
+   "measurement": {
+    "price_y": 123,
+    "viewport_height": 844
+   },
+   "session_id": null,
+   "lens_id": null,
+   "task_id": null,
+   "level": null
+  },
+  {
    "id": "ev_7315159028db",
    "type": "dom",
    "source_class": "OBSERVED",
@@ -4563,11 +4091,11 @@
     "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/32/measurement/scroll_width",
+      "ptr": "/evidence/33/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/32/measurement/viewport_width",
+      "ptr": "/evidence/33/measurement/viewport_width",
       "format": "int"
      }
     },
@@ -4614,11 +4142,11 @@
     "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/33/measurement/scroll_width",
+      "ptr": "/evidence/34/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/33/measurement/viewport_width",
+      "ptr": "/evidence/34/measurement/viewport_width",
       "format": "int"
      }
     },
@@ -4665,11 +4193,11 @@
     "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/34/measurement/scroll_width",
+      "ptr": "/evidence/35/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/34/measurement/viewport_width",
+      "ptr": "/evidence/35/measurement/viewport_width",
       "format": "int"
      }
     },
@@ -4716,11 +4244,11 @@
     "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/35/measurement/scroll_width",
+      "ptr": "/evidence/36/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/35/measurement/viewport_width",
+      "ptr": "/evidence/36/measurement/viewport_width",
       "format": "int"
      }
     },
@@ -4767,11 +4295,11 @@
     "template": "Ширина сторінки {scroll_width} px вміщується в екран {viewport_width} px.",
     "params": {
      "scroll_width": {
-      "ptr": "/evidence/36/measurement/scroll_width",
+      "ptr": "/evidence/37/measurement/scroll_width",
       "format": "int"
      },
      "viewport_width": {
-      "ptr": "/evidence/36/measurement/viewport_width",
+      "ptr": "/evidence/37/measurement/viewport_width",
       "format": "int"
      }
     },
@@ -4818,11 +4346,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/37/measurement/with_alt",
+      "ptr": "/evidence/38/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/37/measurement/total",
+      "ptr": "/evidence/38/measurement/total",
       "format": "int"
      }
     },
@@ -4869,11 +4397,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/38/measurement/with_alt",
+      "ptr": "/evidence/39/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/38/measurement/total",
+      "ptr": "/evidence/39/measurement/total",
       "format": "int"
      }
     },
@@ -4920,11 +4448,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/39/measurement/with_alt",
+      "ptr": "/evidence/40/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/39/measurement/total",
+      "ptr": "/evidence/40/measurement/total",
       "format": "int"
      }
     },
@@ -4971,11 +4499,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/40/measurement/with_alt",
+      "ptr": "/evidence/41/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/40/measurement/total",
+      "ptr": "/evidence/41/measurement/total",
       "format": "int"
      }
     },
@@ -5022,11 +4550,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/41/measurement/with_alt",
+      "ptr": "/evidence/42/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/41/measurement/total",
+      "ptr": "/evidence/42/measurement/total",
       "format": "int"
      }
     },
@@ -5073,11 +4601,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/42/measurement/with_alt",
+      "ptr": "/evidence/43/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/42/measurement/total",
+      "ptr": "/evidence/43/measurement/total",
       "format": "int"
      }
     },
@@ -5124,11 +4652,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/43/measurement/with_alt",
+      "ptr": "/evidence/44/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/43/measurement/total",
+      "ptr": "/evidence/44/measurement/total",
       "format": "int"
      }
     },
@@ -5175,11 +4703,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/44/measurement/with_alt",
+      "ptr": "/evidence/45/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/44/measurement/total",
+      "ptr": "/evidence/45/measurement/total",
       "format": "int"
      }
     },
@@ -5226,11 +4754,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/45/measurement/with_alt",
+      "ptr": "/evidence/46/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/45/measurement/total",
+      "ptr": "/evidence/46/measurement/total",
       "format": "int"
      }
     },
@@ -5277,11 +4805,11 @@
     "template": "Зображень з атрибутом alt: {with_alt} з {total} у цьому захопленні.",
     "params": {
      "with_alt": {
-      "ptr": "/evidence/46/measurement/with_alt",
+      "ptr": "/evidence/47/measurement/with_alt",
       "format": "int"
      },
      "total": {
-      "ptr": "/evidence/46/measurement/total",
+      "ptr": "/evidence/47/measurement/total",
       "format": "int"
      }
     },
