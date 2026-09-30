@@ -1,0 +1,146 @@
+[
+  {
+    "theme": "light",
+    "surface": "landing",
+    "violations": [],
+    "passes": 40
+  },
+  {
+    "theme": "light",
+    "surface": "landing-error",
+    "violations": [],
+    "passes": 40
+  },
+  {
+    "theme": "light",
+    "surface": "progress",
+    "violations": [],
+    "passes": 38
+  },
+  {
+    "theme": "light",
+    "surface": "error",
+    "violations": [],
+    "passes": 36
+  },
+  {
+    "theme": "light",
+    "surface": "tab-overview",
+    "violations": [],
+    "passes": 43
+  },
+  {
+    "theme": "light",
+    "surface": "tab-lenses",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "light",
+    "surface": "tab-journey",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "light",
+    "surface": "tab-findings",
+    "violations": [],
+    "passes": 46
+  },
+  {
+    "theme": "light",
+    "surface": "tab-technical",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "light",
+    "surface": "tab-experiments",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "light",
+    "surface": "tab-evidence",
+    "violations": [],
+    "passes": 44
+  },
+  {
+    "theme": "light",
+    "surface": "lightbox",
+    "violations": [],
+    "passes": 47
+  },
+  {
+    "theme": "dark",
+    "surface": "landing",
+    "violations": [],
+    "passes": 40
+  },
+  {
+    "theme": "dark",
+    "surface": "landing-error",
+    "violations": [],
+    "passes": 40
+  },
+  {
+    "theme": "dark",
+    "surface": "progress",
+    "violations": [],
+    "passes": 38
+  },
+  {
+    "theme": "dark",
+    "surface": "error",
+    "violations": [],
+    "passes": 36
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-overview",
+    "violations": [],
+    "passes": 43
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-lenses",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-journey",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-findings",
+    "violations": [],
+    "passes": 46
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-technical",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-experiments",
+    "violations": [],
+    "passes": 41
+  },
+  {
+    "theme": "dark",
+    "surface": "tab-evidence",
+    "violations": [],
+    "passes": 44
+  },
+  {
+    "theme": "dark",
+    "surface": "lightbox",
+    "violations": [],
+    "passes": 47
+  }
+]

@@ -103,7 +103,7 @@ export function EvidenceLightbox({ evidence, onClose }: { evidence: Evidence | n
               </p>
             )}
             <div className="shot" data-testid="shot" style={state === "loading" ? { minHeight: 120 } : undefined}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+              
               <img
                 src={artifactUrl(auditId, ref ?? "")}
                 alt={region ? t("lightbox.alt", { path: evidence?.page_path ?? "" }) : t("lightbox.alt_noregion", { path: evidence?.page_path ?? "" })}

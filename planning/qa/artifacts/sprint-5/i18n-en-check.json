@@ -1,0 +1,54 @@
+[
+  {
+    "tab": "overview",
+    "bad": [],
+    "disclaimers": [
+      "no_llm_mode",
+      "no_conversion_prediction",
+      "priority_is_ranking_index"
+    ]
+  },
+  {
+    "tab": "lenses",
+    "bad": [],
+    "disclaimers": [
+      "lenses_not_population_shares",
+      "no_llm_mode"
+    ]
+  },
+  {
+    "tab": "journey",
+    "bad": [],
+    "disclaimers": [
+      "no_llm_mode"
+    ]
+  },
+  {
+    "tab": "findings",
+    "bad": [],
+    "disclaimers": [
+      "priority_is_ranking_index",
+      "no_conversion_prediction",
+      "no_llm_mode"
+    ]
+  },
+  {
+    "tab": "technical",
+    "bad": [],
+    "disclaimers": [
+      "automated_a11y_not_wcag_audit"
+    ]
+  },
+  {
+    "tab": "experiments",
+    "bad": [],
+    "disclaimers": [
+      "synthetic_preference_not_uplift"
+    ]
+  },
+  {
+    "tab": "evidence",
+    "bad": [],
+    "disclaimers": []
+  }
+]

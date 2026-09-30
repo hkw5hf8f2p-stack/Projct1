@@ -21,7 +21,7 @@ export function Thumb({ ev }: { ev: Evidence }) {
   }
   return (
     <button type="button" className="thumb" tabIndex={-1} aria-hidden="true" onClick={() => openEvidence(ev.id)} data-testid="thumb">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+      
       <img src={artifactUrl(auditId, ref)} alt="" loading="lazy" onError={() => setFailed(true)} />
     </button>
   );

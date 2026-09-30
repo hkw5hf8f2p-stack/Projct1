@@ -1,6 +1,7 @@
 /** run_lighthouse: Lighthouse через egress-проксі (S1b). Збій ≠ збій аудиту (§47): запис failed + попередження; решта конвеєра йде далі. */
 import path from "node:path";
 import type { Job } from "pg-boss";
+import { cmdlineOf, descendantsOf } from "@sitelens/db";
 import { addWarning, ensureAuditDir, getJob, insertEvidence, upsertJob, type EvidenceInput, type JobData } from "@sitelens/pipeline";
 import type { ErrorClass } from "@sitelens/schemas";
 import { runLighthouseIsolated, type FormFactor, type LighthouseRunResult } from "../browser-api.js";
@@ -49,13 +50,17 @@ export async function lighthouseJob(rt: Runtime, job: Job<JobData>): Promise<voi
     if (!isFinalAttempt("run_lighthouse", job)) throw e;
     res = { ok: false, error: (e as Error).message, evidence: [] } as unknown as LighthouseRunResult;
   }
+  // Страховка: Chrome Lighthouse (chrome-launcher) міг пережити прогін (збій/тайм-аут ізоляції). Прибираємо ЛИШЕ власних нащадків цього процесу з профілем sl-lh-.
+  const stray = descendantsOf(process.pid).filter((p) => cmdlineOf(p).includes("/sl-lh-"));
+  for (const pid of stray) try { process.kill(pid, "SIGKILL"); } catch { /* уже вийшов */ }
+  if (stray.length > 0) rt.log("warn", "Chrome Lighthouse пережив прогін — прибрано власних нащадків", { audit: auditRunId, pids: stray });
   if (!(await liveAudit(rt, auditRunId))) return;
   const c = await rt.pool.connect();
   try {
     await c.query("BEGIN");
     if (res.ok) {
       await insertEvidence(c, auditRunId, res.evidence.map((e) => lighthouseEvidenceRow(e, pageId)));
-      await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "lighthouse", page_url: url, status: "done", error_class: null, error: null, result_json: { scores: res.scores, lhr_path: `pages/${pageId}/${res.lhr_path}`, version: res.lighthouse_version, duration_ms: res.duration_ms } });
+      await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "lighthouse", page_url: url, status: "done", error_class: null, error: null, result_json: { scores: res.scores, lhr_path: `pages/${pageId}/${res.lhr_path}`, version: res.lighthouse_version, duration_ms: res.duration_ms, stray_chrome_killed: stray.length } });
     } else {
       const msg = `Lighthouse (${formFactor}) не виконано: ${(res.error ?? "невідома помилка").slice(0, 300)}`;
       await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "lighthouse", page_url: url, status: "failed", error_class: classOf(res.error ?? ""), error: msg, result_json: { runtime_error: res.runtime_error ?? null } });

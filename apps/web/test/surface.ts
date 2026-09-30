@@ -12,7 +12,9 @@ export const orphanTexts = (page: Page, rendered: string[]): Promise<string[]> =
   page.evaluate((list) => {
     const main = document.querySelector("main");
     if (!main) return list;
-    const body = main.textContent ?? "";
+    const c = main.cloneNode(true) as HTMLElement;
+    c.querySelectorAll("[data-disclaimer]").forEach((e) => e.remove()); // каталожні дисклеймери — не твердження звіту (збігаються з текстом банера no_llm)
+    const body = c.textContent ?? "";
     const claims = [...main.querySelectorAll("[data-claim-text]")].map((e) => e.textContent ?? "");
     const count = (h: string, n: string) => (n ? h.split(n).length - 1 : 0);
     const inClaims = claims.join("\u0001");

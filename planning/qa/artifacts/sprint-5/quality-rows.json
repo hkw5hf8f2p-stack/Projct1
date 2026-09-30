@@ -71,9 +71,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -179,9 +177,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -286,9 +282,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -393,9 +387,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -435,9 +427,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -454,9 +444,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -472,9 +460,7 @@
     "tab": "journey",
     "claims": 10,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -489,9 +475,7 @@
     "tab": "findings",
     "claims": 141,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -512,9 +496,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -554,9 +536,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -573,9 +553,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -591,9 +569,7 @@
     "tab": "journey",
     "claims": 10,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -608,9 +584,7 @@
     "tab": "findings",
     "claims": 141,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -631,9 +605,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -673,9 +645,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -692,9 +662,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -710,9 +678,7 @@
     "tab": "journey",
     "claims": 10,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -727,9 +693,7 @@
     "tab": "findings",
     "claims": 141,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -749,9 +713,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -791,9 +753,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -810,9 +770,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -828,9 +786,7 @@
     "tab": "journey",
     "claims": 10,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -845,9 +801,7 @@
     "tab": "findings",
     "claims": 141,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -867,9 +821,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -909,9 +861,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -927,9 +877,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -945,9 +893,7 @@
     "tab": "journey",
     "claims": 7,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -962,9 +908,7 @@
     "tab": "findings",
     "claims": 94,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -984,9 +928,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1026,9 +968,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1044,9 +984,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1062,9 +1000,7 @@
     "tab": "journey",
     "claims": 7,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1079,9 +1015,7 @@
     "tab": "findings",
     "claims": 94,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1101,9 +1035,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1143,9 +1075,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1161,9 +1091,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1179,9 +1107,7 @@
     "tab": "journey",
     "claims": 7,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1196,9 +1122,7 @@
     "tab": "findings",
     "claims": 94,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1218,9 +1142,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1260,9 +1182,7 @@
     "tab": "overview",
     "claims": 14,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1278,9 +1198,7 @@
     "tab": "lenses",
     "claims": 2,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1296,9 +1214,7 @@
     "tab": "journey",
     "claims": 7,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1313,9 +1229,7 @@
     "tab": "findings",
     "claims": 94,
     "unlabeled": 0,
-    "orphans": [
-      "Синтетичний аналіз не виконувався: LLM-провайдер не налаштовано. Нижче лише детерміновані знахідки."
-    ],
+    "orphans": [],
     "overflow": 0,
     "bad": [],
     "guardIssues": [],
@@ -1335,9 +1249,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1443,9 +1355,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1551,9 +1461,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1658,9 +1566,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1765,9 +1671,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1873,9 +1777,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -1981,9 +1883,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2088,9 +1988,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2195,9 +2093,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2301,9 +2197,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2407,9 +2301,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2512,9 +2404,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],
@@ -2617,9 +2507,7 @@
     "orphans": [],
     "overflow": 0,
     "bad": [],
-    "guardIssues": [
-      "invented_number: «частка користувачів» — частка популяції з числом; не виводиться з доказів"
-    ],
+    "guardIssues": [],
     "disclaimers": [
       "automated_a11y_not_wcag_audit"
     ],

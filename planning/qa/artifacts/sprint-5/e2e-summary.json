@@ -1,0 +1,56 @@
+{
+  "lsof": [
+    "proc/net/tcp:",
+    "127.0.0.1:3100"
+  ],
+  "quality": {
+    "surfaces": 168,
+    "claims": 8756,
+    "unlabeled": 0,
+    "orphans": 0,
+    "overflow390": 0,
+    "overflowAny": 0,
+    "guardIssues": 0,
+    "missingDisclaimers": 0,
+    "bad": 0,
+    "syntheticCountsWithoutCaveat": 0
+  },
+  "controls": {
+    "unlabeled": 1,
+    "guardIssuesOnInjected": [
+      "invented_percent: «12 %» немає в наданих доказах"
+    ],
+    "axeOnInjected": [
+      "button-name",
+      "image-alt"
+    ]
+  },
+  "axe": {
+    "surfaces": 24,
+    "critical_serious": 0,
+    "all": 0
+  },
+  "evidence_click": {
+    "findings": 19,
+    "checked": 16,
+    "ok": 16
+  },
+  "filters": {
+    "device": 2,
+    "page": 11,
+    "confidence": 3,
+    "category": 9,
+    "lens": 4,
+    "task": 2
+  },
+  "contrast": [
+    {
+      "theme": "light",
+      "worst": 6.701618401398807
+    },
+    {
+      "theme": "dark",
+      "worst": 8.153623159549317
+    }
+  ]
+}

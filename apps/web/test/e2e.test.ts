@@ -11,7 +11,7 @@ import { checkTextField } from "../../../packages/llm/src/guards/text.ts";
 import { collectTexts, renderText } from "../../../packages/schemas/src/report-text.ts";
 import { artifactDir, writeArtifacts } from "../../../scripts/artifact-dir.ts";
 import { ERROR_CLASSES, REPORT_VARIANTS, reportVariant } from "../src/dev/fixtures";
-import { BASE, PORT, TABS, closeBrowser, listenAddress, newCtx, open, pageErrors, startWeb, stopWeb, type Env } from "./harness";
+import { PORT, TABS, closeBrowser, listenAddress, newCtx, open, pageErrors, startWeb, stopWeb, type Env } from "./harness";
 import { badStrings, claimCount, claimTexts, disclaimersPresent, expandAll, mainTextNoQuotes, orphanTexts, overflowX, unlabeledClaims } from "./surface";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -208,7 +208,7 @@ describe("критерії 2–4 на всіх заповнених станах
     for (const env of ENVS) {
       it(`${v} × ${envName(env)}: 7 вкладок`, async () => {
         const report = reportVariant(v)!;
-        const rendered = collectTexts(report).map((t) => renderText(t.text as any, report, t.text.lang as any)).filter((s) => s.length >= 14);
+        const rendered = collectTexts(report).map((t) => renderText(t.text as any, report, (t.text as unknown as { lang: string }).lang as any)).filter((s) => s.length >= 14);
         const ctx = await newCtx(env);
         const page = await open(ctx, `/audit/${VARIANT_ID[v]}`);
         await waitReport(page);
@@ -255,7 +255,7 @@ describe("критерії 2–4 на всіх заповнених станах
 describe("контролі: детектори вміють падати (позитивний випадок)", () => {
   it("мітка, сирий текст, overflow, guard «+12 % conversion», axe", async () => {
     const report = reportVariant("completed")!;
-    const rendered = collectTexts(report).map((t) => renderText(t.text as any, report, t.text.lang as any)).filter((s) => s.length >= 14);
+    const rendered = collectTexts(report).map((t) => renderText(t.text as any, report, (t.text as unknown as { lang: string }).lang as any)).filter((s) => s.length >= 14);
     const ctx = await newCtx({ width: 390, theme: "light", lang: "uk" });
     const page = await open(ctx, "/audit/fx_completed");
     await waitReport(page);

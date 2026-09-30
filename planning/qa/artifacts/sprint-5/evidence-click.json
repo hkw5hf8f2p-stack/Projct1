@@ -1,0 +1,164 @@
+[
+  {
+    "v": "completed",
+    "finding": "fnd_386dd48f2ef3",
+    "evidence": "ev_1de5ebab2ea2",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_6112436d7252",
+    "evidence": "ev_099ac1e557ae",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_14b9ab0650ce",
+    "evidence": "ev_cb087a9b31d4",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_8319e2fcf7be",
+    "evidence": "ev_6e93fb9b4ca8",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_2e91c84018f1",
+    "evidence": "ev_24e97e6d978d",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_9a4407fa3774",
+    "evidence": "ev_298d737db9ce",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_1b37145961bd",
+    "evidence": "ev_da1aa8e5315b",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_372ae07d45af",
+    "evidence": "ev_0fcc40c9006f",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_69a63d946f1d",
+    "ok": null,
+    "note": "немає скриншота серед доказів (N/A)"
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_5bb354eda528",
+    "ok": null,
+    "note": "немає скриншота серед доказів (N/A)"
+  },
+  {
+    "v": "completed",
+    "finding": "fnd_47b24e9f41f6",
+    "ok": null,
+    "note": "немає скриншота серед доказів (N/A)"
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_386dd48f2ef3",
+    "evidence": "ev_1de5ebab2ea2",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_6112436d7252",
+    "evidence": "ev_099ac1e557ae",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_8319e2fcf7be",
+    "evidence": "ev_6e93fb9b4ca8",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_2e91c84018f1",
+    "evidence": "ev_24e97e6d978d",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_14b9ab0650ce",
+    "evidence": "ev_cb087a9b31d4",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_9a4407fa3774",
+    "evidence": "ev_298d737db9ce",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_1b37145961bd",
+    "evidence": "ev_da1aa8e5315b",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  },
+  {
+    "v": "nollm",
+    "finding": "fnd_372ae07d45af",
+    "evidence": "ev_0fcc40c9006f",
+    "ok": true,
+    "okSrc": true,
+    "okRegion": true,
+    "inside": true
+  }
+]
