@@ -220,6 +220,10 @@
             }
           ]
         },
+        "mode": {
+          "type": "string",
+          "const": "quick"
+        },
         "banners": {
           "type": "array",
           "items": {
@@ -233,7 +237,8 @@
                   "budget_limited",
                   "stage_failed",
                   "stage_skipped",
-                  "example_fixture"
+                  "example_fixture",
+                  "quick_audit"
                 ]
               },
               "stage": {

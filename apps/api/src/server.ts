@@ -6,7 +6,7 @@ import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { lstat, realpath } from "node:fs/promises";
 import path from "node:path";
-import Fastify, { type FastifyInstance, type FastifyReply } from "fastify";
+import Fastify, { LogController, type FastifyInstance, type FastifyReply } from "fastify";
 import type { Pool } from "pg";
 import type { PgBoss } from "pg-boss";
 import { AiSettingsInput, CreateAuditRequest, MODE_PROFILES, Report, type AiCheckResponse } from "@sitelens/schemas";
@@ -81,7 +81,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     // DEV-94: без заголовків у логах (лише method/url; токен у ?st= редагується); «incoming request» вимкнено — один рядок на запит у onResponse
     logger: { level: aiEnv["LOG_LEVEL"] ?? process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"],
       serializers: { req: (r: { method: string; url: string }) => ({ method: r.method, url: redactUrl(r.url) }) }, ...(deps.logStream ? { stream: deps.logStream } : {}) },
-    disableRequestLogging: true,
+    logController: new LogController({ disableRequestLogging: true }),
     bodyLimit: 8 * 1024,
     trustProxy: false,
   });
