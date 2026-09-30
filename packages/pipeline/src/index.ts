@@ -6,3 +6,4 @@ export * from "./artifacts.js";
 export * from "./repo.js";
 export * from "./queue.js";
 export * from "./progress.js";
+export * from "./ai-settings.js";

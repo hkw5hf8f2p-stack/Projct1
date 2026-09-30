@@ -9,14 +9,15 @@ import path from "node:path";
 import Fastify, { type FastifyInstance, type FastifyReply } from "fastify";
 import type { Pool } from "pg";
 import type { PgBoss } from "pg-boss";
-import { CreateAuditRequest, Report } from "@sitelens/schemas";
+import { AiSettingsInput, CreateAuditRequest, Report, type AiCheckResponse } from "@sitelens/schemas";
+import { AnthropicProvider, ClaudeCliProvider, OpenAiProvider, ProviderAuthError, ProviderHttpError, ProviderTimeoutError, type LlmProvider, type LlmRequest } from "@sitelens/llm";
 import { scanReport } from "@sitelens/reporting";
 import {
-  AUDIT_ID_RE, EVIDENCE_ID_RE, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
+  AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
-export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** режим LLM з resolveConfig(env) (обчислює точка входу; тести задають явно) */ llmMode?: "live" | "replay" | "none"; /** приймач логів (тести перевіряють, що токен у лог не потрапляє) */ logStream?: NodeJS.WritableStream }
+export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** режим LLM з resolveConfig(env) (обчислює точка входу; тести задають явно) */ llmMode?: "live" | "replay" | "none"; /** приймач логів (тести перевіряють, що токен у лог не потрапляє) */ logStream?: NodeJS.WritableStream; /** env для налаштувань AI (типово process.env; тести підставляють SITELENS_SECRETS_DIR) */ env?: Record<string, string | undefined>; /** фабрика провайдера для POST /api/settings/ai/check (тести); undefined → провайдер недоступний */ providerFactory?: (e: EffectiveAi) => LlmProvider | undefined }
 
 const digest = (s: string) => createHash("sha256").update(s).digest();
 export const tokenOk = (given: string | undefined, expected: string): boolean => given !== undefined && timingSafeEqual(digest(given), digest(expected));
@@ -42,7 +43,7 @@ export const artifactTokenOk = (given: string | undefined, accessToken: string, 
 const ART_PATH_RE = /^\/api\/audits\/([A-Za-z0-9_]+)\/artifacts\/[^?]*(?:\?(.*))?$/;
 const redactUrl = (u: string) => u.replace(/([?&]st=)[^&]*/g, "$1[redacted]");
 
-type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url" | "report_not_ready" | "report_unavailable";
+type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url" | "report_not_ready" | "report_unavailable" | "ai_settings_unavailable";
 const err = (reply: FastifyReply, code: number, cls: ApiErrClass, message: string) => reply.code(code).send({ error: { class: cls, message } });
 
 function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number; scenarios_done: number; scenarios_total: number }) {
@@ -55,8 +56,32 @@ function statusView(a: AuditRow, progress: { pages_captured: number; pages_faile
   };
 }
 
+/** класи помилок перевірки провайдера: без тексту помилки (він може містити секрети) */
+export function classifyAiError(e: unknown): string {
+  if (e instanceof ProviderAuthError) return "auth";
+  if (e instanceof ProviderTimeoutError) return "timeout";
+  if (e instanceof ProviderHttpError) return e.status === 401 || e.status === 403 ? "auth" : e.status === 404 ? "model_or_endpoint_not_found" : e.status === 429 ? "rate_limited" : e.status === null ? "network" : "provider_http";
+  const code = (e as { code?: string }).code;
+  return code === "output_invalid" ? "output_invalid" : code === "budget_limited" ? "budget_limited" : "unknown";
+}
+
+function defaultProviderFactory(e: EffectiveAi): LlmProvider | undefined {
+  if (e.kind === "claude_cli") return typeof ClaudeCliProvider === "function" ? new ClaudeCliProvider({ model: e.model || undefined }) : undefined;
+  if (e.kind === "anthropic") return new AnthropicProvider({ apiKey: e.api_key ?? "", model: e.model });
+  if (e.kind === "openai" || e.kind === "openai_compatible") return new OpenAiProvider({ apiKey: e.api_key || "local-no-key", model: e.model, ...(e.base_url ? { baseUrl: e.base_url } : {}) });
+  return undefined;
+}
+
+const CHECK_REQ: LlmRequest = {
+  stage: "site_profile", prompt_id: "settings-check", system: "Respond with the JSON object only.",
+  content: [{ type: "text", text: 'Return {"ok": true}.' }],
+  output: { name: "ok_check", description: "connectivity check", json_schema: { type: "object", properties: { ok: { type: "boolean" } }, required: ["ok"], additionalProperties: false } },
+  sampling: { max_tokens: 32 }, logical_key: { prompt_id: "settings-check" },
+};
+
 export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
   const { cfg, pool, boss } = deps;
+  const aiEnv = deps.env ?? process.env;
   const app = Fastify({
     logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"],
       serializers: { req: (r: { method: string; url: string; headers: Record<string, unknown> }) => ({ method: r.method, url: redactUrl(r.url), headers: r.headers }) }, ...(deps.logStream ? { stream: deps.logStream } : {}) },
@@ -84,6 +109,48 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
   });
   app.setNotFoundHandler((_req, reply) => err(reply, 404, "not_found", "Не знайдено"));
 
+  // ---- BYO AI: налаштування інсталяції (без облікових записів). Ключ у відповідях НІКОЛИ не повертається; під onRequest-токеном, як усе API.
+  const aiErr = (reply: FastifyReply, e: unknown) => {
+    if (e instanceof AiSettingsError) {
+      if (e.code === "invalid_input") return err(reply, 400, "bad_request", e.message);
+      return err(reply, 503, "ai_settings_unavailable", e.message);
+    }
+    throw e;
+  };
+  const aiView = () => toAiView(resolveEffectiveAi(aiEnv));
+  app.get("/api/settings/ai", async (_req, reply) => { try { return reply.header("Cache-Control", "no-store").send(aiView()); } catch (e) { return aiErr(reply, e); } });
+  app.put("/api/settings/ai", async (req, reply) => {
+    const b = AiSettingsInput.safeParse(req.body);
+    if (!b.success) return reply.code(400).send({ error: { class: "bad_request", message: "Некоректні налаштування AI", issues: b.error.issues.map((i) => ({ path: i.path.join("."), message: i.code === "custom" ? i.message : `некоректне значення (${i.code})` })) } });
+    try { saveAiSettings(b.data, aiEnv); return reply.header("Cache-Control", "no-store").send(aiView()); } catch (e) { return aiErr(reply, e); }
+  });
+  app.delete("/api/settings/ai/key", async (_req, reply) => { try { deleteAiKey(aiEnv); return reply.header("Cache-Control", "no-store").send(aiView()); } catch (e) { return aiErr(reply, e); } });
+  app.post("/api/settings/ai/check", async (_req, reply): Promise<AiCheckResponse | FastifyReply> => {
+    let eff: EffectiveAi;
+    try { eff = resolveEffectiveAi(aiEnv); } catch (e) { return aiErr(reply, e); }
+    const t0 = Date.now();
+    const fin = (r: Omit<AiCheckResponse, "latency_ms">): AiCheckResponse => {
+      const out: AiCheckResponse = { ...r, latency_ms: Date.now() - t0 };
+      if (eff.source === "ui") { try { recordAiCheck({ ok: out.ok, at: new Date().toISOString(), ...(out.error_class ? { error_class: out.error_class } : {}), ...(out.model_reported ? { model_reported: out.model_reported } : {}) }, aiEnv); } catch { /* last_check — зручність, не критично */ } }
+      return out;
+    };
+    if (eff.kind === "none") return fin({ ok: false, error_class: "no_provider" });
+    if ((eff.kind === "anthropic" || eff.kind === "openai") && !eff.api_key) return fin({ ok: false, error_class: "no_key" });
+    let provider: LlmProvider | undefined;
+    try { provider = (deps.providerFactory ?? defaultProviderFactory)(eff); } catch { provider = undefined; }
+    if (!provider) return fin({ ok: false, error_class: "provider_not_available" });
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(), 30_000);
+    try {
+      const r = await Promise.race([provider.complete(CHECK_REQ, { signal: ac.signal }), new Promise<never>((_, rej) => { ac.signal.addEventListener("abort", () => rej(new ProviderTimeoutError("check timeout"))); })]);
+      return fin({ ok: true, model_reported: r.model });
+    } catch (e) {
+      req_log(reply, e, eff.api_key);
+      return fin({ ok: false, error_class: classifyAiError(e) });
+    } finally { clearTimeout(timer); }
+  });
+  const req_log = (reply: FastifyReply, e: unknown, key: string | undefined) => reply.log.warn({ msg: "ai check failed", class: classifyAiError(e), detail: redactKey((e as Error).message ?? "", key).slice(0, 200) }, "ai check failed");
+
   app.get("/api/health", async () => ({ ok: true, db: (await pool.query("SELECT 1 AS ok")).rows[0].ok === 1 }));
 
   app.post("/api/audits", async (req, reply) => {
@@ -93,6 +160,9 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     const chk = validateSubmittedUrl(body.data.url, cfg);
     if (!chk.ok) return err(reply, 400, "invalid_url", humanMessage("invalid_url", language, chk.reason));
 
+    let eff: EffectiveAi | null = null;
+    try { eff = resolveEffectiveAi(aiEnv); } catch (e) { return aiErr(reply, e); }
+    const snap = eff.source === "ui" ? aiSnapshot(eff) : null;
     const id = newAuditId();
     const c = await pool.connect();
     try {
@@ -117,9 +187,11 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
         }
       }
       await insertAudit(c, {
-        id, input_url: body.data.url.trim(), normalized_url: chk.url, domain: chk.domain, language, llm_mode: deps.llmMode ?? "none", ttl_days: cfg.artifactTtlDays,
-        config_json: { max_pages: cfg.maxPages, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse },
+        id, input_url: body.data.url.trim(), normalized_url: chk.url, domain: chk.domain, language, llm_mode: snap ? (snap.kind === "none" ? "none" : "live") : deps.llmMode ?? "none", ttl_days: cfg.artifactTtlDays,
+        config_json: { max_pages: cfg.maxPages, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse, ...(snap ? { ai: snap } : {}) },
       });
+      // BYO AI: знімок провайдера+моделі (без ключа) — звіт показує, чим зроблено; зміна налаштувань під час аудиту на нього не діє
+      if (snap && (snap.provider === "anthropic" || snap.provider === "openai")) await c.query("UPDATE audit_runs SET llm_provider = $2, llm_model = $3 WHERE id = $1", [id, snap.provider, snap.model]);
       // §55.13: аудит і його перша задача з'являються ОДНОЧАСНО (одна транзакція) — kill -9 API посередині не лишає «сироту»
       await enqueue(boss, Q.crawl, { auditRunId: id }, { db: txDb(c) });
       await c.query("COMMIT");

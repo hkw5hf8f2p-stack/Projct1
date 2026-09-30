@@ -5,7 +5,7 @@ import { secureLaunch, type SecureBrowser } from "@sitelens/browser";
 import { HostGate, HONEST_USER_AGENT, type Resolver, type Dialer } from "./browser-api.js";
 import net from "node:net";
 import dns from "node:dns";
-import type { AppConfig } from "@sitelens/pipeline";
+import { aiEnvOverlay, readStoredAiSettings, type AiSnapshot, type AppConfig } from "@sitelens/pipeline";
 import { ensureChromeWrapper } from "./chrome-wrapper.js";
 import { createClientFromEnv, resolveConfig, type CallRecord, type LlmClient } from "@sitelens/llm";
 import type { AuditRow } from "@sitelens/pipeline";
@@ -119,7 +119,15 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
     netOptions,
     journalRunner: null,
     async llm(audit) {
-      const env = process.env;
+      // BYO AI: провайдер+модель беруться зі ЗНІМКА аудиту (config_json.ai), ключ — зі сховища; зміна налаштувань під час аудиту на нього не діє.
+      // Якщо kind у сховищі змінився (ключ іншого провайдера) — гучна помилка, а не тихий перехід.
+      const snap = (audit.config_json as { ai?: AiSnapshot }).ai;
+      let env: NodeJS.ProcessEnv = process.env;
+      if (snap?.source === "ui") {
+        const st = readStoredAiSettings(process.env);
+        if (snap.kind !== "none" && snap.kind !== "claude_cli" && (!st || st.kind !== snap.kind)) throw new Error(`AI-налаштування змінено під час аудиту (знімок: ${snap.kind}); ключ недоступний — запустіть аудит знову`);
+        env = aiEnvOverlay({ kind: snap.kind, model: snap.model, base_url: snap.base_url, api_key: st?.api_key, max_audit_tokens: snap.max_audit_tokens }, process.env);
+      }
       const max = resolveConfig(env).max_audit_tokens;
       const row = (await pool.query("SELECT tokens_input + tokens_output AS used FROM audit_runs WHERE id = $1", [audit.id])).rows[0] as { used: string } | undefined;
       const remaining = Math.max(1, max - Number(row?.used ?? 0));
