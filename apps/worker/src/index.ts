@@ -5,15 +5,9 @@
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import type { Job } from "pg-boss";
 import { cleanupOrphansFromFile, isSameProc, loadDotEnv, pg, readPidFile } from "@sitelens/db";
-import { Q, QUEUE_SPECS, createBoss, describeConfig, loadConfig, startBoss, sweepExpiredArtifacts, type JobData, type QueueName } from "@sitelens/pipeline";
-import { accessibilityJob } from "./jobs/accessibility.js";
-import { aggregateJob } from "./jobs/aggregate.js";
-import { captureJob } from "./jobs/capture.js";
-import { crawlJob } from "./jobs/crawl.js";
-import { LLM_JOBS, llmStageJob } from "./jobs/llm.js";
-import { lighthouseJob } from "./jobs/lighthouse.js";
+import { QUEUE_SPECS, createBoss, describeConfig, loadConfig, startBoss, sweepExpiredArtifacts } from "@sitelens/pipeline";
+import { registerHandlers } from "./handlers.js";
 import { startProcWatch } from "./procwatch.js";
 import { createRuntime, type Runtime } from "./runtime.js";
 
@@ -57,26 +51,7 @@ if (cleanup.owner_pid !== null && !cleanup.owner_was_alive) {
 }
 rt.log("info", "worker started", { pid: process.pid, cleanup: { killed: cleanup.killed, already_gone: cleanup.already_gone.length, requeued_jobs: requeued }, config: describeConfig(cfg) });
 
-const handler = (name: QueueName, fn: (rt: Runtime, job: Job<JobData>) => Promise<void>) => async (jobs: Job<JobData>[]) => {
-  for (const job of jobs) {
-    const t0 = Date.now();
-    try {
-      await fn(rt, job);
-      rt.log("info", "job done", { queue: name, job: job.id, audit: job.data.auditRunId, retry: job.retryCount, ms: Date.now() - t0 });
-    } catch (e) {
-      rt.log("error", "job failed (буде повтор, якщо лишились спроби)", { queue: name, job: job.id, audit: job.data.auditRunId, retry: job.retryCount, err: String((e as Error).message).slice(0, 300) });
-      throw e;
-    }
-  }
-};
-const reg = async (name: QueueName, fn: (rt: Runtime, job: Job<JobData>) => Promise<void>) =>
-  boss.work<JobData>(name, { localConcurrency: QUEUE_SPECS[name].concurrency, batchSize: 1, pollingIntervalSeconds: 1 }, handler(name, fn));
-await reg(Q.crawl, crawlJob);
-await reg(Q.capture, captureJob);
-await reg(Q.lighthouse, lighthouseJob);
-await reg(Q.accessibility, accessibilityJob);
-for (const name of Object.keys(LLM_JOBS)) await reg(name as QueueName, (r, j) => llmStageJob(r, name, j));
-await reg(Q.aggregate, aggregateJob);
+await registerHandlers(rt);
 
 const sweep = async () => {
   try {
