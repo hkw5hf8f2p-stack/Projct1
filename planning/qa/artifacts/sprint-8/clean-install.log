@@ -1,0 +1,196 @@
+# SiteLens S8 — чиста інсталяція за README (QA), 2026-09-30T05:46:46Z
+# Джерело: git clone /home/user/Projct1 (HEAD af45c58, дерево чисте). Каталог: /home/sitelens/clean-s8
+# Відхилення середовища (не README): DEV-23 мережа до CDN Playwright закрита -> PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers (Chromium 1194 наперед встановлений);
+#   'git clone' від sitelens неможливий (dubious ownership /home/user/Projct1) -> клон від root + chown -R sitelens.
+# Ізоляція R-16: pnpm store /home/sitelens/clean-s8-store (--store-dir), кеш XDG_CACHE_HOME=/home/sitelens/clean-s8-cache, немає node_modules, немає data/pg.
+
+### 05:46:55Z README step 1: pnpm install (від sitelens через run-as-sitelens, окремий store)
+$ bash scripts/run-as-sitelens.sh pnpm install --store-dir /home/sitelens/clean-s8-store
+Scope: all 11 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +365
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 365, reused 0, downloaded 105, added 98
+Progress: resolved 365, reused 0, downloaded 210, added 152
+Progress: resolved 365, reused 0, downloaded 358, added 261
+Progress: resolved 365, reused 0, downloaded 363, added 362
+Progress: resolved 365, reused 0, downloaded 364, added 364
+Progress: resolved 365, reused 0, downloaded 365, added 365, done
+.../@embedded-postgres/linux-x64 postinstall$ node scripts/hydrate-symlinks.js
+.../esbuild@0.28.2/node_modules/esbuild postinstall$ node install.js
+.../@embedded-postgres/linux-x64 postinstall: Done
+.../esbuild@0.28.2/node_modules/esbuild postinstall: Done
+
+devDependencies:
++ @axe-core/playwright 4.13.0
++ @eslint/js 9.39.5
++ @types/node 22.20.4
++ @types/pg 8.23.1
++ eslint 9.39.5
++ lighthouse 13.5.0
++ pg 8.23.0
++ pg-boss 12.35.0
++ playwright 1.56.1
++ playwright-core 1.56.1
++ tsx 4.23.15
++ typescript 5.9.3
++ typescript-eslint 8.71.0
++ vitest 3.2.7
+
+Done in 6.9s using pnpm v10.33.0
+[exit 0]
+
+### 05:47:08Z README: pnpm exec playwright install chromium (від sitelens)
+$ bash scripts/run-as-sitelens.sh pnpm exec playwright install chromium
+Terminated
+[exit 143]
+[ПЕРЕРВАНО QA на ~3 хв: kill PID 17375/17363 (власні). Команда не завершується: cdn.playwright.dev недосяжний (curl -> HTTP 000), DEV-23. Каталог /opt/pw-browsers доступний лише на читання для sitelens]
+DEFECT README-1: крок "playwright install chromium" у мережі без CDN висить без повідомлення й без таймауту; README радить виконувати від root ("no-op"), але тут це не no-op. Виправлення: додати перевірку наявності Chromium (PLAYWRIGHT_BROWSERS_PATH, doctor) і `timeout 120`.
+
+### 05:51:34Z README (виправлений порядок): pnpm doctor від sitelens
+$ bash scripts/run-as-sitelens.sh pnpm doctor
+[exit 0]
+DEFECT README-2: у README немає doctor; а 'pnpm doctor' — вбудована команда pnpm (нічого не робить, exit 0), треба 'pnpm run doctor' (або 'pnpm doctor:as-sitelens').
+
+### 05:51:44Z doctor: pnpm run doctor від sitelens
+$ bash scripts/run-as-sitelens.sh pnpm run doctor
+
+> sitelens@0.0.0 doctor /home/sitelens/clean-s8
+> tsx scripts/doctor.ts
+
+PASS node: Node 22.22.2 (потрібно major >= 22)
+PASS pnpm: pnpm 10.33.0, packageManager=pnpm@10.33.0
+INFO platform: linux x64, uid=1001, rosetta=n/a
+PASS chromium_installed: playwright-core 1.56.1 потребує chromium r1194 (141.0.7390.37) + headless-shell r1194; PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers; chromium=true, headless_shell=true; вміст: [.links, chromium, chromium-1194, chromium_headless_shell-1194, ffmpeg-1011]
+PASS chromium_sandbox: Chromium 141.0.7390.37 стартував із chromiumSandbox:true; --no-sandbox у cmdline: false; uid=1001
+PASS axe: @axe-core/playwright 4.13.0, axe-core 4.13.0
+PASS lighthouse: lighthouse 13.5.0 імпортується (engines node >=22.19)
+INFO postgres_options: system PG версії: [16] (Ver Cluster Port Status Owner    Data directory              Log file
+16  main    5432 down   postgres /var/lib/postgresql/16/main /var/log/postgresql/postgresql-16-main.log); @embedded-postgres/linux-x64@18.4.0-beta.17. S1a не стартує БД.
+INFO internet: registry.npmjs.org=200, example.com=ERR(curl: (56) CONNECT tunnel failed, response 403) → живі публічні сайти НЕдоступні (живі пас-и ⏭️)
+INFO docker: клієнт: Docker version 29.3.1, build c2be9cc; демон: недоступний
+
+DOCTOR PASS → planning/qa/artifacts/sprint-1a/doctor.json
+[exit 0]
+
+### 05:51:55Z README: cp .env.example .env (від sitelens)
+$ bash scripts/run-as-sitelens.sh cp .env.example .env
+[exit 0]
+
+### 05:51:56Z README: pnpm db:start
+$ bash scripts/run-as-sitelens.sh pnpm db:start
+
+> sitelens@0.0.0 db:start /home/sitelens/clean-s8
+> tsx packages/db/src/cli.ts start
+
+{"running":true,"pid":23333,"port":54329,"stale_pid_file_removed":false,"started":true,"initialised":true}
+[exit 0]
+
+### 05:51:57Z README: pnpm db:migrate
+$ bash scripts/run-as-sitelens.sh pnpm db:migrate
+
+> sitelens@0.0.0 db:migrate /home/sitelens/clean-s8
+> tsx packages/db/src/cli.ts migrate
+
+{"applied":["001_init.sql","002_pipeline.sql","003_report.sql"],"skipped":[]}
+[exit 0]
+
+### 05:52:49Z start fixtures/api/worker/web (setsid, run-as-sitelens; SITELENS_FIXTURE_MODE=1 + ORIGINS 4210-4213); logs /home/sitelens/clean-s8-run/*.log; PIDs:
+fixtures 23484
+api 23485
+worker 23486
+web 23487
+$ lsof -nP -iTCP -sTCP:LISTEN
+postgres  23333 sitelens    8u  IPv4 2457889      0t0  TCP 127.0.0.1:54329 (LISTEN)
+node      23598 sitelens   36u  IPv4 2459117      0t0  TCP 127.0.0.1:3001 (LISTEN)
+node      23643 sitelens   32u  IPv4 2459996      0t0  TCP 127.0.0.1:4210 (LISTEN)
+node      23643 sitelens   34u  IPv4 2459997      0t0  TCP 127.0.0.1:4211 (LISTEN)
+node      23643 sitelens   35u  IPv4 2459998      0t0  TCP 127.0.0.1:4212 (LISTEN)
+node      23643 sitelens   36u  IPv4 2459999      0t0  TCP 127.0.0.1:4213 (LISTEN)
+node      23643 sitelens   37u  IPv4 2460003      0t0  TCP 127.0.0.1:4214 (LISTEN)
+$ awk /proc/net/tcp LISTEN
+00000000:07E8
+00000000:07E9
+0100007F:0BB8
+0100007F:0BB9
+0100007F:0C45
+0100007F:0C46
+0100007F:1072
+0100007F:1073
+0100007F:1074
+0100007F:1075
+0100007F:1076
+0100007F:94D3
+0100007F:A097
+0100007F:AD31
+0100007F:D439
+[Слухачі: у lsof видно 54329 (postgres), 3001 (api), 4210-4214 (fixtures) — усі 127.0.0.1. Web :3000 lsof НЕ показав (next-server), але /proc/net/tcp: 0100007F:0BB8 = 127.0.0.1:3000 LISTEN. 00000000:07E8/07E9 (0.0.0.0:2024/2025) — не наші (системні).]
+DEFECT README-3: README v0 описує лише db+api+worker («після S2», «Чого ще немає: UI, звіт»); немає кроку `pnpm web` (порт 3000, rewrites на API), «міграції 001 + 002» (насправді 001–003), немає doctor, немає скриптів validate/audit:*.
+
+### 05:53:13Z UI: подання http://127.0.0.1:4210/ через UI (Playwright), доказ по кліку
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s8-ui-submit.ts /home/sitelens/clean-s8-out/ui http://127.0.0.1:4210/
+{"url":"http://127.0.0.1:4210/","base":"http://127.0.0.1:3000","auditUrl":"http://127.0.0.1:3000/audit/aud_9275e26a7672a7fc","findings_in_ui":8,"screenshot_naturalWidth":1440,"screenshot_naturalHeight":1000,"page_errors":[]}
+[exit 0]
+
+### 05:55:03Z SQL: 0 знахідок без доказу + контроль
+$ bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s8-sql.ts
+
+-- аудити
+SELECT id, status, llm_mode, error IS NOT NULL AS has_error, stage_status FROM audit_runs ORDER BY created_at
+=> [{"id":"aud_9275e26a7672a7fc","status":"completed","llm_mode":"none","has_error":false,"stage_status":{"crawl":{"reason":"сторінок захоплено 11, збійних 0, пропущено 8","status":"done","updated_at":"2026-09-30T05:54:00.591Z"},"tasks":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:22.195Z"},"lenses":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:23.194Z"},"report":{"reason":"знахідок 8, позитивів 0, доказів 36","status":"done","updated_at":"2026-09-30T05:54:27.706Z"},"capture":{"status":"done","updated_at":"2026-09-30T05:54:00.594Z"},"aggregate":{"reason":"докази зведено (42 детермінованих, 0 синтетичних; оновлено 25); знахідок 8, відхилено тверджень без доказу 0","status":"done","updated_at":"2026-09-30T05:54:25.314Z"},"lighthouse":{"status":"done","updated_at":"2026-09-30T05:54:21.126Z"},"site_profile":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:21.194Z"},"accessibility":{"status":"done","updated_at":"2026-09-30T05:54:21.126Z"},"scenario_matrix":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:24.197Z"},"browser_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:25.247Z"},"snapshot_sessions":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:25.246Z"}}}]
+
+-- знахідок усього
+SELECT count(*)::int AS findings FROM findings
+=> [{"findings":8}]
+
+-- ЗНАХІДОК БЕЗ ДОКАЗУ (має бути 0)
+SELECT count(*)::int AS findings_without_evidence FROM findings f WHERE NOT EXISTS (SELECT 1 FROM finding_evidence fe WHERE fe.audit_run_id=f.audit_run_id AND fe.finding_id=f.id AND fe.role='support')
+=> [{"findings_without_evidence":0}]
+
+-- докази
+SELECT source_class, count(*)::int FROM evidence GROUP BY 1 ORDER BY 1
+=> [{"source_class":"BENCHMARKED","count":19},{"source_class":"OBSERVED","count":23}]
+
+-- черга: задачі
+SELECT kind, status, count(*)::int FROM audit_jobs GROUP BY 1,2 ORDER BY 1,2
+=> [{"kind":"accessibility","status":"done","count":11},{"kind":"capture","status":"done","count":11},{"kind":"lighthouse","status":"done","count":3}]
+
+-- рекомендації без знахідки (має бути 0)
+SELECT count(*)::int AS orphan_recs FROM recommendations r WHERE NOT EXISTS (SELECT 1 FROM findings f WHERE f.audit_run_id=r.audit_run_id AND f.id=r.finding_id)
+=> [{"orphan_recs":0}]
+
+-- звіт збережено
+SELECT audit_run_id, report_sha256, guard_events, jsonb_array_length(rejected) AS rejected FROM audit_reports
+=> [{"audit_run_id":"aud_9275e26a7672a7fc","report_sha256":"11be42df18411b1b57925b1c1d780d13ca30948803bda39eddb7fde0d74149f6","guard_events":0,"rejected":0}]
+
+-- КОНТРОЛЬ (у транзакції з підкладеною знахідкою без доказу) -> має бути 1
+SELECT count(*)::int AS findings_without_evidence FROM findings f WHERE NOT EXISTS (SELECT 1 FROM finding_evidence fe WHERE fe.audit_run_id=f.audit_run_id AND fe.finding_id=f.id AND fe.role='support')
+=> [{"findings_without_evidence":1}]
+
+-- COMMIT відхилено тригером §23: finding fnd_qacontrol0001 has no supporting evidence (SPEC §23)
+
+-- після ROLLBACK: підкладеної знахідки немає
+SELECT count(*)::int AS ctl FROM findings WHERE id='fnd_qacontrol0001'
+=> [{"ctl":0}]
+[exit 0]
+
+### API/worker evidence for aud_9275e26a7672a7fc
+$ curl /api/health
+{"ok":true,"db":true}
+$ curl /api/audits/aud_9275e26a7672a7fc
+{"id":"aud_9275e26a7672a7fc","status":"completed","input_url":"http://127.0.0.1:4210/","normalized_url":"http://127.0.0.1:4210/","language":"uk","llm_mode":"none","created_at":"2026-09-30T05:53:15.263Z","started_at":"2026-09-30T05:53:16.254Z","completed_at":"2026-09-30T05:54:26.193Z","stage_status":{"crawl":{"reason":"сторінок захоплено 11, збійних 0, пропущено 8","status":"done","updated_at":"2026-09-30T05:54:00.591Z"},"tasks":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:22.195Z"},"lenses":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:23.194Z"},"report":{"reason":"знахідок 8, позитивів 0, доказів 36","status":"done","updated_at":"2026-09-30T05:54:27.706Z"},"capture":{"status":"done","updated_at":"2026-09-30T05:54:00.594Z"},"aggregate":{"reason":"докази зведено (42 детермінованих, 0 синтетичних; оновлено 25); знахідок 8, відхилено тверджень без доказу 0","status":"done","updated_at":"2026-09-30T05:54:25.314Z"},"lighthouse":{"status":"done","updated_at":"2026-09-30T05:54:21.126Z"},"site_profile":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:21.194Z"},"accessibility":{"status":"done","updated_at":"2026-09-30T05:54:21.126Z"},"scenario_matrix":{"reason":"no LLM provider","status":"skipped","updated_at":"2026-09-30T05:54:24.197Z"},"browser_sessions":
+$ curl via web rewrite :3000/api/audits/aud_9275e26a7672a7fc/report | jq summary
+{'schema_version': 'sitelens-report/v1', 'scoring_version': 'scoring-v2', 'generated_at': '2026-09-30T05:54:26.193Z', 'provenance': 2, 'audit': 15, 'executive_summary': 8, 'site_understanding': None, 'lenses': None, 'funnel': 7, 'findings': 8, 'positive_findings': 0, 'technical': 3, 'coverage': 5, 'budget': 7, 'evidence': 36, 'disclaimers': 4, 'guard': 5}
+$ worker.log (jobs)
+35
+{"ts":"2026-09-30T05:52:17.179Z","level":"info","msg":"worker started","pid":23610,"cleanup":{"killed":[],"killed_from_spawn_log":[],"already_gone":0,"requeued_jobs":0},"config":{"host":"127.0.0.1","port":3001,"access_token":"unset","artifact_dir":"/home/sitel
+{"ts":"2026-09-30T05:53:20.322Z","level":"info","msg":"job done","queue":"capture_page","job":"7186031e-cf2b-4d3e-a15b-edb9133224e7","audit":"aud_9275e26a7672a7fc","retry":0,"ms":3080}
+{"ts":"2026-09-30T05:53:24.366Z","level":"info","msg":"job done","queue":"capture_page","job":"2b5b8296-774e-47e6-b22e-1b98c1e41e75","audit":"aud_9275e26a7672a7fc","retry":0,"ms":3031}
+{"ts":"2026-09-30T05:53:28.669Z","level":"info","msg":"job done","queue":"capture_page","job":"fd15fae7-07b7-4e6e-ba5a-8851871f7cfc","audit":"aud_9275e26a7672a7fc","retry":0,"ms":3296}
+{"ts":"2026-09-30T05:53:33.217Z","level":"info","msg":"job done","queue":"capture_page","job":"61ccf52e-1dee-4a5b-999d-1767fb857b01","audit":"aud_9275e26a7672a7fc","retry":0,"ms":3543}
+{"ts":"2026-09-30T05:53:39.121Z","level":"info","msg":"job done","queue":"capture_page","job":"4b8172e9-b82c-4d12-a6ab-40f76c455b12","audit":"aud_9275e26a7672a7fc","retry":0,"ms":4895}
+{"ts":"2026-09-30T05:53:42.626Z","level":"info","msg":"job done","queue":"capture_page","job":"5b4df965-e001-49c1-a9a7-3cd9ad75f87d","audit":"aud_9275e26a7672a7fc","retry":0,"ms":2496}
+{"ts":"2026-09-30T05:53:46.094Z","level":"info","msg":"job done","queue":"capture_page","job":"22866bb7-f21c-489d-a69c-5b86c2bff91f","audit":"aud_9275e26a7672a7fc","retry":0,"ms":2463}
+- stopped api/worker/web/fixtures (kill of own pnpm PIDs 23519 23520 23521 23539)
+### 05:55:53Z pnpm test (полний, від sitelens) -> /home/sitelens/clean-s8-run/test-full.log
