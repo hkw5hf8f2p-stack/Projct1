@@ -92,7 +92,8 @@ export const CLAIM_KINDS_BY_CATEGORY: Record<(typeof CATEGORIES)[number], readon
  * тому окремий від закритого списку категорії. Lighthouse-доказ: category performance | accessibility, claim_kind lighthouse_category_score.
  */
 export const DETECTOR_ONLY_CLAIM_KINDS: Partial<Record<(typeof CATEGORIES)[number], readonly string[]>> = {
-  performance: ["lighthouse_category_score"],
+  /** DEV-97: `lighthouse_metric_poor` — лабораторна метрика Lighthouse (LCP/TBT) гірша за опублікований поріг «добре» (самопідтверджувальний BENCHMARKED) */
+  performance: ["lighthouse_category_score", "lighthouse_metric_poor"],
   accessibility: ["lighthouse_category_score"],
 };
 export const AXE_CLAIM_RE = /^axe:[a-z0-9][a-z0-9-]*$/;

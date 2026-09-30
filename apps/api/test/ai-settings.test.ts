@@ -67,6 +67,39 @@ describe("сховище: AES-256-GCM", () => {
   });
 });
 
+describe("DEV-92: llm_concurrency", () => {
+  it("схема: 1–6 цілі; 0/7/2.5/рядок відхилено", () => {
+    for (const ok of [1, 3, 6]) expect(AiSettingsInput.safeParse({ kind: "openai", llm_concurrency: ok }).success, String(ok)).toBe(true);
+    for (const bad of [0, 7, 2.5, "3", -1]) expect(AiSettingsInput.safeParse({ kind: "openai", llm_concurrency: bad }).success, String(bad)).toBe(false);
+  });
+  it("типове: 3; claude_cli — 2; env LLM_CONCURRENCY перекриває типове; некоректний env ігнорується; UI > env", () => {
+    expect(resolveEffectiveAi(mkEnv()).llm_concurrency).toBe(3);
+    expect(resolveEffectiveAi(mkEnv({ LLM_PROVIDER: "claude-cli" })).llm_concurrency).toBe(2);
+    expect(resolveEffectiveAi(mkEnv({ LLM_PROVIDER: "claude-cli", LLM_CONCURRENCY: "5" })).llm_concurrency).toBe(5);
+    expect(resolveEffectiveAi(mkEnv({ LLM_CONCURRENCY: "9" })).llm_concurrency).toBe(3);
+    expect(resolveEffectiveAi(mkEnv({ LLM_CONCURRENCY: "abc" })).llm_concurrency).toBe(3);
+    const env = mkEnv({ LLM_CONCURRENCY: "5" });
+    saveAiSettings({ kind: "claude_cli" }, env);
+    expect(resolveEffectiveAi(env).llm_concurrency).toBe(5); // збережено без явного значення → env, не жорстке типове
+    saveAiSettings({ kind: "claude_cli", llm_concurrency: 1 }, env);
+    expect(resolveEffectiveAi(env).llm_concurrency).toBe(1);
+    saveAiSettings({ kind: "claude_cli", model: "m" }, env);
+    expect(resolveEffectiveAi(env).llm_concurrency).toBe(1); // пропущене поле зберігається (як max_audit_tokens)
+  });
+  it("API: PUT/GET повертають llm_concurrency; 0 і 7 → 400; ключ не витікає", async () => {
+    const env = mkEnv();
+    const app = await mk(env);
+    expect(AiSettingsView.parse((await app.inject({ method: "GET", url: "/api/settings/ai" })).json()).llm_concurrency).toBe(3);
+    const put = await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "claude_cli" } });
+    expect(AiSettingsView.parse(put.json()).llm_concurrency).toBe(2);
+    const put2 = await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "claude_cli", llm_concurrency: 6 } });
+    expect(put2.json().llm_concurrency).toBe(6);
+    expect((await app.inject({ method: "GET", url: "/api/settings/ai" })).json().llm_concurrency).toBe(6);
+    for (const bad of [0, 7]) expect((await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "claude_cli", llm_concurrency: bad } })).statusCode, String(bad)).toBe(400);
+    await app.close();
+  });
+});
+
 describe("схема Input", () => {
   it("userinfo / не-http / base_url не для openai_compatible / ключ для claude_cli → відхилено; локальна адреса для openai_compatible → ок", () => {
     const bad = (o: unknown) => expect(AiSettingsInput.safeParse(o).success).toBe(false);
@@ -231,5 +264,10 @@ describe("знімок в AuditRun (справжній PostgreSQL)", () => {
     expect(await run({ kind: "openai_compatible", base_url: "http://127.0.0.1:11434", model: "llama3", api_key: KEY })).toEqual({ llm_mode: "live", llm_provider: "openai_compatible", llm_model: "llama3" });
     expect(await run({ kind: "claude_cli" })).toEqual({ llm_mode: "live", llm_provider: "claude_cli", llm_model: null });
     expect(await run({ kind: "none" })).toEqual({ llm_mode: "none", llm_provider: null, llm_model: null });
+    // DEV-92: паралельність — у знімку аудиту (зміна налаштувань під час аудиту на нього не діє)
+    await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "claude_cli", llm_concurrency: 4 } });
+    const r2 = await app.inject({ method: "POST", url: "/api/audits", payload: { url: "http://127.0.0.1:9/" } });
+    await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "claude_cli", llm_concurrency: 1 } });
+    expect((await db.pool.query("SELECT config_json->>'llm_concurrency' AS c FROM audit_runs WHERE id = $1", [r2.json().auditId])).rows[0].c).toBe("4");
   });
 });

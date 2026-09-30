@@ -1340,17 +1340,12 @@
       ],
       "page_count": 11,
       "title": {
-        "template": "Автоматична перевірка доступності не пройдена: {rule}",
-        "params": {
-          "rule": {
-            "ptr": "/findings/4/claim_kind",
-            "format": "text"
-          }
-        },
+        "template": "Кнопки без доступної назви",
+        "params": {},
         "origin": "code",
         "source_class": "BENCHMARKED",
         "lang": "uk",
-        "template_id": "finding.title.axe",
+        "template_id": "finding.title.axe.button-name",
         "guard": {
           "status": "not_applicable",
           "attempts": 0,
@@ -1380,12 +1375,12 @@
         }
       },
       "why_it_matters": {
-        "template": "Елементи без доступної назви чи текстової альтернативи незрозумілі користувачам екранних читачів.",
+        "template": "Екранний читач оголошує таку кнопку, не кажучи, що вона робить.",
         "params": {},
         "origin": "code",
         "source_class": "BENCHMARKED",
         "lang": "uk",
-        "template_id": "finding.why.axe",
+        "template_id": "finding.why.axe.button-name",
         "guard": {
           "status": "not_applicable",
           "attempts": 0,
@@ -1555,17 +1550,12 @@
       ],
       "page_count": 1,
       "title": {
-        "template": "Автоматична перевірка доступності не пройдена: {rule}",
-        "params": {
-          "rule": {
-            "ptr": "/findings/5/claim_kind",
-            "format": "text"
-          }
-        },
+        "template": "Зображення без текстової альтернативи",
+        "params": {},
         "origin": "code",
         "source_class": "BENCHMARKED",
         "lang": "uk",
-        "template_id": "finding.title.axe",
+        "template_id": "finding.title.axe.image-alt",
         "guard": {
           "status": "not_applicable",
           "attempts": 0,
@@ -1595,12 +1585,12 @@
         }
       },
       "why_it_matters": {
-        "template": "Елементи без доступної назви чи текстової альтернативи незрозумілі користувачам екранних читачів.",
+        "template": "Користувачі екранних читачів не дізнаються, що показано на зображенні.",
         "params": {},
         "origin": "code",
         "source_class": "BENCHMARKED",
         "lang": "uk",
-        "template_id": "finding.why.axe",
+        "template_id": "finding.why.axe.image-alt",
         "guard": {
           "status": "not_applicable",
           "attempts": 0,
@@ -2113,19 +2103,14 @@
       ],
       "page_count": 1,
       "title": {
-        "template": "Проблема в категорії {category}",
-        "params": {
-          "category": {
-            "ptr": "/findings/8/category",
-            "format": "text"
-          }
-        },
-        "origin": "code",
-        "source_class": "INFERRED",
+        "template": "Картки AquaPro виглядають майже однаково; різницю між моделями не видно",
+        "params": {},
+        "origin": "llm",
+        "source_class": "SYNTHETIC",
         "lang": "uk",
-        "template_id": "finding.title.generic",
+        "template_id": "report-writer-v1",
         "guard": {
-          "status": "not_applicable",
+          "status": "pending",
           "attempts": 0,
           "rule_ids": []
         }
@@ -2143,15 +2128,27 @@
           "rule_ids": []
         }
       },
-      "why_it_matters": null,
+      "why_it_matters": {
+        "template": "Якщо варіанти не можна порівняти, вибір здається ризикованим.",
+        "params": {},
+        "origin": "code",
+        "source_class": "INFERRED",
+        "lang": "uk",
+        "template_id": "finding.why.category.comparison",
+        "guard": {
+          "status": "not_applicable",
+          "attempts": 0,
+          "rule_ids": []
+        }
+      },
       "recommendation": {
         "recommended_change": {
-          "template": "Перегляньте докази й усуньте показану ними проблему.",
+          "template": "Подайте порівнювані характеристики схожих товарів в однаковому форматі, бажано поруч.",
           "params": {},
           "origin": "code",
-          "source_class": "BENCHMARKED",
+          "source_class": "INFERRED",
           "lang": "uk",
-          "template_id": "finding.change.generic",
+          "template_id": "finding.change.category.comparison",
           "guard": {
             "status": "not_applicable",
             "attempts": 0,
@@ -2511,50 +2508,65 @@
       ],
       "page_count": 1,
       "title": {
-        "template": "Проблема в категорії {category}",
-        "params": {
-          "category": {
-            "ptr": "/findings/10/category",
-            "format": "text"
-          }
-        },
-        "origin": "code",
+        "template": "Заголовок головної не називає категорії товарів",
+        "params": {},
+        "origin": "llm",
         "source_class": "INFERRED",
         "lang": "uk",
-        "template_id": "finding.title.generic",
+        "template_id": "report-writer-v1",
         "guard": {
-          "status": "not_applicable",
+          "status": "pending",
           "attempts": 0,
           "rule_ids": []
         }
       },
       "problem": {
-        "template": "Докази вказують на проблему в цій категорії. Сторінок: {page_count}.",
+        "template": "Лінзи повідомили про це на {page} ({session_frequency}); спостереження — у доказах нижче. Сторінок: {page_count}.",
         "params": {
+          "page": {
+            "ptr": "/findings/10/pages/0/path",
+            "format": "text"
+          },
           "page_count": {
             "ptr": "/findings/10/page_count",
             "format": "int"
+          },
+          "session_frequency": {
+            "ptr": "/findings/10/synthetic/session_frequency",
+            "format": "n_of_m"
           }
         },
         "origin": "code",
-        "source_class": "INFERRED",
+        "source_class": "SYNTHETIC",
         "lang": "uk",
-        "template_id": "finding.problem.generic",
+        "template_id": "finding.problem.synthetic_page",
         "guard": {
           "status": "not_applicable",
           "attempts": 0,
           "rule_ids": []
         }
       },
-      "why_it_matters": null,
+      "why_it_matters": {
+        "template": "Якщо вигода незрозуміла в перші секунди, відвідувачеві нема причини продовжувати.",
+        "params": {},
+        "origin": "code",
+        "source_class": "INFERRED",
+        "lang": "uk",
+        "template_id": "finding.why.category.value_proposition",
+        "guard": {
+          "status": "not_applicable",
+          "attempts": 0,
+          "rule_ids": []
+        }
+      },
       "recommendation": {
         "recommended_change": {
-          "template": "Перегляньте докази й усуньте показану ними проблему.",
+          "template": "Скажіть у першому екрані простими словами, що продається, для кого й чим це краще.",
           "params": {},
           "origin": "code",
-          "source_class": "BENCHMARKED",
+          "source_class": "INFERRED",
           "lang": "uk",
-          "template_id": "finding.change.generic",
+          "template_id": "finding.change.category.value_proposition",
           "guard": {
             "status": "not_applicable",
             "attempts": 0,
@@ -3486,16 +3498,18 @@
       "claim_kind": "deep_link_only",
       "assertion": null,
       "description": {
-        "template": "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано).",
+        "template": "Агент витратив … кроки, щоб знайти доставку.",
         "params": {},
-        "origin": "code",
+        "origin": "llm",
         "source_class": "SYNTHETIC",
         "lang": "uk",
-        "template_id": "evidence.llm.fallback",
+        "template_id": "report-writer-v1",
         "guard": {
-          "status": "not_applicable",
+          "status": "pending",
           "attempts": 0,
-          "rule_ids": []
+          "rule_ids": [
+            "number_masked"
+          ]
         }
       },
       "excerpt": null,

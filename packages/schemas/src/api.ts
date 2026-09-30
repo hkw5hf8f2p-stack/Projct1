@@ -20,7 +20,9 @@ export const AuditWarning = z.object({ stage: z.string(), page_url: z.string().o
 export const PROGRESS_STEP_IDS = ["discovering_pages", "capturing", "technical_checks", "understanding_offering", "building_lenses", "testing_journeys", "aggregating_evidence", "preparing_report"] as const;
 export const ProgressStepId = z.enum(PROGRESS_STEP_IDS);
 export const STEP_COUNTER_UNITS = ["pages", "lighthouse", "accessibility", "llm_calls", "lenses", "snapshot_sessions", "journals"] as const;
-export const StepCounter = z.object({ unit: z.enum(STEP_COUNTER_UNITS), done: z.number().int().min(0), total: z.number().int().min(0).nullable(), approx: z.boolean().optional() });
+export const StepCounter = z.object({ unit: z.enum(STEP_COUNTER_UNITS), done: z.number().int().min(0), total: z.number().int().min(0).nullable(), approx: z.boolean().optional(),
+  /** ETA лічильника (для кроків із кількома паралельними лічильниками); null — даних для оцінки ще немає */
+  eta_seconds: z.number().int().min(0).nullable().optional() });
 export const StepDetail = z.object({
   id: ProgressStepId,
   counters: z.array(StepCounter),

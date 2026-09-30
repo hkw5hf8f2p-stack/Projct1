@@ -121,7 +121,7 @@ export const Evidence = EvidenceObject.superRefine((e, ctx) => {
     if (e.assertion === "absence" && e.self_confirming) {
       bad("твердження відсутності при capture_complete=false не може бути self_confirming (DEV-17/DEV-19: ET-INC, не VERIFIED)", ["self_confirming"]);
     }
-    if (e.evidence_tier === "ET-DET") bad("ET-DET несумісний з capture_complete=false", ["evidence_tier"]);
+    if (e.evidence_tier === "ET-DET" && e.assertion !== "presence") bad("ET-DET несумісний з capture_complete=false для твердження відсутності (DEV-96 лише для presence)", ["evidence_tier"]);
   }
   if (e.assertion === "absence" && e.claim_kind !== undefined && !ABSENCE_CLAIM_KINDS.has(e.claim_kind)) {
     bad(`assertion=absence, але claim_kind ${e.claim_kind} не є твердженням відсутності`, ["claim_kind"]);
@@ -159,7 +159,9 @@ export type EvidenceRecord = z.infer<typeof EvidenceRecord>;
  */
 export function tierOf(e: Evidence, ctx: { distinctSessionsForKey?: number; distinctLogsForBrowserFailure?: number } = {}): z.infer<typeof EvidenceTier> {
   const det = e.source_class === "OBSERVED" || e.source_class === "BENCHMARKED";
-  if (det && e.self_confirming && e.capture_complete !== false) return "ET-DET";
+  // DEV-96: неповне захоплення (заблоковані сторонні запити, нестабільний layout) знецінює лише доказ ВІДСУТНОСТІ;
+  // знайдене присутнє порушення (axe, overflow, важке зображення, поріг метрики Lighthouse) лишається фактом → ET-DET
+  if (det && e.self_confirming && (e.capture_complete !== false || e.assertion === "presence")) return "ET-DET";
   if (e.browser_failure && (e.browser_failure.reproduced_by_replay || (ctx.distinctLogsForBrowserFailure ?? 0) >= 2)) return "ET-BRW";
   if (e.source_class === "SYNTHETIC") return (ctx.distinctSessionsForKey ?? 1) >= 2 ? "ET-SYN-M" : "ET-SYN-1";
   if (e.source_class === "INFERRED") return "ET-INF";

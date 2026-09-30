@@ -68,6 +68,32 @@ export function numberViolations(template: string, llm: boolean): NumberViolatio
   return out;
 }
 
+/**
+ * DEV-98: число в LLM-тексті не відкидає весь текст. Речення з числівником-словом («вдвічі», «половина», «double») або
+ * зі знаком частки (% ‰) видаляється цілком (такі речення — типова форма прогнозу/частки, маскування сховало б сигнал guard);
+ * у решті речень кожна цифрова послідовність маскується «…» (ціни, розміри, строки з цитат сайту). Плейсхолдери `{name}`
+ * не чіпаються. `null` — нічого змістовного не лишилось (< 2 слів) або правило все одно порушене (fail-closed).
+ */
+export const NUMBER_MASK = "…";
+export function maskNumberSpans(text: string): { text: string; masked: number; sentences_removed: number } | null {
+  let masked = 0;
+  let removed = 0;
+  const sentences = normalizeText(text).split(/(?<=[.!?])\s+/u);
+  const kept: string[] = [];
+  for (const sent of sentences) {
+    const bare = sent.replace(/\{[a-z][a-z0-9_]*\}/g, " ");
+    NUMERAL_WORD_RE.lastIndex = 0;
+    if (/[%‰]/u.test(bare) || NUMERAL_WORD_RE.test(bare)) { removed++; continue; }
+    const parts = sent.split(/(\{[a-z][a-z0-9_]*\})/g);
+    kept.push(parts.map((seg, i) => (i % 2 === 1 ? seg : seg.replace(/[+\-−±~≈]?[\p{Nd}](?:[\p{Nd}.,:\/\u00A0\u202F ]*[\p{Nd}])?/gu, () => { masked++; return NUMBER_MASK; }))).join(""));
+  }
+  NUMERAL_WORD_RE.lastIndex = 0;
+  const out = kept.join(" ").replace(/…(?:[\s\-–—,]*…)+/gu, NUMBER_MASK).replace(/\s{2,}/g, " ").trim();
+  const words = out.replace(/\{[a-z][a-z0-9_]*\}/g, " ").match(/\p{L}{2,}/gu) ?? [];
+  if (words.length < 2 || numberViolations(out, true).length > 0) return null;
+  return { text: out, masked, sentences_removed: removed };
+}
+
 export const PLACEHOLDER_RE = /\{([a-z][a-z0-9_]*)\}/g;
 /** імена плейсхолдерів у порядку появи (без повторів) */
 export function placeholders(template: string): string[] {

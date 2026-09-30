@@ -244,6 +244,101 @@ describe("секрети не потрапляють у лог", () => {
   });
 });
 
+describe("DEV-93: режим аудиту (quick|full)", () => {
+  const cfgOf = async (id: string) => (await db.pool.query("SELECT config_json FROM audit_runs WHERE id = $1", [id])).rows[0].config_json as Record<string, unknown>;
+  it("quick: ≤ 6 сторінок навіть при MAX_PAGES=12, 6 лінз, паралельність у знімку; full/типово — MAX_PAGES і 12 лінз", async () => {
+    const { app } = await mkApp({ MAX_PAGES: "12" });
+    const q = CreateAuditResponse.parse((await post(app, { url: "https://mode-quick.example.com/", mode: "quick" })).json()).auditId;
+    expect(await cfgOf(q)).toMatchObject({ mode: "quick", max_pages: 6, lens_target: 6, llm_concurrency: 3 });
+    const f = CreateAuditResponse.parse((await post(app, { url: "https://mode-full.example.com/", mode: "full" })).json()).auditId;
+    expect(await cfgOf(f)).toMatchObject({ mode: "full", max_pages: 12, lens_target: 12 });
+    const d = CreateAuditResponse.parse((await post(app, { url: "https://mode-default.example.com/" })).json()).auditId;
+    expect(await cfgOf(d)).toMatchObject({ mode: "full", max_pages: 12 });
+    const small = await mkApp({ MAX_PAGES: "4" });
+    const q2 = CreateAuditResponse.parse((await post(small.app, { url: "https://mode-small.example.com/", mode: "quick" })).json()).auditId;
+    expect((await cfgOf(q2))["max_pages"]).toBe(4); // quick не збільшує ліміт оператора
+    const st = AuditStatusResponse.parse((await app.inject({ method: "GET", url: `/api/audits/${q}` })).json());
+    expect(st).toMatchObject({ mode: "quick", llm_concurrency: 3 });
+    expect(AuditStatusResponse.parse((await app.inject({ method: "GET", url: `/api/audits/${f}` })).json()).mode).toBe("full");
+  });
+  it("некоректний mode → 400 і аудит не створюється", async () => {
+    const { app } = await mkApp();
+    const n0 = await count("SELECT count(*) AS n FROM audit_runs");
+    for (const mode of ["turbo", 1, null, ""]) expect((await post(app, { url: "https://mode-bad.example.com/", mode })).statusCode, String(mode)).toBe(400);
+    expect(await count("SELECT count(*) AS n FROM audit_runs")).toBe(n0);
+  });
+});
+
+describe("DEV-92: step_details у GET /api/audits/:id", () => {
+  it("лічильники з БД: сесії N/M, журнали N/M, LLM-виклики, ETA з duration_ms завершених задач; done монотонно зростає; без даних — без ETA", async () => {
+    const { app } = await mkApp();
+    const id = CreateAuditResponse.parse((await post(app, { url: "https://progress.example.com/" })).json()).auditId;
+    const keys = Array.from({ length: 6 }, (_, i) => `snapshot:sc_${i}`).concat(["browser:sc_j0"]);
+    await db.pool.query(
+      `UPDATE audit_runs SET status = 'running_scenarios', started_at = now() - interval '10 minutes', config_json = config_json || $2::jsonb,
+         stage_status = '{"crawl":{"status":"done","updated_at":"2026-09-30T10:00:00.000Z"},"capture":{"status":"done"},"lighthouse":{"status":"done"},"accessibility":{"status":"done"},"site_profile":{"status":"done"},"tasks":{"status":"done"},"lenses":{"status":"done"},"scenario_matrix":{"status":"done","updated_at":"2026-09-30T10:02:00.000Z"}}'::jsonb
+       WHERE id = $1`, [id, JSON.stringify({ expected_scenarios: keys, scenarios_enqueued: true, llm_concurrency: 2 })]);
+    const get = async () => AuditStatusResponse.parse((await app.inject({ method: "GET", url: `/api/audits/${id}` })).json());
+    const testing = (s: Awaited<ReturnType<typeof get>>) => s.step_details!.find((d) => d.id === "testing_journeys")!;
+    const snap = (s: Awaited<ReturnType<typeof get>>) => testing(s).counters.find((c) => c.unit === "snapshot_sessions")!;
+    expect(s0(await get())).toBeTruthy();
+    function s0(s: Awaited<ReturnType<typeof get>>) { return s.steps!.find((x) => x.id === "testing_journeys")!.state === "active"; }
+    let st = await get();
+    expect(snap(st)).toMatchObject({ done: 0, total: 6, eta_seconds: null }); // жодної завершеної → ETA не вигадується
+    expect(testing(st).eta_seconds).toBeNull();
+    expect(testing(st).started_at).toBe("2026-09-30T10:02:00.000Z");
+    let prev = 0;
+    for (let i = 0; i < 4; i++) {
+      await db.pool.query("INSERT INTO audit_jobs (audit_run_id, job_key, kind, status, result_json) VALUES ($1, $2, 'snapshot', 'done', $3)", [id, `snapshot:sc_${i}`, JSON.stringify({ duration_ms: 20_000 })]);
+      st = await get();
+      expect(snap(st).done).toBeGreaterThanOrEqual(prev);
+      prev = snap(st).done;
+    }
+    expect(snap(st)).toMatchObject({ done: 4, total: 6, eta_seconds: 20 }); // 20 c × ceil(2 / 2)
+    expect(testing(st).counters.find((c) => c.unit === "journals")).toMatchObject({ done: 0, total: 1, eta_seconds: null });
+    expect(testing(st).eta_seconds).toBeNull(); // журнал без даних → загальний ETA невідомий (не вигадується)
+    await db.pool.query("INSERT INTO audit_jobs (audit_run_id, job_key, kind, status, result_json) VALUES ($1, 'browser:sc_j0', 'browser', 'done', $2)", [id, JSON.stringify({ duration_ms: 90_000 })]);
+    await db.pool.query("INSERT INTO audit_jobs (audit_run_id, job_key, kind, status, result_json) VALUES ($1, 'snapshot:sc_4', 'snapshot', 'skipped', '{}')", [id]);
+    st = await get();
+    expect(testing(st).counters.find((c) => c.unit === "journals")).toMatchObject({ done: 1, total: 1 });
+    expect(snap(st)).toMatchObject({ done: 5, total: 6, eta_seconds: 20 }); // 20 c × ceil(1/2); skipped без duration_ms у середню не входить, але лічиться завершеним
+    expect(testing(st).eta_seconds).toBe(20);
+    expect(st.progress.scenarios_done).toBe(6);
+  });
+});
+
+describe("DEV-94: логи API", () => {
+  async function run(level: string) {
+    const chunks: string[] = [];
+    const { Writable } = await import("node:stream");
+    const stream = new Writable({ write(c, _e, cb) { chunks.push(String(c)); cb(); } });
+    process.env["LOG_LEVEL"] = level;
+    const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: art } as NodeJS.ProcessEnv);
+    const app = await buildServer({ cfg, pool: db.pool, boss, logStream: stream });
+    apps.push(app);
+    process.env["LOG_LEVEL"] = "silent";
+    const id = CreateAuditResponse.parse((await post(app, { url: `https://log-${level}.example.com/` }, { "user-agent": "canary-agent-xyz" })).json()).auditId;
+    for (let i = 0; i < 5; i++) await app.inject({ method: "GET", url: `/api/audits/${id}`, headers: { "user-agent": "canary-agent-xyz", cookie: "sid=canary-cookie" } });
+    await app.inject({ method: "GET", url: "/api/audits/aud_ffffffffffffffff" });
+    return { lines: chunks.join("").split("\n").filter(Boolean).map((l) => JSON.parse(l) as Record<string, unknown>), id };
+  }
+  it("info: опитування GET /api/audits/:id (200) не пишеться; POST і 404 — пишуться як method/url/status/ms без заголовків; debug — опитування є (контроль)", async () => {
+    const info = await run("info");
+    const reqs = info.lines.filter((l) => l["msg"] === "request");
+    expect(reqs.some((l) => l["method"] === "POST" && l["status"] === 202)).toBe(true);
+    expect(reqs.filter((l) => l["url"] === `/api/audits/${info.id}`)).toHaveLength(0);
+    const nf = reqs.find((l) => l["url"] === "/api/audits/aud_ffffffffffffffff")!;
+    expect(nf).toMatchObject({ method: "GET", status: 404 });
+    expect(typeof nf["ms"]).toBe("number");
+    expect(info.lines.every((l) => l["msg"] !== "incoming request" && l["msg"] !== "request completed")).toBe(true);
+    const raw = JSON.stringify(info.lines);
+    for (const canary of ["canary-agent-xyz", "canary-cookie", "headers"]) expect(raw, canary).not.toContain(canary);
+    const dbg = await run("debug");
+    expect(dbg.lines.filter((l) => l["msg"] === "request" && l["url"] === `/api/audits/${dbg.id}` && l["status"] === 200).length).toBe(5);
+    expect(JSON.stringify(dbg.lines)).not.toContain("canary-agent-xyz");
+  });
+});
+
 describe("GET/DELETE", () => {
   it("статус: форма за Zod, 404 для невідомого й небезпечного id", async () => {
     const { app } = await mkApp();

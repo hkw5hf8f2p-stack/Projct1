@@ -11,6 +11,7 @@ import { Q, txDb, advanceStatus, auditDir, enqueue, getAudit, insertEvidence, re
 import { loadAuditArtifacts } from "../artifacts.js";
 import { computeFindings, findingRows } from "../findings.js";
 import { llmResultsFromDb, withTx } from "../llm-store.js";
+import { runFindingTexts } from "../finding-texts.js";
 import { SHIP_RE, assignAxeScopes, bfsDepth, groupAxe, type EvidenceRow, type PageCapture } from "../browser-api.js";
 import type { Runtime } from "../runtime.js";
 import { liveAudit } from "./common.js";
@@ -64,10 +65,13 @@ export async function aggregateJob(rt: Runtime, job: Job<JobData>): Promise<void
   const art = await loadAuditArtifacts(rt.pool, rt.cfg.artifactDir, cur, { completedAt: new Date().toISOString() });
   const llmR = await llmResultsFromDb(rt.pool, id, art, cur);
   const scored = computeFindings(art, llmR?.llm ?? null);
+  // DEV-98: тексти знахідок від моделі (finding-aggregator-v1 → recommendation-v1) — до запису знахідок; кожна група комітиться окремо
+  const ft = llmR ? await runFindingTexts(rt, cur, art, llmR.llm, scored.findings) : null;
+  const ftNote = ft && ft.eligible ? `; тексти знахідок LLM: ${ft.supported + ft.skipped_existing} з ${ft.eligible} груп (not_supported ${ft.not_supported}, збій ${ft.failed}${ft.budget_limited ? ", зупинено бюджетом" : ""})` : "";
   await withTx(rt.pool, async (c) => {
     if (llmR && llmR.llm.evidence.length) await insertEvidence(c, id, llmR.llm.evidence as unknown as EvidenceInput[]);
     await replaceFindings(c, id, findingRows(scored));
-    await setStage(c, id, "aggregate", "done", `докази зведено (${art.evidence.length} детермінованих, ${llmR?.llm.evidence.length ?? 0} синтетичних; оновлено ${changed}); знахідок ${scored.findings.length}, відхилено тверджень без доказу ${llmR?.rejected.length ?? 0}${llmR && llmR.rejected.length ? ` (${Object.entries(llmR.rejected.reduce<Record<string, number>>((m, r) => ({ ...m, [r.reason]: (m[r.reason] ?? 0) + 1 }), {})).map(([k, n]) => `${k}: ${n}`).join(", ")})` : ""}`);
+    await setStage(c, id, "aggregate", ft?.budget_limited ? "budget_limited" : "done", `докази зведено (${art.evidence.length} детермінованих, ${llmR?.llm.evidence.length ?? 0} синтетичних; оновлено ${changed}); знахідок ${scored.findings.length}, відхилено тверджень без доказу ${llmR?.rejected.length ?? 0}${llmR && llmR.rejected.length ? ` (${Object.entries(llmR.rejected.reduce<Record<string, number>>((m, r) => ({ ...m, [r.reason]: (m[r.reason] ?? 0) + 1 }), {})).map(([k, n]) => `${k}: ${n}`).join(", ")})` : ""}${ftNote}`);
     await enqueue(rt.boss, Q.report, { auditRunId: id }, { db: txDb(c) });
   });
 }

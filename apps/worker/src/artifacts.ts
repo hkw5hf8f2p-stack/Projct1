@@ -49,7 +49,7 @@ export async function loadDeterministicEvidence(pool: Pool, auditId: string): Pr
 
 export async function lighthouseFromJobs(pool: Pool, auditId: string): Promise<LighthouseIn> {
   const jobs = (await pool.query("SELECT job_key, page_url, status, error, result_json FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' ORDER BY job_key", [auditId])).rows;
-  const ev = (await pool.query("SELECT page_url, viewport, measurement FROM evidence WHERE audit_run_id = $1 AND type = 'lighthouse' AND category = 'performance'", [auditId])).rows;
+  const ev = (await pool.query("SELECT page_url, viewport, measurement FROM evidence WHERE audit_run_id = $1 AND type = 'lighthouse' AND category = 'performance' AND claim_kind = 'lighthouse_category_score'", [auditId])).rows;
   if (jobs.length === 0) return { status: "not_run", reason: "Lighthouse не запускався для цього аудиту", runs: [] };
   const runs: LighthouseIn["runs"] = jobs.map((j) => {
     const ff = (j.job_key as string).endsWith(":mobile") ? "mobile" : "desktop";

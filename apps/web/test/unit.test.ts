@@ -92,6 +92,14 @@ describe("BYO AI (/settings/ai)", () => {
     expect([ui.MAX_AUDIT_TOKENS_MIN, ui.MAX_AUDIT_TOKENS_MAX]).toEqual([MAX_AUDIT_TOKENS_MIN, MAX_AUDIT_TOKENS_MAX]);
     expect([...PROVIDER_KINDS].sort()).toEqual([...ProviderKind.options].sort());
   });
+  it("DEV-92: дзеркала паралельності = контракт; parseConcurrency/типове за провайдером (позитив і негатив)", async () => {
+    const ui = await import("../src/lib/ai-settings");
+    const c = await import("@sitelens/schemas");
+    expect([ui.LLM_CONCURRENCY_MIN, ui.LLM_CONCURRENCY_MAX]).toEqual([c.LLM_CONCURRENCY_MIN, c.LLM_CONCURRENCY_MAX]);
+    for (const k of c.ProviderKind.options) expect(ui.defaultConcurrency(k), k).toBe(c.defaultLlmConcurrency(k));
+    expect(["1", "3", "6"].map(ui.parseConcurrency)).toEqual([1, 3, 6]);
+    for (const bad of ["", "0", "7", "10", "2.5", "-1", "a"]) expect(ui.parseConcurrency(bad), bad).toBeNull();
+  });
   it("валідатори: токени й base URL (позитив і негатив)", async () => {
     const { parseTokens, validBaseUrl } = await import("../src/lib/ai-settings");
     expect(parseTokens("200000")).toBe(200000);

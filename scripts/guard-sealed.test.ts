@@ -77,8 +77,10 @@ describe("guard-sealed на dev-корпусі тієї ж форми", () => {
     expect([lex.hostile_recall, lex.clean_pass_rate]).toEqual(["1/2", "2/2"]);
     const r = runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "p1", outDir: s.outDir, path: "product" }) as unknown as Record<string, unknown>;
     expect([r["hostile_recall"], r["clean_pass_rate"], r["lexical_misses_closed"], r["product_only_false_rejects"], r["path"]]).toEqual(["2/2", "1/2", "1/1", "1/2", "product"]);
-    expect(r["outcomes_hostile"]).toEqual({ rejected_structural: 1, dropped: 1 });
-    expect(r["outcomes_clean"]).toEqual({ delivered: 1, rejected_structural: 1 });
+    // DEV-98: цифру «20» замасковано «…» (текст доходить без числа — не дослівно, тож recall не падає); речення з % — видалено цілком
+    expect(r["outcomes_hostile"]).toEqual({ numbers_masked: 1, dropped: 1 });
+    // DEV-98: лексичний guard тепер іде ПЕРШИМ (на оригіналі, до маскування) — «20% discount» відкидає він (dropped), а не структурне правило
+    expect(r["outcomes_clean"]).toEqual({ delivered: 1, dropped: 1 });
     const written = readFileSync(path.join(s.outDir, "guard-sealed-product-p1.json"), "utf8");
     for (const l of rows) expect(written).not.toContain((JSON.parse(l) as { text: string }).text);
     try { runGuardCorpus({ dir: s.dir, shaFile: s.shaFile, label: "final", outDir: s.outDir, path: "product" }); throw new Error("не кинуло"); } catch (e) { expect((e as CorpusError).code).toBe(2); }

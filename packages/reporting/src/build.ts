@@ -5,7 +5,7 @@
  */
 import { createHash } from "node:crypto";
 import {
-  DISCLAIMER_TEXT, FUNNEL_STAGES, REPORT_SCHEMA_VERSION, Report, numberViolations, placeholders,
+  DISCLAIMER_TEXT, FUNNEL_STAGES, REPORT_SCHEMA_VERSION, Report, maskNumberSpans, numberViolations, placeholders,
   type Evidence, type ReportEvidence, type ReportFinding, type PositiveFinding, type TemplatedText, type SyntheticCount,
 } from "@sitelens/schemas";
 import { aggregate, funnel, SCORING_VERSION, type ScoredFinding } from "@sitelens/scoring";
@@ -14,7 +14,7 @@ import { GUARD_VERSION, guardLlmTextSync, scanReport } from "./guard.js";
 import { guardText } from "@sitelens/llm";
 import { positiveFindings } from "./positives.js";
 import {
-  AXE_TEMPLATES, BANNER_TEXT, EVIDENCE_TEMPLATES, FINDING_TEMPLATES, GENERIC_TEMPLATES, POSITIVE_TEMPLATES, codeText, type FindingTemplates,
+  AXE_RULE_TEXT, AXE_TEMPLATES, BANNER_TEXT, CATEGORY_TEXT, EVIDENCE_TEMPLATES, FINDING_TEMPLATES, GENERIC_TEMPLATES, POSITIVE_TEMPLATES, SYNTHETIC_TEMPLATES, codeText, type FindingTemplates,
 } from "./templates.js";
 import type { AuditArtifacts, BuildOptions, LlmResults, LlmText, VP } from "./types.js";
 
@@ -41,26 +41,19 @@ export interface StructuralRejection { where: string; reason: string }
 interface GuardState { on: boolean; fields: number; interventions: number; sentences_removed: number }
 const guardFieldOf = (where: string): GuardedField => (where.startsWith("lens:") ? "lens_description" : where.startsWith("site_understanding") ? "site_profile" : "finding_text");
 
-/** LLM-текст → TemplatedText або відхилення (цифра / числівник / невідомий чи недоступний плейсхолдер) */
+/**
+ * LLM-текст → TemplatedText або відхилення. Порядок (DEV-98): (1) лексичний guard на ОРИГІНАЛІ — порушні речення видаляються
+ * (до маскування, щоб «+12 %»/«double» не зникли з-під правил); (2) числа: речення з числівником-словом чи % видаляється,
+ * цифри маскуються «…»; нічого змістовного не лишилось → шаблон коду; (3) плейсхолдери лише з FINDING_VARS;
+ * (4) якщо щось замасковано — повторний лексичний guard на результаті (fail-closed).
+ */
 function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, available: ReadonlySet<string>, where: string, rej: StructuralRejection[], gs: GuardState): TemplatedText | null {
   if (!t) return null;
   if (t.text.trim().length === 0) { if (gs.on) { gs.interventions++; rej.push({ where, reason: "guard:all_sentences_removed" }); } return null; }
-  const v = numberViolations(t.text, true);
-  if (v.length) {
-    rej.push({ where, reason: `number:${v.map((x) => x.span).join(",")}` });
-    return null;
-  }
-  const ph = placeholders(t.text);
-  const bad = ph.filter((p) => !FINDING_VARS[p] || ptrBase === null || !available.has(p));
-  if (bad.length || /[{}]/.test(t.text.replace(/\{[a-z][a-z0-9_]*\}/g, ""))) {
-    rej.push({ where, reason: `placeholder:${bad.join(",") || "braces"}` });
-    return null;
-  }
-  const params = Object.fromEntries(ph.map((p) => [p, { ptr: `${ptrBase}/${(FINDING_VARS[p] as { field: string }).field}`, format: (FINDING_VARS[p] as { format: TemplatedText["params"][string]["format"] }).format }]));
   let text = t.text;
   let guard: TemplatedText["guard"] = { status: t.guard_status, attempts: t.guard_attempts ?? 0, rule_ids: t.guard_rule_ids ?? [] };
   if (gs.on) {
-    // друга лінія (лексика, бізнес-відсотки, прогнози без чисел): порушні речення видаляються, порожнє → кодовий шаблон
+    // друга лінія (лексика, бізнес-відсотки, прогнози): порушні речення видаляються, порожнє → кодовий шаблон
     gs.fields++;
     const g = guardLlmTextSync(t, guardFieldOf(where));
     if (g.status === "sentences_removed") {
@@ -71,9 +64,28 @@ function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, ava
     if (g.text === null) return null;
     text = g.text;
     guard = { status: g.status, attempts: g.attempts, rule_ids: g.rule_ids };
-    const ph2 = placeholders(text);
-    for (const k of Object.keys(params)) if (!ph2.includes(k)) delete params[k];
   }
+  const v = numberViolations(text, true);
+  if (v.length) {
+    const m = maskNumberSpans(text);
+    if (!m) {
+      rej.push({ where, reason: `number:${v.map((x) => x.span).join(",")}` });
+      return null;
+    }
+    rej.push({ where, reason: `number_masked:${v.map((x) => x.kind).join(",")}` });
+    text = m.text;
+    if (gs.on && !guardText(text, { field: guardFieldOf(where), structural: false }).ok) { rej.push({ where, reason: "guard:after_mask" }); return null; }
+    guard = { ...guard, status: m.sentences_removed > 0 ? "sentences_removed" : guard.status === "pending" && gs.on ? "passed" : guard.status, rule_ids: [...new Set([...guard.rule_ids, "number_masked"])] };
+    if (m.sentences_removed > 0 && gs.on) { gs.sentences_removed += m.sentences_removed; gs.interventions++; }
+  }
+  if (/^\s*(?:UNKNOWN|НЕВІДОМО|N\/A)\s*\.?\s*$/iu.test(text)) return null; // модель чесно сказала «невідомо» → шаблон коду «НЕВІДОМО»
+  const ph = placeholders(text);
+  const bad = ph.filter((p) => !FINDING_VARS[p] || ptrBase === null || !available.has(p));
+  if (bad.length || /[{}]/.test(text.replace(/\{[a-z][a-z0-9_]*\}/g, ""))) {
+    rej.push({ where, reason: `placeholder:${bad.join(",") || "braces"}` });
+    return null;
+  }
+  const params = Object.fromEntries(ph.map((p) => [p, { ptr: `${ptrBase}/${(FINDING_VARS[p] as { field: string }).field}`, format: (FINDING_VARS[p] as { format: TemplatedText["params"][string]["format"] }).format }]));
   return {
     template: text, params, origin: "llm", source_class: t.source_class, lang, template_id: t.prompt_id, guard,
   };
@@ -86,7 +98,7 @@ function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, ava
  * структурно, як `scanReport` у GET /report): порушення → звіт не віддається (fail-closed, 503).
  * `delivered` — текст, який дійшов би до користувача без змін; інакше `null`/змінений текст і причина.
  */
-export function productLlmTextPath(text: string, o: { lang: Lang; field: GuardedField }): { outcome: "delivered" | "rejected_structural" | "rejected_placeholder" | "sentences_removed" | "dropped" | "withheld_by_scan"; delivered: string | null } {
+export function productLlmTextPath(text: string, o: { lang: Lang; field: GuardedField }): { outcome: "delivered" | "rejected_structural" | "rejected_placeholder" | "numbers_masked" | "sentences_removed" | "dropped" | "withheld_by_scan"; delivered: string | null } {
   const rej: StructuralRejection[] = [];
   const gs: GuardState = { on: true, fields: 0, interventions: 0, sentences_removed: 0 };
   const isFinding = o.field !== "lens_description" && o.field !== "site_profile";
@@ -98,7 +110,18 @@ export function productLlmTextPath(text: string, o: { lang: Lang; field: Guarded
     return { outcome: r.startsWith("number:") ? "rejected_structural" : r.startsWith("placeholder:") ? "rejected_placeholder" : "dropped", delivered: null };
   }
   if (!guardText(out.template, { field: o.field }).ok) return { outcome: "withheld_by_scan", delivered: null };
-  return { outcome: out.template === text ? "delivered" : "sentences_removed", delivered: out.template };
+  if (out.template === text) return { outcome: "delivered", delivered: out.template };
+  return { outcome: rej.some((r) => r.reason.startsWith("number_masked")) && !rej.some((r) => r.reason.startsWith("guard:")) ? "numbers_masked" : "sentences_removed", delivered: out.template };
+}
+
+/** цитата сайту безпечна для показу всередині тексту звіту: лексичний guard (як сканер на показаному тексті), без фігурних дужок */
+const quoteSafe = (q: string): boolean => q.trim().length >= 3 && !/[{}]/.test(q) && guardText(q, { field: "finding_text", structural: false }).ok;
+/** перше речення, не довше за max символів (межа слова) — для заголовка зі спостереження */
+function firstSentence(t: string, max = 140): string {
+  const s = (t.match(/^.+?[.!?](?=\s|$)/su)?.[0] ?? t).trim();
+  if (s.length <= max) return s.replace(/[.]$/u, "");
+  const cut = s.slice(0, max);
+  return cut.slice(0, Math.max(cut.lastIndexOf(" "), max - 20)).replace(/[\s,;:—–-]+$/u, "") + "…";
 }
 
 const prim = (m: Record<string, unknown> | undefined): Record<string, number | string | boolean | null> =>
@@ -108,9 +131,19 @@ function syntheticCount(r: { n: number; m: number }, unit: SyntheticCount["unit"
   return r.m === 0 ? null : { form: "n_of_m_synthetic", n: r.n, m: r.m, unit, disclaimer: "synthetic_single_model_correlated" };
 }
 
-function templatesFor(f: ScoredFinding): FindingTemplates {
-  if (f.claim_kind.startsWith("axe:")) return AXE_TEMPLATES;
-  return FINDING_TEMPLATES[f.claim_kind] ?? GENERIC_TEMPLATES;
+/**
+ * Шаблон детектора (FINDING_TEMPLATES) — лише коли групу підтверджує детермінований доказ: інакше claim_kind від моделі
+ * (напр. deep_link_only на сторінці доставки) дав би чуже формулювання «на сторінці товару» (DEV-98) → синтетичний fallback.
+ */
+export function detectorTemplateKey(f: { claim_kind: string; evidence_ids: readonly string[] }, isDet: (id: string) => boolean): string | null {
+  return !f.claim_kind.startsWith("axe:") && FINDING_TEMPLATES[f.claim_kind] && f.evidence_ids.some(isDet) ? f.claim_kind : null;
+}
+function templatesFor(f: ScoredFinding, detKey: string | null): FindingTemplates {
+  if (f.claim_kind.startsWith("axe:")) {
+    const r = AXE_RULE_TEXT[f.claim_kind.slice(4)];
+    return r ? { ...AXE_TEMPLATES, title: r.title, why: r.why } : AXE_TEMPLATES;
+  }
+  return detKey ? (FINDING_TEMPLATES[detKey] as FindingTemplates) : GENERIC_TEMPLATES;
 }
 
 export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: BuildOptions): { report: ReportT; rejected: StructuralRejection[] } {
@@ -145,6 +178,8 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     const sc = e.source_class;
     if (sc === "SYNTHETIC" || sc === "INFERRED") {
       description = llmText(llm?.evidence_text[e.id], lang, null, new Set(), `evidence:${e.id}`, rej, gs)
+        // DEV-98: без тексту спостереження (лише цитата) — шаблон коду з цитатою сайту, а не заглушка
+        ?? (e.excerpt && quoteSafe(e.excerpt) ? codeText("evidence.synthetic.quote", SYNTHETIC_TEMPLATES.evidence_quote, lang, sc, { excerpt: { ptr: `/evidence/${i}/excerpt`, format: "text" } }) : null)
         ?? codeText("evidence.llm.fallback", { en: "Model observation recorded for this page (text withheld by the numeric rule or not provided).", uk: "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано)." }, lang, sc);
     } else {
       const det = e.detector_id ?? "";
@@ -169,9 +204,36 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   for (const e of counterEv.slice().sort((a, b) => cmp(a.id, b.id))) if (!evidenceOut.some((x) => x.id === e.id)) pushEvidence(e, "ET-DET", "counter");
 
   // ---------------------------------------------------------------- знахідки
+  /**
+   * DEV-98: група без тексту від finding-aggregator/recommendation і без шаблону детектора (claim_kind general тощо):
+   * заголовок — найчастіше спостереження лінз (LLM-текст доказу, числа замасковано) або категорія + цитата сайту; проблема —
+   * сторінка + цитата + {session_frequency}; чому/дія — за категорією. Шаблон `finding.title.generic` лишається лише коли немає ні того, ні іншого.
+   */
+  const syntheticFallback = (f: (typeof agg.findings)[number], base: string, lg: Lang, hasSess: boolean): { title: TemplatedText | null; problem: TemplatedText; why: TemplatedText | null; change: TemplatedText | null } => {
+    const evs = f.evidence_ids.map((id) => evidenceOut.findIndex((x) => x.id === id)).filter((i) => i >= 0).map((i) => ({ i, e: evidenceOut[i] as ReportEvidence }));
+    const pickMost = <T,>(items: T[], key: (t: T) => string): T | null => {
+      const m = new Map<string, { n: number; t: T }>();
+      for (const t of items) { const k = key(t); const c = m.get(k); if (c) c.n++; else m.set(k, { n: 1, t }); }
+      return [...m.entries()].sort((a, b) => b[1].n - a[1].n || cmp(a[0], b[0]))[0]?.[1].t ?? null;
+    };
+    const obs = pickMost(evs.filter((x) => x.e.description.origin === "llm"), (x) => x.e.description.template.toLowerCase());
+    const q = pickMost(evs.filter((x) => !!x.e.excerpt && quoteSafe(x.e.excerpt)), (x) => (x.e.excerpt as string).toLowerCase());
+    const ct = CATEGORY_TEXT[f.category] ?? (CATEGORY_TEXT["other"] as (typeof CATEGORY_TEXT)[string]);
+    let title: TemplatedText | null = null;
+    if (obs) title = { ...obs.e.description, template: firstSentence(obs.e.description.template), params: {} };
+    else if (q) title = codeText("finding.title.synthetic_quote", { en: `${ct.label.en}: “{quote}”`, uk: `${ct.label.uk}: «{quote}»` }, lg, "SYNTHETIC", { quote: { ptr: `/evidence/${q.i}/excerpt`, format: "text" } });
+    const page = { ptr: q ? `/evidence/${q.i}/page_path` : `${base}/pages/0/path`, format: "text" as const };
+    const pc = { ptr: `${base}/page_count`, format: "int" as const };
+    const sf = { ptr: `${base}/synthetic/session_frequency`, format: "n_of_m" as const };
+    const problem = q
+      ? codeText("finding.problem.synthetic_quote", hasSess ? SYNTHETIC_TEMPLATES.problem_quote_sessions : SYNTHETIC_TEMPLATES.problem_quote, lg, "SYNTHETIC", { page, quote: { ptr: `/evidence/${q.i}/excerpt`, format: "text" }, page_count: pc, ...(hasSess ? { session_frequency: sf } : {}) })
+      : codeText("finding.problem.synthetic_page", hasSess ? SYNTHETIC_TEMPLATES.problem_page_sessions : SYNTHETIC_TEMPLATES.problem_page, lg, "SYNTHETIC", { page, page_count: pc, ...(hasSess ? { session_frequency: sf } : {}) });
+    return { title, problem, why: codeText(`finding.why.category.${f.category}`, ct.why, lg, "INFERRED"), change: codeText(`finding.change.category.${f.category}`, ct.change, lg, "INFERRED") };
+  };
   const findings: ReportFinding[] = agg.findings.map((f, idx) => {
     const base = `/findings/${idx}`;
-    const tpl = templatesFor(f);
+    const detKey = detectorTemplateKey(f, (id) => { const sc = evById.get(id)?.source_class; return sc === "OBSERVED" || sc === "BENCHMARKED"; });
+    const tpl = templatesFor(f, detKey);
     const lensC = syntheticCount(f.coverage.lens, "lenses");
     const sessC = syntheticCount(f.coverage.session, "sessions");
     const taskC = syntheticCount(f.coverage.task, "tasks");
@@ -183,15 +245,17 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     const codeParams = (pair: { en: string; uk: string }) => Object.fromEntries(placeholders(pair[lang]).map((p) => [p, p === "rule" ? { ptr: `${base}/claim_kind`, format: "text" as const } : p === "category" ? { ptr: `${base}/category`, format: "text" as const } : { ptr: `${base}/${p}`, format: "int" as const }]));
     const code = (part: keyof FindingTemplates, sc: TemplatedText["source_class"]) => {
       const pair = tpl[part];
-      return pair ? codeText(`finding.${part}.${f.claim_kind.startsWith("axe:") ? "axe" : FINDING_TEMPLATES[f.claim_kind] ? f.claim_kind : "generic"}`, pair, lang, sc, codeParams(pair)) : null;
+      const axeId = f.claim_kind.startsWith("axe:") ? (AXE_RULE_TEXT[f.claim_kind.slice(4)] && (part === "title" || part === "why") ? `axe.${f.claim_kind.slice(4)}` : "axe") : null;
+      return pair ? codeText(`finding.${part}.${axeId ?? (detKey ?? "generic")}`, pair, lang, sc, codeParams(pair)) : null;
     };
     const verified = f.confidence.level === "VERIFIED";
     // детермінована знахідка → твердження детектора (OBSERVED/BENCHMARKED); гіпотеза без LLM-тексту → INFERRED-шаблон
     const factSc = verified ? factClass : "INFERRED";
-    const title = L("title") ?? (code("title", factSc) as TemplatedText);
-    const problem = L("problem") ?? (code("problem", factSc) as TemplatedText);
-    const why = L("why_it_matters") ?? code("why", recClass);
-    const change = L("recommended_change") ?? code("change", recClass);
+    const fb = tpl === GENERIC_TEMPLATES ? syntheticFallback(f, base, lang, sessC !== null) : null;
+    const title = L("title") ?? fb?.title ?? (code("title", factSc) as TemplatedText);
+    const problem = L("problem") ?? fb?.problem ?? (code("problem", factSc) as TemplatedText);
+    const why = L("why_it_matters") ?? fb?.why ?? code("why", recClass);
+    const change = L("recommended_change") ?? fb?.change ?? code("change", recClass);
     const validate = L("how_to_validate") ?? code("validate", recClass);
     const tasks = new Set(f.evidence_ids.map((id) => evById.get(id)?.task_id).filter((x): x is string => !!x));
     const lenses = new Set(f.evidence_ids.map((id) => evById.get(id)?.lens_id).filter((x): x is string => !!x));
@@ -241,7 +305,8 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   const lh = art.lighthouse ?? { status: "not_run" as const, reason: "lighthouse results not provided to the report builder", runs: [] };
   const technical = {
     status: (art.pages.length === 0 ? "failed" : lh.status === "done" && art.pages.every((p) => Object.values(p.capture).every((c) => c?.capture_complete)) ? "ok" : "partial") as "ok" | "partial" | "failed",
-    lighthouse: { status: lh.status, reason: lh.reason, runs: lh.runs.map((r) => ({ ...r, evidence_id: null })) },
+    // DEV-97: прогін з метрикою гіршою за поріг → посилання на доказ знахідки performance (якщо доказ у звіті)
+    lighthouse: { status: lh.status, reason: lh.reason, runs: lh.runs.map((r) => ({ ...r, evidence_id: evidenceOut.find((e) => e.detector_id === "lighthouse:metrics" && e.page_url === r.page_url && e.viewport === (r.form_factor === "mobile" ? "M" : "D"))?.id ?? null })) },
     accessibility: {
       engine: "axe-core" as const, version: art.axe_version,
       groups: art.axe_groups.map((g) => ({
@@ -270,7 +335,8 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   const stage_status = { ...art.audit.stage_status };
   if (mode === "none") for (const s of LLM_STAGES) stage_status[s] = { status: "skipped", reason: "llm_mode=none (DEV-11)" };
   if (!stage_status.lighthouse) stage_status.lighthouse = lh.status === "not_run" ? { status: "skipped", reason: lh.reason ?? "not run" } : { status: lh.status === "failed" ? "failed" : "done", reason: lh.status === "failed" ? lh.reason ?? "failed" : null };
-  stage_status.aggregate = { status: "done", reason: null };
+  // DEV-98: тексти знахідок від LLM обрізано бюджетом → aggregate лишається budget_limited (банер E4), інакше done
+  stage_status.aggregate = art.audit.stage_status.aggregate?.status === "budget_limited" ? { status: "budget_limited", reason: art.audit.stage_status.aggregate.reason } : { status: "done", reason: null };
   stage_status.report = { status: "done", reason: null };
   const banners: ReportT["audit"]["banners"] = [];
   if (mode === "none") banners.push({ code: "no_llm", stage: null, text: codeText("banner.no_llm", DISCLAIMER_TEXT.no_llm_mode, lang, "OBSERVED") });

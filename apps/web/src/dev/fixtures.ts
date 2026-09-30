@@ -83,7 +83,7 @@ function variant(name: string): Json | null {
 export interface FixtureSpec {
   id: string;
   /** які станові поля повертає GET /audits/:id */
-  status: "queued" | "running" | "running_partial" | "failed" | "completed" | "live";
+  status: "queued" | "running" | "running_partial" | "running_journeys" | "failed" | "completed" | "live";
   errorClass?: string;
   report?: string; // ім'я варіанта
   reportHttp?: number; // 404/500 замість звіту
@@ -104,6 +104,7 @@ export function fixtureSpec(id: string): FixtureSpec | null {
     fx_queued: { status: "queued" },
     fx_running: { status: "running" },
     fx_running_partial: { status: "running_partial" },
+    fx_running_journeys: { status: "running_journeys" },
     fx_slow: { status: "completed", report: "completed", reportDelayMs: 2500 },
     fx_report_500: { status: "completed", reportHttp: 500 },
     fx_report_404: { status: "completed", reportHttp: 404 },
@@ -119,7 +120,7 @@ export function fixtureSpec(id: string): FixtureSpec | null {
   return null;
 }
 
-export const FIXTURE_IDS = ["fx_completed", "fx_nollm", "fx_clean", "fx_partial", "fx_budget", "fx_early", "fx_queued", "fx_running", "fx_running_partial", "fx_slow", "fx_report_500", "fx_report_404", "fx_deleted", "fx_bad_schema", "fx_locked", "fx_live", ...ERROR_CLASSES.map((c) => `fx_failed_${c}`)];
+export const FIXTURE_IDS = ["fx_completed", "fx_nollm", "fx_clean", "fx_partial", "fx_budget", "fx_early", "fx_queued", "fx_running", "fx_running_partial", "fx_running_journeys", "fx_slow", "fx_report_500", "fx_report_404", "fx_deleted", "fx_bad_schema", "fx_locked", "fx_live", ...ERROR_CLASSES.map((c) => `fx_failed_${c}`)];
 export const REPORT_VARIANTS = ["completed", "nollm", "clean", "partial", "budget", "early"] as const;
 export const reportVariant = (name: string): Json | null => variant(name);
 
@@ -153,7 +154,13 @@ export function statusView(spec: FixtureSpec, reportName: string | null): Json {
   const done = (n: number, failedAt?: string): Json => Object.fromEntries(STAGES.slice(0, n).map((s) => [s, s === failedAt ? { status: "failed", reason: "lighthouse worker crashed" } : { status: "done", reason: null }]));
   switch (spec.status) {
     case "queued": return { ...view, status: "queued", started_at: null, completed_at: null };
-    case "running": return { ...view, status: "running_scenarios", completed_at: null, stage_status: done(7) };
+    // DEV-92: детальні лічильники (форма = StepDetail контракту): лінзи без ETA (даних немає) — лише «працює N хв»; сесії — з ETA
+    case "running": return { ...view, status: "running_scenarios", completed_at: null, stage_status: done(7), step_details: [
+      { id: "building_lenses", counters: [{ unit: "lenses", done: 8, total: 12, approx: true }, { unit: "llm_calls", done: 1, total: 2 }], eta_seconds: null, started_at: new Date(Date.now() - 3 * 60_000).toISOString() },
+    ] };
+    case "running_journeys": return { ...view, status: "running_scenarios", completed_at: null, mode: "quick", stage_status: done(8), step_details: [
+      { id: "testing_journeys", counters: [{ unit: "snapshot_sessions", done: 5, total: 12, eta_seconds: 420 }, { unit: "journals", done: 0, total: 2, eta_seconds: null }, { unit: "llm_calls", done: 5, total: null }], eta_seconds: null, started_at: new Date(Date.now() - 4 * 60_000).toISOString() },
+    ] };
     case "running_partial": return { ...view, status: "running_scenarios", completed_at: null, stage_status: done(7, "lighthouse"), warnings: [{ stage: "lighthouse", message: "lighthouse worker crashed" }] };
     case "failed": return { ...view, status: "failed", completed_at: now, error: { class: spec.errorClass, message: `fixture: ${spec.errorClass}` } };
     case "live": {

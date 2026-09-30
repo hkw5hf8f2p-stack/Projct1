@@ -124,6 +124,27 @@ describe("лендінг: помилки (§48) і стани", () => {
     if (writeArtifacts()) await page.screenshot({ path: shotPath("landing-error-390-light-uk.png") });
     await ctx.close();
   });
+  it("DEV-93: перемикач режиму з поясненням; типово повний (mode не надсилається), «швидкий» → mode: quick у POST", async () => {
+    const ctx = await newCtx({ width: 390, theme: "light", lang: "uk" });
+    const page = await open(ctx, "/");
+    expect(await page.getByTestId("mode-full").locator("input").isChecked()).toBe(true);
+    expect(await page.getByTestId("mode-quick").textContent()).toMatch(/до 6 сторінок.*до 2 подорожей/i);
+    expect(await overflowX(page)).toBe(0);
+    const bodies: Array<Record<string, unknown>> = [];
+    await page.route("**/api/dev/audits", async (r) => { if (r.request().method() === "POST") bodies.push(r.request().postDataJSON()); await r.continue(); });
+    await page.getByTestId("url-input").fill("https://mode-default.example");
+    await page.getByTestId("analyze").click();
+    await page.getByTestId("progress").waitFor({ timeout: 20_000 });
+    await page.goBack();
+    await page.getByTestId("mode-quick").click();
+    await page.getByTestId("url-input").fill("https://mode-quick.example");
+    await page.getByTestId("analyze").click();
+    await page.getByTestId("progress").waitFor({ timeout: 20_000 });
+    expect(bodies).toHaveLength(2);
+    expect(bodies[0]).not.toHaveProperty("mode");
+    expect(bodies[1]).toMatchObject({ mode: "quick" });
+    await ctx.close();
+  });
   it("завантаження: кнопка disabled з «Запускаємо…» під час сабміту", async () => {
     const ctx = await newCtx({ width: 1440, theme: "light", lang: "uk" });
     const page = await open(ctx, "/");
@@ -154,6 +175,33 @@ describe("прогрес і помилки аудиту", () => {
     await p.getByTestId("progress-partial").waitFor();
     expect(await p.locator('[data-step="technical"]').getAttribute("data-state")).toBe("failed");
     await ctx.close();
+  });
+  it("DEV-92: лічильник і прогрес-бар під активним етапом; «≈ N хв лишилось» лише коли є дані; «працює N хв» інакше; uk/en", async () => {
+    const ctx = await newCtx({ width: 1440, theme: "light", lang: "uk" });
+    let p = await open(ctx, "/audit/fx_running");
+    await p.getByTestId("progress").waitFor();
+    const lenses = p.locator('[data-step="lenses"]');
+    expect(await lenses.getAttribute("data-state")).toBe("running");
+    expect(await lenses.locator('[data-counter="lenses"]').textContent()).toMatch(/8 \/ ≤12 лінз/);
+    expect(await lenses.getByRole("progressbar").getAttribute("aria-valuenow")).toBe("67");
+    expect(await lenses.getByTestId("step-elapsed").textContent()).toMatch(/працює 3 хв/);
+    expect(await lenses.getByTestId("step-eta").count()).toBe(0); // ETA невідомий → не вигадується
+    expect(await p.locator('[data-step="crawl"] [data-testid="step-progress"]').count()).toBe(0); // завершені кроки без лічильників
+    p = await open(ctx, "/audit/fx_running_journeys");
+    await p.getByTestId("progress-quick").waitFor();
+    const j = p.locator('[data-step="journeys"]');
+    expect(await j.locator('[data-counter="snapshot_sessions"]').textContent()).toMatch(/5 \/ 12 синтетичних сесій \(≈ 7 хв лишилось\)/);
+    expect(await j.locator('[data-counter="journals"]').textContent()).toMatch(/0 \/ 2 подорожей/);
+    expect(await j.locator('[data-counter="journals"]').textContent()).not.toMatch(/лишилось/); // у журналів даних для ETA ще нема
+    expect(await j.getByRole("progressbar").getAttribute("aria-valuenow")).toBe("42");
+    expect(await overflowX(p)).toBe(0);
+    await ctx.close();
+    const en = await newCtx({ width: 390, theme: "dark", lang: "en" });
+    p = await open(en, "/audit/fx_running_journeys");
+    await p.getByTestId("progress-quick").waitFor();
+    expect(await p.locator('[data-step="journeys"] [data-counter="snapshot_sessions"]').textContent()).toMatch(/5 \/ 12 synthetic sessions \(≈ 7 min left\)/);
+    expect(await overflowX(p)).toBe(0);
+    await en.close();
   });
   it("12 класів §48: кожен показує клас, переклад і НЕ показує звіт/фабрикацію", async () => {
     const ctx = await newCtx({ width: 390, theme: "light", lang: "en" });

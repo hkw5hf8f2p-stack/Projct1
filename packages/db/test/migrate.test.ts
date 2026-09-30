@@ -23,7 +23,7 @@ afterAll(async () => cluster?.stop());
 
 describe("тестовий кластер (охоронець)", () => {
   it("embedded-postgres піднято, міграції застосовано з порожньої БД цього прогону", () => {
-    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
+    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql", "005_finding_texts.sql"]);
   });
 });
 
@@ -36,7 +36,7 @@ describe("migrate()", () => {
 
   it("порожня БД → застосовує всі файли за порядком; повтор → нічого не застосовує", async () => {
     const a = await migrate(db.url);
-    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
+    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql", "005_finding_texts.sql"]);
     const b = await migrate(db.url);
     expect(b.applied).toEqual([]);
     expect(b.skipped).toEqual(a.applied);
@@ -102,14 +102,14 @@ describe("migrate()", () => {
 
   it("збійна міграція відкочується цілком (транзакція) і не записується", async () => {
     const d = copyMigrations();
-    writeFileSync(path.join(d, "005_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
+    writeFileSync(path.join(d, "099_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
     const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
-      await expect(migrate(fresh.url, d)).rejects.toThrow(/005_bad\.sql не застосована/);
+      await expect(migrate(fresh.url, d)).rejects.toThrow(/099_bad\.sql не застосована/);
       const t = await fresh.pool.query("SELECT to_regclass('half_done') AS t");
       expect(t.rows[0].t).toBeNull();
       const v = await fresh.pool.query("SELECT version FROM schema_migrations ORDER BY version");
-      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
+      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql", "005_finding_texts.sql"]);
     } finally {
       await fresh.drop();
     }

@@ -172,7 +172,8 @@ export const ReportEvidence = z
     if (e.source_class === "SYNTHETIC" && (!e.session_id || !e.lens_id || !e.task_id || !e.level)) bad("SYNTHETIC потребує session/lens/task/level", ["session_id"]);
     if (e.description.source_class !== e.source_class) bad("клас опису ≠ клас доказу (C4)", ["description", "source_class"]);
     if ((e.source_class === "SYNTHETIC" || e.source_class === "INFERRED") && (e.tier === "ET-DET" || e.tier === "ET-INC")) bad("LLM-доказ не може мати ET-DET/ET-INC", ["tier"]);
-    if (e.tier === "ET-DET" && e.capture_complete === false) bad("ET-DET при неповному захопленні (DEV-17)", ["tier"]);
+    // DEV-96: неповне захоплення знецінює лише твердження відсутності; присутнє порушення (presence) лишається ET-DET
+    if (e.tier === "ET-DET" && e.capture_complete === false && e.assertion !== "presence") bad("ET-DET при неповному захопленні для твердження відсутності (DEV-17, DEV-96)", ["tier"]);
     if (e.tier === "ET-INC" && e.capture_complete !== false) bad("ET-INC лише при capture_complete=false (DEV-19)", ["tier"]);
   })
   .meta({ id: "Evidence" });

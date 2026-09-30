@@ -151,7 +151,7 @@ const text = (t: string, sc: LlmText["source_class"], prompt: string): LlmText =
 export async function llmResultsFromDb(pool: Pool, auditId: string, art: AuditArtifacts, audit: { llm_mode: "live" | "replay" | "none"; llm_provider: string | null; llm_model: string | null }): Promise<{ llm: LlmResults; rejected: ReturnType<typeof integrateSessions>["rejected"] } | null> {
   if (audit.llm_mode === "none") return null;
   const sessions = await loadSessions(pool, auditId);
-  const integ = integrateSessions({ sessions, pages: art.pages });
+  const integ = integrateSessions({ sessions, pages: art.pages }, { lang: art.audit.language });
   const profile = await loadProfile(pool, auditId);
   const lenses = await loadLenses(pool, auditId);
   const calls = (await pool.query("SELECT prompt_version, status, input_tokens, output_tokens FROM llm_calls WHERE audit_run_id = $1", [auditId])).rows;
@@ -168,7 +168,7 @@ export async function llmResultsFromDb(pool: Pool, auditId: string, art: AuditAr
   const llm: LlmResults = {
     mode: audit.llm_mode === "live" ? "live" : "replay", provider, model: audit.llm_model ?? "unknown",
     prompt_versions: [...new Set(calls.map((r) => r.prompt_version as string))].sort(),
-    evidence: integ.evidence as Evidence[], evidence_text: {}, sessions: integ.sessions, finding_texts: {}, site_understanding: su,
+    evidence: integ.evidence as Evidence[], evidence_text: integ.evidence_text, sessions: integ.sessions, finding_texts: await loadFindingTexts(pool, auditId), site_understanding: su,
     primary_conversion_goal: profile ? text(profile.primary_conversion_goal, "INFERRED", PR) : null, summary: null,
     lenses: lenses.map((l) => ({ id: l.id, name: text(l.name, "SYNTHETIC", "lens-generator-v1"), description: text(l.description, "SYNTHETIC", "lens-generator-v1"), poles: POLES.filter((p) => p.pred(l)).map((p) => p.id) })),
     pole_unmet: POLES.filter((p) => !lenses.some((l) => p.pred(l))).map((p) => ({ pole: p.id, nearest_lens_id: null })),
@@ -178,4 +178,27 @@ export async function llmResultsFromDb(pool: Pool, auditId: string, art: AuditAr
     },
   };
   return { llm, rejected: integ.rejected };
+}
+
+// ---------------------------------------------------------------- тексти знахідок від LLM (DEV-98)
+/** сирі тексти finding-aggregator-v1 / recommendation-v1 → `LlmResults.finding_texts` (guard і маскування чисел — у buildReport) */
+export async function loadFindingTexts(pool: Pool | PoolClient, auditId: string): Promise<LlmResults["finding_texts"]> {
+  const rows = (await pool.query("SELECT * FROM finding_texts WHERE audit_run_id = $1 AND status = 'supported' ORDER BY finding_key", [auditId])).rows as Record<string, unknown>[];
+  const out: LlmResults["finding_texts"] = {};
+  for (const r of rows) {
+    const t = (k: string, prompt: string): LlmText | undefined => (typeof r[k] === "string" && (r[k] as string).trim() ? { text: r[k] as string, source_class: "INFERRED", prompt_id: prompt, guard_status: "pending" } : undefined);
+    const parts = {
+      title: t("title", "finding-aggregator-v1"), problem: t("problem", "finding-aggregator-v1"), why_it_matters: t("why_it_matters", "finding-aggregator-v1"),
+      recommended_change: t("recommended_change", "recommendation-v1"), how_to_validate: t("how_to_validate", "recommendation-v1"),
+    };
+    out[r["finding_key"] as string] = Object.fromEntries(Object.entries(parts).filter(([, v]) => v !== undefined));
+  }
+  return out;
+}
+export async function writeFindingTextRow(c: PoolClient, auditId: string, key: string, row: { status: "supported" | "not_supported"; title?: string; problem?: string; why_it_matters?: string; recommended_change?: string; how_to_validate?: string; prompt_versions: string[]; llm_call_ids: string[] }): Promise<void> {
+  await c.query(
+    `INSERT INTO finding_texts (audit_run_id, finding_key, status, title, problem, why_it_matters, recommended_change, how_to_validate, prompt_versions, llm_call_ids)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) ON CONFLICT (audit_run_id, finding_key) DO NOTHING`,
+    [auditId, key, row.status, row.title ?? null, row.problem ?? null, row.why_it_matters ?? null, row.recommended_change || null, row.how_to_validate || null, row.prompt_versions, row.llm_call_ids],
+  );
 }

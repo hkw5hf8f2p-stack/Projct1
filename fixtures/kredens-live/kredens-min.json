@@ -1,0 +1,1790 @@
+{
+ "_provenance": "Санітизований мінімальний вхід із реального звіту першого живого аудиту власника (kredens.com.ua, 30.09.2026, llm_provider=claude_cli, 12 сторінок, 30 snapshot + 7 журналів). Лише структура: сторінки (шлях, тип, причини неповного захоплення), групи axe, прогони Lighthouse, скелети SYNTHETIC-доказів (id, сесія/лінза/задача, категорія/claim_kind знахідки, excerpt-цитата сайту). Тексти моделі у звіті були втрачені (дефект DEV-98), тож тест підставляє власні NOT_FOUND-тексти інженера для доказів без цитати. Жодних секретів, токенів чи персональних даних. Джерело: apps/worker/test/kredens-regression.test.ts.",
+ "origin": "https://kredens.com.ua/",
+ "language": "uk",
+ "budget": {
+  "source_class": "OBSERVED",
+  "max_audit_tokens": 1650000,
+  "used_tokens": 1652554,
+  "billed_tokens": 1482128,
+  "cache_read_tokens": 0,
+  "llm_calls": 74,
+  "cost": null
+ },
+ "browser_sessions_stage": {
+  "status": "budget_limited",
+  "reason": "обмежено бюджетом MAX_AUDIT_TOKENS: виконано 7 з 8 сценаріїв"
+ },
+ "pages": [
+  {
+   "path": "/blog/colombia-la-leona-caturra-honey",
+   "page_type": "category",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:9",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/coffee",
+   "page_type": "category",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:3",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/coffee-for-office",
+   "page_type": "faq",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:4",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/collection/exceptional-lots",
+   "page_type": "category",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/collection/fruktova-kava",
+   "page_type": "category",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:3",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/",
+   "page_type": "product",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:4",
+    "failed_critical_requests:5",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/locations",
+   "page_type": "about",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:3",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/locations/stryiska-48g-lviv-tech-city",
+   "page_type": "about",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:4",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/pages/delivery-shop",
+   "page_type": "faq",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:5",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "page_type": "product",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:5",
+    "failed_critical_requests:6",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/specialty",
+   "page_type": "category",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:1",
+    "failed_critical_requests:4",
+    "layout_unstable"
+   ]
+  },
+  {
+   "path": "/specialty/kava-colombia-la-leona",
+   "page_type": "product",
+   "incomplete_reasons": [
+    "blocked_requests:5",
+    "failed_critical_requests:6",
+    "failed_critical_requests:9",
+    "layout_unstable"
+   ]
+  }
+ ],
+ "detector_coverage": [
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/blog/colombia-la-leona-caturra-honey",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/blog/colombia-la-leona-caturra-honey",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/blog/colombia-la-leona-caturra-honey",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/blog/colombia-la-leona-caturra-honey",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/coffee",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/coffee",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/coffee",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/coffee",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/coffee-for-office",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/coffee-for-office",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/coffee-for-office",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/collection/exceptional-lots",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/collection/exceptional-lots",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/collection/exceptional-lots",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/collection/exceptional-lots",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/collection/fruktova-kava",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/collection/fruktova-kava",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/collection/fruktova-kava",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/collection/fruktova-kava",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/",
+   "status": "withheld",
+   "reason": "layout_unstable:D"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/",
+   "status": "withheld",
+   "reason": "layout_unstable:M"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/locations",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/locations",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/locations",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/locations/stryiska-48g-lviv-tech-city",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/locations/stryiska-48g-lviv-tech-city",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/locations/stryiska-48g-lviv-tech-city",
+   "status": "not_applicable",
+   "reason": "page_type:about"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/pages/delivery-shop",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/pages/delivery-shop",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/pages/delivery-shop",
+   "status": "not_applicable",
+   "reason": "page_type:faq"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "status": "withheld",
+   "reason": "layout_unstable:D"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "status": "withheld",
+   "reason": "layout_unstable:M"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "shipping_depth",
+   "page_path": "/specialty",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/specialty",
+   "status": "not_applicable",
+   "reason": "page_type:category"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/specialty",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/specialty",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "status": "withheld",
+   "reason": "layout_unstable:D"
+  },
+  {
+   "detector_id": "cta_below_fold",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "status": "withheld",
+   "reason": "layout_unstable:M"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "status": "withheld",
+   "reason": "capture_insufficient:D"
+  },
+  {
+   "detector_id": "price_first_viewport",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "status": "withheld",
+   "reason": "capture_insufficient:M"
+  }
+ ],
+ "axe_groups": [
+  {
+   "rule": "aria-prohibited-attr",
+   "impact": "serious",
+   "page_group": "product",
+   "component": "main/div",
+   "instances": 6,
+   "pages": [
+    "/single-origins-premium/kava-rwanda-mabanza-bourbon"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "color-contrast",
+   "impact": "serious",
+   "page_group": "/coffee-for-office",
+   "component": "main/div [#a5a4a1/#fcfbf5]",
+   "instances": 2,
+   "pages": [
+    "/coffee-for-office"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "color-contrast",
+   "impact": "serious",
+   "page_group": "/coffee-for-office",
+   "component": "main/div [#e2c5c1/#9f3e2f]",
+   "instances": 2,
+   "pages": [
+    "/coffee-for-office"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "color-contrast",
+   "impact": "serious",
+   "page_group": "/coffee-for-office",
+   "component": "main/span [#ffffff/#b56558]",
+   "instances": 2,
+   "pages": [
+    "/coffee-for-office"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "color-contrast",
+   "impact": "serious",
+   "page_group": "product",
+   "component": "main/span [#565e58/#1e2820]",
+   "instances": 2,
+   "pages": [
+    "/single-origins-premium/kava-rwanda-mabanza-bourbon"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "color-contrast",
+   "impact": "serious",
+   "page_group": "product",
+   "component": "main/span [#787e79/#1e2820]",
+   "instances": 2,
+   "pages": [
+    "/single-origins-premium/kava-rwanda-mabanza-bourbon"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "heading-order",
+   "impact": "moderate",
+   "page_group": "product",
+   "component": "main/h3",
+   "instances": 4,
+   "pages": [
+    "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+    "/specialty/kava-colombia-la-leona"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "image-redundant-alt",
+   "impact": "minor",
+   "page_group": "category",
+   "component": "main/img",
+   "instances": 48,
+   "pages": [
+    "/coffee",
+    "/specialty"
+   ],
+   "viewports": [
+    "D",
+    "M"
+   ]
+  },
+  {
+   "rule": "scrollable-region-focusable",
+   "impact": "serious",
+   "page_group": "category",
+   "component": "main/div",
+   "instances": 2,
+   "pages": [
+    "/blog/colombia-la-leona-caturra-honey"
+   ],
+   "viewports": [
+    "M"
+   ]
+  },
+  {
+   "rule": "scrollable-region-focusable",
+   "impact": "serious",
+   "page_group": "product",
+   "component": "main/div",
+   "instances": 1,
+   "pages": [
+    "/specialty/kava-colombia-la-leona"
+   ],
+   "viewports": [
+    "M"
+   ]
+  }
+ ],
+ "lighthouse_runs": [
+  {
+   "page_url": "https://kredens.com.ua/",
+   "form_factor": "desktop",
+   "status": "done",
+   "scores": {
+    "performance": 79,
+    "accessibility": 100,
+    "best_practices": null,
+    "seo": null
+   },
+   "metrics": {
+    "lcp_ms": 3501.9400000000005,
+    "tbt_ms": 0,
+    "cls": 7.93451573125529e-06,
+    "fcp_ms": 750.153
+   },
+   "evidence_id": null
+  },
+  {
+   "page_url": "https://kredens.com.ua/specialty/kava-colombia-la-leona",
+   "form_factor": "desktop",
+   "status": "done",
+   "scores": {
+    "performance": 98,
+    "accessibility": 95,
+    "best_practices": null,
+    "seo": null
+   },
+   "metrics": {
+    "lcp_ms": 644.242,
+    "tbt_ms": 0,
+    "cls": 3.903343256574146e-05,
+    "fcp_ms": 401.242
+   },
+   "evidence_id": null
+  },
+  {
+   "page_url": "https://kredens.com.ua/specialty",
+   "form_factor": "desktop",
+   "status": "done",
+   "scores": {
+    "performance": 89,
+    "accessibility": 100,
+    "best_practices": null,
+    "seo": null
+   },
+   "metrics": {
+    "lcp_ms": 2113.592,
+    "tbt_ms": 0,
+    "cls": 0.00027403321367072355,
+    "fcp_ms": 738.396
+   },
+   "evidence_id": null
+  }
+ ],
+ "synthetic_evidence": [
+  {
+   "id": "ev_12ca968e1362",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_97d35bf068a0",
+   "lens_id": "l14",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_25f1d9b967c9",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_f0493615a76a",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_2a5b9d2826a7",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_e6b4d910a728",
+   "lens_id": "l07",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_4208e471b519",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_16ca8bab31a7",
+   "lens_id": "l03",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_801d9d29bc20",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l22__t1",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "journey",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e5fa3d73e54c",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_1f27f3246974",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_0ac3a4f15b84",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "navigation",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_5aa14d93d54a",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l22__t1",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "journey",
+   "excerpt": null,
+   "category": "navigation",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_c064967f5c4b",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "navigation",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_cdda65f3bfe0",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l22__t1",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "journey",
+   "excerpt": "Пристрої для заварювання кави",
+   "category": "navigation",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_013addbaec43",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_5a22a956095d",
+   "lens_id": "l02",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Нова Пошта (відділення/поштомат) — від 65 ₴, або безкоштовно від 700 ₴.",
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_290ff8ebc122",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_3c824a817a93",
+   "lens_id": "l03",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Нова Пошта (відділення/поштомат) — від 65 ₴, або безкоштовно від 700 ₴.",
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_4e10fbd528fa",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_1210d9b6adf5",
+   "lens_id": "l14",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Нова Пошта (відділення/поштомат) — від 65 ₴, або безкоштовно від 700 ₴.",
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_a2f6229fc487",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_cf23ae362a6a",
+   "lens_id": "l13",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Нова Пошта (відділення/поштомат) — від 65 ₴, або безкоштовно від 700 ₴.",
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_052462d99f72",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_97d35bf068a0",
+   "lens_id": "l14",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": "Порівняти каву",
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_3d7daa510497",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_16ca8bab31a7",
+   "lens_id": "l03",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_4e762d2b4020",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_e6b4d910a728",
+   "lens_id": "l07",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_7968dae2efb8",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_f0493615a76a",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_af8252318752",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_1f27f3246974",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_3ca37399da20",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l22__t1",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "journey",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_565c0838b646",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_f0493615a76a",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_69e148868af8",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_e6b4d910a728",
+   "lens_id": "l07",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_a55bb2b67c68",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_16ca8bab31a7",
+   "lens_id": "l03",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_ad63406e54d5",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_1f27f3246974",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_df8b15917659",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_97d35bf068a0",
+   "lens_id": "l14",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_15328b658249",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_8969ca0b6184",
+   "lens_id": "l02",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_249ba932e61d",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_f2e13b0a422c",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_366ac96b88db",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "вишневий джем апельсин червоне вино спеції",
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_661dee975566",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_4ce15b19c2f7",
+   "lens_id": "l11",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_78aac2db8cd3",
+   "type": "repeated_agent_observation",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "ses_a0ea01f1b567",
+   "lens_id": "l13",
+   "task_id": "t2",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_7ce8b4416035",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_9070a680fcb9",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_b4c0e2ff0d03",
+   "lens_id": "l03",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_9d160d9acd9d",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_74afb499ae29",
+   "lens_id": "l07",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_bf0dd384db5e",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_06d382df9f22",
+   "lens_id": "l15",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_d1074d601bcb",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_637223bb0a43",
+   "lens_id": "l05",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e9c7f5125455",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_ed8c9a0ccca1",
+   "lens_id": "l02",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_f784e3f0f2d5",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_fa1274bbaa3d",
+   "type": "repeated_agent_observation",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "ses_a0ea01f1b567",
+   "lens_id": "l13",
+   "task_id": "t2",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_fa2e2cb9bd1a",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_8cd88a40f506",
+   "lens_id": "l15",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_8fa29b28b7e9",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_0390ec3ad171",
+   "lens_id": "l23",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": "Щомісяця тут оновлюєтсья виставка картин.",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_c182a56d6e56",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_c15162b376ed",
+   "lens_id": "l07",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_cd0dc50aefae",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_0390ec3ad171",
+   "lens_id": "l23",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": "Найбільший простір мережі — і один з найстійкіших.",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e987311e060f",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_0390ec3ad171",
+   "lens_id": "l23",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_2ea3ad1d4435",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_74afb499ae29",
+   "lens_id": "l07",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_bb322fc8ac07",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_bc5cbd172ec0",
+   "lens_id": "l14",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_d0ecfadb0687",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_b4c0e2ff0d03",
+   "lens_id": "l03",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_d6875948e934",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_bb787e72cf63",
+   "lens_id": "l06",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_e9ef1c410884",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_ea578a45bf45",
+   "lens_id": "l02",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "cost_unknown"
+  },
+  {
+   "id": "ev_1951e674f688",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_5c417ca039af",
+   "lens_id": "l18",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_1c9de4746e5d",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_8969ca0b6184",
+   "lens_id": "l02",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_4f5bb5cccf63",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_06d382df9f22",
+   "lens_id": "l15",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_5ff44f2ea4d1",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_4ce15b19c2f7",
+   "lens_id": "l11",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_72b04f435b04",
+   "type": "repeated_agent_observation",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "ses_dde48cd212ff",
+   "lens_id": "l14",
+   "task_id": "t2",
+   "level": "snapshot",
+   "excerpt": "Кава Colombia La Leona 250 г",
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_820243170d18",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_3813e86d179c",
+   "lens_id": "l05",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_82f3a0c4113b",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_f2e13b0a422c",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_a4e54e9dff5a",
+   "type": "repeated_agent_observation",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "ses_a0ea01f1b567",
+   "lens_id": "l13",
+   "task_id": "t2",
+   "level": "snapshot",
+   "excerpt": "Кава Colombia La Leona 250 г",
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_bc9195fea0ff",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_ed8c9a0ccca1",
+   "lens_id": "l02",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_c704266a11e7",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_5c417ca039af",
+   "lens_id": "l18",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "product_selection",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_2df7b5f96218",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_c15162b376ed",
+   "lens_id": "l07",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_665b169cbe99",
+   "type": "repeated_agent_observation",
+   "page_path": "/locations",
+   "session_id": "ses_0390ec3ad171",
+   "lens_id": "l23",
+   "task_id": "t6",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_30f0d11b528e",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_cf23ae362a6a",
+   "lens_id": "l13",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_60b26e9177ca",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_1210d9b6adf5",
+   "lens_id": "l14",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_6614f90370f1",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_5a22a956095d",
+   "lens_id": "l02",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_80a29172dc18",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_2284da8bcde1",
+   "lens_id": "l05",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e3c30c934820",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_3c824a817a93",
+   "lens_id": "l03",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "missing_information",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_02dd0da07a8d",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_bc5cbd172ec0",
+   "lens_id": "l14",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "pricing",
+   "claim_kind": "total_unclear"
+  },
+  {
+   "id": "ev_ab951836644a",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_bb787e72cf63",
+   "lens_id": "l06",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "pricing",
+   "claim_kind": "total_unclear"
+  },
+  {
+   "id": "ev_b330ad644d13",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_74afb499ae29",
+   "lens_id": "l07",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "pricing",
+   "claim_kind": "total_unclear"
+  },
+  {
+   "id": "ev_51b74c79b41e",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_f2e13b0a422c",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "value_proposition",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_7b0aa4ec842e",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_4ce15b19c2f7",
+   "lens_id": "l11",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": "Добірна specialty-кава з історією — обирайте усвідомлено, ми поруч пояснимо.",
+   "category": "value_proposition",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_0cf65f655de2",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "Пергамент дбайливо промивають",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_1f217ab00fbe",
+   "type": "browser_session",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "l11__t7",
+   "lens_id": "l11",
+   "task_id": "t7",
+   "level": "journey",
+   "excerpt": "5.0 · 1 відгук",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_25e5508b274a",
+   "type": "repeated_agent_observation",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "ses_ed4be692d9d0",
+   "lens_id": "l07",
+   "task_id": "t2",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_335d8f08e7ea",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_74afb499ae29",
+   "lens_id": "l07",
+   "task_id": "t4",
+   "level": "snapshot",
+   "excerpt": "5.0 · 1 відгук",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_4ab66cea8172",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "Фініки і тропічні фрукти",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_57af8b98b4ae",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "1450-1500 м н.р.м.",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_f5239ec65988",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "1450-1500 м н.р.м.",
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_c89c0700be6a",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_1210d9b6adf5",
+   "lens_id": "l14",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "checkout",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_2b272f1cb742",
+   "type": "browser_session",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "l05__t7",
+   "lens_id": "l05",
+   "task_id": "t7",
+   "level": "journey",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_304bd23b49b2",
+   "type": "browser_session",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "l11__t7",
+   "lens_id": "l11",
+   "task_id": "t7",
+   "level": "journey",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_6b77e6c360a0",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l02__t3",
+   "lens_id": "l02",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_c3fcbb4fadeb",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": null,
+   "category": "comparison",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_2ab880eca3cf",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_3813e86d179c",
+   "lens_id": "l05",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "cta",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_be663b9c7819",
+   "type": "browser_session",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "l05__t7",
+   "lens_id": "l05",
+   "task_id": "t7",
+   "level": "journey",
+   "excerpt": null,
+   "category": "cta",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_7e58a6d6079b",
+   "type": "browser_session",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "l03__t4",
+   "lens_id": "l03",
+   "task_id": "t4",
+   "level": "journey",
+   "excerpt": "Комісія НП за послугу — згідно з тарифами перевізника.",
+   "category": "pricing",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_7112a5208be4",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_3c824a817a93",
+   "lens_id": "l03",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Комісія НП за послугу — згідно з тарифами перевізника.",
+   "category": "pricing",
+   "claim_kind": "total_unclear"
+  },
+  {
+   "id": "ev_492137bb8c12",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_cf23ae362a6a",
+   "lens_id": "l13",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "deep_link_only"
+  },
+  {
+   "id": "ev_48eb1d457847",
+   "type": "browser_session",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "l03__t4",
+   "lens_id": "l03",
+   "task_id": "t4",
+   "level": "journey",
+   "excerpt": "Нова Пошта (відділення/поштомат) — від 65 ₴, або безкоштовно від 700 ₴.",
+   "category": "shipping",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_985c053c643c",
+   "type": "browser_session",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "l03__t4",
+   "lens_id": "l03",
+   "task_id": "t4",
+   "level": "journey",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e2ff76db3f92",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_5a22a956095d",
+   "lens_id": "l02",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "shipping",
+   "claim_kind": "time_unknown"
+  },
+  {
+   "id": "ev_51dbac4f8523",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_ed8c9a0ccca1",
+   "lens_id": "l02",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": "БЛЕНД · ПОХОДЖЕННЯ",
+   "category": "terminology",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_5ea7403c3940",
+   "type": "browser_session",
+   "page_path": "/specialty/kava-colombia-la-leona",
+   "session_id": "l06__t3",
+   "lens_id": "l06",
+   "task_id": "t3",
+   "level": "journey",
+   "excerpt": "Ферментація у воді, 30 годин",
+   "category": "terminology",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_604bdea9f9f9",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_f2e13b0a422c",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": "Добірна specialty-кава з історією — обирайте усвідомлено, ми поруч пояснимо.",
+   "category": "terminology",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_e52ecd269607",
+   "type": "repeated_agent_observation",
+   "page_path": "/single-origins-premium/kava-rwanda-mabanza-bourbon",
+   "session_id": "ses_8741d9d256d1",
+   "lens_id": "l11",
+   "task_id": "t7",
+   "level": "snapshot",
+   "excerpt": "CVA 87.5",
+   "category": "terminology",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_75f12a47709d",
+   "type": "repeated_agent_observation",
+   "page_path": "/",
+   "session_id": "ses_637223bb0a43",
+   "lens_id": "l05",
+   "task_id": "t1",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "navigation",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_3e3a1c9300f3",
+   "type": "repeated_agent_observation",
+   "page_path": "/collection/fruktova-kava",
+   "session_id": "ses_e6b4d910a728",
+   "lens_id": "l07",
+   "task_id": "t3",
+   "level": "snapshot",
+   "excerpt": null,
+   "category": "trust",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_086c7e7127f2",
+   "type": "browser_session",
+   "page_path": "/coffee",
+   "session_id": "l22__t1",
+   "lens_id": "l22",
+   "task_id": "t1",
+   "level": "journey",
+   "excerpt": null,
+   "category": "visual_hierarchy",
+   "claim_kind": "general"
+  },
+  {
+   "id": "ev_ce8f233c76ad",
+   "type": "repeated_agent_observation",
+   "page_path": "/pages/delivery-shop",
+   "session_id": "ses_2284da8bcde1",
+   "lens_id": "l05",
+   "task_id": "t5",
+   "level": "snapshot",
+   "excerpt": "Замовлення оформлюються та передаються у НП протягом 1-2 робочих днів. Час доставки залежить від відстані та сервісу НП (зазвичай 1-3 дні).",
+   "category": "visual_hierarchy",
+   "claim_kind": "general"
+  }
+ ],
+ "before": {
+  "evidence_total": 98,
+  "evidence_fallback": 98,
+  "findings": 28,
+  "title_generic": 27,
+  "non_synthetic_evidence": 0,
+  "axe_groups_with_finding": 0,
+  "what_it_sells": "site_understanding.unknown",
+  "price_positioning": "site_understanding.unknown"
+ }
+}

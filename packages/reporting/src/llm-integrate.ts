@@ -10,7 +10,7 @@ import { createHash } from "node:crypto";
 import { CATEGORIES, Evidence, buildFindingKey, isClaimKindFor, type SyntheticSession } from "@sitelens/schemas";
 import { detectAiInstruction } from "@sitelens/llm";
 import { extractQuoteSpans, verifyFrictionEvidence, type SessionObs } from "@sitelens/scoring";
-import type { LlmResults, PageIn, VP } from "./types.js";
+import type { LlmResults, LlmText, PageIn, VP } from "./types.js";
 
 type Friction = SyntheticSession["frictions"][number];
 export interface FrictionIn extends Friction { /** закритий список на категорію (SCORING_SPEC §5); інакше `general` */ claim_kind?: string }
@@ -28,10 +28,33 @@ export interface IntegrationRejection { session_id: string; index: number; reaso
  * Тексту тут НЕМАЄ — лише сторінка й ідентифікатори спрацьованих правил; у звіт він не потрапляє дослівно.
  */
 export interface InjectionNotice { page_path: string; page_url: string; rules: string[]; sessions: number }
-export interface Integration { evidence: Evidence[]; sessions: SessionObs[]; rejected: IntegrationRejection[]; injection_notices: InjectionNotice[] }
+export interface Integration {
+  evidence: Evidence[]; sessions: SessionObs[]; rejected: IntegrationRejection[]; injection_notices: InjectionNotice[];
+  /** DEV-98: текст спостереження моделі на доказ (id → LlmText, guard/числа — у buildReport); лише цитата без коментаря → немає запису (шаблон коду з excerpt) */
+  evidence_text: Record<string, LlmText>;
+}
 export interface IntegrateOptions {
   /** false — лише негативний контроль тестів/validate («до фіксу»); у продукті завжди увімкнено */
   injection_filter?: boolean;
+  /** мова звіту для префікса «Не знайдено:» у тексті спостереження */
+  lang?: "uk" | "en";
+}
+
+const NOT_FOUND_PREFIX_RE = /^\s*NOT_FOUND\s*:\s*/iu;
+/**
+ * DEV-98: текст спостереження з friction.evidence (єдине поле, де модель пояснює проблему): `NOT_FOUND: X` → «Не знайдено: X»;
+ * цитата + коментар моделі → увесь текст (цитати лишаються); лише цитата / голий дослівний текст → null (показ — через excerpt).
+ */
+export function observationText(evidence: string, kind: "quote" | "absence", lang: "uk" | "en"): string | null {
+  const t = evidence.trim().replace(/\s+/gu, " ");
+  if (kind === "absence") {
+    const rest = t.replace(NOT_FOUND_PREFIX_RE, "").trim();
+    return /\p{L}{3}/u.test(rest) ? `${lang === "uk" ? "Не знайдено" : "Not found"}: ${rest}` : null;
+  }
+  const spans = extractQuoteSpans(t);
+  if (spans.length === 0) return null;
+  const outside = spans.reduce((acc, sp) => acc.split(sp).join(" "), t).replace(/["«»“”„‘’]/gu, " ");
+  return /\p{L}{3}/u.test(outside) ? t : null;
 }
 
 export const pageGroupOf = (type: string, p: string): string => (type === "product" || type === "category" ? type : p.replace(/(.)\/$/, "$1"));
@@ -50,6 +73,8 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
   const evidence = new Map<string, Evidence>();
   const rejected: IntegrationRejection[] = [];
   const obs: SessionObs[] = [];
+  const texts: Record<string, LlmText> = {};
+  const lang = opts.lang ?? "uk";
   for (const s of input.sessions) {
     const keys: string[] = [];
     s.frictions.forEach((f, index) => {
@@ -86,12 +111,14 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
         self_confirming: false, session_id: s.session_id, lens_id: s.lens_id, task_id: s.task_id, level: s.level,
         ...(excerpt ? { excerpt } : {}),
       }));
+      const ot = observationText(f.evidence, v.kind, lang);
+      if (ot) texts[id] = { text: ot, source_class: "SYNTHETIC", prompt_id: s.level === "journey" ? "browser-agent-v1" : "snapshot-evaluator-v1", guard_status: "pending" };
       keys.push(buildFindingKey({ category, page_group: group, claim_kind: claim }));
     });
     const uniq = [...new Set(keys)].sort();
     obs.push({ session_id: s.session_id, lens_id: s.lens_id, task_id: s.task_id, level: s.level, success: s.success, pages_seen: [...new Set(s.pages_seen)].sort(), reported_keys: uniq, last_friction_key: keys.length ? (keys[keys.length - 1] as string) : null });
   }
-  return { evidence: [...evidence.values()].sort((a, b) => (a.id < b.id ? -1 : 1)), sessions: obs, rejected,
+  return { evidence: [...evidence.values()].sort((a, b) => (a.id < b.id ? -1 : 1)), sessions: obs, rejected, evidence_text: texts,
     injection_notices: [...notices.values()].map((n) => ({ page_path: n.page.path, page_url: n.page.url, rules: [...n.rules].sort(), sessions: n.sessions.size })).sort((a, b) => (a.page_path < b.page_path ? -1 : 1)) };
 }
 
@@ -99,7 +126,7 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
 export function llmResultsFromSessions(i: Integration, o: { mode: LlmResults["mode"]; provider: LlmResults["provider"]; model: string; prompt_versions: string[]; llm_calls: number; used_tokens: number }): LlmResults {
   return {
     mode: o.mode, provider: o.provider, model: o.model, prompt_versions: o.prompt_versions,
-    evidence: i.evidence, evidence_text: {}, sessions: i.sessions, finding_texts: {}, site_understanding: null, primary_conversion_goal: null, summary: null,
+    evidence: i.evidence, evidence_text: i.evidence_text ?? {}, sessions: i.sessions, finding_texts: {}, site_understanding: null, primary_conversion_goal: null, summary: null,
     lenses: [], pole_unmet: [],
     budget: { max_audit_tokens: 1_650_000, used_tokens: o.used_tokens, billed_tokens: 0, cache_read_tokens: 0, llm_calls: o.llm_calls, cost: null },
   };

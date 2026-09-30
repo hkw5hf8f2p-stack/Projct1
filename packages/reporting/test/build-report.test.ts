@@ -109,9 +109,11 @@ describe("звіт без LLM на shop-clean: 0 знахідок + позити
 describe("з LLM-даними (приклад, replay): структурне правило, асиметрія, DEV-49", () => {
   const { report, rejected } = buildReport(load(SHOP_RUN_DIR), EXAMPLE_LLM, { generated_at: FIXED_TS, provenance: { kind: "example_fixture", note: null } });
   it("тексти з цифрою або числівником відхилено й замінено шаблоном коду", () => {
-    expect(rejected.map((x) => x.reason.split(":")[0])).toEqual(["number", "number"]);
-    expect(rejected.some((x) => x.reason.includes("3"))).toBe(true);
+    // DEV-98: «3 кроки» — цифру замасковано «…», решту спостереження показано; «Половина …» (числівник-слово) — речення видалено → шаблон коду
+    expect(rejected.map((x) => x.reason.split(":")[0]).sort()).toEqual(["number", "number_masked"]);
+    expect(rejected.some((x) => x.reason === "number_masked:digit")).toBe(true);
     expect(rejected.some((x) => /Половина/i.test(x.reason))).toBe(true);
+    expect(collectTexts(report).some(({ text }) => text.origin === "llm" && text.template === "Агент витратив … кроки, щоб знайти доставку.")).toBe(true);
     expect(collectTexts(report).some(({ text }) => /Половина|\p{Nd}/u.test(text.template.replace(/\{[a-z_]+\}/g, "")))).toBe(false);
   });
   it("«N of M synthetic …» підставляє код; застереження G0-25 присутнє", () => {

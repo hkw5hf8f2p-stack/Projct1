@@ -13,7 +13,11 @@ export class DynamicFake implements LlmProvider {
   readonly name = "fake" as const;
   readonly model = "scripted-fake";
   readonly received: string[] = [];
-  constructor(private readonly o: { frictionLensIds: readonly string[]; hostileLensId?: string }) {}
+  /**
+   * richFrictions (DEV-98): friction як у живої моделі — цитата + коментар і `NOT_FOUND: …` з числом (маскується кодом), а не лише голою цитатою.
+   * finding-aggregator-v1 / recommendation-v1 відповідають завжди (текст без цифр, лише плейсхолдер {page_count}).
+   */
+  constructor(private readonly o: { frictionLensIds: readonly string[]; hostileLensId?: string; richFrictions?: boolean }) {}
 
   private quote(req: LlmRequest): string | null {
     const text = req.content.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n");
@@ -34,11 +38,24 @@ export class DynamicFake implements LlmProvider {
         const q = this.quote(req);
         if (lens === this.o.hostileLensId) {
           json = { ...base, verdict: "issues_found", success: "partial", final_summary: "Знайдено проблему з доставкою.", frictions: [{ category: "shipping", claim_kind: "cost_unknown", severity: "medium", evidence: `"${HOSTILE_QUOTE}"`, tile_id: "t0" }] };
+        } else if (this.o.frictionLensIds.includes(lens) && q && this.o.richFrictions) {
+          json = { ...base, verdict: "issues_found", success: "partial", final_summary: "Умови доставки складно знайти.", frictions: [
+            { category: "shipping", claim_kind: "cost_unknown", severity: "medium", evidence: `"${q}" — біля цього тексту не видно, скільки коштує доставка.`, tile_id: "t0" },
+            { category: "missing_information", claim_kind: "general", severity: "medium", evidence: "NOT_FOUND: строк доставки для замовлення від 2 одиниць і умови повернення протягом 14 днів", tile_id: "t0" },
+          ] };
         } else if (this.o.frictionLensIds.includes(lens) && q) {
           json = { ...base, verdict: "issues_found", success: "partial", final_summary: "Умови доставки складно знайти.", frictions: [{ category: "shipping", claim_kind: "cost_unknown", severity: "medium", evidence: `"${q}"`, tile_id: "t0" }] };
         } else json = { ...base, verdict: "no_issue", success: "true", final_summary: "Сторінка підходить для задачі.", frictions: [] };
         break;
       }
+      case "finding-aggregator-v1": {
+        const text = req.content.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n");
+        const cat = /"category":\s*"([a-z_]+)"/.exec(text)?.[1] ?? "other";
+        const T: Record<string, string> = { shipping: "Синтетичні лінзи не бачать вартості доставки біля ціни", missing_information: "Синтетичним лінзам бракує строків доставки й умов повернення" };
+        json = { verdict: "supported", title: T[cat] ?? "Синтетичні лінзи вагалися на цьому кроці", problem: "Синтетичні лінзи не знайшли потрібних умов на сторінках групи; сторінок: {page_count}.", why_it_matters: "Без цих умов складно вирішити, чи купувати зараз." };
+        break;
+      }
+      case "recommendation-v1": json = { verdict: "supported", recommended_change: "Покажіть умови доставки й повернення поруч із ціною та кнопкою покупки.", how_to_validate: "Порівняйте переходи до кошика до й після зміни; ефект наперед не прогнозуйте." }; break;
       default: throw new Error(`DynamicFake: невідомий промпт ${req.prompt_id}`);
     }
     return { json, input_tokens: estimateTextTokens(req.system + JSON.stringify(req.content.filter((p) => p.type === "text"))), output_tokens: estimateTextTokens(JSON.stringify(json)), provider: "fake", model: this.model, latency_ms: 0, synthetic: true };

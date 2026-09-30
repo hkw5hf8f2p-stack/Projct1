@@ -89,6 +89,36 @@ describe("/settings/ai", () => {
     await ctx.close();
   }, T);
 
+  it("DEV-92: паралельні виклики — поле 1–6 з типовим за провайдером; у PUT лише якщо змінено; 0/7 блокуються", async () => {
+    const ctx = await newCtx({ width: 1440, theme: "light", lang: "en" });
+    const page = await open(ctx, "/settings/ai");
+    const m = await mockApi(page);
+    await page.reload();
+    await page.getByTestId("ai-settings").waitFor();
+    await page.getByTestId("kind-claude_cli").click();
+    expect(await page.getByTestId("ai-concurrency").inputValue()).toBe("2"); // для claude_cli типове 2, доки поле не змінено
+    await page.getByTestId("kind-anthropic").click();
+    expect(await page.getByTestId("ai-concurrency").inputValue()).toBe("3");
+    await page.getByTestId("kind-claude_cli").click();
+    await page.getByTestId("ai-save").click();
+    await page.getByText("Settings saved.").waitFor();
+    expect(m.puts.at(-1)).toMatchObject({ kind: "claude_cli" });
+    expect(m.puts.at(-1)).not.toHaveProperty("llm_concurrency");
+    await page.getByTestId("ai-concurrency").fill("7");
+    await page.getByTestId("ai-save").click();
+    await page.locator("#ai-conc-e").waitFor();
+    const n = m.puts.length;
+    await page.getByTestId("ai-concurrency").fill("0");
+    await page.getByTestId("ai-save").click();
+    await page.locator("#ai-conc-e").waitFor();
+    expect(m.puts).toHaveLength(n);
+    await page.getByTestId("ai-concurrency").fill("5");
+    await page.getByTestId("ai-save").click();
+    await page.getByTestId("ai-msg").waitFor();
+    expect(m.puts.at(-1)).toMatchObject({ kind: "claude_cli", llm_concurrency: 5 });
+    await ctx.close();
+  }, T);
+
   it("збереження кожного провайдера: правильне тіло PUT; валідація блокує порожню модель / поганий URL", async () => {
     const ctx = await newCtx({ width: 1440, theme: "light", lang: "en" });
     const page = await open(ctx, "/settings/ai");

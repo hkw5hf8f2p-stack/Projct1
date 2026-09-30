@@ -39,7 +39,7 @@ export function AiSettings() {
     setModel(v.model);
     setBaseUrl(v.base_url ?? "");
     setTokens(String(v.max_audit_tokens));
-    setConc(String(v.llm_concurrency ?? defaultConcurrency(v.kind)));
+    setConc("");
     setConcTouched(false);
     setApiKey(""); // ключ ніколи не лишається в стані після відповіді
   }, []);
@@ -73,6 +73,8 @@ export function AiSettings() {
     );
 
   const needsKey = KIND_NEEDS_KEY[kind];
+  // непорушене поле показує чинне значення для збереженого провайдера або типове для обраного (3; claude_cli — 2)
+  const concShown = concTouched ? conc : String(kind === view.kind ? view.llm_concurrency ?? defaultConcurrency(kind) : defaultConcurrency(kind));
   const dirty =
     kind !== view.kind || model.trim() !== view.model || baseUrl.trim() !== (view.base_url ?? "") || tokens.trim() !== String(view.max_audit_tokens) || concTouched || apiKey !== "";
   const errText = (r: ApiFailure) => (r.http === 0 ? t("ai.err.network_api") : r.cls === "unauthorized" ? t("error.unauthorized") : r.cls === "ai_settings_unavailable" ? t("ai.err.storage_unavailable") : t("ai.save_failed"));
@@ -214,7 +216,7 @@ export function AiSettings() {
           <div className="field">
             <label htmlFor="ai-conc">{t("ai.concurrency.label")}</label>
             <input id="ai-conc" data-testid="ai-concurrency" type="number" min={LLM_CONCURRENCY_MIN} max={LLM_CONCURRENCY_MAX} step={1} inputMode="numeric" autoComplete="off"
-              value={concTouched || conc !== "" ? conc : String(defaultConcurrency(kind))} onChange={(e) => { setConc(e.target.value); setConcTouched(true); }}
+              value={concShown} onChange={(e) => { setConc(e.target.value); setConcTouched(true); }}
               aria-describedby={`ai-conc-h${errs.conc ? " ai-conc-e" : ""}`} aria-invalid={errs.conc ? true : undefined} />
             <span id="ai-conc-h" className="small muted">{t("ai.concurrency.hint", { def: defaultConcurrency(kind) })}</span>
             {errs.conc && <span id="ai-conc-e" role="alert" className="small claim-warn">{t(errs.conc)}</span>}
