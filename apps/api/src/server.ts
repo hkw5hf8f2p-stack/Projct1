@@ -9,22 +9,13 @@ import {
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
-export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss }
+export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** режим LLM з resolveConfig(env) (обчислює точка входу; тести задають явно) */ llmMode?: "live" | "replay" | "none" }
 
 const digest = (s: string) => createHash("sha256").update(s).digest();
 export const tokenOk = (given: string | undefined, expected: string): boolean => given !== undefined && timingSafeEqual(digest(given), digest(expected));
 
 type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url";
 const err = (reply: FastifyReply, code: number, cls: ApiErrClass, message: string) => reply.code(code).send({ error: { class: cls, message } });
-
-function llmModeFor(cfg: AppConfig, env: NodeJS.ProcessEnv = process.env): "live" | "replay" | "none" {
-  const p = cfg.llmProvider;
-  if (!p || p === "none") return "none";
-  if (p === "replay") return "replay";
-  if (p === "anthropic") return env["ANTHROPIC_API_KEY"] ? "live" : "none";
-  if (p === "openai") return env["OPENAI_API_KEY"] ? "live" : "none";
-  return "none";
-}
 
 function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number }) {
   return {
@@ -92,7 +83,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
         }
       }
       await insertAudit(c, {
-        id, input_url: body.data.url.trim(), normalized_url: chk.url, domain: chk.domain, language, llm_mode: llmModeFor(cfg), ttl_days: cfg.artifactTtlDays,
+        id, input_url: body.data.url.trim(), normalized_url: chk.url, domain: chk.domain, language, llm_mode: deps.llmMode ?? "none", ttl_days: cfg.artifactTtlDays,
         config_json: { max_pages: cfg.maxPages, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse },
       });
       // §55.13: аудит і його перша задача з'являються ОДНОЧАСНО (одна транзакція) — kill -9 API посередині не лишає «сироту»

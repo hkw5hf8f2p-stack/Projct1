@@ -2,6 +2,7 @@
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { loadDotEnv, newPidFile, pg, writePidFile } from "@sitelens/db";
+import { resolveConfig } from "@sitelens/llm";
 import { ListenRefused, createBoss, describeConfig, loadConfig, resolveListen, startBoss } from "@sitelens/pipeline";
 import { buildServer } from "./server.js";
 
@@ -17,6 +18,13 @@ try {
   }
   throw e;
 }
+let llmMode: "live" | "replay" | "none";
+try {
+  llmMode = resolveConfig(process.env as Record<string, string | undefined>).llm_mode;
+} catch (e) {
+  console.error(JSON.stringify({ level: "fatal", msg: `LLM-конфіг: ${(e as Error).message}` }));
+  process.exit(6);
+}
 const pool = new pg.Pool({ connectionString: cfg.databaseUrl, max: 6, application_name: "sitelens-api" });
 pool.on("error", (e) => console.error(JSON.stringify({ level: "error", msg: "pg pool", err: e.message })));
 try {
@@ -27,7 +35,7 @@ try {
 }
 const boss = createBoss(cfg.databaseUrl, { supervise: false, max: 3, application_name: "sitelens-api-boss" });
 await startBoss(boss);
-const app = await buildServer({ cfg, pool, boss });
+const app = await buildServer({ cfg, pool, boss, llmMode });
 await app.listen({ host: listen.host, port: listen.port });
 mkdirSync(cfg.pidDir, { recursive: true });
 writePidFile(path.join(cfg.pidDir, "api.json"), newPidFile("api", process.pid, []));

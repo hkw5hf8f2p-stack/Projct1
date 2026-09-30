@@ -10,7 +10,8 @@
     "@sitelens/schemas": "workspace:*",
     "fastify": "5.12.5",
     "pg": "8.23.0",
-    "pg-boss": "12.35.0"
+    "pg-boss": "12.35.0",
+    "@sitelens/llm": "workspace:*"
   },
   "devDependencies": {
     "@types/pg": "8.23.1"
