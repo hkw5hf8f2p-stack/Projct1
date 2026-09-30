@@ -5,10 +5,9 @@
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { cleanupOrphansFromFile, isSameProc, loadDotEnv, pg, readPidFile } from "@sitelens/db";
+import { cleanupOrphansFromFile, isSameProc, killOwnDescendants, loadDotEnv, pg, readPidFile, startProcWatch } from "@sitelens/db";
 import { QUEUE_SPECS, createBoss, describeConfig, loadConfig, startBoss, sweepExpiredArtifacts } from "@sitelens/pipeline";
 import { registerHandlers } from "./handlers.js";
-import { startProcWatch } from "./procwatch.js";
 import { createRuntime, type Runtime } from "./runtime.js";
 
 loadDotEnv();
@@ -64,6 +63,7 @@ const sweep = async () => {
 await sweep();
 const sweepTimer = setInterval(sweep, cfg.ttlSweepIntervalMs);
 
+process.on("exit", () => void killOwnDescendants()); // аварійний вихід (uncaught) теж не лишає дітей
 let stopping = false;
 const stop = async () => {
   if (stopping) return;
@@ -71,6 +71,7 @@ const stop = async () => {
   clearInterval(sweepTimer);
   await boss.stop({ graceful: false, close: true, timeout: 5000 }).catch(() => undefined);
   await rt.close();
+  killOwnDescendants(); // Chrome Lighthouse (chrome-launcher не прив'язаний до батька) і решта власних дітей — не лишати сиріт при штатній зупинці
   await pool.end().catch(() => undefined);
   watch.stop();
   rmSync(pidFile, { force: true });

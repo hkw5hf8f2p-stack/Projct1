@@ -1,17 +1,21 @@
 {
-  "finished_at": "2026-09-30T01:10:08.460Z",
+  "finished_at": "2026-09-30T01:19:21.268Z",
   "results": {
-    "baseline": {
-      "status": "completed",
-      "pages": 11,
-      "s1a_equal": true,
-      "evidence": 36
+    "kill9-api": {
+      "pass": true,
+      "pages": "11/11",
+      "lost": 0,
+      "duplicated": 0,
+      "outage_samples_failed": 28
     }
   },
   "final_orphan_scan": {
     "orphan_browsers": [],
     "orphan_postgres": [],
     "foreign_browsers_untouched": [
+      5392,
+      7894,
+      8370,
       14847,
       14855,
       14856,
@@ -27,17 +31,9 @@
       15026
     ],
     "foreign_browsers_before": [
-      13895,
-      13904,
-      13905,
-      13909,
-      13930,
-      13943,
-      13950,
-      13960,
-      13974,
-      13975,
-      14205,
+      5392,
+      7894,
+      8370,
       14847,
       14855,
       14856,
@@ -51,6 +47,7 @@
       14942,
       14963,
       15026
-    ]
+    ],
+    "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
   }
 }

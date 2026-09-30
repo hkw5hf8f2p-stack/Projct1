@@ -3,7 +3,7 @@
  * (pid + starttime + comm). Якщо worker помре від `kill -9`, наступний старт вб'є ЛИШЕ записаних, що ще живі й ті самі (cleanupOrphansFromFile).
  * Вікно неточності: процес, що з'явився менш ніж `intervalMs` тому перед смертю worker, ще не записаний → лишається (задокументовано).
  */
-import { cmdlineOf, descendantsOf, isSameProc, newPidFile, readStat, writePidFile, type TrackedProc } from "@sitelens/db";
+import { cmdlineOf, descendantsOf, isSameProc, newPidFile, readStat, writePidFile, type TrackedProc } from "./procs.js";
 
 export function startProcWatch(pidFile: string, intervalMs = 100): { stop(): void; snapshot(): TrackedProc[] } {
   const known = new Map<number, TrackedProc>();
@@ -27,4 +27,18 @@ export function startProcWatch(pidFile: string, intervalMs = 100): { stop(): voi
   const h = setInterval(tick, intervalMs);
   h.unref();
   return { stop: () => clearInterval(h), snapshot: () => [...known.values()] };
+}
+
+/** SIGKILL усіх нащадків ЦЬОГО процесу (лише власні діти: Chromium, Chrome Lighthouse). Для коректного завершення й хуків exit. */
+export function killOwnDescendants(): number[] {
+  const killed: number[] = [];
+  for (const pid of descendantsOf(process.pid)) {
+    try {
+      process.kill(pid, "SIGKILL");
+      killed.push(pid);
+    } catch {
+      /* уже вийшов */
+    }
+  }
+  return killed;
 }

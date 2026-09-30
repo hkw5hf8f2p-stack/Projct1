@@ -1,0 +1,92 @@
+{
+  "scenario": "kill9-api",
+  "audit_id": "aud_432cc3ab219a7481",
+  "api_killed": {
+    "pid": 11294,
+    "signal": "SIGKILL",
+    "pages_at_kill": 3
+  },
+  "connection_refused_after_kill": true,
+  "worker_unaffected": {
+    "pid_before": 11358,
+    "pid_after": 11358,
+    "pages_during_api_downtime": 4,
+    "progressed_while_api_dead": true
+  },
+  "restart": {
+    "new_api_pid": 11708
+  },
+  "poller": {
+    "samples": 172,
+    "failures": 28,
+    "first_ok_after_outage_ms": 20996,
+    "error_samples": [
+      "SocketError: other side closed",
+      "Error: connect ECONNREFUSED 127.0.0.1:3101"
+    ]
+  },
+  "final": {
+    "status": "completed"
+  },
+  "integrity": {
+    "pages_expected": 11,
+    "pages_found": 11,
+    "pages_lost": 0,
+    "pages_extra": 0,
+    "pages_duplicated": 0,
+    "evidence_rows": 38,
+    "evidence_duplicated": 0,
+    "jobs_duplicated": 0,
+    "evidence_equal_to_baseline": true,
+    "evidence_lost": 0,
+    "evidence_extra": 0,
+    "missing": [],
+    "extra": []
+  },
+  "atomic_submit": {
+    "crawl_site_jobs_for_audit": 1
+  },
+  "orphans_after": {
+    "orphan_browsers": [],
+    "orphan_postgres": [],
+    "foreign_browsers_untouched": [
+      5392,
+      7894,
+      8370,
+      14847,
+      14855,
+      14856,
+      14858,
+      14880,
+      14893,
+      14894,
+      14905,
+      14922,
+      14923,
+      14942,
+      14963,
+      15026
+    ],
+    "foreign_browsers_before": [
+      5392,
+      7894,
+      8370,
+      14847,
+      14855,
+      14856,
+      14858,
+      14880,
+      14893,
+      14894,
+      14905,
+      14922,
+      14923,
+      14942,
+      14963,
+      15026
+    ],
+    "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
+  },
+  "postgres_pid_file_consistent": true,
+  "pass": true
+}

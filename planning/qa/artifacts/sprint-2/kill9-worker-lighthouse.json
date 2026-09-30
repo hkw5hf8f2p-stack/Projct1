@@ -1,0 +1,204 @@
+{
+  "scenario": "kill9-worker-lighthouse",
+  "audit_id": "aud_a5c373f5688098d8",
+  "worker_killed": {
+    "pid": 8735,
+    "signal": "SIGKILL",
+    "audit_status_at_kill": "crawling",
+    "pages_at_kill": 4,
+    "active_queue_jobs_after_kill": [
+      {
+        "name": "run_lighthouse",
+        "state": "active"
+      }
+    ]
+  },
+  "pre_cleanup": {
+    "orphan_browser_pids_alive_right_after_kill": [
+      9396
+    ],
+    "tracked_children_in_pid_file": 7,
+    "note": "контроль: сироти ІСНУЮТЬ до прибирання — перевірка «0 сиріт» уміє показати ненуль"
+  },
+  "restart": {
+    "new_worker_pid": 9531,
+    "recovery_report": {
+      "ts": "2026-09-30T01:17:50.714Z",
+      "file": "/home/user/Projct1/data/s2/pids/worker.json",
+      "owner_pid": 8735,
+      "owner_was_alive": false,
+      "killed": [
+        {
+          "pid": 9396,
+          "comm": "chrome",
+          "role": "browser"
+        }
+      ],
+      "already_gone": [
+        8762,
+        8765,
+        8766,
+        8797,
+        8784,
+        8768
+      ],
+      "skipped_reused_pid": []
+    }
+  },
+  "final": {
+    "status": "completed",
+    "stage_status_keys": [
+      "crawl",
+      "tasks",
+      "lenses",
+      "report",
+      "capture",
+      "aggregate",
+      "lighthouse",
+      "site_profile",
+      "accessibility",
+      "scenario_matrix",
+      "browser_sessions",
+      "snapshot_sessions"
+    ],
+    "warnings": []
+  },
+  "integrity": {
+    "pages_expected": 4,
+    "pages_found": 4,
+    "pages_lost": 0,
+    "pages_extra": 0,
+    "pages_duplicated": 0,
+    "evidence_rows": 6,
+    "evidence_duplicated": 0,
+    "jobs_duplicated": 0,
+    "evidence_equal_to_baseline": true,
+    "evidence_lost": 0,
+    "evidence_extra": 0,
+    "missing": [],
+    "extra": []
+  },
+  "queue_jobs": [
+    {
+      "name": "aggregate_findings",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "build_scenario_matrix",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "build_site_profile",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "capture_page",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "capture_page",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "capture_page",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "capture_page",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "crawl_site",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "generate_lenses",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "generate_tasks",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "run_accessibility",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "run_accessibility",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "run_accessibility",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "run_accessibility",
+      "state": "completed",
+      "retry_count": 0
+    },
+    {
+      "name": "run_lighthouse",
+      "state": "completed",
+      "retry_count": 1
+    }
+  ],
+  "orphans_after": {
+    "tracked_pids_still_alive": [],
+    "descendants_of_dead_worker_still_alive": [],
+    "independent_scan": {
+      "orphan_browsers": [],
+      "orphan_postgres": [],
+      "foreign_browsers_untouched": [
+        5392,
+        7894,
+        8370,
+        14847,
+        14855,
+        14856,
+        14858,
+        14880,
+        14893,
+        14894,
+        14905,
+        14922,
+        14923,
+        14942,
+        14963,
+        15026
+      ],
+      "foreign_browsers_before": [
+        5392,
+        7894,
+        8370,
+        14847,
+        14855,
+        14856,
+        14858,
+        14880,
+        14893,
+        14894,
+        14905,
+        14922,
+        14923,
+        14942,
+        14963,
+        15026
+      ],
+      "rule": "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster"
+    }
+  },
+  "pass": true
+}

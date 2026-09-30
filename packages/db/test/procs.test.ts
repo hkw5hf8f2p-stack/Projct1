@@ -108,3 +108,19 @@ describe("descendantsOf", () => {
     expect(descendantsOf(999999)).toEqual([]);
   });
 });
+
+describe("зомбі", () => {
+  it("isSameProc: процес, що вийшов, але не прибраний батьком (зомбі), — НЕ живий; живий процес — живий (контроль)", async () => {
+    // sh запускає true у фоні й exec-иться в sleep: sleep не робить wait → true лишається зомбі
+    const sh = spawn("/bin/sh", ["-c", "/bin/true & exec /bin/sleep 30"], { stdio: "ignore" });
+    spawned.push(sh);
+    let z: number | undefined;
+    for (let i = 0; i < 100 && z === undefined; i++) {
+      await new Promise((r) => setTimeout(r, 20));
+      z = descendantsOf(sh.pid!).find((p) => readStat(p)?.state === "Z");
+    }
+    expect(z, "зомбі виник").toBeDefined();
+    expect(isSameProc({ pid: z!, start: procStart(z!) })).toBe(false);
+    expect(isSameProc({ pid: sh.pid!, start: procStart(sh.pid!) })).toBe(true);
+  });
+});

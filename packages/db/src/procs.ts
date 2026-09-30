@@ -23,13 +23,13 @@ export interface PidFile {
   children: TrackedProc[];
 }
 
-export function readStat(pid: number): { comm: string; ppid: number; start: string } | null {
+export function readStat(pid: number): { comm: string; ppid: number; start: string; state: string } | null {
   try {
     const s = readFileSync(`/proc/${pid}/stat`, "utf8");
     const rp = s.lastIndexOf(")");
     const comm = s.slice(s.indexOf("(") + 1, rp);
     const f = s.slice(rp + 2).split(" ");
-    return { comm, ppid: Number(f[1]), start: f[19] ?? "" };
+    return { comm, ppid: Number(f[1]), start: f[19] ?? "", state: f[0] ?? "" };
   } catch {
     return null;
   }
@@ -53,6 +53,8 @@ export function isSameProc(t: { pid: number; start: string | null }): boolean {
   } catch (e) {
     if ((e as NodeJS.ErrnoException).code !== "EPERM") return false;
   }
+  const st = readStat(t.pid);
+  if (st?.state === "Z") return false; // зомбі (вийшов, ще не прибраний init) — процесом уже не є
   const cur = procStart(t.pid);
   if (t.start === null || cur === null) return true;
   return cur === t.start;

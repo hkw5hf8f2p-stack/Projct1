@@ -3,3 +3,4 @@ export * from "./embedded.js";
 export * from "./migrate.js";
 export { default as pg } from "pg";
 export * from "./env.js";
+export * from "./procwatch.js";

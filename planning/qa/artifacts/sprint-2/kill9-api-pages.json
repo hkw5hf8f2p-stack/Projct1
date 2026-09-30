@@ -1,0 +1,182 @@
+{
+  "auditId": "aud_432cc3ab219a7481",
+  "artifacts_deleted": false,
+  "pages": [
+    {
+      "id": "index",
+      "url": "http://127.0.0.1:4310/",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "title": "ТехноДім — головна",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/index/1440x1000/fullpage.png",
+        "mobile": "pages/index/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 5
+    },
+    {
+      "id": "catalog",
+      "url": "http://127.0.0.1:4310/catalog",
+      "page_type": "category",
+      "page_type_reason": null,
+      "title": "Каталог — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/catalog/1440x1000/fullpage.png",
+        "mobile": "pages/catalog/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 3
+    },
+    {
+      "id": "product-aquapro-x200",
+      "url": "http://127.0.0.1:4310/product/aquapro-x200",
+      "page_type": "product",
+      "page_type_reason": null,
+      "title": "AquaPro X200 (система HFX) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+        "mobile": "pages/product-aquapro-x200/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 7
+    },
+    {
+      "id": "product-aquapro-x220",
+      "url": "http://127.0.0.1:4310/product/aquapro-x220",
+      "page_type": "product",
+      "page_type_reason": null,
+      "title": "AquaPro X220 (система HFX) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+        "mobile": "pages/product-aquapro-x220/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 7
+    },
+    {
+      "id": "product-softline-s1",
+      "url": "http://127.0.0.1:4310/product/softline-s1",
+      "page_type": "product",
+      "page_type_reason": null,
+      "title": "Softline S1 (модуль SLT) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-softline-s1/1440x1000/fullpage.png",
+        "mobile": "pages/product-softline-s1/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 10
+    },
+    {
+      "id": "help",
+      "url": "http://127.0.0.1:4310/help",
+      "page_type": "other",
+      "page_type_reason": null,
+      "title": "Допомога — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/help/1440x1000/fullpage.png",
+        "mobile": "pages/help/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    },
+    {
+      "id": "help-shipping",
+      "url": "http://127.0.0.1:4310/help/shipping",
+      "page_type": "info_shipping",
+      "page_type_reason": null,
+      "title": "Доставка й оплата — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/help-shipping/1440x1000/fullpage.png",
+        "mobile": "pages/help-shipping/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    },
+    {
+      "id": "about",
+      "url": "http://127.0.0.1:4310/about",
+      "page_type": "about",
+      "page_type_reason": null,
+      "title": "Про нас — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/about/1440x1000/fullpage.png",
+        "mobile": "pages/about/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    },
+    {
+      "id": "product-aquapro-x200-configure",
+      "url": "http://127.0.0.1:4310/product/aquapro-x200/configure",
+      "page_type": "other",
+      "page_type_reason": null,
+      "title": "Комплектація AquaPro X200 (система HFX) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-aquapro-x200-configure/1440x1000/fullpage.png",
+        "mobile": "pages/product-aquapro-x200-configure/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    },
+    {
+      "id": "product-aquapro-x220-configure",
+      "url": "http://127.0.0.1:4310/product/aquapro-x220/configure",
+      "page_type": "other",
+      "page_type_reason": null,
+      "title": "Комплектація AquaPro X220 (система HFX) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-aquapro-x220-configure/1440x1000/fullpage.png",
+        "mobile": "pages/product-aquapro-x220-configure/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    },
+    {
+      "id": "product-softline-s1-configure",
+      "url": "http://127.0.0.1:4310/product/softline-s1/configure",
+      "page_type": "other",
+      "page_type_reason": null,
+      "title": "Комплектація Softline S1 (модуль SLT) — ТехноДім",
+      "http_status": 200,
+      "screenshots": {
+        "desktop": "pages/product-softline-s1-configure/1440x1000/fullpage.png",
+        "mobile": "pages/product-softline-s1-configure/390x844/fullpage.png"
+      },
+      "capture_ok": true,
+      "capture_error": null,
+      "egress_denied": [],
+      "evidence_count": 1
+    }
+  ]
+}

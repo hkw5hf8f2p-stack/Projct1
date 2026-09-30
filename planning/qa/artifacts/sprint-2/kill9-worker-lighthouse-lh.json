@@ -1,0 +1,17 @@
+{
+  "lighthouse_evidence": [
+    {
+      "type": "lighthouse",
+      "n": 2,
+      "u": 2
+    }
+  ],
+  "lighthouse_jobs": [
+    {
+      "job_key": "lighthouse:ok:desktop",
+      "status": "done",
+      "attempts": 1
+    }
+  ],
+  "ok": true
+}

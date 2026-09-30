@@ -1,0 +1,80 @@
+{
+  "id": "aud_e36d05b393aad3a2",
+  "status": "completed",
+  "input_url": "http://127.0.0.1:4310/",
+  "normalized_url": "http://127.0.0.1:4310/",
+  "language": "uk",
+  "llm_mode": "none",
+  "created_at": "2026-09-30T01:10:25.754Z",
+  "started_at": "2026-09-30T01:10:26.597Z",
+  "completed_at": "2026-09-30T01:11:29.188Z",
+  "stage_status": {
+    "crawl": {
+      "reason": "сторінок захоплено 11, збійних 0, пропущено 8",
+      "status": "done",
+      "updated_at": "2026-09-30T01:11:17.048Z"
+    },
+    "tasks": {
+      "reason": "no LLM provider",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:26.118Z"
+    },
+    "lenses": {
+      "reason": "no LLM provider",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:27.118Z"
+    },
+    "report": {
+      "reason": "поза обсягом S2 (S4/S5)",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:29.187Z"
+    },
+    "capture": {
+      "status": "done",
+      "updated_at": "2026-09-30T01:11:17.050Z"
+    },
+    "aggregate": {
+      "reason": "S2: детерміновані докази зведено (36, оновлено 25); агрегація знахідок і пріоритети — S4",
+      "status": "done",
+      "updated_at": "2026-09-30T01:11:29.182Z"
+    },
+    "lighthouse": {
+      "status": "done",
+      "updated_at": "2026-09-30T01:11:24.208Z"
+    },
+    "site_profile": {
+      "reason": "no LLM provider",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:25.118Z"
+    },
+    "accessibility": {
+      "status": "done",
+      "updated_at": "2026-09-30T01:11:24.208Z"
+    },
+    "scenario_matrix": {
+      "reason": "no LLM provider",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:28.117Z"
+    },
+    "browser_sessions": {
+      "reason": "поза обсягом S2 (S4/S5)",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:29.185Z"
+    },
+    "snapshot_sessions": {
+      "reason": "поза обсягом S2 (S4/S5)",
+      "status": "skipped",
+      "updated_at": "2026-09-30T01:11:29.184Z"
+    }
+  },
+  "progress": {
+    "pages_captured": 11,
+    "pages_failed": 0,
+    "lighthouse_done": 1,
+    "lighthouse_failed": 0
+  },
+  "warnings": [],
+  "error": null,
+  "artifacts_deleted": false,
+  "artifact_expires_at": "2026-10-30T01:10:25.754Z"
+}

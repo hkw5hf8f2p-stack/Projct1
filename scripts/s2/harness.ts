@@ -96,15 +96,25 @@ export const postgresPids = (): number[] => sh("pgrep", ["-x", "postgres"]).spli
 const key = (p: ProcId) => `${p.pid}:${p.start}`;
 export const snapshotForeign = (): { browsers: ProcId[]; postgres: ProcId[] } => ({ browsers: browserPids().map(idOf), postgres: postgresPids().map(idOf) });
 
-/** Сироти: процеси браузера/Postgres, які (а) живі, (б) не нащадки живого worker/postmaster нашого стеку, (в) не були чужими ДО початку. Независимо від нашого обліку. */
+/**
+ * Сироти — НЕЗАЛЕЖНО від нашого PID-обліку. Браузер-сирота: живий процес браузера, чий батько НЕ браузер і це init (ppid == 1: власника-процес помер,
+ * дерево переприв'язано), і його не було серед чужих ДО початку. Живий браузер чужого тесту (батько — його node) сиротою НЕ є (не наш і не покинутий).
+ * Postgres-сирота: живий postgres з нашим каталогом даних (-D data/s2/pg), який не є нашим поточним postmaster (або його нащадком).
+ */
 export function orphanReport(foreignBefore: { browsers: ProcId[]; postgres: ProcId[] }, liveWorkerPids: number[], postmasterPid: number | null) {
   const okB = new Set(liveWorkerPids.flatMap((w) => descendantsOf(w)));
   const okP = new Set(postmasterPid ? [postmasterPid, ...descendantsOf(postmasterPid)] : []);
   const fb = new Set(foreignBefore.browsers.map(key));
-  const fp = new Set(foreignBefore.postgres.map(key));
-  const b = browserPids().map(idOf).filter((p) => !okB.has(p.pid) && !fb.has(key(p)));
-  const p = postgresPids().map(idOf).filter((x) => !okP.has(x.pid) && !fp.has(key(x)));
-  return { orphan_browsers: b.map((x) => ({ ...x, cmd: cmdlineOf(x.pid).slice(0, 120) })), orphan_postgres: p, foreign_browsers_untouched: foreignBefore.browsers.filter((f) => isSameProc(f)).map((f) => f.pid), foreign_browsers_before: foreignBefore.browsers.map((f) => f.pid) };
+  const isBrowser = (pid: number) => BROWSER_COMMS.includes(readStat(pid)?.comm ?? "");
+  const b = browserPids().map(idOf).filter((p) => {
+    if (okB.has(p.pid) || fb.has(key(p))) return false;
+    const st = readStat(p.pid);
+    if (!st || st.state === "Z" || isBrowser(st.ppid)) return false; // зомбі (уже вийшли, чекають прибирання init) і не-корені не рахуємо
+    return st.ppid === 1;
+  });
+  const dataDir = path.join(S2, "pg");
+  const p = postgresPids().map(idOf).filter((x) => !okP.has(x.pid) && cmdlineOf(x.pid).includes(dataDir));
+  return { orphan_browsers: b.map((x) => ({ ...x, cmd: cmdlineOf(x.pid).slice(0, 120) })), orphan_postgres: p, foreign_browsers_untouched: foreignBefore.browsers.filter((f) => isSameProc(f)).map((f) => f.pid), foreign_browsers_before: foreignBefore.browsers.map((f) => f.pid), rule: "orphan browser = корінь дерева браузера з ppid==1, не з чужих до старту; orphan postgres = процес із нашим -D поза деревом поточного postmaster" };
 }
 
 export function listFiles(dir: string): string[] {
