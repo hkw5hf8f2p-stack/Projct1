@@ -110,7 +110,7 @@ export function e1(findings: readonly VFinding[]): E1Result {
   };
 }
 
-// ------------------------------------------------------------------------------------------------ E1 LLM за якорем (§14.2, DEV-90)
+// ------------------------------------------------------------------------------------------------ E1 LLM за якорем (§14.2, DEV-91)
 /** Дефект фікстури з EXPECTED.json (`pages`, `categories`, `claim_kind`, `anchors`) — ground truth засіяного місця. */
 export interface E1AnchorSpec { id: number; name?: string; pages: readonly string[]; categories: readonly string[]; claim_kind: string | null; anchors: readonly string[] }
 /** цитата прив'язана до засіяного елемента: якір ⊇ цитата або цитата ⊇ якір (після нормалізації §14.1) */

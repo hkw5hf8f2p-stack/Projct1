@@ -95,6 +95,19 @@ describe("LLM-знахідки (SYNTHETIC) у buildReport: доказ обов'�
     expect(ev.every((e) => e.source_class === "SYNTHETIC" && e.excerpt === REAL_QUOTE)).toBe(true);
     expect(f.confidence.level).not.toBe("VERIFIED"); // синтетичне ≠ верифіковане
   });
+  it("DEV-91 (SCORING_SPEC §14.1) на рівні integrateSessions: дослівна без лапок / «ялинки» / 'одинарні' → прийнято; перефраз, вигадана, надто коротка → відхилено", () => {
+    const short = productText.split(/\s+/).find((w) => w.length >= 3 && w.length <= 8 && !/\d/.test(w))!;
+    const { i } = llmFrom([
+      session("ses_q1", "l1", [friction(REAL_QUOTE)]),
+      session("ses_q2", "l2", [friction(`«${REAL_QUOTE}»`)]),
+      session("ses_q3", "l3", [friction(`'${REAL_QUOTE.toUpperCase()}'`)]),
+      session("ses_q4", "l4", [friction("Опис товару занадто загальний і нічого не пояснює")]),
+      session("ses_q5", "l5", [friction("«Найкращий чайник у всьому світі за півціни»")]),
+      session("ses_q6", "l6", [friction(`«${short}»`)]),
+    ]);
+    expect(i.rejected.map((r) => [r.session_id, r.reason])).toEqual([["ses_q4", "no_verifiable_evidence"], ["ses_q5", "quote_not_on_page"], ["ses_q6", "quote_too_short"]]);
+    expect(i.evidence.map((e) => e.excerpt).sort()).toEqual([REAL_QUOTE, REAL_QUOTE, REAL_QUOTE.toUpperCase()].sort());
+  });
   it("твердження відсутності NOT_FOUND: приймається лише для захопленої сторінки; критерій 1: кожна знахідка має докази", () => {
     const { i, llm } = llmFrom([session("ses_n1", "l1", [friction("NOT_FOUND: вартість доставки біля ціни")])]);
     expect(i.rejected).toEqual([]);

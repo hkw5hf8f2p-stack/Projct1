@@ -177,7 +177,7 @@ describe("(г) абляція: LLM-лише = 0/3 → показник видн�
     expect((c.data as { ablation: { llm: { y: number } } }).ablation.llm.y).toBe(0);
   });
   it("сума 7 < 8 показана, але не гейт; з --strict-live (живий прогін S7) — стає гейтом → FAIL", async () => {
-    expect(by(r, "E1").lines.join("\n")).toMatch(/разом 7\/10 \(гейт ≥ 8: не виконано/);
+    expect(by(r, "E1").lines.join("\n")).toMatch(/разом 7\/10 \(за старим правилом категорії 7; гейт ≥ 8: не виконано/);
     const strict = await runValidation({ snapshots: SNAP, checks: ["E1"], strict_live: true, evaluators: { e1: () => ({ kind: "silent" }) } });
     expect(by(strict, "E1").status).toBe("FAIL");
   });

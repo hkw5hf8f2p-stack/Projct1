@@ -1,4 +1,4 @@
-/** SCORING_SPEC §14.1 (DEV-90): перевірка доказу friction міряє правдивість (текст є на сторінці), а не форму лапок. Кожне правило — з контролем. */
+/** SCORING_SPEC §14.1 (DEV-91): перевірка доказу friction міряє правдивість (текст є на сторінці), а не форму лапок. Кожне правило — з контролем. */
 import { describe, expect, it } from "vitest";
 import { QUOTE_MIN, extractQuoteSpans, normQuote, quoteLongEnough, verifyFrictionEvidence } from "../src/index.js";
 

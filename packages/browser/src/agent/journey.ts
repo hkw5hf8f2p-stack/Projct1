@@ -271,7 +271,7 @@ export function cartVerdict(obs: Array<{ url: string; cart: CartCandidate[]; pri
 }
 
 /**
- * Доказ friction журналу (DEV-63 → DEV-90, SCORING_SPEC §14.1): та сама чиста перевірка, що в `integrateSessions` —
+ * Доказ friction журналу (DEV-63 → DEV-91, SCORING_SPEC §14.1): та сама чиста перевірка, що в `integrateSessions` —
  * дослівна цитата (будь-які парні лапки або голий текст) у побаченому тексті після нормалізації, ≥ 12 символів або ≥ 3 слова;
  * `NOT_FOUND` — твердження відсутності (SYNTHETIC-гіпотеза). Вигадана/перефразована цитата відхиляється.
  */

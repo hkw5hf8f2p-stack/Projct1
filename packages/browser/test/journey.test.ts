@@ -210,12 +210,14 @@ describe("cartVerdict / verifyFrictionEvidence: чиста логіка (поз�
     expect(cartVerdict([{ url: "a", cart: [c()], price: true, ship: false }, { url: "b", cart: [], price: false, ship: true }]).success).toBe("partial");
     expect(cartVerdict([{ url: "a", cart: [c()], price: true, ship: false }, { url: "b", cart: [], price: false, ship: true }, { url: "a", cart: [c()], price: true, ship: false }]).success).toBe("true");
   });
-  it("цитата: точна — ок; змінена — відкинута; NOT_FOUND — ок; без лапок — відкинута", () => {
+  it("цитата (DEV-91, SCORING_SPEC §14.1): точна — ок; змінена — відкинута; NOT_FOUND — ок; дослівна без лапок — ок; перефраз без лапок і надто коротка — відкинуті", () => {
     const corpus = "Доставка Новою поштою:  1–2 дні,\nвід 70 грн.";
     expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: '"Доставка Новою поштою: 1–2 дні, від 70 грн."', page_url: "u" }, corpus).ok).toBe(true);
     expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: '"Доставка за 5 хвилин"', page_url: "u" }, corpus)).toEqual({ ok: false, reason: "quote_not_on_pages" });
     expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: "NOT_FOUND: cost", page_url: "u" }, corpus).ok).toBe(true);
-    expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: "Доставка Новою поштою", page_url: "u" }, corpus)).toEqual({ ok: false, reason: "no_verifiable_evidence" });
+    expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: "Доставка Новою поштою", page_url: "u" }, corpus).ok).toBe(true);
+    expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: "Доставка швидка і недорога", page_url: "u" }, corpus)).toEqual({ ok: false, reason: "no_verifiable_evidence" });
+    expect(verifyFrictionEvidence({ category: "shipping", severity: "low", evidence: "«від 70»", page_url: "u" }, corpus)).toEqual({ ok: false, reason: "quote_too_short" });
   });
 });
 

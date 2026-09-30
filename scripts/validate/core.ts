@@ -266,7 +266,7 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       const ablated = keep(await buildRunReport(shop, "e1-ablation", { spec: ev("e1"), ...mode("s7", "fixture-shop"), max_audit_tokens: maxAudit, meter, ablate: true }));
       const rFull: E1Result = e1(full.findings);
       const rAbl: E1Result = e1(ablated.findings);
-      // E1_llm (SCORING_SPEC §14.2, DEV-90): точна сторінка EXPECTED + категорія + перевірена цитата з якорем засіяного елемента; e1Matches — для порівняння
+      // E1_llm (SCORING_SPEC §14.2, DEV-91): точна сторінка EXPECTED + категорія + перевірена цитата з якорем засіяного елемента; e1Matches — для порівняння
       const anchorSpecs = loadE1AnchorSpecs();
       const llmAnc: E1AnchoredResult = e1LlmAnchored(anchorSpecs, ablated.findings);
       const detOk = rFull.det.x === E1_GATE.det_of;
