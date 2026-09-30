@@ -1,0 +1,290 @@
+{
+ "schema": "sitelens-worker-bypass/v1",
+ "variants": {
+  "dedicated": "dedicated: new Worker(url)",
+  "module": "dedicated: new Worker(url, {type:'module'})",
+  "blob": "dedicated: new Worker(URL.createObjectURL(blob))",
+  "nested": "dedicated: Worker → вкладений Worker",
+  "iframe-dedicated": "dedicated: Worker з about:blank-iframe (realm iframe)",
+  "shared": "shared: new SharedWorker(url)",
+  "shared-module": "shared: new SharedWorker(url, {type:'module'})",
+  "shared-blob": "shared: new SharedWorker(URL.createObjectURL(blob))",
+  "iframe-shared": "shared: SharedWorker з about:blank-iframe",
+  "nested-iframe-shared": "shared: SharedWorker з about:blank-iframe усередині about:blank-iframe",
+  "proto-shared": "shared: конструктор з iframe через Object.getOwnPropertyDescriptor + Reflect.construct",
+  "srcdoc-shared": "shared: SharedWorker зі srcdoc-iframe (власний скрипт документа)",
+  "popup-shared": "shared: SharedWorker з window.open('') popup"
+ },
+ "raw": {
+  "page": {
+   "shared": "msg:200",
+   "iframe-dedicated": "msg:200",
+   "iframe-shared": "msg:200",
+   "blob": "msg:200",
+   "dedicated": "msg:200",
+   "module": "msg:200",
+   "shared-module": "msg:200",
+   "proto-shared": "msg:200",
+   "nested": "msg:inner:200",
+   "nested-iframe-shared": "msg:200",
+   "popup-shared": "msg:200",
+   "shared-blob": "msg:200",
+   "srcdoc-shared": "msg:200"
+  },
+  "non_get_total": 21,
+  "non_get": [
+   "POST /wk-post/blob",
+   "POST /wk-post/shared",
+   "POST /wk-post/shared-connect",
+   "POST /wk-post/iframe-dedicated",
+   "POST /wk-post/iframe-shared",
+   "POST /wk-post/shared-module",
+   "POST /wk-post/module",
+   "POST /wk-post/iframe-shared-connect",
+   "POST /wk-post/shared-module-connect",
+   "POST /wk-post/proto-shared",
+   "POST /wk-post/proto-shared-connect",
+   "POST /wk-post/dedicated",
+   "POST /wk-post/nested-iframe-shared",
+   "POST /wk-post/nested-inner",
+   "POST /wk-post/nested-iframe-shared-connect",
+   "POST /wk-post/popup-shared",
+   "POST /wk-post/popup-shared-connect",
+   "POST /wk-post/shared-blob",
+   "POST /wk-post/shared-blob-connect",
+   "POST /wk-post/srcdoc-shared",
+   "POST /wk-post/srcdoc-shared-connect"
+  ],
+  "per": {
+   "dedicated": {
+    "non_get_to_target": 1,
+    "worker_script_get": 1
+   },
+   "module": {
+    "non_get_to_target": 1,
+    "worker_script_get": 1
+   },
+   "blob": {
+    "non_get_to_target": 1,
+    "worker_script_get": 0
+   },
+   "nested": {
+    "non_get_to_target": 1,
+    "worker_script_get": 2
+   },
+   "iframe-dedicated": {
+    "non_get_to_target": 1,
+    "worker_script_get": 1
+   },
+   "shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "shared-module": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "shared-blob": {
+    "non_get_to_target": 2,
+    "worker_script_get": 0
+   },
+   "iframe-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "nested-iframe-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "proto-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "srcdoc-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "popup-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   }
+  }
+ },
+ "old": {
+  "page": {
+   "blob": "msg:err:TypeError",
+   "dedicated": "msg:err:TypeError",
+   "iframe-dedicated": "msg:err:TypeError",
+   "shared": "msg:200",
+   "module": "msg:err:TypeError",
+   "shared-module": "msg:200",
+   "shared-blob": "msg:200",
+   "iframe-shared": "msg:200",
+   "proto-shared": "msg:200",
+   "srcdoc-shared": "msg:200",
+   "nested-iframe-shared": "msg:200",
+   "nested": "msg:inner:err:TypeError",
+   "popup-shared": "msg:200"
+  },
+  "non_get_total": 16,
+  "non_get": [
+   "POST /wk-post/shared",
+   "POST /wk-post/shared-module",
+   "POST /wk-post/shared-module-connect",
+   "POST /wk-post/shared-connect",
+   "POST /wk-post/shared-blob",
+   "POST /wk-post/shared-blob-connect",
+   "POST /wk-post/iframe-shared",
+   "POST /wk-post/iframe-shared-connect",
+   "POST /wk-post/proto-shared",
+   "POST /wk-post/proto-shared-connect",
+   "POST /wk-post/nested-iframe-shared",
+   "POST /wk-post/nested-iframe-shared-connect",
+   "POST /wk-post/popup-shared",
+   "POST /wk-post/srcdoc-shared",
+   "POST /wk-post/srcdoc-shared-connect",
+   "POST /wk-post/popup-shared-connect"
+  ],
+  "per": {
+   "dedicated": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "module": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "blob": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "nested": {
+    "non_get_to_target": 0,
+    "worker_script_get": 2
+   },
+   "iframe-dedicated": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "shared-module": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "shared-blob": {
+    "non_get_to_target": 2,
+    "worker_script_get": 0
+   },
+   "iframe-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "nested-iframe-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "proto-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "srcdoc-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   },
+   "popup-shared": {
+    "non_get_to_target": 2,
+    "worker_script_get": 1
+   }
+  },
+  "layer2_blocked": [
+   "method POST /wk-post/blob",
+   "method POST /wk-post/module",
+   "method POST /wk-post/dedicated",
+   "method POST /wk-post/iframe-dedicated",
+   "method POST /wk-post/nested-inner"
+  ]
+ },
+ "secure": {
+  "page": {
+   "module": "msg:err:TypeError",
+   "shared": "throw:SecurityError",
+   "shared-module": "throw:SecurityError",
+   "iframe-shared": "throw:SecurityError",
+   "iframe-dedicated": "msg:err:TypeError",
+   "dedicated": "msg:err:TypeError",
+   "proto-shared": "throw:SecurityError",
+   "blob": "msg:err:TypeError",
+   "shared-blob": "throw:SecurityError",
+   "srcdoc-shared": "throw:SecurityError",
+   "nested-iframe-shared": "throw:SecurityError",
+   "popup-shared": "throw:SecurityError",
+   "nested": "msg:inner:err:TypeError"
+  },
+  "non_get_total": 0,
+  "non_get": [],
+  "per": {
+   "dedicated": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "module": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "blob": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "nested": {
+    "non_get_to_target": 0,
+    "worker_script_get": 2
+   },
+   "iframe-dedicated": {
+    "non_get_to_target": 0,
+    "worker_script_get": 1
+   },
+   "shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "shared-module": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "shared-blob": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "iframe-shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "nested-iframe-shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "proto-shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "srcdoc-shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   },
+   "popup-shared": {
+    "non_get_to_target": 0,
+    "worker_script_get": 0
+   }
+  },
+  "layer2_blocked": [
+   "method POST /wk-post/blob",
+   "method POST /wk-post/module",
+   "method POST /wk-post/iframe-dedicated",
+   "method POST /wk-post/dedicated",
+   "method POST /wk-post/nested-inner"
+  ]
+ }
+}
