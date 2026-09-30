@@ -307,7 +307,8 @@ finding_key = `${category}|${stage}|${pageGroup}|${claim_kind}`
 - `cta`: `below_fold | ambiguous_label | competing_ctas`;
 - `accessibility`: `axe:<rule-id>`;
 - `mobile_usability`: `horizontal_overflow` (детектор `horizontal_overflow`);
-- `performance`: `oversized_image` (детектор `oversized_image`, DEV-20).
+- `performance`: `oversized_image` (детектор `oversized_image`, DEV-20);
+- `performance` | `accessibility`: `lighthouse_category_score` — лише від інструмента Lighthouse (BENCHMARKED, опорний факт ET-SUP, DEV-68); LLM цього значення не обирає.
 
 Детектори й предикати — `planning/eval/fixture-defect-map.md`.
 

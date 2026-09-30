@@ -6,12 +6,13 @@
   "main": "src/index.ts",
   "dependencies": {
     "@sitelens/db": "workspace:*",
+    "@sitelens/llm": "workspace:*",
     "@sitelens/pipeline": "workspace:*",
+    "@sitelens/reporting": "workspace:*",
     "@sitelens/schemas": "workspace:*",
     "fastify": "5.12.5",
     "pg": "8.23.0",
-    "pg-boss": "12.35.0",
-    "@sitelens/llm": "workspace:*"
+    "pg-boss": "12.35.0"
   },
   "devDependencies": {
     "@types/pg": "8.23.1"

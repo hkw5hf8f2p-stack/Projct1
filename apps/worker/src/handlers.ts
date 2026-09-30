@@ -6,6 +6,8 @@ import { aggregateJob } from "./jobs/aggregate.js";
 import { captureJob } from "./jobs/capture.js";
 import { crawlJob } from "./jobs/crawl.js";
 import { LLM_JOBS, llmStageJob } from "./jobs/llm.js";
+import { reportJob } from "./jobs/report.js";
+import { browserJob, snapshotJob } from "./jobs/scenarios.js";
 import { lighthouseJob } from "./jobs/lighthouse.js";
 import type { Runtime } from "./runtime.js";
 
@@ -30,5 +32,8 @@ export async function registerHandlers(rt: Runtime): Promise<void> {
   await reg(Q.lighthouse, lighthouseJob);
   await reg(Q.accessibility, accessibilityJob);
   for (const name of Object.keys(LLM_JOBS)) await reg(name as QueueName, (r, j) => llmStageJob(r, name, j));
+  await reg(Q.snapshot, snapshotJob);
+  await reg(Q.browser, browserJob);
   await reg(Q.aggregate, aggregateJob);
+  await reg(Q.report, reportJob);
 }

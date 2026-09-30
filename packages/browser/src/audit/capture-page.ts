@@ -35,6 +35,17 @@ const EXTRACT = script("extract.js").trim().replace(/;$/, "");
 const SIGNATURE = script("signature.js");
 const FX_MARKERS = script("fx-markers.js");
 
+/**
+ * S2-борг: `window.open` під час завантаження сторінки інколи (≈ 25 % прогонів repro) вішав `page.goto(load)` до 60-с watchdog
+ * (лог `DEBUG=pw:api`: `page.goto started` без `succeeded`, popup встигає лише дійти до chrome-error). Закриття popup у
+ * `context.on('page')` ПОГІРШУВАЛО (≈ 50 %): гонка з навігацією. Тому popup не створюється взагалі: `window.open` → null
+ * у кожному документі й iframe (non-writable, non-configurable); збір знімка не потребує popup, і жодного запиту від нього не буде.
+ */
+export const WINDOW_OPEN_LOCK_SCRIPT = `(() => { try {
+  const deny = function open() { return null; };
+  Object.defineProperty(window, "open", { value: deny, writable: false, configurable: false });
+} catch (e) {} })();`;
+
 export interface CaptureOptions {
   /** захищений браузер (sl-security): проксі, шар 2 (блок не-GET/WS з логом), SW block; блок робить він, ми лише рахуємо */
   secure: SecureBrowser;
@@ -51,6 +62,8 @@ export interface CaptureOptions {
   throttle?: { wait: (url: string) => Promise<void> };
   /** чесний User-Agent (ethics.ts); не задано → UA Chromium за замовчуванням (лише фікстури) */
   userAgent?: string;
+  /** false — ЛИШЕ контрольний тест (відтворення зависання popup); за замовчуванням true */
+  lockWindowOpen?: boolean;
 }
 
 const png = (buf: Buffer) => ({ w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) });
@@ -92,6 +105,7 @@ export async function captureViewport(o: CaptureOptions): Promise<{ capture: Vie
     serviceWorkers: "block",
     ...(o.userAgent ? { userAgent: o.userAgent } : {}),
   });
+  if (o.lockWindowOpen !== false) await context.addInitScript({ content: WINDOW_OPEN_LOCK_SCRIPT });
   const rows = new Map<Request, NetworkRow>();
   const bodyJobs: Promise<void>[] = [];
   const consoleErrors: Array<{ text: string; location: string }> = [];

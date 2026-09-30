@@ -16,7 +16,10 @@ export const Q = {
   tasks: "generate_tasks",
   lenses: "generate_lenses",
   matrix: "build_scenario_matrix",
+  snapshot: "run_snapshot_scenario",
+  browser: "run_browser_scenario",
   aggregate: "aggregate_findings",
+  report: "generate_report",
 } as const;
 export type QueueName = (typeof Q)[keyof typeof Q];
 
@@ -31,6 +34,9 @@ export const QUEUE_SPECS: Record<QueueName, QueueSpec> = {
   generate_tasks: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 2 },
   generate_lenses: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 2 },
   build_scenario_matrix: { retryLimit: 3, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
+  run_snapshot_scenario: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 4 },
+  run_browser_scenario: { retryLimit: 2, retryDelay: 3, expireInSeconds: 1200, heartbeatSeconds: 30, concurrency: 1 },
+  generate_report: { retryLimit: 5, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
   aggregate_findings: { retryLimit: 5, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
 };
 

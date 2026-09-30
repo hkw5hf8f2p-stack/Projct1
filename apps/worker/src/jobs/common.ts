@@ -17,6 +17,7 @@ export async function liveAudit(rt: Runtime, id: string): Promise<AuditRow | nul
 }
 
 /** Остання спроба: далі pg-boss не повторить — замість throw записуємо збій і рухаємося далі (§47: частковий збій ≠ провал аудиту). */
+export const advanceIsFinal = (name: string, retryCount: number): boolean => retryCount >= (QUEUE_SPECS[name as QueueName]?.retryLimit ?? 0);
 export const isFinalAttempt = (name: QueueName, job: Job<JobData>): boolean => job.retryCount >= QUEUE_SPECS[name].retryLimit;
 
 export async function waitUntil<T>(fn: () => Promise<T | null>, o: { timeoutMs: number; pollMs?: number }): Promise<T> {
@@ -56,7 +57,8 @@ export async function advancePostCrawl(rt: Runtime, auditId: string): Promise<bo
       else if (failed === mine.length) await setStage(c, auditId, stage, "failed", `усі ${mine.length} прогони завершились помилкою`);
       else await setStage(c, auditId, stage, "done", failed > 0 ? `часткові результати: ${failed} з ${mine.length} прогонів з помилкою` : undefined);
     }
-    await c.query("UPDATE audit_runs SET config_json = config_json || '{\"post_crawl_advanced\": true}'::jsonb WHERE id = $1", [auditId]);
+    // §35: знімок сайту зафіксовано — усі сторінки захоплено (snapshot_at у звіті й відтворюваності)
+    await c.query("UPDATE audit_runs SET config_json = config_json || '{\"post_crawl_advanced\": true}'::jsonb, snapshot_at = COALESCE(snapshot_at, now()) WHERE id = $1", [auditId]);
     await advanceStatus(c, auditId, "profiling");
     await enqueue(rt.boss, Q.profile, { auditRunId: auditId }, { db: txDb(c) });
     await c.query("COMMIT");

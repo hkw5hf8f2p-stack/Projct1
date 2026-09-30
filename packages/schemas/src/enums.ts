@@ -87,14 +87,22 @@ export const CLAIM_KINDS_BY_CATEGORY: Record<(typeof CATEGORIES)[number], readon
   value_proposition: [], navigation: [], product_selection: [], trust: [], terminology: [], visual_hierarchy: [],
   content_overload: [], missing_information: [], comparison: [], checkout: [], other: [],
 };
+/**
+ * DEV-68: claim_kind, який видає лише детектор/інструмент (Lighthouse); LLM його не пропонується (sim-schemas читає лише CLAIM_KINDS_BY_CATEGORY),
+ * тому окремий від закритого списку категорії. Lighthouse-доказ: category performance | accessibility, claim_kind lighthouse_category_score.
+ */
+export const DETECTOR_ONLY_CLAIM_KINDS: Partial<Record<(typeof CATEGORIES)[number], readonly string[]>> = {
+  performance: ["lighthouse_category_score"],
+  accessibility: ["lighthouse_category_score"],
+};
 export const AXE_CLAIM_RE = /^axe:[a-z0-9][a-z0-9-]*$/;
 export const GENERAL_CLAIM = "general";
-export const ALL_CLAIM_KINDS: ReadonlySet<string> = new Set([GENERAL_CLAIM, ...Object.values(CLAIM_KINDS_BY_CATEGORY).flat()]);
+export const ALL_CLAIM_KINDS: ReadonlySet<string> = new Set([GENERAL_CLAIM, ...Object.values(CLAIM_KINDS_BY_CATEGORY).flat(), ...Object.values(DETECTOR_ONLY_CLAIM_KINDS).flat()]);
 
 export const isClaimKind = (s: string): boolean => ALL_CLAIM_KINDS.has(s) || AXE_CLAIM_RE.test(s);
 /** claim_kind допустимий для категорії: свій список, `general`, або `axe:*` лише в accessibility */
 export const isClaimKindFor = (category: (typeof CATEGORIES)[number], s: string): boolean =>
-  s === GENERAL_CLAIM || CLAIM_KINDS_BY_CATEGORY[category].includes(s) || (category === "accessibility" && AXE_CLAIM_RE.test(s));
+  s === GENERAL_CLAIM || CLAIM_KINDS_BY_CATEGORY[category].includes(s) || (DETECTOR_ONLY_CLAIM_KINDS[category] ?? []).includes(s) || (category === "accessibility" && AXE_CLAIM_RE.test(s));
 export const ClaimKind = z.string().refine(isClaimKind, { message: "unknown claim_kind (not in closed enum, not axe:<rule>, not general)" });
 
 /** твердження відсутності (DEV-17): claim_kind, що стверджують «немає» */

@@ -20,8 +20,8 @@ for (const [name, fn] of Object.entries(variants)) {
   const srv = http.createServer((_q, r) => { r.writeHead(200, { "content-type": "text/html; charset=utf-8" }); r.end(html); });
   await new Promise<void>((r) => srv.listen(4398, "127.0.0.1", () => r()));
   let hang = 0, ok = 0;
-  for (let i = 0; i < 6; i++) {
-    try { await Promise.race([captureViewport({ secure: sb, url: "http://127.0.0.1:4398/", vp: "D", runDir: "/tmp/probe5run", pageId: "index", writeShots: false, tiles: false }), new Promise((_, rej) => setTimeout(() => rej(new Error("HANG")), 8000))]); ok++; } catch { hang++; }
+  for (let i = 0; i < Number(process.env.N ?? 6); i++) {
+    try { await Promise.race([captureViewport({ secure: sb, url: "http://127.0.0.1:4398/", vp: "D", runDir: "/tmp/probe5run", pageId: "index", writeShots: false, tiles: false, lockWindowOpen: process.env.LOCK !== "0" }), new Promise((_, rej) => setTimeout(() => rej(new Error("HANG")), Number(process.env.T ?? 8000)))]); ok++; } catch { hang++; console.log("HANG_MARK", i); }
   }
   console.log(name, "ok", ok, "hang", hang);
   srv.closeAllConnections(); await new Promise<void>((r) => srv.close(() => r()));

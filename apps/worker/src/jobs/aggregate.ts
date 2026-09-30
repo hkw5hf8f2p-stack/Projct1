@@ -1,11 +1,16 @@
 /**
- * aggregate_findings (S2): фіналізація детермінованих доказів — axe-області (assignAxeScopes), глибини кліків (як enrichDepths у run-site) — і завершення аудиту.
- * Агрегація знахідок/пріоритети — S4; тут `aggregate: done` з поясненням. Аудит `completed` навіть при частковому збої (§47, DEV-11).
+ * aggregate_findings: (S2) фіналізація детермінованих доказів — axe-області (assignAxeScopes), глибини кліків (як enrichDepths у run-site);
+ * (S4) інтеграція SYNTHETIC-сесій у докази (§23: цитата звіряється з текстом сторінки), агрегація в знахідки й пріоритети (packages/scoring),
+ * запис findings + finding_evidence в БД (одна транзакція, deferred-тригер «знахідка без доказу не існує»), далі — generate_report.
+ * Аудит завершує generate_report (completed навіть при частковому збої, §47, DEV-11).
  */
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Job } from "pg-boss";
-import { advanceStatus, auditDir, completeAudit, setStage, updateEvidenceMeasurement, type JobData } from "@sitelens/pipeline";
+import { Q, txDb, advanceStatus, auditDir, enqueue, getAudit, insertEvidence, replaceFindings, setStage, updateEvidenceMeasurement, type EvidenceInput, type JobData } from "@sitelens/pipeline";
+import { loadAuditArtifacts } from "../artifacts.js";
+import { computeFindings, findingRows } from "../findings.js";
+import { llmResultsFromDb, withTx } from "../llm-store.js";
 import { SHIP_RE, assignAxeScopes, bfsDepth, groupAxe, type EvidenceRow, type PageCapture } from "../browser-api.js";
 import type { Runtime } from "../runtime.js";
 import { liveAudit } from "./common.js";
@@ -49,9 +54,20 @@ export async function aggregateJob(rt: Runtime, job: Job<JobData>): Promise<void
     await updateEvidenceMeasurement(rt.pool, id, e.id, e.measurement, e.excerpt);
     changed++;
   }
-  await writeFile(path.join(dir, "evidence.json"), JSON.stringify(evidence, null, 2) + "\n");
   await writeFile(path.join(dir, "axe-groups.json"), JSON.stringify(groupAxe(evidence), null, 2) + "\n");
-  await setStage(rt.pool, id, "aggregate", "done", `S2: детерміновані докази зведено (${evidence.length}, оновлено ${changed}); агрегація знахідок і пріоритети — S4`);
-  for (const st of ["snapshot_sessions", "browser_sessions", "report"]) await setStage(rt.pool, id, st, "skipped", "поза обсягом S2 (S4/S5)");
-  await completeAudit(rt.pool, id);
+  // етапи сесій: якщо join не виставив стан (режим none, матриця skipped/failed) — чесна причина, а не «поза обсягом»
+  const cur = (await getAudit(rt.pool, id))!;
+  for (const st of ["snapshot_sessions", "browser_sessions"] as const) {
+    if (!cur.stage_status[st]) await setStage(rt.pool, id, st, "skipped", cur.llm_mode === "none" ? "no LLM provider" : `upstream scenario_matrix: ${cur.stage_status["scenario_matrix"]?.status ?? "не виконано"}`);
+  }
+  // ---- S4: докази сесій → знахідки → БД
+  const art = await loadAuditArtifacts(rt.pool, rt.cfg.artifactDir, cur, { completedAt: new Date().toISOString() });
+  const llmR = await llmResultsFromDb(rt.pool, id, art, cur);
+  const scored = computeFindings(art, llmR?.llm ?? null);
+  await withTx(rt.pool, async (c) => {
+    if (llmR && llmR.llm.evidence.length) await insertEvidence(c, id, llmR.llm.evidence as unknown as EvidenceInput[]);
+    await replaceFindings(c, id, findingRows(scored));
+    await setStage(c, id, "aggregate", "done", `докази зведено (${art.evidence.length} детермінованих, ${llmR?.llm.evidence.length ?? 0} синтетичних; оновлено ${changed}); знахідок ${scored.findings.length}, відхилено тверджень без доказу ${llmR?.rejected.length ?? 0}`);
+    await enqueue(rt.boss, Q.report, { auditRunId: id }, { db: txDb(c) });
+  });
 }

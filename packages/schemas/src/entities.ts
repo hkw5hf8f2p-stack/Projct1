@@ -4,6 +4,7 @@ import {
   AuditStage, AuditStatus, Category, LlmMode, PageType, StageStatus, TaskType, UnknownReason, Level,
   LLM_CALL_STATUSES, LLM_PROVIDERS, PROMPT_ID_RE, SESSION_SUCCESS, SEVERITY_LABELS, SESSION_STATUSES,
 } from "./enums.js";
+import { ERROR_CLASSES } from "./errors.js";
 
 const Ts = z.string().datetime({ offset: true });
 const Unit = z.number().min(0).max(1);
@@ -41,11 +42,19 @@ export const AuditRun = z
     /** ARTIFACT_TTL_DAYS: коли артефакти підлягають видаленню; `artifacts_deleted_at` — коли видалено */
     artifact_expires_at: Ts.nullable().optional(),
     artifacts_deleted_at: Ts.nullable().optional(),
+    // ---- 002_pipeline.sql (DEV-55, DEV-68): мова звіту, лічильник токенів E4, клас помилки §48, часткові збої
+    language: z.enum(["uk", "en"]).default("uk"),
+    tokens_input: z.number().int().nonnegative().default(0),
+    tokens_output: z.number().int().nonnegative().default(0),
+    error_class: z.enum(ERROR_CLASSES).nullable().optional(),
+    warnings: z.array(z.object({ stage: z.string().min(1), page_url: z.string().optional(), class: z.enum(ERROR_CLASSES).optional(), message: z.string().min(1) }).strict()).default([]),
+    updated_at: Ts.optional(),
   })
   .strict()
   .superRefine((r, ctx) => {
     const bad = (message: string, path: string[]) => ctx.addIssue({ code: z.ZodIssueCode.custom, message, path });
     if (r.status === "failed" && !r.error) bad("failed потребує error", ["error"]);
+    if (r.status === "failed" && !r.error_class) bad("failed потребує error_class (§48; chk_audit_runs_failed_class)", ["error_class"]);
     if (r.status === "completed" && r.completed_at === null) bad("completed потребує completed_at", ["completed_at"]);
     // DEV-11: без LLM усі LLM-етапи skipped
     if (r.llm_mode === "none") {
@@ -230,13 +239,15 @@ export const SyntheticSession = z
     steps: z.array(AgentStep).optional(),
     llm_call_ids: z.array(z.string()).optional(),
     prompt_version: PromptVersion.optional(),
+    /** 003_report.sql: шляхи сторінок, які бачила сесія (експозиція для lens_coverage) */
+    pages_seen: z.array(z.string()).optional(),
   })
   .strict();
 export type SyntheticSession = z.infer<typeof SyntheticSession>;
 
 /** Структурований вихід LLM для сесії (SPEC §22) — без службових полів, без self_confirming */
 export const SessionResultLlm = SyntheticSession.omit({
-  audit_run_id: true, status: true, llm_call_ids: true, prompt_version: true,
+  audit_run_id: true, status: true, llm_call_ids: true, prompt_version: true, pages_seen: true,
 });
 
 // ---------------------------------------------------------------- LlmCall (§35, §52)

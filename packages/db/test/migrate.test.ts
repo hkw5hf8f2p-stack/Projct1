@@ -23,7 +23,7 @@ afterAll(async () => cluster?.stop());
 
 describe("тестовий кластер (охоронець)", () => {
   it("embedded-postgres піднято, міграції застосовано з порожньої БД цього прогону", () => {
-    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql"]);
+    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
   });
 });
 
@@ -36,7 +36,7 @@ describe("migrate()", () => {
 
   it("порожня БД → застосовує всі файли за порядком; повтор → нічого не застосовує", async () => {
     const a = await migrate(db.url);
-    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql"]);
+    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
     const b = await migrate(db.url);
     expect(b.applied).toEqual([]);
     expect(b.skipped).toEqual(a.applied);
@@ -97,7 +97,7 @@ describe("migrate()", () => {
       const t = await fresh.pool.query("SELECT to_regclass('half_done') AS t");
       expect(t.rows[0].t).toBeNull();
       const v = await fresh.pool.query("SELECT version FROM schema_migrations ORDER BY version");
-      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql"]);
+      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
     } finally {
       await fresh.drop();
     }

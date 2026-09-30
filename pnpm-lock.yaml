@@ -62,6 +62,9 @@ importers:
       '@sitelens/pipeline':
         specifier: workspace:*
         version: link:../../packages/pipeline
+      '@sitelens/reporting':
+        specifier: workspace:*
+        version: link:../../packages/reporting
       '@sitelens/schemas':
         specifier: workspace:*
         version: link:../../packages/schemas
@@ -127,9 +130,15 @@ importers:
       '@sitelens/pipeline':
         specifier: workspace:*
         version: link:../../packages/pipeline
+      '@sitelens/reporting':
+        specifier: workspace:*
+        version: link:../../packages/reporting
       '@sitelens/schemas':
         specifier: workspace:*
         version: link:../../packages/schemas
+      '@sitelens/scoring':
+        specifier: workspace:*
+        version: link:../../packages/scoring
       pg:
         specifier: 8.23.0
         version: 8.23.0

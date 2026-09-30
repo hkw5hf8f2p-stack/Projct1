@@ -1,11 +1,18 @@
-/** Fastify API S2 (SPEC §42). Слухає 127.0.0.1 (G0-5); не повертає LLM-тексту (у S2 його немає) — guard звіту підключається в S4. */
+/**
+ * Fastify API (SPEC §42). Слухає 127.0.0.1 (G0-5). Звіт віддається ЛИШЕ з audit_reports: перед відповіддю — Zod-контракт Report + сканер guard по всьому JSON
+ * (fail-closed: якщо не пройшов — 503 report_unavailable, тіло звіту не повертається). Артефакти (скриншоти) — лише файли каталогу цього аудиту.
+ */
 import { createHash, timingSafeEqual } from "node:crypto";
+import { createReadStream } from "node:fs";
+import { lstat, realpath } from "node:fs/promises";
+import path from "node:path";
 import Fastify, { type FastifyInstance, type FastifyReply } from "fastify";
 import type { Pool } from "pg";
 import type { PgBoss } from "pg-boss";
-import { CreateAuditRequest } from "@sitelens/schemas";
+import { CreateAuditRequest, Report } from "@sitelens/schemas";
+import { scanReport } from "@sitelens/reporting";
 import {
-  AUDIT_ID_RE, EVIDENCE_ID_RE, Q, deleteAuditFully, enqueue, getAudit, humanMessage, insertAudit, newAuditId, txDb, validateSubmittedUrl,
+  AUDIT_ID_RE, EVIDENCE_ID_RE, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
@@ -14,14 +21,14 @@ export interface ApiDeps { cfg: AppConfig; pool: Pool; boss: PgBoss; /** реж�
 const digest = (s: string) => createHash("sha256").update(s).digest();
 export const tokenOk = (given: string | undefined, expected: string): boolean => given !== undefined && timingSafeEqual(digest(given), digest(expected));
 
-type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url";
+type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url" | "report_not_ready" | "report_unavailable";
 const err = (reply: FastifyReply, code: number, cls: ApiErrClass, message: string) => reply.code(code).send({ error: { class: cls, message } });
 
-function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number }) {
+function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number; scenarios_done: number; scenarios_total: number }) {
   return {
     id: a.id, status: a.status, input_url: a.input_url, normalized_url: a.normalized_url, language: a.language, llm_mode: a.llm_mode,
     created_at: a.created_at.toISOString(), started_at: a.started_at?.toISOString() ?? null, completed_at: a.completed_at?.toISOString() ?? null,
-    stage_status: a.stage_status, progress, warnings: a.warnings,
+    stage_status: a.stage_status, progress, steps: progressSteps(a), warnings: a.warnings,
     error: a.error_class ? { class: a.error_class, message: a.error ?? humanMessage(a.error_class, a.language) } : null,
     artifacts_deleted: a.artifacts_deleted_at !== null, artifact_expires_at: a.artifact_expires_at?.toISOString() ?? null,
   };
@@ -119,7 +126,9 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
         `SELECT (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND NOT (technical_json ? 'capture_error'))::int AS pages_captured,
                 (SELECT count(*) FROM page_artifacts WHERE audit_run_id = $1 AND technical_json ? 'capture_error')::int AS pages_failed,
                 (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' AND status = 'done')::int AS lighthouse_done,
-                (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' AND status = 'failed')::int AS lighthouse_failed`,
+                (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind = 'lighthouse' AND status = 'failed')::int AS lighthouse_failed,
+                (SELECT count(*) FROM audit_jobs WHERE audit_run_id = $1 AND kind IN ('snapshot','browser'))::int AS scenarios_done,
+                COALESCE((SELECT jsonb_array_length(config_json->'expected_scenarios') FROM audit_runs WHERE id = $1), 0)::int AS scenarios_total`,
         [a.id],
       )
     ).rows[0];
@@ -157,6 +166,54 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     const { audit_run_id: _a, ...rest } = r;
     void _a;
     return { auditId: a.id, evidence: { ...rest, created_at: rest.created_at.toISOString() }, artifacts_deleted: a.artifacts_deleted_at !== null };
+  });
+
+  // GET /api/audits/:id/report — звіт за контрактом Report (DEV-65). Не готовий → 409; заблоковано guard/контрактом → 503; ніколи не «сирий» вміст.
+  app.get<{ Params: { id: string } }>("/api/audits/:id/report", async (req, reply) => {
+    const a = await loadAudit(req.params.id, reply);
+    if (!a) return reply;
+    if (a.status !== "completed" && a.status !== "failed") return err(reply, 409, "report_not_ready", "Звіт ще не готовий: аудит виконується");
+    if (a.status === "failed") return err(reply, 404, "not_found", "Аудит завершився помилкою: звіту немає");
+    const row = await getReportRow(pool, a.id);
+    if (!row) return err(reply, 503, "report_unavailable", "Звіт недоступний: його не створено або заблоковано перевіркою (fail-closed)");
+    const parsed = Report.safeParse(row.report);
+    if (!parsed.success) {
+      req.log.error({ audit: a.id, issues: parsed.error.issues.slice(0, 3).map((i) => `${i.path.join("/")}: ${i.message}`) }, "збережений звіт не проходить контракт — не віддається");
+      return err(reply, 503, "report_unavailable", "Звіт недоступний: збережений звіт не проходить перевірку контракту");
+    }
+    const scan = scanReport(parsed.data);
+    if (!scan.clean) {
+      req.log.error({ audit: a.id, violations: scan.violations.slice(0, 3).map((v) => ({ ptr: v.ptr, kind: v.kind, rules: v.rule_ids })) }, "guard-скан звіту знайшов порушення — не віддається");
+      return err(reply, 503, "report_unavailable", "Звіт недоступний: він не пройшов перевірку guard (fail-closed)");
+    }
+    return reply.header("Cache-Control", "no-store").send(parsed.data);
+  });
+
+  // GET /api/audits/:id/artifacts/<шлях відносно каталогу аудиту> — скриншоти/регіони доказів. Лише файли ЦЬОГО аудиту; будь-який вихід за каталог → 404.
+  app.get<{ Params: { id: string; "*": string } }>("/api/audits/:id/artifacts/*", async (req, reply) => {
+    const a = await loadAudit(req.params.id, reply);
+    if (!a) return reply;
+    const nf = () => err(reply, 404, "not_found", "Артефакт не знайдено");
+    if (a.artifacts_deleted_at !== null) return err(reply, 404, "not_found", "Артефакти цього аудиту видалено (TTL)");
+    const ref = req.params["*"] ?? "";
+    const seg = ref.split("/");
+    // список дозволеного, а не заборонного: сегменти [A-Za-z0-9._-], без «.»/«..»/порожніх, без NUL/\; лише відомі розширення
+    if (ref.length === 0 || ref.length > 300 || !seg.every((x) => /^[A-Za-z0-9_][A-Za-z0-9._-]*$/.test(x))) return nf();
+    const ext = path.extname(ref).toLowerCase();
+    const type = ({ ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".json": "application/json" } as Record<string, string>)[ext];
+    if (!type) return nf();
+    const root = auditDir(cfg.artifactDir, a.id);
+    const full = path.resolve(root, ref);
+    if (!full.startsWith(root + path.sep)) return nf();
+    try {
+      const st = await lstat(full);
+      if (!st.isFile()) return nf(); // символічні посилання й каталоги не віддаємо
+      const [realRoot, realFull] = await Promise.all([realpath(root), realpath(full)]);
+      if (!realFull.startsWith(realRoot + path.sep)) return nf();
+    } catch {
+      return nf();
+    }
+    return reply.header("Content-Type", type).header("Cache-Control", "private, max-age=3600").header("X-Content-Type-Options", "nosniff").header("Content-Security-Policy", "default-src 'none'; sandbox").send(createReadStream(full));
   });
 
   app.delete<{ Params: { id: string } }>("/api/audits/:id", async (req, reply) => {

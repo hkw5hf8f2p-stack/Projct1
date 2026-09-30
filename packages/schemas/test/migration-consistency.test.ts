@@ -1,11 +1,14 @@
 /** Міграція 001 ↔ Zod: колонки й CHECK-списки не розходяться; заборонені поля відсутні (SQL не виконується — S2). */
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import * as S from "../src/index.js";
 
-const SQL = readFileSync(path.resolve(import.meta.dirname, "../../db/migrations/001_init.sql"), "utf8");
+const MIG = path.resolve(import.meta.dirname, "../../db/migrations");
+const SQL = readFileSync(path.join(MIG, "001_init.sql"), "utf8");
+/** усі наступні міграції (002+): колонки, додані ALTER TABLE … ADD COLUMN, доповнюють таблицю (DEV-55/DEV-68) */
+const LATER = readdirSync(MIG).filter((f) => /^(00[2-9]|0[1-9]\d)_.*\.sql$/.test(f)).sort().map((f) => readFileSync(path.join(MIG, f), "utf8").replace(/--.*$/gm, "")).join("\n");
 
 function tables(sql: string): Map<string, { cols: Map<string, { required: boolean }> }> {
   const out = new Map<string, { cols: Map<string, { required: boolean }> }>();
@@ -19,6 +22,14 @@ function tables(sql: string): Map<string, { cols: Map<string, { required: boolea
       cols.set(c[1]!, { required: /NOT NULL/.test(rest) && !/DEFAULT/.test(rest) });
     }
     out.set(m[1]!, { cols });
+  }
+  for (const a of LATER.matchAll(/ALTER TABLE (\w+)\s+([\s\S]*?);/g)) {
+    const t = out.get(a[1]!);
+    if (!t) continue;
+    for (const line of a[2]!.split("\n")) {
+      const c = /^\s*ADD COLUMN (\w+)\s+(text\[\]|text|integer|bigint|boolean|double precision|timestamptz|jsonb)\b(.*?),?\s*$/.exec(line);
+      if (c) t.cols.set(c[1]!, { required: /NOT NULL/.test(c[3]!) && !/DEFAULT/.test(c[3]!) });
+    }
   }
   return out;
 }
@@ -58,8 +69,16 @@ describe("001_init.sql ↔ Zod", () => {
     });
   }
 
+  it("002_pipeline: language, токени, error_class, warnings — колонки й поля Zod AuditRun (DEV-55 закрито)", () => {
+    const t = tables(SQL).get("audit_runs")!;
+    for (const k of ["language", "tokens_input", "tokens_output", "error_class", "warnings", "updated_at"]) {
+      expect(t.cols.has(k), `audit_runs.${k} з 002`).toBe(true);
+      expect(shapeKeys(S.AuditRun), k).toContain(k);
+    }
+  });
+
   it("жодних заборонених колонок (market share, TAM, uplift, conversion, revenue)", () => {
-    expect(SQL.replace(/--.*$/gm, "")).not.toMatch(/market_share|\btam\b|uplift|conversion_rate|revenue|population/i);
+    expect((SQL + LATER).replace(/--.*$/gm, "")).not.toMatch(/market_share|\btam\b|uplift|conversion_rate|revenue|population/i);
     for (const s of [S.BehavioralLens, S.Finding, S.AuditRun]) expect(shapeKeys(s).join()).not.toMatch(/market_share|tam|uplift|revenue/);
   });
 

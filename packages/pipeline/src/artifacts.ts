@@ -48,7 +48,7 @@ export function removeAuditDir(artifactDir: string, auditId: string): TreeStats 
 
 export interface DeleteReport { audit_id: string; existed: boolean; files_removed: number; bytes_removed: number; queue_jobs_removed: number; rows_before: Record<string, number> }
 
-const AUDIT_TABLES = ["page_artifacts", "evidence", "audit_jobs", "llm_calls", "customer_tasks", "site_profiles", "behavioral_lenses", "scenarios", "synthetic_sessions", "findings", "finding_evidence", "recommendations"] as const;
+const AUDIT_TABLES = ["page_artifacts", "evidence", "audit_jobs", "llm_calls", "customer_tasks", "site_profiles", "behavioral_lenses", "scenarios", "synthetic_sessions", "findings", "finding_evidence", "recommendations", "audit_reports"] as const;
 export const auditRowCounts = async (pool: Pool, id: string): Promise<Record<string, number>> => {
   const out: Record<string, number> = {};
   for (const t of AUDIT_TABLES) out[t] = Number((await pool.query(`SELECT count(*) AS n FROM ${t} WHERE audit_run_id = $1`, [id])).rows[0].n);

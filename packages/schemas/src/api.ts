@@ -6,7 +6,7 @@ import { ERROR_CLASSES } from "./errors.js";
 export const ErrorClassEnum = z.enum(ERROR_CLASSES);
 export const CreateAuditRequest = z.object({ url: z.string().min(1).max(2048), language: z.enum(["uk", "en"]).optional() }).strict();
 export const CreateAuditResponse = z.object({ auditId: z.string().regex(/^aud_[0-9a-f]{16}$/) });
-export const ApiError = z.object({ error: z.object({ class: ErrorClassEnum.or(z.enum(["unauthorized", "rate_limited", "not_found", "bad_request", "internal"])), message: z.string().min(1) }) });
+export const ApiError = z.object({ error: z.object({ class: ErrorClassEnum.or(z.enum(["unauthorized", "rate_limited", "not_found", "bad_request", "internal", "report_not_ready", "report_unavailable"])), message: z.string().min(1) }) });
 
 export const AuditWarning = z.object({ stage: z.string(), page_url: z.string().optional(), class: ErrorClassEnum.optional(), message: z.string() });
 export const AuditStatusResponse = z.object({
@@ -20,7 +20,13 @@ export const AuditStatusResponse = z.object({
   started_at: z.string().nullable(),
   completed_at: z.string().nullable(),
   stage_status: z.record(z.unknown()),
-  progress: z.object({ pages_captured: z.number().int(), pages_failed: z.number().int(), lighthouse_done: z.number().int(), lighthouse_failed: z.number().int() }),
+  progress: z.object({
+    pages_captured: z.number().int(), pages_failed: z.number().int(), lighthouse_done: z.number().int(), lighthouse_failed: z.number().int(),
+    /** S4: сценарії симуляції (snapshot + журнали): виконано / очікувано */
+    scenarios_done: z.number().int().optional(), scenarios_total: z.number().int().optional(),
+  }),
+  /** SPEC §43: 8 кроків прогресу для UI */
+  steps: z.array(z.object({ id: z.enum(["discovering_pages", "capturing", "technical_checks", "understanding_offering", "building_lenses", "testing_journeys", "aggregating_evidence", "preparing_report"]), state: z.enum(["pending", "active", "done", "skipped", "budget_limited", "failed"]) })).optional(),
   warnings: z.array(AuditWarning),
   error: z.object({ class: ErrorClassEnum, message: z.string() }).nullable(),
   artifacts_deleted: z.boolean(),

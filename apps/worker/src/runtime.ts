@@ -7,6 +7,31 @@ import net from "node:net";
 import dns from "node:dns";
 import type { AppConfig } from "@sitelens/pipeline";
 import { ensureChromeWrapper } from "./chrome-wrapper.js";
+import { createClientFromEnv, resolveConfig, type CallRecord, type LlmClient } from "@sitelens/llm";
+import type { AuditRow } from "@sitelens/pipeline";
+import type { BehavioralLens, Task } from "@sitelens/schemas";
+
+/** Клієнт LLM для однієї задачі: бюджет = MAX_AUDIT_TOKENS мінус уже витрачене цим аудитом (E4; між паралельними задачами — перевищення ≤ concurrency × max_tokens виклику). */
+export interface LlmHandle { client: LlmClient; provider: string | null; model: string | null }
+
+/** Вхід виконавця браузерних журналів (SPEC §19B/§20). Виконавець — packages/browser (sl-core-engineer); worker лише дає контекст і зберігає результат. */
+export interface JournalInput {
+  auditRunId: string; scenarioId: string; lens: BehavioralLens; task: Task; startUrl: string;
+  browser: () => Promise<SecureBrowser>; gate: HostGate; userAgent: string | undefined; client: LlmClient; language: "uk" | "en"; artifactDir: string;
+}
+export interface JournalOutput {
+  status: "done" | "skipped" | "failed" | "budget_limited"; reason?: string;
+  session?: {
+    session_id: string; success: "true" | "false" | "partial"; actions_used: number;
+    frictions: Array<{ category: string; claim_kind?: string; severity: "low" | "medium" | "high"; evidence: string; page_url: string }>;
+    positive_signals: string[]; uncertainties: string[]; final_summary: string; pages_seen: string[];
+    steps: Array<{ action: string; target: string; reason_summary: string; task_progress: string; friction_detected: string[] }>;
+  };
+  calls: CallRecord[];
+  /** скільки не-GET запитів заблоковано за журнал (кр. 5 S4: 0 пішло назовні) */
+  non_get_blocked?: number;
+}
+export type JournalRunner = (input: JournalInput) => Promise<JournalOutput>;
 
 export interface Runtime {
   cfg: AppConfig;
@@ -20,6 +45,10 @@ export interface Runtime {
   /** режим і ін'єкції, з якими запускається браузер/Lighthouse */
   netOptions(): { mode: "prod" | "fixture"; fixtureOrigins?: string[]; allowFixtureLoopback?: boolean; resolver?: Resolver; dial?: Dialer };
   hasFault(name: string, url?: string): boolean;
+  /** LLM-клієнт задачі (DEV-57): за замовчуванням createClientFromEnv(process.env); тести підставляють scripted fake / replay */
+  llm(audit: AuditRow): Promise<LlmHandle>;
+  /** виконавець журналів; null → run_browser_scenario фіксує `skipped` з причиною (виконавця ще не підключено) */
+  journalRunner: JournalRunner | null;
   /** обгортка Chrome Lighthouse з обліком PID до exec (chrome-launcher не прив'язує Chrome до батька) */
   chromeWrapper: { script: string; spawnLog: string };
   /** збої навігаційних запитів і краші вкладок усіх контекстів цього браузера (потрібні, коли captureViewport кидає виняток і власних даних не лишає) */
@@ -88,6 +117,15 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
       if (b) await b.close().catch(() => undefined);
     },
     netOptions,
+    journalRunner: null,
+    async llm(audit) {
+      const env = process.env;
+      const max = resolveConfig(env).max_audit_tokens;
+      const row = (await pool.query("SELECT tokens_input + tokens_output AS used FROM audit_runs WHERE id = $1", [audit.id])).rows[0] as { used: string } | undefined;
+      const remaining = Math.max(1, max - Number(row?.used ?? 0));
+      const { client, config } = createClientFromEnv({ ...env, MAX_AUDIT_TOKENS: String(remaining) });
+      return { client, provider: config.provider, model: config.model };
+    },
     hasFault(name, url) {
       return cfg.faults.some((f) => f === name || (url !== undefined && f.startsWith(name + ":") && url.includes(f.slice(name.length + 1))));
     },
