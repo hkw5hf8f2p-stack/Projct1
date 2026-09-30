@@ -12,9 +12,12 @@
     "slice": "tsx packages/browser/src/run-slice.ts",
     "audit:fixture": "tsx scripts/audit-fixture.ts",
     "audit:metamorphic": "tsx scripts/audit-metamorphic.ts",
+    "audit:live": "tsx scripts/audit-live.ts",
     "test": "vitest run --configLoader runner",
     "typecheck": "tsc -p tsconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "llm:prompts:lock": "tsx scripts/llm-prompts-lock.ts",
+    "llm:replay:record": "tsx scripts/llm-replay-record.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

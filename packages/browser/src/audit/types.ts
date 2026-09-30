@@ -109,7 +109,7 @@ export interface ViewportCapture extends ExtractResult {
   final_url: string;
   http_status: number | null;
   redirect_chain: Array<{ url: string; status: number | null }>;
-  /** вибрані заголовки відповіді головного документа (cf-*, server, retry-after; без cookie) — ознаки бот-захисту (§48, DEV-39) */
+  /** вибрані заголовки відповіді головного документа (cf-*, server, retry-after; без cookie) — ознаки бот-захисту (§48, DEV-42) */
   response_headers: Record<string, string>;
   /** DOM-маркери challenge/captcha (botprotect.ts BOT_DOM_MARKERS) */
   bot_markers: string[];

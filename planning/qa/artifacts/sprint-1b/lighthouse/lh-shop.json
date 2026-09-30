@@ -1,0 +1,1119 @@
+{
+  "runs": [
+    {
+      "ok": true,
+      "error": null,
+      "url": "http://127.0.0.1:34671/",
+      "form_factor": "desktop",
+      "duration_ms": 5302,
+      "lighthouse_version": "13.5.0",
+      "runtime_error": null,
+      "scores": {
+        "performance": 0.95,
+        "accessibility": 1
+      },
+      "lhr_path": "lighthouse-desktop.json",
+      "proxy_auth_mode": "peer-or-token",
+      "chrome": {
+        "pid": 1809,
+        "alive_after": false,
+        "flags": [
+          "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
+          "--disable-extensions",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-background-networking",
+          "--disable-component-update",
+          "--disable-client-side-phishing-detection",
+          "--disable-sync",
+          "--metrics-recording-only",
+          "--disable-default-apps",
+          "--mute-audio",
+          "--no-default-browser-check",
+          "--no-first-run",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-renderer-backgrounding",
+          "--disable-background-timer-throttling",
+          "--disable-ipc-flooding-protection",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--force-fieldtrials=*BackgroundTracing/default/",
+          "--disable-hang-monitor",
+          "--disable-prompt-on-repost",
+          "--disable-domain-reliability",
+          "--propagate-iph-for-testing",
+          "--proxy-server=http://127.0.0.1:44211",
+          "--proxy-bypass-list=<-loopback>",
+          "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+          "--webrtc-ip-handling-policy=disable_non_proxied_udp",
+          "--disable-quic",
+          "--headless=new"
+        ],
+        "env_keys": [
+          "PATH",
+          "HOME",
+          "TMPDIR",
+          "XDG_CONFIG_HOME",
+          "XDG_CACHE_HOME"
+        ],
+        "processes": [
+          {
+            "pid": 1809,
+            "type": "browser",
+            "no_sandbox": false,
+            "env_keys": [
+              "HOME",
+              "PATH",
+              "TMPDIR",
+              "XDG_CACHE_HOME",
+              "XDG_CONFIG_HOME"
+            ],
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1854,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1873,
+            "type": "broker",
+            "no_sandbox": false,
+            "env_keys": [],
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1818,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1820,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1914,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1902,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1885,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1884,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1855,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1817,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1841,
+            "type": "gpu-process",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          }
+        ]
+      },
+      "proxy_decisions": [
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "clients2.google.com",
+          "port": 80,
+          "path": "/time/1/current?cup2key=9:mSJl0x1hj_HaCwxPz4reXF0VxoQXbDaT4jszsGDj72Q&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.195.139",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.152.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.250.152.84",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.156.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.150.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.250.152.84",
+          "peer_pid": 1854
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1854
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.157.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.183.84",
+          "peer_pid": 1854
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.151.119",
+          "peer_pid": 1854
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "unauthorized",
+          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+          "connected_ip": null,
+          "peer_pid": null
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev_970dcb080ccd",
+          "type": "lighthouse",
+          "source_class": "BENCHMARKED",
+          "page_url": "http://127.0.0.1:34671/",
+          "self_confirming": false,
+          "detector_id": "lighthouse:performance",
+          "claim_kind": "lighthouse_category_score",
+          "viewport": "desktop",
+          "description": "Lighthouse 13.5.0 performance (desktop): 95/100; аудитів із score < 0.9: 1",
+          "artifact_reference": "lighthouse-desktop.json",
+          "selector_or_region": {
+            "selector": "lhr.categories.performance",
+            "region": null
+          },
+          "data": {
+            "category": "performance",
+            "score": 0.95,
+            "score_100": 95,
+            "lighthouse_version": "13.5.0",
+            "throttling_method": "simulate",
+            "benchmark_index": 2450,
+            "failing_audits": [
+              {
+                "id": "largest-contentful-paint",
+                "score": 0.78,
+                "title": "Largest Contentful Paint"
+              }
+            ],
+            "metrics": {
+              "first-contentful-paint": 173.91845,
+              "largest-contentful-paint": 1571.8368999999998,
+              "total-blocking-time": 0,
+              "cumulative-layout-shift": 0,
+              "speed-index": 173.91845
+            },
+            "run_warnings": []
+          }
+        },
+        {
+          "id": "ev_7ff64924e5b2",
+          "type": "lighthouse",
+          "source_class": "BENCHMARKED",
+          "page_url": "http://127.0.0.1:34671/",
+          "self_confirming": false,
+          "detector_id": "lighthouse:accessibility",
+          "claim_kind": "lighthouse_category_score",
+          "viewport": "desktop",
+          "description": "Lighthouse 13.5.0 accessibility (desktop): 100/100; аудитів із score < 0.9: 0",
+          "artifact_reference": "lighthouse-desktop.json",
+          "selector_or_region": {
+            "selector": "lhr.categories.accessibility",
+            "region": null
+          },
+          "data": {
+            "category": "accessibility",
+            "score": 1,
+            "score_100": 100,
+            "lighthouse_version": "13.5.0",
+            "throttling_method": "simulate",
+            "benchmark_index": 2450,
+            "failing_audits": [],
+            "run_warnings": []
+          }
+        }
+      ]
+    },
+    {
+      "ok": true,
+      "error": null,
+      "url": "http://127.0.0.1:34671/",
+      "form_factor": "mobile",
+      "duration_ms": 5278,
+      "lighthouse_version": "13.5.0",
+      "runtime_error": null,
+      "scores": {
+        "performance": 0.75,
+        "accessibility": 0.93
+      },
+      "lhr_path": "lighthouse-mobile.json",
+      "proxy_auth_mode": "peer-or-token",
+      "chrome": {
+        "pid": 1943,
+        "alive_after": false,
+        "flags": [
+          "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
+          "--disable-extensions",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-background-networking",
+          "--disable-component-update",
+          "--disable-client-side-phishing-detection",
+          "--disable-sync",
+          "--metrics-recording-only",
+          "--disable-default-apps",
+          "--mute-audio",
+          "--no-default-browser-check",
+          "--no-first-run",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-renderer-backgrounding",
+          "--disable-background-timer-throttling",
+          "--disable-ipc-flooding-protection",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--force-fieldtrials=*BackgroundTracing/default/",
+          "--disable-hang-monitor",
+          "--disable-prompt-on-repost",
+          "--disable-domain-reliability",
+          "--propagate-iph-for-testing",
+          "--proxy-server=http://127.0.0.1:45399",
+          "--proxy-bypass-list=<-loopback>",
+          "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+          "--webrtc-ip-handling-policy=disable_non_proxied_udp",
+          "--disable-quic",
+          "--headless=new"
+        ],
+        "env_keys": [
+          "PATH",
+          "HOME",
+          "TMPDIR",
+          "XDG_CONFIG_HOME",
+          "XDG_CACHE_HOME"
+        ],
+        "processes": [
+          {
+            "pid": 1943,
+            "type": "browser",
+            "no_sandbox": false,
+            "env_keys": [
+              "HOME",
+              "PATH",
+              "TMPDIR",
+              "XDG_CACHE_HOME",
+              "XDG_CONFIG_HOME"
+            ],
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1989,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 2005,
+            "type": "broker",
+            "no_sandbox": false,
+            "env_keys": [],
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1952,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1954,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 2064,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 2053,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 2024,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 2020,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1990,
+            "type": "utility",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1951,
+            "type": "zygote",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          },
+          {
+            "pid": 1976,
+            "type": "gpu-process",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 0,
+            "secret_hits": 0
+          }
+        ]
+      },
+      "proxy_decisions": [
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "clients2.google.com",
+          "port": 80,
+          "path": "/time/1/current?cup2key=9:avK9sZ1tMNT4dY8ny9U8Bmr8X4vWjogzMKYEfGji-9g&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.64.139",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.152.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.250.152.84",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.157.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.152.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.183.84",
+          "peer_pid": 1989
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1989
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.150.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.250.152.84",
+          "peer_pid": 1989
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 34671,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.154.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.157.119",
+          "peer_pid": 1989
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "unauthorized",
+          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+          "connected_ip": null,
+          "peer_pid": null
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev_e93e0e60dc71",
+          "type": "lighthouse",
+          "source_class": "BENCHMARKED",
+          "page_url": "http://127.0.0.1:34671/",
+          "self_confirming": false,
+          "detector_id": "lighthouse:performance",
+          "claim_kind": "lighthouse_category_score",
+          "viewport": "mobile",
+          "description": "Lighthouse 13.5.0 performance (mobile): 75/100; аудитів із score < 0.9: 1",
+          "artifact_reference": "lighthouse-mobile.json",
+          "selector_or_region": {
+            "selector": "lhr.categories.performance",
+            "region": null
+          },
+          "data": {
+            "category": "performance",
+            "score": 0.75,
+            "score_100": 75,
+            "lighthouse_version": "13.5.0",
+            "throttling_method": "simulate",
+            "benchmark_index": 2589.5,
+            "failing_audits": [
+              {
+                "id": "largest-contentful-paint",
+                "score": 0.01,
+                "title": "Largest Contentful Paint"
+              }
+            ],
+            "metrics": {
+              "first-contentful-paint": 626.8027,
+              "largest-contentful-paint": 9159.6054,
+              "total-blocking-time": 0,
+              "cumulative-layout-shift": 0,
+              "speed-index": 626.8027
+            },
+            "run_warnings": []
+          }
+        },
+        {
+          "id": "ev_df23cf70c80d",
+          "type": "lighthouse",
+          "source_class": "BENCHMARKED",
+          "page_url": "http://127.0.0.1:34671/",
+          "self_confirming": false,
+          "detector_id": "lighthouse:accessibility",
+          "claim_kind": "lighthouse_category_score",
+          "viewport": "mobile",
+          "description": "Lighthouse 13.5.0 accessibility (mobile): 93/100; аудитів із score < 0.9: 1",
+          "artifact_reference": "lighthouse-mobile.json",
+          "selector_or_region": {
+            "selector": "lhr.categories.accessibility",
+            "region": null
+          },
+          "data": {
+            "category": "accessibility",
+            "score": 0.93,
+            "score_100": 93,
+            "lighthouse_version": "13.5.0",
+            "throttling_method": "simulate",
+            "benchmark_index": 2589.5,
+            "failing_audits": [
+              {
+                "id": "button-name",
+                "score": 0,
+                "title": "Buttons do not have an accessible name"
+              }
+            ],
+            "run_warnings": []
+          }
+        }
+      ]
+    }
+  ],
+  "prod_without_allowlist": {
+    "ok": false,
+    "error": "ERRORED_DOCUMENT_REQUEST: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 403)",
+    "url": "http://127.0.0.1:34671/",
+    "form_factor": "desktop",
+    "duration_ms": 4403,
+    "lighthouse_version": "13.5.0",
+    "runtime_error": "ERRORED_DOCUMENT_REQUEST: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 403)",
+    "scores": {
+      "performance": null,
+      "accessibility": null
+    },
+    "lhr_path": "lighthouse-desktop.json",
+    "proxy_auth_mode": "peer-or-token",
+    "chrome": {
+      "pid": 2092,
+      "alive_after": false,
+      "flags": [
+        "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
+        "--disable-extensions",
+        "--disable-component-extensions-with-background-pages",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-client-side-phishing-detection",
+        "--disable-sync",
+        "--metrics-recording-only",
+        "--disable-default-apps",
+        "--mute-audio",
+        "--no-default-browser-check",
+        "--no-first-run",
+        "--disable-backgrounding-occluded-windows",
+        "--disable-renderer-backgrounding",
+        "--disable-background-timer-throttling",
+        "--disable-ipc-flooding-protection",
+        "--password-store=basic",
+        "--use-mock-keychain",
+        "--force-fieldtrials=*BackgroundTracing/default/",
+        "--disable-hang-monitor",
+        "--disable-prompt-on-repost",
+        "--disable-domain-reliability",
+        "--propagate-iph-for-testing",
+        "--proxy-server=http://127.0.0.1:38819",
+        "--proxy-bypass-list=<-loopback>",
+        "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+        "--webrtc-ip-handling-policy=disable_non_proxied_udp",
+        "--disable-quic",
+        "--headless=new"
+      ],
+      "env_keys": [
+        "PATH",
+        "HOME",
+        "TMPDIR",
+        "XDG_CONFIG_HOME",
+        "XDG_CACHE_HOME"
+      ],
+      "processes": [
+        {
+          "pid": 2092,
+          "type": "browser",
+          "no_sandbox": false,
+          "env_keys": [
+            "HOME",
+            "PATH",
+            "TMPDIR",
+            "XDG_CACHE_HOME",
+            "XDG_CONFIG_HOME"
+          ],
+          "seccomp": 0,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2138,
+          "type": "utility",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2154,
+          "type": "broker",
+          "no_sandbox": false,
+          "env_keys": [],
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2101,
+          "type": "zygote",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 0,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2103,
+          "type": "zygote",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 0,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2199,
+          "type": "utility",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2185,
+          "type": "renderer",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2168,
+          "type": "renderer",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2167,
+          "type": "renderer",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2139,
+          "type": "utility",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 2,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2100,
+          "type": "zygote",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 0,
+          "secret_hits": 0
+        },
+        {
+          "pid": 2125,
+          "type": "gpu-process",
+          "no_sandbox": false,
+          "env_keys": null,
+          "seccomp": 0,
+          "secret_hits": 0
+        }
+      ]
+    },
+    "proxy_decisions": [
+      {
+        "via": "http",
+        "method": "GET",
+        "host": "clients2.google.com",
+        "port": 80,
+        "path": "/time/1/current?cup2key=9:r78VnZJES2nMbAyw9Rf_IFAOVHnLyZq8FWOkLxasT3c&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "108.177.121.101",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "unauthorized",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+        "connected_ip": null,
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "accounts.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.183.84",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.152.119",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.152.119",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.151.119",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "accounts.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.183.84",
+        "peer_pid": 2138
+      },
+      {
+        "via": "http",
+        "method": "GET",
+        "host": "127.0.0.1",
+        "port": 34671,
+        "path": "/",
+        "decision": "deny",
+        "reason": "IP-літерал 127.0.0.1 заблоковано: 127.0.0.0/8 loopback (§49)",
+        "connected_ip": null
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.150.119",
+        "peer_pid": 2138
+      },
+      {
+        "via": "http",
+        "method": "GET",
+        "host": "127.0.0.1",
+        "port": 34671,
+        "path": "/favicon.ico",
+        "decision": "deny",
+        "reason": "IP-літерал 127.0.0.1 заблоковано: 127.0.0.0/8 loopback (§49)",
+        "connected_ip": null
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "accounts.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.250.152.84",
+        "peer_pid": 2138
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "unauthorized",
+        "reason": "клієнт проксі відхилено: сокет клієнта не знайдено в /proc/net/tcp",
+        "connected_ip": null,
+        "peer_pid": null
+      }
+    ],
+    "shop_requests": 0
+  },
+  "shop_request_log_sample": [
+    {
+      "ts": "2026-09-30T00:01:12.124Z",
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": "home"
+    },
+    {
+      "ts": "2026-09-30T00:01:12.139Z",
+      "method": "GET",
+      "path": "/img/hero.jpg",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": null
+    },
+    {
+      "ts": "2026-09-30T00:01:14.760Z",
+      "method": "GET",
+      "path": "/img/hero.jpg",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": null
+    },
+    {
+      "ts": "2026-09-30T00:01:17.448Z",
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": "home"
+    },
+    {
+      "ts": "2026-09-30T00:01:17.463Z",
+      "method": "GET",
+      "path": "/img/hero.jpg",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": null
+    },
+    {
+      "ts": "2026-09-30T00:01:20.079Z",
+      "method": "GET",
+      "path": "/img/hero.jpg",
+      "status": 200,
+      "user_agent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36",
+      "audit_hint": null,
+      "logical": null
+    }
+  ]
+}

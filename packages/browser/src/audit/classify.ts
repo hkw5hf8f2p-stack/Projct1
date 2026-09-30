@@ -174,7 +174,7 @@ export function categoryScore(v: View): { K: number; k1: boolean; features: stri
   const g = topGroup(v);
   if (!g) return { K: 0, k1: false, features: [] };
   const f = [`K1:${g.count}`];
-  // DEV-38: «команда» — картки без цін і без product/category-подібних URL на сторінці з about-ознакою (h1/URL/JSON-LD) — не лістинг
+  // DEV-40: «команда» — картки без цін і без product/category-подібних URL на сторінці з about-ознакою (h1/URL/JSON-LD) — не лістинг
   const aboutish = v.jsonld_top.some((t) => /^AboutPage$/i.test(t)) || v.jsonld_top[0] === "Organization" || ABOUT_LEX_RE.test(h1Text(v)) || ABOUT_LEX_RE.test(path(v.final_url));
   if (aboutish && g.with_price === 0 && !g.urls.some((u) => urlProductHint(u) || urlCategoryHint(u))) return { K: 0, k1: false, features: [...f, "Kteam_veto"] };
   let K = 3;

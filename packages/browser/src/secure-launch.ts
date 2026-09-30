@@ -10,7 +10,8 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { chromium, type Browser, type BrowserContext, type BrowserContextOptions, type LaunchOptions } from "playwright";
-import { startEgressProxy, type Dialer, type EgressProxy, type ProxyMode, type Resolver } from "./net/egress-proxy.js";
+import { startEgressProxy, type ClientAuth, type Dialer, type EgressProxy, type ProxyLimits, type ProxyMode, type Resolver } from "./net/egress-proxy.js";
+import { loadSiteDenylist, type SiteDenylist } from "./net/site-denylist.js";
 
 export interface BlockedRequest {
   ts: string;
@@ -34,6 +35,23 @@ export interface SecureLaunchOptions {
   /** Ін'єкція резолвера/дайлера проксі (тести). */
   resolver?: Resolver;
   dial?: Dialer;
+  /** Ліміти проксі (за замовчуванням DEFAULT_PROXY_LIMITS). */
+  limits?: Partial<ProxyLimits>;
+  /** За замовчуванням — з env SITELENS_SITE_DENYLIST. */
+  siteDenylist?: SiteDenylist;
+  /** Автентифікація клієнтів проксі; за замовчуванням peer-or-token. */
+  clientAuth?: ClientAuth;
+}
+
+/** Режим проксі з опцій secureLaunch (спільне для Playwright і Lighthouse). */
+export function proxyModeFrom(opts: Pick<SecureLaunchOptions, "mode" | "fixtureOrigins" | "allowFixtureLoopback">): ProxyMode {
+  if (opts.mode === "prod") {
+    if (opts.fixtureOrigins?.length) throw new Error("secureLaunch: fixtureOrigins не дозволені в prod-режимі");
+    return { kind: "prod" };
+  }
+  if (opts.mode === "fixture")
+    return { kind: "fixture", allow: fixtureAllowList(opts.fixtureOrigins ?? []), allowFixtureLoopback: opts.allowFixtureLoopback };
+  throw new Error("secureLaunch: mode має бути 'prod' або 'fixture'");
 }
 
 declare const SECURE_BRAND: unique symbol;
@@ -127,7 +145,7 @@ export const SECURE_CONTEXT_DEFAULTS: BrowserContextOptions = {
   permissions: [],
 };
 
-function fixtureAllowList(origins: string[]): string[] {
+export function fixtureAllowList(origins: string[]): string[] {
   return origins.map((o) => {
     if (/^[^/]+:\d+$/.test(o)) return o;
     const u = new URL(o);
@@ -137,15 +155,7 @@ function fixtureAllowList(origins: string[]): string[] {
 }
 
 export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBrowser> {
-  let mode: ProxyMode;
-  if (opts.mode === "prod") {
-    if (opts.fixtureOrigins?.length) throw new Error("secureLaunch: fixtureOrigins не дозволені в prod-режимі");
-    mode = { kind: "prod" };
-  } else if (opts.mode === "fixture") {
-    mode = { kind: "fixture", allow: fixtureAllowList(opts.fixtureOrigins ?? []), allowFixtureLoopback: opts.allowFixtureLoopback };
-  } else {
-    throw new Error("secureLaunch: mode має бути 'prod' або 'fixture'");
-  }
+  const mode = proxyModeFrom(opts);
 
   const tmpRoot = await mkdtemp(path.join(os.tmpdir(), "sl-browser-"));
   const cleanup: Array<() => Promise<void>> = [() => rm(tmpRoot, { recursive: true, force: true })];
@@ -154,7 +164,14 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
     await mkdir(path.join(tmpRoot, "home/.cache"), { recursive: true });
     await mkdir(path.join(tmpRoot, "tmp"), { recursive: true });
 
-    const proxy = await startEgressProxy({ mode, resolver: opts.resolver, dial: opts.dial });
+    const proxy = await startEgressProxy({
+      mode,
+      resolver: opts.resolver,
+      dial: opts.dial,
+      limits: opts.limits,
+      clientAuth: opts.clientAuth,
+      siteDenylist: opts.siteDenylist ?? loadSiteDenylist(),
+    });
     cleanup.unshift(() => proxy.close());
     const browserEnv = buildBrowserEnv(tmpRoot);
     const launchOptions = buildLaunchOptions(proxy.url, browserEnv, opts.headless ?? true);

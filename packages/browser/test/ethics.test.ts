@@ -1,5 +1,5 @@
 /**
- * Етика звернень (DEV-18) і бот-захист (§48, DEV-39): юніти (robots, пауза, лічильник за добу, розпізнавання) + інтеграція
+ * Етика звернень (DEV-18) і бот-захист (§48, DEV-42): юніти (robots, пауза, лічильник за добу, розпізнавання) + інтеграція
  * на міні-фікстурі fixtures/bot через secureLaunch. Запуск: bash scripts/run-as-sitelens.sh pnpm test
  */
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";

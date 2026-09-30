@@ -1,0 +1,138 @@
+[
+  {
+    "id": "ev_970dcb080ccd",
+    "type": "lighthouse",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34671/",
+    "self_confirming": false,
+    "detector_id": "lighthouse:performance",
+    "claim_kind": "lighthouse_category_score",
+    "viewport": "desktop",
+    "description": "Lighthouse 13.5.0 performance (desktop): 95/100; аудитів із score < 0.9: 1",
+    "artifact_reference": "lighthouse-desktop.json",
+    "selector_or_region": {
+      "selector": "lhr.categories.performance",
+      "region": null
+    },
+    "data": {
+      "category": "performance",
+      "score": 0.95,
+      "score_100": 95,
+      "lighthouse_version": "13.5.0",
+      "throttling_method": "simulate",
+      "benchmark_index": 2450,
+      "failing_audits": [
+        {
+          "id": "largest-contentful-paint",
+          "score": 0.78,
+          "title": "Largest Contentful Paint"
+        }
+      ],
+      "metrics": {
+        "first-contentful-paint": 173.91845,
+        "largest-contentful-paint": 1571.8368999999998,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 173.91845
+      },
+      "run_warnings": []
+    }
+  },
+  {
+    "id": "ev_7ff64924e5b2",
+    "type": "lighthouse",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34671/",
+    "self_confirming": false,
+    "detector_id": "lighthouse:accessibility",
+    "claim_kind": "lighthouse_category_score",
+    "viewport": "desktop",
+    "description": "Lighthouse 13.5.0 accessibility (desktop): 100/100; аудитів із score < 0.9: 0",
+    "artifact_reference": "lighthouse-desktop.json",
+    "selector_or_region": {
+      "selector": "lhr.categories.accessibility",
+      "region": null
+    },
+    "data": {
+      "category": "accessibility",
+      "score": 1,
+      "score_100": 100,
+      "lighthouse_version": "13.5.0",
+      "throttling_method": "simulate",
+      "benchmark_index": 2450,
+      "failing_audits": [],
+      "run_warnings": []
+    }
+  },
+  {
+    "id": "ev_e93e0e60dc71",
+    "type": "lighthouse",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34671/",
+    "self_confirming": false,
+    "detector_id": "lighthouse:performance",
+    "claim_kind": "lighthouse_category_score",
+    "viewport": "mobile",
+    "description": "Lighthouse 13.5.0 performance (mobile): 75/100; аудитів із score < 0.9: 1",
+    "artifact_reference": "lighthouse-mobile.json",
+    "selector_or_region": {
+      "selector": "lhr.categories.performance",
+      "region": null
+    },
+    "data": {
+      "category": "performance",
+      "score": 0.75,
+      "score_100": 75,
+      "lighthouse_version": "13.5.0",
+      "throttling_method": "simulate",
+      "benchmark_index": 2589.5,
+      "failing_audits": [
+        {
+          "id": "largest-contentful-paint",
+          "score": 0.01,
+          "title": "Largest Contentful Paint"
+        }
+      ],
+      "metrics": {
+        "first-contentful-paint": 626.8027,
+        "largest-contentful-paint": 9159.6054,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 626.8027
+      },
+      "run_warnings": []
+    }
+  },
+  {
+    "id": "ev_df23cf70c80d",
+    "type": "lighthouse",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:34671/",
+    "self_confirming": false,
+    "detector_id": "lighthouse:accessibility",
+    "claim_kind": "lighthouse_category_score",
+    "viewport": "mobile",
+    "description": "Lighthouse 13.5.0 accessibility (mobile): 93/100; аудитів із score < 0.9: 1",
+    "artifact_reference": "lighthouse-mobile.json",
+    "selector_or_region": {
+      "selector": "lhr.categories.accessibility",
+      "region": null
+    },
+    "data": {
+      "category": "accessibility",
+      "score": 0.93,
+      "score_100": 93,
+      "lighthouse_version": "13.5.0",
+      "throttling_method": "simulate",
+      "benchmark_index": 2589.5,
+      "failing_audits": [
+        {
+          "id": "button-name",
+          "score": 0,
+          "title": "Buttons do not have an accessible name"
+        }
+      ],
+      "run_warnings": []
+    }
+  }
+]

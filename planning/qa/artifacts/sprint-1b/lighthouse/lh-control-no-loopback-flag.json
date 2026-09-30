@@ -1,0 +1,240 @@
+{
+  "scenario": "(в) контроль: Lighthouse за проксі без <-loopback>",
+  "canary_hits": 9,
+  "hits": [
+    {
+      "ts": "2026-09-30T00:00:45.261Z",
+      "method": "GET",
+      "url": "/lh-img"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.261Z",
+      "method": "GET",
+      "url": "/lh-css"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.264Z",
+      "method": "GET",
+      "url": "/lh-decimal"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.273Z",
+      "method": "GET",
+      "url": "/lh-fetch"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.273Z",
+      "method": "GET",
+      "url": "/lh-iframe"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.285Z",
+      "method": "GET",
+      "url": "/lh-redirect"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.285Z",
+      "method": "POST",
+      "url": "/lh-beacon"
+    },
+    {
+      "ts": "2026-09-30T00:00:45.289Z",
+      "method": "UPGRADE",
+      "url": "/lh-ws"
+    },
+    {
+      "ts": "2026-09-30T00:00:48.371Z",
+      "method": "GET",
+      "url": "/lh-css"
+    }
+  ],
+  "proxy_decisions": [
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "clients2.google.com",
+      "port": 80,
+      "path": "/time/1/current?cup2key=9:h9HI1sgmN4d56nR3hYao0mZxJFXVbBhx2s9jBWjWMTQ&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND clients2.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "accounts.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND accounts.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "accounts.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND accounts.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/probe.html",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "connected_ip": "93.184.216.34",
+      "peer_pid": 1216
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/redir-canary",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "connected_ip": "93.184.216.34",
+      "peer_pid": 1216
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/favicon.ico",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "connected_ip": "93.184.216.34",
+      "peer_pid": 1216
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "accounts.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND accounts.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "android.clients.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND android.clients.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    }
+  ]
+}

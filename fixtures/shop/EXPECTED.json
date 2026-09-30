@@ -46,6 +46,7 @@
       ],
       "match": "any",
       "viewports": [
+        "D",
         "M"
       ],
       "detector_id": "shipping_depth",
@@ -66,7 +67,7 @@
       "expected_confidence": "VERIFIED",
       "region_marker": "d2",
       "mutant": "m2",
-      "viewport_note": "union D∪M; evidence attached to M"
+      "viewport_note": "page-level fact (union D∪M); Evidence row on each of D and M (DEV-41)"
     },
     {
       "id": 3,

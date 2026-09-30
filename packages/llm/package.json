@@ -1,0 +1,11 @@
+{
+  "name": "@sitelens/llm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@sitelens/schemas": "workspace:*",
+    "zod": "3.25.76"
+  }
+}

@@ -53,7 +53,7 @@
 - **Предикат:** `¬d0 ∧ ¬d1` ⇒ глибина ≥ 2 кліки ⇒ спрацювання. `measurement.depth_clicks` = точна BFS-глибина за
   crawl-графом (лише видимі посилання, deny-list G0-11 не відкривається) або `null`, якщо ціль не знайдено в межах
   crawl — у предикат **не входить** (залежить від бюджету crawl).
-- **Доказ:** `type:dom`, OBSERVED, `artifact_reference` = fullpage.png продукту (M), region = вся сторінка; excerpt =
+- **Доказ (DEV-41: page-level факт, рядок на КОЖНОМУ viewport D і M):** `type:dom`, OBSERVED, `artifact_reference` = fullpage.png свого viewport, region = вся сторінка, `measurement.scope='page'`, `d0/d1` — union D∪M, `viewport_local` — по viewport; excerpt =
   список текстів видимих посилань сторінки (показує, що жодне не веде до доставки) + шлях, де доставку знайдено
   (`/help → /help/shipping`), якщо знайдено. Повне захоплення → ET-DET → **VERIFIED**; інакше §4.
 - **Мутант M2:** на продукті видимий блок «Доставка: 1–2 дні, від 70 грн» (d0) → 0.

@@ -1,0 +1,36 @@
+[
+  {
+    "rule": "image-alt",
+    "page_group": "product",
+    "component": "main/img",
+    "instances": 2,
+    "impact": "critical",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/product/softline-s1"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_3c2826ce5a19",
+        "page": "/product/softline-s1",
+        "viewport": "D",
+        "selector": "img",
+        "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribut"
+      },
+      {
+        "evidence_id": "ev_298d737db9ce",
+        "page": "/product/softline-s1",
+        "viewport": "M",
+        "selector": "img",
+        "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribut"
+      }
+    ],
+    "evidence_ids": [
+      "ev_298d737db9ce",
+      "ev_3c2826ce5a19"
+    ]
+  }
+]

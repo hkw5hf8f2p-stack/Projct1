@@ -144,8 +144,8 @@ export function detectShippingDepth(inp: DetectInput, cov?: CoverageRow[]): Evid
       return [];
     }
   const caps = [D, M];
-  const d0 = caps.some((c) => c.text_nodes.some((n) => SHIP_RE.test(n.t)) || c.images.some((i) => i.alt && SHIP_RE.test(i.alt)));
-  const d1 = caps.some((c) =>
+  const has0 = (c: ViewportCapture) => c.text_nodes.some((n) => SHIP_RE.test(n.t)) || c.images.some((i) => !!i.alt && SHIP_RE.test(i.alt));
+  const has1 = (c: ViewportCapture) =>
     c.links.some((l) => {
       if (!l.visible || !sameOrigin(l.abs, c.final_url)) return false;
       let p = "";
@@ -155,18 +155,21 @@ export function detectShippingDepth(inp: DetectInput, cov?: CoverageRow[]): Evid
         /* ignore */
       }
       return SHIP_RE.test(l.name) || SHIP_RE.test(l.text) || SHIP_PATH_RE.test(p);
-    }),
-  );
+    });
+  const d0 = caps.some(has0);
+  const d1 = caps.some(has1);
   if (d0 || d1) return [];
   const reasons = [...new Set([...D.completeness.incomplete_reasons, ...M.completeness.incomplete_reasons, ...(uncertain ? [UNCERTAIN] : [])])].sort();
   const complete = reasons.length === 0;
   if (uncertain) note(cov, inp, "shipping_depth", "capped", "product_likely: ET-INC, знахідка ≤ HYPOTHESIS");
-  const linkTexts = [...new Set(M.links.filter((l) => l.visible).map((l) => l.name || l.text).filter(Boolean))];
-  const region: Rect = { x: 0, y: 0, w: Math.max(M.width, M.overflow.scroll_width), h: M.overflow.scroll_height };
-  return [
-    mk({
+  // DEV-41: №2 — page-level факт (union D∪M), але Evidence пишеться на ОБОХ viewport (по одному рядку зі скриншотом свого viewport):
+  // EXPECTED вимагає доказ на кожному очікуваному viewport, а схема (VpCode) знає лише D|M. Предикат і measurement.d0/d1 — спільні (union).
+  return caps.map((cap) => {
+    const linkTexts = [...new Set(cap.links.filter((l) => l.visible).map((l) => l.name || l.text).filter(Boolean))];
+    const region: Rect = { x: 0, y: 0, w: Math.max(cap.width, cap.overflow.scroll_width), h: cap.overflow.scroll_height };
+    return mk({
       input: inp,
-      cap: M,
+      cap,
       detector_id: "shipping_depth",
       claim_kind: "deep_link_only",
       category: "shipping",
@@ -174,16 +177,16 @@ export function detectShippingDepth(inp: DetectInput, cov?: CoverageRow[]): Evid
       source_class: "OBSERVED",
       assertion: "absence",
       region,
-      artifact_reference: M.screenshots.fullpage.file,
-      screenshot_reference: M.screenshots.fullpage.file,
-      description: `${uncertain ? "Тип сторінки не визначено однозначно (ймовірно товар). " : ""}На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M): інформація про доставку — щонайменше за 2 кліки.${complete ? "" : " Можлива неповнота захоплення."}`,
-      excerpt: `Видимі посилання сторінки: ${linkTexts.join(" | ")}`,
-      measurement: { d0, d1, union_of: ["D", "M"], depth_clicks: null, shipping_found_via: null },
+      artifact_reference: cap.screenshots.fullpage.file,
+      screenshot_reference: cap.screenshots.fullpage.file,
+      description: `${uncertain ? "Тип сторінки не визначено однозначно (ймовірно товар). " : ""}На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport ${cap.vp}): інформація про доставку — щонайменше за 2 кліки.${complete ? "" : " Можлива неповнота захоплення."}`,
+      excerpt: `Видимі посилання сторінки (${cap.vp}): ${linkTexts.join(" | ")}`,
+      measurement: { d0, d1, union_of: ["D", "M"], scope: "page", viewport_local: { d0: has0(cap), d1: has1(cap) }, depth_clicks: null, shipping_found_via: null },
       self_confirming: complete,
       capture_complete: complete,
       incomplete_reasons: reasons,
-    }),
-  ];
+    });
+  });
 }
 
 // ------------------------------------------------------------------------------------------------ №5

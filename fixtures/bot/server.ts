@@ -1,5 +1,5 @@
 /**
- * Міні-фікстура бот-захисту й robots.txt (SPEC §48, DEV-18, DEV-39). ІМІТАЦІЯ: реальний Cloudflare відрізняється (L8 — живий пас).
+ * Міні-фікстура бот-захисту й robots.txt (SPEC §48, DEV-18, DEV-42). ІМІТАЦІЯ: реальний Cloudflare відрізняється (L8 — живий пас).
  * Маршрути: `/` (посилання на решту), `/cf` (403 + cf-ray/cf-mitigated + «Just a moment...»), `/captcha` (200, reCAPTCHA, малий текст),
  * `/rate` (429 + Retry-After), `/unavail` (503), `/forbidden` (403 без cf), `/contact-ok` (НОРМАЛЬНА довга сторінка з reCAPTCHA-віджетом —
  * негативний контроль), `/private/*` (Disallow у robots.txt), `/private/open` (Allow довшим правилом), `/robots.txt`.

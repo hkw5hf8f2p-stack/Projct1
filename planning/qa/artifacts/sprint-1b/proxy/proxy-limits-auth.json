@@ -1,0 +1,41 @@
+{
+  "timeouts": {
+    "silent": {
+      "status": 502,
+      "bytes": 0,
+      "aborted": false
+    },
+    "silent_ms": 415,
+    "hole": {
+      "status": 502,
+      "bytes": 0,
+      "closedMs": 305
+    },
+    "hole_ms": 305,
+    "log": [
+      {
+        "via": "http",
+        "host": "silent.test",
+        "port": 80,
+        "decision": "limit",
+        "reason": "idleTimeoutMs 400",
+        "connected_ip": "93.184.216.34",
+        "bytes_down": 0
+      },
+      {
+        "via": "connect",
+        "host": "hole.test",
+        "port": 443,
+        "decision": "error",
+        "reason": "upstream: 8.8.8.8: connect timeout",
+        "connected_ip": null,
+        "dial_failures": [
+          {
+            "ip": "8.8.8.8",
+            "error": "connect timeout"
+          }
+        ]
+      }
+    ]
+  }
+}

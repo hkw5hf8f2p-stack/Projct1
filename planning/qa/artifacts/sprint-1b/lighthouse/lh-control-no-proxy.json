@@ -1,0 +1,52 @@
+{
+  "scenario": "(а) контроль: Lighthouse без --proxy-server/--proxy-bypass-list",
+  "lhr_ok": true,
+  "canary_hits": 9,
+  "hits": [
+    {
+      "ts": "2026-09-30T00:00:39.082Z",
+      "method": "GET",
+      "url": "/lh-img"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.083Z",
+      "method": "GET",
+      "url": "/lh-css"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.087Z",
+      "method": "GET",
+      "url": "/lh-decimal"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.096Z",
+      "method": "GET",
+      "url": "/lh-iframe"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.096Z",
+      "method": "GET",
+      "url": "/lh-fetch"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.101Z",
+      "method": "POST",
+      "url": "/lh-beacon"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.108Z",
+      "method": "UPGRADE",
+      "url": "/lh-ws"
+    },
+    {
+      "ts": "2026-09-30T00:00:39.111Z",
+      "method": "GET",
+      "url": "/lh-redirect"
+    },
+    {
+      "ts": "2026-09-30T00:00:42.228Z",
+      "method": "GET",
+      "url": "/lh-css"
+    }
+  ]
+}

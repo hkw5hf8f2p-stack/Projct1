@@ -1,0 +1,5 @@
+{
+  "scenario": "контроль: chrome-launcher з дефолтними envVars і прапорцями",
+  "secret_hits": 2,
+  "has_disable_setuid_sandbox": true
+}

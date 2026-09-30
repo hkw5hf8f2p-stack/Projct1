@@ -1,0 +1,95 @@
+[
+  {
+    "rule": "button-name",
+    "page_group": "*",
+    "component": "header/button",
+    "instances": 11,
+    "impact": "critical",
+    "viewports": [
+      "M"
+    ],
+    "pages": [
+      "/",
+      "/about",
+      "/catalog",
+      "/help",
+      "/help/shipping",
+      "/product/aquapro-x200",
+      "/product/aquapro-x200/configure",
+      "/product/aquapro-x220",
+      "/product/aquapro-x220/configure",
+      "/product/softline-s1",
+      "/product/softline-s1/configure"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_359b50bcd0a7",
+        "page": "/",
+        "viewport": "M",
+        "selector": ".menu-btn",
+        "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3"
+      },
+      {
+        "evidence_id": "ev_bdddaf763365",
+        "page": "/catalog",
+        "viewport": "M",
+        "selector": ".menu-btn",
+        "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3"
+      },
+      {
+        "evidence_id": "ev_b38341a5da2b",
+        "page": "/product/aquapro-x200",
+        "viewport": "M",
+        "selector": ".menu-btn",
+        "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3"
+      }
+    ],
+    "evidence_ids": [
+      "ev_359b50bcd0a7",
+      "ev_7b93f04f4d2f",
+      "ev_88c0f38503bd",
+      "ev_afe632204e0b",
+      "ev_b1044d2203d3",
+      "ev_b38341a5da2b",
+      "ev_bdddaf763365",
+      "ev_cf975b2c2b6e",
+      "ev_d7a31085015c",
+      "ev_dece330edcc5",
+      "ev_e3a6f7d286da"
+    ]
+  },
+  {
+    "rule": "image-alt",
+    "page_group": "product",
+    "component": "main/img",
+    "instances": 2,
+    "impact": "critical",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/product/softline-s1"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_3c2826ce5a19",
+        "page": "/product/softline-s1",
+        "viewport": "D",
+        "selector": "img",
+        "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribut"
+      },
+      {
+        "evidence_id": "ev_298d737db9ce",
+        "page": "/product/softline-s1",
+        "viewport": "M",
+        "selector": "img",
+        "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribut"
+      }
+    ],
+    "evidence_ids": [
+      "ev_298d737db9ce",
+      "ev_3c2826ce5a19"
+    ]
+  }
+]

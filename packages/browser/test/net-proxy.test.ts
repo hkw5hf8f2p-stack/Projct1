@@ -9,6 +9,7 @@ import { classifyResolved } from "../src/net/ip-classify.js";
  * Проксі без DNS і без зовнішньої мережі: резолвер і дайлер ін'єктовані.
  * «Симульований інтернет»: дайлер записує, до якої IP його попросили підключитись, і фактично з'єднує з локальним
  * upstream-сервером. Отже тест бачить саме ту IP, яку проксі обрав для TCP.
+ * Клієнти тут — у процесі worker (не нащадки), тому автентифікуються токеном `proxy.authHeader` (S1b).
  */
 
 let upstream: http.Server;
@@ -81,13 +82,13 @@ function connectVia(proxy: EgressProxy, target: string): Promise<{ status: numbe
       }
     });
     s.on("error", reject);
-    s.write(`CONNECT ${target} HTTP/1.1\r\nHost: ${target}\r\n\r\n`);
+    s.write(`CONNECT ${target} HTTP/1.1\r\nHost: ${target}\r\nProxy-Authorization: ${proxy.authHeader}\r\n\r\n`);
   });
 }
 
 function httpVia(proxy: EgressProxy, url: string, method = "GET"): Promise<{ status: number; body: string }> {
   return new Promise((resolve, reject) => {
-    const req = http.request({ host: "127.0.0.1", port: proxy.port, method, path: url, headers: { host: url.startsWith("http") ? new URL(url).host : "127.0.0.1" } }, (res) => {
+    const req = http.request({ host: "127.0.0.1", port: proxy.port, method, path: url, headers: { host: url.startsWith("http") ? new URL(url).host : "127.0.0.1", "proxy-authorization": proxy.authHeader } }, (res) => {
       let body = "";
       res.on("data", (d) => (body += d));
       res.on("end", () => resolve({ status: res.statusCode ?? 0, body }));

@@ -1,0 +1,8 @@
+{
+  "note": "sha256 від {id, system, user_template, output_name, json_schema}. Не редагувати вручну: змінений текст → нова версія промпту.",
+  "prompts": {
+    "site-profile-v1": "db4c3b15e49394e3c6bf19a521d0d64631fb85a89f883861dc99c7f429ae30b3",
+    "task-generator-v1": "c40bb98fb40b2d9ae8abd65acd16b3c709ad2b4f66f19edb0f9539617e4eebb8",
+    "lens-generator-v1": "8d4ae97d85e3ec5e9d57adcb71fbe8007347fc767d0cfb2a6bb6afbba5561857"
+  }
+}

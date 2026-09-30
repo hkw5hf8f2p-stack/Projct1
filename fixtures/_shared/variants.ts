@@ -31,7 +31,7 @@ export interface Transforms {
   r1: boolean;
   r2: boolean;
   r3: boolean;
-  /** T1: «команда» — 3 картки (фото + посилання на профіль, без цін) на /about (DEV-38) */
+  /** T1: «команда» — 3 картки (фото + посилання на профіль, без цін) на /about (DEV-40) */
   t1: boolean;
 }
 

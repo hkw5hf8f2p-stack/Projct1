@@ -1,0 +1,24 @@
+{
+  "capture_evidence": 3,
+  "throwing": {
+    "ok": false,
+    "error": "штучно зламаний Lighthouse",
+    "alive_after": false
+  },
+  "hanging": {
+    "ok": false,
+    "error": "lighthouse timeout 4000 мс",
+    "alive_after": false,
+    "duration_ms": 4597
+  },
+  "bad_chrome_path": {
+    "ok": false,
+    "error": "CHROME_PATH недоступний для запуску: /nonexistent/chrome"
+  },
+  "empty_lhr": {
+    "ok": false,
+    "error": "немає оцінок категорій",
+    "evidence": 0
+  },
+  "stray_chrome_processes": []
+}

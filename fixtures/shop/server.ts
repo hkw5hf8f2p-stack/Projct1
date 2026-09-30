@@ -124,7 +124,7 @@ export function createShopHandler(opts: ShopOptions = {}): SiteHandler {
 <ul class="cards" data-fx="d10">${cardsHtml(visibleProducts, m === "m10", true)}</ul>`,
     });
 
-  /** T1 (DEV-38): «команда» — 3 однакові картки «фото + ім'я-посилання», без цін і без product-подібних URL (посилання ?member= дублюють /about) */
+  /** T1 (DEV-40): «команда» — 3 однакові картки «фото + ім'я-посилання», без цін і без product-подібних URL (посилання ?member= дублюють /about) */
   const teamHtml = () =>
     `<section aria-label="${esc(L("Команда", "Team"))}"><h2>${esc(L("Наша команда", "Our team"))}</h2><ul class="cards">${["Анна", "Богдан", "Оксана"]
       .map((n, i) => `<li class="card"><img src="/img/aquapro-x200.svg" alt="${esc(L("Фото", "Photo"))}: ${esc(n)}" width="120" height="120"><div><h3><a href="/about?member=${i + 1}">${esc(n)}</a></h3><p>${esc(L("Керує напрямком", "Team member"))}</p></div></li>`)
