@@ -1,0 +1,21 @@
+{
+ "schema": "sitelens-dns-leak/v1",
+ "method": "Chromium --log-net-log, події HOST_RESOLVER_MANAGER_JOB",
+ "control_R0_img_name_dns_job": true,
+ "R0_dns_prefetch_job": false,
+ "R0_preconnect_job": false,
+ "R2_any_dns_jobs": [],
+ "R2_dns_prefetch_job": false,
+ "R2_preconnect_job": false,
+ "r0_jobs": {
+  "http://v39-dnsctl.test": 1,
+  "http://metadata.google.internal": 1,
+  "http://rebind2.test:4196": 1,
+  "http://rebind.test:4196": 2,
+  "http://mixed.test:4196": 1,
+  "http://127.0.0.2.nip.io:4196": 1,
+  "http://cname.test:4196": 1,
+  "http://v6only.test:4196": 1
+ },
+ "r2_jobs": {}
+}

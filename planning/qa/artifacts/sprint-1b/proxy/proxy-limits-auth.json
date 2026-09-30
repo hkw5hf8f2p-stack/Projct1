@@ -1,17 +1,199 @@
 {
+  "auth": {
+    "orphan_no_token": {
+      "status": 407,
+      "pid": 31999
+    },
+    "orphan_with_token": {
+      "status": 200,
+      "pid": 32094
+    },
+    "child_no_token": {
+      "status": 200,
+      "pid": 32166
+    },
+    "in_process_no_token": 407,
+    "in_process_token": 200,
+    "wrong_token": 407,
+    "control_open_orphan": {
+      "status": 200,
+      "pid": 32184
+    },
+    "proxy_log": [
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "unauthorized",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 31976",
+        "connected_ip": null,
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": 32166
+      },
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "unauthorized",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 31976",
+        "connected_ip": null,
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "public.test",
+        "port": 443,
+        "decision": "unauthorized",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 31976",
+        "connected_ip": null,
+        "peer_pid": null
+      }
+    ]
+  },
+  "max_response_bytes": {
+    "limit": 1048576,
+    "body": 3145728,
+    "with_content_length": {
+      "status": 502,
+      "bytes": 0,
+      "aborted": false
+    },
+    "chunked": {
+      "status": 200,
+      "bytes": 1045883,
+      "aborted": true
+    },
+    "control": {
+      "status": 200,
+      "bytes": 3145728,
+      "aborted": false
+    },
+    "log": [
+      {
+        "via": "http",
+        "host": "big.test",
+        "port": 80,
+        "decision": "limit",
+        "reason": "maxResponseBytes 1048576 (content-length 3145728)",
+        "connected_ip": "93.184.216.34",
+        "bytes_down": 0
+      },
+      {
+        "via": "http",
+        "host": "big.test",
+        "port": 80,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": null
+      },
+      {
+        "via": "http",
+        "host": "big.test",
+        "port": 80,
+        "decision": "limit",
+        "reason": "maxResponseBytes 1048576",
+        "connected_ip": "93.184.216.34",
+        "bytes_down": 1111410
+      }
+    ]
+  },
+  "tunnel_limits": {
+    "by_time": {
+      "status": 200,
+      "bytes": 11,
+      "closedMs": 604
+    },
+    "by_bytes": {
+      "status": 200,
+      "bytes": 5,
+      "closedMs": 306
+    },
+    "control": {
+      "status": 200,
+      "bytes": 28,
+      "closedMs": 1502
+    },
+    "log_time": [
+      {
+        "via": "connect",
+        "host": "trickle.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "trickle.test",
+        "port": 443,
+        "decision": "limit",
+        "reason": "maxConnectionMs 600",
+        "connected_ip": "93.184.216.34",
+        "bytes_down": 11
+      }
+    ],
+    "log_bytes": [
+      {
+        "via": "connect",
+        "host": "trickle.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "trickle.test",
+        "port": 443,
+        "decision": "limit",
+        "reason": "maxResponseBytes 5",
+        "connected_ip": "93.184.216.34",
+        "bytes_down": 6
+      }
+    ]
+  },
   "timeouts": {
     "silent": {
       "status": 502,
       "bytes": 0,
       "aborted": false
     },
-    "silent_ms": 415,
+    "silent_ms": 404,
     "hole": {
       "status": 502,
       "bytes": 0,
-      "closedMs": 305
+      "closedMs": 303
     },
-    "hole_ms": 305,
+    "hole_ms": 303,
     "log": [
       {
         "via": "http",
@@ -37,5 +219,173 @@
         ]
       }
     ]
+  },
+  "max_connections": {
+    "limited": {
+      "statuses": [
+        0,
+        200,
+        200
+      ],
+      "log": [
+        {
+          "via": "tcp",
+          "host": "",
+          "port": 0,
+          "decision": "limit",
+          "reason": "maxConnections 2",
+          "connected_ip": null
+        },
+        {
+          "via": "connect",
+          "host": "trickle.test",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "93.184.216.34",
+          "peer_pid": null
+        },
+        {
+          "via": "connect",
+          "host": "trickle.test",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "93.184.216.34",
+          "peer_pid": null
+        }
+      ]
+    },
+    "control": {
+      "statuses": [
+        200,
+        200,
+        200
+      ],
+      "log": [
+        {
+          "via": "connect",
+          "host": "trickle.test",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "93.184.216.34",
+          "peer_pid": null
+        },
+        {
+          "via": "connect",
+          "host": "trickle.test",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "93.184.216.34",
+          "peer_pid": null
+        },
+        {
+          "via": "connect",
+          "host": "trickle.test",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "93.184.216.34",
+          "peer_pid": null
+        }
+      ]
+    }
+  },
+  "happy_eyeballs": {
+    "dual": {
+      "status": 200,
+      "bytes": 0,
+      "closedMs": 4
+    },
+    "v6only": {
+      "status": 502,
+      "bytes": 0,
+      "closedMs": 1
+    },
+    "mixed": {
+      "status": 403,
+      "bytes": 0,
+      "closedMs": 2
+    },
+    "mixed2": {
+      "status": 403,
+      "bytes": 0,
+      "closedMs": 2
+    },
+    "dial_calls": [
+      "2606:4700:4700:0:0:0:0:1111",
+      "93.184.216.34",
+      "2606:4700:4700:0:0:0:0:1111"
+    ],
+    "log": [
+      {
+        "via": "connect",
+        "host": "dual.test",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "93.184.216.34",
+        "dial_failures": [
+          {
+            "ip": "2606:4700:4700:0:0:0:0:1111",
+            "error": "connect ECONNREFUSED 127.0.0.1:1"
+          }
+        ],
+        "peer_pid": null
+      },
+      {
+        "via": "connect",
+        "host": "v6only.test",
+        "port": 443,
+        "decision": "error",
+        "reason": "upstream: 2606:4700:4700:0:0:0:0:1111: connect ECONNREFUSED 127.0.0.1:1",
+        "connected_ip": null,
+        "dial_failures": [
+          {
+            "ip": "2606:4700:4700:0:0:0:0:1111",
+            "error": "connect ECONNREFUSED 127.0.0.1:1"
+          }
+        ]
+      },
+      {
+        "via": "connect",
+        "host": "mixed.test",
+        "port": 443,
+        "decision": "deny",
+        "reason": "серед A/AAAA є заблокована 10.0.0.1: 10.0.0.0/8 private RFC1918 (§49)",
+        "connected_ip": null
+      },
+      {
+        "via": "connect",
+        "host": "mixed2.test",
+        "port": 443,
+        "decision": "deny",
+        "reason": "серед A/AAAA є заблокована fd00:0:0:0:0:0:0:1: fc00::/7 unique-local (§49; вкл. AWS metadata fd00:ec2::254)",
+        "connected_ip": null
+      }
+    ]
+  },
+  "site_denylist": {
+    "denied": [
+      {
+        "via": "connect",
+        "host": "<secret>",
+        "port": 443,
+        "decision": "deny",
+        "reason": "SITE_DENYLIST (sha256:155ff5988102…)",
+        "connected_ip": null
+      },
+      {
+        "via": "connect",
+        "host": "img.<secret>",
+        "port": 443,
+        "decision": "deny",
+        "reason": "SITE_DENYLIST (sha256:155ff5988102…)",
+        "connected_ip": null
+      }
+    ],
+    "control_allow": 1
   }
 }

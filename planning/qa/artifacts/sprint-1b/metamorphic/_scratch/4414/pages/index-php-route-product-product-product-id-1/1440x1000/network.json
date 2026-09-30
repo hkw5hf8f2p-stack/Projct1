@@ -1,0 +1,22 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4415/img/glass-kettle.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 299,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4415/index.php?route=product/product&product_id=1",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

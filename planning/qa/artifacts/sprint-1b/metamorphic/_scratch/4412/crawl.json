@@ -1,0 +1,362 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://127.0.0.1:4413/",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0,
+      "page_type": "homepage"
+    },
+    {
+      "url": "http://127.0.0.1:4413/catalog",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.95,
+      "order": 1,
+      "page_type": "category"
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/glass-kettle",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 2,
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/travel-thermos",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 3,
+      "page_type": "product"
+    },
+    {
+      "url": "http://127.0.0.1:4413/shipping",
+      "depth": 1,
+      "class": "shipping",
+      "priority": 0.8,
+      "order": 4,
+      "page_type": "info_shipping"
+    },
+    {
+      "url": "http://127.0.0.1:4413/about",
+      "depth": 1,
+      "class": "about",
+      "priority": 0.6,
+      "order": 5,
+      "page_type": "about"
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/wooden-board",
+      "depth": 1,
+      "class": "other",
+      "priority": 0.35,
+      "order": 6,
+      "page_type": "product"
+    }
+  ],
+  "engine": "v2",
+  "pages": [
+    {
+      "url": "http://127.0.0.1:4413/",
+      "page_id": "index",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": true,
+        "rule": "3:home",
+        "scores": {
+          "P": 2,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "P5"
+        ],
+        "per_view": {
+          "D": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 2,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 2,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/catalog",
+      "page_id": "catalog",
+      "page_type": "category",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "5:category",
+        "scores": {
+          "P": 1,
+          "K": 4.5,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "K1:2",
+          "K+1",
+          "Kurl"
+        ],
+        "per_view": {
+          "D": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 1,
+            "K": 4.5,
+            "C": 0
+          },
+          "M": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 1,
+            "K": 4.5,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/glass-kettle",
+      "page_id": "product-glass-kettle",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7.5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/travel-thermos",
+      "page_id": "product-travel-thermos",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7.5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/shipping",
+      "page_id": "shipping",
+      "page_type": "info_shipping",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "7:info_shipping",
+        "scores": {
+          "P": 1,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "info_shipping",
+            "rule": "7:info_shipping",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "info_shipping",
+            "rule": "7:info_shipping",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/about",
+      "page_id": "about",
+      "page_type": "about",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "7:about",
+        "scores": {
+          "P": 1,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4"
+        ],
+        "per_view": {
+          "D": {
+            "type": "about",
+            "rule": "7:about",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "about",
+            "rule": "7:about",
+            "P": 1,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4413/product/wooden-board",
+      "page_id": "product-wooden-board",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7.5,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P3prox",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7.5,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "edges": [
+    "http://127.0.0.1:4413/ -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/ -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/ -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/ -> http://127.0.0.1:4413/product/wooden-board",
+    "http://127.0.0.1:4413/ -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/about -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/about -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/about -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/about -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/product/glass-kettle",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/product/travel-thermos",
+    "http://127.0.0.1:4413/catalog -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/product/glass-kettle -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/product/glass-kettle -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/product/glass-kettle -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/product/glass-kettle -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/product/travel-thermos -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/product/travel-thermos -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/product/travel-thermos -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/product/travel-thermos -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/product/wooden-board -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/product/wooden-board -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/product/wooden-board -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/product/wooden-board -> http://127.0.0.1:4413/shipping",
+    "http://127.0.0.1:4413/shipping -> http://127.0.0.1:4413/",
+    "http://127.0.0.1:4413/shipping -> http://127.0.0.1:4413/about",
+    "http://127.0.0.1:4413/shipping -> http://127.0.0.1:4413/catalog",
+    "http://127.0.0.1:4413/shipping -> http://127.0.0.1:4413/shipping"
+  ]
+}

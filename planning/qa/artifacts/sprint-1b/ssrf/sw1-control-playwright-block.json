@@ -1,0 +1,34 @@
+{
+ "scenario": "S1a: serviceWorkers:'block' + context.route",
+ "registration": {
+  "instance": "ok:undefined",
+  "proto": "ok:ServiceWorkerRegistration",
+  "iframe": "ok:ServiceWorkerRegistration"
+ },
+ "target_received": [
+  {
+   "run": "old",
+   "method": "GET",
+   "path": "/swx-proto.js"
+  },
+  {
+   "run": "old",
+   "method": "POST",
+   "path": "/swx-post/proto"
+  },
+  {
+   "run": "old",
+   "method": "GET",
+   "path": "/swx-iframe.js"
+  },
+  {
+   "run": "old",
+   "method": "POST",
+   "path": "/swx-post/iframe"
+  }
+ ],
+ "layer2_blocked": [
+  "service_worker - http://127.0.0.1:43165/swx-proto.js",
+  "service_worker - http://127.0.0.1:43165/swx-iframe.js"
+ ]
+}

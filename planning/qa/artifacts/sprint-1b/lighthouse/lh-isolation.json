@@ -9,7 +9,7 @@
     "ok": false,
     "error": "lighthouse timeout 4000 мс",
     "alive_after": false,
-    "duration_ms": 4597
+    "duration_ms": 4632
   },
   "bad_chrome_path": {
     "ok": false,

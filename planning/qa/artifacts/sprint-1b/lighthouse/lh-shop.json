@@ -3,19 +3,19 @@
     {
       "ok": true,
       "error": null,
-      "url": "http://127.0.0.1:34671/",
+      "url": "http://127.0.0.1:44401/",
       "form_factor": "desktop",
-      "duration_ms": 5302,
+      "duration_ms": 6024,
       "lighthouse_version": "13.5.0",
       "runtime_error": null,
       "scores": {
-        "performance": 0.95,
+        "performance": 0.94,
         "accessibility": 1
       },
       "lhr_path": "lighthouse-desktop.json",
       "proxy_auth_mode": "peer-or-token",
       "chrome": {
-        "pid": 1809,
+        "pid": 4257,
         "alive_after": false,
         "flags": [
           "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
@@ -41,7 +41,7 @@
           "--disable-prompt-on-repost",
           "--disable-domain-reliability",
           "--propagate-iph-for-testing",
-          "--proxy-server=http://127.0.0.1:44211",
+          "--proxy-server=http://127.0.0.1:42155",
           "--proxy-bypass-list=<-loopback>",
           "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
           "--webrtc-ip-handling-policy=disable_non_proxied_udp",
@@ -57,7 +57,7 @@
         ],
         "processes": [
           {
-            "pid": 1809,
+            "pid": 4257,
             "type": "browser",
             "no_sandbox": false,
             "env_keys": [
@@ -71,7 +71,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1854,
+            "pid": 4304,
             "type": "utility",
             "no_sandbox": false,
             "env_keys": null,
@@ -79,7 +79,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1873,
+            "pid": 4320,
             "type": "broker",
             "no_sandbox": false,
             "env_keys": [],
@@ -87,7 +87,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1818,
+            "pid": 4266,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -95,7 +95,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1820,
+            "pid": 4268,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -103,7 +103,31 @@
             "secret_hits": 0
           },
           {
-            "pid": 1914,
+            "pid": 4359,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 4341,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 4340,
+            "type": "renderer",
+            "no_sandbox": false,
+            "env_keys": null,
+            "seccomp": 2,
+            "secret_hits": 0
+          },
+          {
+            "pid": 4305,
             "type": "utility",
             "no_sandbox": false,
             "env_keys": null,
@@ -111,39 +135,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1902,
-            "type": "renderer",
-            "no_sandbox": false,
-            "env_keys": null,
-            "seccomp": 2,
-            "secret_hits": 0
-          },
-          {
-            "pid": 1885,
-            "type": "renderer",
-            "no_sandbox": false,
-            "env_keys": null,
-            "seccomp": 2,
-            "secret_hits": 0
-          },
-          {
-            "pid": 1884,
-            "type": "renderer",
-            "no_sandbox": false,
-            "env_keys": null,
-            "seccomp": 2,
-            "secret_hits": 0
-          },
-          {
-            "pid": 1855,
-            "type": "utility",
-            "no_sandbox": false,
-            "env_keys": null,
-            "seccomp": 2,
-            "secret_hits": 0
-          },
-          {
-            "pid": 1817,
+            "pid": 4264,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -151,7 +143,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1841,
+            "pid": 4290,
             "type": "gpu-process",
             "no_sandbox": false,
             "env_keys": null,
@@ -166,11 +158,31 @@
           "method": "GET",
           "host": "clients2.google.com",
           "port": 80,
-          "path": "/time/1/current?cup2key=9:mSJl0x1hj_HaCwxPz4reXF0VxoQXbDaT4jszsGDj72Q&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "path": "/time/1/current?cup2key=9:zB3j7faTR5d0cxnwKypbTQ_EGujC6NKn_Y1LqMmTfPo&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "173.194.195.139",
-          "peer_pid": 1854
+          "connected_ip": "209.85.145.101",
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "unauthorized",
+          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
+          "connected_ip": null,
+          "peer_pid": null
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.206.84",
+          "peer_pid": 4304
         },
         {
           "via": "connect",
@@ -180,7 +192,27 @@
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
           "connected_ip": "142.251.152.119",
-          "peer_pid": 1854
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.155.119",
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 4304
         },
         {
           "via": "connect",
@@ -189,8 +221,71 @@
           "port": 443,
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.250.152.84",
-          "peer_pid": 1854
+          "connected_ip": "173.194.193.84",
+          "peer_pid": 4304
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4304
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.64.84",
+          "peer_pid": 4304
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "android.clients.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.194.139",
+          "peer_pid": 4304
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4304
         },
         {
           "via": "connect",
@@ -200,7 +295,7 @@
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
           "connected_ip": "142.251.156.119",
-          "peer_pid": 1854
+          "peer_pid": 4304
         },
         {
           "via": "connect",
@@ -209,101 +304,8 @@
           "port": 443,
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.150.119",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.153.119",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "accounts.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.250.152.84",
-          "peer_pid": 1854
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1854
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/img/hero.jpg",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.157.119",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "accounts.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.183.84",
-          "peer_pid": 1854
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/img/hero.jpg",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.153.119",
-          "peer_pid": 1854
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.151.119",
-          "peer_pid": 1854
+          "connected_ip": "142.251.152.119",
+          "peer_pid": 4304
         },
         {
           "via": "connect",
@@ -311,22 +313,22 @@
           "host": "www.google.com",
           "port": 443,
           "decision": "unauthorized",
-          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+          "reason": "клієнт проксі відхилено: сокет клієнта не знайдено в /proc/net/tcp",
           "connected_ip": null,
           "peer_pid": null
         }
       ],
       "evidence": [
         {
-          "id": "ev_970dcb080ccd",
+          "id": "ev_43a8249c5cee",
           "type": "lighthouse",
           "source_class": "BENCHMARKED",
-          "page_url": "http://127.0.0.1:34671/",
+          "page_url": "http://127.0.0.1:44401/",
           "self_confirming": false,
           "detector_id": "lighthouse:performance",
           "claim_kind": "lighthouse_category_score",
           "viewport": "desktop",
-          "description": "Lighthouse 13.5.0 performance (desktop): 95/100; аудитів із score < 0.9: 1",
+          "description": "Lighthouse 13.5.0 performance (desktop): 94/100; аудитів із score < 0.9: 1",
           "artifact_reference": "lighthouse-desktop.json",
           "selector_or_region": {
             "selector": "lhr.categories.performance",
@@ -334,33 +336,33 @@
           },
           "data": {
             "category": "performance",
-            "score": 0.95,
-            "score_100": 95,
+            "score": 0.94,
+            "score_100": 94,
             "lighthouse_version": "13.5.0",
             "throttling_method": "simulate",
-            "benchmark_index": 2450,
+            "benchmark_index": 1785,
             "failing_audits": [
               {
                 "id": "largest-contentful-paint",
-                "score": 0.78,
+                "score": 0.77,
                 "title": "Largest Contentful Paint"
               }
             ],
             "metrics": {
-              "first-contentful-paint": 173.91845,
-              "largest-contentful-paint": 1571.8368999999998,
+              "first-contentful-paint": 193.4765,
+              "largest-contentful-paint": 1586.953,
               "total-blocking-time": 0,
               "cumulative-layout-shift": 0,
-              "speed-index": 173.91845
+              "speed-index": 193.4765
             },
             "run_warnings": []
           }
         },
         {
-          "id": "ev_7ff64924e5b2",
+          "id": "ev_71212398cd50",
           "type": "lighthouse",
           "source_class": "BENCHMARKED",
-          "page_url": "http://127.0.0.1:34671/",
+          "page_url": "http://127.0.0.1:44401/",
           "self_confirming": false,
           "detector_id": "lighthouse:accessibility",
           "claim_kind": "lighthouse_category_score",
@@ -377,7 +379,7 @@
             "score_100": 100,
             "lighthouse_version": "13.5.0",
             "throttling_method": "simulate",
-            "benchmark_index": 2450,
+            "benchmark_index": 1785,
             "failing_audits": [],
             "run_warnings": []
           }
@@ -387,9 +389,9 @@
     {
       "ok": true,
       "error": null,
-      "url": "http://127.0.0.1:34671/",
+      "url": "http://127.0.0.1:44401/",
       "form_factor": "mobile",
-      "duration_ms": 5278,
+      "duration_ms": 5840,
       "lighthouse_version": "13.5.0",
       "runtime_error": null,
       "scores": {
@@ -399,7 +401,7 @@
       "lhr_path": "lighthouse-mobile.json",
       "proxy_auth_mode": "peer-or-token",
       "chrome": {
-        "pid": 1943,
+        "pid": 4470,
         "alive_after": false,
         "flags": [
           "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
@@ -425,7 +427,7 @@
           "--disable-prompt-on-repost",
           "--disable-domain-reliability",
           "--propagate-iph-for-testing",
-          "--proxy-server=http://127.0.0.1:45399",
+          "--proxy-server=http://127.0.0.1:40517",
           "--proxy-bypass-list=<-loopback>",
           "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
           "--webrtc-ip-handling-policy=disable_non_proxied_udp",
@@ -441,7 +443,7 @@
         ],
         "processes": [
           {
-            "pid": 1943,
+            "pid": 4470,
             "type": "browser",
             "no_sandbox": false,
             "env_keys": [
@@ -455,7 +457,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1989,
+            "pid": 4518,
             "type": "utility",
             "no_sandbox": false,
             "env_keys": null,
@@ -463,7 +465,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 2005,
+            "pid": 4520,
             "type": "broker",
             "no_sandbox": false,
             "env_keys": [],
@@ -471,7 +473,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1952,
+            "pid": 4479,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -479,7 +481,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1954,
+            "pid": 4481,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -487,7 +489,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 2064,
+            "pid": 4604,
             "type": "utility",
             "no_sandbox": false,
             "env_keys": null,
@@ -495,7 +497,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 2053,
+            "pid": 4574,
             "type": "renderer",
             "no_sandbox": false,
             "env_keys": null,
@@ -503,7 +505,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 2024,
+            "pid": 4556,
             "type": "renderer",
             "no_sandbox": false,
             "env_keys": null,
@@ -511,7 +513,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 2020,
+            "pid": 4555,
             "type": "renderer",
             "no_sandbox": false,
             "env_keys": null,
@@ -519,7 +521,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1990,
+            "pid": 4521,
             "type": "utility",
             "no_sandbox": false,
             "env_keys": null,
@@ -527,7 +529,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1951,
+            "pid": 4478,
             "type": "zygote",
             "no_sandbox": false,
             "env_keys": null,
@@ -535,7 +537,7 @@
             "secret_hits": 0
           },
           {
-            "pid": 1976,
+            "pid": 4503,
             "type": "gpu-process",
             "no_sandbox": false,
             "env_keys": null,
@@ -550,11 +552,31 @@
           "method": "GET",
           "host": "clients2.google.com",
           "port": 80,
-          "path": "/time/1/current?cup2key=9:avK9sZ1tMNT4dY8ny9U8Bmr8X4vWjogzMKYEfGji-9g&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "path": "/time/1/current?cup2key=9:yQCQ4zjSjoGgUL5ck8j3LXjEDaAqK5nL1MeBZntOXt0&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "173.194.64.139",
-          "peer_pid": 1989
+          "connected_ip": "209.85.145.102",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.156.119",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.206.84",
+          "peer_pid": 4518
         },
         {
           "via": "connect",
@@ -564,110 +586,7 @@
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
           "connected_ip": "142.251.152.119",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "accounts.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.250.152.84",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.157.119",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.152.119",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.153.119",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "accounts.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.183.84",
-          "peer_pid": 1989
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1989
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/img/hero.jpg",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "www.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.150.119",
-          "peer_pid": 1989
-        },
-        {
-          "via": "connect",
-          "method": "CONNECT",
-          "host": "accounts.google.com",
-          "port": 443,
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.250.152.84",
-          "peer_pid": 1989
-        },
-        {
-          "via": "http",
-          "method": "GET",
-          "host": "127.0.0.1",
-          "port": 34671,
-          "path": "/img/hero.jpg",
-          "decision": "allow",
-          "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "127.0.0.1",
-          "peer_pid": 1989
+          "peer_pid": 4518
         },
         {
           "via": "connect",
@@ -677,7 +596,7 @@
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
           "connected_ip": "142.251.154.119",
-          "peer_pid": 1989
+          "peer_pid": 4518
         },
         {
           "via": "connect",
@@ -686,8 +605,91 @@
           "port": 443,
           "decision": "allow",
           "reason": "усі адреси дозволені; TCP до перевіреної IP",
-          "connected_ip": "142.251.157.119",
-          "peer_pid": 1989
+          "connected_ip": "142.251.151.119",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "173.194.206.84",
+          "peer_pid": 4518
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4518
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "accounts.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "209.85.145.84",
+          "peer_pid": 4518
+        },
+        {
+          "via": "http",
+          "method": "GET",
+          "host": "127.0.0.1",
+          "port": 44401,
+          "path": "/img/hero.jpg",
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "127.0.0.1",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.153.119",
+          "peer_pid": 4518
+        },
+        {
+          "via": "connect",
+          "method": "CONNECT",
+          "host": "www.google.com",
+          "port": 443,
+          "decision": "allow",
+          "reason": "усі адреси дозволені; TCP до перевіреної IP",
+          "connected_ip": "142.251.155.119",
+          "peer_pid": 4518
         },
         {
           "via": "connect",
@@ -695,17 +697,17 @@
           "host": "www.google.com",
           "port": 443,
           "decision": "unauthorized",
-          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+          "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
           "connected_ip": null,
           "peer_pid": null
         }
       ],
       "evidence": [
         {
-          "id": "ev_e93e0e60dc71",
+          "id": "ev_f0d0c31125e4",
           "type": "lighthouse",
           "source_class": "BENCHMARKED",
-          "page_url": "http://127.0.0.1:34671/",
+          "page_url": "http://127.0.0.1:44401/",
           "self_confirming": false,
           "detector_id": "lighthouse:performance",
           "claim_kind": "lighthouse_category_score",
@@ -722,7 +724,7 @@
             "score_100": 75,
             "lighthouse_version": "13.5.0",
             "throttling_method": "simulate",
-            "benchmark_index": 2589.5,
+            "benchmark_index": 1782.5,
             "failing_audits": [
               {
                 "id": "largest-contentful-paint",
@@ -731,20 +733,20 @@
               }
             ],
             "metrics": {
-              "first-contentful-paint": 626.8027,
-              "largest-contentful-paint": 9159.6054,
+              "first-contentful-paint": 652.664625,
+              "largest-contentful-paint": 9165.329249999999,
               "total-blocking-time": 0,
               "cumulative-layout-shift": 0,
-              "speed-index": 626.8027
+              "speed-index": 652.664625
             },
             "run_warnings": []
           }
         },
         {
-          "id": "ev_df23cf70c80d",
+          "id": "ev_bf0e385ca929",
           "type": "lighthouse",
           "source_class": "BENCHMARKED",
-          "page_url": "http://127.0.0.1:34671/",
+          "page_url": "http://127.0.0.1:44401/",
           "self_confirming": false,
           "detector_id": "lighthouse:accessibility",
           "claim_kind": "lighthouse_category_score",
@@ -761,7 +763,7 @@
             "score_100": 93,
             "lighthouse_version": "13.5.0",
             "throttling_method": "simulate",
-            "benchmark_index": 2589.5,
+            "benchmark_index": 1782.5,
             "failing_audits": [
               {
                 "id": "button-name",
@@ -778,9 +780,9 @@
   "prod_without_allowlist": {
     "ok": false,
     "error": "ERRORED_DOCUMENT_REQUEST: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 403)",
-    "url": "http://127.0.0.1:34671/",
+    "url": "http://127.0.0.1:44401/",
     "form_factor": "desktop",
-    "duration_ms": 4403,
+    "duration_ms": 4778,
     "lighthouse_version": "13.5.0",
     "runtime_error": "ERRORED_DOCUMENT_REQUEST: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 403)",
     "scores": {
@@ -790,7 +792,7 @@
     "lhr_path": "lighthouse-desktop.json",
     "proxy_auth_mode": "peer-or-token",
     "chrome": {
-      "pid": 2092,
+      "pid": 4690,
       "alive_after": false,
       "flags": [
         "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
@@ -816,7 +818,7 @@
         "--disable-prompt-on-repost",
         "--disable-domain-reliability",
         "--propagate-iph-for-testing",
-        "--proxy-server=http://127.0.0.1:38819",
+        "--proxy-server=http://127.0.0.1:42801",
         "--proxy-bypass-list=<-loopback>",
         "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
         "--webrtc-ip-handling-policy=disable_non_proxied_udp",
@@ -832,7 +834,7 @@
       ],
       "processes": [
         {
-          "pid": 2092,
+          "pid": 4690,
           "type": "browser",
           "no_sandbox": false,
           "env_keys": [
@@ -846,7 +848,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2138,
+          "pid": 4735,
           "type": "utility",
           "no_sandbox": false,
           "env_keys": null,
@@ -854,7 +856,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2154,
+          "pid": 4736,
           "type": "broker",
           "no_sandbox": false,
           "env_keys": [],
@@ -862,7 +864,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2101,
+          "pid": 4699,
           "type": "zygote",
           "no_sandbox": false,
           "env_keys": null,
@@ -870,7 +872,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2103,
+          "pid": 4701,
           "type": "zygote",
           "no_sandbox": false,
           "env_keys": null,
@@ -878,7 +880,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2199,
+          "pid": 4821,
           "type": "utility",
           "no_sandbox": false,
           "env_keys": null,
@@ -886,7 +888,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2185,
+          "pid": 4791,
           "type": "renderer",
           "no_sandbox": false,
           "env_keys": null,
@@ -894,7 +896,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2168,
+          "pid": 4766,
           "type": "renderer",
           "no_sandbox": false,
           "env_keys": null,
@@ -902,7 +904,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2167,
+          "pid": 4765,
           "type": "renderer",
           "no_sandbox": false,
           "env_keys": null,
@@ -910,7 +912,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2139,
+          "pid": 4742,
           "type": "utility",
           "no_sandbox": false,
           "env_keys": null,
@@ -918,7 +920,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2100,
+          "pid": 4698,
           "type": "zygote",
           "no_sandbox": false,
           "env_keys": null,
@@ -926,7 +928,7 @@
           "secret_hits": 0
         },
         {
-          "pid": 2125,
+          "pid": 4722,
           "type": "gpu-process",
           "no_sandbox": false,
           "env_keys": null,
@@ -941,11 +943,11 @@
         "method": "GET",
         "host": "clients2.google.com",
         "port": 80,
-        "path": "/time/1/current?cup2key=9:r78VnZJES2nMbAyw9Rf_IFAOVHnLyZq8FWOkLxasT3c&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path": "/time/1/current?cup2key=9:q7pyKkumjK2X1vTJWRiwi0mImJPmhembLR_edk2PAoE&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "108.177.121.101",
-        "peer_pid": 2138
+        "connected_ip": "173.194.206.113",
+        "peer_pid": 4735
       },
       {
         "via": "connect",
@@ -953,7 +955,7 @@
         "host": "www.google.com",
         "port": 443,
         "decision": "unauthorized",
-        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 782",
+        "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
         "connected_ip": null,
         "peer_pid": null
       },
@@ -964,8 +966,18 @@
         "port": 443,
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "142.251.183.84",
-        "peer_pid": 2138
+        "connected_ip": "173.194.206.84",
+        "peer_pid": 4735
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.153.119",
+        "peer_pid": 4735
       },
       {
         "via": "connect",
@@ -975,7 +987,7 @@
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
         "connected_ip": "142.251.152.119",
-        "peer_pid": 2138
+        "peer_pid": 4735
       },
       {
         "via": "connect",
@@ -984,18 +996,8 @@
         "port": 443,
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "142.251.152.119",
-        "peer_pid": 2138
-      },
-      {
-        "via": "connect",
-        "method": "CONNECT",
-        "host": "www.google.com",
-        "port": 443,
-        "decision": "allow",
-        "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "142.251.151.119",
-        "peer_pid": 2138
+        "connected_ip": "142.251.156.119",
+        "peer_pid": 4735
       },
       {
         "via": "connect",
@@ -1005,33 +1007,23 @@
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
         "connected_ip": "142.251.183.84",
-        "peer_pid": 2138
+        "peer_pid": 4735
       },
       {
         "via": "http",
         "method": "GET",
         "host": "127.0.0.1",
-        "port": 34671,
+        "port": 44401,
         "path": "/",
         "decision": "deny",
         "reason": "IP-літерал 127.0.0.1 заблоковано: 127.0.0.0/8 loopback (§49)",
         "connected_ip": null
       },
       {
-        "via": "connect",
-        "method": "CONNECT",
-        "host": "www.google.com",
-        "port": 443,
-        "decision": "allow",
-        "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "142.251.150.119",
-        "peer_pid": 2138
-      },
-      {
         "via": "http",
         "method": "GET",
         "host": "127.0.0.1",
-        "port": 34671,
+        "port": 44401,
         "path": "/favicon.ico",
         "decision": "deny",
         "reason": "IP-літерал 127.0.0.1 заблоковано: 127.0.0.0/8 loopback (§49)",
@@ -1040,12 +1032,22 @@
       {
         "via": "connect",
         "method": "CONNECT",
+        "host": "www.google.com",
+        "port": 443,
+        "decision": "allow",
+        "reason": "усі адреси дозволені; TCP до перевіреної IP",
+        "connected_ip": "142.251.156.119",
+        "peer_pid": 4735
+      },
+      {
+        "via": "connect",
+        "method": "CONNECT",
         "host": "accounts.google.com",
         "port": 443,
         "decision": "allow",
         "reason": "усі адреси дозволені; TCP до перевіреної IP",
-        "connected_ip": "142.250.152.84",
-        "peer_pid": 2138
+        "connected_ip": "209.85.200.84",
+        "peer_pid": 4735
       },
       {
         "via": "connect",
@@ -1062,7 +1064,7 @@
   },
   "shop_request_log_sample": [
     {
-      "ts": "2026-09-30T00:01:12.124Z",
+      "ts": "2026-09-30T00:06:09.235Z",
       "method": "GET",
       "path": "/",
       "status": 200,
@@ -1071,7 +1073,7 @@
       "logical": "home"
     },
     {
-      "ts": "2026-09-30T00:01:12.139Z",
+      "ts": "2026-09-30T00:06:09.263Z",
       "method": "GET",
       "path": "/img/hero.jpg",
       "status": 200,
@@ -1080,7 +1082,7 @@
       "logical": null
     },
     {
-      "ts": "2026-09-30T00:01:14.760Z",
+      "ts": "2026-09-30T00:06:12.043Z",
       "method": "GET",
       "path": "/img/hero.jpg",
       "status": 200,
@@ -1089,7 +1091,7 @@
       "logical": null
     },
     {
-      "ts": "2026-09-30T00:01:17.448Z",
+      "ts": "2026-09-30T00:06:15.204Z",
       "method": "GET",
       "path": "/",
       "status": 200,
@@ -1098,7 +1100,7 @@
       "logical": "home"
     },
     {
-      "ts": "2026-09-30T00:01:17.463Z",
+      "ts": "2026-09-30T00:06:15.234Z",
       "method": "GET",
       "path": "/img/hero.jpg",
       "status": 200,
@@ -1107,7 +1109,7 @@
       "logical": null
     },
     {
-      "ts": "2026-09-30T00:01:20.079Z",
+      "ts": "2026-09-30T00:06:17.994Z",
       "method": "GET",
       "path": "/img/hero.jpg",
       "status": 200,

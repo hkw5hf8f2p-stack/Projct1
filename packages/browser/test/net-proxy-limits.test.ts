@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startEgressProxy, type Dialer, type EgressProxy, type ProxyDecision, type Resolver } from "../src/net/egress-proxy.js";
 import { peerCheckAvailable } from "../src/net/peer-check.js";
-import { assertSiteAllowed, matchSiteDenylist, parseSiteDenylist } from "../src/net/site-denylist.js";
+import { assertSiteAllowed, isSiteDenied, matchSiteDenylist, parseSiteDenylist, SITE_DENYLIST_ENV, loadSiteDenylist } from "../src/net/site-denylist.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const ART = path.join(ROOT, "planning/qa/artifacts/sprint-1b/proxy");
@@ -375,6 +375,20 @@ describe("SITE_DENYLIST (G0-13)", () => {
     expect(() => parseSiteDenylist("localhost")).toThrow(/некоректний/);
     expect(() => assertSiteAllowed("https://shop.denied.example/p", l)).toThrow(/SITELENS_SITE_DENYLIST/);
     expect(() => assertSiteAllowed("https://allowed.example/p", l)).not.toThrow();
+  });
+
+  it("isSiteDenied (для scripts/audit-live.ts): URL і хост, env-список, fail-closed на зламаному URL; контроль — порожній список і схожі імена → false", () => {
+    const l = parseSiteDenylist(`denied.example sha256:${hash}`);
+    expect(isSiteDenied("https://shop.denied.example/x?y=1", l)).toBe(true);
+    expect(isSiteDenied("DENIED.EXAMPLE.", l)).toBe(true);
+    expect(isSiteDenied(`https://www.${secret}/`, l)).toBe(true);
+    expect(isSiteDenied("http://[::1", l)).toBe(true); // зламаний URL — fail-closed
+    expect(isSiteDenied("https://notdenied.example/", l)).toBe(false);
+    expect(isSiteDenied("https://denied.example.evil.test/", l)).toBe(false);
+    expect(isSiteDenied("https://denied.example/", parseSiteDenylist(""))).toBe(false);
+    const env = { [SITE_DENYLIST_ENV]: "denied.example" } as NodeJS.ProcessEnv;
+    expect(isSiteDenied("https://denied.example/", loadSiteDenylist(env))).toBe(true);
+    expect(isSiteDenied("https://denied.example/", loadSiteDenylist({}))).toBe(false);
   });
 
   it("проксі відхиляє denylist-хост ДО резолву (у т.ч. підресурси); контроль: без denylist той самий хост проходить", async () => {

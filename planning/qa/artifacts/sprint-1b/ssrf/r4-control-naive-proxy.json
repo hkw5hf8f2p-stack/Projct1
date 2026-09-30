@@ -1,0 +1,279 @@
+{
+ "run": "R4",
+ "scenario": "наївний проксі (TOCTOU-резолв), ті самі прапорці й шар 2",
+ "canary_hits": [
+  {
+   "run": "R4",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v42-start"
+  },
+  {
+   "run": "R4",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v40-a"
+  },
+  {
+   "run": "R4",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v41-mixed"
+  }
+ ],
+ "naive_log": [
+  {
+   "host": "127.0.0.2",
+   "path": "/v17-import.css",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v05-short",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v01-img",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "v39-dnsctl.test",
+   "path": "/x.png",
+   "decision": "deny: ENOTFOUND v39-dnsctl.test"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v09-fullwidth",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v11-dot",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v02-decimal",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v12-iframe",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v34-script.js",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v03-octal",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v04-hex",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v19-preload.png",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "0.0.0.0",
+   "path": "/v07-zero",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "localhost",
+   "path": "/v08-localhost",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "localhost.",
+   "path": "/v08-localhost-dot",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "localhost",
+   "path": "/v10-idn",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "169.254.169.254",
+   "path": "/v50-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "metadata.google.internal",
+   "path": "/v51-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "10.0.0.1",
+   "path": "/v52-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "172.16.0.1",
+   "path": "/v53-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "192.168.1.1",
+   "path": "/v54-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "100.64.0.1",
+   "path": "/v55-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[fc00::1]",
+   "path": "/v56-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[fe80::1]",
+   "path": "/v57-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[::1]",
+   "path": "/v58-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "rebind2.test",
+   "path": "/v42-start",
+   "decision": "allow",
+   "ip": "127.0.0.2"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v18-prefetch",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v15-bg.png",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v35-object",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[::ffff:7f00:2]",
+   "path": "/v06-mapped",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v13-fetch",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v14-xhr",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "rebind.test",
+   "path": "/v40-a",
+   "decision": "allow",
+   "ip": "127.0.0.2"
+  },
+  {
+   "host": "mixed.test",
+   "path": "/v41-mixed",
+   "decision": "allow",
+   "ip": "127.0.0.2"
+  },
+  {
+   "host": "127.0.0.2.nip.io",
+   "path": "/v43-nip",
+   "decision": "deny: first address private"
+  },
+  {
+   "host": "cname.test",
+   "path": "/v44-cname",
+   "decision": "deny: first address private"
+  },
+  {
+   "host": "v6only.test",
+   "path": "/v45-v6only",
+   "decision": "deny: first address private"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v16-font.woff",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v32-sse",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v28-r302",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v29-r301",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "10.0.0.1",
+   "path": "/v52b-redirect",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v30-r307",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v31-chain",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "rebind.test",
+   "path": "/v40-b",
+   "decision": "deny: first address private"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v21-location",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v20-meta",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v33-worker",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v23-popup",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v22-toploc",
+   "decision": "deny: literal/name deny"
+  }
+ ]
+}

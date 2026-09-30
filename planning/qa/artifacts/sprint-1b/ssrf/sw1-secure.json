@@ -1,0 +1,28 @@
+{
+ "secure": {
+  "registration": {
+   "instance": "rejected: SecurityError: Service Worker registration blocked by SiteLens",
+   "proto": "rejected: SecurityError: Service Worker registration blocked by SiteLens",
+   "iframe": "rejected: SecurityError: Service Worker registration blocked by SiteLens"
+  },
+  "target_received": [],
+  "layer2_blocked": []
+ },
+ "layer2_without_lockdown": {
+  "registration": {
+   "instance": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:43165/') with script ('http://127.0.0.1:43165/swx-instance.js'): An unknown error occurred when fetching the script.",
+   "proto": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:43165/') with script ('http://127.0.0.1:43165/swx-proto.js'): An unknown error occurred when fetching the script.",
+   "iframe": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:43165/') with script ('http://127.0.0.1:43165/swx-iframe.js'): An unknown error occurred when fetching the script."
+  },
+  "target_received": [],
+  "layer2_blocked": [
+   "service_worker - http://127.0.0.1:43165/swx-instance.js",
+   "service_worker GET http://127.0.0.1:43165/swx-instance.js",
+   "service_worker - http://127.0.0.1:43165/swx-proto.js",
+   "service_worker GET http://127.0.0.1:43165/swx-proto.js",
+   "service_worker - http://127.0.0.1:43165/swx-iframe.js",
+   "service_worker GET http://127.0.0.1:43165/swx-iframe.js"
+  ]
+ },
+ "canary_hits": []
+}

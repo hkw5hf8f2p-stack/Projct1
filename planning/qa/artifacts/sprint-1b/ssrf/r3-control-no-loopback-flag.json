@@ -1,0 +1,358 @@
+{
+ "run": "R3",
+ "scenario": "проксі є, --proxy-bypass-list=<-loopback> прибрано",
+ "canary_hits": [
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v17-import.css"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v01-img"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v03-octal"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v02-decimal"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v19-preload.png"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v04-hex"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v05-short"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v09-fullwidth"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v11-dot"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v34-script.js"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v12-iframe"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v18-prefetch"
+  },
+  {
+   "run": "R3",
+   "canary": "B",
+   "method": "GET",
+   "path": "/v08-localhost"
+  },
+  {
+   "run": "R3",
+   "canary": "B",
+   "method": "GET",
+   "path": "/v08-localhost-dot"
+  },
+  {
+   "run": "R3",
+   "canary": "B",
+   "method": "GET",
+   "path": "/v10-idn"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v35-object"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v15-bg.png"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v13-fetch"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v14-xhr"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v16-font.woff"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v32-sse"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v29-r301"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v28-r302"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v21-location"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v20-meta"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v30-r307"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v33-worker"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v31-chain"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v23-popup"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v22-toploc"
+  }
+ ],
+ "proxy_decisions": [
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "v39-dnsctl.test",
+   "port": 80,
+   "path": "/x.png",
+   "decision": "deny",
+   "reason": "резолв не вдався: ENOTFOUND v39-dnsctl.test",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "0.0.0.0",
+   "port": 4196,
+   "path": "/v07-zero",
+   "decision": "deny",
+   "reason": "IP-літерал 0.0.0.0 заблоковано: 0.0.0.0/8 this-network (B1)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "metadata.google.internal",
+   "port": 80,
+   "path": "/v51-nolistener",
+   "decision": "deny",
+   "reason": "заборонене ім'я хоста metadata.google.internal (metadata/loopback)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "10.0.0.1",
+   "port": 80,
+   "path": "/v52-nolistener",
+   "decision": "deny",
+   "reason": "IP-літерал 10.0.0.1 заблоковано: 10.0.0.0/8 private RFC1918 (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "172.16.0.1",
+   "port": 80,
+   "path": "/v53-nolistener",
+   "decision": "deny",
+   "reason": "IP-літерал 172.16.0.1 заблоковано: 172.16.0.0/12 private RFC1918 (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "192.168.1.1",
+   "port": 80,
+   "path": "/v54-nolistener",
+   "decision": "deny",
+   "reason": "IP-літерал 192.168.1.1 заблоковано: 192.168.0.0/16 private RFC1918 (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "100.64.0.1",
+   "port": 80,
+   "path": "/v55-nolistener",
+   "decision": "deny",
+   "reason": "IP-літерал 100.64.0.1 заблоковано: 100.64.0.0/10 CGNAT shared RFC6598 (B1; вкл. Alibaba me",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "[fc00::1]",
+   "port": 80,
+   "path": "/v56-nolistener",
+   "decision": "deny",
+   "reason": "IP-літерал fc00:0:0:0:0:0:0:1 заблоковано: fc00::/7 unique-local (§49; вкл. AWS metadata f",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "mixed.test",
+   "port": 4196,
+   "path": "/v41-mixed",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "127.0.0.2.nip.io",
+   "port": 4196,
+   "path": "/v43-nip",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "cname.test",
+   "port": 4196,
+   "path": "/v44-cname",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.1: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "v6only.test",
+   "port": 4196,
+   "path": "/v45-v6only",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 0:0:0:0:0:0:0:1: ::1/128 loopback (§49); вбудована IPv4 0.0.0.1",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "rebind2.test",
+   "port": 4196,
+   "path": "/v42-start",
+   "decision": "allow",
+   "reason": "усі адреси дозволені; TCP до перевіреної IP",
+   "connected_ip": "93.184.216.34"
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "rebind.test",
+   "port": 4196,
+   "path": "/v40-a",
+   "decision": "allow",
+   "reason": "усі адреси дозволені; TCP до перевіреної IP",
+   "connected_ip": "93.184.216.34"
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "10.0.0.1",
+   "port": 80,
+   "path": "/v52b-redirect",
+   "decision": "deny",
+   "reason": "IP-літерал 10.0.0.1 заблоковано: 10.0.0.0/8 private RFC1918 (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "rebind2.test",
+   "port": 4196,
+   "path": "/v42-after",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "rebind.test",
+   "port": 4196,
+   "path": "/v40-b",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  }
+ ]
+}

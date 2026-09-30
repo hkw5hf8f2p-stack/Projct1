@@ -62,3 +62,20 @@ export function assertSiteAllowed(url: string, list: SiteDenylist = loadSiteDeny
   const hit = matchSiteDenylist(new URL(url).hostname, list);
   if (hit) throw new Error(`сайт у ${SITE_DENYLIST_ENV} (${hit}) — dev-прогони його не відвідують (G0-13)`);
 }
+
+/**
+ * Чи заборонений сайт для dev-прогонів (G0-13). Приймає URL або ім'я хоста; некоректний URL → true (fail-closed).
+ * Використовується `scripts/audit-live.ts` до запуску браузера; той самий список діє в egress-проксі на кожне з'єднання.
+ */
+export function isSiteDenied(urlOrHost: string, list: SiteDenylist = loadSiteDenylist()): boolean {
+  let host = urlOrHost.trim();
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(host)) {
+    try {
+      host = new URL(host).hostname;
+    } catch {
+      return true;
+    }
+  }
+  if (!host) return true;
+  return matchSiteDenylist(host, list) !== null;
+}

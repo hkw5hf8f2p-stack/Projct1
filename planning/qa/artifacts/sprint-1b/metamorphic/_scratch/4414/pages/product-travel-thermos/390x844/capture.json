@@ -1,0 +1,548 @@
+{
+  "title": "Дорожній термос — ЧистийДім",
+  "meta_description": "Тримає тепло дванадцять годин.",
+  "headings": [
+    {
+      "level": 1,
+      "text": "Дорожній термос"
+    }
+  ],
+  "links": [
+    {
+      "href": "/",
+      "abs": "http://127.0.0.1:4415/",
+      "text": "ЧистийДім",
+      "name": "ЧистийДім",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 17,
+        "w": 123,
+        "h": 30
+      },
+      "selector": "header > a",
+      "landmark": "header",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/catalog",
+      "abs": "http://127.0.0.1:4415/catalog",
+      "text": "Каталог",
+      "name": "Каталог",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(1) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/shipping",
+      "abs": "http://127.0.0.1:4415/shipping",
+      "text": "Доставка й оплата",
+      "name": "Доставка й оплата",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(2) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4415/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "selector": "header > nav > ul > li:nth-of-type(3) > a",
+      "landmark": "nav",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/shipping",
+      "abs": "http://127.0.0.1:4415/shipping",
+      "text": "Доставка й оплата",
+      "name": "Доставка й оплата",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 296,
+        "w": 361,
+        "h": 43
+      },
+      "selector": "main > section:nth-of-type(1) > p > a",
+      "landmark": "main",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/shipping",
+      "abs": "http://127.0.0.1:4415/shipping",
+      "text": "Доставка й оплата",
+      "name": "Доставка й оплата",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 1185,
+        "w": 159,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    },
+    {
+      "href": "/about",
+      "abs": "http://127.0.0.1:4415/about",
+      "text": "Про нас",
+      "name": "Про нас",
+      "visible": true,
+      "rect": {
+        "x": 191,
+        "y": 1185,
+        "w": 66,
+        "h": 19
+      },
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "landmark": "footer",
+      "in_card": false,
+      "card_primary": false,
+      "has_counter": false
+    }
+  ],
+  "buttons": [
+    {
+      "selector": "header > button",
+      "name": "Меню",
+      "type": "button",
+      "visible": true,
+      "rect": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "selector": "main > form > button",
+      "name": "Додати в кошик",
+      "type": "submit",
+      "visible": true,
+      "rect": {
+        "x": 12,
+        "y": 170,
+        "w": 173,
+        "h": 44
+      }
+    }
+  ],
+  "form_controls": [],
+  "forms": [
+    {
+      "method": "post",
+      "action": "/cart"
+    }
+  ],
+  "images": [
+    {
+      "selector": "main > img",
+      "src": "/img/travel-thermos.svg",
+      "current_src": "http://127.0.0.1:4415/img/travel-thermos.svg",
+      "alt": "Дорожній термос на світлому тлі",
+      "natural_w": 240,
+      "natural_h": 240,
+      "rect": {
+        "x": 12,
+        "y": 358,
+        "w": 366,
+        "h": 240
+      },
+      "is_background": false,
+      "landmark": "main",
+      "in_card": false
+    }
+  ],
+  "visible_text": "ЧистийДім\nДорожній термос\n\n749 грн\n\nДодати в кошик\n\nТримає тепло дванадцять годин.\n\nДоставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці Доставка й оплата.\n\nМодель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n\nКожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n\nМи свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\n\nДогляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\n\nКомплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\n\nДоставка й оплата\nПро нас",
+  "text_nodes": [
+    {
+      "t": "ЧистийДім",
+      "a": true
+    },
+    {
+      "t": "Дорожній термос",
+      "a": false
+    },
+    {
+      "t": "749 грн",
+      "a": false
+    },
+    {
+      "t": "Додати в кошик",
+      "a": false
+    },
+    {
+      "t": "Тримає тепло дванадцять годин.",
+      "a": false
+    },
+    {
+      "t": "Доставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці",
+      "a": false
+    },
+    {
+      "t": "Доставка й оплата",
+      "a": true
+    },
+    {
+      "t": ".",
+      "a": false
+    },
+    {
+      "t": "Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.",
+      "a": false
+    },
+    {
+      "t": "Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.",
+      "a": false
+    },
+    {
+      "t": "Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.",
+      "a": false
+    },
+    {
+      "t": "Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.",
+      "a": false
+    },
+    {
+      "t": "Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.",
+      "a": false
+    },
+    {
+      "t": "Доставка й оплата",
+      "a": true
+    },
+    {
+      "t": "Про нас",
+      "a": true
+    }
+  ],
+  "fv_text": "ЧистийДім Дорожній термос 749 грн Додати в кошик Тримає тепло дванадцять годин. Доставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці Доставка й оплата . Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів. Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку. Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у к",
+  "interactive": [
+    {
+      "selector": "header > a",
+      "tag": "a",
+      "name": "ЧистийДім",
+      "rect": {
+        "x": 12,
+        "y": 17,
+        "w": 123,
+        "h": 30
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4415/",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 20,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "header > button",
+      "tag": "button",
+      "name": "Меню",
+      "rect": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": true,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 13.3333,
+      "landmark": "header",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "main > form > button",
+      "tag": "button",
+      "name": "Додати в кошик",
+      "rect": {
+        "x": 12,
+        "y": 170,
+        "w": 173,
+        "h": 44
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": false,
+      "href": null,
+      "nav_target": false,
+      "bg_opaque": true,
+      "border": false,
+      "pad_y": 10,
+      "pad_x": 18,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": {
+        "method": "post",
+        "free_text": false,
+        "has_variants": false
+      }
+    },
+    {
+      "selector": "main > section:nth-of-type(1) > p > a",
+      "tag": "a",
+      "name": "Доставка й оплата",
+      "rect": {
+        "x": 12,
+        "y": 296,
+        "w": 361,
+        "h": 43
+      },
+      "vis": 1,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4415/shipping",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "main",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(1) > a",
+      "tag": "a",
+      "name": "Доставка й оплата",
+      "rect": {
+        "x": 12,
+        "y": 1185,
+        "w": 159,
+        "h": 19
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4415/shipping",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    },
+    {
+      "selector": "footer > ul > li:nth-of-type(2) > a",
+      "tag": "a",
+      "name": "Про нас",
+      "rect": {
+        "x": 191,
+        "y": 1185,
+        "w": 66,
+        "h": 19
+      },
+      "vis": 0,
+      "role": null,
+      "input_type": null,
+      "disabled": false,
+      "is_link": true,
+      "href": "http://127.0.0.1:4415/about",
+      "nav_target": true,
+      "bg_opaque": false,
+      "border": false,
+      "pad_y": 0,
+      "pad_x": 0,
+      "font_size": 16,
+      "landmark": "footer",
+      "in_card": false,
+      "form": null
+    }
+  ],
+  "price_candidates": [
+    {
+      "selector": "main > p:nth-of-type(1)",
+      "text": "749 грн",
+      "rect": {
+        "x": 12,
+        "y": 123,
+        "w": 366,
+        "h": 39
+      },
+      "in_fv": true,
+      "excluded": false,
+      "kind": "text"
+    }
+  ],
+  "overflow": {
+    "client_width": 390,
+    "scroll_width": 390,
+    "scroll_height": 1223,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 1,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": {
+    "x": 12,
+    "y": 80,
+    "w": 366,
+    "h": 31
+  },
+  "main_rect": {
+    "x": 0,
+    "y": 64,
+    "w": 390,
+    "h": 1102
+  },
+  "card_groups": [],
+  "prices": [
+    {
+      "selector": "main > p:nth-of-type(1)",
+      "value": 749,
+      "currency": "UAH",
+      "text": "749 грн",
+      "rect": {
+        "x": 12,
+        "y": 123,
+        "w": 366,
+        "h": 39
+      },
+      "font_size": 26,
+      "font_weight": 700,
+      "in_card": false,
+      "landmark": "main",
+      "prefix_from": false
+    }
+  ],
+  "autocomplete_tokens": [],
+  "details_count": 0,
+  "question_headings": 0,
+  "ship_paragraphs": 1,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "M",
+  "width": 390,
+  "height": 844,
+  "dpr": 2,
+  "url": "http://127.0.0.1:4415/product/travel-thermos",
+  "final_url": "http://127.0.0.1:4415/product/travel-thermos",
+  "http_status": 200,
+  "redirect_chain": [
+    {
+      "url": "http://127.0.0.1:4415/product/travel-thermos",
+      "status": 200
+    }
+  ],
+  "response_headers": {
+    "content-type": "text/html; charset=utf-8"
+  },
+  "bot_markers": [],
+  "aria_snapshot": "- banner:\n  - link \"ЧистийДім\":\n    - /url: /\n  - button \"Меню\"\n- main:\n  - heading \"Дорожній термос\" [level=1]\n  - paragraph: 749 грн\n  - button \"Додати в кошик\"\n  - paragraph: Тримає тепло дванадцять годин.\n  - region \"Доставка\":\n    - paragraph:\n      - text: \"Доставка Новою поштою: 1–2 дні, від 70 грн. Докладніше — на сторінці\"\n      - link \"Доставка й оплата\":\n        - /url: /shipping\n      - text: .\n  - img \"Дорожній термос на світлому тлі\"\n  - region \"Опис\":\n    - paragraph: Модель створено для щоденного використання вдома й у поїздках. Корпус зібрано з матеріалів, які легко чистити, а всі вузли замінюються без інструментів.\n    - paragraph: Кожен виріб проходить перевірку на заводі, а в комплекті ви знайдете докладну інструкцію українською. Гарантійний талон входить у коробку.\n    - paragraph: \"Ми свідомо не обіцяємо неможливого: пристрій робить одну справу й робить її добре. Якщо потрібні додаткові функції, оберіть іншу модель у каталозі.\"\n    - paragraph: \"Догляд за виробом простий: достатньо періодично промивати знімні частини теплою водою й витирати корпус м'якою тканиною.\"\n    - paragraph: \"Комплектацію можна змінити перед оформленням: доступні кілька кольорів корпусу й набори змінних елементів.\"\n- contentinfo:\n  - list:\n    - listitem:\n      - link \"Доставка й оплата\":\n        - /url: /shipping\n    - listitem:\n      - link \"Про нас\":\n        - /url: /about",
+  "console_errors": [],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/product-travel-thermos/390x844/viewport.png",
+      "width_px": 780,
+      "height_px": 1688,
+      "written": false
+    },
+    "fullpage": {
+      "file": "pages/product-travel-thermos/390x844/fullpage.png",
+      "width_px": 780,
+      "height_px": 2446,
+      "written": false
+    }
+  },
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "closed",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 200,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 871,
+    "capture_complete": true,
+    "incomplete_reasons": []
+  },
+  "tiles": null,
+  "files": {
+    "capture": "pages/product-travel-thermos/390x844/capture.json",
+    "network": "pages/product-travel-thermos/390x844/network.json",
+    "axe": "pages/product-travel-thermos/390x844/axe.json",
+    "dir": "pages/product-travel-thermos/390x844"
+  }
+}

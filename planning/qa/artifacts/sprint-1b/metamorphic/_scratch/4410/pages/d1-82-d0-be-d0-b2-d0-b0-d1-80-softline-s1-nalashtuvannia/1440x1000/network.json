@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4410/%D1%82%D0%BE%D0%B2%D0%B0%D1%80/softline-s1/nalashtuvannia",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

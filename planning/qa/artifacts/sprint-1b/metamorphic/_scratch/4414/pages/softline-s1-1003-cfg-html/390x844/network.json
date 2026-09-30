@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4414/softline-s1-1003-cfg.html",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

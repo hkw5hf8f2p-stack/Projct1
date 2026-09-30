@@ -1,0 +1,1640 @@
+[
+  {
+    "id": "ev_6a675d10c7f7",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/",
+    "page_path": "/",
+    "page_type": "homepage",
+    "page_group": "/",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/index/390x844/axe.json",
+    "screenshot_reference": "pages/index/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_cf975b2c2b6e",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/about",
+    "page_path": "/about",
+    "page_type": "about",
+    "page_group": "/about",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/about/390x844/axe.json",
+    "screenshot_reference": "pages/about/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".menu-btn",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not h",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_2ef2188d2e5f",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/catalog",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/catalog/390x844/axe.json",
+    "screenshot_reference": "pages/catalog/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_df1efa72eec3",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/help",
+    "page_path": "/help",
+    "page_type": "other",
+    "page_group": "/help",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/help/390x844/axe.json",
+    "screenshot_reference": "pages/help/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_38261f3d6368",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/help/shipping",
+    "page_path": "/help/shipping",
+    "page_type": "info_shipping",
+    "page_group": "/help/shipping",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/help-shipping/390x844/axe.json",
+    "screenshot_reference": "pages/help-shipping/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_b38341a5da2b",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200",
+    "page_path": "/product/aquapro-x200",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-aquapro-x200/390x844/axe.json",
+    "screenshot_reference": "pages/product-aquapro-x200/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".menu-btn",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not h",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_4d0c402da9ad",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200/configure",
+    "page_path": "/product/aquapro-x200/configure",
+    "page_type": "other",
+    "page_group": "/product/aquapro-x200/configure",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-aquapro-x200-configure/390x844/axe.json",
+    "screenshot_reference": "pages/product-aquapro-x200-configure/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_7b93f04f4d2f",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220",
+    "page_path": "/product/aquapro-x220",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-aquapro-x220/390x844/axe.json",
+    "screenshot_reference": "pages/product-aquapro-x220/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".menu-btn",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not h",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_316027a111ca",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220/configure",
+    "page_path": "/product/aquapro-x220/configure",
+    "page_type": "other",
+    "page_group": "/product/aquapro-x220/configure",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-aquapro-x220-configure/390x844/axe.json",
+    "screenshot_reference": "pages/product-aquapro-x220-configure/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_e3a6f7d286da",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-softline-s1/390x844/axe.json",
+    "screenshot_reference": "pages/product-softline-s1/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": ".menu-btn",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": ".menu-btn — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not h",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "dispatch",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_24e97e6d978d",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1/configure",
+    "page_path": "/product/softline-s1/configure",
+    "page_type": "other",
+    "page_group": "/product/softline-s1/configure",
+    "category": "accessibility",
+    "description": "Buttons must have discernible text (critical). Fix any of the following:   Element does not have inner text that is visible to screen readers",
+    "artifact_reference": "pages/product-softline-s1-configure/390x844/axe.json",
+    "screenshot_reference": "pages/product-softline-s1-configure/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "button",
+      "region": {
+        "x": 334,
+        "y": 10,
+        "w": 44,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "button — <button type=\"button\" class=\"menu-btn\" data-fx=\"d6\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h16M3 11h16M3 16h16\" stroke=\"#1a202c\" stroke-width=\"2\" fill=\"none\"></path></svg></button> — Fix any of the following:\n  Element does not have",
+    "detector_id": "axe:button-name",
+    "claim_kind": "axe:button-name",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "button-name",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "header/button",
+      "component_landmark": "header",
+      "finding_page_group": "*"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_3c2826ce5a19",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/product-softline-s1/1440x1000/axe.json",
+    "screenshot_reference": "pages/product-softline-s1/1440x1000/viewport.png",
+    "selector_or_region": {
+      "selector": "img",
+      "region": {
+        "x": 194,
+        "y": 185,
+        "w": 390,
+        "h": 240
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or ref",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_298d737db9ce",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "accessibility",
+    "description": "Images must have alternative text (critical). Fix any of the following:   Element does not have an alt attribute",
+    "artifact_reference": "pages/product-softline-s1/390x844/axe.json",
+    "screenshot_reference": "pages/product-softline-s1/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "img",
+      "region": {
+        "x": 12,
+        "y": 170,
+        "w": 366,
+        "h": 240
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img — <img class=\"gallery\" src=\"/img/softline-s1.svg\" width=\"390\" height=\"240\" data-fx=\"d9\"> — Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or ref",
+    "detector_id": "axe:image-alt",
+    "claim_kind": "axe:image-alt",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "image-alt",
+      "impact": "critical",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 1,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "dispatch",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_9467f18511ff",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200",
+    "page_path": "/product/aquapro-x200",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2211px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2211,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2211,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_6e93fb9b4ca8",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200",
+    "page_path": "/product/aquapro-x200",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2251px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-aquapro-x200/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x200/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2251,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2251,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_84d76ad92bde",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220",
+    "page_path": "/product/aquapro-x220",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2211px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2211,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2211,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f080ee1bb7d9",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220",
+    "page_path": "/product/aquapro-x220",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2251px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-aquapro-x220/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x220/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2251,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2251,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_90fa85f3f031",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2211px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-softline-s1/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-softline-s1/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2211,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2211,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_a679645bd500",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2196px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2196,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2196,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "dispatch",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_da1aa8e5315b",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "mobile_usability",
+    "description": "Сторінка прокручується вбік на 390px: scrollWidth 552px, надлишок 162px.",
+    "artifact_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > section:nth-of-type(2) > table > caption",
+      "region": {
+        "x": 12,
+        "y": 1082,
+        "w": 540,
+        "h": 24
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "main > section:nth-of-type(2) > table > caption | main > section:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3) | main > section:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(3)",
+    "detector_id": "horizontal_overflow",
+    "claim_kind": "horizontal_overflow",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "scroll_width": 552,
+      "overflow_px": 162,
+      "offenders": [
+        {
+          "selector": "main > section:nth-of-type(2) > table > caption",
+          "right": 552
+        },
+        {
+          "selector": "main > section:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3)",
+          "right": 552
+        },
+        {
+          "selector": "main > section:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(3)",
+          "right": 552
+        }
+      ]
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "dispatch",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_0fcc40c9006f",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/",
+    "page_path": "/",
+    "page_type": "homepage",
+    "page_group": "/",
+    "category": "performance",
+    "description": "Зображення важить 1660 КБ (поріг 500 КБ) і відмальоване 1440×480px при природному 2400×1600px.",
+    "artifact_reference": "pages/index/1440x1000/network.json",
+    "screenshot_reference": "pages/index/1440x1000/viewport.png",
+    "selector_or_region": {
+      "selector": "main > img",
+      "region": {
+        "x": 0,
+        "y": 64,
+        "w": 1440,
+        "h": 480
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "http://127.0.0.1:4410/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 1440×480",
+    "detector_id": "oversized_image",
+    "claim_kind": "oversized_image",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "body_bytes": 1700000,
+      "natural_w": 2400,
+      "natural_h": 1600,
+      "rendered_w": 1440,
+      "rendered_h": 480,
+      "oversize_ratio": 5.56
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_e130204af87c",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/",
+    "page_path": "/",
+    "page_type": "homepage",
+    "page_group": "/",
+    "category": "performance",
+    "description": "Зображення важить 1660 КБ (поріг 500 КБ) і відмальоване 390×480px при природному 2400×1600px.",
+    "artifact_reference": "pages/index/390x844/network.json",
+    "screenshot_reference": "pages/index/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "main > img",
+      "region": {
+        "x": 0,
+        "y": 64,
+        "w": 390,
+        "h": 480
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "http://127.0.0.1:4410/img/hero.jpg — 1700000 B — natural 2400×1600, rendered 390×480",
+    "detector_id": "oversized_image",
+    "claim_kind": "oversized_image",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "body_bytes": 1700000,
+      "natural_w": 2400,
+      "natural_h": 1600,
+      "rendered_w": 390,
+      "rendered_h": 480,
+      "oversize_ratio": 5.13
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_cbe2bb8c4fbb",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200",
+    "page_path": "/product/aquapro-x200",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x200/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2336
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ТехноДім | Каталог | Про нас | Вийти | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Доставку знайдено: /product/aquapro-x200 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/aquapro-x200 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f120b619357a",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x200",
+    "page_path": "/product/aquapro-x200",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-aquapro-x200/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x200/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 2368
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ТехноДім | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Про нас | Доставку знайдено: /product/aquapro-x200 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/aquapro-x200 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_6c4df6719f2f",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220",
+    "page_path": "/product/aquapro-x220",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x220/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2336
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ТехноДім | Каталог | Про нас | Вийти | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Доставку знайдено: /product/aquapro-x220 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/aquapro-x220 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_cb087a9b31d4",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/aquapro-x220",
+    "page_path": "/product/aquapro-x220",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-aquapro-x220/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-aquapro-x220/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 2368
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ТехноДім | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Про нас | Доставку знайдено: /product/aquapro-x220 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/aquapro-x220 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_b0633aacb00e",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-softline-s1/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-softline-s1/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2336
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ТехноДім | Каталог | Про нас | Вийти | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Доставку знайдено: /product/softline-s1 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/softline-s1 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_d3b1fd1d5b00",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:4410/product/softline-s1",
+    "page_path": "/product/softline-s1",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-softline-s1/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 552,
+        "h": 2313
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ТехноДім | Налаштувати комплектацію | Прибрати з порівняння | Допомога | Про нас | Доставку знайдено: /product/softline-s1 → /help → /help/shipping",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": 2,
+      "shipping_found_via": "/product/softline-s1 → /help → /help/shipping",
+      "crawl_pages": 11
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "dispatch",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  }
+]

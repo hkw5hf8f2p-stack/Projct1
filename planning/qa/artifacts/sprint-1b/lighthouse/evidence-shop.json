@@ -1,14 +1,14 @@
 [
   {
-    "id": "ev_970dcb080ccd",
+    "id": "ev_43a8249c5cee",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:34671/",
+    "page_url": "http://127.0.0.1:44401/",
     "self_confirming": false,
     "detector_id": "lighthouse:performance",
     "claim_kind": "lighthouse_category_score",
     "viewport": "desktop",
-    "description": "Lighthouse 13.5.0 performance (desktop): 95/100; аудитів із score < 0.9: 1",
+    "description": "Lighthouse 13.5.0 performance (desktop): 94/100; аудитів із score < 0.9: 1",
     "artifact_reference": "lighthouse-desktop.json",
     "selector_or_region": {
       "selector": "lhr.categories.performance",
@@ -16,33 +16,33 @@
     },
     "data": {
       "category": "performance",
-      "score": 0.95,
-      "score_100": 95,
+      "score": 0.94,
+      "score_100": 94,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 2450,
+      "benchmark_index": 1785,
       "failing_audits": [
         {
           "id": "largest-contentful-paint",
-          "score": 0.78,
+          "score": 0.77,
           "title": "Largest Contentful Paint"
         }
       ],
       "metrics": {
-        "first-contentful-paint": 173.91845,
-        "largest-contentful-paint": 1571.8368999999998,
+        "first-contentful-paint": 193.4765,
+        "largest-contentful-paint": 1586.953,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
-        "speed-index": 173.91845
+        "speed-index": 193.4765
       },
       "run_warnings": []
     }
   },
   {
-    "id": "ev_7ff64924e5b2",
+    "id": "ev_71212398cd50",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:34671/",
+    "page_url": "http://127.0.0.1:44401/",
     "self_confirming": false,
     "detector_id": "lighthouse:accessibility",
     "claim_kind": "lighthouse_category_score",
@@ -59,16 +59,16 @@
       "score_100": 100,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 2450,
+      "benchmark_index": 1785,
       "failing_audits": [],
       "run_warnings": []
     }
   },
   {
-    "id": "ev_e93e0e60dc71",
+    "id": "ev_f0d0c31125e4",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:34671/",
+    "page_url": "http://127.0.0.1:44401/",
     "self_confirming": false,
     "detector_id": "lighthouse:performance",
     "claim_kind": "lighthouse_category_score",
@@ -85,7 +85,7 @@
       "score_100": 75,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 2589.5,
+      "benchmark_index": 1782.5,
       "failing_audits": [
         {
           "id": "largest-contentful-paint",
@@ -94,20 +94,20 @@
         }
       ],
       "metrics": {
-        "first-contentful-paint": 626.8027,
-        "largest-contentful-paint": 9159.6054,
+        "first-contentful-paint": 652.664625,
+        "largest-contentful-paint": 9165.329249999999,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
-        "speed-index": 626.8027
+        "speed-index": 652.664625
       },
       "run_warnings": []
     }
   },
   {
-    "id": "ev_df23cf70c80d",
+    "id": "ev_bf0e385ca929",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:34671/",
+    "page_url": "http://127.0.0.1:44401/",
     "self_confirming": false,
     "detector_id": "lighthouse:accessibility",
     "claim_kind": "lighthouse_category_score",
@@ -124,7 +124,7 @@
       "score_100": 93,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 2589.5,
+      "benchmark_index": 1782.5,
       "failing_audits": [
         {
           "id": "button-name",

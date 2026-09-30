@@ -1,0 +1,42 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4411/img/glass-kettle.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 299,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4411/img/travel-thermos.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 301,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4411/img/wooden-board.svg",
+    "resource_type": "image",
+    "status": 200,
+    "content_type": "image/svg+xml",
+    "body_bytes": 300,
+    "blocked": false,
+    "failure": null
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4411/y/2b",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

@@ -1,0 +1,200 @@
+{
+  "index": {
+    "D": {
+      "dom_content_loaded_ms": 68.39999999999418,
+      "load_ms": 73.60000000000582,
+      "first_paint_ms": 96,
+      "fcp_ms": 96,
+      "resource_count": 1,
+      "transfer_bytes": 1705832
+    },
+    "M": {
+      "dom_content_loaded_ms": 52.5,
+      "load_ms": 52.79999999998836,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 1,
+      "transfer_bytes": 1705832
+    }
+  },
+  "catalog": {
+    "D": {
+      "dom_content_loaded_ms": 24.199999999982538,
+      "load_ms": 55.69999999998254,
+      "first_paint_ms": 76,
+      "fcp_ms": 76,
+      "resource_count": 3,
+      "transfer_bytes": 8189
+    },
+    "M": {
+      "dom_content_loaded_ms": 37.29999999998836,
+      "load_ms": 64.5,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 3,
+      "transfer_bytes": 8189
+    }
+  },
+  "product-aquapro-x200": {
+    "D": {
+      "dom_content_loaded_ms": 45.5,
+      "load_ms": 45.80000000001746,
+      "first_paint_ms": 84,
+      "fcp_ms": 84,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    },
+    "M": {
+      "dom_content_loaded_ms": 21.20000000001164,
+      "load_ms": 32.89999999999418,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    }
+  },
+  "product-aquapro-x220": {
+    "D": {
+      "dom_content_loaded_ms": 23.5,
+      "load_ms": 43.20000000001164,
+      "first_paint_ms": 72,
+      "fcp_ms": 72,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    },
+    "M": {
+      "dom_content_loaded_ms": 25.60000000000582,
+      "load_ms": 41.19999999998254,
+      "first_paint_ms": 60,
+      "fcp_ms": 60,
+      "resource_count": 1,
+      "transfer_bytes": 7742
+    }
+  },
+  "product-softline-s1": {
+    "D": {
+      "dom_content_loaded_ms": 23.5,
+      "load_ms": 30.099999999976717,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 1,
+      "transfer_bytes": 8053
+    },
+    "M": {
+      "dom_content_loaded_ms": 26.099999999976717,
+      "load_ms": 44.5,
+      "first_paint_ms": 56,
+      "fcp_ms": 56,
+      "resource_count": 1,
+      "transfer_bytes": 8053
+    }
+  },
+  "help": {
+    "D": {
+      "dom_content_loaded_ms": 20.39999999999418,
+      "load_ms": 21.20000000001164,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 0,
+      "transfer_bytes": 5226
+    },
+    "M": {
+      "dom_content_loaded_ms": 24.39999999999418,
+      "load_ms": 25.70000000001164,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 0,
+      "transfer_bytes": 5226
+    }
+  },
+  "help-shipping": {
+    "D": {
+      "dom_content_loaded_ms": 20.39999999999418,
+      "load_ms": 21.20000000001164,
+      "first_paint_ms": 68,
+      "fcp_ms": 68,
+      "resource_count": 0,
+      "transfer_bytes": 5237
+    },
+    "M": {
+      "dom_content_loaded_ms": 23.5,
+      "load_ms": 24.800000000017462,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 0,
+      "transfer_bytes": 5237
+    }
+  },
+  "about": {
+    "D": {
+      "dom_content_loaded_ms": 27.39999999999418,
+      "load_ms": 28.29999999998836,
+      "first_paint_ms": 72,
+      "fcp_ms": 72,
+      "resource_count": 0,
+      "transfer_bytes": 5469
+    },
+    "M": {
+      "dom_content_loaded_ms": 28.29999999998836,
+      "load_ms": 28.29999999998836,
+      "first_paint_ms": 36,
+      "fcp_ms": 36,
+      "resource_count": 0,
+      "transfer_bytes": 5469
+    }
+  },
+  "product-aquapro-x200-configure": {
+    "D": {
+      "dom_content_loaded_ms": 26,
+      "load_ms": 26.89999999999418,
+      "first_paint_ms": 64,
+      "fcp_ms": 64,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    },
+    "M": {
+      "dom_content_loaded_ms": 29.300000000017462,
+      "load_ms": 29.39999999999418,
+      "first_paint_ms": 40,
+      "fcp_ms": 40,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    }
+  },
+  "product-aquapro-x220-configure": {
+    "D": {
+      "dom_content_loaded_ms": 24.300000000017462,
+      "load_ms": 25.400000000023283,
+      "first_paint_ms": 80,
+      "fcp_ms": 80,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    },
+    "M": {
+      "dom_content_loaded_ms": 30.10000000000582,
+      "load_ms": 32.10000000000582,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 0,
+      "transfer_bytes": 5353
+    }
+  },
+  "product-softline-s1-configure": {
+    "D": {
+      "dom_content_loaded_ms": 29.199999999982538,
+      "load_ms": 29.29999999998836,
+      "first_paint_ms": 52,
+      "fcp_ms": 52,
+      "resource_count": 0,
+      "transfer_bytes": 5346
+    },
+    "M": {
+      "dom_content_loaded_ms": 23.70000000001164,
+      "load_ms": 24.70000000001164,
+      "first_paint_ms": 48,
+      "fcp_ms": 48,
+      "resource_count": 0,
+      "transfer_bytes": 5346
+    }
+  }
+}

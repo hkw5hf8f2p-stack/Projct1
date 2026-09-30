@@ -7,3 +7,4 @@ export * from "./secure-launch.js";
 export * from "./net/ip-classify.js";
 export * from "./net/url-guard.js";
 export * from "./net/egress-proxy.js";
+export * from "./net/site-denylist.js";

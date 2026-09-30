@@ -15,7 +15,7 @@ import { loadSiteDenylist, type SiteDenylist } from "./net/site-denylist.js";
 
 export interface BlockedRequest {
   ts: string;
-  kind: "method" | "websocket";
+  kind: "method" | "websocket" | "service_worker";
   method: string;
   url: string;
   resource_type: string | null;
@@ -118,10 +118,36 @@ export function buildLaunchOptions(proxyUrl: string, env: Record<string, string>
 
 export const SAFE_METHODS = new Set(["GET", "HEAD"]);
 
-/** Шар 2 на контексті: не-GET/HEAD → abort + лог; WebSocket → close + лог. */
-export async function applyContextGuards(context: BrowserContext, blocked: BlockedRequest[]): Promise<void> {
+/**
+ * Блок Service Worker (S1b, знахідка SW-1 у planning/security/ssrf-vectors.md): Playwright `serviceWorkers:'block'` —
+ * лише init-script, що підміняє `navigator.serviceWorker.register` на ЕКЗЕМПЛЯРІ; обхід одним рядком
+ * (`ServiceWorkerContainer.prototype.register.call(...)` або прототип з about:blank-iframe), і в block-режимі мережа SW
+ * НЕ проходить через `context.route` → POST із SW доходив до цілі (доведено тестом). Тому:
+ *   (1) власний init-script блокує `register` на ПРОТОТИПІ (не configurable) у кожному документі;
+ *   (2) контекст створюється з `serviceWorkers:'allow'` + PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1, щоб мережа
+ *       будь-якого SW, що все ж зареєструвався (обхід через realm iframe), ішла через шар 2 (не-GET → abort);
+ *   (3) кожен SW, що з'явився, — запис `service_worker` у `blocked` (сигнал аудиту). Шар 1 (IP) діє на SW завжди.
+ */
+export const SW_LOCKDOWN_SCRIPT = `(() => { try {
+  const C = globalThis.ServiceWorkerContainer; if (!C) return;
+  const deny = function register() { return Promise.reject(new DOMException("Service Worker registration blocked by SiteLens", "SecurityError")); };
+  Object.defineProperty(C.prototype, "register", { value: deny, writable: false, configurable: false });
+} catch (e) {} })();`;
+
+/** Шар 2 на контексті: не-GET/HEAD → abort + лог (включно з мережею SW); WebSocket → close + лог; SW → лог. */
+export async function applyContextGuards(context: BrowserContext, blocked: BlockedRequest[], o: { swLockdown?: boolean } = {}): Promise<void> {
+  // swLockdown:false — лише для контрольного тесту «SW обійшов блок → його мережа все одно під шаром 2».
+  if (o.swLockdown !== false) await context.addInitScript({ content: SW_LOCKDOWN_SCRIPT });
+  context.on("serviceworker", (w) => {
+    blocked.push({ ts: new Date().toISOString(), kind: "service_worker", method: "-", url: w.url(), resource_type: "service_worker", reason: "Service Worker з'явився попри блок (обхід реєстрації) — його мережа йде через шар 2 і проксі" });
+  });
   await context.route("**/*", async (route, request) => {
     const method = request.method().toUpperCase();
+    // Головний скрипт SW (заголовок `Service-Worker: script`; видно лише з PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1).
+    if (request.headers()["service-worker"] === "script") {
+      blocked.push({ ts: new Date().toISOString(), kind: "service_worker", method, url: request.url(), resource_type: request.resourceType(), reason: "скрипт Service Worker заблоковано (реєстрація не відбудеться)" });
+      return route.abort("blockedbyclient");
+    }
     if (SAFE_METHODS.has(method)) return route.fallback();
     blocked.push({
       ts: new Date().toISOString(),
@@ -139,9 +165,13 @@ export async function applyContextGuards(context: BrowserContext, blocked: Block
   });
 }
 
+/**
+ * `serviceWorkers:'allow'` — НЕ дозвіл SW: реєстрацію блокує SW_LOCKDOWN_SCRIPT, а 'allow' потрібен лише для того,
+ * щоб мережа SW, які обійшли блок, проходила через context.route (у 'block' Playwright її не бачить). Див. вище.
+ */
 export const SECURE_CONTEXT_DEFAULTS: BrowserContextOptions = {
   acceptDownloads: false,
-  serviceWorkers: "block",
+  serviceWorkers: "allow",
   permissions: [],
 };
 
@@ -178,6 +208,8 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
     // Інваріанти перед запуском — жодного тихого фолбеку на --no-sandbox.
     if (launchOptions.chromiumSandbox !== true || launchOptions.args?.some((a) => a.startsWith("--no-sandbox")))
       throw new Error("secureLaunch: пісочниця Chromium вимкнена — відмова");
+    // Мережа SW через шар 2 (див. SW_LOCKDOWN_SCRIPT). Playwright читає змінну при появі кожного SW.
+    process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS = "1";
     const browser = await chromium.launch(launchOptions); // якщо пісочниця недоступна — кидає, і ми не ловимо
     cleanup.unshift(() => browser.close());
 
@@ -189,7 +221,7 @@ export async function secureLaunch(opts: SecureLaunchOptions): Promise<SecureBro
       browserEnv,
       async newContext(options: BrowserContextOptions = {}) {
         if (options.acceptDownloads === true) throw new Error("secureLaunch: acceptDownloads=true заборонено");
-        if (options.serviceWorkers === "allow") throw new Error("secureLaunch: serviceWorkers=allow заборонено");
+        if (options.serviceWorkers === "allow") throw new Error("secureLaunch: serviceWorkers=allow заборонено (SW блокує SW_LOCKDOWN_SCRIPT)");
         if (options.proxy) throw new Error("secureLaunch: proxy на контексті заборонено (єдиний вихід — egress-проксі)");
         const ctx = await browser.newContext({ ...options, ...SECURE_CONTEXT_DEFAULTS });
         await applyContextGuards(ctx, blocked);

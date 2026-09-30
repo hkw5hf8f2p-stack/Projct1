@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4414/dim/filtry/softline-s1/nalashtuvannia",
+    "resource_type": "document",
+    "status": 200,
+    "content_type": "text/html",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]
