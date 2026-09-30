@@ -85,7 +85,7 @@ export function maskNumberSpans(text: string): { text: string; masked: number; s
     NUMERAL_WORD_RE.lastIndex = 0;
     if (/[%‰]/u.test(bare) || NUMERAL_WORD_RE.test(bare)) { removed++; continue; }
     const parts = sent.split(/(\{[a-z][a-z0-9_]*\})/g);
-    kept.push(parts.map((seg, i) => (i % 2 === 1 ? seg : seg.replace(/[+\-−±~≈]?[\p{Nd}](?:[\p{Nd}.,:\/\u00A0\u202F ]*[\p{Nd}])?/gu, () => { masked++; return NUMBER_MASK; }))).join(""));
+    kept.push(parts.map((seg, i) => (i % 2 === 1 ? seg : seg.replace(/[+\-−±~≈]?[\p{Nd}](?:[\p{Nd}.,:/\u00A0\u202F ]*[\p{Nd}])?/gu, () => { masked++; return NUMBER_MASK; }))).join(""));
   }
   NUMERAL_WORD_RE.lastIndex = 0;
   const out = kept.join(" ").replace(/…(?:[\s\-–—,]*…)+/gu, NUMBER_MASK).replace(/\s{2,}/g, " ").trim();
