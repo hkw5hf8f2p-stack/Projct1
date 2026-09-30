@@ -85,7 +85,10 @@
               "enum": [
                 "anthropic",
                 "openai",
-                "replay"
+                "openai_compatible",
+                "claude_cli",
+                "replay",
+                "session"
               ]
             },
             {

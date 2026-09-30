@@ -23,7 +23,7 @@ afterAll(async () => cluster?.stop());
 
 describe("тестовий кластер (охоронець)", () => {
   it("embedded-postgres піднято, міграції застосовано з порожньої БД цього прогону", () => {
-    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
+    expect(cluster.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
   });
 });
 
@@ -36,7 +36,7 @@ describe("migrate()", () => {
 
   it("порожня БД → застосовує всі файли за порядком; повтор → нічого не застосовує", async () => {
     const a = await migrate(db.url);
-    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
+    expect(a.applied).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
     const b = await migrate(db.url);
     expect(b.applied).toEqual([]);
     expect(b.skipped).toEqual(a.applied);
@@ -62,6 +62,18 @@ describe("migrate()", () => {
     await expect(ins("aud_0000000000000003", "failed", "not_a_class", "x")).rejects.toThrow(/chk_audit_runs_error_class/);
     await ins("aud_0000000000000004", "failed", "dns_failure", "x");
     await ins("aud_0000000000000005", "queued", null, null);
+  });
+
+  it("004: llm_provider приймає openai_compatible/claude_cli/session, відхиляє невідоме (обидві таблиці)", async () => {
+    const ins = (id: string, prov: string | null) =>
+      db.pool.query("INSERT INTO audit_runs (id, input_url, normalized_url, domain, status, llm_mode, llm_provider) VALUES ($1,'http://a.b/','http://a.b/','a.b','queued','live',$2)", [id, prov]);
+    let n = 0;
+    for (const p of ["anthropic", "openai", "openai_compatible", "claude_cli", "replay", "session", null]) await ins(`aud_00000000000004${String(n++).padStart(2, "0")}`, p);
+    await expect(ins("aud_0000000000000499", "claude-cli")).rejects.toThrow(/chk_audit_runs_llm_provider/);
+    await expect(ins("aud_0000000000000498", "none")).rejects.toThrow(/chk_audit_runs_llm_provider/);
+    const call = (prov: string) => db.pool.query("INSERT INTO llm_calls (id, audit_run_id, stage, prompt_version, provider, model, request_hash, status) VALUES ($1,'aud_0000000000000400','site_profile','site-profile-v1',$2,'m',repeat('a',64),'ok')", [`call_${prov}`, prov]);
+    await call("claude_cli"); await call("openai_compatible");
+    await expect(call("bogus")).rejects.toThrow(/chk_llm_calls_provider/);
   });
 
   it("зміна застосованого файлу → відмова (forward-only), БД не псується", async () => {
@@ -90,14 +102,14 @@ describe("migrate()", () => {
 
   it("збійна міграція відкочується цілком (транзакція) і не записується", async () => {
     const d = copyMigrations();
-    writeFileSync(path.join(d, "004_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
+    writeFileSync(path.join(d, "005_bad.sql"), "CREATE TABLE half_done (id int);\nINSERT INTO nonexistent_table VALUES (1);\n");
     const fresh = await freshDatabase(cluster.url, { migrate: false });
     try {
-      await expect(migrate(fresh.url, d)).rejects.toThrow(/004_bad\.sql не застосована/);
+      await expect(migrate(fresh.url, d)).rejects.toThrow(/005_bad\.sql не застосована/);
       const t = await fresh.pool.query("SELECT to_regclass('half_done') AS t");
       expect(t.rows[0].t).toBeNull();
       const v = await fresh.pool.query("SELECT version FROM schema_migrations ORDER BY version");
-      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql"]);
+      expect(v.rows.map((r) => r.version)).toEqual(["001_init.sql", "002_pipeline.sql", "003_report.sql", "004_llm_providers.sql"]);
     } finally {
       await fresh.drop();
     }

@@ -126,7 +126,9 @@ describe("001_init.sql ↔ Zod", () => {
 
   it("CHECK-списки дорівнюють enum-ам Zod (за іменем обмеження)", () => {
     const found = new Map<string, (string | number)[]>();
+    // 001 + пізніші міграції, що перевизначають обмеження (DROP + ADD CONSTRAINT, напр. 004): чинний список — останній за порядком файлів
     for (const m of SQL.matchAll(/CONSTRAINT (chk_\w+) CHECK \(\w+ IN \(([^)]*)\)\)/g)) found.set(m[1]!, sqlList(m[2]!));
+    for (const m of LATER.matchAll(/ADD CONSTRAINT (chk_\w+) CHECK \(\w+ IN \(([^)]*)\)\)/g)) if (found.has(m[1]!)) found.set(m[1]!, sqlList(m[2]!));
     for (const [name, expected] of Object.entries(ENUMS)) {
       expect(found.has(name), `${name} у SQL`).toBe(true);
       expect([...found.get(name)!].sort(), name).toEqual([...expected].sort());

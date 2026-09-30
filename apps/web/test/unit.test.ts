@@ -82,6 +82,8 @@ describe("BYO AI (/settings/ai)", () => {
       }
     }
     expect(CHECK_ERROR_CLASSES).toContain("unknown");
+    const { AI_CHECK_ERROR_CLASSES } = await import("@sitelens/schemas");
+    expect([...CHECK_ERROR_CLASSES].sort()).toEqual([...AI_CHECK_ERROR_CLASSES].sort());
   });
   it("набір провайдерів у UI = ProviderKind контракту", async () => {
     const { PROVIDER_KINDS } = await import("../src/lib/ai-settings");

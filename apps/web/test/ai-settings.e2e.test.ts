@@ -175,7 +175,7 @@ describe("/settings/ai", () => {
     expect(ok).toContain("412");
     expect(ok).toContain("mock-model-1");
     expect(await page.getByTestId("key-saved").innerText()).toContain("…abcd");
-    m.checkResult = { ok: false, error_class: "auth", latency_ms: 90 };
+    m.checkResult = { ok: false, error_class: "auth_failed", latency_ms: 90 };
     await page.getByTestId("ai-check").click();
     await page.getByTestId("check-fail").waitFor();
     expect(await page.getByTestId("check-fail").innerText()).toContain("Провайдер відхилив ключ");

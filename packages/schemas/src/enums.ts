@@ -49,7 +49,7 @@ export const SESSION_SUCCESS = e(["true", "false", "partial"]);
 export const SEVERITY_LABELS = e(["low", "medium", "high"]);
 export const SESSION_STATUSES = e(["pending", "running", "done", "failed"]);
 export const LLM_CALL_STATUSES = e(["ok", "error", "cached"]);
-export const LLM_PROVIDERS = e(["anthropic", "openai", "replay"]);
+export const LLM_PROVIDERS = e(["anthropic", "openai", "openai_compatible", "claude_cli", "replay", "session"]);
 /** SPEC §52 prompt ids — префікс; версія в суфіксі */
 export const PROMPT_ID_RE = /^[a-z][a-z0-9-]*-v\d+$/;
 

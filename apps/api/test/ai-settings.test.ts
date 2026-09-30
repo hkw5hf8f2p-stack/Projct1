@@ -7,10 +7,11 @@ import { Writable } from "node:stream";
 import type { FastifyInstance } from "fastify";
 import type { PgBoss } from "pg-boss";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { AiSettingsInput, AiSettingsView } from "@sitelens/schemas";
+import { AI_CHECK_ERROR_CLASSES, AiSettingsInput, AiSettingsView } from "@sitelens/schemas";
 import { AiSettingsError, aiEnvOverlay, createBoss, loadConfig, readStoredAiSettings, resolveEffectiveAi, saveAiSettings, startBoss } from "@sitelens/pipeline";
-import { ProviderHttpError, type LlmProvider } from "@sitelens/llm";
-import { buildServer, classifyAiError } from "../src/server.js";
+import { ConfigError, OutputInvalidError, ProviderAuthError, ProviderHttpError, ProviderTimeoutError, type LlmProvider } from "@sitelens/llm";
+import { buildServer } from "../src/server.js";
+import { classifyAiError } from "../src/ai-errors.js";
 import { freshDatabase, startTestCluster, type FreshDb, type TestCluster } from "../../../scripts/test-db.js";
 
 const KEY = "sk-test-SECRET123";
@@ -127,11 +128,23 @@ describe("API /api/settings/ai", () => {
     const app = await mk(env, { logStream: log.stream, providerFactory: () => bad });
     await app.inject({ method: "PUT", url: "/api/settings/ai", payload: { kind: "openai", model: "m", api_key: KEY } });
     const r = await app.inject({ method: "POST", url: "/api/settings/ai/check" });
-    expect(r.json()).toMatchObject({ ok: false, error_class: "auth" });
+    expect(r.json()).toMatchObject({ ok: false, error_class: "auth_failed" });
     expect(r.body).not.toContain("SECRET123");
     expect(log.lines.join("")).not.toContain("SECRET123");
-    expect(classifyAiError(new ProviderHttpError("x", null, true))).toBe("network");
     await app.close();
+  });
+  it("classifyAiError: мапінг помилок провайдерів на закритий перелік (позитив і негатив)", () => {
+    const h = (st: number | null, m = "x") => new ProviderHttpError(m, st, false);
+    const cases: Array<[unknown, string, Parameters<typeof classifyAiError>[1]?]> = [
+      [h(401), "auth_failed"], [h(403), "auth_failed"], [new ProviderAuthError("x"), "not_logged_in"], [h(429), "rate_limited"], [h(404), "model_not_found", "openai"],
+      [h(404), "bad_base_url", "openai_compatible"], [h(400, "unknown model x"), "model_not_found"], [h(400, "bad thing"), "unknown"], [h(500), "provider_unavailable"], [h(503), "provider_unavailable"],
+      [h(null, "network error: fetch failed"), "provider_unavailable"], [h(null, "network error: getaddrinfo ENOTFOUND h"), "bad_base_url", "openai_compatible"],
+      [h(null, "network error: getaddrinfo ENOTFOUND h"), "network_blocked", "openai"], [h(null, "network error: self-signed CERT_ error"), "network_blocked"],
+      [h(200, "openai: unexpected response shape"), "invalid_response"], [new OutputInvalidError("x", [], null), "invalid_response"], [new ProviderTimeoutError("t"), "timeout"],
+      [new ConfigError("claude-cli: бінарник не знайдено"), "provider_not_available"], [new Error("boom"), "unknown"], ["str", "unknown"], [null, "unknown"],
+    ];
+    for (const [e, want, kind] of cases) expect(classifyAiError(e, kind), `${String(e)} → ${want}`).toBe(want);
+    for (const [e, , kind] of cases) expect(AI_CHECK_ERROR_CLASSES as readonly string[]).toContain(classifyAiError(e, kind)); // ніколи не поза переліком
   });
   it("PUT: userinfo у base_url → 400 без ехо значення; відсутня model → 400", async () => {
     const env = mkEnv();

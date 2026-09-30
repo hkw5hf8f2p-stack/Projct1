@@ -7,7 +7,7 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { REPO_ROOT } from "@sitelens/db";
-import { type AiSettingsInput, MAX_AUDIT_TOKENS_MAX, MAX_AUDIT_TOKENS_MIN, type AiSettingsView, type ProviderKind } from "@sitelens/schemas";
+import { type AiCheckErrorClass, type AiSettingsInput, MAX_AUDIT_TOKENS_MAX, MAX_AUDIT_TOKENS_MIN, type AiSettingsView, type ProviderKind } from "@sitelens/schemas";
 
 export const DEFAULT_MAX_AUDIT_TOKENS_SETTING = 1_650_000;
 const AAD = Buffer.from("sitelens-ai-settings-v1");
@@ -17,7 +17,7 @@ export class AiSettingsError extends Error {
   constructor(readonly code: "master_key_missing" | "master_key_invalid" | "file_corrupt" | "invalid_input", message: string) { super(message); this.name = "AiSettingsError"; }
 }
 
-export interface LastCheck { ok: boolean; at: string; error_class?: string; model_reported?: string }
+export interface LastCheck { ok: boolean; at: string; error_class?: AiCheckErrorClass; model_reported?: string }
 export interface StoredAiSettings {
   kind: ProviderKind; model: string; base_url?: string; api_key?: string; max_audit_tokens: number; updated_at: string; last_check?: LastCheck;
 }
@@ -160,6 +160,18 @@ export function aiEnvOverlay(e: { kind: ProviderKind; model: string | null; base
     case "claude_cli": out["LLM_PROVIDER"] = "claude-cli"; break;
   }
   return out;
+}
+
+/**
+ * Значення `audit_runs.llm_provider` / `llm_calls.provider` (enum LLM_PROVIDERS, DEV-84) за провайдером клієнта і знімком налаштувань аудиту.
+ * Клієнт для openai_compatible називається «openai» (той самий адаптер), тож розрізняє знімок (config_json.ai.kind).
+ */
+export function reportProvider(clientProvider: string | null | undefined, aiKind?: string | null): "anthropic" | "openai" | "openai_compatible" | "claude_cli" | "replay" | "session" {
+  if (clientProvider === "anthropic") return "anthropic";
+  if (clientProvider === "openai") return aiKind === "openai_compatible" ? "openai_compatible" : "openai";
+  if (clientProvider === "claude-cli" || clientProvider === "claude_cli") return "claude_cli";
+  if (clientProvider === "session") return "session";
+  return "replay";
 }
 
 export const redactKey = (text: string, key: string | undefined): string => (key && key.length >= 4 ? text.split(key).join("[REDACTED]") : text);

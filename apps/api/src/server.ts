@@ -10,7 +10,8 @@ import Fastify, { type FastifyInstance, type FastifyReply } from "fastify";
 import type { Pool } from "pg";
 import type { PgBoss } from "pg-boss";
 import { AiSettingsInput, CreateAuditRequest, Report, type AiCheckResponse } from "@sitelens/schemas";
-import { AnthropicProvider, ClaudeCliProvider, OpenAiProvider, ProviderAuthError, ProviderHttpError, ProviderTimeoutError, type LlmProvider, type LlmRequest } from "@sitelens/llm";
+import { AnthropicProvider, ClaudeCliProvider, OpenAiProvider, ProviderTimeoutError, type LlmProvider, type LlmRequest } from "@sitelens/llm";
+import { classifyAiError } from "./ai-errors.js";
 import { scanReport } from "@sitelens/reporting";
 import {
   AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
@@ -54,15 +55,6 @@ function statusView(a: AuditRow, progress: { pages_captured: number; pages_faile
     error: a.error_class ? { class: a.error_class, message: a.error ?? humanMessage(a.error_class, a.language) } : null,
     artifacts_deleted: a.artifacts_deleted_at !== null, artifact_expires_at: a.artifact_expires_at?.toISOString() ?? null,
   };
-}
-
-/** класи помилок перевірки провайдера: без тексту помилки (він може містити секрети) */
-export function classifyAiError(e: unknown): string {
-  if (e instanceof ProviderAuthError) return "auth";
-  if (e instanceof ProviderTimeoutError) return "timeout";
-  if (e instanceof ProviderHttpError) return e.status === 401 || e.status === 403 ? "auth" : e.status === 404 ? "model_or_endpoint_not_found" : e.status === 429 ? "rate_limited" : e.status === null ? "network" : "provider_http";
-  const code = (e as { code?: string }).code;
-  return code === "output_invalid" ? "output_invalid" : code === "budget_limited" ? "budget_limited" : "unknown";
 }
 
 function defaultProviderFactory(e: EffectiveAi): LlmProvider | undefined {
@@ -145,11 +137,11 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
       const r = await Promise.race([provider.complete(CHECK_REQ, { signal: ac.signal }), new Promise<never>((_, rej) => { ac.signal.addEventListener("abort", () => rej(new ProviderTimeoutError("check timeout"))); })]);
       return fin({ ok: true, model_reported: r.model });
     } catch (e) {
-      req_log(reply, e, eff.api_key);
-      return fin({ ok: false, error_class: classifyAiError(e) });
+      req_log(reply, e, eff.api_key, eff.kind);
+      return fin({ ok: false, error_class: classifyAiError(e, eff.kind) });
     } finally { clearTimeout(timer); }
   });
-  const req_log = (reply: FastifyReply, e: unknown, key: string | undefined) => reply.log.warn({ msg: "ai check failed", class: classifyAiError(e), detail: redactKey((e as Error).message ?? "", key).slice(0, 200) }, "ai check failed");
+  const req_log = (reply: FastifyReply, e: unknown, key: string | undefined, kind: EffectiveAi["kind"]) => reply.log.warn({ msg: "ai check failed", class: classifyAiError(e, kind), detail: redactKey((e as Error).message ?? "", key).slice(0, 200) }, "ai check failed");
 
   app.get("/api/health", async () => ({ ok: true, db: (await pool.query("SELECT 1 AS ok")).rows[0].ok === 1 }));
 

@@ -69,7 +69,7 @@ export interface LlmText { text: string; source_class: "INFERRED" | "SYNTHETIC";
 
 export interface LlmResults {
   mode: "live" | "replay";
-  provider: "anthropic" | "openai" | "replay";
+  provider: "anthropic" | "openai" | "openai_compatible" | "claude_cli" | "replay" | "session";
   model: string;
   prompt_versions: string[];
   evidence: Evidence[];

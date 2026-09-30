@@ -32,10 +32,21 @@ export const AiSettingsInput = z.object({
 });
 export type AiSettingsInput = z.infer<typeof AiSettingsInput>;
 
+/**
+ * Закритий перелік error_class для POST /api/settings/ai/check (DEV-84). Без тексту помилки провайдера (він може містити секрети).
+ * Мапінг помилок провайдерів на нього — apps/api/src/ai-errors.ts; дзеркало в UI (apps/web/src/lib/ai-settings.ts) звіряється unit-тестом.
+ */
+export const AI_CHECK_ERROR_CLASSES = [
+  "no_provider", "no_key", "auth_failed", "not_logged_in", "rate_limited", "model_not_found", "provider_unavailable", "provider_not_available",
+  "timeout", "invalid_response", "network_blocked", "bad_base_url", "unknown",
+] as const;
+export const AiCheckErrorClass = z.enum(AI_CHECK_ERROR_CLASSES);
+export type AiCheckErrorClass = z.infer<typeof AiCheckErrorClass>;
+
 export const AiCheckResult = z.object({
   ok: z.boolean(),
   at: z.string(),
-  error_class: z.string().optional(),
+  error_class: AiCheckErrorClass.optional(),
   model_reported: z.string().optional(),
 });
 
@@ -57,7 +68,7 @@ export type AiSettingsView = z.infer<typeof AiSettingsView>;
 
 export const AiCheckResponse = z.object({
   ok: z.boolean(),
-  error_class: z.string().optional(),
+  error_class: AiCheckErrorClass.optional(),
   latency_ms: z.number(),
   model_reported: z.string().optional(),
 });

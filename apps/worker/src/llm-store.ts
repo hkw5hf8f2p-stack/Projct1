@@ -4,8 +4,8 @@
  */
 import type { Pool, PoolClient } from "pg";
 import { POLES, sha256, type CallRecord, type LlmClient, type PageInput, type SiteProfileCore, type StageResult, loadPagesFromArtifacts } from "@sitelens/llm";
-import { addUsage, auditDir, insertLlmCalls, setStage, type LlmCallRow } from "@sitelens/pipeline";
-import { BehavioralLens, LENS_VARIABLES, Task, type Evidence } from "@sitelens/schemas";
+import { addUsage, auditDir, reportProvider, insertLlmCalls, setStage, type LlmCallRow } from "@sitelens/pipeline";
+import { BehavioralLens, LENS_VARIABLES, LLM_PROVIDERS, Task, type Evidence } from "@sitelens/schemas";
 import { integrateSessions, type LlmResults, type LlmText, type SessionResultIn } from "@sitelens/reporting";
 import type { AuditArtifacts } from "@sitelens/reporting";
 import { materializePages } from "./artifacts.js";
@@ -35,10 +35,10 @@ export async function loadPageInputs(pool: Pool, artifactDir: string, auditId: s
   return loadPagesFromArtifacts(auditDir(artifactDir, auditId));
 }
 
-export const callRows = (client: LlmClient, calls: readonly CallRecord[], auditId: string): LlmCallRow[] =>
+export const callRows = (client: LlmClient, calls: readonly CallRecord[], auditId: string, aiKind?: string | null): LlmCallRow[] =>
   calls.map((r) => {
     const x = client.toLlmCall(r, auditId, r.stage as never);
-    return { id: x.id, stage: x.stage, prompt_version: x.prompt_version, provider: x.provider, model: x.model, request_hash: x.request_hash, response_json: x.response_json, status: x.status, error: x.error, input_tokens: x.input_tokens, output_tokens: x.output_tokens, latency_ms: x.latency_ms };
+    return { id: x.id, stage: x.stage, prompt_version: x.prompt_version, provider: reportProvider(r.provider, aiKind), model: x.model, request_hash: x.request_hash, response_json: x.response_json, status: x.status, error: x.error, input_tokens: x.input_tokens, output_tokens: x.output_tokens, latency_ms: x.latency_ms };
   });
 
 export async function withTx<T>(pool: Pool, fn: (c: PoolClient) => Promise<T>): Promise<T> {
@@ -58,11 +58,12 @@ export async function withTx<T>(pool: Pool, fn: (c: PoolClient) => Promise<T>): 
 
 /** llm_calls + токени + провайдер/модель/версія промпту (§35) для набору викликів; викликається всередині транзакції етапу/сценарію */
 export async function recordCalls(c: PoolClient, client: LlmClient, auditId: string, tag: string, calls: readonly CallRecord[]): Promise<string[]> {
-  const ids = await insertLlmCalls(c, auditId, tag, callRows(client, calls, auditId));
+  const aiKind = ((await c.query("SELECT config_json->'ai'->>'kind' AS kind FROM audit_runs WHERE id = $1", [auditId])).rows[0] as { kind: string | null } | undefined)?.kind ?? null;
+  const ids = await insertLlmCalls(c, auditId, tag, callRows(client, calls, auditId, aiKind));
   const first = calls[0];
   await addUsage(c, auditId, {
     input: calls.reduce((a, r) => a + r.input_tokens, 0), output: calls.reduce((a, r) => a + r.output_tokens, 0),
-    provider: first ? (first.provider === "anthropic" || first.provider === "openai" ? first.provider : "replay") : null, model: first?.model ?? null, prompt_version: first?.prompt_id ?? null,
+    provider: first ? reportProvider(first.provider, aiKind) : null, model: first?.model ?? null, prompt_version: first?.prompt_id ?? null,
   });
   return ids;
 }
@@ -163,7 +164,7 @@ export async function llmResultsFromDb(pool: Pool, auditId: string, art: AuditAr
         likely_objections: profile.purchase_objections.slice(0, 5).map((o) => text(o, "INFERRED", PR)),
       }
     : null;
-  const provider = (audit.llm_provider === "anthropic" || audit.llm_provider === "openai" || audit.llm_provider === "replay" ? audit.llm_provider : "replay") as LlmResults["provider"];
+  const provider = ((LLM_PROVIDERS as readonly string[]).includes(audit.llm_provider ?? "") ? audit.llm_provider : "replay") as LlmResults["provider"];
   const llm: LlmResults = {
     mode: audit.llm_mode === "live" ? "live" : "replay", provider, model: audit.llm_model ?? "unknown",
     prompt_versions: [...new Set(calls.map((r) => r.prompt_version as string))].sort(),
