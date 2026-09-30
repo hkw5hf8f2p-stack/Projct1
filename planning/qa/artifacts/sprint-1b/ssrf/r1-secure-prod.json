@@ -71,7 +71,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v04-hex",
+   "path": "/v12-iframe",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -81,7 +81,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v05-short",
+   "path": "/v04-hex",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -121,7 +121,17 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v12-iframe",
+   "path": "/v05-short",
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "127.0.0.2",
+   "port": 4196,
+   "path": "/v09-fullwidth",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -134,16 +144,6 @@
    "path": "/v10-idn",
    "decision": "deny",
    "reason": "заборонене ім'я хоста localhost (metadata/loopback)",
-   "connected_ip": null
-  },
-  {
-   "via": "http",
-   "method": "GET",
-   "host": "127.0.0.2",
-   "port": 4196,
-   "path": "/v09-fullwidth",
-   "decision": "deny",
-   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -184,6 +184,16 @@
    "path": "/v53-nolistener",
    "decision": "deny",
    "reason": "IP-літерал 172.16.0.1 заблоковано: 172.16.0.0/12 private RFC1918 (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "127.0.0.2",
+   "port": 4196,
+   "path": "/v11-dot",
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -279,11 +289,11 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "127.0.0.2",
+   "host": "mixed.test",
    "port": 4196,
-   "path": "/v11-dot",
+   "path": "/v41-mixed",
    "decision": "deny",
-   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -299,21 +309,11 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "mixed.test",
+   "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v41-mixed",
+   "path": "/v34-script.js",
    "decision": "deny",
-   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
-   "connected_ip": null
-  },
-  {
-   "via": "http",
-   "method": "GET",
-   "host": "127.0.0.2.nip.io",
-   "port": 4196,
-   "path": "/v43-nip",
-   "decision": "deny",
-   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -329,11 +329,11 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "cname.test",
+   "host": "127.0.0.2.nip.io",
    "port": 4196,
-   "path": "/v44-cname",
+   "path": "/v43-nip",
    "decision": "deny",
-   "reason": "серед A/AAAA є заблокована 127.0.0.1: 127.0.0.0/8 loopback (§49)",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -341,7 +341,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v16-font.woff",
+   "path": "/v35-object",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -351,7 +351,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v35-object",
+   "path": "/v16-font.woff",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -379,21 +379,11 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "v6only.test",
+   "host": "cname.test",
    "port": 4196,
-   "path": "/v45-v6only",
+   "path": "/v44-cname",
    "decision": "deny",
-   "reason": "серед A/AAAA є заблокована 0:0:0:0:0:0:0:1: ::1/128 loopback (§49); вбудована IPv4 0.0.0.1",
-   "connected_ip": null
-  },
-  {
-   "via": "http",
-   "method": "GET",
-   "host": "127.0.0.2",
-   "port": 4196,
-   "path": "/v20-meta",
-   "decision": "deny",
-   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "reason": "серед A/AAAA є заблокована 127.0.0.1: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
   },
   {
@@ -409,9 +399,29 @@
   {
    "via": "http",
    "method": "GET",
+   "host": "v6only.test",
+   "port": 4196,
+   "path": "/v45-v6only",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 0:0:0:0:0:0:0:1: ::1/128 loopback (§49); вбудована IPv4 0.0.0.1",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
    "path": "/v30-r307",
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "127.0.0.2",
+   "port": 4196,
+   "path": "/v20-meta",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -431,7 +441,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v29-r301",
+   "path": "/v28-r302",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null
@@ -461,16 +471,6 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v28-r302",
-   "decision": "deny",
-   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
-   "connected_ip": null
-  },
-  {
-   "via": "http",
-   "method": "GET",
-   "host": "127.0.0.2",
-   "port": 4196,
    "path": "/v31-chain",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
@@ -481,7 +481,7 @@
    "method": "GET",
    "host": "127.0.0.2",
    "port": 4196,
-   "path": "/v34-script.js",
+   "path": "/v29-r301",
    "decision": "deny",
    "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
    "connected_ip": null

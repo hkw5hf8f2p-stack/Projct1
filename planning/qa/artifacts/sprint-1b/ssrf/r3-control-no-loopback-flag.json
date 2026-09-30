@@ -12,6 +12,12 @@
    "run": "R3",
    "canary": "A",
    "method": "GET",
+   "path": "/v03-octal"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
    "path": "/v01-img"
   },
   {
@@ -24,19 +30,13 @@
    "run": "R3",
    "canary": "A",
    "method": "GET",
-   "path": "/v03-octal"
+   "path": "/v19-preload.png"
   },
   {
    "run": "R3",
    "canary": "A",
    "method": "GET",
    "path": "/v04-hex"
-  },
-  {
-   "run": "R3",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v19-preload.png"
   },
   {
    "run": "R3",
@@ -58,6 +58,12 @@
   },
   {
    "run": "R3",
+   "canary": "B",
+   "method": "GET",
+   "path": "/v08-localhost"
+  },
+  {
+   "run": "R3",
    "canary": "A",
    "method": "GET",
    "path": "/v34-script.js"
@@ -67,12 +73,6 @@
    "canary": "A",
    "method": "GET",
    "path": "/v12-iframe"
-  },
-  {
-   "run": "R3",
-   "canary": "B",
-   "method": "GET",
-   "path": "/v08-localhost"
   },
   {
    "run": "R3",
@@ -108,12 +108,6 @@
    "run": "R3",
    "canary": "A",
    "method": "GET",
-   "path": "/v29-r301"
-  },
-  {
-   "run": "R3",
-   "canary": "A",
-   "method": "GET",
    "path": "/v15-bg.png"
   },
   {
@@ -132,7 +126,19 @@
    "run": "R3",
    "canary": "A",
    "method": "GET",
+   "path": "/v29-r301"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
    "path": "/v35-object"
+  },
+  {
+   "run": "R3",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v20-meta"
   },
   {
    "run": "R3",
@@ -150,25 +156,19 @@
    "run": "R3",
    "canary": "A",
    "method": "GET",
-   "path": "/v20-meta"
-  },
-  {
-   "run": "R3",
-   "canary": "A",
-   "method": "GET",
    "path": "/v21-location"
   },
   {
    "run": "R3",
    "canary": "A",
    "method": "GET",
-   "path": "/v33-worker"
+   "path": "/v31-chain"
   },
   {
    "run": "R3",
    "canary": "A",
    "method": "GET",
-   "path": "/v31-chain"
+   "path": "/v33-worker"
   },
   {
    "run": "R3",
@@ -257,16 +257,6 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "rebind2.test",
-   "port": 4196,
-   "path": "/v42-start",
-   "decision": "allow",
-   "reason": "усі адреси дозволені; TCP до перевіреної IP",
-   "connected_ip": "93.184.216.34"
-  },
-  {
-   "via": "http",
-   "method": "GET",
    "host": "[fc00::1]",
    "port": 80,
    "path": "/v56-nolistener",
@@ -279,10 +269,10 @@
    "method": "GET",
    "host": "rebind2.test",
    "port": 4196,
-   "path": "/v42-after",
-   "decision": "deny",
-   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
-   "connected_ip": null
+   "path": "/v42-start",
+   "decision": "allow",
+   "reason": "усі адреси дозволені; TCP до перевіреної IP",
+   "connected_ip": "93.184.216.34"
   },
   {
    "via": "http",
@@ -307,6 +297,16 @@
   {
    "via": "http",
    "method": "GET",
+   "host": "rebind.test",
+   "port": 4196,
+   "path": "/v40-a",
+   "decision": "allow",
+   "reason": "усі адреси дозволені; TCP до перевіреної IP",
+   "connected_ip": "93.184.216.34"
+  },
+  {
+   "via": "http",
+   "method": "GET",
    "host": "cname.test",
    "port": 4196,
    "path": "/v44-cname",
@@ -317,12 +317,12 @@
   {
    "via": "http",
    "method": "GET",
-   "host": "rebind.test",
+   "host": "rebind2.test",
    "port": 4196,
-   "path": "/v40-a",
-   "decision": "allow",
-   "reason": "усі адреси дозволені; TCP до перевіреної IP",
-   "connected_ip": "93.184.216.34"
+   "path": "/v42-after",
+   "decision": "deny",
+   "reason": "серед A/AAAA є заблокована 127.0.0.2: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
   },
   {
    "via": "http",

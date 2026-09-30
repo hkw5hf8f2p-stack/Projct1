@@ -6,6 +6,12 @@
    "run": "R4",
    "canary": "A",
    "method": "GET",
+   "path": "/v42-start"
+  },
+  {
+   "run": "R4",
+   "canary": "A",
+   "method": "GET",
    "path": "/v40-a"
   },
   {
@@ -13,12 +19,6 @@
    "canary": "A",
    "method": "GET",
    "path": "/v41-mixed"
-  },
-  {
-   "run": "R4",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v42-start"
   }
  ],
  "naive_log": [
@@ -39,27 +39,7 @@
   },
   {
    "host": "127.0.0.2",
-   "path": "/v05-short",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v18-prefetch",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
    "path": "/v19-preload.png",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v09-fullwidth",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v11-dot",
    "decision": "deny: literal/name deny"
   },
   {
@@ -78,8 +58,23 @@
    "decision": "deny: literal/name deny"
   },
   {
+   "host": "127.0.0.2",
+   "path": "/v05-short",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v12-iframe",
+   "decision": "deny: literal/name deny"
+  },
+  {
    "host": "0.0.0.0",
    "path": "/v07-zero",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v11-dot",
    "decision": "deny: literal/name deny"
   },
   {
@@ -93,18 +88,18 @@
    "decision": "deny: literal/name deny"
   },
   {
-   "host": "localhost",
-   "path": "/v10-idn",
-   "decision": "deny: literal/name deny"
-  },
-  {
    "host": "127.0.0.2",
-   "path": "/v12-iframe",
+   "path": "/v09-fullwidth",
    "decision": "deny: literal/name deny"
   },
   {
    "host": "127.0.0.2",
    "path": "/v34-script.js",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "localhost",
+   "path": "/v10-idn",
    "decision": "deny: literal/name deny"
   },
   {
@@ -118,59 +113,10 @@
    "decision": "deny: literal/name deny"
   },
   {
-   "host": "10.0.0.1",
-   "path": "/v52-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "172.16.0.1",
-   "path": "/v53-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "192.168.1.1",
-   "path": "/v54-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "100.64.0.1",
-   "path": "/v55-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "[fc00::1]",
-   "path": "/v56-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "[fe80::1]",
-   "path": "/v57-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v15-bg.png",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "[::1]",
-   "path": "/v58-nolistener",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v16-font.woff",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v29-r301",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v13-fetch",
-   "decision": "deny: literal/name deny"
+   "host": "rebind2.test",
+   "path": "/v42-start",
+   "decision": "allow",
+   "ip": "127.0.0.2"
   },
   {
    "host": "[::ffff:7f00:2]",
@@ -179,17 +125,17 @@
   },
   {
    "host": "127.0.0.2",
+   "path": "/v13-fetch",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
    "path": "/v14-xhr",
    "decision": "deny: literal/name deny"
   },
   {
-   "host": "127.0.0.2",
-   "path": "/v32-sse",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v35-object",
+   "host": "10.0.0.1",
+   "path": "/v52-nolistener",
    "decision": "deny: literal/name deny"
   },
   {
@@ -220,14 +166,63 @@
    "decision": "deny: first address private"
   },
   {
-   "host": "rebind2.test",
-   "path": "/v42-start",
-   "decision": "allow",
-   "ip": "127.0.0.2"
+   "host": "172.16.0.1",
+   "path": "/v53-nolistener",
+   "decision": "deny: literal/name deny"
   },
   {
-   "host": "10.0.0.1",
-   "path": "/v52b-redirect",
+   "host": "192.168.1.1",
+   "path": "/v54-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v18-prefetch",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "100.64.0.1",
+   "path": "/v55-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[fc00::1]",
+   "path": "/v56-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[fe80::1]",
+   "path": "/v57-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "[::1]",
+   "path": "/v58-nolistener",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v15-bg.png",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v16-font.woff",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v32-sse",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v35-object",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v28-r302",
    "decision": "deny: literal/name deny"
   },
   {
@@ -237,12 +232,7 @@
   },
   {
    "host": "127.0.0.2",
-   "path": "/v20-meta",
-   "decision": "deny: literal/name deny"
-  },
-  {
-   "host": "127.0.0.2",
-   "path": "/v28-r302",
+   "path": "/v29-r301",
    "decision": "deny: literal/name deny"
   },
   {
@@ -257,12 +247,22 @@
   },
   {
    "host": "127.0.0.2",
-   "path": "/v33-worker",
+   "path": "/v20-meta",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "10.0.0.1",
+   "path": "/v52b-redirect",
    "decision": "deny: literal/name deny"
   },
   {
    "host": "127.0.0.2",
    "path": "/v31-chain",
+   "decision": "deny: literal/name deny"
+  },
+  {
+   "host": "127.0.0.2",
+   "path": "/v33-worker",
    "decision": "deny: literal/name deny"
   },
   {
