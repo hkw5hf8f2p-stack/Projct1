@@ -1,5 +1,9 @@
 # STATE — SiteLens (читати першим)
 
+> **Оновлення 30.09.2026:** S1b — Go-офлайн після Fix (`conclusions/sprint-1b.md`; **S1b-live блокує реальні URL
+> для користувача**); S3 — Go dev-пас (`conclusions/sprint-3.md`; guard held-out 34/48 < 44 → у S4 структурний білий
+> список чисел). S2 — у роботі. Далі: S4 ∥ каркас S5.
+>
 > **Оновлення 29.09.2026 (оркестратор, хмарна сесія): S1a закрито — Go після Fix** (`planning/conclusions/sprint-1a.md`).
 > Середовище: Linux-контейнер, Node 22.22.2, pnpm 10.33.0, Playwright 1.56.1 / Chromium r1194 (DEV-23…25), браузер
 > від `sitelens` (`bash scripts/run-as-sitelens.sh …`). Живі сайти заблоковані мережею (власник обіцяв відкрити).
