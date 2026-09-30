@@ -9,7 +9,7 @@ import { aiEnvOverlay, readStoredAiSettings, type AiSnapshot, type AppConfig } f
 import { ensureChromeWrapper } from "./chrome-wrapper.js";
 import { createClientFromEnv, resolveConfig, type CallRecord, type LlmClient } from "@sitelens/llm";
 import type { AuditRow } from "@sitelens/pipeline";
-import type { BehavioralLens, Task } from "@sitelens/schemas";
+import { LLM_CONCURRENCY_DEFAULT, LLM_CONCURRENCY_MAX, LLM_CONCURRENCY_MIN, type BehavioralLens, type Task } from "@sitelens/schemas";
 
 /** Клієнт LLM для однієї задачі: бюджет = MAX_AUDIT_TOKENS мінус уже витрачене цим аудитом (E4; між паралельними задачами — перевищення ≤ concurrency × max_tokens виклику). */
 export interface LlmHandle { client: LlmClient; provider: string | null; model: string | null }
@@ -33,6 +33,34 @@ export interface JournalOutput {
 }
 export type JournalRunner = (input: JournalInput) => Promise<JournalOutput>;
 
+/** Семафор паралельності LLM для ОДНОГО аудиту (DEV-92). Обмеження діє на LLM-секцію snapshot-задач; черга pg-boss дає верхню межу. */
+export class Semaphore {
+  active = 0;
+  private waiters: Array<() => void> = [];
+  constructor(readonly limit: number) {}
+  async run<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.active >= this.limit) await new Promise<void>((res) => this.waiters.push(res));
+    else this.active++;
+    try { return await fn(); } finally {
+      const next = this.waiters.shift();
+      if (next) next(); // слот передається наступному (active не змінюється)
+      else this.active--;
+    }
+  }
+  get idle(): boolean { return this.active === 0 && this.waiters.length === 0; }
+}
+export const clampConcurrency = (v: unknown): number => (typeof v === "number" && Number.isInteger(v) ? Math.min(LLM_CONCURRENCY_MAX, Math.max(LLM_CONCURRENCY_MIN, v)) : LLM_CONCURRENCY_DEFAULT);
+
+/**
+ * Залишок токенів для клієнта задачі (E4, DEV-70/DEV-92): max − витрачене − резерв під УЖЕ виконувані паралельні задачі цього аудиту
+ * (кожна ще не записала токени; резерв = їхня кількість × середні токени завершених snapshot-викликів). Немає завершених → резерв 0
+ * (як було): перевищення обмежене concurrency × токени одного виклику; з резервом — лише першою хвилею.
+ */
+export function remainingBudget(o: { max: number; used: number; othersActive: number; avgCallTokens: number | null }): number {
+  const reserve = o.avgCallTokens === null ? 0 : Math.ceil(o.othersActive * o.avgCallTokens);
+  return Math.max(1, o.max - o.used - reserve);
+}
+
 export interface Runtime {
   cfg: AppConfig;
   pool: Pool;
@@ -46,7 +74,11 @@ export interface Runtime {
   netOptions(): { mode: "prod" | "fixture"; fixtureOrigins?: string[]; allowFixtureLoopback?: boolean; resolver?: Resolver; dial?: Dialer };
   hasFault(name: string, url?: string): boolean;
   /** LLM-клієнт задачі (DEV-57): за замовчуванням createClientFromEnv(process.env); тести підставляють scripted fake / replay */
-  llm(audit: AuditRow): Promise<LlmHandle>;
+  llm(audit: AuditRow, o?: { inSlot?: boolean }): Promise<LlmHandle>;
+  /** виконати LLM-секцію в межах паралельності аудиту (config_json.llm_concurrency, 1–6) */
+  llmSlot<T>(audit: AuditRow, fn: () => Promise<T>): Promise<T>;
+  /** залишок бюджету E4 з резервом під паралельні задачі (див. remainingBudget); тести з підміненим rt.llm викликають його теж */
+  budgetRemaining(audit: AuditRow, max: number, o?: { inSlot?: boolean }): Promise<number>;
   /** виконавець журналів; null → run_browser_scenario фіксує `skipped` з причиною (виконавця ще не підключено) */
   journalRunner: JournalRunner | null;
   /** обгортка Chrome Lighthouse з обліком PID до exec (chrome-launcher не прив'язує Chrome до батька) */
@@ -102,8 +134,24 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
     };
     return sb;
   };
+  const sems = new Map<string, Semaphore>();
   const rt: Runtime = {
     cfg, pool, boss, gate, nav, chromeWrapper,
+    async llmSlot(audit, fn) {
+      let sem = sems.get(audit.id);
+      if (!sem) sems.set(audit.id, (sem = new Semaphore(clampConcurrency((audit.config_json as { llm_concurrency?: unknown }).llm_concurrency))));
+      try { return await sem.run(fn); } finally { if (sem.idle && sems.get(audit.id) === sem) sems.delete(audit.id); }
+    },
+    async budgetRemaining(audit, max, o = {}) {
+      const used = Number(((await pool.query("SELECT tokens_input + tokens_output AS used FROM audit_runs WHERE id = $1", [audit.id])).rows[0] as { used: string } | undefined)?.used ?? 0);
+      const others = Math.max(0, (sems.get(audit.id)?.active ?? 0) - (o.inSlot ? 1 : 0));
+      let avg: number | null = null;
+      if (others > 0) {
+        const a = (await pool.query("SELECT avg(input_tokens + output_tokens)::float8 AS a FROM llm_calls WHERE audit_run_id = $1 AND stage = 'snapshot_sessions' AND input_tokens IS NOT NULL", [audit.id])).rows[0] as { a: number | null };
+        avg = a.a;
+      }
+      return remainingBudget({ max, used, othersActive: others, avgCallTokens: avg });
+    },
     userAgent: fixture ? undefined : HONEST_USER_AGENT,
     async getBrowser() {
       if (browser && browser.browser.isConnected()) return browser;
@@ -118,7 +166,7 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
     },
     netOptions,
     journalRunner: null,
-    async llm(audit) {
+    async llm(audit, o = {}) {
       // BYO AI: провайдер+модель беруться зі ЗНІМКА аудиту (config_json.ai), ключ — зі сховища; зміна налаштувань під час аудиту на нього не діє.
       // Якщо kind у сховищі змінився (ключ іншого провайдера) — гучна помилка, а не тихий перехід.
       const snap = (audit.config_json as { ai?: AiSnapshot }).ai;
@@ -129,8 +177,7 @@ export function createRuntime(cfg: AppConfig, pool: Pool, boss: PgBoss): Runtime
         env = aiEnvOverlay({ kind: snap.kind, model: snap.model, base_url: snap.base_url, api_key: st?.api_key, max_audit_tokens: snap.max_audit_tokens }, process.env);
       }
       const max = resolveConfig(env).max_audit_tokens;
-      const row = (await pool.query("SELECT tokens_input + tokens_output AS used FROM audit_runs WHERE id = $1", [audit.id])).rows[0] as { used: string } | undefined;
-      const remaining = Math.max(1, max - Number(row?.used ?? 0));
+      const remaining = await rt.budgetRemaining(audit, max, o);
       const { client, config } = createClientFromEnv({ ...env, MAX_AUDIT_TOKENS: String(remaining) });
       return { client, provider: config.provider, model: config.model };
     },

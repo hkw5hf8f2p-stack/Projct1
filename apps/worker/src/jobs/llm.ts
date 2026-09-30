@@ -6,7 +6,8 @@
  */
 import type { Job } from "pg-boss";
 import { Q, advanceStatus, enqueue, setStage, txDb, type AuditRow, type JobData, type QueueName } from "@sitelens/pipeline";
-import { buildScenarioMatrix, buildSiteProfile, generateLenses, generateTasks, type StageResult } from "@sitelens/llm";
+import { QUICK_MATRIX, buildScenarioMatrix, buildSiteProfile, generateLenses, generateTasks, type StageResult } from "@sitelens/llm";
+import { MODE_PROFILES } from "@sitelens/schemas";
 import type { Runtime } from "../runtime.js";
 import { liveAudit } from "./common.js";
 import { commitStage, loadLenses, loadPageInputs, loadProfile, loadTasks, withTx, writeLenses, writeProfile, writeScenarios, writeTasks } from "../llm-store.js";
@@ -43,6 +44,8 @@ async function runStage(rt: Runtime, audit: AuditRow, spec: Spec): Promise<void>
   const h = await rt.llm(audit);
   if (h.client.mode === "none") return skip("no LLM provider");
   const ctx = { audit_run_id: id, client: h.client, language: audit.language };
+  const quick = audit.config_json["mode"] === "quick"; // DEV-93: швидкий аудит — параметри етапів, логіка скорингу/guard без змін
+  const Q6 = MODE_PROFILES.quick;
   switch (spec.stage) {
     case "site_profile": {
       const pages = await loadPageInputs(rt.pool, rt.cfg.artifactDir, id);
@@ -59,13 +62,13 @@ async function runStage(rt: Runtime, audit: AuditRow, spec: Spec): Promise<void>
     }
     case "lenses": {
       const profile = (await loadProfile(rt.pool, id))!;
-      const r = await generateLenses(ctx, { profile });
+      const r = await generateLenses(ctx, { profile, ...(quick ? { k: Q6.lens_count, min: Q6.lens_count, candidates: Q6.lens_count + 4 } : {}) });
       await commitStage(rt.pool, id, h.client, "lenses", r, async (c, ids) => writeLenses(c, id, r.output!.lenses, r.prompt_id ?? "lens-generator-v1", ids[0]));
       return;
     }
     case "scenario_matrix": {
       const [lenses, tasks] = [await loadLenses(rt.pool, id), await loadTasks(rt.pool, id)];
-      const r: StageResult<unknown> = await buildScenarioMatrix(ctx, { lenses, tasks });
+      const r: StageResult<unknown> = await buildScenarioMatrix(ctx, { lenses, tasks, ...(quick ? { matrix: QUICK_MATRIX, maxJournals: Q6.journals_max } : {}) });
       const out = (r as Awaited<ReturnType<typeof buildScenarioMatrix>>).output;
       const dev = new Map((out?.snapshot_entries ?? []).map((e) => [`${e.lens_id}|${e.task_id}`, e.device]));
       const jdev = new Map((out?.fixed_journals ?? []).map((e) => [`${e.lens_id}|${e.task_id}`, e.device]));

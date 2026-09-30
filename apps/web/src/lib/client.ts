@@ -51,8 +51,8 @@ async function call<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> 
   return { ok: false, http: res.status, cls: e?.class ?? (res.status === 401 ? "unauthorized" : res.status === 404 ? "not_found" : "internal"), message: e?.message ?? `HTTP ${res.status}` };
 }
 
-export const createAudit = (url: string, language: "uk" | "en") =>
-  call<{ auditId: string }>("/audits", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, language }) });
+export const createAudit = (url: string, language: "uk" | "en", mode: "quick" | "full" = "full") =>
+  call<{ auditId: string }>("/audits", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, language, ...(mode === "quick" ? { mode } : {}) }) });
 export const getStatus = (id: string) => call<AuditStatus>(`/audits/${encodeURIComponent(id)}`);
 export const getReport = (id: string) => call<Report>(`/audits/${encodeURIComponent(id)}/report`);
 

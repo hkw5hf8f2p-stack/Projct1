@@ -145,6 +145,12 @@ select { min-width: 0; }
 .step-running .step-dot { background: var(--info-bg); color: var(--info-fg); border-color: var(--info-fg); }
 .step-failed .step-dot { background: var(--danger-bg); color: var(--danger-fg); border-color: var(--danger-fg); }
 .step-skipped .step-dot, .step-budget_limited .step-dot { background: var(--warn-bg); color: var(--warn-fg); border-color: var(--warn-border); }
+.step-progress { margin-top: 6px; }
+.pbar { height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; margin-bottom: 4px; max-width: 420px; }
+.pbar > span { display: block; height: 100%; background: var(--info-fg); transition: width .4s ease; }
+.pbar-indeterminate > span { animation: pbar-slide 1.6s ease-in-out infinite alternate; }
+@keyframes pbar-slide { from { margin-left: 0; } to { margin-left: 65%; } }
+@media (prefers-reduced-motion: reduce) { .pbar > span { transition: none; } .pbar-indeterminate > span { animation: none; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin 1s linear infinite; display: inline-block; }
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }

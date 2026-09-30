@@ -47,8 +47,9 @@ export class DynamicFake implements LlmProvider {
 
 /** підключити fake до worker-runtime (rt.llm) */
 export function useFakeLlm(rt: Runtime, fake: DynamicFake, max = 1_650_000): void {
-  rt.llm = async (audit) => {
-    const used = Number(((await rt.pool.query("SELECT tokens_input + tokens_output AS used FROM audit_runs WHERE id = $1", [audit.id])).rows[0] as { used: string }).used);
-    return { client: new LlmClient({ mode: "fake", provider: fake, budget: new TokenBudget(Math.max(1, max - used)) }), provider: "replay", model: fake.model };
+  rt.llm = async (audit, o) => {
+    // той самий розрахунок залишку, що й у справжньому rt.llm (резерв під паралельні задачі, DEV-92)
+    const remaining = await rt.budgetRemaining(audit, max, o);
+    return { client: new LlmClient({ mode: "fake", provider: fake, budget: new TokenBudget(remaining) }), provider: "replay", model: fake.model };
   };
 }

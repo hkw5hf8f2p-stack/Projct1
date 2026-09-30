@@ -17,6 +17,7 @@ export async function captureJob(rt: Runtime, job: Job<JobData>): Promise<void> 
   const key = `capture:${pageId}`;
   if (await getJob(rt.pool, auditRunId, key)) return; // уже зроблено (повтор після kill -9 / дубль)
   const runDir = ensureAuditDir(rt.cfg.artifactDir, auditRunId);
+  const t0 = Date.now();
   const out = await capturePageFlow(rt, { url, pageId, runDir, seedUrl });
   if (!(await liveAudit(rt, auditRunId))) return; // аудит видалено під час захоплення: нічого не пишемо (файли прибере видалення/TTL)
   const c = await rt.pool.connect();
@@ -32,7 +33,7 @@ export async function captureJob(rt: Runtime, job: Job<JobData>): Promise<void> 
       await c.query("BEGIN");
       await upsertPage(c, auditRunId, pageRowOf(cap, out.egress_denied));
       await insertEvidence(c, auditRunId, ev.map((e) => ({ ...e, page_id: pageId })));
-      await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "capture", page_url: url, status: "done", error_class: null, error: null, result_json: { page_type: cap.page_type, evidence: ev.length } });
+      await upsertJob(c, { audit_run_id: auditRunId, job_key: key, kind: "capture", page_url: url, status: "done", error_class: null, error: null, result_json: { page_type: cap.page_type, evidence: ev.length, duration_ms: Date.now() - t0 } });
       await c.query("COMMIT");
     } else {
       const f = out.failure;

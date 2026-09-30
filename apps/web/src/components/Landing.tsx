@@ -14,6 +14,7 @@ export function Landing() {
   const [url, setUrl] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [mode, setMode] = useState<"quick" | "full">("full");
   const [needToken, setNeedToken] = useState(false);
   const [tokenRejected, setTokenRejected] = useState(false);
 
@@ -26,7 +27,7 @@ export function Landing() {
     }
     setErr(null);
     setBusy(true);
-    const r = await createAudit(url.trim(), lang);
+    const r = await createAudit(url.trim(), lang, mode);
     if (r.ok) {
       router.push(`/audit/${encodeURIComponent(r.data.auditId)}`);
       return; // busy лишається true до переходу
@@ -83,6 +84,20 @@ export function Landing() {
             {t("landing.hint")}
           </span>
         </div>
+        <fieldset className="field" data-testid="mode-select" style={{ border: 0, padding: 0, margin: 0 }}>
+          <legend className="small muted">{t("landing.mode.label")}</legend>
+          <div className="radio-cards">
+            {(["full", "quick"] as const).map((m) => (
+              <label key={m} className="radio-card" data-checked={mode === m} data-testid={`mode-${m}`}>
+                <input type="radio" name="audit-mode" value={m} checked={mode === m} onChange={() => setMode(m)} />
+                <span>
+                  <strong>{t(`landing.mode.${m}` as Key)}</strong>
+                  <span className="small muted block">{t(`landing.mode.${m}_desc` as Key)}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
         {err && (
           <p id="url-error" role="alert" className="callout callout-danger" data-testid="url-error">
             {err}

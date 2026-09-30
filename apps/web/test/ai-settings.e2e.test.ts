@@ -24,7 +24,7 @@ const ENVS: Env[] = [
 interface Mock { state: AiSettingsView; puts: Record<string, unknown>[]; checkResult: Record<string, unknown>; deletes: number; failLoad?: boolean }
 async function mockApi(page: Page, init?: Partial<AiSettingsView>): Promise<Mock> {
   const m: Mock = {
-    state: { kind: "none", model: "", key_set: false, max_audit_tokens: 200000, updated_at: null, source: "none", ...init },
+    state: { kind: "none", model: "", key_set: false, max_audit_tokens: 200000, llm_concurrency: 3, updated_at: null, source: "none", ...init },
     puts: [], deletes: 0, checkResult: { ok: true, latency_ms: 412, model_reported: "mock-model-1" },
   };
   await page.route(/\/api\/(?:dev\/)?settings\/ai(?:\/.*)?$/, async (route) => {
@@ -208,7 +208,7 @@ describe("/settings/ai", () => {
     let fail = true;
     await page.route(/\/api\/(?:dev\/)?settings\/ai$/, async (r) => {
       if (fail) return r.fulfill({ status: 500, contentType: "application/json", body: JSON.stringify({ error: { class: "internal", message: "x" } }) });
-      return r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ kind: "none", model: "", key_set: false, max_audit_tokens: 100000, updated_at: null, source: "none" }) });
+      return r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ kind: "none", model: "", key_set: false, max_audit_tokens: 100000, llm_concurrency: 3, updated_at: null, source: "none" }) });
     });
     await page.goto("http://127.0.0.1:" + (process.env["SL_WEB_PORT"] ?? 3100) + "/settings/ai");
     await page.getByTestId("ai-load-error").waitFor();

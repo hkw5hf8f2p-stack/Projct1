@@ -34,7 +34,8 @@ export const QUEUE_SPECS: Record<QueueName, QueueSpec> = {
   generate_tasks: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 2 },
   generate_lenses: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 2 },
   build_scenario_matrix: { retryLimit: 3, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
-  run_snapshot_scenario: { retryLimit: 3, retryDelay: 2, expireInSeconds: 600, heartbeatSeconds: 30, concurrency: 4 },
+  /* DEV-92: concurrency = верхня межа (LLM_CONCURRENCY_MAX); реальна паралельність — семафор на аудит (rt.llmSlot). expire ↑: задача може чекати слот */
+  run_snapshot_scenario: { retryLimit: 3, retryDelay: 2, expireInSeconds: 1800, heartbeatSeconds: 30, concurrency: 6 },
   run_browser_scenario: { retryLimit: 2, retryDelay: 3, expireInSeconds: 1200, heartbeatSeconds: 30, concurrency: 1 },
   generate_report: { retryLimit: 5, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
   aggregate_findings: { retryLimit: 5, retryDelay: 2, expireInSeconds: 300, heartbeatSeconds: 30, concurrency: 2 },
@@ -51,6 +52,8 @@ export async function startBoss(boss: PgBoss): Promise<void> {
   await boss.start();
   for (const [name, s] of Object.entries(QUEUE_SPECS)) {
     await boss.createQueue(name, { retryLimit: s.retryLimit, retryDelay: s.retryDelay, retryBackoff: true, expireInSeconds: s.expireInSeconds, heartbeatSeconds: s.heartbeatSeconds, retentionSeconds: 7 * 86400, deleteAfterSeconds: 7 * 86400 });
+    // createQueue не змінює наявну чергу: оновлюємо параметри, що змінювались між версіями (DEV-92: expire snapshot-задач)
+    await boss.updateQueue(name, { expireInSeconds: s.expireInSeconds, retryLimit: s.retryLimit, retryDelay: s.retryDelay }).catch(() => undefined);
   }
 }
 

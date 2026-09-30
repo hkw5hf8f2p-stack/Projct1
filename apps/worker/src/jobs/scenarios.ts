@@ -47,34 +47,42 @@ export async function snapshotJob(rt: Runtime, job: Job<JobData>): Promise<void>
   if (!row) return bail({ status: "failed", error: "немає захопленої сторінки для сценарію", result: {} });
   const { page, viewportHeight, imageRel } = pageInputFromRow(auditDir(rt.cfg.artifactDir, id), row, sc.device === "mobile" ? "mobile" : "desktop");
   if (!page.image) return bail({ status: "failed", error: `немає скриншота першого вікна (${sc.device ?? "desktop"}) сторінки ${page.id}`, result: { page: page.id } });
-  const h = await rt.llm(audit);
-  let res: Awaited<ReturnType<typeof evaluateSnapshot>>;
-  try {
-    res = await evaluateSnapshot(
-      { audit_run_id: id, client: h.client, language: audit.language },
-      {
-        page, lens, task: { id: task.task_id, name: task.name, goal: task.goal, task_type: task.task_type },
-        tiles: [{ id: "t0", y_css: 0, height_css: viewportHeight ?? 1000, image: page.image }], tiles_total: 1,
-        a11y_outline: ((row.aria_snapshot as string | null) ?? "").slice(0, 3000),
-      },
-    );
-  } catch (e) {
-    // ReplayMissError / ConfigError — гучні: повтор, а на останній спробі — запис збою (§47: збій сценарію ≠ збій аудиту)
-    if (!isFinal(job)) throw e;
-    return bail({ status: "failed", error: `${(e as Error).name}: ${(e as Error).message}`.slice(0, 400), result: { page: page.id } });
-  }
-  const tok = tokensOf(res.calls);
-  await finish(rt, audit, "snapshot", key, async (c) => {
-    const ids = await recordCalls(c, h.client, id, key, res.calls);
-    if (res.status === "done" && res.output) {
-      const s = res.output.session;
-      await upsertSession(c, id, { session_id: s.session_id, lens_id: s.lens_id, task_id: s.task_id, level: "snapshot", success: s.success, actions_used: 0, frictions: s.frictions, positive_signals: s.positive_signals, uncertainties: s.uncertainties, final_summary: s.final_summary, steps: null, llm_call_ids: ids, prompt_version: res.prompt_id, pages_seen: s.pages_seen });
+  const image = page.image;
+  // DEV-92: LLM-секція — у межах паралельності аудиту; бюджет клієнта рахується вже ПІСЛЯ отримання слота (бачить токени завершених задач)
+  const failed = await rt.llmSlot(audit, async (): Promise<Outcome | null> => {
+    const t0 = Date.now();
+    const h = await rt.llm(audit, { inSlot: true });
+    let res: Awaited<ReturnType<typeof evaluateSnapshot>>;
+    try {
+      res = await evaluateSnapshot(
+        { audit_run_id: id, client: h.client, language: audit.language },
+        {
+          page, lens, task: { id: task.task_id, name: task.name, goal: task.goal, task_type: task.task_type },
+          tiles: [{ id: "t0", y_css: 0, height_css: viewportHeight ?? 1000, image }], tiles_total: 1,
+          a11y_outline: ((row.aria_snapshot as string | null) ?? "").slice(0, 3000),
+        },
+      );
+    } catch (e) {
+      // ReplayMissError / ConfigError — гучні: повтор, а на останній спробі — запис збою (§47: збій сценарію ≠ збій аудиту)
+      if (!isFinal(job)) throw e;
+      return { status: "failed", error: `${(e as Error).name}: ${(e as Error).message}`.slice(0, 400), result: { page: page.id } };
     }
-  }, res.status === "done"
-    ? { status: "done", result: { verdict: res.output?.verdict, page: page.id, screenshot: imageRel, tokens: tok } }
-    : res.status === "budget_limited" ? { status: "skipped", reason: "budget_limited", result: { detail: res.reason, tokens: tok } }
-    : res.status === "skipped" ? { status: "skipped", reason: res.reason ?? "skipped", result: { tokens: tok } }
-    : { status: "failed", error: res.reason ?? "етап не виконано", result: { tokens: tok, rejected: res.rejected.slice(0, 5) } });
+    const tok = tokensOf(res.calls);
+    const dur = { duration_ms: Date.now() - t0 };
+    await finish(rt, audit, "snapshot", key, async (c) => {
+      const ids = await recordCalls(c, h.client, id, key, res.calls);
+      if (res.status === "done" && res.output) {
+        const s = res.output.session;
+        await upsertSession(c, id, { session_id: s.session_id, lens_id: s.lens_id, task_id: s.task_id, level: "snapshot", success: s.success, actions_used: 0, frictions: s.frictions, positive_signals: s.positive_signals, uncertainties: s.uncertainties, final_summary: s.final_summary, steps: null, llm_call_ids: ids, prompt_version: res.prompt_id, pages_seen: s.pages_seen });
+      }
+    }, res.status === "done"
+      ? { status: "done", result: { verdict: res.output?.verdict, page: page.id, screenshot: imageRel, tokens: tok, ...dur } }
+      : res.status === "budget_limited" ? { status: "skipped", reason: "budget_limited", result: { detail: res.reason, tokens: tok, ...dur } }
+      : res.status === "skipped" ? { status: "skipped", reason: res.reason ?? "skipped", result: { tokens: tok, ...dur } }
+      : { status: "failed", error: res.reason ?? "етап не виконано", result: { tokens: tok, rejected: res.rejected.slice(0, 5), ...dur } });
+    return null;
+  });
+  if (failed) return bail(failed);
   await advancePostScenarios(rt, id);
 }
 
@@ -93,6 +101,7 @@ export async function browserJob(rt: Runtime, job: Job<JobData>): Promise<void> 
   const lens = (await loadLenses(rt.pool, id)).find((l) => l.id === sc.lens_id)!;
   const task = (await loadTasks(rt.pool, id)).find((t) => t.task_id === sc.task_id)!;
   const h = await rt.llm(audit);
+  const tJ = Date.now();
   let out: Awaited<ReturnType<NonNullable<Runtime["journalRunner"]>>>;
   try {
     out = await rt.journalRunner({ auditRunId: id, scenarioId, lens, task, startUrl: task.recommended_start_page, browser: () => rt.getBrowser(), gate: rt.gate, userAgent: rt.userAgent, client: h.client, language: audit.language, artifactDir: rt.cfg.artifactDir });
@@ -101,7 +110,7 @@ export async function browserJob(rt: Runtime, job: Job<JobData>): Promise<void> 
     return done({ status: "failed", error: `${(e as Error).name}: ${(e as Error).message}`.slice(0, 400), result: {} });
   }
   const tok = tokensOf(out.calls);
-  const result = { tokens: tok, non_get_blocked: out.non_get_blocked ?? 0 };
+  const result = { tokens: tok, non_get_blocked: out.non_get_blocked ?? 0, duration_ms: Date.now() - tJ };
   if (out.status === "done" && out.session) {
     const s = out.session;
     return done({ status: "done", result }, async (c) => {

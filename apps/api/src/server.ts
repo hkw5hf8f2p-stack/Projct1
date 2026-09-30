@@ -9,12 +9,12 @@ import path from "node:path";
 import Fastify, { type FastifyInstance, type FastifyReply } from "fastify";
 import type { Pool } from "pg";
 import type { PgBoss } from "pg-boss";
-import { AiSettingsInput, CreateAuditRequest, Report, type AiCheckResponse } from "@sitelens/schemas";
+import { AiSettingsInput, CreateAuditRequest, MODE_PROFILES, Report, type AiCheckResponse } from "@sitelens/schemas";
 import { AnthropicProvider, ClaudeCliProvider, OpenAiProvider, ProviderTimeoutError, type LlmProvider, type LlmRequest } from "@sitelens/llm";
 import { classifyAiError } from "./ai-errors.js";
 import { scanReport } from "@sitelens/reporting";
 import {
-  AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, reportProvider, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, txDb, validateSubmittedUrl,
+  AUDIT_ID_RE, EVIDENCE_ID_RE, AiSettingsError, aiSnapshot, reportProvider, deleteAiKey, recordAiCheck, redactKey, resolveEffectiveAi, saveAiSettings, toAiView, type EffectiveAi, Q, auditDir, deleteAuditFully, enqueue, getAudit, getReportRow, humanMessage, insertAudit, newAuditId, progressSteps, computeStepDetails, loadProgressFacts, txDb, validateSubmittedUrl,
   type AppConfig, type AuditRow,
 } from "@sitelens/pipeline";
 
@@ -47,11 +47,14 @@ const redactUrl = (u: string) => u.replace(/([?&]st=)[^&]*/g, "$1[redacted]");
 type ApiErrClass = "unauthorized" | "rate_limited" | "not_found" | "bad_request" | "internal" | "invalid_url" | "report_not_ready" | "report_unavailable" | "ai_settings_unavailable";
 const err = (reply: FastifyReply, code: number, cls: ApiErrClass, message: string) => reply.code(code).send({ error: { class: cls, message } });
 
-function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number; scenarios_done: number; scenarios_total: number }) {
+function statusView(a: AuditRow, progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number; scenarios_done: number; scenarios_total: number }, step_details: ReturnType<typeof computeStepDetails>) {
+  const steps = progressSteps(a);
+  const cfg = a.config_json as { mode?: unknown; llm_concurrency?: unknown };
   return {
     id: a.id, status: a.status, input_url: a.input_url, normalized_url: a.normalized_url, language: a.language, llm_mode: a.llm_mode,
     created_at: a.created_at.toISOString(), started_at: a.started_at?.toISOString() ?? null, completed_at: a.completed_at?.toISOString() ?? null,
-    stage_status: a.stage_status, progress, steps: progressSteps(a), warnings: a.warnings,
+    stage_status: a.stage_status, progress, steps, step_details, mode: cfg.mode === "quick" ? "quick" as const : "full" as const,
+    ...(typeof cfg.llm_concurrency === "number" ? { llm_concurrency: cfg.llm_concurrency } : {}), warnings: a.warnings,
     error: a.error_class ? { class: a.error_class, message: a.error ?? humanMessage(a.error_class, a.language) } : null,
     artifacts_deleted: a.artifacts_deleted_at !== null, artifact_expires_at: a.artifact_expires_at?.toISOString() ?? null,
   };
@@ -75,10 +78,19 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
   const { cfg, pool, boss } = deps;
   const aiEnv = deps.env ?? process.env;
   const app = Fastify({
-    logger: { level: process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"],
-      serializers: { req: (r: { method: string; url: string; headers: Record<string, unknown> }) => ({ method: r.method, url: redactUrl(r.url), headers: r.headers }) }, ...(deps.logStream ? { stream: deps.logStream } : {}) },
+    // DEV-94: без заголовків у логах (лише method/url; токен у ?st= редагується); «incoming request» вимкнено — один рядок на запит у onResponse
+    logger: { level: aiEnv["LOG_LEVEL"] ?? process.env["LOG_LEVEL"] ?? "info", redact: ["req.headers.authorization", 'req.headers["x-access-token"]', "req.headers.cookie"],
+      serializers: { req: (r: { method: string; url: string }) => ({ method: r.method, url: redactUrl(r.url) }) }, ...(deps.logStream ? { stream: deps.logStream } : {}) },
+    disableRequestLogging: true,
     bodyLimit: 8 * 1024,
     trustProxy: false,
+  });
+
+  // DEV-94: успішні опитування статусу (GET /api/audits/:id ~1/с) — debug, решта — info: лише method/url/status/ms
+  app.addHook("onResponse", async (req, reply) => {
+    const polling = req.method === "GET" && reply.statusCode < 400 && /^\/api\/audits\/[A-Za-z0-9_]+(?:\?.*)?$/.test(req.url);
+    const line = { method: req.method, url: redactUrl(req.url), status: reply.statusCode, ms: Math.round(reply.elapsedTime) };
+    if (polling) req.log.debug(line, "request"); else req.log.info(line, "request");
   });
 
   app.addHook("onRequest", async (req, reply) => {
@@ -149,6 +161,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
     const body = CreateAuditRequest.safeParse(req.body);
     if (!body.success) return err(reply, 400, "bad_request", 'Очікується JSON {"url": "https://…"}');
     const language = body.data.language ?? "uk";
+    const mode = body.data.mode ?? "full";
     const chk = validateSubmittedUrl(body.data.url, cfg);
     if (!chk.ok) return err(reply, 400, "invalid_url", humanMessage("invalid_url", language, chk.reason));
 
@@ -180,7 +193,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
       }
       await insertAudit(c, {
         id, input_url: body.data.url.trim(), normalized_url: chk.url, domain: chk.domain, language, llm_mode: snap ? (snap.kind === "none" ? "none" : "live") : deps.llmMode ?? "none", ttl_days: cfg.artifactTtlDays,
-        config_json: { max_pages: cfg.maxPages, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse, ...(snap ? { ai: snap } : {}) },
+        config_json: { mode, max_pages: mode === "quick" ? Math.min(cfg.maxPages, MODE_PROFILES.quick.max_pages) : cfg.maxPages, llm_concurrency: eff.llm_concurrency, lens_target: MODE_PROFILES[mode].lens_count, max_depth: cfg.maxDepth, max_products: cfg.maxProducts, fixture: chk.fixture, lighthouse: cfg.lighthouse, ...(snap ? { ai: snap } : {}) },
       });
       // BYO AI: знімок провайдера+моделі (без ключа) — звіт показує, чим зроблено; зміна налаштувань під час аудиту на нього не діє
       if (snap && snap.kind !== "none") await c.query("UPDATE audit_runs SET llm_provider = $2, llm_model = $3 WHERE id = $1", [id, reportProvider(snap.provider, snap.kind), snap.model]);
@@ -223,7 +236,7 @@ export async function buildServer(deps: ApiDeps): Promise<FastifyInstance> {
         [a.id],
       )
     ).rows[0];
-    return statusView(a, p);
+    return statusView(a, p, computeStepDetails(await loadProgressFacts(pool, a), progressSteps(a)));
   });
 
   app.get<{ Params: { id: string } }>("/api/audits/:id/pages", async (req, reply) => {

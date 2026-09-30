@@ -22,8 +22,15 @@ export interface AuditStatus {
   completed_at: string | null;
   stage_status: Record<string, unknown>;
   progress: { pages_captured: number; pages_failed: number; lighthouse_done: number; lighthouse_failed: number };
+  /** DEV-92: детальні лічильники етапів (необов'язкові: старі відповіді/фікстури їх не мають) */
+  step_details?: StepDetail[];
+  mode?: "quick" | "full";
   warnings: Array<{ stage: string; page_url?: string; class?: string; message: string }>;
   error: { class: string; message: string } | null;
   artifacts_deleted: boolean;
   artifact_expires_at: string | null;
 }
+
+export type StepCounterUnit = "pages" | "lighthouse" | "accessibility" | "llm_calls" | "lenses" | "snapshot_sessions" | "journeys" | "journals";
+export interface StepCounter { unit: StepCounterUnit; done: number; total: number | null; approx?: boolean; eta_seconds?: number | null }
+export interface StepDetail { id: string; counters: StepCounter[]; eta_seconds: number | null; started_at: string | null }

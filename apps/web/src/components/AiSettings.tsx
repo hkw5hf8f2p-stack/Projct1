@@ -2,7 +2,7 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { checkAi, deleteAiKey, getAiSettings, putAiSettings, type ApiFailure } from "@/lib/client";
 import {
-  CHECK_ERROR_CLASSES, KIND_NEEDS_KEY, KIND_NEEDS_MODEL, MODEL_PLACEHOLDER, PROVIDER_KINDS, parseTokens, validBaseUrl,
+  CHECK_ERROR_CLASSES, LLM_CONCURRENCY_MAX, LLM_CONCURRENCY_MIN, KIND_NEEDS_KEY, defaultConcurrency, parseConcurrency, KIND_NEEDS_MODEL, MODEL_PLACEHOLDER, PROVIDER_KINDS, parseTokens, validBaseUrl,
   type AiCheckResult, type AiSettingsView, type ProviderKind,
 } from "@/lib/ai-settings";
 import type { Key } from "@/lib/messages";
@@ -26,9 +26,11 @@ export function AiSettings() {
   const [baseUrl, setBaseUrl] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [tokens, setTokens] = useState("");
+  const [conc, setConc] = useState("");
+  const [concTouched, setConcTouched] = useState(false);
   const [busy, setBusy] = useState<Busy>(null);
   const [msg, setMsg] = useState<Msg>(null);
-  const [errs, setErrs] = useState<Partial<Record<"model" | "base" | "tokens", Key>>>({});
+  const [errs, setErrs] = useState<Partial<Record<"model" | "base" | "tokens" | "conc", Key>>>({});
   const [check, setCheck] = useState<AiCheckResult | null>(null);
 
   const adopt = useCallback((v: AiSettingsView) => {
@@ -37,6 +39,8 @@ export function AiSettings() {
     setModel(v.model);
     setBaseUrl(v.base_url ?? "");
     setTokens(String(v.max_audit_tokens));
+    setConc(String(v.llm_concurrency ?? defaultConcurrency(v.kind)));
+    setConcTouched(false);
     setApiKey(""); // ключ ніколи не лишається в стані після відповіді
   }, []);
 
@@ -70,7 +74,7 @@ export function AiSettings() {
 
   const needsKey = KIND_NEEDS_KEY[kind];
   const dirty =
-    kind !== view.kind || model.trim() !== view.model || baseUrl.trim() !== (view.base_url ?? "") || tokens.trim() !== String(view.max_audit_tokens) || apiKey !== "";
+    kind !== view.kind || model.trim() !== view.model || baseUrl.trim() !== (view.base_url ?? "") || tokens.trim() !== String(view.max_audit_tokens) || concTouched || apiKey !== "";
   const errText = (r: ApiFailure) => (r.http === 0 ? t("ai.err.network_api") : r.cls === "unauthorized" ? t("error.unauthorized") : r.cls === "ai_settings_unavailable" ? t("ai.err.storage_unavailable") : t("ai.save_failed"));
 
   async function save() {
@@ -82,6 +86,8 @@ export function AiSettings() {
     }
     const tk = parseTokens(tokens);
     if (kind !== "none" && tk === null) e.tokens = "ai.err.tokens_invalid";
+    const cc = parseConcurrency(conc);
+    if (kind !== "none" && concTouched && cc === null) e.conc = "ai.err.concurrency_invalid";
     setErrs(e);
     setMsg(null);
     if (Object.keys(e).length) return;
@@ -92,6 +98,7 @@ export function AiSettings() {
       ...(kind === "openai_compatible" ? { base_url: baseUrl.trim() } : {}),
       ...(needsKey && apiKey ? { api_key: apiKey } : {}),
       ...(kind !== "none" && tk !== null ? { max_audit_tokens: tk } : {}),
+      ...(kind !== "none" && concTouched && cc !== null ? { llm_concurrency: cc } : {}), // лише якщо змінено: інакше діє типове за провайдером (3; claude_cli — 2)
     };
     const r = await putAiSettings(input);
     setBusy(null);
@@ -202,6 +209,15 @@ export function AiSettings() {
               aria-describedby={`ai-tokens-h${errs.tokens ? " ai-tokens-e" : ""}`} aria-invalid={errs.tokens ? true : undefined} />
             <span id="ai-tokens-h" className="small muted">{t("ai.tokens.hint")}</span>
             {errs.tokens && <span id="ai-tokens-e" role="alert" className="small claim-warn">{t(errs.tokens)}</span>}
+          </div>
+
+          <div className="field">
+            <label htmlFor="ai-conc">{t("ai.concurrency.label")}</label>
+            <input id="ai-conc" data-testid="ai-concurrency" type="number" min={LLM_CONCURRENCY_MIN} max={LLM_CONCURRENCY_MAX} step={1} inputMode="numeric" autoComplete="off"
+              value={concTouched || conc !== "" ? conc : String(defaultConcurrency(kind))} onChange={(e) => { setConc(e.target.value); setConcTouched(true); }}
+              aria-describedby={`ai-conc-h${errs.conc ? " ai-conc-e" : ""}`} aria-invalid={errs.conc ? true : undefined} />
+            <span id="ai-conc-h" className="small muted">{t("ai.concurrency.hint", { def: defaultConcurrency(kind) })}</span>
+            {errs.conc && <span id="ai-conc-e" role="alert" className="small claim-warn">{t(errs.conc)}</span>}
           </div>
         </section>
       )}

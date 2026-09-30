@@ -39,3 +39,14 @@ export function validBaseUrl(s: string): boolean {
     return false;
   }
 }
+
+/** Дзеркала LLM_CONCURRENCY_* контракту (та сама причина, що й вище); рівність — unit-тест. Типово 3, для claude_cli — 2. */
+export const LLM_CONCURRENCY_MIN = 1;
+export const LLM_CONCURRENCY_MAX = 6;
+export const defaultConcurrency = (kind: ProviderKind): number => (kind === "claude_cli" ? 2 : 3);
+export function parseConcurrency(s: string): number | null {
+  const v = s.trim();
+  if (!/^\d$/.test(v)) return null;
+  const n = Number(v);
+  return n >= LLM_CONCURRENCY_MIN && n <= LLM_CONCURRENCY_MAX ? n : null;
+}
