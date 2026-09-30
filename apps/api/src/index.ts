@@ -1,5 +1,5 @@
 /** Точка входу API: pnpm api. G0-5: не-loopback лише з HOST і ACCESS_TOKEN. Не мігрує БД (pnpm db:migrate). */
-import { mkdirSync } from "node:fs";
+import { mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
 import { loadDotEnv, newPidFile, pg, writePidFile } from "@sitelens/db";
 import { resolveConfig } from "@sitelens/llm";
@@ -38,12 +38,14 @@ await startBoss(boss);
 const app = await buildServer({ cfg, pool, boss, llmMode });
 await app.listen({ host: listen.host, port: listen.port });
 mkdirSync(cfg.pidDir, { recursive: true });
-writePidFile(path.join(cfg.pidDir, "api.json"), newPidFile("api", process.pid, []));
+const apiPidFile = path.join(cfg.pidDir, "api.json");
+writePidFile(apiPidFile, newPidFile("api", process.pid, []));
 console.log(JSON.stringify({ level: "info", msg: "api started", pid: process.pid, listen, config: describeConfig(cfg) }));
 const stop = async () => {
   await app.close().catch(() => undefined);
   await boss.stop({ graceful: false, close: true }).catch(() => undefined);
   await pool.end().catch(() => undefined);
+  rmSync(apiPidFile, { force: true });
   process.exit(0);
 };
 process.on("SIGTERM", stop);

@@ -20,13 +20,16 @@ desktop 1440×1000 і mobile 390×844, запускає Lighthouse (через e
 ## Швидкий старт (чиста машина)
 ```bash
 pnpm install                          # пакети; postinstall для esbuild і @embedded-postgres/* дозволено в pnpm-workspace.yaml
-pnpm exec playwright install chromium # браузер (Playwright 1.56.1)
+pnpm exec playwright install chromium # браузер (Playwright 1.56.1); у Linux-контейнері з общим /opt/pw-browsers — виконайте від root (там це no-op)
 cp .env.example .env                  # усе за замовчуванням працює; секретів у файлі немає
 pnpm db:start                         # embedded PostgreSQL як демон: дані data/pg, порт 54329, PID у data/pids/postgres.json
 pnpm db:migrate                       # forward-only міграції 001 + 002
 pnpm api                              # термінал 1: API на http://127.0.0.1:3001
 pnpm worker                           # термінал 2: worker (pg-boss) — обходить і знімає сторінки
 ```
+**Перевірено 30.09.2026** у Linux-контейнері на копії робочого дерева (не `git clone`: робота ще не закомічена): `pnpm install` (10,6 с) → `cp .env.example .env` → `db:start` → `db:migrate` → `pnpm fixtures`/`api`/`worker` →
+`POST /api/audits` на фікстуру → `completed` (4 сторінки, 3 прогони Lighthouse, докази доступні через `/pages` і `/evidence/…`). Не перевірено: macOS; `playwright install` із нуля з мережі (Chromium уже був у `/opt/pw-browsers`; під `sitelens` цей крок дає EACCES на root-власний каталог — див. вище).
+
 Подати сайт і дочекатись результату:
 ```bash
 curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/json' -d '{"url":"https://example.com"}'
@@ -94,7 +97,7 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 | `pnpm test` | усі тести (від не-root; `bash scripts/run-as-sitelens.sh pnpm test`). Кожен DB-тест піднімає власний одноразовий кластер і застосовує міграції з порожньої БД |
 | `pnpm typecheck` · `pnpm lint` | tsc · eslint |
 | `pnpm s2:scenarios [фаза…]` | сценарії S2 справжніми процесами (потрібен root для `runuser` або запуск від власника): `baseline crawl lighthouse api partial taxonomy repeat ttl ssrf listen`; `SL_WRITE_ARTIFACTS=1` пише доказ у репо |
-| `pnpm s2:secrets` | критерій «0 секретів у репо» |
+| `pnpm s2:secrets` · `pnpm s2:summary` | критерій «0 секретів у репо» · зведення критеріїв виходу S2 з артефактів |
 | `pnpm db:start\|stop\|status\|migrate` | керування локальним PostgreSQL |
 
 ## Known limitations

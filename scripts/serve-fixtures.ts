@@ -8,6 +8,7 @@ import { startFixtureServer } from "../fixtures/_shared/server.js";
 import { startBotFixture } from "../fixtures/bot/server.js";
 import { startErrorsFixture } from "../fixtures/errors/server.js";
 import { newPidFile, writePidFile } from "../packages/db/src/index.js";
+import { rmSync } from "node:fs";
 import path from "node:path";
 
 const B = Number(process.env["FIXTURE_BASE_PORT"] ?? 4210);
@@ -15,8 +16,8 @@ const shop = await startFixtureServer({ handler: createShopHandler({ mutant: nul
 const clean = await startFixtureServer({ handler: createShopCleanHandler({ transforms: null }), port: B + 1 });
 const bot = await startBotFixture({ port: B + 2 });
 const errors = await startErrorsFixture({ port: B + 3, httpsPort: B + 4 });
-if (process.env["PID_DIR"]) writePidFile(path.join(process.env["PID_DIR"], "fixtures.json"), newPidFile("fixtures", process.pid, []));
+writePidFile(path.join(process.env["PID_DIR"] ?? path.resolve(import.meta.dirname, "../data/pids"), "fixtures.json"), newPidFile("fixtures", process.pid, []));
 console.log(JSON.stringify({ shop: shop.origin, clean: clean.origin, bot: bot.origin, errors: errors.origin, errors_https: errors.httpsOrigin }));
-const stop = async () => { await Promise.all([shop.close(), clean.close(), bot.close(), errors.close()]); process.exit(0); };
+const stop = async () => { await Promise.all([shop.close(), clean.close(), bot.close(), errors.close()]); rmSync(path.join(process.env["PID_DIR"] ?? path.resolve(import.meta.dirname, "../data/pids"), "fixtures.json"), { force: true }); process.exit(0); };
 process.on("SIGTERM", stop);
 process.on("SIGINT", stop);

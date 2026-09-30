@@ -30,7 +30,8 @@
     "worker": "tsx apps/worker/src/index.ts",
     "fixtures": "tsx scripts/serve-fixtures.ts",
     "s2:scenarios": "tsx scripts/s2-scenarios.ts",
-    "s2:secrets": "tsx scripts/s2-secrets.ts"
+    "s2:secrets": "tsx scripts/s2-secrets.ts",
+    "s2:summary": "tsx scripts/s2-summary.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

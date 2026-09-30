@@ -1,6 +1,6 @@
 /** PID-облік (G0-28): прибирання лише записаних процесів мертвого власника; чужі, живий власник і повторно використаний PID — не чіпаємо. */
 import { spawn, type ChildProcess } from "node:child_process";
-import { copyFileSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -135,6 +135,8 @@ describe("журнал спавнів (обгортка Chrome Lighthouse)", () 
     const f = path.join(dir, "spawns-a.log");
     writeFileSync(f, "123 456\n789\nгарбадж\n  42 7  \n");
     expect(parseSpawnLog(f)).toEqual([{ pid: 123, start: "456" }, { pid: 789, start: null }, { pid: 42, start: "7" }]);
+    writeFileSync(f, "5 6 /tmp/sl-lh-AbC123/profile\n");
+    expect(parseSpawnLog(f)).toEqual([{ pid: 5, start: "6", userDir: "/tmp/sl-lh-AbC123/profile" }]);
     expect(parseSpawnLog(path.join(dir, "nope.log"))).toEqual([]);
   });
 
@@ -152,5 +154,34 @@ describe("журнал спавнів (обгортка Chrome Lighthouse)", () 
     expect(killed.map((k) => k.pid)).toEqual([mine.pid]);
     expect(alive(mine.pid!)).toBe(false);
     for (const c of [wrongStart, noStart, notBrowser, foreign]) expect(alive(c.pid!), `pid ${c.pid} має лишитись`).toBe(true);
+  });
+});
+
+describe("профілі Lighthouse у журналі спавнів", () => {
+  it("після смерті процесу тимчасовий каталог `sl-lh-XXXX` (із запису обгортки) видаляється; довільні шляхи й живі процеси — ні", async () => {
+    const root = mkdtempSync(path.join(os.tmpdir(), "sl-lh-"));
+    mkdirSync(path.join(root, "profile"));
+    writeFileSync(path.join(root, "profile", "x"), "1");
+    const foreignDir = mkdtempSync(path.join(os.tmpdir(), "not-ours-"));
+    mkdirSync(path.join(foreignDir, "profile"));
+    const liveRoot = mkdtempSync(path.join(os.tmpdir(), "sl-lh-"));
+    mkdirSync(path.join(liveRoot, "profile"));
+    const live = start();
+    await new Promise((r) => setTimeout(r, 100));
+    const f = path.join(dir, "spawns-c.log");
+    const gone = await deadOwner();
+    writeFileSync(f, [`${gone.pid} ${gone.start} ${root}/profile`, `${gone.pid} ${gone.start} ${foreignDir}/profile`, `${live.pid} ${procStart(live.pid!)} ${liveRoot}/profile`].join("\n") + "\n");
+    const out = cleanupSpawnLog(f);
+    await new Promise((r) => setTimeout(r, 150));
+    try {
+      expect(out.profile_dirs_removed).toContain(root);
+      expect(out.profile_dirs_removed).not.toContain(foreignDir);
+      expect(existsSync(root)).toBe(false);
+      expect(existsSync(foreignDir)).toBe(true); // не sl-lh- → не чіпаємо
+      expect(alive(live.pid!)).toBe(false); // живий записаний браузер вбито…
+      // профіль щойно вбитого процесу може бути прибраний одразу або наступним запуском — обидва варіанти допустимі, тому не перевіряємо
+    } finally {
+      for (const d of [root, foreignDir, liveRoot]) rmSync(d, { recursive: true, force: true });
+    }
   });
 });

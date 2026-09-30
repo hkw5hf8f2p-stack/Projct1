@@ -3,34 +3,47 @@
  * (pid + starttime + comm). Якщо worker помре від `kill -9`, наступний старт вб'є ЛИШЕ записаних, що ще живі й ті самі (cleanupOrphansFromFile).
  * Вікно неточності: процес, що з'явився менш ніж `intervalMs` тому перед смертю worker, ще не записаний → лишається (задокументовано).
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import path from "node:path";
 import { cmdlineOf, descendantsOf, isSameProc, newPidFile, readStat, writePidFile, type TrackedProc } from "./procs.js";
 
 /** Розбір журналу спавнів: рядки `pid starttime` (пише обгортка ДО exec дочірнього процесу — без вікна гонки). */
-export function parseSpawnLog(file: string): Array<{ pid: number; start: string | null }> {
+export function parseSpawnLog(file: string): Array<{ pid: number; start: string | null; userDir?: string }> {
   if (!existsSync(file)) return [];
-  const out: Array<{ pid: number; start: string | null }> = [];
+  const out: Array<{ pid: number; start: string | null; userDir?: string }> = [];
   for (const line of readFileSync(file, "utf8").split("\n")) {
-    const m = /^(\d+)(?:\s+(\d+))?\s*$/.exec(line.trim());
-    if (m) out.push({ pid: Number(m[1]), start: m[2] ?? null });
+    const m = /^(\d+)(?:\s+(\d+))?(?:\s+(\/\S+))?\s*$/.exec(line.trim());
+    if (m) out.push({ pid: Number(m[1]), start: m[2] ?? null, ...(m[3] ? { userDir: m[3] } : {}) });
   }
   return out;
 }
 
 /** Прибирання за журналом спавнів мертвого власника: SIGKILL записаних процесів, що ще живі й ті самі (pid+starttime) і схожі на браузер. */
-export function cleanupSpawnLog(file: string): Array<{ pid: number; comm: string }> {
-  const killed: Array<{ pid: number; comm: string }> = [];
+export function cleanupSpawnLog(file: string): Array<{ pid: number; comm: string }> & { profile_dirs_removed?: string[] } {
+  const killed: Array<{ pid: number; comm: string }> & { profile_dirs_removed?: string[] } = [];
+  const removed: string[] = [];
   for (const e of parseSpawnLog(file)) {
-    if (e.start === null || !isSameProc(e)) continue; // без starttime — не ризикуємо (повторне використання PID)
-    const st = readStat(e.pid);
-    if (!st || !/chrom|headless/i.test(st.comm)) continue;
-    try {
-      process.kill(e.pid, "SIGKILL");
-      killed.push({ pid: e.pid, comm: st.comm });
-    } catch {
-      /* уже вийшов */
+    if (e.start !== null && isSameProc(e)) {
+      const st = readStat(e.pid);
+      if (st && /chrom|headless/i.test(st.comm)) {
+        try {
+          process.kill(e.pid, "SIGKILL");
+          killed.push({ pid: e.pid, comm: st.comm });
+        } catch {
+          /* уже вийшов */
+        }
+      }
+    }
+    // тимчасовий профіль, записаний ОБГОРТКОЮ (`…/sl-lh-XXXX/profile`): видаляємо, коли процесу вже немає (після kill -9 worker лишається сміття в /tmp)
+    if (e.userDir && /\/sl-lh-[A-Za-z0-9]+\/profile$/.test(e.userDir) && (e.start === null || !isSameProc(e))) {
+      const root = path.dirname(e.userDir);
+      if (existsSync(root)) {
+        rmSync(root, { recursive: true, force: true });
+        removed.push(root);
+      }
     }
   }
+  killed.profile_dirs_removed = removed;
   return killed;
 }
 

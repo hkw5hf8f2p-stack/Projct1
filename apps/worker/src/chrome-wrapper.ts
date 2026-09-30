@@ -14,7 +14,7 @@ export function ensureChromeWrapper(pidDir: string): { script: string; spawnLog:
   const q = (s: string) => `'${s.replace(/'/g, `'\\''`)}'`;
   writeFileSync(
     script,
-    `#!/bin/sh\n# SiteLens: облік PID Chrome Lighthouse до exec (див. apps/worker/src/chrome-wrapper.ts)\nst=$(cut -d' ' -f22 /proc/$$/stat 2>/dev/null)\necho "$$ $st" >> ${q(spawnLog)}\nexec ${q(chromium.executablePath())} "$@"\n`,
+    `#!/bin/sh\n# SiteLens: облік PID Chrome Lighthouse до exec (див. apps/worker/src/chrome-wrapper.ts)\nst=$(cut -d' ' -f22 /proc/$$/stat 2>/dev/null)\nud=""\nfor a in "$@"; do case "$a" in --user-data-dir=*) ud="\${a#--user-data-dir=}";; esac; done\necho "$$ $st $ud" >> ${q(spawnLog)}\nexec ${q(chromium.executablePath())} "$@"\n`,
     { mode: 0o755 },
   );
   chmodSync(script, 0o755);

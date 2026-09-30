@@ -25,7 +25,7 @@ const spawnLog = path.join(cfg.pidDir, "worker-spawns.log");
 const cleanup = cleanupOrphansFromFile(pidFile);
 // Chrome Lighthouse, записаний обгорткою ДО exec (вікна гонки немає): вбиваємо лише живих із тим самим starttime
 const killedFromSpawnLog = cleanup.owner_pid !== null && !cleanup.owner_was_alive ? cleanupSpawnLog(spawnLog) : [];
-if (cleanup.owner_pid !== null) writeFileSync(path.join(cfg.logDir, `recovery-${Date.now()}.json`), JSON.stringify({ ts: new Date().toISOString(), ...cleanup, killed_from_spawn_log: killedFromSpawnLog }, null, 2) + "\n");
+if (cleanup.owner_pid !== null) writeFileSync(path.join(cfg.logDir, `recovery-${Date.now()}.json`), JSON.stringify({ ts: new Date().toISOString(), ...cleanup, killed_from_spawn_log: killedFromSpawnLog, profile_dirs_removed: killedFromSpawnLog.profile_dirs_removed ?? [] }, null, 2) + "\n");
 const watch = startProcWatch(pidFile, 100, { spawnLog });
 
 const pool = new pg.Pool({ connectionString: cfg.databaseUrl, max: 8, application_name: "sitelens-worker" });

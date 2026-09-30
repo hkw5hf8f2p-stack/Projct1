@@ -1,70 +1,70 @@
 {
-  "id": "aud_83df662bf76bc5e7",
+  "id": "aud_07238fdd13e94a63",
   "status": "completed",
   "input_url": "http://127.0.0.1:4313/ok",
   "normalized_url": "http://127.0.0.1:4313/ok",
   "language": "uk",
   "llm_mode": "none",
-  "created_at": "2026-09-30T02:05:16.585Z",
-  "started_at": "2026-09-30T02:05:16.677Z",
-  "completed_at": "2026-09-30T02:05:50.536Z",
+  "created_at": "2026-09-30T02:41:18.732Z",
+  "started_at": "2026-09-30T02:41:19.181Z",
+  "completed_at": "2026-09-30T02:41:52.048Z",
   "stage_status": {
     "crawl": {
       "reason": "сторінок захоплено 4, збійних 0, пропущено 0",
       "status": "done",
-      "updated_at": "2026-09-30T02:05:30.331Z"
+      "updated_at": "2026-09-30T02:41:32.508Z"
     },
     "tasks": {
       "reason": "no LLM provider",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:47.495Z"
+      "updated_at": "2026-09-30T02:41:50.026Z"
     },
     "lenses": {
       "reason": "no LLM provider",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:48.500Z"
+      "updated_at": "2026-09-30T02:41:50.037Z"
     },
     "report": {
       "reason": "поза обсягом S2 (S4/S5)",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:50.534Z"
+      "updated_at": "2026-09-30T02:41:52.047Z"
     },
     "capture": {
       "status": "done",
-      "updated_at": "2026-09-30T02:05:30.338Z"
+      "updated_at": "2026-09-30T02:41:32.510Z"
     },
     "aggregate": {
       "reason": "S2: детерміновані докази зведено (4, оновлено 0); агрегація знахідок і пріоритети — S4",
       "status": "done",
-      "updated_at": "2026-09-30T02:05:50.528Z"
+      "updated_at": "2026-09-30T02:41:52.043Z"
     },
     "lighthouse": {
       "status": "done",
-      "updated_at": "2026-09-30T02:05:45.574Z"
+      "updated_at": "2026-09-30T02:41:48.109Z"
     },
     "site_profile": {
       "reason": "no LLM provider",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:46.492Z"
+      "updated_at": "2026-09-30T02:41:49.034Z"
     },
     "accessibility": {
       "status": "done",
-      "updated_at": "2026-09-30T02:05:45.575Z"
+      "updated_at": "2026-09-30T02:41:48.110Z"
     },
     "scenario_matrix": {
       "reason": "no LLM provider",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:49.506Z"
+      "updated_at": "2026-09-30T02:41:51.042Z"
     },
     "browser_sessions": {
       "reason": "поза обсягом S2 (S4/S5)",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:50.532Z"
+      "updated_at": "2026-09-30T02:41:52.046Z"
     },
     "snapshot_sessions": {
       "reason": "поза обсягом S2 (S4/S5)",
       "status": "skipped",
-      "updated_at": "2026-09-30T02:05:50.530Z"
+      "updated_at": "2026-09-30T02:41:52.045Z"
     }
   },
   "progress": {
@@ -76,5 +76,5 @@
   "warnings": [],
   "error": null,
   "artifacts_deleted": false,
-  "artifact_expires_at": "2026-10-30T02:05:16.585Z"
+  "artifact_expires_at": "2026-10-30T02:41:18.732Z"
 }

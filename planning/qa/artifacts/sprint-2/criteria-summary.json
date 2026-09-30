@@ -1,0 +1,57 @@
+{
+  "1_restart_kill9": {
+    "scenarios_passed": "3/3",
+    "pages_lost_plus_evidence_lost": 0,
+    "duplicated": 0,
+    "lighthouse_rows_exactly_once": true
+  },
+  "2_partial_failure": {
+    "status": "completed",
+    "audits_failed_due_to_one_page_or_lighthouse": 0,
+    "warnings": 2,
+    "pass": true
+  },
+  "3_taxonomy_48": {
+    "classes_passed": "12/12",
+    "zero_analysis_on_failure": true
+  },
+  "4_repeat": {
+    "independent_audit_runs": 2,
+    "first_unchanged": true
+  },
+  "5_ttl_delete": {
+    "percent_removed": {
+      "ttl_files": 100,
+      "delete_files": 100,
+      "delete_db_rows": 100,
+      "delete_queue_jobs": 100
+    },
+    "fresh_untouched": true,
+    "pass": true
+  },
+  "6_ssrf_via_api": {
+    "entry": "40/40",
+    "canary_hits_entry": 0,
+    "canary_hits_worker_fixture_mode": 0,
+    "canary_hits_worker_prod_mode": 0,
+    "control_canary_hits_when_allowed": 39,
+    "pass": true
+  },
+  "7_secrets": {
+    "raw_matches": 10,
+    "explained": 10,
+    "unexplained": 0,
+    "planted_fake_key_found_by_predicate": true,
+    "pass": true
+  },
+  "8_orphans_after_kill9": {
+    "orphans": 0,
+    "foreign_browsers_untouched": 24
+  },
+  "9_listen": {
+    "loopback_only": true,
+    "control_host_0000_without_token_exit_code": 3,
+    "control_exposed_with_token_shows_non_loopback": true,
+    "pass": true
+  }
+}
