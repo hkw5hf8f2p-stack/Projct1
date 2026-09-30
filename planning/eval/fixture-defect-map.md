@@ -195,6 +195,8 @@ nav; ціна у FV на D і M (продукт і перша картка лі�
 ```
 Для LLM-дефектів: `detector_id: null`, `support_detector_id`, `expected_confidence: null` (⏭️), `evidence.source_class:
 "INFERRED|SYNTHETIC"`. `categories`/`page_groups` — точно з SCORING_SPEC §8.1. Раннер E1 читає лише EXPECTED.json.
+DEV-91 (SCORING_SPEC §14.2): для №1/№3/№4 — поле `anchors` (текст засіяного елемента з `fixtures/shop/server.ts`); E1_llm
+зараховує дефект лише за точну сторінку з `pages` + категорію + перевірену цитату, прив'язану до якоря.
 
 ## 9. Зведена таблиця
 | # | Тип | detector_id | Предикат (без часу) | V | Клас доказу → впевненість | Мутант |
