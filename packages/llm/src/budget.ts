@@ -1,6 +1,6 @@
 import { BudgetExceededError } from "./errors.js";
 
-/** SPEC/FEASIBILITY §5: 1.5M вхідних + 150k вихідних, тут як єдиний ліміт сумарних токенів (DEV-40) */
+/** SPEC/FEASIBILITY §5: 1.5M вхідних + 150k вихідних, тут як єдиний ліміт сумарних токенів (DEV-44) */
 export const DEFAULT_MAX_AUDIT_TOKENS = 1_650_000;
 
 export interface BudgetEntry { call_id: string; stage: string; source: "provider" | "cache" | "fake"; input_tokens: number; output_tokens: number }

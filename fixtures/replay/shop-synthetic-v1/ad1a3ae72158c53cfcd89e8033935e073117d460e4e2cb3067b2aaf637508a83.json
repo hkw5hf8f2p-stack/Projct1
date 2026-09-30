@@ -1,0 +1,116 @@
+{
+  "key": "ad1a3ae72158c53cfcd89e8033935e073117d460e4e2cb3067b2aaf637508a83",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "site-profile-v1",
+  "synthetic": true,
+  "response": {
+    "business_type": "Інтернет-магазин побутової техніки для дому",
+    "offering_summary": "Невеликий магазин, що продає фільтри для води та пом'якшувачі води для дому й пояснює, чим моделі відрізняються.",
+    "primary_products": [
+      "AquaPro X200 (система HFX)",
+      "AquaPro X220 (система HFX)",
+      "Softline S1 (модуль SLT)"
+    ],
+    "price_positioning": "UNKNOWN",
+    "primary_conversion_goal": "Додати товар у кошик",
+    "secondary_conversion_goals": [],
+    "site_language": "uk",
+    "apparent_geography": "Україна (доставка Новою поштою)",
+    "brand_tone": "Спокійний, лаконічний, без обіцянок неможливого",
+    "key_value_propositions": [
+      "Підбір речей, які роблять день простішим",
+      "Докладна інструкція українською в комплекті"
+    ],
+    "trust_signals": [
+      "Гарантійний талон входить у коробку",
+      "Перевірка кожного виробу на заводі"
+    ],
+    "purchase_objections": [
+      "Незрозуміло, чим відрізняються моделі X200 і X220",
+      "Повна ціна з комплектацією видно лише на окремій сторінці"
+    ],
+    "domain_terminology": [
+      "система HFX",
+      "модуль SLT",
+      "комплектація"
+    ],
+    "confidence_notes": [
+      "Ціну на сторінках товарів не видно; позиціонування за ціною невідоме.",
+      "Профіль складено за вибраними сторінками, не за всім сайтом."
+    ],
+    "evidence": [
+      {
+        "field": "business_type",
+        "page_id": "index",
+        "quote": "Магазин речей для дому"
+      },
+      {
+        "field": "offering_summary",
+        "page_id": "catalog",
+        "quote": "Фільтр для води з проточною кухонною установкою"
+      },
+      {
+        "field": "primary_products",
+        "page_id": "catalog",
+        "quote": "AquaPro X200 (система HFX)"
+      },
+      {
+        "field": "primary_products",
+        "page_id": "catalog",
+        "quote": "Softline S1 (модуль SLT)"
+      },
+      {
+        "field": "primary_conversion_goal",
+        "page_id": "catalog",
+        "quote": "В кошик"
+      },
+      {
+        "field": "apparent_geography",
+        "page_id": "help-shipping",
+        "quote": "Доставка Новою поштою"
+      },
+      {
+        "field": "key_value_propositions",
+        "page_id": "index",
+        "quote": "Ми підбираємо речі, які роблять день простішим"
+      },
+      {
+        "field": "key_value_propositions",
+        "page_id": "product-aquapro-x200",
+        "quote": "докладну інструкцію українською"
+      },
+      {
+        "field": "trust_signals",
+        "page_id": "product-aquapro-x200",
+        "quote": "Гарантійний талон входить у коробку"
+      },
+      {
+        "field": "trust_signals",
+        "page_id": "product-aquapro-x200",
+        "quote": "Кожен виріб проходить перевірку на заводі"
+      }
+    ]
+  },
+  "input_tokens": 2044,
+  "output_tokens": 596,
+  "request_summary": {
+    "stage": "site_profile",
+    "logical_key": {
+      "prompt_id": "site-profile-v1",
+      "page_url": "http://127.0.0.1:4210/",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 4000
+    },
+    "system_sha256": "cef4a454e271b78ee6fc96c590f75299aace2622204c85a83753c20d105629e8",
+    "image_sha256": [
+      "9c6eb8d9c6ee3a2788547a1aad184dee6e3146f8ea97148c5ab7ab137330f36b",
+      "8f6e0f8865996fc29e7f7ac2b11520f3dcaaaaa8add7a8bf585f638febfbf2d8",
+      "645bc8d826c8730120ee16c96691c76c42699574f6813058ecce22f7dd6b53da"
+    ]
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

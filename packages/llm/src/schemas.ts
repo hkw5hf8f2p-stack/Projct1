@@ -1,5 +1,5 @@
 /**
- * Схеми ВИХОДУ LLM для етапів S3. Похідні від @sitelens/schemas (сутності не змінюються, DEV-41):
+ * Схеми ВИХОДУ LLM для етапів S3. Похідні від @sitelens/schemas (сутності не змінюються, DEV-45):
  * службові поля (audit_run_id, prompt_version, llm_call_id) проставляє код; `.optional()` немає (OpenAI strict → nullable).
  */
 import { z } from "zod";

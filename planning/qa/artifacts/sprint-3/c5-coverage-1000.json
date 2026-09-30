@@ -1,0 +1,23 @@
+{
+  "seed_range": "1..1000",
+  "candidates_per_set": 18,
+  "total": 1000,
+  "poles_available_all": 874,
+  "covered_all_when_available": 874,
+  "unmet_flagged_when_unavailable": 126,
+  "unavailable_sets": 126,
+  "farthest_only_missing": 96,
+  "size_ok": 1000,
+  "seeded_sets_with_all_poles_available": 1000,
+  "seeded_sets_covered": 1000,
+  "order_invariant_checked": 200,
+  "order_invariant_ok": 200,
+  "per_pole_unavailable": {
+    "P6": 87,
+    "P5": 40,
+    "P4": 2,
+    "P3": 2,
+    "P1": 1
+  },
+  "note": "SYNTHETIC випадкові набори, не вихід моделі; доводить код відбору (C5), не якість генерації"
+}

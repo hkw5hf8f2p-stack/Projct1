@@ -1,0 +1,118 @@
+{
+  "key": "23f1dc33d391c17124ddde06494e638f9bf3c2565f2718a190b35a920a2d72b0",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "task-generator-v1",
+  "synthetic": true,
+  "response": {
+    "tasks": [
+      {
+        "task_id": "t1",
+        "name": "Зрозуміти, що продає магазин",
+        "goal": "З першого екрана зрозуміти, що це магазин речей для дому і які товари є.",
+        "success_conditions": [
+          "Відвідувач називає тип товарів"
+        ],
+        "failure_conditions": [
+          "Відвідувач не може сказати, що продається"
+        ],
+        "recommended_start_page": "index",
+        "max_actions": 8,
+        "task_type": "understand_offering",
+        "is_primary_goal": false
+      },
+      {
+        "task_id": "t2",
+        "name": "Обрати між AquaPro X200 та X220",
+        "goal": "Порівняти дві схожі моделі й обрати одну.",
+        "success_conditions": [
+          "Знайдено відмінності між моделями"
+        ],
+        "failure_conditions": [
+          "Відмінності знайти не вдалося"
+        ],
+        "recommended_start_page": "catalog",
+        "max_actions": 8,
+        "task_type": "choose_between",
+        "is_primary_goal": false
+      },
+      {
+        "task_id": "t3",
+        "name": "Дізнатися повну вартість товару",
+        "goal": "Знайти остаточну ціну моделі разом з комплектацією.",
+        "success_conditions": [
+          "Ціна знайдена й зрозуміла"
+        ],
+        "failure_conditions": [
+          "Ціну не знайдено"
+        ],
+        "recommended_start_page": "product-aquapro-x200",
+        "max_actions": 8,
+        "task_type": "total_price",
+        "is_primary_goal": false
+      },
+      {
+        "task_id": "t4",
+        "name": "З'ясувати умови й строки доставки",
+        "goal": "Знайти, як і за скільки днів доставляють замовлення.",
+        "success_conditions": [
+          "Умови доставки знайдено"
+        ],
+        "failure_conditions": [
+          "Умови доставки не знайдено"
+        ],
+        "recommended_start_page": "index",
+        "max_actions": 8,
+        "task_type": "delivery",
+        "is_primary_goal": false
+      },
+      {
+        "task_id": "t5",
+        "name": "Оцінити, чи можна довіряти магазину",
+        "goal": "Знайти ознаки надійності: гарантія, контакти, інформація про магазин.",
+        "success_conditions": [
+          "Знайдено принаймні дві ознаки надійності"
+        ],
+        "failure_conditions": [
+          "Ознак надійності не знайдено"
+        ],
+        "recommended_start_page": "about",
+        "max_actions": 8,
+        "task_type": "credibility",
+        "is_primary_goal": false
+      },
+      {
+        "task_id": "t6",
+        "name": "Додати фільтр для води до кошика",
+        "goal": "Дійти до кнопки додавання товару в кошик, знаючи ціну та доставку.",
+        "success_conditions": [
+          "Кнопка додавання доступна",
+          "Ціна й доставка відомі до додавання"
+        ],
+        "failure_conditions": [
+          "Кнопку не знайдено"
+        ],
+        "recommended_start_page": "catalog",
+        "max_actions": 8,
+        "task_type": "add_to_cart",
+        "is_primary_goal": true
+      }
+    ]
+  },
+  "input_tokens": 1123,
+  "output_tokens": 594,
+  "request_summary": {
+    "stage": "tasks",
+    "logical_key": {
+      "prompt_id": "task-generator-v1",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 3000
+    },
+    "system_sha256": "29b7000e8bcfef352b86e4d5e7a9464ecb58824414aab6e88b7c32a8052e7b94",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

@@ -13,6 +13,14 @@ export function redact(text: string, secrets: readonly string[] = []): string {
   return out;
 }
 
+/** глибока редакція: рядки в будь-якому місці структури (значення й ключі не чіпаємо, лише рядкові значення) */
+export function redactDeep<T>(v: T, secrets: readonly string[] = []): T {
+  if (typeof v === "string") return redact(v, secrets) as unknown as T;
+  if (Array.isArray(v)) return v.map((x) => redactDeep(x, secrets)) as unknown as T;
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, x]) => [k, redactDeep(x, secrets)])) as unknown as T;
+  return v;
+}
+
 /** скільки збігів секрету у тексті (для тестів «0 збігів у логах/артефактах») */
 export function countSecretHits(text: string, secrets: readonly string[]): number {
   let n = 0;

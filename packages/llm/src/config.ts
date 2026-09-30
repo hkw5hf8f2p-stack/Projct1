@@ -52,7 +52,7 @@ export interface ClientDeps { fetchImpl?: FetchLike; logger?: Logger; replayDir?
 export function createClientFromEnv(env: Env, deps: ClientDeps = {}): { client: LlmClient; config: ResolvedConfig } {
   const config = resolveConfig(env);
   const budget = new TokenBudget(config.max_audit_tokens);
-  const common = { budget, logger: deps.logger, cache_mode: config.cache_mode };
+  const common = { budget, logger: deps.logger, cache_mode: config.cache_mode, secrets: config.secrets };
   if (config.llm_mode === "none") return { client: new LlmClient({ mode: "none", ...common }), config };
   const ns = deps.namespace ?? env.LLM_CACHE_NAMESPACE ?? "default";
   const dir = deps.replayDir ?? env.REPLAY_DIR ?? path.resolve("fixtures/replay");

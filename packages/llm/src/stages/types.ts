@@ -36,7 +36,7 @@ export async function guardStage<T>(stage: AuditStage, prompt_id: string, ctx: S
   } catch (e) {
     const calls = ctx.client.records.slice(before);
     if (e instanceof LlmDisabledError) return notRun(stage, prompt_id, "skipped", "no LLM provider");
-    if (e instanceof BudgetExceededError) return notRun(stage, prompt_id, "budget_limited", `MAX_AUDIT_TOKENS: ${e.used}/${e.max} токенів, етап зупинено`, calls);
+    if (e instanceof BudgetExceededError) return notRun(stage, prompt_id, "budget_limited", `обмежено бюджетом: MAX_AUDIT_TOKENS ${e.used}/${e.max} токенів, етап зупинено`, calls);
     if (e instanceof OutputInvalidError) {
       return notRun(stage, prompt_id, "failed", `invalid output after repair retry: ${[...new Set(e.issues.map(ruleOfIssue))].join(", ")}`, calls, e.issues.map((i) => ({ rule: ruleOfIssue(i), detail: i })));
     }

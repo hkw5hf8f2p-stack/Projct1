@@ -2,15 +2,16 @@ import { canonicalJson, sha256 } from "../src/canonical.js";
 import { lensGeneratorV1 } from "./lens-generator-v1.js";
 import { siteProfileV1 } from "./site-profile-v1.js";
 import { taskGeneratorV1 } from "./task-generator-v1.js";
+import { REPAIR_TEMPLATE } from "./common.js";
 import type { PromptDef } from "./types.js";
 
 export type { PromptDef };
 export { lensGeneratorV1, siteProfileV1, taskGeneratorV1 };
 export const PROMPTS: readonly PromptDef[] = [siteProfileV1, taskGeneratorV1, lensGeneratorV1];
 
-/** хеш усього, що впливає на поведінку промпту: system, шаблон користувача, ім'я й JSON-схема виходу */
+/** хеш усього, що впливає на поведінку промпту: system, шаблон користувача, fragments, repair-текст, ім'я й JSON-схема виходу */
 export const promptHash = (p: PromptDef): string =>
-  sha256(canonicalJson({ id: p.id, system: p.system, user_template: p.user_template, output_name: p.output_name, json_schema: p.json_schema }));
+  sha256(canonicalJson({ id: p.id, system: p.system, user_template: p.user_template, output_name: p.output_name, fragments: p.fragments ?? null, repair: REPAIR_TEMPLATE, json_schema: p.json_schema }));
 
 export interface LockFile { note: string; prompts: Record<string, string> }
 

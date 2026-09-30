@@ -179,7 +179,7 @@ export function selectFixedJournals(lenses: readonly BehavioralLens[], tasks: re
   slot(2, "mobile", (p) => poleById("P1").pred(p.l) && imp(p.t), "P1");
   slot(3, "desktop", (p) => poleById("P2").pred(p.l) && imp(p.t), "P2");
   const s4 = slot(4, "desktop", (p) => poleById("P3").pred(p.l) && (p.t.task_type === "total_price" || p.t.task_type === "delivery"), "P3");
-  slot(5, "desktop", (p) => poleById("P7").pred(p.l) && p.t.task_type === "credibility", "P7");
+  slot(5, "desktop", (p) => poleById("P7").pred(p.l) && (p.t.task_type === "credibility" || imp(p.t)), "P7", undefined, (p) => (p.t.task_type === "credibility" ? 1 : 0)); // §10.3: credibility або будь-яка важлива; credibility — пріоритетно
   if (s1) slot(6, "mobile", (p) => p.t.task_id === s1.t.task_id && p.l.id !== s1.l.id); else flags.push("slot_empty:6");
   slot(7, "desktop", (p) => p.t.task_type === "choose_between", undefined, undefined, (p) => (p.l as unknown as { comparison_tendency: number }).comparison_tendency);
   slot(8, "mobile", (p) => (p.t.task_type === "delivery" || p.t.task_type === "total_price") && (!s4 || p.l.id !== s4.l.id));

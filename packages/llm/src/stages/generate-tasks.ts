@@ -8,7 +8,7 @@ import { profileStrings } from "./build-site-profile.js";
 import { done, guardStage, type StageContext, type StageResult } from "./types.js";
 
 /** Задача не може вимагати заборонених дій §20 (оплата, реєстрація, повідомлення, форма) */
-const FORBIDDEN_TASK = /(?<![\p{L}\p{N}])(?:pay(?:ment)?|checkout and pay|create an? account|sign ?up|register|send (?:a )?message|submit (?:the |a )?(?:contact )?form|log ?in|оплат\p{L}*|сплат\p{L}*|зареєструв\p{L}*|створ\p{L}* акаунт\p{L}*|надіслат\p{L}* повідомлення|заповн\p{L}* форм\p{L}*|увійти)(?![\p{L}\p{N}])/iu;
+const FORBIDDEN_TASK = /(?<![\p{L}\p{N}])(?:pay for|pay now|make (?:a )?payment|complete (?:the )?payment|checkout and pay|create an? account|sign ?up|register|send (?:a )?message|submit (?:the |a )?(?:contact )?form|log ?in|оплатит\p{L}*|сплатит\p{L}*|здійсн\p{L}* оплат\p{L}*|зареєструв\p{L}*|створ\p{L}* акаунт\p{L}*|надіслат\p{L}* повідомлення|заповн\p{L}* форм\p{L}*|увійти)(?![\p{L}\p{N}])/iu;
 
 export function validateTasks(v: TasksLlm, pages: readonly PageInput[], profile: SiteProfileCore, lang: "uk" | "en"): Issue[] {
   const out: Issue[] = [];

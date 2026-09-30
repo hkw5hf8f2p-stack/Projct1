@@ -1,0 +1,344 @@
+{
+  "cases_total": 31,
+  "evaluated": 31,
+  "kinds": 23,
+  "leaked_into_stored_objects": 0,
+  "results": [
+    {
+      "id": "H01",
+      "kind": "invalid_json",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "invalid_json"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H02",
+      "kind": "extra_field",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "extra_field"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H03",
+      "kind": "missing_field",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "missing_field"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H04",
+      "kind": "invented_percent",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "invented_percent"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H05",
+      "kind": "invented_tam",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "invented_tam"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H06",
+      "kind": "invented_tam",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "invented_tam"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H07",
+      "kind": "dangling_reference",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "dangling_reference"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H08",
+      "kind": "dangling_reference",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "dangling_reference"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H09",
+      "kind": "unknown_required",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "unknown_required"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H10",
+      "kind": "wrong_language",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "wrong_language"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H11",
+      "kind": "injection_echo",
+      "stage": "site_profile",
+      "status": "failed",
+      "rules": [
+        "prompt_injection_echo"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H12",
+      "kind": "unknown_ok",
+      "stage": "site_profile",
+      "status": "done",
+      "rules": [],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H13",
+      "kind": "forbidden_action",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "forbidden_action"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H14",
+      "kind": "forbidden_action",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "forbidden_action"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H15",
+      "kind": "dangling_reference",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "dangling_reference"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H16",
+      "kind": "schema_count",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "schema"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H17",
+      "kind": "no_primary",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "missing_primary_goal_task"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H18",
+      "kind": "invented_percent",
+      "stage": "tasks",
+      "status": "failed",
+      "rules": [
+        "invented_percent"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H19",
+      "kind": "demographics",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [
+        "lens_demographics"
+      ],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H20",
+      "kind": "market_percent",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [
+        "lens_market_percent"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H21",
+      "kind": "out_of_range",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [
+        "schema"
+      ],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H22",
+      "kind": "extra_field",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [
+        "extra_field"
+      ],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H23",
+      "kind": "wrong_language",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [
+        "wrong_language"
+      ],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H24",
+      "kind": "demographics_all",
+      "stage": "lenses",
+      "status": "failed",
+      "rules": [
+        "too_few_valid_candidates"
+      ],
+      "leaked": 0,
+      "calls": 2
+    },
+    {
+      "id": "H25",
+      "kind": "unknown_var_ok",
+      "stage": "lenses",
+      "status": "done",
+      "rules": [],
+      "leaked": 0,
+      "calls": 1
+    },
+    {
+      "id": "H26",
+      "kind": "reason_too_long",
+      "stage": "agent",
+      "status": "rejected",
+      "rules": [
+        "reason_too_long"
+      ],
+      "leaked": 0,
+      "calls": 0
+    },
+    {
+      "id": "H27",
+      "kind": "forbidden_action",
+      "stage": "agent",
+      "status": "rejected",
+      "rules": [
+        "forbidden_action"
+      ],
+      "leaked": 0,
+      "calls": 0
+    },
+    {
+      "id": "H28",
+      "kind": "unknown_action",
+      "stage": "agent",
+      "status": "rejected",
+      "rules": [
+        "unknown_action"
+      ],
+      "leaked": 0,
+      "calls": 0
+    },
+    {
+      "id": "H29",
+      "kind": "hidden_reasoning",
+      "stage": "agent",
+      "status": "rejected",
+      "rules": [
+        "schema"
+      ],
+      "leaked": 0,
+      "calls": 0
+    },
+    {
+      "id": "H30",
+      "kind": "bad_friction_category",
+      "stage": "agent",
+      "status": "rejected",
+      "rules": [
+        "schema"
+      ],
+      "leaked": 0,
+      "calls": 0
+    },
+    {
+      "id": "H31",
+      "kind": "agent_ok",
+      "stage": "agent",
+      "status": "accepted",
+      "rules": [],
+      "leaked": 0,
+      "calls": 0
+    }
+  ],
+  "note": "SYNTHETIC ворожі відповіді; guard-и перевірено на позитивних і негативних (контрольних) випадках"
+}

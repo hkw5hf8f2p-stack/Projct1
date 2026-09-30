@@ -1,0 +1,430 @@
+{
+  "key": "0d96188bd3b764f34e336f292497806b50109a06face6c3878f656fe447cd7aa",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "lens-generator-v1",
+  "synthetic": true,
+  "response": {
+    "lenses": [
+      {
+        "id": "l01",
+        "name": "Новачок у темі",
+        "description": "Вперше обирає подібний пристрій і потребує простих пояснень.",
+        "category_knowledge": 0.1,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.6,
+        "decision_speed": 0.4,
+        "detail_preference": 0.5,
+        "visual_sensitivity": 0.6,
+        "comparison_tendency": 0.4,
+        "risk_aversion": 0.6,
+        "convenience_priority": 0.7,
+        "social_proof_need": 0.7,
+        "primary_goal": "Зрозуміти, що мені потрібно",
+        "likely_questions": [
+          "Що це за пристрій?",
+          "Чим ці моделі різняться?"
+        ],
+        "likely_objections": [
+          "Занадто багато незрозумілих термінів"
+        ]
+      },
+      {
+        "id": "l02",
+        "name": "Досвідчений знавець",
+        "description": "Добре знає категорію й порівнює технічні характеристики.",
+        "category_knowledge": 0.9,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.4,
+        "decision_speed": 0.6,
+        "detail_preference": 0.8,
+        "visual_sensitivity": 0.3,
+        "comparison_tendency": 0.8,
+        "risk_aversion": 0.4,
+        "convenience_priority": 0.4,
+        "social_proof_need": 0.3,
+        "primary_goal": "Перевірити, чи модель відповідає моїм вимогам",
+        "likely_questions": [
+          "Які точні характеристики?",
+          "Що змінюється в комплектації?"
+        ],
+        "likely_objections": [
+          "Немає технічних деталей"
+        ]
+      },
+      {
+        "id": "l03",
+        "name": "Ощадливий порівнювач",
+        "description": "Уважно стежить за витратами й шукає найвигіднішу пропозицію.",
+        "category_knowledge": 0.5,
+        "price_sensitivity": 0.9,
+        "trust_requirement": 0.5,
+        "decision_speed": 0.4,
+        "detail_preference": 0.6,
+        "visual_sensitivity": 0.3,
+        "comparison_tendency": 0.9,
+        "risk_aversion": 0.6,
+        "convenience_priority": 0.5,
+        "social_proof_need": 0.5,
+        "primary_goal": "Знайти найдешевший прийнятний варіант",
+        "likely_questions": [
+          "Скільки це коштує разом?",
+          "Чи є прихована доплата?"
+        ],
+        "likely_objections": [
+          "Повна ціна не видна одразу"
+        ]
+      },
+      {
+        "id": "l04",
+        "name": "Байдужий до ціни",
+        "description": "Готовий платити більше за зручність і швидкий результат.",
+        "category_knowledge": 0.5,
+        "price_sensitivity": 0.1,
+        "trust_requirement": 0.4,
+        "decision_speed": 0.8,
+        "detail_preference": 0.3,
+        "visual_sensitivity": 0.6,
+        "comparison_tendency": 0.3,
+        "risk_aversion": 0.3,
+        "convenience_priority": 0.9,
+        "social_proof_need": 0.4,
+        "primary_goal": "Швидко отримати потрібну річ",
+        "likely_questions": [
+          "Коли привезуть?",
+          "Чи можна замовити одразу?"
+        ],
+        "likely_objections": [
+          "Занадто довгий шлях до замовлення"
+        ]
+      },
+      {
+        "id": "l05",
+        "name": "Швидкий ухвалювач",
+        "description": "Вирішує швидко, читає мало, орієнтується на кнопки й заголовки.",
+        "category_knowledge": 0.5,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.3,
+        "decision_speed": 0.9,
+        "detail_preference": 0.2,
+        "visual_sensitivity": 0.7,
+        "comparison_tendency": 0.2,
+        "risk_aversion": 0.3,
+        "convenience_priority": 0.9,
+        "social_proof_need": 0.3,
+        "primary_goal": "Одразу дійти до кошика",
+        "likely_questions": [
+          "Де кнопка замовлення?"
+        ],
+        "likely_objections": [
+          "Потрібно читати довгі тексти"
+        ]
+      },
+      {
+        "id": "l06",
+        "name": "Дослідник деталей",
+        "description": "Довго вивчає всі подробиці, перш ніж діяти.",
+        "category_knowledge": 0.6,
+        "price_sensitivity": 0.6,
+        "trust_requirement": 0.6,
+        "decision_speed": 0.1,
+        "detail_preference": 0.9,
+        "visual_sensitivity": 0.4,
+        "comparison_tendency": 0.8,
+        "risk_aversion": 0.6,
+        "convenience_priority": 0.3,
+        "social_proof_need": 0.6,
+        "primary_goal": "Ретельно вивчити всі відомості про товар",
+        "likely_questions": [
+          "Що входить у комплект?",
+          "Які умови гарантії?"
+        ],
+        "likely_objections": [
+          "Деталі розкидані по різних сторінках"
+        ]
+      },
+      {
+        "id": "l07",
+        "name": "Недовірливий перевіряльник",
+        "description": "Потребує підтверджень надійності перед будь-якою дією.",
+        "category_knowledge": 0.5,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.9,
+        "decision_speed": 0.3,
+        "detail_preference": 0.7,
+        "visual_sensitivity": 0.4,
+        "comparison_tendency": 0.6,
+        "risk_aversion": 0.9,
+        "convenience_priority": 0.3,
+        "social_proof_need": 0.9,
+        "primary_goal": "Переконатися, що магазину можна довіряти",
+        "likely_questions": [
+          "Хто стоїть за магазином?",
+          "Що з гарантією та поверненням?"
+        ],
+        "likely_objections": [
+          "Немає контактів і відгуків"
+        ]
+      },
+      {
+        "id": "l08",
+        "name": "Візуальний оглядач",
+        "description": "Спершу оцінює вигляд сторінки й фото товару.",
+        "category_knowledge": 0.4,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.5,
+        "decision_speed": 0.6,
+        "detail_preference": 0.3,
+        "visual_sensitivity": 0.9,
+        "comparison_tendency": 0.4,
+        "risk_aversion": 0.4,
+        "convenience_priority": 0.6,
+        "social_proof_need": 0.5,
+        "primary_goal": "Оцінити товар за виглядом",
+        "likely_questions": [
+          "Як виглядає пристрій?"
+        ],
+        "likely_objections": [
+          "Фото малі або відсутні"
+        ]
+      },
+      {
+        "id": "l09",
+        "name": "Пошуковець зручності",
+        "description": "Обирає те, що найпростіше замовити й отримати.",
+        "category_knowledge": 0.4,
+        "price_sensitivity": 0.4,
+        "trust_requirement": 0.4,
+        "decision_speed": 0.7,
+        "detail_preference": 0.3,
+        "visual_sensitivity": 0.5,
+        "comparison_tendency": 0.3,
+        "risk_aversion": 0.4,
+        "convenience_priority": 0.95,
+        "social_proof_need": 0.4,
+        "primary_goal": "Замовити з мінімумом кроків",
+        "likely_questions": [
+          "Скільки кроків до замовлення?"
+        ],
+        "likely_objections": [
+          "Забагато полів і переходів"
+        ]
+      },
+      {
+        "id": "l10",
+        "name": "Обережний покупець",
+        "description": "Уникає ризику й шукає гарантії й умови повернення.",
+        "category_knowledge": 0.4,
+        "price_sensitivity": 0.6,
+        "trust_requirement": 0.7,
+        "decision_speed": 0.2,
+        "detail_preference": 0.7,
+        "visual_sensitivity": 0.3,
+        "comparison_tendency": 0.6,
+        "risk_aversion": 0.95,
+        "convenience_priority": 0.4,
+        "social_proof_need": 0.7,
+        "primary_goal": "Знати, що буде, якщо річ не підійде",
+        "likely_questions": [
+          "Чи можна повернути?",
+          "Що по гарантії?"
+        ],
+        "likely_objections": [
+          "Незрозумілі умови повернення"
+        ]
+      },
+      {
+        "id": "l11",
+        "name": "Той, хто йде за відгуками",
+        "description": "Довіряє чужому досвіду більше, ніж описам магазину.",
+        "category_knowledge": 0.3,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.6,
+        "decision_speed": 0.5,
+        "detail_preference": 0.5,
+        "visual_sensitivity": 0.5,
+        "comparison_tendency": 0.7,
+        "risk_aversion": 0.6,
+        "convenience_priority": 0.5,
+        "social_proof_need": 0.95,
+        "primary_goal": "Знайти підтвердження від інших покупців",
+        "likely_questions": [
+          "Що кажуть інші покупці?"
+        ],
+        "likely_objections": [
+          "Відгуків немає"
+        ]
+      },
+      {
+        "id": "l12",
+        "name": "Практик середнього рівня",
+        "description": "Має базові знання й хоче підтвердити вибір.",
+        "category_knowledge": 0.55,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.5,
+        "decision_speed": 0.5,
+        "detail_preference": 0.5,
+        "visual_sensitivity": 0.5,
+        "comparison_tendency": 0.5,
+        "risk_aversion": 0.5,
+        "convenience_priority": 0.5,
+        "social_proof_need": 0.5,
+        "primary_goal": "Підтвердити, що вибір слушний",
+        "likely_questions": [
+          "Це те, що мені треба?"
+        ],
+        "likely_objections": [
+          "Не вистачає підтвердження вибору"
+        ]
+      },
+      {
+        "id": "l13",
+        "name": "Порівнювач моделей",
+        "description": "Зіставляє кілька варіантів поруч, поки не знайде різницю.",
+        "category_knowledge": 0.6,
+        "price_sensitivity": 0.6,
+        "trust_requirement": 0.5,
+        "decision_speed": 0.3,
+        "detail_preference": 0.7,
+        "visual_sensitivity": 0.4,
+        "comparison_tendency": 0.95,
+        "risk_aversion": 0.5,
+        "convenience_priority": 0.4,
+        "social_proof_need": 0.5,
+        "primary_goal": "Побачити моделі поруч і обрати",
+        "likely_questions": [
+          "У чому різниця між X200 і X220?"
+        ],
+        "likely_objections": [
+          "Немає таблиці порівняння"
+        ]
+      },
+      {
+        "id": "l14",
+        "name": "Мобільний поспішальник",
+        "description": "Замовляє між справами з телефону.",
+        "category_knowledge": 0.4,
+        "price_sensitivity": 0.5,
+        "trust_requirement": 0.4,
+        "decision_speed": 0.85,
+        "detail_preference": 0.25,
+        "visual_sensitivity": 0.6,
+        "comparison_tendency": 0.3,
+        "risk_aversion": 0.4,
+        "convenience_priority": 0.9,
+        "social_proof_need": 0.4,
+        "primary_goal": "Замовити з телефону за хвилину",
+        "likely_questions": [
+          "Чи зручно на екрані телефону?"
+        ],
+        "likely_objections": [
+          "Дрібний текст, тісні кнопки"
+        ]
+      },
+      {
+        "id": "l15",
+        "name": "Скептик щодо обіцянок",
+        "description": "Не вірить гучним словам і шукає факти.",
+        "category_knowledge": 0.6,
+        "price_sensitivity": 0.6,
+        "trust_requirement": 0.85,
+        "decision_speed": 0.3,
+        "detail_preference": 0.75,
+        "visual_sensitivity": 0.3,
+        "comparison_tendency": 0.6,
+        "risk_aversion": 0.8,
+        "convenience_priority": 0.3,
+        "social_proof_need": 0.6,
+        "primary_goal": "Перевірити твердження фактами",
+        "likely_questions": [
+          "Чим це підтверджено?"
+        ],
+        "likely_objections": [
+          "Голослівні обіцянки"
+        ]
+      },
+      {
+        "id": "l16",
+        "name": "Економний новачок",
+        "description": "Мало знає про товар і дуже уважний до витрат.",
+        "category_knowledge": 0.15,
+        "price_sensitivity": 0.85,
+        "trust_requirement": 0.55,
+        "decision_speed": 0.3,
+        "detail_preference": 0.7,
+        "visual_sensitivity": 0.5,
+        "comparison_tendency": 0.6,
+        "risk_aversion": 0.6,
+        "convenience_priority": 0.5,
+        "social_proof_need": 0.6,
+        "primary_goal": "Не переплатити, поки не розберуся",
+        "likely_questions": [
+          "Чи вистачить дешевшої моделі?"
+        ],
+        "likely_objections": [
+          "Складно зрозуміти, що обрати"
+        ]
+      },
+      {
+        "id": "l17",
+        "name": "Впевнений експерт із бюджетом",
+        "description": "Знає, що потрібно, і жорстко рахує гроші.",
+        "category_knowledge": 0.85,
+        "price_sensitivity": 0.8,
+        "trust_requirement": 0.4,
+        "decision_speed": 0.6,
+        "detail_preference": 0.6,
+        "visual_sensitivity": 0.3,
+        "comparison_tendency": 0.7,
+        "risk_aversion": 0.4,
+        "convenience_priority": 0.5,
+        "social_proof_need": 0.3,
+        "primary_goal": "Отримати потрібне за найкращою ціною",
+        "likely_questions": [
+          "Скільки коштує комплектація?"
+        ],
+        "likely_objections": [
+          "Ціна з'являється пізно"
+        ]
+      },
+      {
+        "id": "l18",
+        "name": "Зручність понад усе, без метушні",
+        "description": "Цінує ясні кроки й не любить зайвих рішень.",
+        "category_knowledge": 0.45,
+        "price_sensitivity": 0.4,
+        "trust_requirement": 0.45,
+        "decision_speed": 0.65,
+        "detail_preference": 0.35,
+        "visual_sensitivity": 0.55,
+        "comparison_tendency": 0.35,
+        "risk_aversion": 0.45,
+        "convenience_priority": 0.85,
+        "social_proof_need": 0.45,
+        "primary_goal": "Пройти шлях без зайвих рішень",
+        "likely_questions": [
+          "Що робити далі?"
+        ],
+        "likely_objections": [
+          "Незрозуміло, який наступний крок"
+        ]
+      }
+    ]
+  },
+  "input_tokens": 988,
+  "output_tokens": 2629,
+  "request_summary": {
+    "stage": "lenses",
+    "logical_key": {
+      "prompt_id": "lens-generator-v1",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 8000
+    },
+    "system_sha256": "fa1dfd6aa672a023574539acbaaf136a34f90e4692748ade40a1715849b29037",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

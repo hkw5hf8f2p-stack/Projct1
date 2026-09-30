@@ -1,0 +1,1310 @@
+{
+  "needed_tokens": 7974,
+  "runs": 100,
+  "underfunded_runs_marked": 99,
+  "counter_mismatch_tokens": 0,
+  "over_budget_runs": 0,
+  "rows": [
+    {
+      "pct": 1,
+      "max": 79,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 2,
+      "max": 159,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 3,
+      "max": 239,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 4,
+      "max": 318,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 5,
+      "max": 398,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 6,
+      "max": 478,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 7,
+      "max": 558,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 8,
+      "max": 637,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 9,
+      "max": 717,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 10,
+      "max": 797,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 11,
+      "max": 877,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 12,
+      "max": 956,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 13,
+      "max": 1036,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 14,
+      "max": 1116,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 15,
+      "max": 1196,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 16,
+      "max": 1275,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 17,
+      "max": 1355,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 18,
+      "max": 1435,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 19,
+      "max": 1515,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 20,
+      "max": 1594,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 21,
+      "max": 1674,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 22,
+      "max": 1754,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 23,
+      "max": 1834,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 24,
+      "max": 1913,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 25,
+      "max": 1993,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 26,
+      "max": 2073,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 27,
+      "max": 2152,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 28,
+      "max": 2232,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 29,
+      "max": 2312,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 30,
+      "max": 2392,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 31,
+      "max": 2471,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 32,
+      "max": 2551,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 33,
+      "max": 2631,
+      "used": 0,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "budget_limited",
+        "skipped",
+        "skipped",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 34,
+      "max": 2711,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 35,
+      "max": 2790,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 36,
+      "max": 2870,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 37,
+      "max": 2950,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 38,
+      "max": 3030,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 39,
+      "max": 3109,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 40,
+      "max": 3189,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 41,
+      "max": 3269,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 42,
+      "max": 3349,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 43,
+      "max": 3428,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 44,
+      "max": 3508,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 45,
+      "max": 3588,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 46,
+      "max": 3668,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 47,
+      "max": 3747,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 48,
+      "max": 3827,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 49,
+      "max": 3907,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 50,
+      "max": 3987,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 51,
+      "max": 4066,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 52,
+      "max": 4146,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 53,
+      "max": 4226,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 54,
+      "max": 4305,
+      "used": 2640,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "budget_limited",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 55,
+      "max": 4385,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 56,
+      "max": 4465,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 57,
+      "max": 4545,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 58,
+      "max": 4624,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 59,
+      "max": 4704,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 60,
+      "max": 4784,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 61,
+      "max": 4864,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 62,
+      "max": 4943,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 63,
+      "max": 5023,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 64,
+      "max": 5103,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 65,
+      "max": 5183,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 66,
+      "max": 5262,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 67,
+      "max": 5342,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 68,
+      "max": 5422,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 69,
+      "max": 5502,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 70,
+      "max": 5581,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 71,
+      "max": 5661,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 72,
+      "max": 5741,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 73,
+      "max": 5821,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 74,
+      "max": 5900,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 75,
+      "max": 5980,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 76,
+      "max": 6060,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 77,
+      "max": 6139,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 78,
+      "max": 6219,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 79,
+      "max": 6299,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 80,
+      "max": 6379,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 81,
+      "max": 6458,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 82,
+      "max": 6538,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 83,
+      "max": 6618,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 84,
+      "max": 6698,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 85,
+      "max": 6777,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 86,
+      "max": 6857,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 87,
+      "max": 6937,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 88,
+      "max": 7017,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 89,
+      "max": 7096,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 90,
+      "max": 7176,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 91,
+      "max": 7256,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 92,
+      "max": 7336,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 93,
+      "max": 7415,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 94,
+      "max": 7495,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 95,
+      "max": 7575,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 96,
+      "max": 7655,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 97,
+      "max": 7734,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 98,
+      "max": 7814,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 99,
+      "max": 7894,
+      "used": 4357,
+      "marked": true,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "budget_limited",
+        "skipped"
+      ]
+    },
+    {
+      "pct": 100,
+      "max": 7974,
+      "used": 7974,
+      "marked": false,
+      "diff": 0,
+      "statuses": [
+        "done",
+        "done",
+        "done",
+        "done"
+      ]
+    }
+  ],
+  "note": "replay: токени = із записів фікстури (SYNTHETIC); реальна вартість — ⏭️ live pass"
+}

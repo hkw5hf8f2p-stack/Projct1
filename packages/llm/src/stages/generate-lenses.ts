@@ -51,11 +51,12 @@ export async function generateLenses(ctx: StageContext, input: { profile: SitePr
       vars: { LANGUAGE: ctx.language, LANGUAGE_NAME: LANG_NAME[ctx.language], PROFILE_DATA: profileData, COUNT: String(LENS_CANDIDATES), EXTRA_POLES: extra },
       logical: { step },
     });
-    const call = async (extra: string, step: number) => ctx.client.call(ask(extra, step), LensCandidatesLenient, (v) => {
+    // основний запит: ≥ LENS_MIN придатних; додатковий (лише відсутні полюси, ~6 лінз): ≥ 1 придатної
+    const call = async (extra: string, step: number, minValid: number) => ctx.client.call(ask(extra, step), LensCandidatesLenient, (v) => {
       const s = splitCandidates(v.lenses, ctx.language);
-      return s.valid.length >= LENS_MIN ? [] : [`too_few_valid_candidates: ${s.valid.length} < ${LENS_MIN}`, ...s.dropped.slice(0, 8).map((d) => d.detail)];
+      return s.valid.length >= minValid ? [] : [`too_few_valid_candidates: ${s.valid.length} < ${minValid}`, ...s.dropped.slice(0, 8).map((d) => d.detail)];
     });
-    const first = await call("", 0);
+    const first = await call("", 0, LENS_MIN);
     const s1 = splitCandidates(first.value.lenses, ctx.language);
     let rejected = [...s1.dropped];
     let valid = s1.valid;
@@ -72,7 +73,7 @@ export async function generateLenses(ctx: StageContext, input: { profile: SitePr
       // §9.4: один раз попросити генератор про відсутні полюси; знову ні — найближчий кандидат + прапорець
       const want = sel.unmet_poles.map((id) => poleById(id as PoleId).name).join(", ");
       try {
-        const second = await call(`The previous set lacked these behavioral poles: ${want}. Generate 6 additional candidate lenses (ids l19, l20, ...) covering ONLY these poles.`, 1);
+        const second = await call((lensGeneratorV1.fragments as Record<string, string>).poles_request!.replace("{{POLES}}", want), 1, 1);
         calls.push(...second.calls);
         const s2 = splitCandidates(second.value.lenses, ctx.language);
         rejected = [...rejected, ...s2.dropped];

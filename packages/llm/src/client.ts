@@ -1,10 +1,11 @@
 import type { ZodType } from "zod";
 import type { LlmCall } from "@sitelens/schemas";
+import { REPAIR_TEMPLATE } from "../prompts/common.js";
 import { cacheKey, type CacheEntry, type CacheIdentity, type ReplayCache } from "./cache.js";
 import { sha256 } from "./canonical.js";
 import { LlmDisabledError, OutputInvalidError, ReplayMissError, ConfigError, BudgetExceededError } from "./errors.js";
 import type { TokenBudget } from "./budget.js";
-import { nullLogger, type Logger } from "./redact.js";
+import { nullLogger, redact, redactDeep, type Logger } from "./redact.js";
 import { estimateInputTokens } from "./tokens.js";
 import type { CacheMode, LlmProvider, LlmRequest, ProviderResult } from "./types.js";
 
@@ -39,6 +40,8 @@ export interface ClientOptions {
   cache_identity?: CacheIdentity;
   logger?: Logger;
   now?: () => Date;
+  /** значення ключів з env: вилучаються з усього, що зберігається (записи кешу, CallRecord), навіть якщо модель їх «відлунила» */
+  secrets?: readonly string[];
 }
 
 /** Результат виклику: значення пройшло Zod (і семантичні правила), або кинуто OutputInvalidError. */
@@ -91,7 +94,7 @@ export class LlmClient {
     let lastRaw: unknown = null;
     for (let attempt = 0; attempt <= 1; attempt++) {
       const withAttempt: LlmRequest = { ...current, logical_key: { ...req.logical_key, attempt } };
-      const { result, rec } = await this.once(withAttempt, attempt);
+      const { result, rec, pending } = await this.once(withAttempt, attempt);
       calls.push(rec);
       lastRaw = result.json ?? result.raw_text ?? null;
       issues = [];
@@ -102,7 +105,11 @@ export class LlmClient {
         if (!parsed.success) issues = zodIssues(parsed.error);
         else {
           const sem = semantic ? semantic(parsed.data) : [];
-          if (sem.length === 0) return { value: parsed.data, calls };
+          if (sem.length === 0) {
+            // у кеш потрапляє лише ВАЛІДОВАНА відповідь: невалідна не «запікається» у replay і не виживає як фікстура
+            if (pending && this.o.cache) this.o.cache.put(pending.key, pending);
+            return { value: parsed.data, calls };
+          }
           issues = sem;
         }
       }
@@ -110,13 +117,15 @@ export class LlmClient {
       this.log.warn("llm output rejected", { prompt_id: req.prompt_id, attempt, issues: issues.slice(0, 5) });
       if (attempt === 0) {
         // repair-повтор: той самий запит + перелік порушень (це інший вміст → інший ключ E5)
-        current = { ...req, content: [...req.content, { type: "text", text: `Your previous response was rejected for these reasons:\n- ${issues.join("\n- ")}\nReturn a corrected structured object only. If evidence is absent, use UNKNOWN; do not invent values.` }] };
+        current = { ...req, content: [...req.content, { type: "text", text: REPAIR_TEMPLATE.replace("{{ISSUES}}", `- ${issues.join("\n- ")}`) }] };
       }
     }
     throw new OutputInvalidError(`${req.prompt_id}: output invalid after repair retry`, issues, lastRaw);
   }
 
-  private async once(req: LlmRequest, attempt: number): Promise<{ result: ProviderResult; rec: CallRecord }> {
+  private clean<T>(v: T): T { return this.o.secrets?.length ? redactDeep(v, this.o.secrets) : v; }
+
+  private async once(req: LlmRequest, attempt: number): Promise<{ result: ProviderResult; rec: CallRecord; pending?: CacheEntry }> {
     const id = this.identity();
     const key = cacheKey(id, req);
     const budget = this.o.budget;
@@ -143,19 +152,19 @@ export class LlmClient {
     const source = this.mode === "fake" ? "fake" : "provider";
     // фактичні токени провайдера; перевищення після факту неможливе завдяки резерву max_tokens вище
     budget.record({ call_id, stage: req.stage, source, input_tokens: result.input_tokens, output_tokens: result.output_tokens });
+    let pending: CacheEntry | undefined;
     if (cache && this.cache_mode === "use" && this.mode === "live") {
-      const entry: CacheEntry = {
+      pending = {
         key, provider: id.provider, model: id.model, prompt_id: req.prompt_id, synthetic: result.synthetic === true,
-        response: result.json, raw_text: result.raw_text, input_tokens: result.input_tokens, output_tokens: result.output_tokens,
+        response: this.clean(result.json), raw_text: result.raw_text === undefined ? undefined : redact(result.raw_text, this.o.secrets ?? []), input_tokens: result.input_tokens, output_tokens: result.output_tokens,
         request_summary: {
           stage: req.stage, logical_key: req.logical_key, sampling: req.sampling, system_sha256: sha256(req.system),
           image_sha256: req.content.flatMap((p) => (p.type === "image" ? [p.sha256] : [])),
         },
         recorded_at: (this.o.now?.() ?? new Date()).toISOString(),
       };
-      cache.put(key, entry);
     }
-    return { result, rec: this.push({ ...base, provider: result.provider, model: result.model, source, synthetic: result.synthetic === true, input_tokens: result.input_tokens, output_tokens: result.output_tokens, latency_ms: result.latency_ms, temperature_dropped: result.temperature_dropped === true, response: result.json }) };
+    return { result, pending, rec: this.push({ ...base, provider: result.provider, model: result.model, source, synthetic: result.synthetic === true, input_tokens: result.input_tokens, output_tokens: result.output_tokens, latency_ms: result.latency_ms, temperature_dropped: result.temperature_dropped === true, response: this.clean(result.json) }) };
   }
 
   private push(r: CallRecord): CallRecord { this.records.push(r); return r; }

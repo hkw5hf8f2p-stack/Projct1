@@ -8,7 +8,7 @@ import { PROMPTS, promptHash } from "../packages/llm/prompts/index.js";
 import type { LockFile } from "../packages/llm/prompts/index.js";
 
 const file = path.resolve("packages/llm/prompts.lock.json");
-const lock: LockFile = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : { note: "sha256 від {id, system, user_template, output_name, json_schema}. Не редагувати вручну: змінений текст → нова версія промпту.", prompts: {} };
+const lock: LockFile = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : { note: "sha256 від {id, system, user_template, fragments, repair-текст, output_name, json_schema}. Не редагувати вручну: змінений текст → нова версія промпту.", prompts: {} };
 let bad = 0;
 for (const p of PROMPTS) {
   const h = promptHash(p);

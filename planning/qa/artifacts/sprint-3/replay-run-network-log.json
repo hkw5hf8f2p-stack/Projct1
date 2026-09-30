@@ -1,0 +1,59 @@
+{
+  "run": "fixtures/shop на replay (SYNTHETIC відповіді, namespace shop-synthetic-v1)",
+  "llm_calls": 3,
+  "from_cache": 3,
+  "net_events": [],
+  "provider_hits": 0,
+  "non_loopback_events": 0,
+  "hooks": "dns.lookup + net.Socket.connect + globalThis.fetch",
+  "budget": {
+    "max_audit_tokens": 1650000,
+    "input_tokens": 4155,
+    "output_tokens": 3819,
+    "total_tokens": 7974,
+    "billed_tokens": 0,
+    "cache_read_tokens": 7974,
+    "calls": 3,
+    "exhausted": false
+  },
+  "stage_status": {
+    "site_profile": {
+      "status": "done"
+    },
+    "tasks": {
+      "status": "done"
+    },
+    "lenses": {
+      "status": "done"
+    },
+    "scenario_matrix": {
+      "status": "done"
+    }
+  },
+  "records": [
+    {
+      "call_id": "call_1",
+      "prompt_id": "site-profile-v1",
+      "source": "cache",
+      "synthetic": true,
+      "request_hash": "ad1a3ae72158c53c",
+      "tokens": 2640
+    },
+    {
+      "call_id": "call_2",
+      "prompt_id": "task-generator-v1",
+      "source": "cache",
+      "synthetic": true,
+      "request_hash": "23f1dc33d391c171",
+      "tokens": 1717
+    },
+    {
+      "call_id": "call_3",
+      "prompt_id": "lens-generator-v1",
+      "source": "cache",
+      "synthetic": true,
+      "request_hash": "0d96188bd3b764f3",
+      "tokens": 3617
+    }
+  ]
+}

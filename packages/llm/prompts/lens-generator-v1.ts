@@ -26,6 +26,9 @@ export const lensGeneratorV1: PromptDef = {
     "Generate exactly {{COUNT}} candidate lenses with ids l01, l02, ...",
     "{{EXTRA_POLES}}",
   ].join("\n"),
+  fragments: {
+    poles_request: "The previous set lacked these behavioral poles: {{POLES}}. Generate 6 additional candidate lenses (ids l19, l20, ...) covering ONLY these poles.",
+  },
   output_name: "behavioral_lenses",
   output_description: "Candidate behavioral lenses (numeric behavioral variables, no demographics).",
   json_schema: zodToJsonSchema(LensCandidatesLlm),

@@ -1,0 +1,46 @@
+# Навмисна зміна промпту без версії (критерій 7): у prompts/common.ts додано "Be positive." до NO_ISSUE_RULE; після прогону зміну ВІДКОЧЕНО
+# Команди: vitest run packages/llm/test/prompts.test.ts ; tsx scripts/llm-prompts-lock.ts
+
+ RUN  v3.2.7 /home/user/Projct1
+
+ ❯ packages/llm/test/prompts.test.ts (12 tests | 3 failed) 27ms
+   × версійні промпти §52 + lock-файл > ID відповідають формату <name>-vN, унікальні; lock збігається (0 порушень) 14ms
+     → expected [ …(3) ] to deeply equal []
+   × версійні промпти §52 + lock-файл > НАВМИСНА зміна тексту без зміни версії → перевірка FAIL (предикат уміє впасти) 3ms
+     → expected [ …(3) ] to have a length of 1 but got 3
+   × версійні промпти §52 + lock-файл > правильна зміна = новий ID: v2 без запису в lock → теж FAIL «немає в lock» (треба свідомо додати), v1 лишається чистим 2ms
+     → expected [ …(4) ] to have a length of 1 but got 4
+   ✓ версійні промпти §52 + lock-файл > видалення промпту з коду при наявному lock-записі → FAIL 1ms
+   ✓ версійні промпти §52 + lock-файл > хеш стабільний і залежить від id 2ms
+   ✓ зміст промптів: UNKNOWN, no-issue-valid, делімітери, без sycophancy (§34, §57, G0-12) > site-profile-v1 0ms
+   ✓ зміст промптів: UNKNOWN, no-issue-valid, делімітери, без sycophancy (§34, §57, G0-12) > task-generator-v1 0ms
+   ✓ зміст промптів: UNKNOWN, no-issue-valid, делімітери, без sycophancy (§34, §57, G0-12) > lens-generator-v1 0ms
+   ✓ зміст промптів: UNKNOWN, no-issue-valid, делімітери, без sycophancy (§34, §57, G0-12) > промпти не пропонують демографію/відсотки лінз і не називають «поточний/AI-згенерований» варіант 0ms
+   ✓ ізоляція вмісту сторінки (G0-12) > розділювачі всередині тексту нейтралізуються: рівно один відкриваючий і один закриваючий делімітер на сторінку 1ms
+   ✓ ізоляція вмісту сторінки (G0-12) > nonce залежить від вмісту (не вгадується заздалегідь) і однаковий у відкриваючому/закриваючому 0ms
+   ✓ ізоляція вмісту сторінки (G0-12) > контроль: без neutralize підроблений закриваючий маркер БУВ БИ у виході (перевіряємо, що тест уміє впасти) 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/llm/test/prompts.test.ts > версійні промпти §52 + lock-файл > ID відповідають формату <name>-vN, унікальні; lock збігається (0 порушень)
+AssertionError: expected [ …(3) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "site-profile-v1: текст змінено без зміни версії (lock 84425be5d31d… ≠ 24450e6559a5…) — підніми версію (…-v2)",
++   "task-generator-v1: текст змінено без зміни версії (lock f8392448e48d… ≠ 656f1392cdf8…) — підніми версію (…-v2)",
++   "lens-generator-v1: текст змінено без зміни версії (lock 5328eded6923… ≠ 42b58b1c9010…) — підніми версію (…-v2)",
++ ]
+
+ ❯ packages/llm/test/prompts.test.ts:15:44
+     13|     for (const p of PROMPTS) expect(p.id).toMatch(PROMPT_ID_RE);
+     14|     expect(new Set(PROMPTS.map((p) => p.id)).size).toBe(PROMPTS.length…
+     15|     expect(checkPromptLock(PROMPTS, lock)).toEqual([]);
+       |                                            ^
+✗ site-profile-v1: текст змінено без нової версії (lock 84425be5d31d ≠ 24450e6559a5)
+✗ task-generator-v1: текст змінено без нової версії (lock f8392448e48d ≠ 656f1392cdf8)
+✗ lens-generator-v1: текст змінено без нової версії (lock 5328eded6923 ≠ 42b58b1c9010)
+exit=1

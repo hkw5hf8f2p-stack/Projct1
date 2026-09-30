@@ -1,0 +1,20 @@
+{
+  "purpose": "предикат noProviderTraffic має падати на навмисному зверненні до api.anthropic.com (мок-сервер на 127.0.0.1)",
+  "events": [
+    {
+      "kind": "fetch",
+      "host": "api.anthropic.com",
+      "port": 36291
+    },
+    {
+      "kind": "connect",
+      "host": "?"
+    },
+    {
+      "kind": "dns",
+      "host": "api.anthropic.com"
+    }
+  ],
+  "provider_hits": 2,
+  "noProviderTraffic": false
+}
