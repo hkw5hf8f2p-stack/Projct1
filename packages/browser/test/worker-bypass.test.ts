@@ -39,7 +39,7 @@ const VARIANTS: Record<string, { klass: Klass; make: string; title: string }> = 
   module: { klass: "dedicated", title: "new Worker(url, {type:'module'})", make: `new Worker("/wk-module.js", { type: "module" })` },
   blob: { klass: "dedicated", title: "new Worker(URL.createObjectURL(blob))", make: `new Worker(URL.createObjectURL(new Blob([${JSON.stringify(WORKER("blob"))}], { type: "text/javascript" })))` },
   nested: { klass: "dedicated", title: "Worker → вкладений Worker", make: `new Worker("/wk-nested.js")` },
-  "iframe-dedicated": { klass: "dedicated", title: "Worker з about:blank-iframe (realm iframe)", make: `new Promise((res) => { const f = document.createElement("iframe"); f.onload = () => res(new f.contentWindow.Worker("/wk-iframe-dedicated.js")); document.body.appendChild(f); })` },
+  "iframe-dedicated": { klass: "dedicated", title: "Worker з about:blank-iframe (realm iframe)", make: `new Promise((res) => { const f = document.createElement("iframe"); f.onload = () => setTimeout(() => res(new f.contentWindow.Worker("/wk-iframe-dedicated.js")), 200); document.body.appendChild(f); })` },
   shared: { klass: "shared", title: "new SharedWorker(url)", make: `new SharedWorker("/wk-shared.js")` },
   "shared-module": { klass: "shared", title: "new SharedWorker(url, {type:'module'})", make: `new SharedWorker("/wk-shared-module.js", { type: "module" })` },
   "shared-blob": { klass: "shared", title: "new SharedWorker(URL.createObjectURL(blob))", make: `new SharedWorker(URL.createObjectURL(new Blob([${JSON.stringify(WORKER("shared-blob"))}], { type: "text/javascript" })))` },

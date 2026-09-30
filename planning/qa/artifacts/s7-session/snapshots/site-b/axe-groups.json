@@ -1,0 +1,45 @@
+[
+  {
+    "rule": "image-redundant-alt",
+    "page_group": "category",
+    "component": "main/img",
+    "instances": 4,
+    "impact": "minor",
+    "viewports": [
+      "D",
+      "M"
+    ],
+    "pages": [
+      "/catalog"
+    ],
+    "examples": [
+      {
+        "evidence_id": "ev_9c90b3f8e935",
+        "page": "/catalog",
+        "viewport": "D",
+        "selector": "img[src$=\"glass-kettle.svg\"]",
+        "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img"
+      },
+      {
+        "evidence_id": "ev_f20a011dc103",
+        "page": "/catalog",
+        "viewport": "D",
+        "selector": "img[src$=\"wooden-board.svg\"]",
+        "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <im"
+      },
+      {
+        "evidence_id": "ev_ee68f6556ce0",
+        "page": "/catalog",
+        "viewport": "M",
+        "selector": "img[src$=\"glass-kettle.svg\"]",
+        "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img"
+      }
+    ],
+    "evidence_ids": [
+      "ev_95b488a93b95",
+      "ev_9c90b3f8e935",
+      "ev_ee68f6556ce0",
+      "ev_f20a011dc103"
+    ]
+  }
+]

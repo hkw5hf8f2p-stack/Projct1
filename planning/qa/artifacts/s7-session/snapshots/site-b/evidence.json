@@ -1,0 +1,938 @@
+[
+  {
+    "id": "ev_9c90b3f8e935",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://site-b.test:4214/catalog",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Alternative text of images should not be repeated as text (minor). Fix all of the following:   Element contains <img> element with alt text that duplicates existing text",
+    "artifact_reference": "pages/catalog/1440x1000/axe.json",
+    "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"glass-kettle.svg\"]",
+      "region": {
+        "x": 207,
+        "y": 155,
+        "w": 80,
+        "h": 80
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+    "detector_id": "axe:image-redundant-alt",
+    "claim_kind": "axe:image-redundant-alt",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "image-redundant-alt",
+      "impact": "minor",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f20a011dc103",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://site-b.test:4214/catalog",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Alternative text of images should not be repeated as text (minor). Fix all of the following:   Element contains <img> element with alt text that duplicates existing text",
+    "artifact_reference": "pages/catalog/1440x1000/axe.json",
+    "screenshot_reference": "pages/catalog/1440x1000/viewport.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"wooden-board.svg\"]",
+      "region": {
+        "x": 207,
+        "y": 427,
+        "w": 80,
+        "h": 80
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+    "detector_id": "axe:image-redundant-alt",
+    "claim_kind": "axe:image-redundant-alt",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "rule": "image-redundant-alt",
+      "impact": "minor",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_ee68f6556ce0",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://site-b.test:4214/catalog",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Alternative text of images should not be repeated as text (minor). Fix all of the following:   Element contains <img> element with alt text that duplicates existing text",
+    "artifact_reference": "pages/catalog/390x844/axe.json",
+    "screenshot_reference": "pages/catalog/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"glass-kettle.svg\"]",
+      "region": {
+        "x": 25,
+        "y": 140,
+        "w": 80,
+        "h": 80
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"glass-kettle.svg\"] — <img src=\"/img/glass-kettle.svg\" alt=\"Скляний чайник\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+    "detector_id": "axe:image-redundant-alt",
+    "claim_kind": "axe:image-redundant-alt",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "image-redundant-alt",
+      "impact": "minor",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_95b488a93b95",
+    "type": "axe",
+    "source_class": "BENCHMARKED",
+    "page_url": "http://site-b.test:4214/catalog",
+    "page_path": "/catalog",
+    "page_type": "category",
+    "page_group": "category",
+    "category": "accessibility",
+    "description": "Alternative text of images should not be repeated as text (minor). Fix all of the following:   Element contains <img> element with alt text that duplicates existing text",
+    "artifact_reference": "pages/catalog/390x844/axe.json",
+    "screenshot_reference": "pages/catalog/390x844/viewport.png",
+    "selector_or_region": {
+      "selector": "img[src$=\"wooden-board.svg\"]",
+      "region": {
+        "x": 25,
+        "y": 412,
+        "w": 80,
+        "h": 80
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "img[src$=\"wooden-board.svg\"] — <img src=\"/img/wooden-board.svg\" alt=\"Дерев'яна дошка\" width=\"80\" height=\"80\"> — Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text",
+    "detector_id": "axe:image-redundant-alt",
+    "claim_kind": "axe:image-redundant-alt",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "rule": "image-redundant-alt",
+      "impact": "minor",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/image-redundant-alt?application=playwright",
+      "axe_version": "4.13.0",
+      "nodes_in_rule": 2,
+      "component_signature": "main/img",
+      "component_landmark": "main"
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f8a2221ce3f1",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/glass-kettle",
+    "page_path": "/product/glass-kettle",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2139px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-glass-kettle/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-glass-kettle/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2139,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2139,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_a9404d1c571c",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/glass-kettle",
+    "page_path": "/product/glass-kettle",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2124px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-glass-kettle/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-glass-kettle/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2124,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2124,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_7882568d8d7c",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/travel-thermos",
+    "page_path": "/product/travel-thermos",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2139px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-travel-thermos/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-travel-thermos/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2139,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2139,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_a090a4a690d5",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/travel-thermos",
+    "page_path": "/product/travel-thermos",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2124px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-travel-thermos/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-travel-thermos/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2124,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2124,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_56dffaa01f9c",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/wooden-board",
+    "page_path": "/product/wooden-board",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2139px при висоті вікна 1000px.",
+    "artifact_reference": "pages/product-wooden-board/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-wooden-board/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 194,
+        "y": 2139,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "top_px": 2139,
+      "vh": 1000,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_8f33aa933054",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/wooden-board",
+    "page_path": "/product/wooden-board",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "cta",
+    "description": "Основна кнопка «Додати в кошик» лежить нижче першого вікна: верхній край на 2124px при висоті вікна 844px.",
+    "artifact_reference": "pages/product-wooden-board/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-wooden-board/390x844/fullpage.png",
+    "selector_or_region": {
+      "selector": "main > form > button",
+      "region": {
+        "x": 12,
+        "y": 2124,
+        "w": 173,
+        "h": 44
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Додати в кошик — main > form > button",
+    "detector_id": "cta_below_fold",
+    "claim_kind": "below_fold",
+    "assertion": "presence",
+    "viewport": "M",
+    "measurement": {
+      "top_px": 2124,
+      "vh": 844,
+      "vis": 0,
+      "candidates": 1,
+      "by_role": true
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_f0786855b15b",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/glass-kettle",
+    "page_path": "/product/glass-kettle",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-glass-kettle/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-glass-kettle/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2264
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_ab79daef44b7",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/glass-kettle",
+    "page_path": "/product/glass-kettle",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-glass-kettle/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-glass-kettle/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 2241
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_d7734e3ffc34",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/travel-thermos",
+    "page_path": "/product/travel-thermos",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-travel-thermos/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-travel-thermos/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2264
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_6f2c162186fe",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/travel-thermos",
+    "page_path": "/product/travel-thermos",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-travel-thermos/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-travel-thermos/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 2241
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_a65703ef2f3a",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/wooden-board",
+    "page_path": "/product/wooden-board",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport D): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-wooden-board/1440x1000/fullpage.png",
+    "screenshot_reference": "pages/product-wooden-board/1440x1000/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 2264
+      },
+      "dpr": 1,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (D): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "D",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  },
+  {
+    "id": "ev_d4e55c66eda8",
+    "type": "dom",
+    "source_class": "OBSERVED",
+    "page_url": "http://site-b.test:4214/product/wooden-board",
+    "page_path": "/product/wooden-board",
+    "page_type": "product",
+    "page_group": "product",
+    "category": "shipping",
+    "description": "На сторінці продукту немає видимого тексту про доставку й посилання на неї (перевірено D і M; цей рядок — viewport M): інформація про доставку — щонайменше за 2 кліки.",
+    "artifact_reference": "pages/product-wooden-board/390x844/fullpage.png",
+    "screenshot_reference": "pages/product-wooden-board/390x844/fullpage.png",
+    "selector_or_region": {
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 2241
+      },
+      "dpr": 2,
+      "coord": "css_px_document"
+    },
+    "excerpt": "Видимі посилання сторінки (M): ЧистийДім | Каталог | Головна",
+    "detector_id": "shipping_depth",
+    "claim_kind": "deep_link_only",
+    "assertion": "absence",
+    "viewport": "M",
+    "measurement": {
+      "d0": false,
+      "d1": false,
+      "union_of": [
+        "D",
+        "M"
+      ],
+      "scope": "page",
+      "viewport_local": {
+        "d0": false,
+        "d1": false
+      },
+      "depth_clicks": null,
+      "shipping_found_via": null,
+      "crawl_pages": 5
+    },
+    "self_confirming": true,
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  }
+]

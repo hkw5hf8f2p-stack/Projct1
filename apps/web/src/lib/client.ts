@@ -4,6 +4,7 @@
  *  - fixture: /api/dev/* — локальні JSON-фікстури; вмикається ЯВНО `SITELENS_SOURCE=fixture` (лише dev)
  * Токен ACCESS_TOKEN (якщо API його вимагає) — у sessionStorage цієї вкладки, ніколи в localStorage/URL/логах.
  */
+import type { AiCheckResult, AiSettingsInput, AiSettingsView } from "./ai-settings";
 import type { AuditStatus, Report } from "./types";
 
 export const SOURCE: "api" | "fixture" = process.env["NEXT_PUBLIC_SITELENS_SOURCE"] === "fixture" ? "fixture" : "api";
@@ -73,3 +74,10 @@ export async function ensureArtifactToken(auditId: string): Promise<number> {
   artTokens.set(auditId, r.data.token);
   return Math.max(0, Date.parse(r.data.expires_at) - Date.now());
 }
+
+/* BYO AI (/api/settings/ai). Ключ API у відповідях не приходить; у запит він потрапляє лише в тілі PUT і не зберігається ніде на клієнті. */
+export const getAiSettings = () => call<AiSettingsView>("/settings/ai");
+export const putAiSettings = (input: AiSettingsInput) =>
+  call<AiSettingsView>("/settings/ai", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) });
+export const deleteAiKey = () => call<AiSettingsView>("/settings/ai/key", { method: "DELETE" });
+export const checkAi = () => call<AiCheckResult>("/settings/ai/check", { method: "POST" });

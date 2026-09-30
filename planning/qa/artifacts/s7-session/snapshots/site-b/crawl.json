@@ -1,0 +1,257 @@
+{
+  "limits": {
+    "maxPages": 12,
+    "maxDepth": 3,
+    "maxProducts": 3
+  },
+  "order": [
+    {
+      "url": "http://site-b.test:4214/",
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0,
+      "page_type": "homepage"
+    },
+    {
+      "url": "http://site-b.test:4214/catalog",
+      "depth": 1,
+      "class": "shop_category",
+      "priority": 0.95,
+      "order": 1,
+      "page_type": "category"
+    },
+    {
+      "url": "http://site-b.test:4214/product/glass-kettle",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 2,
+      "page_type": "product"
+    },
+    {
+      "url": "http://site-b.test:4214/product/travel-thermos",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 3,
+      "page_type": "product"
+    },
+    {
+      "url": "http://site-b.test:4214/product/wooden-board",
+      "depth": 2,
+      "class": "product",
+      "priority": 0.95,
+      "order": 4,
+      "page_type": "product"
+    }
+  ],
+  "engine": "v2",
+  "pages": [
+    {
+      "url": "http://site-b.test:4214/",
+      "page_id": "index",
+      "page_type": "homepage",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": true,
+        "rule": "3:home",
+        "scores": {
+          "P": 2,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "P5"
+        ],
+        "per_view": {
+          "D": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 2,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "homepage",
+            "rule": "3:home",
+            "P": 2,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://site-b.test:4214/catalog",
+      "page_id": "catalog",
+      "page_type": "category",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "5:category",
+        "scores": {
+          "P": 1,
+          "K": 4.5,
+          "C": 0
+        },
+        "features": [
+          "P4",
+          "K1:3",
+          "K+1",
+          "Kurl"
+        ],
+        "per_view": {
+          "D": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 1,
+            "K": 4.5,
+            "C": 0
+          },
+          "M": {
+            "type": "category",
+            "rule": "5:category",
+            "P": 1,
+            "K": 4.5,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://site-b.test:4214/product/glass-kettle",
+      "page_id": "product-glass-kettle",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://site-b.test:4214/product/travel-thermos",
+      "page_id": "product-travel-thermos",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    },
+    {
+      "url": "http://site-b.test:4214/product/wooden-board",
+      "page_id": "product-wooden-board",
+      "page_type": "product",
+      "page_type_reason": null,
+      "classification": {
+        "is_home": false,
+        "rule": "4:product",
+        "scores": {
+          "P": 7,
+          "K": 0,
+          "C": 0
+        },
+        "features": [
+          "P2",
+          "P3",
+          "P3lex",
+          "P4",
+          "P5",
+          "P7"
+        ],
+        "per_view": {
+          "D": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "product",
+            "rule": "4:product",
+            "P": 7,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "edges": [
+    "http://site-b.test:4214/ -> http://site-b.test:4214/",
+    "http://site-b.test:4214/ -> http://site-b.test:4214/catalog",
+    "http://site-b.test:4214/catalog -> http://site-b.test:4214/",
+    "http://site-b.test:4214/catalog -> http://site-b.test:4214/catalog",
+    "http://site-b.test:4214/catalog -> http://site-b.test:4214/product/glass-kettle",
+    "http://site-b.test:4214/catalog -> http://site-b.test:4214/product/travel-thermos",
+    "http://site-b.test:4214/catalog -> http://site-b.test:4214/product/wooden-board",
+    "http://site-b.test:4214/product/glass-kettle -> http://site-b.test:4214/",
+    "http://site-b.test:4214/product/glass-kettle -> http://site-b.test:4214/catalog",
+    "http://site-b.test:4214/product/travel-thermos -> http://site-b.test:4214/",
+    "http://site-b.test:4214/product/travel-thermos -> http://site-b.test:4214/catalog",
+    "http://site-b.test:4214/product/wooden-board -> http://site-b.test:4214/",
+    "http://site-b.test:4214/product/wooden-board -> http://site-b.test:4214/catalog"
+  ]
+}

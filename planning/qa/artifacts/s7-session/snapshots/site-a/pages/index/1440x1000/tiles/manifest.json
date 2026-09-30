@@ -1,0 +1,10 @@
+{
+  "viewport": "D",
+  "first_viewport": "pages/index/1440x1000/viewport.png",
+  "tile_height_css": 1000,
+  "overlap_css": 150,
+  "full_height_css": 1000,
+  "width_css": 1440,
+  "dpr": 1,
+  "tiles": []
+}

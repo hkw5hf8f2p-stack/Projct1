@@ -18,6 +18,9 @@ export function Header() {
         </Link>
         <span className="tagline">{t("app.tagline")}</span>
         <div className="header-controls">
+          <Link href="/settings/ai" className="btn btn-ghost" data-testid="nav-ai">
+            {t("nav.ai")}
+          </Link>
           <div role="group" aria-label={t("nav.language")} className="seg">
             {LANGS.map((l) => (
               <button key={l} type="button" lang={l} aria-pressed={lang === l} onClick={() => setLang(l)} data-testid={`lang-${l}`}>

@@ -69,22 +69,22 @@ export function createClientFromEnv(env: Env, deps: ClientDeps = {}): { client: 
   const budget = new TokenBudget(config.max_audit_tokens);
   const common = { budget, logger: deps.logger, cache_mode: config.cache_mode, secrets: config.secrets };
   if (config.llm_mode === "none") return { client: new LlmClient({ mode: "none", ...common }), config };
-  const ns = deps.namespace ?? env.LLM_CACHE_NAMESPACE ?? "default";
+  const ns = deps.namespace ?? env.LLM_CACHE_NAMESPACE ?? (config.transport === "session" ? DEFAULT_NAMESPACE : "default");
   const dir = deps.replayDir ?? env.REPLAY_DIR ?? path.resolve("fixtures/replay");
-  if (config.llm_mode === "replay") {
-    const cache = new ReplayCache(new DirStore(dir, true), ns);
-    const [prov, model] = (env.REPLAY_AS ?? "replay:synthetic-fixture-v1").split(/:(.*)/s);
-    return { client: new LlmClient({ mode: "replay", cache, cache_identity: { provider: prov ?? "replay", model: model || "synthetic-fixture-v1" }, ...common }), config };
-  }
   if (config.provider === "session") {
     const root = env.S7_SESSION_DIR ?? path.resolve("planning/qa/artifacts/s7-session");
     const sdir = deps.replayDir ?? env.REPLAY_DIR ?? path.join(root, "cache");
-    const provider = new SessionProvider({ root, model: config.model as string, namespace: ns === "default" ? DEFAULT_NAMESPACE : ns, language: env.SESSION_LANGUAGE === "en" ? "en" : env.SESSION_LANGUAGE === "uk" ? "uk" : undefined });
-    return { client: new LlmClient({ mode: "live", provider, cache: new ReplayCache(new DirStore(sdir), ns === "default" ? DEFAULT_NAMESPACE : ns), record_rejected: true, ...common }), config };
+    const provider = new SessionProvider({ root, model: config.model as string, namespace: ns, language: env.SESSION_LANGUAGE === "en" ? "en" : env.SESSION_LANGUAGE === "uk" ? "uk" : undefined });
+    return { client: new LlmClient({ mode: "live", provider, cache: new ReplayCache(new DirStore(sdir), ns), record_rejected: true, ...common }), config };
   }
   if (config.provider === "claude-cli") {
     const provider = new ClaudeCliProvider({ model: config.model ?? undefined, env, timeoutMs: env.CLAUDE_CLI_TIMEOUT_MS ? Number(env.CLAUDE_CLI_TIMEOUT_MS) : undefined });
     return { client: new LlmClient({ mode: "live", provider, cache: new ReplayCache(new DirStore(dir), ns), ...common }), config };
+  }
+  if (config.llm_mode === "replay") {
+    const cache = new ReplayCache(new DirStore(dir, true), ns);
+    const [prov, model] = (env.REPLAY_AS ?? "replay:synthetic-fixture-v1").split(/:(.*)/s);
+    return { client: new LlmClient({ mode: "replay", cache, cache_identity: { provider: prov ?? "replay", model: model || "synthetic-fixture-v1" }, ...common }), config };
   }
   const key = (config.provider === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY) as string;
   const cfg = { apiKey: key, model: config.model as string, fetchImpl: deps.fetchImpl, sleep: deps.sleep, baseUrl: config.provider === "anthropic" ? env.ANTHROPIC_BASE_URL : env.OPENAI_BASE_URL };

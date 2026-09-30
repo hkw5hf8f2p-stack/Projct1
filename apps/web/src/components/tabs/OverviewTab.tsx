@@ -99,6 +99,18 @@ export function OverviewTab() {
               <Measured cls="OBSERVED">{t(`technical.status.${es.technical_status}` as Key)}</Measured>
             </span>
           </div>
+          <div className="stat" data-testid="ov-model">
+            <span className="muted small">{t("overview.model")}</span>
+            <span className="stat-v">
+              {report.audit.llm_provider && report.audit.llm_model ? (
+                <Measured cls="OBSERVED">
+                  <span className="mono">{`${report.audit.llm_provider}/${report.audit.llm_model}`}</span>
+                </Measured>
+              ) : (
+                <span className="muted">{t("overview.model.none")}</span>
+              )}
+            </span>
+          </div>
           {!noLlm && (
             <>
               <div className="stat">

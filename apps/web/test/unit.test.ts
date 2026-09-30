@@ -70,3 +70,24 @@ describe("валідація URL на лендінгу", () => {
     expect(validateUrlInput("example.com")).toBeNull();
   });
 });
+
+describe("BYO AI (/settings/ai)", () => {
+  it("кожен код помилки перевірки має переклад uk і en; є запасний unknown", async () => {
+    const { CHECK_ERROR_CLASSES, PROVIDER_KINDS } = await import("../src/lib/ai-settings");
+    for (const l of ["uk", "en"] as const) {
+      for (const c of CHECK_ERROR_CLASSES) expect(MESSAGES[l][`ai.err.check.${c}` as keyof typeof MESSAGES.en], `${l}:${c}`).toBeTruthy();
+      for (const k of PROVIDER_KINDS) {
+        expect(MESSAGES[l][`ai.kind.${k}` as keyof typeof MESSAGES.en]).toBeTruthy();
+        expect(MESSAGES[l][`ai.kind.${k}.desc` as keyof typeof MESSAGES.en]).toBeTruthy();
+      }
+    }
+    expect(CHECK_ERROR_CLASSES).toContain("unknown");
+  });
+  it("валідатори: токени й base URL (позитив і негатив)", async () => {
+    const { parseTokens, validBaseUrl } = await import("../src/lib/ai-settings");
+    expect(parseTokens("200000")).toBe(200000);
+    for (const bad of ["", "0", "-5", "1.5", "abc", "12e3"]) expect(parseTokens(bad), bad).toBeNull();
+    expect(validBaseUrl("http://localhost:11434/v1")).toBe(true);
+    for (const bad of ["", "localhost:11434", "ftp://x", "javascript:alert(1)"]) expect(validBaseUrl(bad), bad).toBe(false);
+  });
+});

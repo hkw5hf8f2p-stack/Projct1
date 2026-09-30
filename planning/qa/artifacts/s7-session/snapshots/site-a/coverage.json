@@ -1,0 +1,93 @@
+[
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/catalog",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  },
+  {
+    "detector_id": "cta_below_fold",
+    "page": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/catalog",
+    "page_type": "category",
+    "status": "withheld",
+    "reason": "capture_insufficient:D"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/catalog",
+    "page_type": "category",
+    "status": "withheld",
+    "reason": "capture_insufficient:M"
+  },
+  {
+    "detector_id": "price_first_viewport",
+    "page": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/",
+    "page_type": "homepage",
+    "status": "not_applicable",
+    "reason": "page_type:homepage"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/about",
+    "page_type": "about",
+    "status": "not_applicable",
+    "reason": "page_type:about"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/catalog",
+    "page_type": "category",
+    "status": "not_applicable",
+    "reason": "page_type:category"
+  },
+  {
+    "detector_id": "shipping_depth",
+    "page": "/shipping",
+    "page_type": "info_shipping",
+    "status": "not_applicable",
+    "reason": "page_type:info_shipping"
+  }
+]

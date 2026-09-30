@@ -1,0 +1,23 @@
+{
+  "viewport": "D",
+  "first_viewport": "pages/product-glass-kettle/1440x1000/viewport.png",
+  "tile_height_css": 1000,
+  "overlap_css": 150,
+  "full_height_css": 2264,
+  "width_css": 1440,
+  "dpr": 1,
+  "tiles": [
+    {
+      "index": 1,
+      "file": "pages/product-glass-kettle/1440x1000/tiles/tile-01.jpg",
+      "y_css": 850,
+      "height_css": 1000
+    },
+    {
+      "index": 2,
+      "file": "pages/product-glass-kettle/1440x1000/tiles/tile-02.jpg",
+      "y_css": 1700,
+      "height_css": 564
+    }
+  ]
+}
