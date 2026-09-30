@@ -1,12 +1,7 @@
 {
   "url": "https://www.gov.uk/robots.txt",
-  "status": null,
-  "fetch": "unreachable",
+  "status": 403,
+  "fetch": "none",
   "rules_for_user_agent": [],
-  "disallowed_skipped": [
-    {
-      "url": "https://www.gov.uk/",
-      "rule": "robots_unreachable"
-    }
-  ]
+  "disallowed_skipped": []
 }

@@ -14,8 +14,18 @@ ENVV=(HOME=/home/sitelens "PATH=$PATH" "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BR
 [ -n "${DOCTOR_OUT:-}" ] && ENVV+=("DOCTOR_OUT=$DOCTOR_OUT")
 # X-1: тести пишуть у planning/qa/artifacts лише з SL_WRITE_ARTIFACTS=1 (інакше — os.tmpdir()/sitelens-artifacts-<uid>)
 [ -n "${SL_WRITE_ARTIFACTS:-}" ] && ENVV+=("SL_WRITE_ARTIFACTS=$SL_WRITE_ARTIFACTS")
+# DEV-90: SITELENS_EXTRA_CA_FILE — довіра лише до одного CA (середовище з TLS-перехопленням). Файл має бути читабельним для
+# sitelens; якщо ні (напр. під /root) — копіюється (публічний сертифікат) у data/extra-ca.pem. Оригінал не змінюється.
+if [ -n "${SITELENS_EXTRA_CA_FILE:-}" ]; then
+  [ -r "$SITELENS_EXTRA_CA_FILE" ] || { echo "SITELENS_EXTRA_CA_FILE не читається: $SITELENS_EXTRA_CA_FILE" >&2; exit 2; }
+  if ! runuser -u sitelens -- test -r "$SITELENS_EXTRA_CA_FILE"; then
+    install -m 644 -o sitelens "$SITELENS_EXTRA_CA_FILE" "$ROOT/data/extra-ca.pem"
+    SITELENS_EXTRA_CA_FILE="$ROOT/data/extra-ca.pem"
+  fi
+  ENVV+=("SITELENS_EXTRA_CA_FILE=$SITELENS_EXTRA_CA_FILE")
+fi
 # SL_PASS_VARS="A B" — додатково передати перелічені змінні (S2: DATABASE_URL, ACCESS_TOKEN, SITELENS_FIXTURE_* тощо); решта env відкидається
-for v in ${SL_PASS_VARS:-}; do [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
+for v in ${SL_PASS_VARS:-}; do [ "$v" = SITELENS_EXTRA_CA_FILE ] && continue; [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
 if [ "${SL_PASS_PROXY:-0}" = "1" ]; then
   for v in HTTPS_PROXY https_proxy NO_PROXY no_proxy; do [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
   if [ -n "${SSL_CERT_FILE:-}" ] && [ -r "$SSL_CERT_FILE" ]; then

@@ -1,1 +1,20 @@
-{}
+{
+  "index": {
+    "D": {
+      "dom_content_loaded_ms": 81.5,
+      "load_ms": 81.69999999925494,
+      "first_paint_ms": 108,
+      "fcp_ms": 108,
+      "resource_count": 0,
+      "transfer_bytes": 397
+    },
+    "M": {
+      "dom_content_loaded_ms": 153.70000000298023,
+      "load_ms": 153.90000000223517,
+      "first_paint_ms": 168,
+      "fcp_ms": 168,
+      "resource_count": 0,
+      "transfer_bytes": 397
+    }
+  }
+}

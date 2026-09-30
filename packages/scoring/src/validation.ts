@@ -5,6 +5,7 @@
  */
 
 import type { Family } from "./score.js";
+import { normForMatch as edge } from "./quote-evidence.js";
 
 export type VConfidence = "VERIFIED" | "STRONG_HYPOTHESIS" | "HYPOTHESIS";
 
@@ -22,7 +23,10 @@ export interface VFinding {
   families: readonly Family[];
   /** шляхи сторінок знахідки */
   pages: readonly string[];
+  /** докази знахідки (потрібні лише E1-зарахуванню LLM-дефектів за якорем, SCORING_SPEC §14.2) */
+  evidence?: readonly VEvidence[];
 }
+export interface VEvidence { page_path: string; source_class: string; excerpt: string | null }
 
 const TIER_FAMILY: Readonly<Record<string, Family>> = {
   "ET-DET": "F-DET", "ET-SUP": "F-SUP", "ET-BRW": "F-BRW", "ET-SYN-M": "F-SYN", "ET-SYN-1": "F-SYN", "ET-INF": "F-INF", "ET-INC": "F-INC",
@@ -104,6 +108,53 @@ export function e1(findings: readonly VFinding[]): E1Result {
     total: detected.filter((d) => d.detected).length,
     unexpected: findings.map((f) => f.finding_key).filter((k) => !matched.has(k)),
   };
+}
+
+// ------------------------------------------------------------------------------------------------ E1 LLM за якорем (§14.2, DEV-90)
+/** Дефект фікстури з EXPECTED.json (`pages`, `categories`, `claim_kind`, `anchors`) — ground truth засіяного місця. */
+export interface E1AnchorSpec { id: number; name?: string; pages: readonly string[]; categories: readonly string[]; claim_kind: string | null; anchors: readonly string[] }
+/** цитата прив'язана до засіяного елемента: якір ⊇ цитата або цитата ⊇ якір (після нормалізації §14.1) */
+export function anchorHit(excerpt: string, anchors: readonly string[]): boolean {
+  const q = edge(excerpt);
+  if (!q) return false;
+  return anchors.some((a) => { const n = edge(a); return n.length > 0 && (n.includes(q) || q.includes(n)); });
+}
+export interface E1AnchoredDefect { id: number; name: string; detected: boolean; by: string[] }
+export interface E1AnchoredResult {
+  y: number; of: number;
+  detected: E1AnchoredDefect[];
+  /** діагностика (у y НЕ входить): прив'язана цитата потрібної категорії, але сторінка не з EXPECTED.pages */
+  other_page: Array<{ id: number; finding_key: string; page: string; excerpt: string }>;
+  /** діагностика: потрібна сторінка й категорія, але доказ без прив'язки (NOT_FOUND або цитата не засіяного місця) */
+  unanchored: Array<{ id: number; finding_key: string; page: string; excerpt: string | null }>;
+  /** LLM-лише знахідки, що не зараховані жодному дефекту */
+  unexpected: string[];
+}
+/**
+ * E1_llm за SCORING_SPEC §14.2: дефект d зараховано ⇔ ∃ LLM-лише знахідка f з категорією/claim_kind d і ∃ SYNTHETIC-доказ f
+ * на сторінці з d.pages, чия перевірена цитата прив'язана до якоря d. Знахідки без `evidence` не зараховуються (немає чим прив'язати).
+ */
+export function e1LlmAnchored(defects: readonly E1AnchorSpec[], findings: readonly VFinding[]): E1AnchoredResult {
+  const llm = findings.filter((f) => !f.families.some((x) => NON_LLM_FAMILIES.includes(x)) && (f.families.includes("F-SYN") || f.families.includes("F-INF")));
+  const other_page: E1AnchoredResult["other_page"] = [];
+  const unanchored: E1AnchoredResult["unanchored"] = [];
+  const credited = new Set<string>();
+  const detected = defects.map((d) => {
+    const by: string[] = [];
+    for (const f of llm) {
+      if (!d.categories.includes(f.category) || (d.claim_kind !== null && f.claim_kind !== d.claim_kind)) continue;
+      for (const e of f.evidence ?? []) {
+        if (e.source_class !== "SYNTHETIC") continue;
+        const onPage = d.pages.includes(e.page_path);
+        const hit = e.excerpt !== null && anchorHit(e.excerpt, d.anchors);
+        if (onPage && hit) { by.push(`${f.finding_key}@${e.page_path}`); credited.add(f.finding_key); }
+        else if (hit) other_page.push({ id: d.id, finding_key: f.finding_key, page: e.page_path, excerpt: e.excerpt as string });
+        else if (onPage) unanchored.push({ id: d.id, finding_key: f.finding_key, page: e.page_path, excerpt: e.excerpt });
+      }
+    }
+    return { id: d.id, name: d.name ?? `#${d.id}`, detected: by.length > 0, by: [...new Set(by)].sort() };
+  });
+  return { y: detected.filter((d) => d.detected).length, of: defects.length, detected, other_page, unanchored, unexpected: llm.map((f) => f.finding_key).filter((k) => !credited.has(k)) };
 }
 
 /** Гейт E1 (SCORING_SPEC §8.1, основна фікстура): Σ detected ≥ 8 і всі 7 детермінованих. E1_llm — показник, не гейт. */

@@ -1,14 +1,15 @@
 /**
  * Інтеграція результатів LLM-сесій (SPEC §22–§24; SYNTHETIC) у вхід buildReport. Числа тут не ставляться (C2): лише
  * докази й `SessionObs`. Правило §23: friction без ДОКАЗУ відкидається, і його ключ не потрапляє у покриття.
- * Доказ friction (формат задає промпт): дослівна цитата в лапках ("…" / «…») — код звіряє її з видимим текстом
- * сторінки цієї friction; або `NOT_FOUND: <чого бракує>` (твердження відсутності; лише для сторінки, яку захоплено);
- * усе інше — «немає перевірюваного доказу». Невідома сторінка → відкидається.
+ * Доказ friction (SCORING_SPEC §14.1, DEV-90): `verifyFrictionEvidence` із `@sitelens/scoring` — дослівна цитата (у будь-яких
+ * парних лапках або голим текстом без лапок) звіряється з видимим текстом/a11y-outline сторінки цієї friction після нормалізації
+ * (лише для порівняння), мінімум 12 символів або 3 слова; або `NOT_FOUND: <чого бракує>` (твердження відсутності; лише для
+ * захопленої сторінки). Вигадана/перефразована цитата → відхиляється. Невідома сторінка → відкидається.
  */
 import { createHash } from "node:crypto";
 import { CATEGORIES, Evidence, buildFindingKey, isClaimKindFor, type SyntheticSession } from "@sitelens/schemas";
-import { detectAiInstruction, norm } from "@sitelens/llm";
-import type { SessionObs } from "@sitelens/scoring";
+import { detectAiInstruction } from "@sitelens/llm";
+import { extractQuoteSpans, verifyFrictionEvidence, type SessionObs } from "@sitelens/scoring";
 import type { LlmResults, PageIn, VP } from "./types.js";
 
 type Friction = SyntheticSession["frictions"][number];
@@ -20,7 +21,7 @@ export interface SessionResultIn {
   /** шляхи сторінок, які сесія бачила (журнал / тайли) */
   pages_seen: string[];
 }
-export type FrictionRejectReason = "unknown_page" | "no_verifiable_evidence" | "quote_not_on_page" | "page_not_captured" | "injection_text";
+export type FrictionRejectReason = "unknown_page" | "no_verifiable_evidence" | "quote_not_on_page" | "page_not_captured" | "injection_text" | "quote_too_short";
 export interface IntegrationRejection { session_id: string; index: number; reason: FrictionRejectReason }
 /**
  * Код-шаблон замість цитати-ін'єкції (S7-B, DEV-87): на сторінці є текст, схожий на інструкцію для AI-асистента (prompt injection).
@@ -34,14 +35,13 @@ export interface IntegrateOptions {
 }
 
 export const pageGroupOf = (type: string, p: string): string => (type === "product" || type === "category" ? type : p.replace(/(.)\/$/, "$1"));
-const QUOTE_RE = /"([^"]{3,300})"|«([^»]{3,300})»|“([^”]{3,300})”/gu;
-const NOT_FOUND_RE = /^\s*NOT_FOUND\s*:\s*\S/u;
-
+/** цитати в парних лапках (для фільтра ін'єкцій і сумісності); перевірка доказу — `verifyFrictionEvidence` (SCORING_SPEC §14.1) */
 export function extractQuotes(evidence: string): string[] {
-  return [...evidence.matchAll(QUOTE_RE)].map((m) => (m[1] ?? m[2] ?? m[3]) as string);
+  return extractQuoteSpans(evidence);
 }
 
-const pageCorpusOf = (p: PageIn): string => norm(Object.values(p.captures).map((c) => c?.visible_text ?? "").join("\n"));
+/** корпус сторінки для звірки цитати: видимий текст усіх захоплених viewport + a11y-outline, якщо є */
+const pageCorpusOf = (p: PageIn): string => [...Object.values(p.captures).map((c) => c?.visible_text ?? ""), p.a11y_outline ?? ""].join("\n");
 
 export function integrateSessions(input: { sessions: readonly SessionResultIn[]; pages: readonly PageIn[] }, opts: IntegrateOptions = {}): Integration {
   const filterInjection = opts.injection_filter !== false;
@@ -67,14 +67,10 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
           return void rejected.push({ session_id: s.session_id, index, reason: "injection_text" });
         }
       }
-      let excerpt: string | undefined;
-      if (quotes.length > 0) {
-        const corpus = pageCorpusOf(page);
-        if (!quotes.every((q) => corpus.includes(norm(q)))) return void rejected.push({ session_id: s.session_id, index, reason: "quote_not_on_page" });
-        excerpt = quotes[0];
-      } else if (NOT_FOUND_RE.test(f.evidence)) {
-        if (!captured) return void rejected.push({ session_id: s.session_id, index, reason: "page_not_captured" });
-      } else return void rejected.push({ session_id: s.session_id, index, reason: "no_verifiable_evidence" });
+      const v = verifyFrictionEvidence(f.evidence, pageCorpusOf(page));
+      if (!v.ok) return void rejected.push({ session_id: s.session_id, index, reason: v.reason });
+      if (v.kind === "absence" && !captured) return void rejected.push({ session_id: s.session_id, index, reason: "page_not_captured" });
+      const excerpt = v.kind === "quote" ? v.excerpt : undefined;
       const category = f.category as (typeof CATEGORIES)[number];
       const claim = f.claim_kind && isClaimKindFor(category, f.claim_kind) ? f.claim_kind : "general";
       const group = pageGroupOf(page.page_type, page.path);

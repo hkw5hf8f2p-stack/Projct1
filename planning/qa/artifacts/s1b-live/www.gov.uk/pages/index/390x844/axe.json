@@ -1,0 +1,110 @@
+{
+  "version": "4.13.0",
+  "violations": [
+    {
+      "id": "document-title",
+      "impact": "serious",
+      "help": "Documents must have <title> element to aid in navigation",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/document-title?application=playwright",
+      "nodes": [
+        {
+          "target": "html",
+          "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.</pre></body></html>",
+          "failureSummary": "Fix any of the following:\n  Document does not have a non-empty <title> element",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 980,
+            "h": 41
+          },
+          "landmark": "main",
+          "tag": "html"
+        }
+      ]
+    },
+    {
+      "id": "html-has-lang",
+      "impact": "serious",
+      "help": "<html> element must have a lang attribute",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/html-has-lang?application=playwright",
+      "nodes": [
+        {
+          "target": "html",
+          "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.</pre></body></html>",
+          "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 980,
+            "h": 41
+          },
+          "landmark": "main",
+          "tag": "html"
+        }
+      ]
+    },
+    {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "help": "Document should have one main landmark",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+      "nodes": [
+        {
+          "target": "html",
+          "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.</pre></body></html>",
+          "failureSummary": "Fix all of the following:\n  Document does not have a main landmark",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 980,
+            "h": 41
+          },
+          "landmark": "main",
+          "tag": "html"
+        }
+      ]
+    },
+    {
+      "id": "page-has-heading-one",
+      "impact": "moderate",
+      "help": "Page should contain a level-one heading",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+      "nodes": [
+        {
+          "target": "html",
+          "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.</pre></body></html>",
+          "failureSummary": "Fix all of the following:\n  Page must have a level-one heading",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 980,
+            "h": 41
+          },
+          "landmark": "main",
+          "tag": "html"
+        }
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+      "nodes": [
+        {
+          "target": "pre",
+          "html": "<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.</pre>",
+          "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+          "rect": {
+            "x": 8,
+            "y": 13,
+            "w": 964,
+            "h": 15
+          },
+          "landmark": "main",
+          "tag": "pre"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "https://www.gov.uk/",
+    "resource_type": "document",
+    "status": 403,
+    "content_type": "text/plain",
+    "body_bytes": null,
+    "blocked": false,
+    "failure": null
+  }
+]

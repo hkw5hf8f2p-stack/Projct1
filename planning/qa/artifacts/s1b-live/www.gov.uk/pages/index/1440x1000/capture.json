@@ -1,0 +1,122 @@
+{
+  "title": "",
+  "meta_description": null,
+  "headings": [],
+  "links": [],
+  "buttons": [],
+  "form_controls": [],
+  "forms": [],
+  "images": [],
+  "visible_text": "Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.",
+  "text_nodes": [
+    {
+      "t": "Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.",
+      "a": false
+    }
+  ],
+  "fv_text": "Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.",
+  "interactive": [],
+  "price_candidates": [],
+  "overflow": {
+    "client_width": 1440,
+    "scroll_width": 1440,
+    "scroll_height": 1000,
+    "offenders": []
+  },
+  "jsonld_types": [],
+  "h1_count": 0,
+  "og_type": null,
+  "canonical": null,
+  "jsonld_top": [],
+  "microdata_types": [],
+  "h1_rect": null,
+  "main_rect": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+  },
+  "card_groups": [],
+  "prices": [],
+  "autocomplete_tokens": [],
+  "details_count": 0,
+  "question_headings": 0,
+  "ship_paragraphs": 0,
+  "listing_controls": false,
+  "cart_rows": [],
+  "vp": "D",
+  "width": 1440,
+  "height": 1000,
+  "dpr": 1,
+  "url": "https://www.gov.uk/",
+  "final_url": "https://www.gov.uk/",
+  "http_status": 403,
+  "redirect_chain": [
+    {
+      "url": "https://www.gov.uk/",
+      "status": 403
+    }
+  ],
+  "response_headers": {
+    "content-type": "text/plain"
+  },
+  "bot_markers": [],
+  "aria_snapshot": "- text: \"Host not in allowlist: www.gov.uk. Add this host to your network egress settings to allow access.\"",
+  "console_errors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "location": "https://www.gov.uk/"
+    }
+  ],
+  "failed_requests": [],
+  "screenshots": {
+    "viewport": {
+      "file": "pages/index/1440x1000/viewport.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": true
+    },
+    "fullpage": {
+      "file": "pages/index/1440x1000/fullpage.png",
+      "width_px": 1440,
+      "height_px": 1000,
+      "written": true
+    }
+  },
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  },
+  "completeness": {
+    "blocked_requests_count": 0,
+    "js_error_count": 0,
+    "banner_state": "none",
+    "scroll_completed": true,
+    "layout_stable": true,
+    "http_status": 403,
+    "navigation_completed": true,
+    "failed_critical_requests": 0,
+    "visible_text_length": 97,
+    "capture_complete": false,
+    "incomplete_reasons": [
+      "http_status:403"
+    ]
+  },
+  "tiles": {
+    "viewport": "D",
+    "first_viewport": "pages/index/1440x1000/viewport.png",
+    "tile_height_css": 1000,
+    "overlap_css": 150,
+    "full_height_css": 1000,
+    "width_css": 1440,
+    "dpr": 1,
+    "tiles": []
+  },
+  "files": {
+    "capture": "pages/index/1440x1000/capture.json",
+    "network": "pages/index/1440x1000/network.json",
+    "axe": "pages/index/1440x1000/axe.json",
+    "dir": "pages/index/1440x1000"
+  }
+}

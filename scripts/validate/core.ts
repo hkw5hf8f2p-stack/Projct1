@@ -12,11 +12,11 @@ import { DirStore, MemoryStore, SESSION_ANSWERED_BY, SESSION_BANNER, loadPagesFr
 import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type IntegrationRejection, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
 import type { Report } from "../../packages/schemas/src/index.js";
 import {
-  E1_GATE, E1_RANK_GATE, E2_THRESHOLDS, E3A_LIMITS, E3C_THRESHOLDS, e1, e1Gate, e1RankGate, e2Gate, e2Metrics, e2Validity, e3a, e3c, e4, isLlmOnly, rerankV1,
-  type E1RankResult, type E1Result, type E2Gate, type E2Metrics, type E2Validity, type E3aResult, type E3cResult, type E4Result, type VFinding,
+  E1_GATE, E1_RANK_GATE, E2_THRESHOLDS, E3A_LIMITS, E3C_THRESHOLDS, e1, e1Gate, e1LlmAnchored, e1RankGate, e2Gate, e2Metrics, e2Validity, e3a, e3c, e4, isLlmOnly, rerankV1,
+  type E1AnchoredResult, type E1RankResult, type E1Result, type E2Gate, type E2Metrics, type E2Validity, type E3aResult, type E3cResult, type E4Result, type VFinding,
 } from "../../packages/scoring/src/index.js";
 import { toVFindings } from "./adapt.js";
-import { formatE1Distribution, runE1Samples } from "./e1-samples.js";
+import { formatE1Distribution, loadE1AnchorSpecs, runE1Samples } from "./e1-samples.js";
 import { plannedCalls, runSnapshotSessions, type EvalRun, type EvaluatorSpec } from "./evaluator.js";
 
 export const FIXED_TS = "2026-09-30T00:00:00Z";
@@ -266,12 +266,18 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       const ablated = keep(await buildRunReport(shop, "e1-ablation", { spec: ev("e1"), ...mode("s7", "fixture-shop"), max_audit_tokens: maxAudit, meter, ablate: true }));
       const rFull: E1Result = e1(full.findings);
       const rAbl: E1Result = e1(ablated.findings);
+      // E1_llm (SCORING_SPEC §14.2, DEV-90): точна сторінка EXPECTED + категорія + перевірена цитата з якорем засіяного елемента; e1Matches — для порівняння
+      const anchorSpecs = loadE1AnchorSpecs();
+      const llmAnc: E1AnchoredResult = e1LlmAnchored(anchorSpecs, ablated.findings);
       const detOk = rFull.det.x === E1_GATE.det_of;
-      const totalOk = e1Gate(rFull);
+      // сума E1 (§8.1): LLM-частина повного звіту теж за §14.2 (якір), не за категорією
+      const anchorSpecsFull = loadE1AnchorSpecs();
+      const totalAnchored = rFull.det.x + e1LlmAnchored(anchorSpecsFull, full.findings).y;
+      const totalOk = e1Gate({ ...rFull, total: totalAnchored });
       // критерій S4 №2 (DEV-76): 7/7 детермінованих у топ-10 ПОВНОГО звіту з гіпотезами; контроль — той самий звіт у порядку scoring-v1
       const rank: E1RankResult = e1RankGate(full.findings);
       const rankV1: E1RankResult = e1RankGate(rerankV1(full.findings));
-      const dist = opts.e1_samples && opts.session ? await runE1Samples({ shop, root: opts.session.root, models: opts.e1_samples.models, meter, max_audit_tokens: maxAudit, primary: { model: opts.session.model, y: rAbl.llm.y } }) : null;
+      const dist = opts.e1_samples && opts.session ? await runE1Samples({ specs: anchorSpecs, shop, root: opts.session.root, models: opts.e1_samples.models, meter, max_audit_tokens: maxAudit, primary: { model: opts.session.model, y: llmAnc.y } }) : null;
       const status: Status = detOk && rank.pass && (!opts.strict_live || totalOk) ? "PASS" : "FAIL";
       const rankLine = (r: E1RankResult) => r.ranks.map((x) => `№${x.id}→${x.rank ?? "—"}`).join(" ");
       checks.push({
@@ -280,15 +286,15 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
           `детерміновані x/7 = ${rFull.det.x}/${rFull.det.of} (VERIFIED, F-DET; гейт ${E1_GATE.det_of}/7)`,
           `ранг [ГЕЙТ, кр.2]: детерміновані в топ-${E1_RANK_GATE.top} = ${rank.in_top}/${rank.of} (${rankLine(rank)}; у звіті ${rank.findings} знахідок, з них гіпотез ${rank.hypotheses}${rank.findings <= E1_RANK_GATE.top ? " — ≤ 10, гейт тривіальний за побудовою" : ""})`,
           `контроль рангу: той самий звіт у порядку scoring-v1 (лише priority desc) → ${rankV1.in_top}/${rankV1.of} ${rankV1.pass ? "PASS (контроль НЕ впав: гіпотез замало, щоб перевірити правило)" : `FAIL ✓ (${rankLine(rankV1)})`}`,
-          `LLM-лише y/3 = ${rAbl.llm.y}/${rAbl.llm.of} (абляція: прибрано ${abl.removed} опорних доказів №1/№3/№4; показник, не гейт)`,
-          `разом ${rFull.total}/10 (гейт ≥ ${E1_GATE.min_total}: ${totalOk ? "виконано" : "не виконано"} — залежить від LLM, ${opts.strict_live ? "ГЕЙТ (strict-live)" : "⏭️ live, у dev не гейт"})`,
+          `LLM-лише y/3 = ${llmAnc.y}/${llmAnc.of} [${llmAnc.detected.map((d) => `№${d.id}${d.detected ? "✓" : "·"}`).join(" ")}] (§14.2: сторінка EXPECTED + категорія + цитата з якорем; абляція: прибрано ${abl.removed} опорних доказів №1/№3/№4; показник, не гейт); за старим правилом категорії (§8.1) ${rAbl.llm.y}/${rAbl.llm.of}; прив'язано, але інша сторінка ${llmAnc.other_page.length}; потрібна сторінка без прив'язки ${llmAnc.unanchored.length}`,
+          `разом ${totalAnchored}/10 (за старим правилом категорії ${rFull.total}; гейт ≥ ${E1_GATE.min_total}: ${totalOk ? "виконано" : "не виконано"} — залежить від LLM, ${opts.strict_live ? "ГЕЙТ (strict-live)" : "⏭️ live, у dev не гейт"})`,
           `опорні детектори №1/№3/№4 (${SUPPORT_HINT_DETECTORS.join(", ")}) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано ${abl.removed}); механізм абляції перевірено тестом`,
           `непередбачені знахідки (не гейт): ${rFull.unexpected.length ? rFull.unexpected.join(", ") : "немає"}`,
           `не вимірюється тут: 7 мутантів мовчать і двійник — \`pnpm run audit:fixture\` / S1a (E1, SCORING_SPEC §8.1)`,
           ...(dist ? formatE1Distribution(dist) : []),
         ],
-        live_deferred: [`E1_llm=${rAbl.llm.y}/3 і сума ${rFull.total}/10: ${LIVE_LLM}`],
-        data: { full: rFull, ablation: rAbl, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk, rank_ok: rank.pass }, rank, rank_v1_control: rankV1, ...(dist ? { samples: dist } : {}) },
+        live_deferred: [`E1_llm=${llmAnc.y}/3 і сума ${totalAnchored}/10: ${LIVE_LLM}`],
+        data: { full: rFull, ablation: rAbl, llm_anchored: llmAnc, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk, rank_ok: rank.pass }, rank, rank_v1_control: rankV1, ...(dist ? { samples: dist } : {}) },
       });
     }
 

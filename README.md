@@ -106,6 +106,7 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 | `LIGHTHOUSE_MAX_PAGES`, `LIGHTHOUSE_FORM_FACTORS`, `LIGHTHOUSE_ENABLED` | `3`, `desktop`, `1` | скільки сторінок і які форм-фактори |
 | `CAPTURE_ATTEMPTS` | `2` | спроби для транзієнтних збоїв (timeout, crash) |
 | `LLM_PROVIDER`, `LLM_MODEL`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MAX_AUDIT_TOKENS` | порожньо | без ключа — режим `none`: LLM-етапи `skipped`, аудит `completed` (DEV-11). Із ключем/replay LLM-етапи виконуються (пайплайн S3–S4), але якість моделі **не перевірена** (⏭️ живий пас) |
+| `SITELENS_EXTRA_CA_FILE` | вимкнено | шлях до PEM додаткового CA (лише середовища з TLS-перехопленням, DEV-90) |
 | `SITELENS_FIXTURE_MODE`, `SITELENS_FIXTURE_ORIGINS` | вимкнено | лише локальні фікстури/тести |
 
 ## Стійкість (SPEC §55.11–13) і що саме перевірено
@@ -142,6 +143,7 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 | `pnpm db:start\|stop\|status\|migrate` | керування локальним PostgreSQL |
 
 ## Known limitations
+* **Середовище з TLS-перехопленням (DEV-90):** `SITELENS_EXTRA_CA_FILE=/path/ca.pem` (необов'язково, типово вимкнено) додає довіру ЛИШЕ до ключів сертифікатів із файлу (`--ignore-certificate-errors-spki-list`); перевірка TLS не вимикається. Прямий вихід egress-проксі в хмарному середовищі додатково обмежений allowlist-ом шлюзу (`403 host_not_allowed`) — живі сайти там можливі лише через дозволений шлях; не виправлено.
 * **Живі сайти — ⏭️ не перевірено** (мережа середовища розробки закрита). Усе перевірено на фікстурах; поведінка проти реального Cloudflare, редіректів, CDN — невідома до живого пасу (S1b-live / S7).
 * **LLM — ⏭️**: без ключа етапи `skipped`. Виходи етапів (профіль, задачі, лінзи, сценарії, snapshot-сесії) зберігаються в БД і проходять весь конвеєр до звіту на scripted fake / replay (плумбінг доведено), але **якість моделі не перевірялась**; тексти знахідок від LLM (finding-aggregator / recommendation) у звіт ще не підключено — звіт бере кодові шаблони; журнали (`run_browser_scenario`) виконує `packages/browser` (`runJourney`) з кодовим фільтром дій G0-11 — на фікстурі 0 не-GET і 0 deny-list; рішення агента без моделі — scripted fake.
 * Токени (`MAX_AUDIT_TOKENS`): ліміт «м'який» при паралельних snapshot-сценаріях — кожна задача бачить залишок на момент свого старту (до 4 задач одночасно); перевищення обмежене кількома викликами (DEV-70).

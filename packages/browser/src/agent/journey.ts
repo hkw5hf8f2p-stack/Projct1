@@ -14,6 +14,7 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Locator, Page, Request } from "playwright";
+import { verifyFrictionEvidence as verifyEvidenceText } from "@sitelens/scoring";
 import { assertSecureBrowser, type SecureBrowser } from "../secure-launch.js";
 import { WINDOW_OPEN_LOCK_SCRIPT } from "../audit/capture-page.js";
 import { handleBanner } from "../audit/banner.js";
@@ -174,7 +175,6 @@ export interface JourneyResult {
 // ---------------------------------------------------------------------------------------------------------------- допоміжне
 const sha12 = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 12);
 const safeId = (s: string) => s.replace(/[^a-zA-Z0-9_-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "x";
-const norm = (s: string) => s.replace(/\s+/g, " ").trim().toLowerCase();
 const pathOf = (u: string) => { try { const x = new URL(u); return x.pathname + x.search; } catch { return u; } };
 const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n) : s);
 
@@ -270,14 +270,15 @@ export function cartVerdict(obs: Array<{ url: string; cart: CartCandidate[]; pri
   return first ?? { button_found: false, reachable: false, button_text: null, page_url: null, price_known_before: false, shipping_known_before: false, success: "false" };
 }
 
-const QUOTE_RE = /^\s*["“«„](.+?)["”»“]\s*$/su;
-/** Цитата friction має бути в побаченому тексті (DEV-63: перевірка дублюється в pipeline); NOT_FOUND — твердження відсутності (SYNTHETIC-гіпотеза). */
+/**
+ * Доказ friction журналу (DEV-63 → DEV-90, SCORING_SPEC §14.1): та сама чиста перевірка, що в `integrateSessions` —
+ * дослівна цитата (будь-які парні лапки або голий текст) у побаченому тексті після нормалізації, ≥ 12 символів або ≥ 3 слова;
+ * `NOT_FOUND` — твердження відсутності (SYNTHETIC-гіпотеза). Вигадана/перефразована цитата відхиляється.
+ */
 export function verifyFrictionEvidence(f: AgentFriction, corpus: string): { ok: true } | { ok: false; reason: string } {
-  const ev = f.evidence.trim();
-  if (/^NOT_FOUND\s*:/i.test(ev)) return { ok: true };
-  const m = QUOTE_RE.exec(ev);
-  if (!m) return { ok: false, reason: "no_verifiable_evidence" };
-  return norm(corpus).includes(norm(m[1]!)) ? { ok: true } : { ok: false, reason: "quote_not_on_pages" };
+  const v = verifyEvidenceText(f.evidence, corpus);
+  if (v.ok) return { ok: true };
+  return { ok: false, reason: v.reason === "quote_not_on_page" ? "quote_not_on_pages" : v.reason };
 }
 
 // ---------------------------------------------------------------------------------------------------------------- журнал

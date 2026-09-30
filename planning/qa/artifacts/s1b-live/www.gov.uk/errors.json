@@ -1,26 +1,32 @@
 {
   "site_error": {
     "page_url": "https://www.gov.uk/",
-    "code": "robots_disallow",
-    "kind": "robots_disallow",
-    "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+    "code": "bot_protection",
+    "kind": "http_403",
+    "reason": "HTTP 403: доступ заборонено. Ймовірно бот-захист або блок за UA/IP. Аналізу немає; обхід не виконується.",
     "signals": [
-      "robots_unreachable"
+      "http_status:403"
     ],
-    "http_status": null,
-    "viewports": []
+    "http_status": 403,
+    "viewports": [
+      "D",
+      "M"
+    ]
   },
   "page_errors": [
     {
       "page_url": "https://www.gov.uk/",
-      "code": "robots_disallow",
-      "kind": "robots_disallow",
-      "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+      "code": "bot_protection",
+      "kind": "http_403",
+      "reason": "HTTP 403: доступ заборонено. Ймовірно бот-захист або блок за UA/IP. Аналізу немає; обхід не виконується.",
       "signals": [
-        "robots_unreachable"
+        "http_status:403"
       ],
-      "http_status": null,
-      "viewports": []
+      "http_status": 403,
+      "viewports": [
+        "D",
+        "M"
+      ]
     }
   ]
 }

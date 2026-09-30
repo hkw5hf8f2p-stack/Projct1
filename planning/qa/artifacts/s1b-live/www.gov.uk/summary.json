@@ -6,55 +6,73 @@
     "user_agent": "SiteLensBot/0.1 (+https://sitelens.invalid/bot; contact: bot-contact@sitelens.invalid) audit-only, GET-only",
     "min_delay_ms": 1500,
     "daily": {
-      "count": 1,
+      "count": 2,
       "limit": 5,
       "day": "2026-09-30"
     },
     "robots": {
       "url": "https://www.gov.uk/robots.txt",
-      "status": null,
-      "fetch": "unreachable"
+      "status": 403,
+      "fetch": "none"
     },
     "host_hits": {
       "www.gov.uk": {
-        "navigations": 1,
-        "min_gap_ms": null
+        "navigations": 3,
+        "min_gap_ms": 1500
       }
     },
     "max_concurrent_pages_per_host": 1
   },
-  "pages": [],
+  "pages": [
+    {
+      "url": "https://www.gov.uk/",
+      "page_type": "unknown",
+      "error": "http_403"
+    }
+  ],
   "errors": [
     {
       "page_url": "https://www.gov.uk/",
-      "code": "robots_disallow",
-      "kind": "robots_disallow",
-      "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+      "code": "bot_protection",
+      "kind": "http_403",
+      "reason": "HTTP 403: доступ заборонено. Ймовірно бот-захист або блок за UA/IP. Аналізу немає; обхід не виконується.",
       "signals": [
-        "robots_unreachable"
+        "http_status:403"
       ],
-      "http_status": null,
-      "viewports": []
+      "http_status": 403,
+      "viewports": [
+        "D",
+        "M"
+      ]
     }
   ],
   "site_error": {
     "page_url": "https://www.gov.uk/",
-    "code": "robots_disallow",
-    "kind": "robots_disallow",
-    "reason": "robots.txt забороняє сторінку (robots_unreachable); не відкрито",
+    "code": "bot_protection",
+    "kind": "http_403",
+    "reason": "HTTP 403: доступ заборонено. Ймовірно бот-захист або блок за UA/IP. Аналізу немає; обхід не виконується.",
     "signals": [
-      "robots_unreachable"
+      "http_status:403"
     ],
-    "http_status": null,
-    "viewports": []
+    "http_status": 403,
+    "viewports": [
+      "D",
+      "M"
+    ]
   },
   "evidence": 0,
   "findings": 0,
-  "blocked_requests_per_page": [],
+  "blocked_requests_per_page": [
+    {
+      "page": "/",
+      "D": 0,
+      "M": 0
+    }
+  ],
   "proxy_decisions": {
-    "total": 1,
+    "total": 3,
     "deny": 0
   },
-  "seconds": 0,
+  "seconds": 5,
   "note": "precision живих тверджень — не тут: її звіряють sl-qa-tester і sl-critic незалежно зі скриншотами (S1b, real-env pass)"
 }

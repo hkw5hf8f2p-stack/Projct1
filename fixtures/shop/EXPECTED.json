@@ -33,6 +33,10 @@
       },
       "expected_confidence": null,
       "region_marker": "d1",
+      "anchors": [
+        "Ідеї, що змінюють будні",
+        "Ми підбираємо речі, які роблять день простішим. Заходьте й дивіться самі."
+      ],
       "mutant": null
     },
     {
@@ -99,6 +103,10 @@
       },
       "expected_confidence": null,
       "region_marker": "d3",
+      "anchors": [
+        "HFX",
+        "SLT"
+      ],
       "mutant": null
     },
     {
@@ -131,6 +139,11 @@
       },
       "expected_confidence": null,
       "region_marker": "d4",
+      "anchors": [
+        "AquaPro X200 (система HFX)",
+        "AquaPro X220 (система HFX)",
+        "Фільтр для води з проточною кухонною установкою."
+      ],
       "mutant": null
     },
     {

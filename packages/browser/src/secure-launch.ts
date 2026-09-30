@@ -6,6 +6,8 @@
  * SharedWorker block (DEV-50), WebSocket → close. Процес: `chromiumSandbox: true` (без фолбеку), env — білий список, тимчасові HOME/TMPDIR,
  * тимчасовий профіль (Playwright `launch()` створює свіжий user-data-dir і видаляє його при close).
  */
+import { X509Certificate, createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -93,9 +95,28 @@ export function buildBrowserEnv(tmpRoot: string, parent: NodeJS.ProcessEnv = pro
   return env;
 }
 
+/**
+ * DEV-90: вузька довіра до ОДНОГО додаткового CA (середовища з TLS-перехопленням). Лише за явним
+ * `SITELENS_EXTRA_CA_FILE=/path/ca.pem`; без змінної — порожній список (прод без змін). Для кожного сертифіката з
+ * файлу — SPKI SHA-256 (base64) → `--ignore-certificate-errors-spki-list`: Chromium ігнорує помилки перевірки лише
+ * для ланцюгів, що містять цей публічний ключ; сертифікат іншого CA відхиляється як і раніше.
+ */
+export function extraCaSpkiHashes(file: string | undefined = process.env.SITELENS_EXTRA_CA_FILE): string[] {
+  if (!file) return [];
+  const pem = readFileSync(file, "utf8"); // нечитабельний/відсутній файл — виняток (явне ввімкнення не тихо ігнорується)
+  const blocks = pem.match(/-----BEGIN CERTIFICATE-----[\s\S]*?-----END CERTIFICATE-----/g) ?? [];
+  if (blocks.length === 0) throw new Error(`SITELENS_EXTRA_CA_FILE: у ${file} немає PEM-сертифікатів`);
+  return blocks.map((b) => {
+    const spki = new X509Certificate(b).publicKey.export({ type: "spki", format: "der" });
+    return createHash("sha256").update(spki).digest("base64");
+  });
+}
+
 /** Прапорці шару 1. Порядок і склад перевіряє тест (контроль (в) прибирає `<-loopback>`). */
-export function secureChromiumArgs(proxyUrl: string): string[] {
+export function secureChromiumArgs(proxyUrl: string, extraCaFile: string | undefined = process.env.SITELENS_EXTRA_CA_FILE): string[] {
+  const spki = extraCaSpkiHashes(extraCaFile);
   return [
+    ...(spki.length ? [`--ignore-certificate-errors-spki-list=${spki.join(",")}`] : []),
     `--proxy-server=${proxyUrl}`,
     // Chromium за замовчуванням обходить проксі для loopback; `<-loopback>` прибирає це неявне правило.
     "--proxy-bypass-list=<-loopback>",

@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/index.ts",
   "dependencies": {
+    "@sitelens/scoring": "workspace:*",
     "@axe-core/playwright": "4.13.0",
     "chrome-launcher": "1.2.1",
     "lighthouse": "13.5.0",

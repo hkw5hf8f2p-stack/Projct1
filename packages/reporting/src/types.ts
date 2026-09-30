@@ -27,6 +27,8 @@ export interface PageIn {
   viewport: Partial<Record<VP, { w: number; h: number }>>;
   captures: Partial<Record<VP, CaptureLite>>;
   screenshot: Partial<Record<VP, string>>;
+  /** a11y-outline сторінки (текст), якщо захоплено: входить у корпус звірки цитати friction (SCORING_SPEC §14.1) */
+  a11y_outline?: string;
 }
 
 export interface CoverageRowIn { detector_id: string; page: string; page_type: PageType; status: "not_applicable" | "withheld" | "capped"; reason: string }

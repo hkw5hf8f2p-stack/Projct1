@@ -4,3 +4,4 @@ export * from "./score.js";
 export * from "./aggregate.js";
 export * from "./sessions.js";
 export * from "./validation.js";
+export * from "./quote-evidence.js";

@@ -3,16 +3,28 @@
   "max_concurrent_pages_per_host": 1,
   "per_host": {
     "www.gov.uk": {
-      "navigations": 1,
-      "min_gap_ms": null
+      "navigations": 3,
+      "min_gap_ms": 1500
     }
   },
   "hits": [
     {
       "host": "www.gov.uk",
       "url": "https://www.gov.uk/robots.txt",
-      "ts": "2026-09-30T08:51:33.742Z",
+      "ts": "2026-09-30T08:59:08.592Z",
       "gap_ms": null
+    },
+    {
+      "host": "www.gov.uk",
+      "url": "https://www.gov.uk/",
+      "ts": "2026-09-30T08:59:10.092Z",
+      "gap_ms": 1500
+    },
+    {
+      "host": "www.gov.uk",
+      "url": "https://www.gov.uk/",
+      "ts": "2026-09-30T08:59:11.592Z",
+      "gap_ms": 1500
     }
   ]
 }

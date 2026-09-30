@@ -4,16 +4,51 @@
     "maxDepth": 3,
     "maxProducts": 3
   },
-  "order": [],
-  "engine": "v2",
-  "pages": [],
-  "skipped": [
+  "order": [
     {
       "url": "https://www.gov.uk/",
-      "reason": "robots_disallow",
-      "rule": "robots_unreachable",
-      "from": ""
+      "depth": 0,
+      "class": "homepage",
+      "priority": 1,
+      "order": 0,
+      "page_type": "unknown"
     }
   ],
+  "engine": "v2",
+  "pages": [
+    {
+      "url": "https://www.gov.uk/",
+      "page_id": "index",
+      "page_type": "unknown",
+      "page_type_reason": "capture",
+      "classification": {
+        "is_home": true,
+        "rule": "0:capture(http_status:403)",
+        "scores": {
+          "P": 0,
+          "K": 0,
+          "C": 0
+        },
+        "features": [],
+        "per_view": {
+          "D": {
+            "type": "unknown",
+            "rule": "0:capture(http_status:403)",
+            "P": 0,
+            "K": 0,
+            "C": 0
+          },
+          "M": {
+            "type": "unknown",
+            "rule": "0:capture(http_status:403)",
+            "P": 0,
+            "K": 0,
+            "C": 0
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
   "edges": []
 }
