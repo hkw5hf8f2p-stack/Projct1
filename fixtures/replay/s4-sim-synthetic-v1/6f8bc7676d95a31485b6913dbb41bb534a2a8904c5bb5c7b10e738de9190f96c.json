@@ -1,0 +1,29 @@
+{
+  "key": "6f8bc7676d95a31485b6913dbb41bb534a2a8904c5bb5c7b10e738de9190f96c",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "recommendation-v1",
+  "synthetic": true,
+  "response": {
+    "verdict": "supported",
+    "recommended_change": "Покажіть вартість або умови доставки біля ціни на сторінці товару.",
+    "how_to_validate": "Порівняйте переходи до кошика до й після зміни; ефект наперед не прогнозуйте."
+  },
+  "input_tokens": 747,
+  "output_tokens": 61,
+  "request_summary": {
+    "stage": "aggregate",
+    "logical_key": {
+      "prompt_id": "recommendation-v1",
+      "task_id": "finding:shipping|product|cost_unknown",
+      "step": 1,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 900
+    },
+    "system_sha256": "36cd725386baf22fe2c741b1cddfb8084fcc6a108a7ed827997bf7928e043a9b",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

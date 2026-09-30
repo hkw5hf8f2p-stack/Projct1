@@ -3,6 +3,10 @@
   "prompts": {
     "site-profile-v1": "84425be5d31d4f53649bffc699e45a174bc6d6151baed8d3bfe58f5ef669863f",
     "task-generator-v1": "f8392448e48de09399219deb7ddeaefa7b3eb45e959e97c1d2304d6720d481c0",
-    "lens-generator-v1": "5328eded6923526c2a9a9452de208c0a8b40e810ac5d6071f66eac803b12776e"
+    "lens-generator-v1": "5328eded6923526c2a9a9452de208c0a8b40e810ac5d6071f66eac803b12776e",
+    "snapshot-evaluator-v1": "f0711700d58eb52bcdddd29d1fd4102a494a4e99c24fdce467c15060e3c0dba4",
+    "browser-agent-v1": "2009b5ae244cc8e7577e11e478b2aaa59665735ea964f76698f564b52fe9fc30",
+    "finding-aggregator-v1": "7a9ac18a77118687568c503df1b65a151276cde01698378fac2f46a18a520c30",
+    "recommendation-v1": "f0af718d12e04ef08ef440141909b3a5cb78b68beceeb56944d25a9213a3eee2"
   }
 }

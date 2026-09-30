@@ -1,0 +1,45 @@
+{
+  "key": "2d387f21d9cbdcee2a29fb475821bec125feb887b7a1f716b5c593a5d6ef6a61",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "browser-agent-v1",
+  "synthetic": true,
+  "response": {
+    "step": {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "Умови доставки знайдено.",
+      "task_progress": "Задачу виконано.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    "result": {
+      "success": "true",
+      "frictions": [],
+      "positive_signals": [
+        "Умови доставки на окремій сторінці."
+      ],
+      "uncertainties": [],
+      "final_summary": "Умови доставки знайдено за один перехід."
+    }
+  },
+  "input_tokens": 2010,
+  "output_tokens": 99,
+  "request_summary": {
+    "stage": "browser_sessions",
+    "logical_key": {
+      "prompt_id": "browser-agent-v1",
+      "page_url": "http://127.0.0.1:4211/product/glass-kettle",
+      "lens_id": "lens_care",
+      "task_id": "t_delivery",
+      "step": 1,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1500
+    },
+    "system_sha256": "a504a80e1bace1e74ffebece9052447cf4cf3dec558d3b615fbb7d998d292840",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

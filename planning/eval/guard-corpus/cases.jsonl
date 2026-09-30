@@ -1,0 +1,253 @@
+{"lang":"en","field":"lens_description","text":"Navigates by keyboard only and relies on visible focus states.","expected":"pass","category":"behavioral_lens"}
+{"lang":"en","field":"lens_description","text":"Skims headings, distrusts vague claims and looks for return terms before paying.","expected":"pass","category":"behavioral_lens"}
+{"lang":"en","field":"lens_description","text":"Works on a single-page checkout and dislikes a pop-up window that hides the form.","expected":"pass","category":"behavioral_lens"}
+{"lang":"uk","field":"lens_description","text":"Відкриває вікно чату, лише якщо не знайшов відповіді в матеріалах сторінки.","expected":"pass","category":"behavioral_lens"}
+{"lang":"uk","field":"lens_description","text":"Користується лише клавіатурою й читачем екрана, чекає чітких підписів полів.","expected":"pass","category":"behavioral_lens"}
+{"lang":"uk","field":"lens_description","text":"Обережно порівнює ціни й шукає умови повернення перед оплатою.","expected":"pass","category":"behavioral_lens"}
+{"lang":"en","field":"finding_text","text":"Drop-off (between 20 and 30 percent) at this step.","expected":"reject","category":"bracket_range"}
+{"lang":"en","field":"recommendation","text":"Uplift (10-15) is expected.","expected":"reject","category":"bracket_range"}
+{"lang":"uk","field":"finding_text","text":"Це знижує конверсію (12–18).","expected":"reject","category":"bracket_range"}
+{"lang":"en","field":"recommendation","text":"Add alt text to the 12 product images flagged by axe and keep contrast above 4.5:1.","expected":"pass","category":"clean","evidence_values":["12 product","4.5:1"]}
+{"lang":"en","field":"finding_text","text":"Cart shows 3 items totalling 1 480 UAH; the coupon field accepts 8 characters.","expected":"pass","category":"clean","evidence_values":["3 items","1 480 UAH","8 characters."]}
+{"lang":"en","field":"recommendation","text":"Double-check the label of the primary button and keep the error message near the field.","expected":"pass","category":"clean"}
+{"lang":"en","field":"finding_text","text":"In 2 of 6 pages the H1 is missing; the page title is 72 characters long.","expected":"pass","category":"clean","evidence_values":["2 of","6 pages","1 is","72 characters"]}
+{"lang":"en","field":"finding_text","text":"Lighthouse Accessibility 91/100 and SEO 84/100 were measured on the mobile profile.","expected":"pass","category":"clean","evidence_values":["91","100 and","84","100 were"]}
+{"lang":"en","field":"finding_text","text":"Most of the page is static content and the largest image is 940 KB.","expected":"pass","category":"clean","evidence_values":["940 KB."]}
+{"lang":"en","field":"site_profile","text":"Sells water filters and softeners; delivery in 2-3 days; support open 9-18 on weekdays.","expected":"pass","category":"clean","evidence_values":["2-3 days","9-18 on"]}
+{"lang":"en","field":"reason_summary","text":"The agent could not find return terms after 7 steps and stopped.","expected":"pass","category":"clean","evidence_values":["7 steps"]}
+{"lang":"en","field":"finding_text","text":"The sales tax line is missing on the order summary; customers cannot see the total.","expected":"pass","category":"clean"}
+{"lang":"uk","field":"recommendation","text":"Додайте підписи до 12 зображень, які позначив axe, і підніміть контраст до 4,5:1.","expected":"pass","category":"clean","evidence_values":["12 зображень","4,5:1"]}
+{"lang":"uk","field":"finding_text","text":"Кнопка «Оплатити» неактивна, поки покупець не введе 16 цифр картки.","expected":"pass","category":"clean","evidence_values":["16 цифр"]}
+{"lang":"uk","field":"site_profile","text":"Продає фільтри та пом'якшувачі води; доставка 2-3 дні; підтримка 9:00-18:00 у будні.","expected":"pass","category":"clean","evidence_values":["2-3 дні","9:00-18:00 у"]}
+{"lang":"uk","field":"reason_summary","text":"Синтетичний агент не знайшов вартість доставки за 6 кроків і зупинився.","expected":"pass","category":"clean","evidence_values":["6 кроків"]}
+{"lang":"uk","field":"finding_text","text":"Форма має 9 полів, з них 4 обов'язкові, а кнопка має висоту 32 px.","expected":"pass","category":"clean","evidence_values":["9 полів","4 обов","32 px."]}
+{"lang":"uk","field":"lens_description","text":"Швидко проглядає сторінку й вагається, якщо ціна з'являється лише на останньому кроці.","expected":"pass","category":"clean"}
+{"lang":"en","field":"finding_text","text":"Consider moving the shipping link into the header so it is reachable from every page.","expected":"pass","category":"clean_prose"}
+{"lang":"en","field":"finding_text","text":"Finding no issue here: the price and the buy button are both in the first window.","expected":"pass","category":"clean_prose"}
+{"lang":"en","field":"finding_text","text":"One synthetic lens hesitated at the unlabeled icon button; treat this as a hypothesis.","expected":"pass","category":"clean_prose"}
+{"lang":"en","field":"finding_text","text":"The delivery cost is not visible before the cart, so a cautious visitor has to guess.","expected":"pass","category":"clean_prose"}
+{"lang":"en","field":"finding_text","text":"The heading names the product category, and the first screen explains what the store sells.","expected":"pass","category":"clean_prose"}
+{"lang":"uk","field":"finding_text","text":"Вартість доставки не видно до кошика, тож обережному відвідувачу доводиться гадати.","expected":"pass","category":"clean_prose"}
+{"lang":"uk","field":"finding_text","text":"Заголовок називає категорію товарів, а перший екран пояснює, що продає магазин.","expected":"pass","category":"clean_prose"}
+{"lang":"uk","field":"finding_text","text":"Одна синтетична лінза завагалась біля іконки без підпису; це гіпотеза.","expected":"pass","category":"clean_prose"}
+{"lang":"uk","field":"finding_text","text":"Проблем не знайдено: ціна й кнопка купівлі є в першому вікні.","expected":"pass","category":"clean_prose"}
+{"lang":"uk","field":"finding_text","text":"Розгляньте перенесення посилання на доставку в шапку, щоб воно було на кожній сторінці.","expected":"pass","category":"clean_prose"}
+{"lang":"en","field":"finding_text","text":"The policy page was updated on 2026-03-14.","expected":"pass","category":"date","evidence_values":["2026-03-14"]}
+{"lang":"uk","field":"finding_text","text":"Сторінку оновлено 14.03.2026, © 2025.","expected":"pass","category":"date","evidence_values":["14.03.2026","2025"]}
+{"lang":"en","field":"lens_description","text":"A 65-year-old first-time online buyer.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"A married father of two.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"A nurse working night shifts and aged 45.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"A single mother who shops after work.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"A young student on a tight budget.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"site_profile","text":"Aimed at women over 40.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"An elderly woman with poor eyesight.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Busy moms shopping between meetings.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Millennial freelancers on a budget.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Pensioners on fixed incomes.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Retired people who prefer phone support.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Seniors who distrust online payments.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"site_profile","text":"Typical visitors are young mums.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"lens_description","text":"Users in their thirty-somethings with kids.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Вчителька за професією, що шукає подарунок.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Жінка 40 років, що обирає обережно.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Користувач віком 60+, повільно читає.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Людина пенсійного віку, що не любить складні форми.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Молода мама з двома дітьми.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Неодружений фрілансер.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Одружена пара, що планує ремонт.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Пенсіонерка, яка боїться шахраїв.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Самотній чоловік середнього віку.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Студент першого курсу.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Студентка, яка купує вперше.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Тато трьох дітей, що купує вночі.","expected":"reject","category":"demographic"}
+{"lang":"uk","field":"lens_description","text":"Це 30 відсотків ринку, яким байдужі відгуки.","expected":"reject","category":"demographic"}
+{"lang":"en","field":"finding_text","text":"Industry benchmarks suggest this bounce rate is too high.","expected":"reject","category":"fake_benchmark"}
+{"lang":"en","field":"reason_summary","text":"On average, e-commerce checkouts see high abandonment.","expected":"reject","category":"fake_benchmark"}
+{"lang":"en","field":"finding_text","text":"Research shows shoppers abandon carts with hidden fees.","expected":"reject","category":"fake_benchmark"}
+{"lang":"en","field":"finding_text","text":"Stores like this typically convert better.","expected":"reject","category":"fake_benchmark"}
+{"lang":"en","field":"reason_summary","text":"Usually such pages see poor conversion.","expected":"reject","category":"fake_benchmark"}
+{"lang":"uk","field":"reason_summary","text":"Галузевий стандарт конверсії тут перевищено.","expected":"reject","category":"fake_benchmark"}
+{"lang":"uk","field":"reason_summary","text":"Дослідження показують, що такий кошик втрачає покупців через відмови.","expected":"reject","category":"fake_benchmark"}
+{"lang":"uk","field":"finding_text","text":"Зазвичай сайти цієї ніші конвертують краще.","expected":"reject","category":"fake_benchmark"}
+{"lang":"uk","field":"finding_text","text":"У середньому інтернет-магазини втрачають покупців через відмови в кошику.","expected":"reject","category":"fake_benchmark"}
+{"lang":"en","field":"finding_text","text":"Bounce rate will fall sharply on mobile.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Conversion will improve noticeably once the CTA moves up.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Customers will buy more once the price is visible.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Fewer visitors will abandon the cart, and sign-ups will rise.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Orders will surge on mobile after this change.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Revenue is expected to climb steadily.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"Sales will significantly increase after the fix.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"This guarantees higher sales.","expected":"reject","category":"forecast_no_number"}
+{"lang":"uk","field":"recommendation","text":"Відмови на мобільному різко впадуть після виправлення.","expected":"reject","category":"forecast_no_number"}
+{"lang":"uk","field":"recommendation","text":"Замовлення стрімко зростуть, якщо додати доставку в шапку.","expected":"reject","category":"forecast_no_number"}
+{"lang":"uk","field":"recommendation","text":"Клієнти обов'язково залишатимуться довше на сторінці.","expected":"reject","category":"forecast_no_number"}
+{"lang":"uk","field":"recommendation","text":"Продажі суттєво збільшаться на мобільних пристроях.","expected":"reject","category":"forecast_no_number"}
+{"lang":"uk","field":"recommendation","text":"Це гарантовано підвищить продажі.","expected":"reject","category":"forecast_no_number"}
+{"lang":"en","field":"finding_text","text":"TAMPA is the city named in the footer address.","expected":"pass","category":"homonym"}
+{"lang":"en","field":"finding_text","text":"The sales page and the conversion path share the same header.","expected":"pass","category":"homonym"}
+{"lang":"uk","field":"finding_text","text":"Сторінка продажів і конверсійний шлях мають однакову шапку.","expected":"pass","category":"homonym"}
+{"lang":"en","field":"finding_text","text":"Double-check the label of the primary button.","expected":"pass","category":"hyphen_compound"}
+{"lang":"en","field":"lens_description","text":"Represents a quarter of the market.","expected":"reject","category":"market_share"}
+{"lang":"en","field":"finding_text","text":"At 375x667 the CTA sits 1200 px below the fold.","expected":"pass","category":"measure","evidence_values":["375x","667 the","1200 px"]}
+{"lang":"en","field":"finding_text","text":"The hero image weighs 3.4 MB and loads in 4.2 s.","expected":"pass","category":"measure","evidence_values":["3.4 MB","4.2 s."]}
+{"lang":"en","field":"finding_text","text":"The page makes 48 requests and ships 212 KB of JavaScript.","expected":"pass","category":"measure","evidence_values":["48 requests","212 KB"]}
+{"lang":"en","field":"finding_text","text":"axe reports 7 violations, 3 of them serious.","expected":"pass","category":"measure","evidence_values":["7 violations","3 of"]}
+{"lang":"uk","field":"finding_text","text":"axe виявив 12 порушень контрасту на 4 сторінках.","expected":"pass","category":"measure","evidence_values":["12 порушень","4 сторінках."]}
+{"lang":"uk","field":"finding_text","text":"Головне зображення має вагу 3,4 МБ і завантажується 4,2 с.","expected":"pass","category":"measure","evidence_values":["3,4 МБ","4,2 с."]}
+{"lang":"uk","field":"finding_text","text":"На viewport 1280×720 кнопка «Купити» видима без прокрутки.","expected":"pass","category":"measure","evidence_values":["1280","720 кнопка"]}
+{"lang":"en","field":"site_profile","text":"Annual turnover reaches 1.5 billion.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"finding_text","text":"It serves 12k customers monthly.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"finding_text","text":"Millions of users pass through this funnel.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"site_profile","text":"The shop earns about $2 million a year.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"site_profile","text":"They process 3 million orders a year.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"finding_text","text":"Traffic is about 800 thousand visitors.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"site_profile","text":"Worth €5M according to the profile.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"site_profile","text":"Виручка — півтора мільйона доларів.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"site_profile","text":"Клієнтська база — 300 тис. осіб.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"finding_text","text":"Магазин має обіг у 40 млн грн.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"site_profile","text":"Оборот магазину — два мільйони гривень на місяць.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"finding_text","text":"Сайт щодня відвідують понад 5 тисяч користувачів.","expected":"reject","category":"money_volume"}
+{"lang":"uk","field":"site_profile","text":"Щомісяця тут купують сотні тисяч клієнтів.","expected":"reject","category":"money_volume"}
+{"lang":"en","field":"recommendation","text":"Conversions will go up ten-fold.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"recommendation","text":"Expect 3x more conversions from a shorter form.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"recommendation","text":"Orders could triple with free shipping.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"recommendation","text":"This makes customers buy two times more often.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"recommendation","text":"This will double your sales.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"finding_text","text":"Twice as many users would complete checkout.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"recommendation","text":"You could see sales quadruple.","expected":"reject","category":"multiplier"}
+{"lang":"uk","field":"recommendation","text":"Додайте відгуки, і продажі зростуть удвічі.","expected":"reject","category":"multiplier"}
+{"lang":"uk","field":"recommendation","text":"Кількість замовлень зросте в п'ять разів.","expected":"reject","category":"multiplier"}
+{"lang":"uk","field":"finding_text","text":"Покупців стане втричі більше після спрощення кошика.","expected":"reject","category":"multiplier"}
+{"lang":"uk","field":"recommendation","text":"Це дасть у 3 рази більше замовлень.","expected":"reject","category":"multiplier"}
+{"lang":"uk","field":"recommendation","text":"Швидший сайт принесе вдвічі більше продажів.","expected":"reject","category":"multiplier"}
+{"lang":"en","field":"finding_text","text":"18 of 24 synthetic evaluations flagged the missing delivery cost.","expected":"pass","category":"n_of_m_synthetic"}
+{"lang":"uk","field":"finding_text","text":"18 з 24 синтетичних оцінок позначили відсутню вартість доставки.","expected":"pass","category":"n_of_m_synthetic"}
+{"lang":"en","field":"finding_text","text":"About fifty percent of runs stalled.","expected":"reject","category":"percent_word"}
+{"lang":"en","field":"recommendation","text":"Around 20 per cent of the time users retry.","expected":"reject","category":"percent_word"}
+{"lang":"en","field":"finding_text","text":"Sixty per cent of tasks failed.","expected":"reject","category":"percent_word"}
+{"lang":"en","field":"finding_text","text":"Thirty-five percent of the flows fail.","expected":"reject","category":"percent_word"}
+{"lang":"uk","field":"finding_text","text":"Близько 30 процентів кроків завершуються невдачею.","expected":"reject","category":"percent_word"}
+{"lang":"uk","field":"reason_summary","text":"Приблизно двадцять п'ять процентів агентів здалися.","expected":"reject","category":"percent_word"}
+{"lang":"uk","field":"finding_text","text":"Сорок п'ять відсотків сторінок мають цю проблему.","expected":"reject","category":"percent_word"}
+{"lang":"uk","field":"finding_text","text":"Сімдесят відсотків тексту нечитабельні.","expected":"reject","category":"percent_word"}
+{"lang":"en","field":"recommendation","text":"Move the sales page link out of the footer and use the order summary label.","expected":"pass","category":"plain_recommendation"}
+{"lang":"en","field":"recommendation","text":"Show the delivery cost before the cart step so users can compare options.","expected":"pass","category":"plain_recommendation"}
+{"lang":"en","field":"recommendation","text":"Simplify the checkout to help users complete the task with fewer steps.","expected":"pass","category":"plain_recommendation"}
+{"lang":"uk","field":"recommendation","text":"Покажіть вартість доставки до кошика, щоб користувачі могли порівняти варіанти.","expected":"pass","category":"plain_recommendation"}
+{"lang":"en","field":"site_profile","text":"Filters cost from $49 to $349; shipping is free over $99.","expected":"pass","category":"price","evidence_values":["49 to","349","99"]}
+{"lang":"en","field":"finding_text","text":"The price 1 299 UAH is shown only after the cart step.","expected":"pass","category":"price","evidence_values":["1 299 UAH"]}
+{"lang":"uk","field":"site_profile","text":"Ціни від 1 200 грн до 9 990 грн, доставка безкоштовна від 2 000 грн.","expected":"pass","category":"price","evidence_values":["1 200 грн","9 990 грн","2 000 грн."]}
+{"lang":"en","field":"finding_text","text":"Lighthouse Performance 58/100 on the product page.","expected":"pass","category":"priority","evidence_values":["58","100 on"]}
+{"lang":"en","field":"finding_text","text":"Priority 64/100 because it blocks the primary task.","expected":"pass","category":"priority","evidence_values":["64","100 because"]}
+{"lang":"uk","field":"finding_text","text":"Пріоритет 72/100, оскільки проблема на ключовому кроці.","expected":"pass","category":"priority","evidence_values":["72","100"]}
+{"lang":"en","field":"finding_text","text":"Priority 72/100 places this above the other findings on the product page.","expected":"pass","category":"priority_form"}
+{"lang":"uk","field":"finding_text","text":"Пріоритет 72/100 ставить це вище за інші знахідки на сторінці товару.","expected":"pass","category":"priority_form"}
+{"lang":"en","field":"reason_summary","text":"Annual turnover would grow after the fix.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"en","field":"reason_summary","text":"Earnings will drop if the flow is not fixed.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"en","field":"reason_summary","text":"Fixing it means lost sales are recovered.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"en","field":"reason_summary","text":"The shop is losing income at this step.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"en","field":"reason_summary","text":"This step leaks profit every month.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"uk","field":"reason_summary","text":"Магазин щомісяця втрачає дохід через цей крок.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"uk","field":"reason_summary","text":"Оборот зросте, якщо виправити кошик.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"uk","field":"reason_summary","text":"Через це магазин недоотримує прибуток.","expected":"reject","category":"revenue_paraphrase"}
+{"lang":"en","field":"finding_text","text":"7 out of 10 shoppers miss the price.","expected":"reject","category":"share_no_sign"}
+{"lang":"en","field":"finding_text","text":"One in three visitors leaves at this step.","expected":"reject","category":"share_no_sign"}
+{"lang":"en","field":"site_profile","text":"Out of 50 users, 12 customers return.","expected":"reject","category":"share_no_sign"}
+{"lang":"en","field":"finding_text","text":"Roughly 18 of every 100 visitors purchase.","expected":"reject","category":"share_no_sign"}
+{"lang":"en","field":"site_profile","text":"The share of returning customers is twenty-two.","expected":"reject","category":"share_no_sign"}
+{"lang":"uk","field":"finding_text","text":"3 з 4 покупців не помічають знижку.","expected":"reject","category":"share_no_sign"}
+{"lang":"uk","field":"finding_text","text":"Кожен п'ятий відвідувач шукає пошук.","expected":"reject","category":"share_no_sign"}
+{"lang":"uk","field":"site_profile","text":"Серед 100 відвідувачів 27 клієнтів купують повторно.","expected":"reject","category":"share_no_sign"}
+{"lang":"uk","field":"finding_text","text":"Сім із десяти покупців не бачать ціни.","expected":"reject","category":"share_no_sign"}
+{"lang":"uk","field":"finding_text","text":"Частка клієнтів, що не завершили покупку, — сорок.","expected":"reject","category":"share_no_sign"}
+{"lang":"en","field":"reason_summary","text":"Delivery terms sit 7 clicks away from the product page.","expected":"reject","category":"structural_number"}
+{"lang":"en","field":"finding_text","text":"The agent waited three seconds before giving up.","expected":"reject","category":"structural_number"}
+{"lang":"en","field":"finding_text","text":"The catalog page has 14 broken links to product pages.","expected":"reject","category":"structural_number"}
+{"lang":"en","field":"finding_text","text":"The page lists 20 products but only the value 12 is on the site.","expected":"reject","category":"structural_number","evidence_values":["12"]}
+{"lang":"uk","field":"finding_text","text":"Агент чекав п'ять секунд і здався.","expected":"reject","category":"structural_number"}
+{"lang":"uk","field":"finding_text","text":"На сторінці каталогу є 14 битих посилань на товари.","expected":"reject","category":"structural_number"}
+{"lang":"uk","field":"reason_summary","text":"Умови доставки за сім кліків від сторінки товару.","expected":"reject","category":"structural_number"}
+{"lang":"uk","field":"finding_text","text":"Ціна 1 299 грн, але на сторінці вказано 1 499 грн.","expected":"reject","category":"structural_number","evidence_values":["1 299 грн"]}
+{"lang":"en","field":"finding_text","text":"Half of the viewport is covered by the cookie banner, which hides the price from users.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"en","field":"recommendation","text":"Make the tap targets twice as large so users can press them reliably.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"en","field":"lens_description","text":"Reads product specs carefully and revisits the comparison table three times before deciding.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"en","field":"finding_text","text":"The most important customer task, adding a product to the cart, needs three clicks.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"uk","field":"recommendation","text":"Збільште відступ між кнопками удвічі, щоб уникнути випадкових натискань.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"uk","field":"finding_text","text":"Найважливіша дія для покупця — додати товар у кошик — потребує трьох кліків.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"uk","field":"finding_text","text":"Половина екрана зайнята банером, що закриває ціну.","expected":"reject","category":"structural_numeral_word"}
+{"lang":"en","field":"reason_summary","text":"4 of 10 synthetic sessions abandoned the task at checkout.","expected":"pass","category":"synthetic_count","evidence_values":["4 of","10 synthetic"]}
+{"lang":"en","field":"finding_text","text":"6 out of 12 simulated lenses stalled on the size chart.","expected":"pass","category":"synthetic_count","evidence_values":["6 out","12 simulated"]}
+{"lang":"uk","field":"finding_text","text":"5 з 8 синтетичних сесій не знайшли кнопку доставки.","expected":"pass","category":"synthetic_count","evidence_values":["5 з","8 синтетичних"]}
+{"lang":"uk","field":"reason_summary","text":"У 3 з 9 синтетичних журналів агент зупинився на формі.","expected":"pass","category":"synthetic_count","evidence_values":["3 з","9 синтетичних"]}
+{"lang":"en","field":"site_profile","text":"Market value is estimated at billions.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"en","field":"site_profile","text":"The addressable market for water filters is huge.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"en","field":"site_profile","text":"The overall market size is enormous.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"en","field":"site_profile","text":"Their market opportunity is large.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"uk","field":"site_profile","text":"Місткість ринку фільтрів для води в Україні оцінюється у мільярди.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"uk","field":"site_profile","text":"Потенціал ринку великий, обсяг ринку зростає.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"uk","field":"site_profile","text":"Розмір цільового ринку — кілька мільярдів.","expected":"reject","category":"tam_paraphrase"}
+{"lang":"en","field":"site_profile","text":"Age verification is requested at checkout; a professional-grade product line is offered.","expected":"pass","category":"trap"}
+{"lang":"en","field":"finding_text","text":"Poor contrast and rich text formatting make the headings hard to read.","expected":"pass","category":"trap"}
+{"lang":"en","field":"site_profile","text":"Primary conversion goal: add to cart. Secondary: newsletter sign-up.","expected":"pass","category":"trap"}
+{"lang":"en","field":"finding_text","text":"The page has 3 forms with 2 to 5 fields each and 4K product photos.","expected":"pass","category":"trap","evidence_values":["3 forms","2 to","5 fields","4K"]}
+{"lang":"en","field":"finding_text","text":"The single column layout uses a parent category menu, in order to reduce scrolling.","expected":"pass","category":"trap"}
+{"lang":"en","field":"finding_text","text":"The store has 30 products and offers 5 years of warranty.","expected":"pass","category":"trap","evidence_values":["30 products","5 years"]}
+{"lang":"uk","field":"site_profile","text":"Інтернет-магазин продажу фільтрів; основна мета конверсії — додати товар у кошик.","expected":"pass","category":"trap"}
+{"lang":"uk","field":"finding_text","text":"Магазин має 30 товарів, 2 фільтри та 5 років на ринку.","expected":"pass","category":"trap","evidence_values":["30 товарів","2 фільтри","5 років"]}
+{"lang":"uk","field":"finding_text","text":"Матеріали сторінки не пояснюють гарантію; вікно фільтра перекриває результати.","expected":"pass","category":"trap"}
+{"lang":"uk","field":"recommendation","text":"Ви втратите половину покупців через цей банер.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Виручка зросте вдвічі після виправлення.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Дві третини клієнтів шукають ціну першою.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Значно більше продажів буде на мобільних.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Кожен другий покупець не знаходить доставку.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Кожен п'ятий клієнт залишає кошик через доставку.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Конверсія підніметься на 12 %.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Магазин втрачає 30% клієнтів на кроці оформлення.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"reason_summary","text":"Оборот магазину вибухово зросте.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"recommendation","text":"Покупці значно охочіше купуватимуть після виправлення підпису.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Понад 40% користувачів покидають сторінку доставки.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Потенційний ринок сягає 3 млн покупців.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"recommendation","text":"Приблизно третина відвідувачів не бачить кнопку, тож перенесіть її вгору.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Приріст конверсії становитиме п'ятнадцять відсотків.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Продажі суттєво зростуть, якщо винести ціну вгору.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Після змін продажі магазину суттєво зростуть.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Ринок таких магазинів оцінюється в мільярди гривень.","expected":"reject","category":"uk_boundary"}
+{"lang":"uk","field":"finding_text","text":"Середній показник конверсії в галузі зазвичай значно вищий.","expected":"reject","category":"uk_boundary"}
+{"lang":"en","field":"recommendation","text":"A clearer button will lead to more sales.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"Expect a conversion lift from trust badges.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"Expect a sales boost.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"Fixing this could improve revenue.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"It might raise your conversion rate.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"This change may boost conversion noticeably.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"recommendation","text":"This should drive higher sales.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"uk","field":"recommendation","text":"Зміна покращить конверсію на сторінці товару.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"uk","field":"recommendation","text":"Очікується приріст продажів після оновлення.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"uk","field":"recommendation","text":"Спрощена форма збільшить продажі та зменшить втрати.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"uk","field":"recommendation","text":"Це може збільшити продажі.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"uk","field":"recommendation","text":"Ця зміна підвищить конверсію.","expected":"reject","category":"uplift_paraphrase"}
+{"lang":"en","field":"finding_text","text":"20% of customers cannot find the delivery terms.","expected":"reject","category":"whitelist_trap","evidence_values":["20%"]}
+{"lang":"en","field":"finding_text","text":"Conversion will rise by 20% once shipping is shown.","expected":"reject","category":"whitelist_trap","evidence_values":["20%"]}
+{"lang":"en","field":"finding_text","text":"Fixing the label adds +12 % conversion.","expected":"reject","category":"whitelist_trap","evidence_values":["12 %"]}
+{"lang":"uk","field":"recommendation","text":"Виручка вища на 5 000 грн щомісяця.","expected":"reject","category":"whitelist_trap","evidence_values":["5 000 грн"]}
+{"lang":"uk","field":"finding_text","text":"Магазин втрачає 12 % клієнтів на кроці оформлення.","expected":"reject","category":"whitelist_trap","evidence_values":["12%","12 %"]}
+{"lang":"uk","field":"finding_text","text":"Продажі зростуть на 20 % після цієї правки.","expected":"reject","category":"whitelist_trap","evidence_values":["20%"]}
+{"lang":"en","field":"recommendation","text":"Show the 749 UAH price next to the buy button.","expected":"pass","category":"whitelisted_number","evidence_values":["749 UAH"]}
+{"lang":"en","field":"finding_text","text":"The product page states a 2 year warranty in small print below the fold.","expected":"pass","category":"whitelisted_number","evidence_values":["2 year"]}
+{"lang":"en","field":"finding_text","text":"The site advertises free delivery for orders over 1 500 UAH, but only in the footer.","expected":"pass","category":"whitelisted_number","evidence_values":["1 500 UAH"]}
+{"lang":"uk","field":"finding_text","text":"Гарантія 24 місяці вказана лише в описі, а не біля ціни.","expected":"pass","category":"whitelisted_number","evidence_values":["24 місяці"]}
+{"lang":"uk","field":"recommendation","text":"Покажіть ціну 749 грн поруч із кнопкою купівлі.","expected":"pass","category":"whitelisted_number","evidence_values":["749 грн"]}
+{"lang":"uk","field":"finding_text","text":"Сайт обіцяє знижку 20% лише в банері, який зникає при прокрутці.","expected":"pass","category":"whitelisted_number","evidence_values":["20%"]}
+{"lang":"en","field":"finding_text","text":"A minority of visitors find the filter.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"recommendation","text":"Half of all customers look for reviews first, so surface them.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"finding_text","text":"Most shoppers bounce before seeing the price.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"finding_text","text":"Nine in ten buyers skip the FAQ.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"finding_text","text":"Roughly two thirds of visitors never scroll past the hero.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"reason_summary","text":"The vast majority of buyers ignore the banner.","expected":"reject","category":"word_fraction"}
+{"lang":"en","field":"finding_text","text":"Three quarters of users abandon the cart.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"finding_text","text":"Більшість покупців залишає сторінку до прокрутки.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"recommendation","text":"Кожен третій клієнт шукає доставку в шапці, тож винесіть її вгору.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"recommendation","text":"Половина клієнтів очікує чат, додайте його.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"finding_text","text":"Понад половину відвідувачів закриває вікно cookie і йде.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"finding_text","text":"Приблизно дві третини відвідувачів не помічають кнопку на мобільному.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"finding_text","text":"Три чверті користувачів не доходять до оплати.","expected":"reject","category":"word_fraction"}
+{"lang":"uk","field":"reason_summary","text":"Чверть користувачів застрягає на формі.","expected":"reject","category":"word_fraction"}

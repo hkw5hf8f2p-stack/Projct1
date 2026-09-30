@@ -6,6 +6,7 @@
   "main": "src/index.ts",
   "dependencies": {
     "@sitelens/browser": "workspace:*",
+    "@sitelens/llm": "workspace:*",
     "@sitelens/schemas": "workspace:*",
     "@sitelens/scoring": "workspace:*"
   }

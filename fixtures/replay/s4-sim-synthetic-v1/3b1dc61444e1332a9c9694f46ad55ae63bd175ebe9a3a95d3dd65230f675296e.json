@@ -1,0 +1,37 @@
+{
+  "key": "3b1dc61444e1332a9c9694f46ad55ae63bd175ebe9a3a95d3dd65230f675296e",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "browser-agent-v1",
+  "synthetic": true,
+  "response": {
+    "step": {
+      "action": "click",
+      "target": "link:\"Доставка й оплата\"",
+      "reason_summary": "Потрібні умови доставки.",
+      "task_progress": "Шукаю умови доставки.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    "result": null
+  },
+  "input_tokens": 1976,
+  "output_tokens": 58,
+  "request_summary": {
+    "stage": "browser_sessions",
+    "logical_key": {
+      "prompt_id": "browser-agent-v1",
+      "page_url": "http://127.0.0.1:4211/product/glass-kettle",
+      "lens_id": "lens_care",
+      "task_id": "t_delivery",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1500
+    },
+    "system_sha256": "a504a80e1bace1e74ffebece9052447cf4cf3dec558d3b615fbb7d998d292840",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

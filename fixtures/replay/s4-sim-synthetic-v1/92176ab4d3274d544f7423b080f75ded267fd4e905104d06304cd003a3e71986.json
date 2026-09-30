@@ -1,0 +1,30 @@
+{
+  "key": "92176ab4d3274d544f7423b080f75ded267fd4e905104d06304cd003a3e71986",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "finding-aggregator-v1",
+  "synthetic": true,
+  "response": {
+    "verdict": "supported",
+    "title": "Вартість доставки не видно біля ціни",
+    "problem": "На сторінці товару немає вартості доставки; про це повідомили {lens_coverage}.",
+    "why_it_matters": "Без вартості доставки складно оцінити повну ціну до кошика."
+  },
+  "input_tokens": 822,
+  "output_tokens": 69,
+  "request_summary": {
+    "stage": "aggregate",
+    "logical_key": {
+      "prompt_id": "finding-aggregator-v1",
+      "task_id": "finding:shipping|product|cost_unknown",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 900
+    },
+    "system_sha256": "6e2ac19885b977458027e4e317d15fdf44fcf03d2d5c602a0dd0385527c07dda",
+    "image_sha256": []
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

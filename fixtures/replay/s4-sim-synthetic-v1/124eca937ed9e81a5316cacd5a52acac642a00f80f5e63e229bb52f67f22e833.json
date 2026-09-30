@@ -1,0 +1,46 @@
+{
+  "key": "124eca937ed9e81a5316cacd5a52acac642a00f80f5e63e229bb52f67f22e833",
+  "provider": "replay",
+  "model": "synthetic-fixture-v1",
+  "prompt_id": "snapshot-evaluator-v1",
+  "synthetic": true,
+  "response": {
+    "verdict": "no_issue",
+    "noticed": [
+      "Ціна й кнопка купівлі видимі."
+    ],
+    "understood": [
+      "Продається скляний чайник."
+    ],
+    "unclear": [],
+    "likely_next_action": "Відкрити сторінку доставки.",
+    "frictions": [],
+    "positive_signals": [
+      "Ціна поруч із кнопкою."
+    ],
+    "uncertainties": [],
+    "success": "true",
+    "final_summary": "Сторінка підходить для задачі."
+  },
+  "input_tokens": 1840,
+  "output_tokens": 92,
+  "request_summary": {
+    "stage": "snapshot_sessions",
+    "logical_key": {
+      "prompt_id": "snapshot-evaluator-v1",
+      "page_url": "http://127.0.0.1:4211/product/glass-kettle",
+      "lens_id": "lens_care",
+      "task_id": "t_delivery",
+      "step": 0,
+      "attempt": 0
+    },
+    "sampling": {
+      "max_tokens": 1800
+    },
+    "system_sha256": "bec6be409305ce3c8a19e2888bf60978b9cd0b15744cd21de203e607509a3b34",
+    "image_sha256": [
+      "88ff0d3d8ad0cf936d1804464f9d7cc1e12af578d5cd679e05338c0bace2189b"
+    ]
+  },
+  "recorded_at": "2026-09-30T00:00:00.000Z"
+}

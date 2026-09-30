@@ -8,8 +8,8 @@
  */
 export type Issue = string;
 
-const L = "(?<![\\p{L}\\p{N}])";
-const R = "(?![\\p{L}\\p{N}])";
+export const L = "(?<![\\p{L}\\p{N}])";
+export const R = "(?![\\p{L}\\p{N}])";
 const alt = (body: string | string[]): string => (Array.isArray(body) ? body.join("|") : body);
 const mk = (body: string | string[], flags = "iu") => new RegExp(`${L}(?:${alt(body)})${R}`, flags);
 const mkStem = (body: string | string[], flags = "iu") => new RegExp(`${L}(?:${alt(body)})\\p{L}*${R}`, flags);
@@ -36,13 +36,13 @@ const UK_UNITS = [
   "сто", "ста", "сот\\p{L}*", "двіст\\p{L}*", "трист\\p{L}*", "півтора", "півтори", "півтисяч\\p{L}*", "тисяч\\p{L}*", "мільйон\\p{L}*", "мільярд\\p{L}*",
 ].join("|");
 const UK_NUMW = `(?:${UK_UNITS})(?:\\s+(?:${UK_UNITS}))*`;
-const DIGITS = "\\d+(?:[.,]\\d+)?";
-const NUMW = `(?:${EN_NUMW}|${UK_NUMW})`;
-const NUM = `(?:${DIGITS}|${NUMW})`;
+export const DIGITS = "\\d+(?:[.,]\\d+)?";
+export const NUMW = `(?:${EN_NUMW}|${UK_NUMW})`;
+export const NUM = `(?:${DIGITS}|${NUMW})`;
 
 // ------------------------------------------------------------------ цільові слова
 /** CORE — бізнес-результат (SCORING_SPEC TARGET_BIZ): прогнози, вигадані бенчмарки */
-const CORE_BODY = [
+export const CORE_BODY = [
   "conversions?", "converts?", "converting", "converted", "sales", "revenues?", "turnover", "profits?", "income",
   "конверс", "конвертує", "конвертуют", "конвертув", "продаж", "вируч", "дох[оі]д", "прибут", "обіг", "оборот",
 ].join("|");
@@ -76,24 +76,24 @@ const MASKS: RegExp[] = [
   /(?<![\p{L}\p{N}])(?:h[1-6]|wcag\s?\d(?:\.\d)+|\d\.\d\.\d+|http\/[\d.]+|utf-8)(?![\p{L}\p{N}])/giu,
 ];
 /** маска не повинна перетинатись із %, тож «12% від 1280x720» лишає «12%» */
-function applyMasks(t: string): string {
+export function applyMasks(t: string): string {
   let s = t;
   for (const re of MASKS) s = s.replace(re, " ⟂ ");
   return s.replace(/\s+/g, " ");
 }
 
-const sentences = (t: string): string[] => t.split(/(?<=[.!?…])\s+(?=[\p{Lu}\p{N}«"'(])|\n+/u).map((x) => x.trim()).filter(Boolean);
+export const splitSentences = (t: string): string[] => t.split(/(?<=[.!?…])\s+(?=[\p{Lu}\p{N}«"'(])|\n+/u).map((x) => x.trim()).filter(Boolean);
 
 // ------------------------------------------------------------------ правила (реченнєвий рівень)
-const PCT_UNIT = "%|percent(?:age)?(?:\\s+points?)?|per[ -]?cent|pct|pp|p\\.p\\.|відсот\\p{L}*|процент\\p{L}*|в\\.\\s?п\\.";
-const CURRENCY = "usd|eur|uah|gbp|грн\\.?|гривн\\p{L}*|гривен\\p{L}*|долар\\p{L}*|dollars?|euros?|євро|pounds?|фунт\\p{L}*|\\$|€|£|₴";
+export const PCT_UNIT = "%|percent(?:age)?(?:\\s+points?)?|per[ -]?cent|pct|pp|p\\.p\\.|відсот\\p{L}*|процент\\p{L}*|в\\.\\s?п\\.";
+export const CURRENCY = "usd|eur|uah|gbp|грн\\.?|гривн\\p{L}*|гривен\\p{L}*|долар\\p{L}*|dollars?|euros?|євро|pounds?|фунт\\p{L}*|\\$|€|£|₴";
 const MAG_WORDS = "тис\\.?|тисяч\\p{L}*|млн\\.?|мільйон\\p{L}*|млрд\\.?|мільярд\\p{L}*|thousands?|millions?|billions?|mln|bln|bn";
 const MAG_PLURAL = "thousands|millions|billions|hundreds\\s+of\\s+thousands|тисячі|тисяч|мільйони|мільйонів|мільярди|мільярдів|сотні\\s+тисяч|десятки\\s+тисяч";
 
 interface Rule { id: string; re: RegExp; needs?: (s: string) => boolean; note: string; evidenceSensitive?: boolean }
 
 const POP_NEAR = `(?:\\s+(?!(?:for|on|in|at|with|to|of|by|from|на|для|у|в|з|до|по|із|зі)${R})\\p{L}+){0,2}\\s+`;
-const POP_WORDS = "market|markets|ринк\\p{L}*|ринок|customers?|clients?|buyers?|shoppers?|visitors?|users?|people|consumers?|respondents?|покупц\\p{L}*|покупець|клієнт\\p{L}*|відвідувач\\p{L}*|користувач\\p{L}*|люд\\p{L}*|споживач\\p{L}*|респондент\\p{L}*|аудитор\\p{L}*";
+export const POP_WORDS = "market|markets|ринк\\p{L}*|ринок|customers?|clients?|buyers?|shoppers?|visitors?|users?|people|consumers?|respondents?|покупц\\p{L}*|покупець|клієнт\\p{L}*|відвідувач\\p{L}*|користувач\\p{L}*|люд\\p{L}*|споживач\\p{L}*|респондент\\p{L}*|аудитор\\p{L}*";
 
 const FRACTION = "half|halves|(?:a\\s+|one[- ]|two[- ]|three[- ]|four[- ]|nine[- ])?(?:third|thirds|quarter|quarters|fifth|fifths|tenth|tenths|sixth|eighth)|majority|minority|nearly\\s+all|almost\\s+all|almost\\s+everyone|"
   + "половин\\p{L}*|третин\\p{L}*|чверт\\p{L}*|п'ят(?:а|ої|у)\\s+частин\\p{L}*|десят\\p{L}*\\s+частин\\p{L}*|більшіст\\p{L}*|меншіст\\p{L}*|переважн\\p{L}*\\s+більшіст\\p{L}*|майже\\s+всі|майже\\s+кож(?:ен|н\\p{L}*)|"
@@ -222,6 +222,9 @@ const RULES: Rule[] = [
   { id: "invented_benchmark", re: new RegExp(`(?:\\d+(?:[.,]\\d+)?\\s?%\\s+(?:confiden|впевнен)\\p{L}*|(?:confidence|впевненіст\\p{L}*)\\s+(?:of\\s+|level\\s+)?\\d+(?:[.,]\\d+)?\\s?%|statistically\\s+significant|статистично\\s+значущ\\p{L}*)`, "iu"), note: "статистична впевненість" },
 ];
 
+/** для тестів: та сама вибірка правил із \b замість Unicode-меж (доказ «корпус уміє впасти», G0-26) */
+export const __rulesForTests = { RULES, MASKS };
+
 const PERCENT_DIGITS = new RegExp(`${L}(${DIGITS})\\s?(?:${PCT_UNIT})${R}`, "giu");
 
 /** всі порушення числового guard-а у ОДНОМУ полі. `evidenceCorpus` — видимий текст/метадані сторінок (для цифр, які могли бути на сайті). */
@@ -238,7 +241,7 @@ export function numericViolations(rawText: string, evidenceCorpus = ""): Issue[]
   // 2) решта — за реченнями, після маскування дозволених форм
   const masked = applyMasks(text);
   const seenIds = new Set<string>();
-  for (const s of sentences(masked)) {
+  for (const s of splitSentences(masked)) {
     for (const rule of RULES) {
       const m = rule.re.exec(s);
       if (!m) continue;

@@ -9,6 +9,8 @@ import {
   type Evidence, type ReportEvidence, type ReportFinding, type PositiveFinding, type TemplatedText, type SyntheticCount,
 } from "@sitelens/schemas";
 import { aggregate, funnel, SCORING_VERSION, type ScoredFinding } from "@sitelens/scoring";
+import type { GuardedField } from "@sitelens/llm";
+import { GUARD_VERSION, guardLlmTextSync, scanReport } from "./guard.js";
 import { positiveFindings } from "./positives.js";
 import {
   AXE_TEMPLATES, BANNER_TEXT, EVIDENCE_TEMPLATES, FINDING_TEMPLATES, GENERIC_TEMPLATES, POSITIVE_TEMPLATES, codeText, type FindingTemplates,
@@ -34,9 +36,14 @@ export const FINDING_VARS: Record<string, { field: string; format: TemplatedText
 
 export interface StructuralRejection { where: string; reason: string }
 
+/** лічильники guard за один buildReport (SPEC §33): on=false лише для provenance=example_fixture (тексти лишаються `pending`) */
+interface GuardState { on: boolean; fields: number; interventions: number; sentences_removed: number }
+const guardFieldOf = (where: string): GuardedField => (where.startsWith("lens:") ? "lens_description" : where.startsWith("site_understanding") ? "site_profile" : "finding_text");
+
 /** LLM-текст → TemplatedText або відхилення (цифра / числівник / невідомий чи недоступний плейсхолдер) */
-function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, available: ReadonlySet<string>, where: string, rej: StructuralRejection[]): TemplatedText | null {
+function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, available: ReadonlySet<string>, where: string, rej: StructuralRejection[], gs: GuardState): TemplatedText | null {
   if (!t) return null;
+  if (t.text.trim().length === 0) { if (gs.on) { gs.interventions++; rej.push({ where, reason: "guard:all_sentences_removed" }); } return null; }
   const v = numberViolations(t.text, true);
   if (v.length) {
     rej.push({ where, reason: `number:${v.map((x) => x.span).join(",")}` });
@@ -49,9 +56,25 @@ function llmText(t: LlmText | undefined, lang: Lang, ptrBase: string | null, ava
     return null;
   }
   const params = Object.fromEntries(ph.map((p) => [p, { ptr: `${ptrBase}/${(FINDING_VARS[p] as { field: string }).field}`, format: (FINDING_VARS[p] as { format: TemplatedText["params"][string]["format"] }).format }]));
+  let text = t.text;
+  let guard: TemplatedText["guard"] = { status: t.guard_status, attempts: t.guard_attempts ?? 0, rule_ids: t.guard_rule_ids ?? [] };
+  if (gs.on) {
+    // друга лінія (лексика, бізнес-відсотки, прогнози без чисел): порушні речення видаляються, порожнє → кодовий шаблон
+    gs.fields++;
+    const g = guardLlmTextSync(t, guardFieldOf(where));
+    if (g.status === "sentences_removed") {
+      gs.interventions++;
+      gs.sentences_removed += g.sentences_removed;
+      rej.push({ where, reason: `guard:${g.rule_ids.join(",")}` });
+    }
+    if (g.text === null) return null;
+    text = g.text;
+    guard = { status: g.status, attempts: g.attempts, rule_ids: g.rule_ids };
+    const ph2 = placeholders(text);
+    for (const k of Object.keys(params)) if (!ph2.includes(k)) delete params[k];
+  }
   return {
-    template: t.text, params, origin: "llm", source_class: t.source_class, lang, template_id: t.prompt_id,
-    guard: { status: t.guard_status, attempts: t.guard_attempts ?? 0, rule_ids: t.guard_rule_ids ?? [] },
+    template: text, params, origin: "llm", source_class: t.source_class, lang, template_id: t.prompt_id, guard,
   };
 }
 
@@ -71,6 +94,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   const lang = art.audit.language;
   const rej: StructuralRejection[] = [];
   const mode = llm ? llm.mode : "none";
+  const gs: GuardState = { on: !!llm && (opts.provenance?.kind ?? "audit") === "audit", fields: 0, interventions: 0, sentences_removed: 0 };
   const pageByPath = new Map(art.pages.map((p) => [p.path, p]));
   const pageTypes = Object.fromEntries(art.pages.map((p) => [p.path, p.page_type]));
 
@@ -97,7 +121,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     let description: TemplatedText;
     const sc = e.source_class;
     if (sc === "SYNTHETIC" || sc === "INFERRED") {
-      description = llmText(llm?.evidence_text[e.id], lang, null, new Set(), `evidence:${e.id}`, rej)
+      description = llmText(llm?.evidence_text[e.id], lang, null, new Set(), `evidence:${e.id}`, rej, gs)
         ?? codeText("evidence.llm.fallback", { en: "Model observation recorded for this page (text withheld by the numeric rule or not provided).", uk: "Спостереження моделі для цієї сторінки (текст утримано числовим правилом або не надано)." }, lang, sc);
     } else {
       const det = e.detector_id ?? "";
@@ -130,7 +154,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     const taskC = syntheticCount(f.coverage.task, "tasks");
     const available = new Set(["page_count", "instances", "priority", ...(lensC ? ["lens_coverage"] : []), ...(sessC ? ["session_frequency"] : []), ...(taskC ? ["task_coverage"] : [])]);
     const lt = llm?.finding_texts[f.finding_key] ?? {};
-    const L = (k: keyof typeof lt) => llmText(lt[k], lang, base, available, `finding:${f.finding_key}:${k}`, rej);
+    const L = (k: keyof typeof lt) => llmText(lt[k], lang, base, available, `finding:${f.finding_key}:${k}`, rej, gs);
     const recClass = "BENCHMARKED" as const;
     const factClass = evidenceOut.find((e) => e.id === f.evidence_ids.find((id) => f.tiers[id] === "ET-DET"))?.source_class ?? "INFERRED";
     const codeParams = (pair: { en: string; uk: string }) => Object.fromEntries(placeholders(pair[lang]).map((p) => [p, p === "rule" ? { ptr: `${base}/claim_kind`, format: "text" as const } : p === "category" ? { ptr: `${base}/category`, format: "text" as const } : { ptr: `${base}/${p}`, format: "int" as const }]));
@@ -242,19 +266,19 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
         disclaimer: "lenses_not_population_shares" as const,
         items: llm.lenses.map((l) => ({
           id: l.id,
-          name: llmText(l.name, lang, null, new Set(), `lens:${l.id}:name`, rej) ?? codeText("lens.name.fallback", { en: "Synthetic lens {id}", uk: "Синтетична лінза {id}" }, lang, "SYNTHETIC", { id: { ptr: `/lenses/items/${llm.lenses.indexOf(l)}/id`, format: "text" } }),
-          description: llmText(l.description, lang, null, new Set(), `lens:${l.id}:description`, rej) ?? codeText("lens.description.fallback", { en: "Description withheld by the numeric rule.", uk: "Опис утримано числовим правилом." }, lang, "SYNTHETIC"),
+          name: llmText(l.name, lang, null, new Set(), `lens:${l.id}:name`, rej, gs) ?? codeText("lens.name.fallback", { en: "Synthetic lens {id}", uk: "Синтетична лінза {id}" }, lang, "SYNTHETIC", { id: { ptr: `/lenses/items/${llm.lenses.indexOf(l)}/id`, format: "text" } }),
+          description: llmText(l.description, lang, null, new Set(), `lens:${l.id}:description`, rej, gs) ?? codeText("lens.description.fallback", { en: "Description withheld by the numeric rule.", uk: "Опис утримано числовим правилом." }, lang, "SYNTHETIC"),
           poles: l.poles,
         })),
       }
     : null;
   const su = llm?.site_understanding;
-  const SU = (t: LlmText, k: string) => llmText(t, lang, null, new Set(), `site_understanding:${k}`, rej) ?? codeText("site_understanding.unknown", { en: "UNKNOWN", uk: "НЕВІДОМО" }, lang, "INFERRED");
+  const SU = (t: LlmText, k: string) => llmText(t, lang, null, new Set(), `site_understanding:${k}`, rej, gs) ?? codeText("site_understanding.unknown", { en: "UNKNOWN", uk: "НЕВІДОМО" }, lang, "INFERRED");
   const siteUnderstanding = su
     ? {
         what_it_sells: SU(su.what_it_sells, "what_it_sells"), positioning: SU(su.positioning, "positioning"), price_positioning: SU(su.price_positioning, "price_positioning"),
         core_value_proposition: SU(su.core_value_proposition, "core_value_proposition"), primary_customer_journey: SU(su.primary_customer_journey, "primary_customer_journey"),
-        likely_objections: su.likely_objections.map((o, i) => llmText(o, lang, null, new Set(), `site_understanding:objection:${i}`, rej)).filter((x): x is TemplatedText => x !== null),
+        likely_objections: su.likely_objections.map((o, i) => llmText(o, lang, null, new Set(), `site_understanding:objection:${i}`, rej, gs)).filter((x): x is TemplatedText => x !== null),
       }
     : null;
 
@@ -270,14 +294,14 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
       status: art.audit.status, stage_status, created_at: art.audit.created_at, completed_at: art.audit.completed_at, snapshot_at: art.audit.snapshot_at, banners,
     },
     executive_summary: {
-      primary_conversion_goal: llmText(llm?.primary_conversion_goal ?? undefined, lang, null, new Set(), "executive:primary_conversion_goal", rej),
+      primary_conversion_goal: llmText(llm?.primary_conversion_goal ?? undefined, lang, null, new Set(), "executive:primary_conversion_goal", rej, gs),
       top_problem_ids: findings.filter((f) => f.executive_eligible).slice(0, 5).map((f) => f.id),
       top_strength_ids: positives.slice(0, 5).map((p) => p.id),
       pages_inspected: art.pages.length,
       synthetic_snapshot_sessions: syntheticSessions.filter((s) => s.level === "snapshot").length,
       synthetic_journeys: syntheticSessions.filter((s) => s.level === "journey").length,
       technical_status: technical.status,
-      summary: llmText(llm?.summary ?? undefined, lang, null, new Set(), "executive:summary", rej),
+      summary: llmText(llm?.summary ?? undefined, lang, null, new Set(), "executive:summary", rej, gs),
     },
     site_understanding: siteUnderstanding,
     lenses: lensesOut,
@@ -294,7 +318,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     },
     evidence: evidenceOut,
     disclaimers: [] as ReportT["disclaimers"],
-    guard: { applied: false, version: null, fields_checked: 0, events: rej.length, sentences_removed: 0 },
+    guard: { applied: false, version: null as string | null, fields_checked: 0, events: rej.length, sentences_removed: 0 },
   };
   const d = new Set<ReportT["disclaimers"][number]>(["no_conversion_prediction"]);
   if (findings.length) d.add("priority_is_ranking_index");
@@ -304,8 +328,12 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   if (mode === "none") d.add("no_llm_mode");
   report.disclaimers = [...d].sort(cmp);
   report.guard.events = rej.length;
+  // guard звіту (SPEC §33, кр. 7): застосовано, якщо є LLM-тексти й це реальний аудит; сканер по всьому JSON — fail-closed
+  if (gs.on) report.guard = { applied: true, version: GUARD_VERSION, fields_checked: gs.fields, events: rej.length, sentences_removed: gs.sentences_removed };
 
   const parsed = Report.safeParse(report);
   if (!parsed.success) throw new Error("buildReport: звіт не пройшов контракт:\n" + parsed.error.issues.slice(0, 20).map((i) => `${i.path.join("/")}: ${i.message}`).join("\n"));
+  const scan = scanReport(parsed.data);
+  if (!scan.clean) throw new Error("buildReport: сканер guard знайшов заборонені твердження у звіті:\n" + scan.violations.slice(0, 10).map((v) => `${v.ptr} [${v.kind}] ${v.rule_ids.join(",")}: ${v.sample}`).join("\n"));
   return { report: parsed.data, rejected: rej };
 }

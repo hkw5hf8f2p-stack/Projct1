@@ -135,8 +135,9 @@ describe("з LLM-даними (приклад, replay): структурне п�
 });
 
 describe("детермінізм звіту (критерій 6)", () => {
-  it("контракт відмовляє «аудиту» з LLM-текстами, що не пройшли guard (guard звіту ще не підключено)", () => {
-    expect(() => buildReport(load(SHOP_RUN_DIR), EXAMPLE_LLM, { generated_at: FIXED_TS })).toThrow(/без guard/);
+  it("guard звіту підключено (S4): «аудит» з LLM-текстами будується з guard.applied=true; guard.test.ts перевіряє відмову контракту на підробці", () => {
+    const r = buildReport(load(SHOP_RUN_DIR), EXAMPLE_LLM, { generated_at: FIXED_TS }).report;
+    expect(r.guard.applied).toBe(true);
   });
   it("3 прогони й перестановка доказів → байт-ідентичний звіт", () => {
     const o = { generated_at: FIXED_TS, provenance: { kind: "example_fixture" as const, note: null } };
