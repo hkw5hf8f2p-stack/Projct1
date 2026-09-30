@@ -53,7 +53,14 @@ export interface ChromeProcInfo {
 }
 
 async function procInfo(rootPid: number, secretsProbe: string[]): Promise<ChromeProcInfo[]> {
-  const pids = [rootPid, ...descendantsOf(rootPid)];
+  // Діагностика (cmdline/environ/seccomp) — лише Linux /proc; на macOS повертаємо порожньо, а не валимо worker.
+  if (process.platform !== "linux") return [];
+  let pids: number[];
+  try {
+    pids = [rootPid, ...descendantsOf(rootPid)];
+  } catch {
+    return [];
+  }
   const out: ChromeProcInfo[] = [];
   for (const pid of pids) {
     try {
@@ -183,10 +190,12 @@ export async function runLighthouseRaw(opts: {
     // процеси знімаємо під час роботи (після завершення Chrome їх уже немає)
     const snap = new Promise<void>((resolve) =>
       setTimeout(() => {
-        void procInfo(chrome.pid, opts.secretsProbe ?? []).then((p) => {
-          run.processes = p;
-          resolve();
-        });
+        void procInfo(chrome.pid, opts.secretsProbe ?? [])
+          .then((p) => {
+            run.processes = p;
+          })
+          .catch(() => {})
+          .finally(resolve);
       }, 1500),
     );
     const result = await Promise.race([job, timeout]);

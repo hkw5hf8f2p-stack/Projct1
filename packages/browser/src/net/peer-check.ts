@@ -9,7 +9,8 @@
  * Альтернатива для довірених клієнтів у самому worker (Node-код, тести) — токен у `Proxy-Authorization`.
  * Без /proc (macOS) peer-check недоступний — див. `peerCheckAvailable()` і THREAT_MODEL (залишковий ризик).
  */
-import { readFileSync, readdirSync, readlinkSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { existsSync, readFileSync, readdirSync, readlinkSync } from "node:fs";
 
 export function peerCheckAvailable(): boolean {
   try {
@@ -55,6 +56,7 @@ function parentOf(pid: number): number | null {
 /** Усі строгі нащадки `root` (за ppid). */
 export function descendantsOf(root: number): Set<number> {
   const children = new Map<number, number[]>();
+  if (!existsSync("/proc/self")) return descendantsViaPs(root); // macOS/BSD: /proc немає
   for (const d of readdirSync("/proc")) {
     if (!/^\d+$/.test(d)) continue;
     const pid = Number(d);
@@ -63,6 +65,33 @@ export function descendantsOf(root: number): Set<number> {
     const list = children.get(pp) ?? [];
     list.push(pid);
     children.set(pp, list);
+  }
+  const out = new Set<number>();
+  const stack = [...(children.get(root) ?? [])];
+  while (stack.length) {
+    const p = stack.pop()!;
+    if (out.has(p)) continue;
+    out.add(p);
+    stack.push(...(children.get(p) ?? []));
+  }
+  return out;
+}
+
+/** macOS/BSD: дерево процесів з `ps -Ao pid=,ppid=` (без /proc). */
+function descendantsViaPs(root: number): Set<number> {
+  const children = new Map<number, number[]>();
+  let lines: string[] = [];
+  try {
+    lines = execFileSync("ps", ["-Ao", "pid=,ppid="], { encoding: "utf8" }).split("\n");
+  } catch {
+    return new Set();
+  }
+  for (const l of lines) {
+    const m = /^\s*(\d+)\s+(\d+)/.exec(l);
+    if (!m) continue;
+    const list = children.get(Number(m[2])) ?? [];
+    list.push(Number(m[1]));
+    children.set(Number(m[2]), list);
   }
   const out = new Set<number>();
   const stack = [...(children.get(root) ?? [])];
