@@ -6,6 +6,8 @@
  * ЧЕСНІСТЬ: LLM-частина — scripted fake (`evaluator.ts`), НЕ модель. Вердикт «PASS (dev)» не означає ✅ для LLM-залежного:
  * усе, що залежить від відповіді живої моделі, має мітку ⏭️ live (OQ-1). Replay доводить обв'язку, не якість.
  */
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import path from "node:path";
 import { DirStore, MemoryStore, SESSION_ANSWERED_BY, SESSION_BANNER, loadPagesFromArtifacts, type PageInput } from "../../packages/llm/src/index.js";
 import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type IntegrationRejection, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
 import type { Report } from "../../packages/schemas/src/index.js";
@@ -64,7 +66,7 @@ export function ablateHints(art: AuditArtifacts): { art: AuditArtifacts; removed
 }
 
 /** S7 (DEV-82): бекенд `session`. phase=session — SessionProvider (export/import, той самий код); phase=replay — лише кеш сесії */
-export interface SessionBackend { root: string; model: string; phase: "session" | "replay"; /** replay за логічним ключем (відповіді A записано до виправлення промпта; DEV-84) */ by_logical_key?: boolean }
+export interface SessionBackend { root: string; model: string; phase: "session" | "replay"; /** replay за логічним ключем (відповіді A записано до виправлення промпта; DEV-88) */ by_logical_key?: boolean }
 /** запити прогону записано в requests/, відповідей ще немає: перевірка не рахується (не PASS/FAIL) */
 export class RunAwaiting extends Error {
   constructor(readonly label: string, readonly awaiting: number, readonly planned: number, readonly requests: string[]) {
@@ -126,6 +128,22 @@ export function sessionProvenance(sess: SessionBackend, runs: readonly RunResult
   const store = new DirStore(`${sess.root}/cache`, true);
   const byKey = new Map<string, Set<string>>();
   let entries = 0;
+  if (sess.by_logical_key) {
+    // DEV-88: відповіді записано до виправлення промпта → хеші E5 не збігаються з поточними; походження перевіряємо напряму по записах моделі в кожному namespace, ключ = логічний
+    for (const ns of namespaces) {
+      const dir = path.join(sess.root, "cache", ns);
+      for (const f of existsSync(dir) ? readdirSync(dir).filter((x) => x.endsWith(".json")) : []) {
+        const e = JSON.parse(readFileSync(path.join(dir, f), "utf8")) as { provider?: string; model?: string; synthetic?: boolean; rejected?: boolean; provenance?: { provider?: string; answered_by?: string; synthetic?: boolean; response_sha256?: string }; request_summary?: { logical_key?: Record<string, unknown> } };
+        if (e.model !== sess.model) continue;
+        entries++;
+        const pv = e.provenance;
+        if (e.synthetic !== false || pv?.provider !== "session" || pv.answered_by !== SESSION_ANSWERED_BY || pv.synthetic !== false) reasons.push(`${ns}/${f.slice(0, 10)}…: без provenance session/${SESSION_ANSWERED_BY}/synthetic:false`);
+        const lk = e.request_summary?.logical_key;
+        if (pv?.response_sha256 && !e.rejected && lk) { const k = JSON.stringify([lk["prompt_id"], lk["page_url"], lk["lens_id"], lk["task_id"], lk["step"] ?? 0, lk["attempt"] ?? 0]); const set = byKey.get(k) ?? new Set<string>(); set.add(pv.response_sha256); byKey.set(k, set); }
+      }
+    }
+    return { valid: reasons.length === 0, reasons: [...new Set(reasons)].slice(0, 6), entries, keys_total: byKey.size, keys_differing: [...byKey.values()].filter((v) => v.size > 1).length };
+  }
   runs.forEach((r, i) => {
     const ns = namespaces[i] as string;
     for (const rec of r.eval.client.records) {
@@ -184,7 +202,7 @@ export interface ValidateOptions {
   strict_live?: boolean;
   /** S7 (DEV-82): LLM-частина через транспорт session (замість scripted fake) */
   session?: SessionBackend;
-  /** E1: додатково розподіл y/3 по незалежних вибірках (моделі сесії з кешу; лише replay). DEV-84 */
+  /** E1: додатково розподіл y/3 по незалежних вибірках (моделі сесії з кешу; лише replay). DEV-88 */
   e1_samples?: { models: readonly string[] };
   max_validate_tokens?: number;
   max_audit_tokens?: number;

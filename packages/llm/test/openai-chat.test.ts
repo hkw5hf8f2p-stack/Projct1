@@ -1,5 +1,5 @@
 /**
- * openai_compatible → Chat Completions (DEV-84). Контракт на мок-HTTP у стилі Ollama/LM Studio: форма запиту, structured output
+ * openai_compatible → Chat Completions (DEV-89). Контракт на мок-HTTP у стилі Ollama/LM Studio: форма запиту, structured output
  * (json_schema → json_object → prompted), Zod у LlmClient як остаточний суддя, конфіг/вибір режиму.
  * ЩО ДОВЕДЕНО: формат запиту/розбору відповіді проти мока. НЕ доведено (⏭️ live pass): реальні Ollama/LM Studio/vLLM, їх strict-json_schema, vision-моделі.
  */

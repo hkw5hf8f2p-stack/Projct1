@@ -38,7 +38,7 @@ export interface ResolvedConfig {
   model: string | null;
   /** DEV-82/83: транспорт поза API-ключем. Для AuditRun/Report схема лишається llm_mode ∈ {live,replay,none} (session → replay, claude-cli → live) */
   transport: "session" | "claude-cli" | null;
-  /** лише для provider=openai: Responses API чи Chat Completions (DEV-84); openai_compatible і чужий OPENAI_BASE_URL → chat */
+  /** лише для provider=openai: Responses API чи Chat Completions (DEV-89); openai_compatible і чужий OPENAI_BASE_URL → chat */
   openai_api_mode?: OpenAiApiMode;
   max_audit_tokens: number;
   cache_mode: CacheMode;

@@ -6,9 +6,10 @@ Replay-відповіді `fixtures/replay/**` — SYNTHETIC (пише інже�
 ## Конфіг (лише з env; жодного імені моделі в коді)
 | змінна | значення |
 |---|---|
-| `LLM_PROVIDER` | `anthropic` \| `openai` \| `claude-cli` \| `session` \| `replay` \| `none`; порожньо → провайдер, чий ключ є; ключів немає → `none` (G0-2) |
+| `LLM_PROVIDER` | `anthropic` \| `openai` \| `openai_compatible` \| `claude-cli` \| `session` \| `replay` \| `none`; порожньо → провайдер, чий ключ є; ключів немає → `none` (G0-2) |
 | `LLM_MODEL` | обов'язкова для живого провайдера (без неї `ConfigError`) |
 | `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | лише env; редагуються в логах/записах (`createLogger`, `redactDeep`) |
+| `OPENAI_BASE_URL` / `OPENAI_API_MODE` | `openai_compatible` (Ollama, LM Studio, vLLM…) або `openai` із чужою базою → **Chat Completions** (`/v1/chat/completions`, `response_format` json_schema → json_object → лише промпт; Zod перевіряє завжди); `OPENAI_API_MODE=responses` → `/v1/responses`. База з `/v1` чи без — обидві працюють. Перевірено лише мок-HTTP (DEV-89), реальні сервери — ⏭️ live |
 | `MAX_AUDIT_TOKENS` | E4, за замовчуванням 1 650 000 (DEV-44) |
 | `LLM_CACHE_MODE` | `use` (типово) \| `bypass` (E2: 0 читань кешу) |
 | `LLM_CACHE_NAMESPACE`, `REPLAY_DIR`, `REPLAY_AS` | namespace прогону; каталог `fixtures/replay`; ідентичність ключа E5 для replay (`replay:synthetic-fixture-v1`) |

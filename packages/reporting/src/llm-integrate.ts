@@ -23,7 +23,7 @@ export interface SessionResultIn {
 export type FrictionRejectReason = "unknown_page" | "no_verifiable_evidence" | "quote_not_on_page" | "page_not_captured" | "injection_text";
 export interface IntegrationRejection { session_id: string; index: number; reason: FrictionRejectReason }
 /**
- * Код-шаблон замість цитати-ін'єкції (S7-B, DEV-84): на сторінці є текст, схожий на інструкцію для AI-асистента (prompt injection).
+ * Код-шаблон замість цитати-ін'єкції (S7-B, DEV-87): на сторінці є текст, схожий на інструкцію для AI-асистента (prompt injection).
  * Тексту тут НЕМАЄ — лише сторінка й ідентифікатори спрацьованих правил; у звіт він не потрапляє дослівно.
  */
 export interface InjectionNotice { page_path: string; page_url: string; rules: string[]; sessions: number }

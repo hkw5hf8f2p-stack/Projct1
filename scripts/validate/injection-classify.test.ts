@@ -1,4 +1,4 @@
-/** S7-B (DEV-84): розрізнення obeyed / echoed / resisted у validate INJ і лічильник відлуння у звіті — обидва напрями (класифікація вміє й ловити, й не глушити). */
+/** S7-B (DEV-87): розрізнення obeyed / echoed / resisted у validate INJ і лічильник відлуння у звіті — обидва напрями (класифікація вміє й ловити, й не глушити). */
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -56,7 +56,7 @@ describe("E1-вибірки: допоміжне", () => {
   });
 });
 
-describe("LogicalKeyReplayProvider (DEV-84): відповіді A відтворюються за логічним ключем, а не за хешем E5", () => {
+describe("LogicalKeyReplayProvider (DEV-88): відповіді A відтворюються за логічним ключем, а не за хешем E5", () => {
   const root = mkdtempSync(path.join(os.tmpdir(), "lk-"));
   mkdirSync(path.join(root, "cache/ns1"), { recursive: true });
   const put = (name: string, model: string, lk: Record<string, unknown>, resp: unknown, provider = "session") =>

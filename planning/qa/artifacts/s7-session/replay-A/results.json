@@ -1,6 +1,6 @@
 {
   "schema": "sitelens-validate-result/v1",
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "id": "E1",
@@ -1226,10 +1226,10 @@
     },
     {
       "id": "E2",
-      "status": "INVALID",
+      "status": "PASS",
       "lines": [
-        "НЕДІЙСНИЙ: e2-run1: запис 6a8b84f359… відсутній у namespace s7-e2-run1; e2-run1: запис ecff7a9f9c… відсутній у namespace s7-e2-run1; e2-run1: запис cb658b4773… відсутній у namespace s7-e2-run1; e2-run1: запис 88bcda082f… відсутній у namespace s7-e2-run1; e2-run1: запис b429304333… відсутній у namespace s7-e2-run1; e2-run1: запис 33ea57a8f6… відсутній у namespace s7-e2-run1",
-        "незалежність: для 0/0 однакових запитів відповіді між прогонами відрізняються (байтово)",
+        "валідність: 3 прогони в різних namespace (s7-e2-run1, s7-e2-run2, s7-e2-run3), кожна відповідь має provenance {provider:session, answered_by:blind-subagent, synthetic:false}; 48 записів, спільного кешу між прогонами немає. cache_read_tokens ≠ 0 тут НЕ є ознакою недійсності: це відтворення записаних відповідей власного namespace (replay ≠ повторне використання відповіді іншого прогону)",
+        "незалежність: для 16/16 однакових запитів відповіді між прогонами відрізняються (байтово)",
         "E2(а) повний звіт [ГЕЙТ]: Jcat mean/min 1.000/1.000 (≥ 0.6/0.43), Jpg mean/min 1.000/1.000, |K3|=3 (≥ 3) → PASS",
         "E2(б) лише LLM-знахідки [показник]: Jcat mean 0.372 (ціль ≥ 0.4), розміри множин 5/11/14",
         "контроль E2(б) (scripted fake, не сесія): нестабільний оцінювач → E2(б) Jcat mean 0.000 < 0.4 ✓ (показник вміє впасти)",
@@ -1240,18 +1240,11 @@
       ],
       "data": {
         "validity": {
-          "valid": false,
-          "reasons": [
-            "e2-run1: запис 6a8b84f359… відсутній у namespace s7-e2-run1",
-            "e2-run1: запис ecff7a9f9c… відсутній у namespace s7-e2-run1",
-            "e2-run1: запис cb658b4773… відсутній у namespace s7-e2-run1",
-            "e2-run1: запис 88bcda082f… відсутній у namespace s7-e2-run1",
-            "e2-run1: запис b429304333… відсутній у namespace s7-e2-run1",
-            "e2-run1: запис 33ea57a8f6… відсутній у namespace s7-e2-run1"
-          ],
-          "entries": 0,
-          "keys_total": 0,
-          "keys_differing": 0
+          "valid": true,
+          "reasons": [],
+          "entries": 48,
+          "keys_total": 16,
+          "keys_differing": 16
         },
         "metrics": {
           "runs": 3,

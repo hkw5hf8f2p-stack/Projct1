@@ -43,7 +43,7 @@ export function parseJsonLoose(text: string): unknown {
 }
 
 /**
- * OpenAI-сумісний `/v1/chat/completions` (Ollama, LM Studio, vLLM, llama.cpp server, більшість проксі; DEV-84).
+ * OpenAI-сумісний `/v1/chat/completions` (Ollama, LM Studio, vLLM, llama.cpp server, більшість проксі; DEV-89).
  * Structured output: `response_format = json_schema` (strict) → якщо сервер відхиляє (400/422) — `json_object` + схема в system-повідомленні → якщо й це — лише схема в промпті.
  * Знайдений щабель запам'ятовується на екземплярі (не б'ємо кожен виклик відомо непідтримуваним форматом). Значення відповіді ЗАВЖДИ перевіряє Zod у LlmClient — сервер json_object не гарантує схему.
  * UNVERIFIED на живих серверах: перевірено лише контрактом на мок-HTTP у стилі Ollama/LM Studio (вимагає live pass із реальним сервером/моделлю). Зображення (image_url data URI) потребують vision-моделі.

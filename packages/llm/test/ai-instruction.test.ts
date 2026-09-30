@@ -1,4 +1,4 @@
-/** S7-B (DEV-84): детектор «інструкція до AI» у цитаті-доказі — позитивні класи, негативні (звичайний текст магазину) і контроль «вміє впасти». */
+/** S7-B (DEV-87): детектор «інструкція до AI» у цитаті-доказі — позитивні класи, негативні (звичайний текст магазину) і контроль «вміє впасти». */
 import { describe, expect, it } from "vitest";
 import { detectAiInstruction, looksLikeAiInstruction } from "../src/index.js";
 import { INJECTION_CANARY, INJECTION_HIDDEN, INJECTION_VISIBLE } from "../../../fixtures/injection/server.js";
