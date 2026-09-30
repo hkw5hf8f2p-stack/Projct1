@@ -28,7 +28,7 @@
   }
  ],
  "layer2_blocked": [
-  "service_worker - http://127.0.0.1:37929/swx-proto.js",
-  "service_worker - http://127.0.0.1:37929/swx-iframe.js"
+  "service_worker - http://127.0.0.1:37463/swx-proto.js",
+  "service_worker - http://127.0.0.1:37463/swx-iframe.js"
  ]
 }

@@ -10,18 +10,18 @@
  },
  "layer2_without_lockdown": {
   "registration": {
-   "instance": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37929/') with script ('http://127.0.0.1:37929/swx-instance.js'): An unknown error occurred when fetching the script.",
-   "proto": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37929/') with script ('http://127.0.0.1:37929/swx-proto.js'): An unknown error occurred when fetching the script.",
-   "iframe": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37929/') with script ('http://127.0.0.1:37929/swx-iframe.js'): An unknown error occurred when fetching the script."
+   "instance": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37463/') with script ('http://127.0.0.1:37463/swx-instance.js'): An unknown error occurred when fetching the script.",
+   "proto": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37463/') with script ('http://127.0.0.1:37463/swx-proto.js'): An unknown error occurred when fetching the script.",
+   "iframe": "rejected: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:37463/') with script ('http://127.0.0.1:37463/swx-iframe.js'): An unknown error occurred when fetching the script."
   },
   "target_received": [],
   "layer2_blocked": [
-   "service_worker - http://127.0.0.1:37929/swx-instance.js",
-   "service_worker GET http://127.0.0.1:37929/swx-instance.js",
-   "service_worker - http://127.0.0.1:37929/swx-proto.js",
-   "service_worker GET http://127.0.0.1:37929/swx-proto.js",
-   "service_worker - http://127.0.0.1:37929/swx-iframe.js",
-   "service_worker GET http://127.0.0.1:37929/swx-iframe.js"
+   "service_worker - http://127.0.0.1:37463/swx-instance.js",
+   "service_worker GET http://127.0.0.1:37463/swx-instance.js",
+   "service_worker - http://127.0.0.1:37463/swx-proto.js",
+   "service_worker GET http://127.0.0.1:37463/swx-proto.js",
+   "service_worker - http://127.0.0.1:37463/swx-iframe.js",
+   "service_worker GET http://127.0.0.1:37463/swx-iframe.js"
   ]
  },
  "canary_hits": []

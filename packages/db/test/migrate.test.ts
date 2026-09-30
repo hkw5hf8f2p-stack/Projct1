@@ -80,7 +80,7 @@ describe.skipIf(base === null)("migrate()", () => {
     try {
       await migrate(fresh.url, d);
       rmSync(path.join(d, "002_pipeline.sql"));
-      await expect(migrate(fresh.url, d)).rejects.toThrow(/якого немає в каталозі/);
+      await expect(migrate(fresh.url, d)).rejects.toThrow(/якої немає в каталозі/);
     } finally {
       await fresh.drop();
     }
