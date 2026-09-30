@@ -275,6 +275,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
   const banners: ReportT["audit"]["banners"] = [];
   if (mode === "none") banners.push({ code: "no_llm", stage: null, text: codeText("banner.no_llm", DISCLAIMER_TEXT.no_llm_mode, lang, "OBSERVED") });
   if (mode === "replay") banners.push({ code: "replay_not_live", stage: null, text: codeText("banner.replay_not_live", BANNER_TEXT.replay_not_live, lang, "OBSERVED") });
+  if (art.audit.mode === "quick") banners.push({ code: "quick_audit", stage: null, text: codeText("banner.quick_audit", BANNER_TEXT.quick_audit, lang, "OBSERVED") });
   if (opts.provenance?.kind === "example_fixture") banners.push({ code: "example_fixture", stage: null, text: codeText("banner.example_fixture", BANNER_TEXT.example_fixture, lang, "OBSERVED") });
   for (const st of Object.keys(stage_status).sort(cmp) as Array<keyof typeof stage_status>) {
     const s = stage_status[st];
@@ -314,7 +315,7 @@ export function buildReport(art: AuditArtifacts, llm: LlmResults | null, opts: B
     audit: {
       id: art.audit.id, input_url: art.audit.input_url, normalized_url: art.audit.normalized_url, domain: art.audit.domain, language: lang,
       llm_mode: mode, llm_provider: llm?.provider ?? null, llm_model: llm?.model ?? null, prompt_versions: llm?.prompt_versions ?? [],
-      status: art.audit.status, stage_status, created_at: art.audit.created_at, completed_at: art.audit.completed_at, snapshot_at: art.audit.snapshot_at, banners,
+      status: art.audit.status, stage_status, created_at: art.audit.created_at, completed_at: art.audit.completed_at, snapshot_at: art.audit.snapshot_at, ...(art.audit.mode === "quick" ? { mode: "quick" as const } : {}), banners,
     },
     executive_summary: {
       primary_conversion_goal: llmText(llm?.primary_conversion_goal ?? undefined, lang, null, new Set(), "executive:primary_conversion_goal", rej, gs),

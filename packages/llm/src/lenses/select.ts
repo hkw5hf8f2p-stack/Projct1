@@ -71,8 +71,8 @@ export interface SelectionResult { selected: BehavioralLens[]; flags: string[]; 
 export const clampK = (k: number | undefined, min = 8, max = 20, def = 12): number => Math.min(max, Math.max(min, Math.trunc(Number.isFinite(k) ? (k as number) : def)));
 
 /** §9.4. Полюси P1..P7 у фіксованому порядку, далі farthest-point. */
-export function selectLenses(candidates: readonly BehavioralLens[], kRequested?: number): SelectionResult {
-  const k = clampK(kRequested);
+export function selectLenses(candidates: readonly BehavioralLens[], kRequested?: number, min = 8): SelectionResult {
+  const k = clampK(kRequested, min);
   const flags: string[] = [];
   const { kept: C, dropped } = dedupe(candidates);
   const sid = new Map(C.map((c) => [c.id, lensStableId(c)]));

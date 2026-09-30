@@ -137,10 +137,11 @@ export const POSITIVE_TEMPLATES: Record<string, { title: Pair; evidence: Pair; p
   },
 };
 
-export const BANNER_TEXT: Record<"replay_not_live" | "example_fixture" | "budget_limited" | "stage_failed" | "stage_skipped", Pair> = {
+export const BANNER_TEXT: Record<"replay_not_live" | "example_fixture" | "budget_limited" | "stage_failed" | "stage_skipped" | "quick_audit", Pair> = {
   replay_not_live: { en: "Synthetic results are replayed recordings, not a live model run.", uk: "Синтетичні результати — відтворені записи, а не прогін живої моделі." },
   example_fixture: { en: "Example report for interface development. It is not the result of an audit.", uk: "Приклад звіту для розробки інтерфейсу. Це не результат аудиту." },
   budget_limited: { en: "This stage stopped at the token budget; results are partial.", uk: "Етап зупинено на бюджеті токенів; результати часткові." },
   stage_failed: { en: "This stage failed; its results are missing from the report.", uk: "Етап завершився помилкою; його результатів у звіті немає." },
   stage_skipped: { en: "This stage was skipped.", uk: "Етап пропущено." },
+  quick_audit: { en: "Quick audit: fewer pages, lenses and sessions were used, so coverage is lower than in a full audit.", uk: "Швидкий аудит: використано менше сторінок, лінз і сесій, тож покриття менше, ніж у повному аудиті." },
 };

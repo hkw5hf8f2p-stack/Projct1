@@ -46,6 +46,7 @@ export function loadS1aRun(dir: string, audit: Partial<AuditIn> & { language: Au
       created_at: audit.created_at ?? null,
       completed_at: audit.completed_at ?? null,
       snapshot_at: audit.snapshot_at ?? null,
+      ...(audit.mode ? { mode: audit.mode } : {}),
       stage_status: audit.stage_status ?? { crawl: { status: "done", reason: null }, capture: { status: "done", reason: null }, accessibility: { status: "done", reason: null } },
     },
     pages,

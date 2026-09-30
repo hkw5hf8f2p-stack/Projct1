@@ -89,6 +89,7 @@ export async function loadAuditArtifacts(pool: Pool, artifactDir: string, audit:
     id: audit.id, input_url: audit.input_url, normalized_url: audit.normalized_url, domain: audit.domain, language: audit.language, status: "completed",
     created_at: audit.created_at.toISOString(), completed_at: o.completedAt, snapshot_at: (audit as AuditRow & { snapshot_at?: Date | null }).snapshot_at?.toISOString() ?? null,
     stage_status: stage_status as never,
+    ...(audit.config_json["mode"] === "quick" ? { mode: "quick" as const } : {}),
   });
   art.lighthouse = await lighthouseFromJobs(pool, audit.id);
   return art;

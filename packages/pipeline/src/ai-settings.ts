@@ -7,7 +7,7 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { REPO_ROOT } from "@sitelens/db";
-import { type AiCheckErrorClass, type AiSettingsInput, MAX_AUDIT_TOKENS_MAX, MAX_AUDIT_TOKENS_MIN, type AiSettingsView, type ProviderKind } from "@sitelens/schemas";
+import { type AiCheckErrorClass, type AiSettingsInput, LLM_CONCURRENCY_MAX, LLM_CONCURRENCY_MIN, defaultLlmConcurrency, MAX_AUDIT_TOKENS_MAX, MAX_AUDIT_TOKENS_MIN, type AiSettingsView, type ProviderKind } from "@sitelens/schemas";
 
 export const DEFAULT_MAX_AUDIT_TOKENS_SETTING = 1_650_000;
 const AAD = Buffer.from("sitelens-ai-settings-v1");
@@ -19,7 +19,7 @@ export class AiSettingsError extends Error {
 
 export interface LastCheck { ok: boolean; at: string; error_class?: AiCheckErrorClass; model_reported?: string }
 export interface StoredAiSettings {
-  kind: ProviderKind; model: string; base_url?: string; api_key?: string; max_audit_tokens: number; updated_at: string; last_check?: LastCheck;
+  kind: ProviderKind; model: string; base_url?: string; api_key?: string; max_audit_tokens: number; llm_concurrency?: number; updated_at: string; last_check?: LastCheck;
 }
 
 export const secretsDir = (env: Env = process.env): string => path.resolve(env["SITELENS_SECRETS_DIR"] || path.join(REPO_ROOT, "data", "secrets"));
@@ -90,6 +90,9 @@ function writeStored(s: StoredAiSettings, env: Env): void {
 const KEY_KINDS: ProviderKind[] = ["anthropic", "openai", "openai_compatible"];
 const envMax = (env: Env): number => { const n = Number(env["MAX_AUDIT_TOKENS"]); return Number.isInteger(n) && n >= MAX_AUDIT_TOKENS_MIN && n <= MAX_AUDIT_TOKENS_MAX ? n : DEFAULT_MAX_AUDIT_TOKENS_SETTING; };
 
+/** env LLM_CONCURRENCY (1–6); некоректне/порожнє → undefined (діє типове за kind) */
+export const envConcurrency = (env: Env): number | undefined => { const n = Number(env["LLM_CONCURRENCY"]); return env["LLM_CONCURRENCY"] && Number.isInteger(n) && n >= LLM_CONCURRENCY_MIN && n <= LLM_CONCURRENCY_MAX ? n : undefined; };
+
 /** PUT: пропущені поля зберігаються з попереднього стану (той самий kind); ключ скидається, якщо kind змінився на безключовий/інший. */
 export function saveAiSettings(input: AiSettingsInput, env: Env = process.env): StoredAiSettings {
   const prev = readStoredAiSettings(env);
@@ -100,7 +103,8 @@ export function saveAiSettings(input: AiSettingsInput, env: Env = process.env): 
   if ((input.kind === "anthropic" || input.kind === "openai") && !api_key) throw new AiSettingsError("invalid_input", `${input.kind}: потрібен api_key`);
   const next: StoredAiSettings = {
     kind: input.kind, model, ...(input.base_url ? { base_url: input.base_url.replace(/\/+$/, "") } : {}), ...(api_key ? { api_key } : {}),
-    max_audit_tokens: input.max_audit_tokens ?? prev?.max_audit_tokens ?? envMax(env), updated_at: new Date().toISOString(),
+    max_audit_tokens: input.max_audit_tokens ?? prev?.max_audit_tokens ?? envMax(env),
+    ...((input.llm_concurrency ?? prev?.llm_concurrency) !== undefined ? { llm_concurrency: (input.llm_concurrency ?? prev?.llm_concurrency) as number } : {}), updated_at: new Date().toISOString(),
   };
   writeStored(next, env);
   return next;
@@ -121,14 +125,14 @@ export function recordAiCheck(c: LastCheck, env: Env = process.env): void {
 }
 
 /** чинна конфігурація: UI > env > none */
-export interface EffectiveAi { source: "ui" | "env" | "none"; kind: ProviderKind; model: string; base_url?: string; api_key?: string; max_audit_tokens: number; stored: StoredAiSettings | null }
+export interface EffectiveAi { source: "ui" | "env" | "none"; kind: ProviderKind; model: string; base_url?: string; api_key?: string; max_audit_tokens: number; /** чинна паралельність LLM: UI > env LLM_CONCURRENCY > типове за kind (3; claude_cli — 2) */ llm_concurrency: number; stored: StoredAiSettings | null }
 export function resolveEffectiveAi(env: Env = process.env): EffectiveAi {
   const st = readStoredAiSettings(env);
-  if (st) return { source: "ui", kind: st.kind, model: st.model, base_url: st.base_url, api_key: st.api_key, max_audit_tokens: st.max_audit_tokens, stored: st };
+  if (st) return { source: "ui", kind: st.kind, model: st.model, base_url: st.base_url, api_key: st.api_key, max_audit_tokens: st.max_audit_tokens, llm_concurrency: st.llm_concurrency ?? envConcurrency(env) ?? defaultLlmConcurrency(st.kind), stored: st };
   const p = (env["LLM_PROVIDER"] ?? "").trim().toLowerCase();
   const kind: ProviderKind = p === "anthropic" || (!p && env["ANTHROPIC_API_KEY"]) ? "anthropic" : p === "openai" || (!p && env["OPENAI_API_KEY"]) ? "openai" : p === "claude-cli" ? "claude_cli" : "none";
-  if (kind === "none") return { source: "none", kind, model: "", max_audit_tokens: envMax(env), stored: null };
-  return { source: "env", kind, model: env["LLM_MODEL"] ?? "", api_key: kind === "anthropic" ? env["ANTHROPIC_API_KEY"] : kind === "openai" ? env["OPENAI_API_KEY"] : undefined, max_audit_tokens: envMax(env), stored: null };
+  if (kind === "none") return { source: "none", kind, model: "", max_audit_tokens: envMax(env), llm_concurrency: envConcurrency(env) ?? defaultLlmConcurrency("none"), stored: null };
+  return { source: "env", kind, model: env["LLM_MODEL"] ?? "", api_key: kind === "anthropic" ? env["ANTHROPIC_API_KEY"] : kind === "openai" ? env["OPENAI_API_KEY"] : undefined, max_audit_tokens: envMax(env), llm_concurrency: envConcurrency(env) ?? defaultLlmConcurrency(kind), stored: null };
 }
 
 /** View без ключа: лише key_set і (для збереженого через UI) «…abcd» */
@@ -136,7 +140,7 @@ export function toAiView(e: EffectiveAi): AiSettingsView {
   return {
     kind: e.kind, model: e.model, ...(e.base_url ? { base_url: e.base_url } : {}), key_set: !!e.api_key,
     ...(e.source === "ui" && e.api_key ? { key_hint: "…" + e.api_key.slice(-4) } : {}),
-    max_audit_tokens: e.max_audit_tokens, updated_at: e.stored?.updated_at ?? null, ...(e.stored?.last_check ? { last_check: e.stored.last_check } : {}), source: e.source,
+    max_audit_tokens: e.max_audit_tokens, llm_concurrency: e.llm_concurrency, updated_at: e.stored?.updated_at ?? null, ...(e.stored?.last_check ? { last_check: e.stored.last_check } : {}), source: e.source,
   };
 }
 

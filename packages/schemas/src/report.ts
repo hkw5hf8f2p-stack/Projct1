@@ -101,7 +101,7 @@ export const SyntheticCount = z
 export type SyntheticCount = z.infer<typeof SyntheticCount>;
 
 // ---------------------------------------------------------------- AuditRun-мета (DEV-11)
-export const BannerCode = z.enum(["no_llm", "replay_not_live", "budget_limited", "stage_failed", "stage_skipped", "example_fixture"]);
+export const BannerCode = z.enum(["no_llm", "replay_not_live", "budget_limited", "stage_failed", "stage_skipped", "example_fixture", "quick_audit"]);
 export const Banner = z
   .object({ code: BannerCode, stage: z.enum(AUDIT_STAGES).nullable(), text: TemplatedText })
   .strict();
@@ -125,6 +125,8 @@ export const AuditMeta = z
     created_at: Ts.nullable(),
     completed_at: Ts.nullable(),
     snapshot_at: Ts.nullable(),
+    /** DEV-93: лише для швидкого аудиту (повний — поле відсутнє, звіти не змінюються); потребує банера quick_audit */
+    mode: z.literal("quick").optional(),
     banners: z.array(Banner),
   })
   .strict();
@@ -568,6 +570,7 @@ export function reportProblems(r: z.infer<typeof ReportObject>): Array<{ path: (
     if (r.budget.used_tokens !== 0 || r.budget.llm_calls !== 0) bad("llm_mode=none: токенів/викликів бути не може", ["budget"]);
     if (r.executive_summary.synthetic_journeys !== 0 || r.executive_summary.synthetic_snapshot_sessions !== 0) bad("llm_mode=none: синтетичних сесій бути не може", ["executive_summary"]);
   }
+  if (r.audit.mode === "quick" && !banners.has("quick_audit")) bad("mode=quick потребує банера quick_audit", ["audit", "banners"]);
   if (r.audit.llm_mode === "replay" && !banners.has("replay_not_live")) bad("llm_mode=replay потребує банера replay_not_live", ["audit", "banners"]);
   if (r.provenance.kind === "example_fixture" && !banners.has("example_fixture")) bad("приклад потребує банера example_fixture", ["audit", "banners"]);
   for (const [st, s] of Object.entries(r.audit.stage_status)) {

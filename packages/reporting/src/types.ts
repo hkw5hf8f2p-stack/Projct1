@@ -50,6 +50,8 @@ export interface AuditIn {
   created_at: string | null;
   completed_at: string | null;
   snapshot_at: string | null;
+  /** DEV-93: швидкий аудит → банер quick_audit у звіті */
+  mode?: "quick" | "full";
   stage_status: Partial<Record<(typeof AUDIT_STAGES)[number], { status: (typeof STAGE_STATUSES)[number]; reason: string | null }>>;
 }
 

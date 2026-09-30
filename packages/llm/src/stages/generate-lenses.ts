@@ -42,13 +42,19 @@ export interface LensesOutput {
   prompt_id: string;
 }
 
-export async function generateLenses(ctx: StageContext, input: { profile: SiteProfileCore; k?: number }): Promise<StageResult<LensesOutput>> {
+/**
+ * `min`/`candidates` — лише для швидкого аудиту (DEV-93): типово 8 лінз мінімум і 18 кандидатів (C5 без змін). Полюси P1–P7 добираються першими
+ * незалежно від k, тож набір може бути більшим за k, якщо полюси цього потребують; недобрані полюси лишаються в `unmet_poles`/`pole_unmet`.
+ */
+export async function generateLenses(ctx: StageContext, input: { profile: SiteProfileCore; k?: number; min?: number; candidates?: number }): Promise<StageResult<LensesOutput>> {
   return guardStage("lenses", lensGeneratorV1.id, ctx, async () => {
-    const k = clampK(input.k);
+    const kMin = input.min ?? 8;
+    const k = clampK(input.k, kMin);
+    const nCandidates = input.candidates ?? LENS_CANDIDATES;
     const profileData = wrapDerivedData(JSON.stringify(input.profile, null, 1));
     const ask = (extra: string, step: number) => buildRequest({
       stage: "lenses", prompt: lensGeneratorV1, max_tokens: 8000,
-      vars: { LANGUAGE: ctx.language, LANGUAGE_NAME: LANG_NAME[ctx.language], PROFILE_DATA: profileData, COUNT: String(LENS_CANDIDATES), EXTRA_POLES: extra },
+      vars: { LANGUAGE: ctx.language, LANGUAGE_NAME: LANG_NAME[ctx.language], PROFILE_DATA: profileData, COUNT: String(nCandidates), EXTRA_POLES: extra },
       logical: { step },
     });
     // основний запит: ≥ LENS_MIN придатних; додатковий (лише відсутні полюси, ~6 лінз): ≥ 1 придатної
@@ -56,7 +62,7 @@ export async function generateLenses(ctx: StageContext, input: { profile: SitePr
       const s = splitCandidates(v.lenses, ctx.language);
       return s.valid.length >= minValid ? [] : [`too_few_valid_candidates: ${s.valid.length} < ${minValid}`, ...s.dropped.slice(0, 8).map((d) => d.detail)];
     });
-    const first = await call("", 0, LENS_MIN);
+    const first = await call("", 0, Math.min(LENS_MIN, kMin));
     const s1 = splitCandidates(first.value.lenses, ctx.language);
     let rejected = [...s1.dropped];
     let valid = s1.valid;
@@ -67,7 +73,7 @@ export async function generateLenses(ctx: StageContext, input: { profile: SitePr
       return { lenses, fl };
     };
     let pool = build(valid);
-    let sel = selectLenses(pool.lenses, k);
+    let sel = selectLenses(pool.lenses, k, kMin);
     const extra: string[] = [];
     if (sel.unmet_poles.length > 0) {
       // §9.4: один раз попросити генератор про відсутні полюси; знову ні — найближчий кандидат + прапорець
@@ -80,7 +86,7 @@ export async function generateLenses(ctx: StageContext, input: { profile: SitePr
         const have = new Set(valid.map((c) => c.id));
         valid = [...valid, ...s2.valid.filter((c) => !have.has(c.id))];
         pool = build(valid);
-        sel = selectLenses(pool.lenses, k);
+        sel = selectLenses(pool.lenses, k, kMin);
         extra.push("poles_requested_again");
       } catch (e) {
         if (e instanceof BudgetExceededError) extra.push("poles_request_skipped_budget");

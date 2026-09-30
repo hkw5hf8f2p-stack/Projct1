@@ -34,9 +34,13 @@ export interface MatrixEntry { lens_id: string; task_id: string; level: "snapsho
 export interface MatrixResult { entries: MatrixEntry[]; flags: string[]; violations: string[]; important_task_ids: string[]; n_target: number }
 
 export const MATRIX_MIN = 24, MATRIX_MAX = 40;
+/** Параметри матриці. Типові = повний аудит (SCORING_SPEC §10.2, без змін). Швидкий аудит (DEV-93) — окремий, менш суворий профіль. */
+export interface MatrixOptions { min: number; max: number; /** null → 2.5 · лінз у [min, max] */ target: number | null; tiers: Array<[perImportant: number, dropOtherMin: boolean]>; minLensesImportant: number; importantPoles: boolean; poleSessions: number }
+export const FULL_MATRIX: MatrixOptions = { min: MATRIX_MIN, max: MATRIX_MAX, target: null, tiers: [[4, false], [3, false], [3, true]], minLensesImportant: 4, importantPoles: true, poleSessions: 2 };
+export const QUICK_MATRIX: MatrixOptions = { min: 6, max: 14, target: 12, tiers: [[2, true]], minLensesImportant: 2, importantPoles: false, poleSessions: 1 };
 const round = (x: number) => Math.round(x * 1e9) / 1e9;
 
-export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly Task[]): MatrixResult {
+export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly Task[], opts: MatrixOptions = FULL_MATRIX): MatrixResult {
   const sid = new Map(lenses.map((l) => [l.id, lensStableId(l)]));
   const lensById = new Map(lenses.map((l) => [l.id, l]));
   const R = new Map<string, number>();
@@ -44,7 +48,7 @@ export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly T
   const r = (l: string, t: string) => R.get(`${l}|${t}`) as number;
   const important = tasks.filter(isImportantTask);
   const impIds = important.map((t) => t.task_id);
-  const N = Math.min(MATRIX_MAX, Math.max(MATRIX_MIN, Math.round(2.5 * lenses.length)));
+  const N = opts.target ?? Math.min(opts.max, Math.max(opts.min, Math.round(2.5 * lenses.length)));
 
   // tie-break: (r desc, stableId(lens) asc, task_id asc)
   const cmp = (a: [string, string], b: [string, string]) => {
@@ -75,7 +79,7 @@ export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly T
       }
     }
     // 3. P1 і P2 на кожній важливій; P3..P6 у ≥ 2 сесіях
-    for (const t of important) for (const id of ["P1", "P2"] as PoleId[]) {
+    if (opts.importantPoles) for (const t of important) for (const id of ["P1", "P2"] as PoleId[]) {
       const pole = poleById(id);
       if (lensesOf(t.task_id).some((l) => pole.pred(lensById.get(l) as BehavioralLens))) continue;
       const p = bestPair(lenses.filter((l) => pole.pred(l)).map((l) => [l.id, t.task_id] as [string, string]));
@@ -85,7 +89,7 @@ export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly T
       const pole = poleById(id);
       const holders = lenses.filter((l) => pole.pred(l));
       const count = () => M.filter((p) => pole.pred(lensById.get(p[0]) as BehavioralLens)).length;
-      while (holders.length > 0 && count() < 2) {
+      while (holders.length > 0 && count() < opts.poleSessions) {
         const p = bestPair(holders.flatMap((l) => tasks.map((t) => [l.id, t.task_id] as [string, string])));
         if (!p) break;
         add(p);
@@ -95,9 +99,12 @@ export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly T
   };
 
   const flags: string[] = [];
-  let st = attempt(4, false);
-  if (st.M.length > MATRIX_MAX) { flags.push("matrix_overflow"); st = attempt(3, false); }
-  if (st.M.length > MATRIX_MAX) st = attempt(3, true);
+  let st = attempt(...(opts.tiers[0] as [number, boolean]));
+  for (const t of opts.tiers.slice(1)) {
+    if (st.M.length <= opts.max) break;
+    if (!flags.includes("matrix_overflow")) flags.push("matrix_overflow");
+    st = attempt(...t);
+  }
   // 4. добір до N за r
   const all = lenses.flatMap((l) => tasks.map((t) => [l.id, t.task_id] as [string, string]));
   while (st.M.length < N) { const p = st.bestPair(all); if (!p) break; st.add(p); }
@@ -110,24 +117,24 @@ export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly T
   }
   const entries: MatrixEntry[] = [...st.M].sort(cmp).map(([l, t]) => ({ lens_id: l, task_id: t, level: "snapshot", relevance: round(r(l, t)), device: device.get(`${l}|${t}`) as Device }));
   const res: MatrixResult = { entries, flags, violations: [], important_task_ids: impIds, n_target: N };
-  res.violations = validateMatrix(res, lenses, tasks);
+  res.violations = validateMatrix(res, lenses, tasks, opts);
   return res;
 }
 
 /** Перевірка покриття: порожній список = OK (§10.2). Порушення не ховаються — їх повертає функція. */
-export function validateMatrix(m: Pick<MatrixResult, "entries" | "flags">, lenses: readonly BehavioralLens[], tasks: readonly Task[]): string[] {
+export function validateMatrix(m: Pick<MatrixResult, "entries" | "flags">, lenses: readonly BehavioralLens[], tasks: readonly Task[], opts: MatrixOptions = FULL_MATRIX): string[] {
   const out: string[] = [];
   const E = m.entries;
   const lensById = new Map(lenses.map((l) => [l.id, l]));
-  if (E.length < MATRIX_MIN || E.length > MATRIX_MAX) out.push(`size:${E.length} поза ${MATRIX_MIN}–${MATRIX_MAX}`);
+  if (E.length < opts.min || E.length > opts.max) out.push(`size:${E.length} поза ${opts.min}–${opts.max}`);
   const seen = new Set<string>();
   for (const e of E) { const k = `${e.lens_id}|${e.task_id}`; if (seen.has(k)) out.push(`duplicate:${k}`); seen.add(k); }
   for (const l of lenses) if (!E.some((e) => e.lens_id === l.id)) out.push(`lens_without_task:${l.id}`);
-  const minLenses = m.flags.includes("matrix_overflow") ? 3 : 4;
+  const minLenses = m.flags.includes("matrix_overflow") ? Math.min(3, opts.minLensesImportant) : opts.minLensesImportant;
   for (const t of tasks.filter(isImportantTask)) {
     const ls = E.filter((e) => e.task_id === t.task_id).map((e) => lensById.get(e.lens_id) as BehavioralLens);
     if (ls.length < minLenses) out.push(`important_task_lenses:${t.task_id}:${ls.length}<${minLenses}`);
-    for (const id of ["P1", "P2"] as PoleId[]) {
+    if (opts.importantPoles) for (const id of ["P1", "P2"] as PoleId[]) {
       const pole = poleById(id);
       if (lenses.some((l) => pole.pred(l)) && !ls.some((l) => pole.pred(l))) out.push(`important_task_pole:${t.task_id}:${id}`);
     }
@@ -135,7 +142,7 @@ export function validateMatrix(m: Pick<MatrixResult, "entries" | "flags">, lense
   }
   for (const id of ["P3", "P4", "P5", "P6"] as PoleId[]) {
     const pole = poleById(id);
-    if (lenses.some((l) => pole.pred(l)) && E.filter((e) => pole.pred(lensById.get(e.lens_id) as BehavioralLens)).length < 2) out.push(`pole_sessions:${id}<2`);
+    if (lenses.some((l) => pole.pred(l)) && E.filter((e) => pole.pred(lensById.get(e.lens_id) as BehavioralLens)).length < opts.poleSessions) out.push(`pole_sessions:${id}<${opts.poleSessions}`);
   }
   if (E.length > 0 && E.filter((e) => e.device === "mobile").length / E.length < 0.4) out.push("mobile_share<40%");
   return out;
@@ -148,7 +155,8 @@ export function toScenarios(auditRunId: string, m: readonly Pick<MatrixEntry, "l
 // ------------------------------------------------------------------ §10.3 журнали
 export interface JournalPick extends Omit<MatrixEntry, "level"> { level: "journey"; slot: number | "adaptive"; flags: string[] }
 
-export function selectFixedJournals(lenses: readonly BehavioralLens[], tasks: readonly Task[]): { journals: JournalPick[]; flags: string[] } {
+/** `maxJournals` (швидкий аудит, DEV-93): лише перші N слотів за пріоритетом слотів (1 — головне завдання); типово всі 8 */
+export function selectFixedJournals(lenses: readonly BehavioralLens[], tasks: readonly Task[], maxJournals = 8): { journals: JournalPick[]; flags: string[] } {
   const sid = new Map(lenses.map((l) => [l.id, lensStableId(l)]));
   const taskById = new Map(tasks.map((t) => [t.task_id, t]));
   const used = new Set<string>();
@@ -184,6 +192,7 @@ export function selectFixedJournals(lenses: readonly BehavioralLens[], tasks: re
   slot(7, "desktop", (p) => p.t.task_type === "choose_between", undefined, undefined, (p) => (p.l as unknown as { comparison_tendency: number }).comparison_tendency);
   slot(8, "mobile", (p) => (p.t.task_type === "delivery" || p.t.task_type === "total_price") && (!s4 || p.l.id !== s4.l.id));
   void taskById; void POLES;
+  if (maxJournals < journals.length) return { journals: journals.slice(0, Math.max(0, maxJournals)), flags: [...flags, `journals_capped:${Math.max(0, maxJournals)}`] };
   return { journals, flags };
 }
 

@@ -6,6 +6,12 @@ export type ProviderKind = z.infer<typeof ProviderKind>;
 
 export const MAX_AUDIT_TOKENS_MIN = 10_000;
 export const MAX_AUDIT_TOKENS_MAX = 5_000_000;
+/** DEV-92: паралельні LLM-виклики (snapshot-сесії). Типово 3; для claude_cli — 2 (підписка/CLI; один процес на виклик). */
+export const LLM_CONCURRENCY_MIN = 1;
+export const LLM_CONCURRENCY_MAX = 6;
+export const LLM_CONCURRENCY_DEFAULT = 3;
+export const LLM_CONCURRENCY_DEFAULT_CLAUDE_CLI = 2;
+export const defaultLlmConcurrency = (kind: string): number => (kind === "claude_cli" ? LLM_CONCURRENCY_DEFAULT_CLAUDE_CLI : LLM_CONCURRENCY_DEFAULT);
 
 /**
  * base_url лише для openai_compatible: http(s), без userinfo. Локальні адреси (http://127.0.0.1:11434) дозволені саме тут — це явний вибір
@@ -25,6 +31,7 @@ export const AiSettingsInput = z.object({
   base_url: AiBaseUrl.optional(),
   api_key: z.string().min(1).max(4096).optional(),
   max_audit_tokens: z.number().int().min(MAX_AUDIT_TOKENS_MIN).max(MAX_AUDIT_TOKENS_MAX).optional(),
+  llm_concurrency: z.number().int().min(LLM_CONCURRENCY_MIN).max(LLM_CONCURRENCY_MAX).optional(),
 }).strict().superRefine((v, ctx) => {
   if (v.base_url !== undefined && v.kind !== "openai_compatible") ctx.addIssue({ code: "custom", path: ["base_url"], message: "base_url лише для openai_compatible" });
   if (v.kind === "openai_compatible" && v.base_url === undefined) ctx.addIssue({ code: "custom", path: ["base_url"], message: "base_url обов'язковий для openai_compatible" });
@@ -58,6 +65,7 @@ export const AiSettingsView = z.object({
   /** «…abcd» — останні 4 символи; лише для ключа, збереженого через UI */
   key_hint: z.string().optional(),
   max_audit_tokens: z.number().int(),
+  llm_concurrency: z.number().int().min(LLM_CONCURRENCY_MIN).max(LLM_CONCURRENCY_MAX),
   /** null — налаштувань через UI ще не збережено */
   updated_at: z.string().nullable(),
   last_check: AiCheckResult.optional(),
