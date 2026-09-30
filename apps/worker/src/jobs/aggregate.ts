@@ -66,8 +66,9 @@ export async function aggregateJob(rt: Runtime, job: Job<JobData>): Promise<void
   const llmR = await llmResultsFromDb(rt.pool, id, art, cur);
   const scored = computeFindings(art, llmR?.llm ?? null);
   // DEV-98: тексти знахідок від моделі (finding-aggregator-v1 → recommendation-v1) — до запису знахідок; кожна група комітиться окремо
-  const ft = llmR ? await runFindingTexts(rt, cur, art, llmR.llm, scored.findings) : null;
-  const ftNote = ft && ft.eligible ? `; тексти знахідок LLM: ${ft.supported + ft.skipped_existing} з ${ft.eligible} груп (not_supported ${ft.not_supported}, збій ${ft.failed}${ft.budget_limited ? ", зупинено бюджетом" : ""})` : "";
+  // fail-open: будь-який збій текстів (провайдер, тайм-аут, помилка коду) не блокує знахідки й звіт — лише кодові тексти
+  const ft = llmR ? await runFindingTexts(rt, cur, art, llmR.llm, scored.findings).catch((e: unknown) => { rt.log("warn", "finding texts: збій етапу, кодові тексти", { audit: id, err: String((e as Error).message).slice(0, 200) }); return null; }) : null;
+  const ftNote = ft && ft.eligible ? `; тексти знахідок LLM: ${ft.supported + ft.skipped_existing} з ${ft.eligible} груп (not_supported ${ft.not_supported}, збій ${ft.failed}${ft.timed_out ? `, тайм-аут ${ft.timed_out}` : ""}${ft.deadline_hit ? ", ліміт часу" : ""}${ft.budget_limited ? ", зупинено бюджетом" : ""})` : "";
   await withTx(rt.pool, async (c) => {
     if (llmR && llmR.llm.evidence.length) await insertEvidence(c, id, llmR.llm.evidence as unknown as EvidenceInput[]);
     await replaceFindings(c, id, findingRows(scored));

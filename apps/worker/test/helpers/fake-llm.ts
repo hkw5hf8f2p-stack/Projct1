@@ -17,7 +17,7 @@ export class DynamicFake implements LlmProvider {
    * richFrictions (DEV-98): friction як у живої моделі — цитата + коментар і `NOT_FOUND: …` з числом (маскується кодом), а не лише голою цитатою.
    * finding-aggregator-v1 / recommendation-v1 відповідають завжди (текст без цифр, лише плейсхолдер {page_count}).
    */
-  constructor(private readonly o: { frictionLensIds: readonly string[]; hostileLensId?: string; richFrictions?: boolean }) {}
+  constructor(private readonly o: { frictionLensIds: readonly string[]; hostileLensId?: string; richFrictions?: boolean; /** контроль fail-open: тексти знахідок падають (error) або висять (hang) */ findingTexts?: "ok" | "error" | "hang" }) {}
 
   private quote(req: LlmRequest): string | null {
     const text = req.content.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n");
@@ -48,14 +48,17 @@ export class DynamicFake implements LlmProvider {
         } else json = { ...base, verdict: "no_issue", success: "true", final_summary: "Сторінка підходить для задачі.", frictions: [] };
         break;
       }
-      case "finding-aggregator-v1": {
+      case "finding-aggregator-v1":
+      case "recommendation-v1": {
+        if (this.o.findingTexts === "error") throw new Error("DynamicFake: HTTP 500 на тексти знахідок (контроль)");
+        if (this.o.findingTexts === "hang") return new Promise<ProviderResult>(() => undefined);
+        if (req.prompt_id === "recommendation-v1") { json = { verdict: "supported", recommended_change: "Покажіть умови доставки й повернення поруч із ціною та кнопкою покупки.", how_to_validate: "Порівняйте переходи до кошика до й після зміни; ефект наперед не прогнозуйте." }; break; }
         const text = req.content.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n");
         const cat = /"category":\s*"([a-z_]+)"/.exec(text)?.[1] ?? "other";
         const T: Record<string, string> = { shipping: "Синтетичні лінзи не бачать вартості доставки біля ціни", missing_information: "Синтетичним лінзам бракує строків доставки й умов повернення" };
         json = { verdict: "supported", title: T[cat] ?? "Синтетичні лінзи вагалися на цьому кроці", problem: "Синтетичні лінзи не знайшли потрібних умов на сторінках групи; сторінок: {page_count}.", why_it_matters: "Без цих умов складно вирішити, чи купувати зараз." };
         break;
       }
-      case "recommendation-v1": json = { verdict: "supported", recommended_change: "Покажіть умови доставки й повернення поруч із ціною та кнопкою покупки.", how_to_validate: "Порівняйте переходи до кошика до й після зміни; ефект наперед не прогнозуйте." }; break;
       default: throw new Error(`DynamicFake: невідомий промпт ${req.prompt_id}`);
     }
     return { json, input_tokens: estimateTextTokens(req.system + JSON.stringify(req.content.filter((p) => p.type === "text"))), output_tokens: estimateTextTokens(JSON.stringify(json)), provider: "fake", model: this.model, latency_ms: 0, synthetic: true };

@@ -51,12 +51,15 @@ function startMock(): Promise<void> {
     let b = "";
     req.on("data", (d) => (b += d));
     req.on("end", () => {
-      const body = JSON.parse(b || "{}") as { model?: string; text?: { format?: { name?: string } } };
-      const fmt = body.text?.format?.name ?? "";
+      // DEV-89: openai_compatible з власною базою ходить у /v1/chat/completions (response_format.json_schema.name); перевірка ключа — /v1/responses
+      const body = JSON.parse(b || "{}") as { model?: string; text?: { format?: { name?: string } }; response_format?: { json_schema?: { name?: string } } };
+      const chat = req.url === "/v1/chat/completions";
+      const fmt = (chat ? body.response_format?.json_schema?.name : body.text?.format?.name) ?? "";
       seen.push({ auth: req.headers["authorization"], model: body.model ?? "", format: fmt });
       const make = BY_FORMAT[fmt];
-      if (req.url !== "/v1/responses" || !make) { res.writeHead(404, { "content-type": "application/json" }).end(JSON.stringify({ error: `mock: ${req.url} ${fmt}` })); return; }
+      if ((req.url !== "/v1/responses" && !chat) || !make) { res.writeHead(404, { "content-type": "application/json" }).end(JSON.stringify({ error: `mock: ${req.url} ${fmt}` })); return; }
       const out = JSON.stringify(make());
+      if (chat) { res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ choices: [{ message: { content: out }, finish_reason: "stop" }], usage: { prompt_tokens: 100, completion_tokens: Math.ceil(out.length / 4) } })); return; }
       res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ output: [{ type: "message", content: [{ type: "output_text", text: out }] }], usage: { input_tokens: 100, output_tokens: Math.ceil(out.length / 4) } }));
     });
   });

@@ -9,7 +9,7 @@ import { Q, advanceStatus, enqueue, setStage, txDb, type AuditRow, type JobData,
 import { QUICK_MATRIX, buildScenarioMatrix, buildSiteProfile, generateLenses, generateTasks, type StageResult } from "@sitelens/llm";
 import { MODE_PROFILES } from "@sitelens/schemas";
 import type { Runtime } from "../runtime.js";
-import { liveAudit } from "./common.js";
+import { isFinalAttempt, liveAudit } from "./common.js";
 import { commitStage, loadLenses, loadPageInputs, loadProfile, loadTasks, withTx, writeLenses, writeProfile, writeScenarios, writeTasks } from "../llm-store.js";
 
 interface Spec { stage: "site_profile" | "tasks" | "lenses" | "scenario_matrix"; status: "profiling" | "generating_lenses" | "running_scenarios"; next: QueueName; upstream: Array<"site_profile" | "tasks" | "lenses"> }
@@ -26,7 +26,20 @@ export async function llmStageJob(rt: Runtime, name: string, job: Job<JobData>):
   const audit = await liveAudit(rt, id);
   if (!audit) return;
   await advanceStatus(rt.pool, id, spec.status);
-  if (!audit.stage_status[spec.stage]) await runStage(rt, audit, spec);
+  if (!audit.stage_status[spec.stage]) {
+    try {
+      await runStage(rt, audit, spec);
+    } catch (e) {
+      // §47 / fail-open: помилка провайдера (HTTP 4xx, мережа, replay-промах) на ОСТАННІЙ спробі не лишає аудит завислим у «profiling»:
+      // етап failed з нейтральною причиною (текст провайдера — лише в лог), далі — як при skip (нижчі етапи побачать upstream≠done, матриця → aggregate)
+      if (!isFinalAttempt(name as QueueName, job)) throw e;
+      rt.log("error", "LLM-етап: остання спроба не вдалась, етап failed, аудит іде далі", { audit: id, stage: spec.stage, err: String((e as Error).message).slice(0, 300) });
+      await withTx(rt.pool, async (c) => {
+        await setStage(c, id, spec.stage, "failed", "виклик моделі не вдався після повторів (деталі — у журналі worker)");
+        if (spec.stage === "scenario_matrix") await enqueue(rt.boss, Q.aggregate, { auditRunId: id }, { db: txDb(c) });
+      });
+    }
+  }
   if (spec.stage === "scenario_matrix") return; // веєр або aggregate ставить сам runStage/fanOut атомарно
   await enqueue(rt.boss, spec.next, { auditRunId: id });
 }
