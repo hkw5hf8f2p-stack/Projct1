@@ -22,7 +22,7 @@ const issues = (r: unknown): string[] => {
   return p.success ? [] : p.error.issues.map((i) => i.message);
 };
 
-describe("DEV-84: audit.llm_provider", () => {
+describe("DEV-86: audit.llm_provider", () => {
   it("приймає всі провайдери (openai_compatible, claude_cli, session…) і null; відхиляє невідоме", () => {
     for (const p of ["anthropic", "openai", "openai_compatible", "claude_cli", "replay", "session", null]) {
       const r = clone(); (r.audit as { llm_provider: string | null }).llm_provider = p;

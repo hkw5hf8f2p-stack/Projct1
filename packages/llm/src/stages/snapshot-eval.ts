@@ -48,7 +48,7 @@ export function validateSnapshotEval(v: SnapshotEvalLlm, tileIds: readonly strin
   return [...new Set(out)];
 }
 
-export async function evaluateSnapshot(ctx: StageContext, input: SnapshotInput): Promise<StageResult<{ session: SnapshotSessionOut; verdict: SnapshotEvalLlm["verdict"]; prompt_id: string }>> {
+export async function evaluateSnapshot(ctx: StageContext, input: SnapshotInput): Promise<StageResult<{ session: SnapshotSessionOut; verdict: SnapshotEvalLlm["verdict"]; prompt_id: string; /** для перевірок ін'єкції (S7-B): у звіт не йде */ likely_next_action: string }>> {
   return guardStage("snapshot_sessions", snapshotEvaluatorV1.id, ctx, async () => {
     const tiles = input.tiles.slice(0, MAX_TILES_PER_CALL);
     const truncated = input.tiles_total > tiles.length;
@@ -73,6 +73,6 @@ export async function evaluateSnapshot(ctx: StageContext, input: SnapshotInput):
       frictions: v.frictions.map((f) => ({ category: f.category, claim_kind: f.claim_kind, severity: f.severity, evidence: f.evidence, page_url: input.page.url })),
       positive_signals: v.positive_signals, uncertainties: [...v.uncertainties, ...(truncated ? ["tiles_truncated"] : [])], final_summary: v.final_summary, pages_seen: [path],
     };
-    return done("snapshot_sessions", snapshotEvaluatorV1.id, { session, verdict: v.verdict, prompt_id: snapshotEvaluatorV1.id }, r.calls, truncated ? ["tiles_truncated"] : []);
+    return done("snapshot_sessions", snapshotEvaluatorV1.id, { session, verdict: v.verdict, prompt_id: snapshotEvaluatorV1.id, likely_next_action: v.likely_next_action }, r.calls, truncated ? ["tiles_truncated"] : []);
   });
 }

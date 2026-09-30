@@ -12,6 +12,7 @@ export * from "./schemas.js";
 export * from "./page-input.js";
 export * from "./no-llm.js";
 export * from "./guards/text.js";
+export * from "./guards/ai-instruction.js";
 export * from "./guards/agent-decision.js";
 export * from "./lenses/select.js";
 export * from "./matrix/build.js";

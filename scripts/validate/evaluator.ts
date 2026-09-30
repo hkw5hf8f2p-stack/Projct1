@@ -10,6 +10,7 @@
  *   unstable           — honest + у кожному прогоні додає власний «шум» (інша категорія/сторінка) з високою впевненістю (сценарій б)
  *   silent             — завжди `no_issue` (LLM-лише = 0/3, сценарій г)
  */
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { BehavioralLens } from "../../packages/schemas/src/index.js";
 import {
@@ -175,7 +176,7 @@ export interface EvalRunOptions {
    * S7 без API (DEV-82): замість fake-оцінювача — транспорт `session`. `export`/`import` = SessionProvider (запит → requests/, відповідь → та сама
    * обробка, що й API, запис у кеш E5); `replay` = лише кеш сесії, промах — гучна ReplayMissError. bypass тут не діє: E2 = окремий namespace на прогін.
    */
-  session?: { root: string; model: string; namespace: string; scenario: string; phase: "session" | "replay" };
+  session?: { root: string; model: string; namespace: string; scenario: string; phase: "session" | "replay"; /** відтворення за логічним ключем (див. LogicalKeyReplayProvider) */ by_logical_key?: boolean };
 }
 export interface EvalRun {
   sessions: SnapshotSessionOut[];
@@ -191,9 +192,43 @@ export interface EvalRun {
 }
 
 export type SessionSpec = NonNullable<EvalRunOptions["session"]>;
+
+/**
+ * Відтворення записаних відповідей сесійної моделі за ЛОГІЧНИМ ключем (prompt_id, сторінка, лінза, задача, крок, attempt), а не за хешем запиту E5.
+ * Навіщо (DEV-84): прогін A записано ДО виправлення промпта (A11Y-плейсхолдер), тож його ключі E5 не збігаються з поточними запитами — replay за хешем дав би промах.
+ * Відповіді ті самі (байт у байт із кешу), але проходять ТУ САМУ обробку, що й в API (LlmClient: JSON → Zod → semantic/guard → repair) поточним кодом.
+ * Це НЕ доказ, що модель відповіла б так само на виправлений промпт: лише перерахунок ПОТОЧНИМ кодом (guard, integrate, метрики) відповідей A.
+ */
+export class LogicalKeyReplayProvider implements LlmProvider {
+  readonly name = "replay" as const;
+  private readonly byKey = new Map<string, { entry: Record<string, unknown>; model: string }>();
+  constructor(root: string, readonly model: string, namespace: string) {
+    const dir = path.join(root, "cache", namespace);
+    if (!existsSync(dir)) return;
+    for (const f of readdirSync(dir)) {
+      if (!f.endsWith(".json")) continue;
+      const e = JSON.parse(readFileSync(path.join(dir, f), "utf8")) as { model?: string; provider?: string; request_summary?: { logical_key?: Record<string, unknown> } };
+      const lk = e.request_summary?.logical_key;
+      if (e.provider !== "session" || e.model !== model || !lk) continue;
+      this.byKey.set(JSON.stringify([lk["prompt_id"], lk["page_url"], lk["lens_id"], lk["task_id"], lk["step"] ?? 0, lk["attempt"] ?? 0]), { entry: e as Record<string, unknown>, model: e.model });
+    }
+  }
+  get size(): number { return this.byKey.size; }
+  async complete(req: LlmRequest): Promise<ProviderResult> {
+    const k = req.logical_key;
+    const hit = this.byKey.get(JSON.stringify([k.prompt_id, k.page_url, k.lens_id, k.task_id, k.step ?? 0, k.attempt ?? 0]));
+    if (!hit) throw new ReplayMissError(`replay за логічним ключем: немає відповіді для ${k.prompt_id} ${String(k.page_url)} ${String(k.lens_id)} attempt=${k.attempt ?? 0}`, JSON.stringify(k));
+    const e = hit.entry as { response: unknown; raw_text?: string; input_tokens: number; output_tokens: number };
+    return { json: e.response, ...(e.raw_text !== undefined ? { raw_text: e.raw_text } : {}), input_tokens: e.input_tokens, output_tokens: e.output_tokens, provider: "session", model: hit.model, latency_ms: 0, tokens_estimated: true };
+  }
+}
 /** Клієнт транспорту session: phase=session → SessionProvider (запис запитів, обробка відповідей як API, запис у кеш); phase=replay → лише читання кешу */
 export function sessionClient(se: SessionSpec, language: "uk" | "en", maxTokens: number): { client: LlmClient; cache: ReplayCache; provider: SessionProvider | null } {
   const cache = new ReplayCache(new DirStore(path.join(se.root, "cache"), se.phase === "replay"), se.namespace);
+  if (se.by_logical_key) {
+    const provider = new LogicalKeyReplayProvider(se.root, se.model, se.namespace);
+    return { client: new LlmClient({ mode: "fake", provider, budget: new TokenBudget(maxTokens), cache_identity: { provider: "session", model: se.model } }), cache, provider: null };
+  }
   if (se.phase === "replay") {
     return { client: new LlmClient({ mode: "replay", cache, cache_mode: "use", budget: new TokenBudget(maxTokens), cache_identity: { provider: "session", model: se.model } }), cache, provider: null };
   }

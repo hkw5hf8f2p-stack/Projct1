@@ -1,5 +1,5 @@
 /**
- * DEV-84: наскрізний BYO AI на РЕАЛЬНОМУ API (не мок API): Chromium → next dev (rewrites) → Fastify → worker (PostgreSQL, pg-boss, справжній createClientFromEnv) →
+ * DEV-86: наскрізний BYO AI на РЕАЛЬНОМУ API (не мок API): Chromium → next dev (rewrites) → Fastify → worker (PostgreSQL, pg-boss, справжній createClientFromEnv) →
  * локальний мок-сервер OpenAI-сумісного API (Responses, /v1/responses) у цьому тесті. Потік: UI /settings/ai (kind=openai_compatible, base_url мок-сервера, фейковий ключ) → Зберегти →
  * Перевірити (ok) → аудит fixtures/shop → звіт: Overview показує «openai_compatible/<model>»; audit_runs.llm_provider = openai_compatible.
  * Ключ НЕ у БД (усі таблиці + pgboss), НЕ у звіті, НЕ в логах API/worker/next, НЕ в артефактах/replay-кеші; у сховищі секретів — лише шифротекст.
@@ -65,7 +65,7 @@ function startMock(): Promise<void> {
 const up = async () => { try { return (await fetch(`${BASE}/`)).ok; } catch { return false; } };
 
 function walk(dir: string, out: string[] = []): string[] {
-  for (const n of readdirSync(dir)) { const p = path.join(dir, n); statSync(p).isDirectory() ? walk(p, out) : out.push(p); }
+  for (const n of readdirSync(dir)) { const p = path.join(dir, n); if (statSync(p).isDirectory()) walk(p, out); else out.push(p); }
   return out;
 }
 
@@ -137,8 +137,7 @@ describe("BYO AI наскрізно: UI → PUT → check → аудит → з�
     expect(await page.getByTestId("check-ok").innerText()).toContain(MODEL);
     expect(seen.find((s) => s.format === "ok_check"), "check дійшов до мок-сервера").toMatchObject({ auth: `Bearer ${KEY}`, model: MODEL });
 
-    // негативний контроль: перевірка вміє впасти (мок-сервер відкидає невідомий формат → 404 → bad_base_url для openai_compatible)
-    // (через API, щоб не ламати збережені налаштування: тимчасово інший base_url на порт без сервера)
+    // негативний контроль: check вміє впасти (тимчасово base_url на порт без сервера → ok=false із класом з переліку)
     await fetch(`${BASE}/api/settings/ai`, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ kind: "openai_compatible", base_url: "http://127.0.0.1:9", model: MODEL }) });
     const bad = await (await fetch(`${BASE}/api/settings/ai/check`, { method: "POST" })).json() as { ok: boolean; error_class?: string };
     expect(bad.ok).toBe(false);
@@ -169,6 +168,7 @@ describe("BYO AI наскрізно: UI → PUT → check → аудит → з�
     await ctx.close();
 
     // ---- ключ ніде не витікає (артефакт-перевірка, не exit-код)
+    if (process.env["SL_MUTATE_LEAK"]) workerLog.push(`мутація: ${KEY}`); // контроль детектора: тест МАЄ впасти (leaks=["worker-log"])
     const leaks: string[] = [];
     const tables = (await db.pool.query("SELECT table_schema AS s, table_name AS t FROM information_schema.tables WHERE table_schema IN ('public','pgboss') AND table_type = 'BASE TABLE'")).rows as Array<{ s: string; t: string }>;
     let rowsScanned = 0;

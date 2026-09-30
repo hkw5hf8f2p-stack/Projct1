@@ -7,7 +7,7 @@
  */
 import { createHash } from "node:crypto";
 import { CATEGORIES, Evidence, buildFindingKey, isClaimKindFor, type SyntheticSession } from "@sitelens/schemas";
-import { norm } from "@sitelens/llm";
+import { detectAiInstruction, norm } from "@sitelens/llm";
 import type { SessionObs } from "@sitelens/scoring";
 import type { LlmResults, PageIn, VP } from "./types.js";
 
@@ -20,9 +20,18 @@ export interface SessionResultIn {
   /** шляхи сторінок, які сесія бачила (журнал / тайли) */
   pages_seen: string[];
 }
-export type FrictionRejectReason = "unknown_page" | "no_verifiable_evidence" | "quote_not_on_page" | "page_not_captured";
+export type FrictionRejectReason = "unknown_page" | "no_verifiable_evidence" | "quote_not_on_page" | "page_not_captured" | "injection_text";
 export interface IntegrationRejection { session_id: string; index: number; reason: FrictionRejectReason }
-export interface Integration { evidence: Evidence[]; sessions: SessionObs[]; rejected: IntegrationRejection[] }
+/**
+ * Код-шаблон замість цитати-ін'єкції (S7-B, DEV-84): на сторінці є текст, схожий на інструкцію для AI-асистента (prompt injection).
+ * Тексту тут НЕМАЄ — лише сторінка й ідентифікатори спрацьованих правил; у звіт він не потрапляє дослівно.
+ */
+export interface InjectionNotice { page_path: string; page_url: string; rules: string[]; sessions: number }
+export interface Integration { evidence: Evidence[]; sessions: SessionObs[]; rejected: IntegrationRejection[]; injection_notices: InjectionNotice[] }
+export interface IntegrateOptions {
+  /** false — лише негативний контроль тестів/validate («до фіксу»); у продукті завжди увімкнено */
+  injection_filter?: boolean;
+}
 
 export const pageGroupOf = (type: string, p: string): string => (type === "product" || type === "category" ? type : p.replace(/(.)\/$/, "$1"));
 const QUOTE_RE = /"([^"]{3,300})"|«([^»]{3,300})»|“([^”]{3,300})”/gu;
@@ -34,7 +43,9 @@ export function extractQuotes(evidence: string): string[] {
 
 const pageCorpusOf = (p: PageIn): string => norm(Object.values(p.captures).map((c) => c?.visible_text ?? "").join("\n"));
 
-export function integrateSessions(input: { sessions: readonly SessionResultIn[]; pages: readonly PageIn[] }): Integration {
+export function integrateSessions(input: { sessions: readonly SessionResultIn[]; pages: readonly PageIn[] }, opts: IntegrateOptions = {}): Integration {
+  const filterInjection = opts.injection_filter !== false;
+  const notices = new Map<string, { page: PageIn; rules: Set<string>; sessions: Set<string> }>();
   const byPath = new Map(input.pages.map((p) => [p.path, p]));
   const evidence = new Map<string, Evidence>();
   const rejected: IntegrationRejection[] = [];
@@ -47,6 +58,15 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
       if (!page) return void rejected.push({ session_id: s.session_id, index, reason: "unknown_page" });
       const captured = (["D", "M"] as const).some((vp) => page.capture[vp]?.capture_complete !== undefined);
       const quotes = extractQuotes(f.evidence);
+      // доказ-цитата з інструкцією до AI / канаркою / ціллю deny-list не йде у звіт дослівно: friction відкидається, лишається знеособлена примітка (без тексту)
+      if (filterInjection) {
+        const rules = [...new Set([f.evidence, ...quotes].flatMap((t) => detectAiInstruction(t)))];
+        if (rules.length > 0) {
+          const n = notices.get(page.path) ?? { page, rules: new Set<string>(), sessions: new Set<string>() };
+          rules.forEach((r) => n.rules.add(r)); n.sessions.add(s.session_id); notices.set(page.path, n);
+          return void rejected.push({ session_id: s.session_id, index, reason: "injection_text" });
+        }
+      }
       let excerpt: string | undefined;
       if (quotes.length > 0) {
         const corpus = pageCorpusOf(page);
@@ -75,7 +95,8 @@ export function integrateSessions(input: { sessions: readonly SessionResultIn[];
     const uniq = [...new Set(keys)].sort();
     obs.push({ session_id: s.session_id, lens_id: s.lens_id, task_id: s.task_id, level: s.level, success: s.success, pages_seen: [...new Set(s.pages_seen)].sort(), reported_keys: uniq, last_friction_key: keys.length ? (keys[keys.length - 1] as string) : null });
   }
-  return { evidence: [...evidence.values()].sort((a, b) => (a.id < b.id ? -1 : 1)), sessions: obs, rejected };
+  return { evidence: [...evidence.values()].sort((a, b) => (a.id < b.id ? -1 : 1)), sessions: obs, rejected,
+    injection_notices: [...notices.values()].map((n) => ({ page_path: n.page.path, page_url: n.page.url, rules: [...n.rules].sort(), sessions: n.sessions.size })).sort((a, b) => (a.page_path < b.page_path ? -1 : 1)) };
 }
 
 /** мінімальний LlmResults для звіту з результатів сесій (решту етапів — профіль, лінзи — додає викликач) */

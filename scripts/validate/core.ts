@@ -7,13 +7,14 @@
  * усе, що залежить від відповіді живої моделі, має мітку ⏭️ live (OQ-1). Replay доводить обв'язку, не якість.
  */
 import { DirStore, MemoryStore, SESSION_ANSWERED_BY, SESSION_BANNER, loadPagesFromArtifacts, type PageInput } from "../../packages/llm/src/index.js";
-import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
+import { buildReport, integrateSessions, llmResultsFromSessions, loadS1aRun, type AuditArtifacts, type IntegrationRejection, type LlmResults, type SessionResultIn } from "../../packages/reporting/src/index.js";
 import type { Report } from "../../packages/schemas/src/index.js";
 import {
   E1_GATE, E1_RANK_GATE, E2_THRESHOLDS, E3A_LIMITS, E3C_THRESHOLDS, e1, e1Gate, e1RankGate, e2Gate, e2Metrics, e2Validity, e3a, e3c, e4, isLlmOnly, rerankV1,
   type E1RankResult, type E1Result, type E2Gate, type E2Metrics, type E2Validity, type E3aResult, type E3cResult, type E4Result, type VFinding,
 } from "../../packages/scoring/src/index.js";
 import { toVFindings } from "./adapt.js";
+import { formatE1Distribution, runE1Samples } from "./e1-samples.js";
 import { plannedCalls, runSnapshotSessions, type EvalRun, type EvaluatorSpec } from "./evaluator.js";
 
 export const FIXED_TS = "2026-09-30T00:00:00Z";
@@ -63,7 +64,7 @@ export function ablateHints(art: AuditArtifacts): { art: AuditArtifacts; removed
 }
 
 /** S7 (DEV-82): бекенд `session`. phase=session — SessionProvider (export/import, той самий код); phase=replay — лише кеш сесії */
-export interface SessionBackend { root: string; model: string; phase: "session" | "replay" }
+export interface SessionBackend { root: string; model: string; phase: "session" | "replay"; /** replay за логічним ключем (відповіді A записано до виправлення промпта; DEV-84) */ by_logical_key?: boolean }
 /** запити прогону записано в requests/, відповідей ще немає: перевірка не рахується (не PASS/FAIL) */
 export class RunAwaiting extends Error {
   constructor(readonly label: string, readonly awaiting: number, readonly planned: number, readonly requests: string[]) {
@@ -80,6 +81,8 @@ export interface RunResult {
   planned_calls: number;
   budget_limited: boolean;
   friction_rejections: number;
+  /** причини відхилення friction кодом (для діагностики «майже знайшов»; E1-вибірки) */
+  rejections: IntegrationRejection[];
 }
 export interface RunOptions {
   spec: EvaluatorSpec;
@@ -108,7 +111,7 @@ export async function buildRunReport(snap: LoadedSnapshot, label: string, o: Run
   const art: AuditArtifacts = { ...art0, audit: { ...art0.audit, stage_status: { ...art0.audit.stage_status, snapshot_sessions: stage } } };
   const { report } = buildReport(art, llm, { generated_at: FIXED_TS, provenance: { kind: "audit", note: o.session ? `validate; llm_mode=session; ${SESSION_BANNER}` : "validate" }, max_audit_tokens: o.max_audit_tokens });
   return {
-    label, report, findings: toVFindings(report), eval: ev, planned_calls: ev.planned_calls, budget_limited: ev.budget_limited, friction_rejections: integ.rejected.length,
+    label, report, findings: toVFindings(report), eval: ev, planned_calls: ev.planned_calls, budget_limited: ev.budget_limited, friction_rejections: integ.rejected.length, rejections: integ.rejected,
     counters: { cache_read_tokens: report.budget.cache_read_tokens, cache_reads: ev.cache.reads, cache_mode: o.cache_mode, used_tokens: report.budget.used_tokens, llm_calls: report.budget.llm_calls, max_audit_tokens: o.max_audit_tokens },
   };
 }
@@ -181,6 +184,8 @@ export interface ValidateOptions {
   strict_live?: boolean;
   /** S7 (DEV-82): LLM-частина через транспорт session (замість scripted fake) */
   session?: SessionBackend;
+  /** E1: додатково розподіл y/3 по незалежних вибірках (моделі сесії з кешу; лише replay). DEV-84 */
+  e1_samples?: { models: readonly string[] };
   max_validate_tokens?: number;
   max_audit_tokens?: number;
   /** E4: частка від використаних токенів, яку виставляємо як MAX_AUDIT_TOKENS обмеженого прогону */
@@ -248,6 +253,7 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
       // критерій S4 №2 (DEV-76): 7/7 детермінованих у топ-10 ПОВНОГО звіту з гіпотезами; контроль — той самий звіт у порядку scoring-v1
       const rank: E1RankResult = e1RankGate(full.findings);
       const rankV1: E1RankResult = e1RankGate(rerankV1(full.findings));
+      const dist = opts.e1_samples && opts.session ? await runE1Samples({ shop, root: opts.session.root, models: opts.e1_samples.models, meter, max_audit_tokens: maxAudit, primary: { model: opts.session.model, y: rAbl.llm.y } }) : null;
       const status: Status = detOk && rank.pass && (!opts.strict_live || totalOk) ? "PASS" : "FAIL";
       const rankLine = (r: E1RankResult) => r.ranks.map((x) => `№${x.id}→${x.rank ?? "—"}`).join(" ");
       checks.push({
@@ -261,9 +267,10 @@ export async function runValidation(opts: ValidateOptions): Promise<ValidateResu
           `опорні детектори №1/№3/№4 (${SUPPORT_HINT_DETECTORS.join(", ")}) у S1a НЕ реалізовані → ablation-arm ≡ full-arm за побудовою (прибрано ${abl.removed}); механізм абляції перевірено тестом`,
           `непередбачені знахідки (не гейт): ${rFull.unexpected.length ? rFull.unexpected.join(", ") : "немає"}`,
           `не вимірюється тут: 7 мутантів мовчать і двійник — \`pnpm run audit:fixture\` / S1a (E1, SCORING_SPEC §8.1)`,
+          ...(dist ? formatE1Distribution(dist) : []),
         ],
         live_deferred: [`E1_llm=${rAbl.llm.y}/3 і сума ${rFull.total}/10: ${LIVE_LLM}`],
-        data: { full: rFull, ablation: rAbl, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk, rank_ok: rank.pass }, rank, rank_v1_control: rankV1 },
+        data: { full: rFull, ablation: rAbl, removed_hints: abl.removed, gate: { det_ok: detOk, total_ok: totalOk, rank_ok: rank.pass }, rank, rank_v1_control: rankV1, ...(dist ? { samples: dist } : {}) },
       });
     }
 

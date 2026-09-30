@@ -33,7 +33,7 @@ export const AiSettingsInput = z.object({
 export type AiSettingsInput = z.infer<typeof AiSettingsInput>;
 
 /**
- * Закритий перелік error_class для POST /api/settings/ai/check (DEV-84). Без тексту помилки провайдера (він може містити секрети).
+ * Закритий перелік error_class для POST /api/settings/ai/check (DEV-86). Без тексту помилки провайдера (він може містити секрети).
  * Мапінг помилок провайдерів на нього — apps/api/src/ai-errors.ts; дзеркало в UI (apps/web/src/lib/ai-settings.ts) звіряється unit-тестом.
  */
 export const AI_CHECK_ERROR_CLASSES = [

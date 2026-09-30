@@ -163,7 +163,7 @@ export function aiEnvOverlay(e: { kind: ProviderKind; model: string | null; base
 }
 
 /**
- * Значення `audit_runs.llm_provider` / `llm_calls.provider` (enum LLM_PROVIDERS, DEV-84) за провайдером клієнта і знімком налаштувань аудиту.
+ * Значення `audit_runs.llm_provider` / `llm_calls.provider` (enum LLM_PROVIDERS, DEV-86) за провайдером клієнта і знімком налаштувань аудиту.
  * Клієнт для openai_compatible називається «openai» (той самий адаптер), тож розрізняє знімок (config_json.ai.kind).
  */
 export function reportProvider(clientProvider: string | null | undefined, aiKind?: string | null): "anthropic" | "openai" | "openai_compatible" | "claude_cli" | "replay" | "session" {

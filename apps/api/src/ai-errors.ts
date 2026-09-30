@@ -1,4 +1,4 @@
-/** Мапінг помилок провайдера на закритий перелік AI_CHECK_ERROR_CLASSES (DEV-84). Повертає лише код: текст помилки може містити секрети. */
+/** Мапінг помилок провайдера на закритий перелік AI_CHECK_ERROR_CLASSES (DEV-86). Повертає лише код: текст помилки може містити секрети. */
 import type { AiCheckErrorClass, ProviderKind } from "@sitelens/schemas";
 import { ConfigError, OutputInvalidError, ProviderAuthError, ProviderHttpError, ProviderTimeoutError } from "@sitelens/llm";
 

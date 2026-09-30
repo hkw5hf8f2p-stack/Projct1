@@ -7,7 +7,7 @@
  * знімки — заморожені planning/qa/artifacts/s7-session/snapshots; результати — s7-session/results-{session,replay}/. Код виходу 10 = AWAITING (чекаємо відповідей).
  * Env: MAX_VALIDATE_TOKENS (жорсткий ліміт на весь запуск; за замовчуванням 2 000 000), MAX_AUDIT_TOKENS (на аудит),
  *      SL_WRITE_ARTIFACTS=1 → planning/qa/artifacts/sprint-4/validate/, інакше os.tmpdir().
- * Прапорці: --strict-live (сума E1 ≥ 8 і LLM-виміри E3c стають гейтом), --checks E1,E2,…, --snapshots shop=…,clean=…,degraded=…
+ * Прапорці: --by-logical-key (replay за логічним ключем: відповіді прогону A записано до виправлення промпта), --e1-samples (розподіл E1 y/3 по всіх незалежних вибірках кешу), --out <dir> (куди писати артефакти), --strict-live (сума E1 ≥ 8 і LLM-виміри E3c стають гейтом), --checks E1,E2,…, --snapshots shop=…,clean=…,degraded=…
  * Код виходу: 0 PASS, 1 FAIL/INVALID, 2 зупинено MAX_VALIDATE_TOKENS, 3 провайдер не підтримано.
  */
 import { mkdirSync } from "node:fs";
@@ -15,6 +15,7 @@ import path from "node:path";
 import { artifactDir } from "./artifact-dir.js";
 import { DEFAULT_MAX_AUDIT_TOKENS, DEFAULT_MAX_VALIDATE_TOKENS, formatResult, runValidation, type CheckId } from "./validate/core.js";
 import { auditSnapshots, type SnapshotDirs } from "./validate/snapshots.js";
+import { discoverSessionModels } from "./validate/e1-samples.js";
 import { S7_ROOT, s7SnapshotDirs, sessionBackend, writeValidateArtifacts } from "./validate/s7.js";
 
 const arg = (n: string): string | undefined => {
@@ -40,7 +41,8 @@ if (provider !== "fake" && !sessionPhase) {
   process.exit(3);
 }
 
-const base = sessionPhase ? path.join(S7_ROOT, `results-${sessionPhase === "replay" ? "replay" : "session"}`) : artifactDir("sprint-4/validate");
+const outArg = arg("--out");
+const base = outArg ? path.resolve(outArg) : sessionPhase ? path.join(S7_ROOT, `results-${sessionPhase === "replay" ? "replay" : "session"}`) : artifactDir("sprint-4/validate");
 mkdirSync(base, { recursive: true });
 let dirs: SnapshotDirs & { injection?: string };
 const given = arg("--snapshots");
@@ -57,7 +59,8 @@ if (sessionPhase) {
 const checks = arg("--checks")?.split(",") as CheckId[] | undefined;
 const result = await runValidation({
   snapshots: { shop: dirs.shop, clean: dirs.clean, ...(dirs.degraded ? { degraded: dirs.degraded } : {}), ...(dirs.injection ? { injection: dirs.injection } : {}) },
-  checks, ...(sessionPhase ? { session: sessionBackend(sessionPhase) } : {}),
+  checks, ...(sessionPhase ? { session: { ...sessionBackend(sessionPhase), ...(process.argv.includes("--by-logical-key") ? { by_logical_key: true } : {}) } } : {}),
+  ...(sessionPhase === "replay" && process.argv.includes("--e1-samples") ? { e1_samples: { models: discoverSessionModels(S7_ROOT) } } : {}),
   strict_live: process.argv.includes("--strict-live"),
   max_validate_tokens: num(process.env["MAX_VALIDATE_TOKENS"], DEFAULT_MAX_VALIDATE_TOKENS),
   max_audit_tokens: num(process.env["MAX_AUDIT_TOKENS"], DEFAULT_MAX_AUDIT_TOKENS),

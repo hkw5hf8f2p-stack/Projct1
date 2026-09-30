@@ -103,7 +103,7 @@ export function OverviewTab() {
             <span className="muted small">{t("overview.model")}</span>
             <span className="stat-v">
               {report.audit.llm_model || report.audit.llm_provider ? (
-                /* DEV-84: llm_provider покриває anthropic|openai|openai_compatible|claude_cli|replay|session; claude_cli без LLM_MODEL → лише провайдер */
+                /* DEV-86: llm_provider покриває anthropic|openai|openai_compatible|claude_cli|replay|session; claude_cli без LLM_MODEL → лише провайдер */
                 <Measured cls="OBSERVED">
                   <span className="mono" data-testid="ov-model-value">{[report.audit.llm_provider, report.audit.llm_model].filter(Boolean).join("/")}</span>
                 </Measured>

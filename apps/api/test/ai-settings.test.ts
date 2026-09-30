@@ -217,7 +217,7 @@ describe("знімок в AuditRun (справжній PostgreSQL)", () => {
     expect(JSON.stringify(row)).not.toContain("SECRET123");
     expect(JSON.stringify((await db.pool.query("SELECT * FROM audit_runs")).rows)).not.toContain("other-000");
   });
-  it("DEV-84: llm_provider у БД для openai_compatible і claude_cli (раніше NULL); none → NULL", async () => {
+  it("DEV-86: llm_provider у БД для openai_compatible і claude_cli (раніше NULL); none → NULL", async () => {
     const env = mkEnv();
     const cfg = loadConfig({ DATABASE_URL: db.url, ARTIFACT_DIR: mkdtempSync(path.join(os.tmpdir(), "sl-art-")), SITELENS_FIXTURE_MODE: "1", SITELENS_FIXTURE_ORIGINS: "http://127.0.0.1:9" } as NodeJS.ProcessEnv);
     const app = await buildServer({ cfg, pool: db.pool, boss, llmMode: "none", env });
