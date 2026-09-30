@@ -3,47 +3,47 @@
   "canary_hits": 9,
   "hits": [
     {
-      "ts": "2026-09-30T00:05:57.048Z",
+      "ts": "2026-09-30T00:35:14.636Z",
       "method": "GET",
       "url": "/lh-img"
     },
     {
-      "ts": "2026-09-30T00:05:57.049Z",
+      "ts": "2026-09-30T00:35:14.644Z",
       "method": "GET",
       "url": "/lh-css"
     },
     {
-      "ts": "2026-09-30T00:05:57.058Z",
+      "ts": "2026-09-30T00:35:14.649Z",
       "method": "GET",
       "url": "/lh-decimal"
     },
     {
-      "ts": "2026-09-30T00:05:57.085Z",
+      "ts": "2026-09-30T00:35:14.662Z",
       "method": "GET",
       "url": "/lh-fetch"
     },
     {
-      "ts": "2026-09-30T00:05:57.092Z",
+      "ts": "2026-09-30T00:35:14.662Z",
       "method": "GET",
       "url": "/lh-iframe"
     },
     {
-      "ts": "2026-09-30T00:05:57.113Z",
-      "method": "GET",
-      "url": "/lh-redirect"
-    },
-    {
-      "ts": "2026-09-30T00:05:57.132Z",
+      "ts": "2026-09-30T00:35:14.764Z",
       "method": "POST",
       "url": "/lh-beacon"
     },
     {
-      "ts": "2026-09-30T00:05:57.157Z",
+      "ts": "2026-09-30T00:35:14.778Z",
       "method": "UPGRADE",
       "url": "/lh-ws"
     },
     {
-      "ts": "2026-09-30T00:06:00.353Z",
+      "ts": "2026-09-30T00:35:14.793Z",
+      "method": "GET",
+      "url": "/lh-redirect"
+    },
+    {
+      "ts": "2026-09-30T00:35:18.132Z",
       "method": "GET",
       "url": "/lh-css"
     }
@@ -54,7 +54,7 @@
       "method": "GET",
       "host": "clients2.google.com",
       "port": 80,
-      "path": "/time/1/current?cup2key=9:gQDak7A0RC5x4Ojnt_ah1cn6BBEQrNUhPCzz4YsIioQ&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "/time/1/current?cup2key=9:aI_RBxKkyIqUgafdet5MgHXvU6BgtwZsr42pHmTKOTA&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "decision": "deny",
       "reason": "резолв не вдався: ENOTFOUND clients2.google.com",
       "connected_ip": null
@@ -65,7 +65,7 @@
       "host": "www.google.com",
       "port": 443,
       "decision": "unauthorized",
-      "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
+      "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 11155",
       "connected_ip": null,
       "peer_pid": null
     },
@@ -108,6 +108,15 @@
     {
       "via": "connect",
       "method": "CONNECT",
+      "host": "www.google.com",
+      "port": 443,
+      "decision": "deny",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "connected_ip": null
+    },
+    {
+      "via": "connect",
+      "method": "CONNECT",
       "host": "accounts.google.com",
       "port": 443,
       "decision": "deny",
@@ -123,7 +132,7 @@
       "decision": "allow",
       "reason": "усі адреси дозволені; TCP до перевіреної IP",
       "connected_ip": "93.184.216.34",
-      "peer_pid": 3480
+      "peer_pid": 12856
     },
     {
       "via": "connect",
@@ -143,7 +152,7 @@
       "decision": "allow",
       "reason": "усі адреси дозволені; TCP до перевіреної IP",
       "connected_ip": "93.184.216.34",
-      "peer_pid": 3480
+      "peer_pid": 12856
     },
     {
       "via": "connect",
@@ -172,7 +181,7 @@
       "decision": "allow",
       "reason": "усі адреси дозволені; TCP до перевіреної IP",
       "connected_ip": "93.184.216.34",
-      "peer_pid": 3480
+      "peer_pid": 12856
     },
     {
       "via": "connect",
@@ -216,7 +225,7 @@
       "host": "www.google.com",
       "port": 443,
       "decision": "unauthorized",
-      "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
+      "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 11155",
       "connected_ip": null,
       "peer_pid": null
     }

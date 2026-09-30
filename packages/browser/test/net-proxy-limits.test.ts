@@ -29,7 +29,6 @@ let echoPort: number;
 let big: http.Server;
 let bigPort: number;
 let trickle: net.Server;
-let trickleHits = 0;
 let trickleActive = 0;
 let trickleMaxActive = 0;
 const tmp: string[] = [];
@@ -67,7 +66,6 @@ beforeAll(async () => {
   bigPort = (big.address() as AddressInfo).port;
   // TCP-сервер, що шле 1 байт кожні 50 мс без кінця (для maxConnectionMs) і рахує активні з'єднання
   trickle = net.createServer((s) => {
-    trickleHits++;
     trickleActive++;
     trickleMaxActive = Math.max(trickleMaxActive, trickleActive);
     const t = setInterval(() => s.write("x"), 50);

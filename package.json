@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "pnpm@10.33.0",
-  "engines": { "node": ">=22.19" },
+  "engines": {
+    "node": ">=22.19"
+  },
   "scripts": {
     "doctor": "tsx scripts/doctor.ts",
     "doctor:as-sitelens": "SL_PASS_PROXY=1 bash scripts/run-as-sitelens.sh pnpm run doctor",
@@ -17,7 +19,13 @@
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "llm:prompts:lock": "tsx scripts/llm-prompts-lock.ts",
-    "llm:replay:record": "tsx scripts/llm-replay-record.ts"
+    "llm:replay:record": "tsx scripts/llm-replay-record.ts",
+    "db:start": "tsx packages/db/src/cli.ts start",
+    "db:stop": "tsx packages/db/src/cli.ts stop",
+    "db:status": "tsx packages/db/src/cli.ts status",
+    "db:migrate": "tsx packages/db/src/cli.ts migrate",
+    "api": "tsx apps/api/src/index.ts",
+    "worker": "tsx apps/worker/src/index.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

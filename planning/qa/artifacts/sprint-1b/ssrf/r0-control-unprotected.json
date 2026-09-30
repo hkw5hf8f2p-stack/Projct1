@@ -13,12 +13,6 @@
    "run": "R0",
    "canary": "A",
    "method": "GET",
-   "path": "/v19-preload.png"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
    "path": "/v01-img"
   },
   {
@@ -26,6 +20,12 @@
    "canary": "A",
    "method": "GET",
    "path": "/v02-decimal"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v19-preload.png"
   },
   {
    "run": "R0",
@@ -67,79 +67,7 @@
    "run": "R0",
    "canary": "A",
    "method": "GET",
-   "path": "/v09-fullwidth"
-  },
-  {
-   "run": "R0",
-   "canary": "B",
-   "method": "GET",
-   "path": "/v10-idn"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v18-prefetch"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v11-dot"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v12-iframe"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v34-script.js"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v29-r301"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v15-bg.png"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v16-font.woff"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v28-r302"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v31-chain"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
    "path": "/v13-fetch"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "POST",
-   "path": "/v24-beacon"
   },
   {
    "run": "R0",
@@ -157,19 +85,91 @@
    "run": "R0",
    "canary": "A",
    "method": "GET",
+   "path": "/v12-iframe"
+  },
+  {
+   "run": "R0",
+   "canary": "B",
+   "method": "GET",
+   "path": "/v10-idn"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v28-r302"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v09-fullwidth"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v11-dot"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v34-script.js"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v16-font.woff"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v15-bg.png"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v18-prefetch"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
    "path": "/v32-sse"
   },
   {
    "run": "R0",
    "canary": "A",
    "method": "GET",
-   "path": "/v21-location"
+   "path": "/v43-nip"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v33-worker"
   },
   {
    "run": "R0",
    "canary": "A",
    "method": "GET",
    "path": "/v26-sw"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v29-r301"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
+   "method": "GET",
+   "path": "/v31-chain"
   },
   {
    "run": "R0",
@@ -186,8 +186,14 @@
   {
    "run": "R0",
    "canary": "A",
+   "method": "POST",
+   "path": "/v24-beacon"
+  },
+  {
+   "run": "R0",
+   "canary": "A",
    "method": "GET",
-   "path": "/v20-meta"
+   "path": "/v21-location"
   },
   {
    "run": "R0",
@@ -199,19 +205,13 @@
    "run": "R0",
    "canary": "A",
    "method": "GET",
-   "path": "/v33-worker"
+   "path": "/v20-meta"
   },
   {
    "run": "R0",
    "canary": "A",
    "method": "GET",
    "path": "/v23-popup"
-  },
-  {
-   "run": "R0",
-   "canary": "A",
-   "method": "GET",
-   "path": "/v43-nip"
   },
   {
    "run": "R0",
@@ -246,12 +246,12 @@
  ],
  "dns_jobs": {
   "http://v39-dnsctl.test": 1,
-  "http://metadata.google.internal": 1,
   "http://rebind2.test:4196": 1,
   "http://rebind.test:4196": 2,
   "http://mixed.test:4196": 1,
   "http://127.0.0.2.nip.io:4196": 1,
   "http://cname.test:4196": 1,
-  "http://v6only.test:4196": 1
+  "http://v6only.test:4196": 1,
+  "http://metadata.google.internal": 1
  }
 }

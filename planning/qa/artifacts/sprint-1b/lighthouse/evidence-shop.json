@@ -1,15 +1,15 @@
 [
   {
-    "id": "ev_43a8249c5cee",
+    "id": "ev_a82a06371a89",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:44401/",
+    "page_url": "http://127.0.0.1:36339/",
     "self_confirming": false,
     "detector_id": "lighthouse:performance",
     "claim_kind": "lighthouse_category_score",
     "viewport": "desktop",
     "description": "Lighthouse 13.5.0 performance (desktop): 94/100; аудитів із score < 0.9: 1",
-    "artifact_reference": "lighthouse-desktop.json",
+    "artifact_reference": "lighthouse-desktop.json.gz",
     "selector_or_region": {
       "selector": "lhr.categories.performance",
       "region": null
@@ -20,35 +20,35 @@
       "score_100": 94,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 1785,
+      "benchmark_index": 1561,
       "failing_audits": [
         {
           "id": "largest-contentful-paint",
-          "score": 0.77,
+          "score": 0.76,
           "title": "Largest Contentful Paint"
         }
       ],
       "metrics": {
-        "first-contentful-paint": 193.4765,
-        "largest-contentful-paint": 1586.953,
+        "first-contentful-paint": 199.86610000000002,
+        "largest-contentful-paint": 1617.7322,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
-        "speed-index": 193.4765
+        "speed-index": 220.89121549998922
       },
       "run_warnings": []
     }
   },
   {
-    "id": "ev_71212398cd50",
+    "id": "ev_d6e1f7e17491",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:44401/",
+    "page_url": "http://127.0.0.1:36339/",
     "self_confirming": false,
     "detector_id": "lighthouse:accessibility",
     "claim_kind": "lighthouse_category_score",
     "viewport": "desktop",
     "description": "Lighthouse 13.5.0 accessibility (desktop): 100/100; аудитів із score < 0.9: 0",
-    "artifact_reference": "lighthouse-desktop.json",
+    "artifact_reference": "lighthouse-desktop.json.gz",
     "selector_or_region": {
       "selector": "lhr.categories.accessibility",
       "region": null
@@ -59,22 +59,22 @@
       "score_100": 100,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 1785,
+      "benchmark_index": 1561,
       "failing_audits": [],
       "run_warnings": []
     }
   },
   {
-    "id": "ev_f0d0c31125e4",
+    "id": "ev_adb571b340f5",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:44401/",
+    "page_url": "http://127.0.0.1:36339/",
     "self_confirming": false,
     "detector_id": "lighthouse:performance",
     "claim_kind": "lighthouse_category_score",
     "viewport": "mobile",
     "description": "Lighthouse 13.5.0 performance (mobile): 75/100; аудитів із score < 0.9: 1",
-    "artifact_reference": "lighthouse-mobile.json",
+    "artifact_reference": "lighthouse-mobile.json.gz",
     "selector_or_region": {
       "selector": "lhr.categories.performance",
       "region": null
@@ -85,7 +85,7 @@
       "score_100": 75,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 1782.5,
+      "benchmark_index": 1378,
       "failing_audits": [
         {
           "id": "largest-contentful-paint",
@@ -94,26 +94,26 @@
         }
       ],
       "metrics": {
-        "first-contentful-paint": 652.664625,
-        "largest-contentful-paint": 9165.329249999999,
+        "first-contentful-paint": 663.74305,
+        "largest-contentful-paint": 9187.486099999998,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
-        "speed-index": 652.664625
+        "speed-index": 663.74305
       },
       "run_warnings": []
     }
   },
   {
-    "id": "ev_bf0e385ca929",
+    "id": "ev_b8a81774c24f",
     "type": "lighthouse",
     "source_class": "BENCHMARKED",
-    "page_url": "http://127.0.0.1:44401/",
+    "page_url": "http://127.0.0.1:36339/",
     "self_confirming": false,
     "detector_id": "lighthouse:accessibility",
     "claim_kind": "lighthouse_category_score",
     "viewport": "mobile",
     "description": "Lighthouse 13.5.0 accessibility (mobile): 93/100; аудитів із score < 0.9: 1",
-    "artifact_reference": "lighthouse-mobile.json",
+    "artifact_reference": "lighthouse-mobile.json.gz",
     "selector_or_region": {
       "selector": "lhr.categories.accessibility",
       "region": null
@@ -124,7 +124,7 @@
       "score_100": 93,
       "lighthouse_version": "13.5.0",
       "throttling_method": "simulate",
-      "benchmark_index": 1782.5,
+      "benchmark_index": 1378,
       "failing_audits": [
         {
           "id": "button-name",

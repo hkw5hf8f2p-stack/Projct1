@@ -3,5 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "Forward-only SQL migrations (PostgreSQL). Runner and connection — S2."
+  "main": "src/index.ts",
+  "description": "Forward-only SQL migrations (PostgreSQL), pool, embedded-postgres manager.",
+  "dependencies": {
+    "embedded-postgres": "18.4.0-beta.17",
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@types/pg": "8.23.1"
+  },
+  "optionalDependencies": {
+    "@embedded-postgres/linux-x64": "18.4.0-beta.17",
+    "@embedded-postgres/darwin-arm64": "18.4.0-beta.17"
+  }
 }

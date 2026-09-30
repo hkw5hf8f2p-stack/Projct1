@@ -492,6 +492,47 @@ describe("SSRF-вектори наскрізно (S1b, ≥ 25, кожен із �
   });
 });
 
+describe("P-3: рівень проксі — екзотичні цілі CONNECT/HTTP напряму (без браузера)", () => {
+  it("zone-id, 0, скорочені/hex/mapped/крапка, порожні й некоректні цілі → 400/403, 0 TCP до не-публічних; контроль — публічне ім'я → 200", async () => {
+    begin("idle");
+    const proxy = await startEgressProxy({ mode: { kind: "prod" }, resolver, dial, clientAuth: "token" });
+    const raw = (line: string) =>
+      new Promise<number>((resolve) => {
+        const sock = net.connect(proxy.port, "127.0.0.1", () => sock.write(`${line}\r\nProxy-Authorization: ${proxy.authHeader}\r\nHost: x\r\n\r\n`));
+        let buf = "";
+        sock.on("data", (c) => {
+          buf += c.toString("latin1");
+          const m = /^HTTP\/1\.1 (\d{3})/.exec(buf);
+          if (m) {
+            sock.destroy();
+            resolve(Number(m[1]));
+          }
+        });
+        sock.on("error", () => resolve(-1));
+        sock.on("close", () => resolve(/^HTTP\/1\.1 (\d{3})/.exec(buf) ? Number(/^HTTP\/1\.1 (\d{3})/.exec(buf)![1]) : -1));
+      });
+    const targets = [
+      `CONNECT [fe80::1%lo]:${PORT} HTTP/1.1`, `CONNECT [fe80::1%25lo]:${PORT} HTTP/1.1`, `CONNECT 0:${PORT} HTTP/1.1`, `CONNECT 0x7f000002:${PORT} HTTP/1.1`,
+      `CONNECT 127.0.0.2.:${PORT} HTTP/1.1`, `CONNECT [::ffff:7f00:2]:${PORT} HTTP/1.1`, `CONNECT [::]:${PORT} HTTP/1.1`, `CONNECT 127.0.0.2:0 HTTP/1.1`,
+      `CONNECT 127.0.0.2:70000 HTTP/1.1`, `CONNECT :${PORT} HTTP/1.1`, `CONNECT 127.0.0.2 HTTP/1.1`,
+      `GET http://0177.0.0.02:${PORT}/p3 HTTP/1.1`, `GET http://[::ffff:127.0.0.2]:${PORT}/p3 HTTP/1.1`, `GET /relative HTTP/1.1`, `GET gopher://127.0.0.2:${PORT}/ HTTP/1.1`,
+    ];
+    const out: Array<{ target: string; status: number }> = [];
+    try {
+      for (const t of targets) out.push({ target: t, status: await raw(t) });
+      const control = await raw("CONNECT attacker.test:443 HTTP/1.1");
+      const privDials = dialed.filter((d) => d.run === "idle" && d.ip !== FAKE_PUBLIC);
+      save("p3-proxy-exotic-targets.json", { results: out, control_public_connect: control, private_tcp_dials: privDials, canary_hits: hitsOf("idle"), proxy_decisions: brief(proxy.log) });
+      for (const r of out) expect([400, 403], r.target).toContain(r.status);
+      expect(control).toBe(200);
+      expect(privDials).toEqual([]);
+      expect(hitsOf("idle")).toEqual([]);
+    } finally {
+      await proxy.close();
+    }
+  });
+});
+
 // ---- SW-1: обхід Playwright serviceWorkers:'block' (знахідка S1b) ----
 const SW_VARIANTS = ["instance", "proto", "iframe"] as const;
 const swPage = (v: string) => `<!doctype html><title>${v}</title><body><script>

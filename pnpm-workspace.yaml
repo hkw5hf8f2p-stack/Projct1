@@ -6,5 +6,9 @@ packages:
 # Обидва ключі — щоб конфіг не залежав від мажорної версії; який реально діє — див. planning/engineering/toolchain-probe.md
 onlyBuiltDependencies:
   - esbuild
+  - "@embedded-postgres/linux-x64"
+  - "@embedded-postgres/darwin-arm64"
 allowBuilds:
   esbuild: true
+  "@embedded-postgres/linux-x64": true
+  "@embedded-postgres/darwin-arm64": true

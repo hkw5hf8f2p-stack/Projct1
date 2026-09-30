@@ -4,17 +4,17 @@
   "error": null,
   "url": "http://attacker.test/probe.html",
   "form_factor": "desktop",
-  "duration_ms": 8913,
+  "duration_ms": 10413,
   "lighthouse_version": "13.5.0",
   "runtime_error": null,
   "scores": {
     "performance": 1,
     "accessibility": 1
   },
-  "lhr_path": "lighthouse-desktop.json",
+  "lhr_path": "lighthouse-desktop.json.gz",
   "proxy_auth_mode": "peer-or-token",
   "chrome": {
-    "pid": 2219,
+    "pid": 11408,
     "alive_after": false,
     "flags": [
       "--disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument",
@@ -40,7 +40,7 @@
       "--disable-prompt-on-repost",
       "--disable-domain-reliability",
       "--propagate-iph-for-testing",
-      "--proxy-server=http://127.0.0.1:46319",
+      "--proxy-server=http://127.0.0.1:40911",
       "--proxy-bypass-list=<-loopback>",
       "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
       "--webrtc-ip-handling-policy=disable_non_proxied_udp",
@@ -56,7 +56,7 @@
     ],
     "processes": [
       {
-        "pid": 2219,
+        "pid": 11408,
         "type": "browser",
         "no_sandbox": false,
         "env_keys": [
@@ -71,7 +71,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2330,
+        "pid": 11456,
         "type": "utility",
         "no_sandbox": false,
         "env_keys": null,
@@ -79,7 +79,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2337,
+        "pid": 11477,
         "type": "broker",
         "no_sandbox": false,
         "env_keys": [],
@@ -87,7 +87,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2274,
+        "pid": 11419,
         "type": "zygote",
         "no_sandbox": false,
         "env_keys": null,
@@ -95,7 +95,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2283,
+        "pid": 11421,
         "type": "zygote",
         "no_sandbox": false,
         "env_keys": null,
@@ -103,7 +103,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2460,
+        "pid": 11487,
         "type": "renderer",
         "no_sandbox": false,
         "env_keys": null,
@@ -111,7 +111,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2364,
+        "pid": 11486,
         "type": "renderer",
         "no_sandbox": false,
         "env_keys": null,
@@ -119,15 +119,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2363,
-        "type": "renderer",
-        "no_sandbox": false,
-        "env_keys": null,
-        "seccomp": 2,
-        "secret_hits": 0
-      },
-      {
-        "pid": 2346,
+        "pid": 11457,
         "type": "utility",
         "no_sandbox": false,
         "env_keys": null,
@@ -135,7 +127,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2273,
+        "pid": 11417,
         "type": "zygote",
         "no_sandbox": false,
         "env_keys": null,
@@ -143,7 +135,7 @@
         "secret_hits": 0
       },
       {
-        "pid": 2320,
+        "pid": 11443,
         "type": "gpu-process",
         "no_sandbox": false,
         "env_keys": null,
@@ -157,17 +149,17 @@
   "hits": [],
   "attacker_requests": [
     {
-      "ts": "2026-09-30T00:05:42.607Z",
+      "ts": "2026-09-30T00:34:55.209Z",
       "method": "GET",
       "url": "/probe.html"
     },
     {
-      "ts": "2026-09-30T00:05:42.736Z",
+      "ts": "2026-09-30T00:34:55.351Z",
       "method": "GET",
       "url": "/redir-canary"
     },
     {
-      "ts": "2026-09-30T00:05:42.908Z",
+      "ts": "2026-09-30T00:34:55.478Z",
       "method": "GET",
       "url": "/favicon.ico"
     }
@@ -187,7 +179,7 @@
       "method": "GET",
       "host": "clients2.google.com",
       "port": 80,
-      "path": "/time/1/current?cup2key=9:7fNOyNkdA9NLq3xV1RTWuREqwNZ2Ff-x7g74n6buveM&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "/time/1/current?cup2key=9:6RpRJ0XuKXtjQEUmXErDzSoF6JkONGQd1C5h10jo1QA&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "decision": "deny",
       "reason": "резолв не вдався: ENOTFOUND clients2.google.com",
       "connected_ip": null
@@ -205,19 +197,19 @@
     {
       "via": "connect",
       "method": "CONNECT",
-      "host": "accounts.google.com",
+      "host": "www.google.com",
       "port": 443,
       "decision": "deny",
-      "reason": "резолв не вдався: ENOTFOUND accounts.google.com",
+      "reason": "резолв не вдався: ENOTFOUND www.google.com",
       "connected_ip": null
     },
     {
       "via": "connect",
       "method": "CONNECT",
-      "host": "www.google.com",
+      "host": "accounts.google.com",
       "port": 443,
       "decision": "deny",
-      "reason": "резолв не вдався: ENOTFOUND www.google.com",
+      "reason": "резолв не вдався: ENOTFOUND accounts.google.com",
       "connected_ip": null
     },
     {
@@ -256,7 +248,7 @@
       "decision": "allow",
       "reason": "усі адреси дозволені; TCP до перевіреної IP",
       "connected_ip": "93.184.216.34",
-      "peer_pid": 2330
+      "peer_pid": 11456
     },
     {
       "via": "http",
@@ -302,27 +294,6 @@
       "method": "GET",
       "host": "127.0.0.2",
       "port": 4197,
-      "path": "/lh-iframe",
-      "decision": "deny",
-      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
-      "connected_ip": null
-    },
-    {
-      "via": "http",
-      "method": "GET",
-      "host": "attacker.test",
-      "port": 80,
-      "path": "/redir-canary",
-      "decision": "allow",
-      "reason": "усі адреси дозволені; TCP до перевіреної IP",
-      "connected_ip": "93.184.216.34",
-      "peer_pid": 2330
-    },
-    {
-      "via": "http",
-      "method": "GET",
-      "host": "127.0.0.2",
-      "port": 4197,
       "path": "/lh-fetch",
       "decision": "deny",
       "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
@@ -343,7 +314,7 @@
       "method": "GET",
       "host": "127.0.0.2",
       "port": 4197,
-      "path": "/lh-redirect",
+      "path": "/lh-iframe",
       "decision": "deny",
       "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
       "connected_ip": null
@@ -363,6 +334,27 @@
       "host": "127.0.0.2",
       "port": 4197,
       "path": "/lh-beacon",
+      "decision": "deny",
+      "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+      "connected_ip": null
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "attacker.test",
+      "port": 80,
+      "path": "/redir-canary",
+      "decision": "allow",
+      "reason": "усі адреси дозволені; TCP до перевіреної IP",
+      "connected_ip": "93.184.216.34",
+      "peer_pid": 11456
+    },
+    {
+      "via": "http",
+      "method": "GET",
+      "host": "127.0.0.2",
+      "port": 4197,
+      "path": "/lh-redirect",
       "decision": "deny",
       "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
       "connected_ip": null
@@ -394,7 +386,7 @@
       "decision": "allow",
       "reason": "усі адреси дозволені; TCP до перевіреної IP",
       "connected_ip": "93.184.216.34",
-      "peer_pid": 2330
+      "peer_pid": 11456
     },
     {
       "via": "connect",
@@ -448,7 +440,7 @@
       "host": "www.google.com",
       "port": 443,
       "decision": "unauthorized",
-      "reason": "клієнт проксі відхилено: власник сокета не є нащадком worker 1973",
+      "reason": "клієнт проксі відхилено: сокет клієнта не знайдено в /proc/net/tcp",
       "connected_ip": null,
       "peer_pid": null
     }
@@ -464,7 +456,7 @@
       "claim_kind": "lighthouse_category_score",
       "viewport": "desktop",
       "description": "Lighthouse 13.5.0 performance (desktop): 100/100; аудитів із score < 0.9: 0",
-      "artifact_reference": "lighthouse-desktop.json",
+      "artifact_reference": "lighthouse-desktop.json.gz",
       "selector_or_region": {
         "selector": "lhr.categories.performance",
         "region": null
@@ -475,14 +467,14 @@
         "score_100": 100,
         "lighthouse_version": "13.5.0",
         "throttling_method": "simulate",
-        "benchmark_index": 1504,
+        "benchmark_index": 1825,
         "failing_audits": [],
         "metrics": {
-          "first-contentful-paint": 346.35425,
-          "largest-contentful-paint": 408.55425,
+          "first-contentful-paint": 191.07920000000001,
+          "largest-contentful-paint": 382.8342,
           "total-blocking-time": 0,
-          "cumulative-layout-shift": 0.00004223331290313166,
-          "speed-index": 346.35425
+          "cumulative-layout-shift": 0.00007161544523246652,
+          "speed-index": 281.16537466658815
         },
         "run_warnings": []
       }
@@ -497,7 +489,7 @@
       "claim_kind": "lighthouse_category_score",
       "viewport": "desktop",
       "description": "Lighthouse 13.5.0 accessibility (desktop): 100/100; аудитів із score < 0.9: 0",
-      "artifact_reference": "lighthouse-desktop.json",
+      "artifact_reference": "lighthouse-desktop.json.gz",
       "selector_or_region": {
         "selector": "lhr.categories.accessibility",
         "region": null
@@ -508,7 +500,7 @@
         "score_100": 100,
         "lighthouse_version": "13.5.0",
         "throttling_method": "simulate",
-        "benchmark_index": 1504,
+        "benchmark_index": 1825,
         "failing_audits": [],
         "run_warnings": []
       }

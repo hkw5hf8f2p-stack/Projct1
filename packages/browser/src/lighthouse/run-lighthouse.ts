@@ -17,6 +17,7 @@ import { constants as fsc } from "node:fs";
 import { access, mkdir, mkdtemp, readFile, readdir, readlink, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { gzipSync } from "node:zlib";
 import * as ChromeLauncher from "chrome-launcher";
 import lighthouse from "lighthouse";
 import { chromium } from "playwright";
@@ -334,8 +335,9 @@ export async function runLighthouseIsolated(opts: LighthouseRunOptions): Promise
     res.runtime_error = lhr.runtimeError ? `${lhr.runtimeError.code}: ${lhr.runtimeError.message}` : null;
     res.scores = Object.fromEntries(Object.entries(lhr.categories).map(([k, v]) => [k, v.score]));
     await mkdir(opts.outDir, { recursive: true });
-    const name = opts.lhrName ?? `lighthouse-${formFactor}.json`;
-    await writeFile(path.join(opts.outDir, name), JSON.stringify(stripLhrImages(lhr), null, 1) + "\n");
+    // Повний LHR (без зображень) — gzip: ≈ 190 КБ JSON → ≈ 25 КБ (бюджет артефактів S1b ≤ 2 МБ).
+    const name = opts.lhrName ?? `lighthouse-${formFactor}.json.gz`;
+    await writeFile(path.join(opts.outDir, name), gzipSync(JSON.stringify(stripLhrImages(lhr))));
     res.lhr_path = name;
     res.evidence = lighthouseEvidence(lhr, { page_url: opts.url, form_factor: formFactor, artifact_reference: name });
     res.ok = !lhr.runtimeError && res.evidence.length > 0;

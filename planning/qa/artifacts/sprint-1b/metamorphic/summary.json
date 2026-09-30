@@ -1,0 +1,1339 @@
+{
+  "schema": "sitelens-metamorphic-summary/v1",
+  "spec": "planning/eval/page-type-spec.md, planning/eval/page-type-tests.md",
+  "status_note": "регресія того самого автора, НЕ held-out (held-out = twin2 після тегу v2, DEV-33)",
+  "engine": "v2",
+  "base": {
+    "types_match_spec": true,
+    "types": {
+      "home": "homepage",
+      "catalog": "category",
+      "product:aquapro-x200": "product",
+      "product:aquapro-x220": "product",
+      "product:softline-s1": "product",
+      "help": "other",
+      "help-shipping": "info_shipping",
+      "about": "about",
+      "configure:aquapro-x200": "other",
+      "configure:aquapro-x220": "other",
+      "configure:softline-s1": "other"
+    },
+    "s0_detectors": [
+      "axe:button-name",
+      "axe:image-alt",
+      "cta_below_fold",
+      "horizontal_overflow",
+      "oversized_image",
+      "price_first_viewport",
+      "shipping_depth"
+    ],
+    "s0_has_seven": true,
+    "clean_evidence": 0,
+    "pages": 11
+  },
+  "transforms": {
+    "pass": 24,
+    "of": 24,
+    "rows": [
+      {
+        "id": "U1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U3",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U4",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U5",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U6",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U7",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U8",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "U9",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "V1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "V2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "V3",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "E1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "E2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "E3",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "K1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "product:softline-s1": "product",
+          "configure:softline-s1": "other",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "shipping": "info_shipping",
+            "about": "about",
+            "product:wooden-board": "product"
+          }
+        }
+      },
+      {
+        "id": "K2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        },
+        "note": "K2 виконано разом з M10: очікування — №10 = 0, решта S₀∖{№10}"
+      },
+      {
+        "id": "J1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "J2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "J3",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "R1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 12,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other",
+          "cart-view": "cart"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about",
+            "cart-view": "cart"
+          }
+        }
+      },
+      {
+        "id": "R2",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 13,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other",
+          "cart-view": "cart",
+          "checkout-view": "checkout"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about",
+            "cart-view": "cart",
+            "checkout-view": "checkout"
+          }
+        },
+        "note": "бюджет crawl піднято до 14 сторінок (база = 11 із 12; R2 додає кошик і оформлення)"
+      },
+      {
+        "id": "R3",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      },
+      {
+        "id": "T1",
+        "status": "PASS",
+        "checks": {
+          "S_equal_S0": true,
+          "T_equal_T0": true,
+          "new_pages_found": true,
+          "no_2_5_10_on_new_pages": true,
+          "non_get_zero": true,
+          "clean_pair_zero": true
+        },
+        "pages_crawled": 11,
+        "s_diff": {
+          "lost": [],
+          "extra": []
+        },
+        "type_problems": [],
+        "types": {
+          "home": "homepage",
+          "catalog": "category",
+          "product:aquapro-x200": "product",
+          "product:aquapro-x220": "product",
+          "product:softline-s1": "product",
+          "help": "other",
+          "help-shipping": "info_shipping",
+          "about": "about",
+          "configure:aquapro-x200": "other",
+          "configure:aquapro-x220": "other",
+          "configure:softline-s1": "other"
+        },
+        "clean_pair": {
+          "evidence": 0,
+          "detectors": [],
+          "page_types": {
+            "home": "homepage",
+            "catalog": "category",
+            "product:glass-kettle": "product",
+            "product:travel-thermos": "product",
+            "product:wooden-board": "product",
+            "shipping": "info_shipping",
+            "about": "about"
+          }
+        }
+      }
+    ]
+  },
+  "price_formats": {
+    "pass": 11,
+    "of": 11,
+    "rows": [
+      {
+        "format": "2 499 грн",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "2 499 грн",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "2 499 грн",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "₴2499",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "2.499,00 €",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "€2,499.00",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "£2,499",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "$24.99",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "2 499,00 zł",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "2 499 UAH",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 0
+      },
+      {
+        "format": "від 2 499 грн",
+        "status": "PASS",
+        "checks": {
+          "base_S_equal_S0": true,
+          "T_equal_T0": true,
+          "m10_price_first_viewport": true,
+          "m10_others_equal": true,
+          "non_get_zero": true
+        },
+        "m10_price_first_viewport_rows": 8
+      }
+    ]
+  },
+  "control_v1": {
+    "base": {
+      "s0_equal_v2_s0": true,
+      "detectors": [
+        "axe:button-name",
+        "axe:image-alt",
+        "cta_below_fold",
+        "horizontal_overflow",
+        "oversized_image",
+        "price_first_viewport",
+        "shipping_depth"
+      ],
+      "types": {
+        "home": "unknown",
+        "catalog": "category",
+        "product:aquapro-x200": "product",
+        "product:aquapro-x220": "product",
+        "product:softline-s1": "product",
+        "help": "unknown",
+        "help-shipping": "unknown",
+        "about": "unknown",
+        "configure:aquapro-x200": "unknown",
+        "configure:aquapro-x220": "unknown",
+        "configure:softline-s1": "unknown"
+      }
+    },
+    "U5": {
+      "transform": "U5",
+      "engine": "v1",
+      "lost_vs_v1_base": 0,
+      "extra_vs_v1_base": 2,
+      "lost_detectors": [],
+      "lost_key_detectors": [],
+      "extra_rows": [
+        "shipping_depth|catalog|D",
+        "shipping_depth|catalog|M"
+      ],
+      "wrong_page_types": [
+        "catalog: product ≠ category"
+      ],
+      "types": {
+        "home": "unknown",
+        "catalog": "product",
+        "help": "unknown",
+        "help-shipping": "unknown",
+        "about": "unknown",
+        "product:aquapro-x200": "product",
+        "product:aquapro-x220": "product",
+        "product:softline-s1": "product",
+        "configure:aquapro-x200": "unknown",
+        "configure:aquapro-x220": "unknown",
+        "configure:softline-s1": "unknown"
+      },
+      "fails_as_required": true
+    },
+    "U5+V2": {
+      "transform": "U5+V2",
+      "engine": "v1",
+      "lost_vs_v1_base": 20,
+      "extra_vs_v1_base": 0,
+      "lost_detectors": [
+        "cta_below_fold",
+        "price_first_viewport",
+        "shipping_depth"
+      ],
+      "lost_key_detectors": [
+        "cta_below_fold",
+        "price_first_viewport",
+        "shipping_depth"
+      ],
+      "extra_rows": [],
+      "wrong_page_types": [
+        "catalog: unknown ≠ category",
+        "product:aquapro-x200: unknown ≠ product",
+        "product:aquapro-x220: unknown ≠ product",
+        "product:softline-s1: unknown ≠ product"
+      ],
+      "types": {
+        "home": "unknown",
+        "catalog": "unknown",
+        "help": "unknown",
+        "help-shipping": "unknown",
+        "about": "unknown",
+        "product:aquapro-x200": "unknown",
+        "product:aquapro-x220": "unknown",
+        "product:softline-s1": "unknown",
+        "configure:aquapro-x200": "unknown",
+        "configure:aquapro-x220": "unknown",
+        "configure:softline-s1": "unknown"
+      },
+      "fails_as_required": true
+    },
+    "pass": true,
+    "note": "v1 на базі = S₀; на U5 набір падає (T ≠ T₀ і/або S ≠ S₀); на U5+V2 v1 втрачає №2/№5/№10. На самому U5 v1 №2/№5/№10 НЕ втрачає: запасний шлях «h1 ∧ CTA_RE» ловить «Додати в кошик» — втрата настає, коли CTA поза словником v1 (V2)"
+  },
+  "overall": "PASS",
+  "seconds": 832
+}

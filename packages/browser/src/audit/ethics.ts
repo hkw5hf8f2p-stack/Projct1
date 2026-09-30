@@ -29,7 +29,7 @@ export function parseRobots(text: string): RobotsGroup[] {
   const groups: RobotsGroup[] = [];
   let cur: RobotsGroup | null = null;
   let lastWasAgent = false;
-  for (const raw of text.replace(/^﻿/, "").split(/\r?\n/)) {
+  for (const raw of text.replace(/^\uFEFF/, "").split(/\r?\n/)) {
     const line = raw.replace(/#.*$/, "").trim();
     if (!line) continue;
     const i = line.indexOf(":");

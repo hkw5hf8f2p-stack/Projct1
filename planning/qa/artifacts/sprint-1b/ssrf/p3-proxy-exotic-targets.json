@@ -1,0 +1,206 @@
+{
+ "results": [
+  {
+   "target": "CONNECT [fe80::1%lo]:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT [fe80::1%25lo]:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT 0:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT 0x7f000002:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT 127.0.0.2.:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT [::ffff:7f00:2]:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT [::]:4196 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT 127.0.0.2:0 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT 127.0.0.2:70000 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "CONNECT :4196 HTTP/1.1",
+   "status": 400
+  },
+  {
+   "target": "CONNECT 127.0.0.2 HTTP/1.1",
+   "status": 400
+  },
+  {
+   "target": "GET http://0177.0.0.02:4196/p3 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "GET http://[::ffff:127.0.0.2]:4196/p3 HTTP/1.1",
+   "status": 403
+  },
+  {
+   "target": "GET /relative HTTP/1.1",
+   "status": 400
+  },
+  {
+   "target": "GET gopher://127.0.0.2:4196/ HTTP/1.1",
+   "status": 400
+  }
+ ],
+ "control_public_connect": 200,
+ "private_tcp_dials": [],
+ "canary_hits": [],
+ "proxy_decisions": [
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "[fe80::1%lo]",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал fe80:0:0:0:0:0:0:1 заблоковано: fe80::/10 link-local (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "[fe80::1%25lo]",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал fe80:0:0:0:0:0:0:1 заблоковано: fe80::/10 link-local (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "0",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал 0.0.0.0 заблоковано: 0.0.0.0/8 this-network (B1)",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "0x7f000002",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "127.0.0.2.",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "[::ffff:7f00:2]",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал 0:0:0:0:0:ffff:7f00:2 заблоковано: ::ffff:0:0/96 IPv4-mapped (B1); вбудована IP",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "[::]",
+   "port": 4196,
+   "decision": "deny",
+   "reason": "IP-літерал 0:0:0:0:0:0:0:0 заблоковано: ::/128 unspecified; вбудована IPv4 0.0.0.0",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "127.0.0.2",
+   "port": 0,
+   "decision": "deny",
+   "reason": "некоректний порт",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "127.0.0.2",
+   "port": 70000,
+   "decision": "deny",
+   "reason": "некоректний порт",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": ":4196",
+   "port": 0,
+   "decision": "deny",
+   "reason": "некоректна ціль CONNECT",
+   "connected_ip": null
+  },
+  {
+   "via": "connect",
+   "method": "CONNECT",
+   "host": "127.0.0.2",
+   "port": 0,
+   "decision": "deny",
+   "reason": "некоректна ціль CONNECT",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "127.0.0.2",
+   "port": 4196,
+   "path": "/p3",
+   "decision": "deny",
+   "reason": "IP-літерал 127.0.0.2 заблоковано: 127.0.0.0/8 loopback (§49)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "[::ffff:7f00:2]",
+   "port": 4196,
+   "path": "/p3",
+   "decision": "deny",
+   "reason": "IP-літерал 0:0:0:0:0:ffff:7f00:2 заблоковано: ::ffff:0:0/96 IPv4-mapped (B1); вбудована IP",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "x",
+   "port": 0,
+   "decision": "deny",
+   "reason": "не absolute-URI http:// (прямий запит до проксі)",
+   "connected_ip": null
+  },
+  {
+   "via": "http",
+   "method": "GET",
+   "host": "x",
+   "port": 0,
+   "decision": "deny",
+   "reason": "не absolute-URI http:// (прямий запит до проксі)",
+   "connected_ip": null
+  }
+ ]
+}

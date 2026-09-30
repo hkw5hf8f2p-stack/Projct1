@@ -55,6 +55,10 @@ fixtureOrigins:[origin URL]})` і створює контексти через `
 
 ## Що лишається на S1b (і пізніше)
 
+> **Стан 30.09.2026 (S1b):** п.1 (Lighthouse), п.2–4 (вектори, rebinding, WebRTC, dns-prefetch), п.5 (ліміти), п.7
+> (автентифікація проксі), п.8 (`threat-model.md`) — закрито, див. `ssrf-vectors.md`. **Знахідка SW-1:** `serviceWorkers:'block'`
+> Playwright обходився → замінено (DEV-48). IPv6 наскрізно, HTTPS із реальним сертифікатом, L9 — ⏭️.
+
 1. **Lighthouse через проксі** (A4, DEV-8): `CHROME_PATH` Playwright-Chromium, ті самі `secureChromiumArgs`, env із
    `buildBrowserEnv`, `chromiumSandbox`-еквівалент (без `--no-sandbox` у `chromeFlags`); канарка (а/б/в) для Lighthouse.
    Метод-виняток Lighthouse (DEV-12) — задокументувати в THREAT_MODEL.

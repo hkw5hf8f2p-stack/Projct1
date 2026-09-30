@@ -7,9 +7,13 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 id sitelens >/dev/null 2>&1 || useradd -m -s /bin/bash sitelens
 mkdir -p "$ROOT/planning/qa/artifacts"
 chmod -R a+rwX "$ROOT/planning/qa/artifacts"
+# S2: data/ (Postgres, артефакти, PID-файли, логи) належить sitelens — Postgres і браузер не стартують під root
+install -d -o sitelens -g "$(id -gn sitelens)" "$ROOT/data"
 cd "$ROOT"
 ENVV=(HOME=/home/sitelens "PATH=$PATH" "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-/opt/pw-browsers}" CI=true)
 [ -n "${DOCTOR_OUT:-}" ] && ENVV+=("DOCTOR_OUT=$DOCTOR_OUT")
+# SL_PASS_VARS="A B" — додатково передати перелічені змінні (S2: DATABASE_URL, ACCESS_TOKEN, SITELENS_FIXTURE_* тощо); решта env відкидається
+for v in ${SL_PASS_VARS:-}; do [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
 if [ "${SL_PASS_PROXY:-0}" = "1" ]; then
   for v in HTTPS_PROXY https_proxy NO_PROXY no_proxy; do [ -n "${!v:-}" ] && ENVV+=("$v=${!v}"); done
   if [ -n "${SSL_CERT_FILE:-}" ] && [ -r "$SSL_CERT_FILE" ]; then
