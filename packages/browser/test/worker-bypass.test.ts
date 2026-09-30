@@ -54,10 +54,11 @@ const VARIANTS: Record<string, { klass: Klass; make: string; title: string }> = 
   "popup-shared": { klass: "shared", title: "SharedWorker з window.open('') popup", make: `new (window.open("") || window).SharedWorker("/wk-popup-shared.js")` },
 };
 /**
- * Сторінка-варіант. `make` — вираз, що дає worker/port-власника АБО Promise від нього. "iframe-dedicated" створює Worker ЛИШЕ після `load`
- * iframe: синхронно створений у ще-порожньому about:blank realm воркер знищується, коли Chromium асинхронно підміняє початковий
- * документ (причина флейку 1/10 на 30.09: відповіді не було жодного разу за 30 с; shared-варіанти цим не страждають — для них
- * очікуваний результат SecurityError/POST теж стабільний, а гонка без load — сам вектор атаки).
+ * Сторінка-варіант. `make` — вираз, що дає worker/port-власника АБО Promise від нього. "iframe-dedicated" створює Worker через 200 мс
+ * ПІСЛЯ `load` iframe: у Chromium `load` для about:blank спрацьовує під час appendChild, а початковий документ потім асинхронно
+ * підміняється — воркер, створений у тимчасовому realm, отримує GET скрипта, але ніколи не виконує fetch/postMessage. Це була
+ * справжня причина флейку (30.09: ~6/25 прогонів; ціль бачила лише `GET /wk-iframe-dedicated.js`, POST не було навіть у raw;
+ * з паузою 25/25). Shared-варіанти без паузи лишаються навмисно: їхній очікуваний результат (SecurityError у secure) від realm не залежить.
  */
 const page = (v: string) => `<!doctype html><title>${v}</title><body><script>
 window.__r = "pending";

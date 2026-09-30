@@ -34,7 +34,7 @@ export function AiSettings() {
   const adopt = useCallback((v: AiSettingsView) => {
     setView(v);
     setKind(v.kind);
-    setModel(v.model ?? "");
+    setModel(v.model);
     setBaseUrl(v.base_url ?? "");
     setTokens(String(v.max_audit_tokens));
     setApiKey(""); // ключ ніколи не лишається в стані після відповіді
@@ -55,7 +55,7 @@ export function AiSettings() {
     return (
       <div className="card stack" data-testid="ai-load-error" role="alert">
         <h1>{t("ai.title")}</h1>
-        <p className="callout callout-danger">{t("ai.load_failed")}</p>
+        <p className="callout callout-danger">{loadErr.cls === "ai_settings_unavailable" ? t("ai.err.storage_unavailable") : t("ai.load_failed")}</p>
         <div><button type="button" className="btn" onClick={() => void load()}>{t("ai.retry")}</button></div>
       </div>
     );
@@ -70,8 +70,8 @@ export function AiSettings() {
 
   const needsKey = KIND_NEEDS_KEY[kind];
   const dirty =
-    kind !== view.kind || model.trim() !== (view.model ?? "") || baseUrl.trim() !== (view.base_url ?? "") || tokens.trim() !== String(view.max_audit_tokens) || apiKey !== "";
-  const errText = (r: ApiFailure) => (r.http === 0 ? t("ai.err.network_api") : r.cls === "unauthorized" ? t("error.unauthorized") : t("ai.save_failed"));
+    kind !== view.kind || model.trim() !== view.model || baseUrl.trim() !== (view.base_url ?? "") || tokens.trim() !== String(view.max_audit_tokens) || apiKey !== "";
+  const errText = (r: ApiFailure) => (r.http === 0 ? t("ai.err.network_api") : r.cls === "unauthorized" ? t("error.unauthorized") : r.cls === "ai_settings_unavailable" ? t("ai.err.storage_unavailable") : t("ai.save_failed"));
 
   async function save() {
     const e: typeof errs = {};
@@ -120,7 +120,7 @@ export function AiSettings() {
     const r = await checkAi();
     setBusy(null);
     if (r.ok) setCheck(r.data);
-    else setMsg({ tone: "danger", text: r.http === 0 ? t("ai.err.network_api") : t("ai.check.unavailable") });
+    else setMsg({ tone: "danger", text: r.cls === "ai_settings_unavailable" ? t("ai.err.storage_unavailable") : r.http === 0 ? t("ai.err.network_api") : t("ai.check.unavailable") });
   }
 
   const checkErr = (c: string | null | undefined) => {
@@ -178,7 +178,7 @@ export function AiSettings() {
               <label htmlFor="ai-key">{t("ai.key.label")}{kind === "openai_compatible" ? ` (${t("ai.optional")})` : ""}</label>
               {view.key_set && view.kind === kind ? (
                 <p className="callout callout-ok" data-testid="key-saved" role="status">
-                  {t("ai.key.saved", { hint: `…${(view.key_hint ?? "").replace(/^[.…*•]+/, "")}` })}
+                  {view.source === "env" ? t("ai.key.from_env") : t("ai.key.saved", { hint: `…${(view.key_hint ?? "").replace(/^[.…*•]+/, "")}` })}
                 </p>
               ) : (
                 <p className="small muted" data-testid="key-none">{t("ai.key.none")}</p>
@@ -186,7 +186,7 @@ export function AiSettings() {
               <input id="ai-key" type="password" name="ai-api-key" autoComplete="off" spellCheck={false} value={apiKey} onChange={(e) => setApiKey(e.target.value)}
                 placeholder={view.key_set ? t("ai.key.replace_placeholder") : t("ai.key.placeholder")} aria-describedby="ai-key-h" />
               <span id="ai-key-h" className="small muted">{t("ai.key.hint")}</span>
-              {view.key_set && (
+              {view.key_set && view.source === "ui" && (
                 <div>
                   <button type="button" className="btn" data-testid="key-delete" disabled={busy !== null} onClick={() => void removeKey()}>
                     {busy === "delete" ? t("ai.key.deleting") : t("ai.key.delete")}
@@ -233,6 +233,7 @@ export function AiSettings() {
         {updated ? ` · ${t("ai.updated")}: ${updated}` : ""}
         {view.last_check ? ` · ${t("ai.last_check")}: ${view.last_check.ok ? t("ai.check.last_ok") : checkErr(view.last_check.error_class)}` : ""}
       </p>
+      <p className="small muted" data-testid="ai-source" data-source={view.source}>{t(`ai.source.${view.source}` as Key)}</p>
 
       <section className="card stack" aria-labelledby="ai-notes" data-testid="ai-notes">
         <h2 id="ai-notes">{t("ai.notes.title")}</h2>

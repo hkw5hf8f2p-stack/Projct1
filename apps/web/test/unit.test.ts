@@ -83,10 +83,17 @@ describe("BYO AI (/settings/ai)", () => {
     }
     expect(CHECK_ERROR_CLASSES).toContain("unknown");
   });
+  it("набір провайдерів у UI = ProviderKind контракту", async () => {
+    const { PROVIDER_KINDS } = await import("../src/lib/ai-settings");
+    const { ProviderKind, MAX_AUDIT_TOKENS_MIN, MAX_AUDIT_TOKENS_MAX } = await import("@sitelens/schemas");
+    const ui = await import("../src/lib/ai-settings");
+    expect([ui.MAX_AUDIT_TOKENS_MIN, ui.MAX_AUDIT_TOKENS_MAX]).toEqual([MAX_AUDIT_TOKENS_MIN, MAX_AUDIT_TOKENS_MAX]);
+    expect([...PROVIDER_KINDS].sort()).toEqual([...ProviderKind.options].sort());
+  });
   it("валідатори: токени й base URL (позитив і негатив)", async () => {
     const { parseTokens, validBaseUrl } = await import("../src/lib/ai-settings");
     expect(parseTokens("200000")).toBe(200000);
-    for (const bad of ["", "0", "-5", "1.5", "abc", "12e3"]) expect(parseTokens(bad), bad).toBeNull();
+    for (const bad of ["", "0", "9999", "5000001", "-5", "1.5", "abc", "12e3"]) expect(parseTokens(bad), bad).toBeNull();
     expect(validBaseUrl("http://localhost:11434/v1")).toBe(true);
     for (const bad of ["", "localhost:11434", "ftp://x", "javascript:alert(1)"]) expect(validBaseUrl(bad), bad).toBe(false);
   });

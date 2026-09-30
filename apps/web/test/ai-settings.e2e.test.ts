@@ -24,7 +24,7 @@ const ENVS: Env[] = [
 interface Mock { state: AiSettingsView; puts: Record<string, unknown>[]; checkResult: Record<string, unknown>; deletes: number; failLoad?: boolean }
 async function mockApi(page: Page, init?: Partial<AiSettingsView>): Promise<Mock> {
   const m: Mock = {
-    state: { kind: "none", model: null, key_set: false, max_audit_tokens: 200000, updated_at: null, ...init },
+    state: { kind: "none", model: "", key_set: false, max_audit_tokens: 200000, updated_at: null, source: "none", ...init },
     puts: [], deletes: 0, checkResult: { ok: true, latency_ms: 412, model_reported: "mock-model-1" },
   };
   await page.route(/\/settings\/ai(\/.*)?$/, async (route) => {
@@ -34,14 +34,14 @@ async function mockApi(page: Page, init?: Partial<AiSettingsView>): Promise<Mock
     if (url.pathname.endsWith("/check")) return json(m.checkResult);
     if (url.pathname.endsWith("/key") && req.method() === "DELETE") {
       m.deletes++;
-      m.state = { ...m.state, key_set: false, key_hint: null };
+      const { key_hint: _h, ...rest } = m.state; void _h; m.state = { ...rest, key_set: false };
       return json(m.state);
     }
     if (req.method() === "PUT") {
       const b = req.postDataJSON() as Record<string, unknown>;
       m.puts.push(b);
       const { api_key, ...rest } = b as { api_key?: string } & Record<string, unknown>;
-      m.state = { ...m.state, ...(rest as object), model: (rest["model"] as string | undefined) ?? null, base_url: (rest["base_url"] as string | undefined) ?? null, key_set: api_key ? true : m.state.key_set, key_hint: api_key ? api_key.slice(-4) : m.state.key_hint, updated_at: "2026-09-30T10:00:00Z" } as AiSettingsView;
+      m.state = { ...m.state, ...(rest as object), model: (rest["model"] as string | undefined) ?? "", ...(rest["base_url"] ? { base_url: rest["base_url"] as string } : {}), source: "ui", key_set: api_key ? true : m.state.key_set, key_hint: api_key ? `…${api_key.slice(-4)}` : m.state.key_hint, updated_at: "2026-09-30T10:00:00Z" } as AiSettingsView;
       return json(m.state);
     }
     return json(m.state); // API ніколи не віддає ключ
@@ -146,7 +146,7 @@ describe("/settings/ai", () => {
     await page.getByTestId("key-saved").waitFor();
     expect(await page.locator("html").innerHTML()).not.toContain(SECRET);
     expect(await page.locator("#ai-key").inputValue()).toBe("");
-    expect(await page.getByTestId("key-saved").innerText()).toContain("…ET123".slice(-4).padStart(5, "…")); // …T123
+    expect(await page.getByTestId("key-saved").innerText()).toContain("…T123"); // …T123
     const stores = await page.evaluate(() => JSON.stringify([{ ...localStorage }, { ...sessionStorage }, location.href, document.cookie]));
     expect(stores).not.toContain(SECRET);
     await page.reload();
@@ -167,7 +167,7 @@ describe("/settings/ai", () => {
   it("перевірка підключення: ok, кожен клас помилки → людський текст, невідомий клас → запасний", async () => {
     const ctx = await newCtx({ width: 1440, theme: "light", lang: "uk" });
     const page = await open(ctx, "/settings/ai");
-    const m = await mockApi(page, { kind: "anthropic", model: "m-a", key_set: true, key_hint: "abcd" });
+    const m = await mockApi(page, { kind: "anthropic", model: "m-a", key_set: true, key_hint: "…abcd", source: "ui" });
     await page.reload();
     await page.getByTestId("ai-check").click();
     await page.getByTestId("check-ok").waitFor();
@@ -189,13 +189,26 @@ describe("/settings/ai", () => {
     await ctx.close();
   }, T);
 
+  it("source=env: показує звідки налаштування, ключ з .env не видаляється з UI", async () => {
+    const ctx = await newCtx({ width: 390, theme: "dark", lang: "uk" });
+    const page = await open(ctx, "/settings/ai");
+    await mockApi(page, { kind: "anthropic", model: "m-e", key_set: true, source: "env" });
+    await page.reload();
+    await page.getByTestId("ai-settings").waitFor();
+    expect(await page.getByTestId("ai-source").getAttribute("data-source")).toBe("env");
+    expect(await page.getByTestId("ai-source").innerText()).toContain(".env");
+    expect(await page.getByTestId("key-delete").count()).toBe(0);
+    expect(await page.getByTestId("key-saved").innerText()).toContain(".env");
+    await ctx.close();
+  }, T);
+
   it("стани: завантаження, помилка API (retry)", async () => {
     const ctx = await newCtx({ width: 390, theme: "light", lang: "en" });
     const page = await ctx.newPage();
     let fail = true;
     await page.route(/\/settings\/ai$/, async (r) => {
       if (fail) return r.fulfill({ status: 500, contentType: "application/json", body: JSON.stringify({ error: { class: "internal", message: "x" } }) });
-      return r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ kind: "none", model: null, key_set: false, max_audit_tokens: 1000, updated_at: null }) });
+      return r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ kind: "none", model: "", key_set: false, max_audit_tokens: 100000, updated_at: null, source: "none" }) });
     });
     await page.goto("http://127.0.0.1:" + (process.env["SL_WEB_PORT"] ?? 3100) + "/settings/ai");
     await page.getByTestId("ai-load-error").waitFor();
@@ -210,7 +223,7 @@ describe("/settings/ai", () => {
     it(`overflow=0 і axe 0 critical/serious: ${env.width} ${env.theme} ${env.lang}`, async () => {
       const ctx = await newCtx(env);
       const page = await ctx.newPage();
-      await mockApi(page, { kind: "openai_compatible", model: "llama", base_url: "http://localhost:11434/v1", key_set: true, key_hint: "abcd", updated_at: "2026-09-30T10:00:00Z", last_check: { ok: false, error_class: "timeout" } });
+      await mockApi(page, { kind: "openai_compatible", model: "llama", base_url: "http://localhost:11434/v1", key_set: true, key_hint: "…abcd", source: "ui", updated_at: "2026-09-30T10:00:00Z", last_check: { ok: false, at: "2026-09-30T09:00:00Z", error_class: "timeout" } });
       await page.goto("http://127.0.0.1:" + (process.env["SL_WEB_PORT"] ?? 3100) + "/settings/ai");
       await page.getByTestId("ai-settings").waitFor();
       await page.getByTestId("ai-check").click();

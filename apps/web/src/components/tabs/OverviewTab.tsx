@@ -102,9 +102,10 @@ export function OverviewTab() {
           <div className="stat" data-testid="ov-model">
             <span className="muted small">{t("overview.model")}</span>
             <span className="stat-v">
-              {report.audit.llm_provider && report.audit.llm_model ? (
+              {report.audit.llm_model ? (
+                /* TODO(backend): для claude_cli/openai_compatible llm_provider = null (enum LLM_PROVIDERS без них), а config_json.ai.provider у Report немає — тоді показуємо лише модель */
                 <Measured cls="OBSERVED">
-                  <span className="mono">{`${report.audit.llm_provider}/${report.audit.llm_model}`}</span>
+                  <span className="mono">{report.audit.llm_provider ? `${report.audit.llm_provider}/${report.audit.llm_model}` : report.audit.llm_model}</span>
                 </Measured>
               ) : (
                 <span className="muted">{t("overview.model.none")}</span>
