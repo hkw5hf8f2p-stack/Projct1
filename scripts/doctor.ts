@@ -73,7 +73,12 @@ async function main() {
   const browsers = (readJson(path.join(pwCorePkg, "browsers.json")).browsers as Array<{ name: string; revision: string; browserVersion: string }>);
   const chromiumEntry = browsers.find((b) => b.name === "chromium")!;
   const shellEntry = browsers.find((b) => b.name === "chromium-headless-shell")!;
-  const bp = process.env.PLAYWRIGHT_BROWSERS_PATH ?? path.join(os.homedir(), ".cache/ms-playwright");
+  // Дефолтний кеш Playwright залежить від ОС (playwright-core registry): macOS — ~/Library/Caches, Windows — %LOCALAPPDATA%.
+  const defaultCache =
+    process.platform === "darwin" ? path.join(os.homedir(), "Library/Caches/ms-playwright")
+    : process.platform === "win32" ? path.join(process.env.LOCALAPPDATA ?? path.join(os.homedir(), "AppData/Local"), "ms-playwright")
+    : path.join(process.env.XDG_CACHE_HOME ?? path.join(os.homedir(), ".cache"), "ms-playwright");
+  const bp = process.env.PLAYWRIGHT_BROWSERS_PATH ?? defaultCache;
   const listing = existsSync(bp) ? readdirSync(bp) : [];
   const haveDir = (prefix: string, rev: string) =>
     existsSync(path.join(bp, `${prefix}-${rev}`, "INSTALLATION_COMPLETE"));
