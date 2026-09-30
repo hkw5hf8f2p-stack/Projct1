@@ -1,0 +1,23 @@
+[
+  {
+    "type": "browser_session",
+    "self_confirming": false,
+    "session_id": "lens_i__t1",
+    "lens_id": "lens_i",
+    "task_id": "t1",
+    "level": "journey",
+    "artifact_reference": "journeys/lens_i__t1/journey.json",
+    "id": "ev_b8ab10188497",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:35935/exfil?d=secrets",
+    "page_path": "/exfil?d=secrets",
+    "description": "Browser interaction failure: http_error (HTTP 403)",
+    "selector_or_region": {
+      "selector": "body"
+    },
+    "browser_failure": {
+      "kind": "http_error",
+      "reproduced_by_replay": false
+    }
+  }
+]

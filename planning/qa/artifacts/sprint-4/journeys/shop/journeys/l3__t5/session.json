@@ -1,0 +1,56 @@
+{
+  "session_id": "l3__t5",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l3",
+  "task_id": "t5",
+  "level": "journey",
+  "status": "done",
+  "success": "partial",
+  "actions_used": 4,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "scripted summary",
+  "steps": [
+    {
+      "action": "click",
+      "target": "link:\"Про нас\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "scroll",
+      "target": "down",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "button:\"Надіслати\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "textbox:\"Ваше повідомлення\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "done",
+      "task_progress": "done",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

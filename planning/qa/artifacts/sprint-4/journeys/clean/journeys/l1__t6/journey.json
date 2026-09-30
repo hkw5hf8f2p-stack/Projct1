@@ -1,0 +1,141 @@
+{
+  "session_id": "l1__t6",
+  "start_url": "http://127.0.0.1:39435/",
+  "origin": "http://127.0.0.1:39435",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_success",
+  "error": null,
+  "cart": {
+    "button_found": true,
+    "reachable": true,
+    "button_text": "Додати в кошик",
+    "page_url": "http://127.0.0.1:39435/product/glass-kettle",
+    "price_known_before": true,
+    "shipping_known_before": true,
+    "success": "true"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:39435/",
+      "url_after": "http://127.0.0.1:39435/catalog",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Каталог\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Каталог",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Каталог",
+        "href": "http://127.0.0.1:39435/catalog"
+      },
+      "screenshot": null
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:39435/catalog",
+      "url_after": "http://127.0.0.1:39435/product/glass-kettle",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Скляний чайник\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Скляний чайник",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Скляний чайник",
+        "href": "http://127.0.0.1:39435/product/glass-kettle"
+      },
+      "screenshot": null
+    },
+    {
+      "n": 2,
+      "url_before": "http://127.0.0.1:39435/product/glass-kettle",
+      "url_after": "http://127.0.0.1:39435/product/glass-kettle",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Додати в кошик\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "found_not_clicked",
+      "rule": "commercial_cta",
+      "detail": "текст «Додати в кошик» → commercial_cta",
+      "located": {
+        "role": "button",
+        "name": "Додати в кошик",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Додати в кошик",
+        "href": null
+      },
+      "screenshot": null
+    },
+    {
+      "n": 3,
+      "url_before": "http://127.0.0.1:39435/product/glass-kettle",
+      "url_after": "http://127.0.0.1:39435/product/glass-kettle",
+      "decision": {
+        "action": "stop_success",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": null
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

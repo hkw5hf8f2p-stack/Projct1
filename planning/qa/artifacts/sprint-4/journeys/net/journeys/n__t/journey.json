@@ -1,0 +1,208 @@
+{
+  "session_id": "n__t",
+  "start_url": "http://127.0.0.1:44407/",
+  "origin": "http://127.0.0.1:44407",
+  "vp": "D",
+  "max_steps": 10,
+  "filter": true,
+  "end_reason": "stop_success",
+  "error": null,
+  "cart": {
+    "button_found": false,
+    "reachable": false,
+    "button_text": null,
+    "page_url": null,
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "false"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:44407/",
+      "url_after": "chrome-error://chromewebdata/",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Go A\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "button",
+        "name": "Go A",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Go A",
+        "href": null
+      },
+      "screenshot": null
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:44407/",
+      "url_after": "chrome-error://chromewebdata/",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Go B\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "button",
+        "name": "Go B",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Go B",
+        "href": null
+      },
+      "screenshot": null
+    },
+    {
+      "n": 2,
+      "url_before": "http://127.0.0.1:44407/",
+      "url_after": "http://127.0.0.1:44407/",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Go C\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "button",
+        "name": "Go C",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Go C",
+        "href": null
+      },
+      "screenshot": null
+    },
+    {
+      "n": 3,
+      "url_before": "http://127.0.0.1:44407/",
+      "url_after": "http://127.0.0.1:44407/",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Go D\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "button",
+        "name": "Go D",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Go D",
+        "href": null
+      },
+      "screenshot": null
+    },
+    {
+      "n": 4,
+      "url_before": "http://127.0.0.1:44407/",
+      "url_after": "http://127.0.0.1:44407/page2",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Open in tab\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Open in tab",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Open in tab",
+        "href": "http://127.0.0.1:44407/page2"
+      },
+      "screenshot": null
+    },
+    {
+      "n": 5,
+      "url_before": "http://127.0.0.1:44407/page2",
+      "url_after": "http://127.0.0.1:44407/page2",
+      "decision": {
+        "action": "stop_success",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": null
+    }
+  ],
+  "net_blocks": [
+    {
+      "ts": "2026-09-30T03:29:59.773Z",
+      "kind": "deny_url",
+      "url": "http://127.0.0.1:44407/logout",
+      "rule": "logout"
+    },
+    {
+      "ts": "2026-09-30T03:29:59.958Z",
+      "kind": "cross_origin_navigation",
+      "url": "http://127.0.0.1:36135/x",
+      "rule": "cross_origin"
+    },
+    {
+      "ts": "2026-09-30T03:30:00.174Z",
+      "kind": "deny_url",
+      "url": "http://127.0.0.1:44407/?add-to-cart=9",
+      "rule": "add_to_cart"
+    }
+  ],
+  "recovered_from_blocked_navigation": 2,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": false,
+    "state": "none",
+    "actions": []
+  }
+}

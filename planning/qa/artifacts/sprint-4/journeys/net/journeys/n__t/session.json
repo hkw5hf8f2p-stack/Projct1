@@ -1,0 +1,64 @@
+{
+  "session_id": "n__t",
+  "audit_run_id": "a",
+  "lens_id": "n",
+  "task_id": "t",
+  "level": "journey",
+  "status": "done",
+  "success": "partial",
+  "actions_used": 5,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "scripted summary",
+  "steps": [
+    {
+      "action": "click",
+      "target": "button:\"Go A\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "button:\"Go B\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "button:\"Go C\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "button:\"Go D\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "link:\"Open in tab\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "done",
+      "task_progress": "done",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

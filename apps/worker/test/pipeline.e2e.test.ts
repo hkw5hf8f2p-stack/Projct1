@@ -114,7 +114,7 @@ describe("конвеєр S2 наскрізно", () => {
       const p = Evidence.safeParse(o);
       if (!p.success) (bad[r.type] ??= []).push(p.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ").slice(0, 200));
     }
-    expect(Object.keys(bad).filter((t) => t !== "lighthouse"), JSON.stringify(bad)).toEqual([]); // dom/axe/screenshot — валідні
+    expect(Object.keys(bad), JSON.stringify(bad)).toEqual([]); // ВСІ типи (dom/axe/screenshot/lighthouse) — валідні; виключення lighthouse прибрано (S2-2, DEV-68)
     lighthouseZodIssues = bad["lighthouse"] ?? [];
     lighthouseRowsChecked = rows.filter((r) => r.type === "lighthouse").length;
     // API: сторінки й доказ

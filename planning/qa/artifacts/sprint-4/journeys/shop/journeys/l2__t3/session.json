@@ -1,0 +1,48 @@
+{
+  "session_id": "l2__t3",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l2",
+  "task_id": "t3",
+  "level": "journey",
+  "status": "done",
+  "success": "true",
+  "actions_used": 3,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "scripted summary",
+  "steps": [
+    {
+      "action": "click",
+      "target": "link:\"Каталог\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "link:\"AquaPro X200 (система HFX)\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "link:\"Налаштувати комплектацію\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "done",
+      "task_progress": "done",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

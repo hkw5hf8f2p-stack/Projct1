@@ -1,0 +1,57 @@
+{
+  "session_id": "l4__t1",
+  "start_url": "http://127.0.0.1:41979/",
+  "origin": "http://127.0.0.1:41979",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_success",
+  "error": null,
+  "cart": {
+    "button_found": false,
+    "reachable": false,
+    "button_text": null,
+    "page_url": null,
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "false"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/",
+      "decision": {
+        "action": "stop_success",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l4__t1/step-00.png"
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

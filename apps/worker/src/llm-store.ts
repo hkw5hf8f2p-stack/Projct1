@@ -134,7 +134,6 @@ export async function writeScenarios(c: PoolClient, auditId: string, rows: Reado
 }
 
 // ---------------------------------------------------------------- LlmResults для звіту
-export interface SessionRowOut extends SessionResultIn { }
 export async function loadSessions(pool: Pool, auditId: string): Promise<SessionResultIn[]> {
   const rows = (await pool.query("SELECT * FROM synthetic_sessions WHERE audit_run_id = $1 AND status = 'done' ORDER BY session_id", [auditId])).rows;
   return rows.map((r) => ({ session_id: r.session_id, lens_id: r.lens_id, task_id: r.task_id, level: r.level, success: r.success, frictions: r.frictions, pages_seen: r.pages_seen }));

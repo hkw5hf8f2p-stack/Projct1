@@ -114,7 +114,7 @@ describe("A. llm_mode=none: fixtures/shop ×3 через API", () => {
       expect(st.stage_status["report"]).toMatchObject({ status: "done" });
       expect(st.stage_status["aggregate"]).toMatchObject({ status: "done" });
       for (const k of ["site_profile", "tasks", "lenses", "scenario_matrix", "snapshot_sessions", "browser_sessions"]) expect(st.stage_status[k], k).toMatchObject({ status: "skipped", reason: "no LLM provider" });
-      expect(st.steps?.map((x) => x.state)).toEqual(["done", "done", "skipped", "skipped", "skipped", "skipped", "done", "done"]);
+      expect(st.steps?.map((x) => x.state)).toEqual(["done", "done", "done", "skipped", "skipped", "skipped", "done", "done"]);
       reports.push(await getReport(s, id));
     }
     evidenceOut["none_run_ids"] = ids;
@@ -303,7 +303,11 @@ describe("B. scripted-fake LLM: профіль → задачі → лінзи �
     expect(JSON.stringify(r)).not.toContain(HOSTILE_QUOTE);
     expect(await q(s, "SELECT 1 FROM evidence WHERE audit_run_id = $1 AND excerpt LIKE $2", [ids[0], `%${HOSTILE_QUOTE}%`])).toEqual([]);
     const agg = (await q(s, "SELECT stage_status->'aggregate'->>'reason' AS r FROM audit_runs WHERE id = $1", [ids[0]]))[0].r as string;
-    expect(agg).toMatch(/відхилено тверджень без доказу 1\b/);
+    // рівно стільки відхилено, скільки сесій «ворожої» лінзи мали friction із вигаданою цитатою — і лише з причиною quote_not_on_page
+    const hostile = Number((await q(s, "SELECT count(*)::int AS n FROM synthetic_sessions WHERE audit_run_id = $1 AND lens_id = 'l02' AND jsonb_array_length(frictions) > 0", [ids[0]]))[0].n);
+    expect(hostile).toBeGreaterThan(0);
+    expect(agg).toContain(`відхилено тверджень без доказу ${hostile} (quote_not_on_page: ${hostile})`);
+    evidenceOut["hostile_quote_rejected"] = { sessions_with_invented_quote: hostile, rejected_by_code: hostile };
     // детерміновані 7/7 не потонули під синтетикою
     const det = detected(r);
     expect(det.filter((d) => d.verified && (d.rank ?? 99) <= 10).length).toBe(7);

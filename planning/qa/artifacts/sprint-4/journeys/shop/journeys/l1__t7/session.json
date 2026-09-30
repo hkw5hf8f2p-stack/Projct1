@@ -1,0 +1,40 @@
+{
+  "session_id": "l1__t7",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l1",
+  "task_id": "t7",
+  "level": "journey",
+  "status": "done",
+  "success": "false",
+  "actions_used": 3,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "",
+  "steps": [
+    {
+      "action": "submit_payment",
+      "target": "",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "x=120,y=340",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "//a[@href='/logout']",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "session_id": "l3__t9",
+  "start_url": "http://127.0.0.1:41979/",
+  "origin": "http://127.0.0.1:41979",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "driver_error",
+  "error": "driver:Error: LLM upstream 529",
+  "cart": {
+    "button_found": false,
+    "reachable": false,
+    "button_text": null,
+    "page_url": null,
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "false"
+  },
+  "steps": [],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

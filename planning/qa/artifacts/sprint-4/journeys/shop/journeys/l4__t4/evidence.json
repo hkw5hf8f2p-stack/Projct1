@@ -1,0 +1,40 @@
+[
+  {
+    "type": "browser_session",
+    "self_confirming": false,
+    "session_id": "l4__t4",
+    "lens_id": "l4",
+    "task_id": "t4",
+    "level": "journey",
+    "artifact_reference": "journeys/l4__t4/journey.json",
+    "id": "ev_e37a6cfda829",
+    "source_class": "SYNTHETIC",
+    "page_url": "http://127.0.0.1:41979/help/shipping",
+    "page_path": "/help/shipping",
+    "description": "\"Доставка Новою поштою: 1–2 дні, від 70 грн.\"",
+    "selector_or_region": {
+      "selector": "body"
+    },
+    "category": "shipping",
+    "excerpt": "\"Доставка Новою поштою: 1–2 дні, від 70 грн.\""
+  },
+  {
+    "type": "browser_session",
+    "self_confirming": false,
+    "session_id": "l4__t4",
+    "lens_id": "l4",
+    "task_id": "t4",
+    "level": "journey",
+    "artifact_reference": "journeys/l4__t4/journey.json",
+    "id": "ev_675443a2f7aa",
+    "source_class": "SYNTHETIC",
+    "page_url": "http://127.0.0.1:41979/help/shipping",
+    "page_path": "/help/shipping",
+    "description": "NOT_FOUND: total price with options",
+    "selector_or_region": {
+      "selector": "body"
+    },
+    "category": "pricing",
+    "excerpt": "NOT_FOUND: total price with options"
+  }
+]

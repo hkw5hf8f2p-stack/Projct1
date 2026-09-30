@@ -15,7 +15,8 @@ const STATUS_STEPS: Record<string, ProgressStepId[]> = {
   queued: ["discovering_pages"], crawling: ["discovering_pages", "capturing", "technical_checks"], profiling: ["understanding_offering"], generating_lenses: ["building_lenses"],
   running_scenarios: ["testing_journeys"], aggregating: ["aggregating_evidence", "preparing_report"],
 };
-const RANK: StepState[] = ["failed", "budget_limited", "skipped", "done"]; // «найгірший» стан групи
+/** стан групи: failed > budget_limited > done (хоч один етап виконано) > skipped (жоден не виконано) */
+const groupState = (known: StepState[]): StepState => (known.includes("failed") ? "failed" : known.includes("budget_limited") ? "budget_limited" : known.includes("done") ? "done" : "skipped");
 
 export function progressSteps(a: { status: string; stage_status: Record<string, { status: string } | undefined> }): Array<{ id: ProgressStepId; state: StepState }> {
   const terminal = a.status === "completed" || a.status === "failed";
@@ -23,9 +24,9 @@ export function progressSteps(a: { status: string; stage_status: Record<string, 
     const sts = STAGES_OF[id].map((s) => a.stage_status[s]?.status as StepState | undefined);
     const known = sts.filter((x): x is StepState => !!x);
     let state: StepState;
-    if (known.length === STAGES_OF[id].length) state = (RANK.find((r) => known.includes(r)) ?? "done") as StepState;
+    if (known.length === STAGES_OF[id].length) state = groupState(known);
     else if (known.length > 0 && !terminal) state = "pending";
-    else state = terminal ? (known.length > 0 ? (RANK.find((r) => known.includes(r)) ?? "done") : "skipped") : "pending";
+    else state = terminal ? (known.length > 0 ? groupState(known) : "skipped") : "pending";
     return { id, state };
   });
   if (!terminal) {

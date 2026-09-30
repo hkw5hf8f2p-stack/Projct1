@@ -4,6 +4,7 @@
  * Артефакти: planning/qa/artifacts/sprint-2/*.json. Кожна перевірка має контроль (уміє впасти). Жодного pkill -f / killall.
  */
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { descendantsOf, cmdlineOf, isSameProc, readPidFile, readStat } from "../packages/db/src/index.js";
@@ -34,28 +35,57 @@ const done = async (id: string, ms = 420_000) => waitFor(`аудит ${id} за�
 const pageCount = async (id: string) => Number((await q(db, "SELECT count(*) AS n FROM page_artifacts WHERE audit_run_id = $1", [id]))[0]!["n"]);
 const pageIds = async (id: string) => (await q<{ id: string }>(db, "SELECT id FROM page_artifacts WHERE audit_run_id = $1 ORDER BY id", [id])).map((r) => r.id);
 const evIds = async (id: string, notLh = true) => (await q<{ id: string }>(db, `SELECT id FROM evidence WHERE audit_run_id = $1 ${notLh ? "AND type <> 'lighthouse'" : ""} ORDER BY id`, [id])).map((r) => r.id);
+const jobKeys = async (id: string) => (await q<{ job_key: string }>(db, "SELECT job_key FROM audit_jobs WHERE audit_run_id = $1 ORDER BY job_key", [id])).map((r) => r.job_key);
+/** еталон множин для «0 дублів» (S2-1): id сторінок, id доказів УСІХ типів (включно з Lighthouse), ключі задач */
+interface Ref { pages: string[]; ev_all: string[]; lh: string[]; jobs: string[] }
+const lhIds = async (id: string) => (await q<{ id: string }>(db, "SELECT id FROM evidence WHERE audit_run_id = $1 AND type = 'lighthouse' ORDER BY id", [id])).map((r) => r.id);
+const refOf = async (id: string): Promise<Ref> => ({ pages: await pageIds(id), ev_all: await evIds(id, false), lh: await lhIds(id), jobs: await jobKeys(id) });
 const sha = (x: unknown) => createHash("sha256").update(JSON.stringify(x)).digest("hex").slice(0, 16);
 const same = (a: unknown[], b: unknown[]) => JSON.stringify(a) === JSON.stringify(b);
 const workerBrowsers = (w: number) => descendantsOf(w).filter((p) => /headless|chrom/.test(readStat(p)?.comm ?? ""));
 const log = (m: string) => console.log(`[${new Date().toISOString().slice(11, 19)}] ${m}`);
 
-async function integrity(id: string, expectPages: string[], expectEv: string[] | null) {
-  const pages = await q<{ n: string; u: string }>(db, "SELECT count(*) AS n, count(DISTINCT url) AS u FROM page_artifacts WHERE audit_run_id = $1", [id]);
-  const ev = await q<{ n: string; u: string }>(db, "SELECT count(*) AS n, count(DISTINCT id) AS u FROM evidence WHERE audit_run_id = $1", [id]);
-  const jobs = await q<{ n: string; u: string }>(db, "SELECT count(*) AS n, count(DISTINCT job_key) AS u FROM audit_jobs WHERE audit_run_id = $1", [id]);
+/**
+ * «0 дублів / 0 втрат» = РІВНІСТЬ МНОЖИН з еталоном (id сторінок, id доказів усіх типів включно з Lighthouse, ключі задач) + число Lighthouse-рядків.
+ * `structural_*` (count − count(DISTINCT) по PK/UNIQUE) лишено лише як довідку: PK + ON CONFLICT роблять їх структурно нульовими й вони НЕ входять у pass (S2-1).
+ */
+async function integrity(id: string, exp: Ref) {
+  const cnt = async (t: string, col: string) => { const r = await q<{ n: string; u: string }>(db, `SELECT count(*) AS n, count(DISTINCT ${col}) AS u FROM ${t} WHERE audit_run_id = $1`, [id]); return Number(r[0]!.n) - Number(r[0]!.u); };
   const ids = await pageIds(id);
-  const missing = expectPages.filter((x) => !ids.includes(x));
-  const extra = ids.filter((x) => !expectPages.includes(x));
-  const eids = await evIds(id);
+  const eids = await evIds(id, false);
+  const jids = await jobKeys(id);
+  const lhRows = Number((await q(db, "SELECT count(*) AS n FROM evidence WHERE audit_run_id = $1 AND type = 'lighthouse'", [id]))[0]!["n"]);
+  const diff = (have: string[], want: string[]) => ({ lost: want.filter((x) => !have.includes(x)), extra: have.filter((x) => !want.includes(x)) });
+  const pg = diff(ids, exp.pages), ev = diff(eids, exp.ev_all), jb = diff(jids, exp.jobs);
   return {
-    pages_expected: expectPages.length, pages_found: Number(pages[0]!.n), pages_lost: missing.length, pages_extra: extra.length, pages_duplicated: Number(pages[0]!.n) - Number(pages[0]!.u),
-    evidence_rows: Number(ev[0]!.n), evidence_duplicated: Number(ev[0]!.n) - Number(ev[0]!.u), jobs_duplicated: Number(jobs[0]!.n) - Number(jobs[0]!.u),
-    evidence_equal_to_baseline: expectEv ? same(eids, expectEv) : null, evidence_lost: expectEv ? expectEv.filter((x) => !eids.includes(x)).length : null, evidence_extra: expectEv ? eids.filter((x) => !expectEv.includes(x)).length : null,
-    missing, extra,
+    pages_expected: exp.pages.length, pages_found: ids.length, pages_lost: pg.lost.length, pages_extra: pg.extra.length,
+    evidence_expected: exp.ev_all.length, evidence_rows: eids.length, evidence_lost: ev.lost.length, evidence_extra: ev.extra.length, evidence_set_equal_to_baseline_incl_lighthouse: same(eids, exp.ev_all),
+    lighthouse_rows: lhRows, lighthouse_rows_expected_from_baseline: exp.lh.length,
+    jobs_expected: exp.jobs.length, jobs_found: jids.length, jobs_lost: jb.lost.length, jobs_extra: jb.extra.length, jobs_set_equal_to_baseline: same(jids, exp.jobs),
+    structural_note: "PK-лічильники (count − count(DISTINCT)) структурно нульові й не входять у pass; «0 дублів» = рівність множин із baseline",
+    structural_pages_duplicated: await cnt("page_artifacts", "url"), structural_evidence_duplicated: await cnt("evidence", "id"), structural_jobs_duplicated: await cnt("audit_jobs", "job_key"),
+    missing: pg.lost, extra: pg.extra, evidence_lost_ids: ev.lost.slice(0, 10), evidence_extra_ids: ev.extra.slice(0, 10), jobs_lost_keys: jb.lost, jobs_extra_keys: jb.extra,
   };
 }
+type Integrity = Awaited<ReturnType<typeof integrity>>;
+const integrityOk = (i: Integrity): boolean => i.pages_lost === 0 && i.pages_extra === 0 && i.evidence_lost === 0 && i.evidence_extra === 0 && i.evidence_set_equal_to_baseline_incl_lighthouse && i.jobs_lost === 0 && i.jobs_extra === 0 && i.jobs_set_equal_to_baseline && i.lighthouse_rows === i.lighthouse_rows_expected_from_baseline && i.lighthouse_rows > 0;
 
-let baseline: { pages: string[]; ev: string[] } | null = null;
+/**
+ * Контроль (S2-1): мутант «Lighthouse записано двічі з різним id» — копія Lighthouse-рядка з іншим id. Порівняння МАЄ впасти (evidence_extra > 0, lighthouse_rows > очікуваних);
+ * після контролю рядок видаляється і порівняння знову чисте. Доводить, що перевірка вміє ловити подвійний Lighthouse, а не лише PK-структуру.
+ */
+async function dupControl(id: string, exp: Ref) {
+  const planted = "ev_00000000d0d0";
+  const n = await q(db, "INSERT INTO evidence SELECT * FROM jsonb_populate_record(NULL::evidence, to_jsonb(e) || jsonb_build_object('id', $2::text)) FROM evidence e WHERE audit_run_id = $1 AND type = 'lighthouse' ORDER BY id LIMIT 1 RETURNING id", [id, planted]);
+  try {
+    const bad = await integrity(id, exp);
+    return { planted_rows: n.length, detected: !integrityOk(bad) && bad.evidence_extra > 0 && bad.lighthouse_rows > bad.lighthouse_rows_expected_from_baseline, evidence_extra: bad.evidence_extra, lighthouse_rows: bad.lighthouse_rows, lighthouse_rows_expected: bad.lighthouse_rows_expected_from_baseline, structural_evidence_duplicated_would_have_been: bad.structural_evidence_duplicated };
+  } finally {
+    await q(db, "DELETE FROM evidence WHERE audit_run_id = $1 AND id = $2", [id, planted]);
+  }
+}
+
+let baseline: Ref | null = null;
 const loadBaseline = async () => {
   if (baseline) return baseline;
   const f = path.join(ART, "baseline.json");
@@ -63,7 +93,7 @@ const loadBaseline = async () => {
   throw new Error("немає baseline: запустіть фазу baseline");
 };
 
-async function killScenario(name: string, opts: { requireOrphanControl: boolean; url: string; trigger: (w: number, id: string) => Promise<unknown>; expectPages: string[]; expectEv: string[] | null }) {
+async function killScenario(name: string, opts: { requireOrphanControl: boolean; url: string; trigger: (w: number, id: string) => Promise<unknown>; expect: Ref }) {
   const w1 = pidOf("worker")!;
   const sub = await submit(opts.url);
   const id = sub.id!;
@@ -84,7 +114,8 @@ async function killScenario(name: string, opts: { requireOrphanControl: boolean;
   const w2 = await workerUp();
   const rec = newestRecovery(tKill - 1000);
   const fin = await done(id);
-  const integ = await integrity(id, opts.expectPages, opts.expectEv);
+  const integ = await integrity(id, opts.expect);
+  const control = await dupControl(id, opts.expect);
   const jobs = await q(db, "SELECT name, state, retry_count FROM pgboss.job WHERE data->>'auditRunId' = $1 ORDER BY name, created_on", [id]);
   const trackedAlive = trackedKids.filter((c) => isSameProc(c)).map((c) => c.pid);
   const descAlive = desc.filter((p) => isSameProc(p) && !descendantsOf(w2).includes(p.pid)).map((p) => p.pid);
@@ -94,20 +125,24 @@ async function killScenario(name: string, opts: { requireOrphanControl: boolean;
     pre_cleanup: { orphan_browser_pids_alive_right_after_kill: orphansImmediately, tracked_children_in_pid_file: trackedKids.length, note: opts.requireOrphanControl ? "контроль (обов'язковий у цьому сценарії): Chrome Lighthouse ІСНУЄ після kill -9 до прибирання — перевірка «0 сиріт» уміє показати ненуль" : "інформативно: Playwright Chromium сам виходить, коли закривається канал (--remote-debugging-pipe); може встигнути зникнути за 700 мс" },
     restart: { new_worker_pid: w2, recovery_report: rec, note: "killed = записані PID-файлом; killed_from_spawn_log = записані обгорткою Chrome Lighthouse ДО exec (без вікна гонки)" },
     final: { status: fin.status, stage_status_keys: Object.keys(fin.stage_status), warnings: fin.warnings },
-    integrity: integ, queue_jobs: jobs,
+    integrity: integ, dup_control: control, queue_jobs: jobs,
     orphans_after: { tracked_pids_still_alive: trackedAlive, descendants_of_dead_worker_still_alive: descAlive, independent_scan: orph },
-    pass: fin.status === "completed" && integ.pages_lost === 0 && integ.pages_extra === 0 && integ.pages_duplicated === 0 && integ.evidence_duplicated === 0 && integ.jobs_duplicated === 0 && (integ.evidence_lost ?? 0) === 0 && (integ.evidence_extra ?? 0) === 0 && trackedAlive.length === 0 && descAlive.length === 0 && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && (!opts.requireOrphanControl || orphansImmediately.length > 0) && auditMidState !== "completed",
+    pass: fin.status === "completed" && integrityOk(integ) && control.detected && trackedAlive.length === 0 && descAlive.length === 0 && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && (!opts.requireOrphanControl || orphansImmediately.length > 0) && auditMidState !== "completed",
   };
   const st = await http("GET", `${API}/api/audits/${id}`);
   save(`${name}.json`, out);
   save(`${name}-api-status.json`, st.json);
-  results[name] = { pass: out.pass, pages: `${integ.pages_found}/${integ.pages_expected}`, lost: integ.pages_lost, duplicated: integ.pages_duplicated + integ.evidence_duplicated, orphans_after: trackedAlive.length + descAlive.length + orph.orphan_browsers.length };
+  results[name] = { pass: out.pass, pages: `${integ.pages_found}/${integ.pages_expected}`, lost: integ.pages_lost, duplicates_or_extra: integ.pages_extra + integ.evidence_extra + integ.jobs_extra, lighthouse_rows: `${integ.lighthouse_rows}/${integ.lighthouse_rows_expected_from_baseline}`, dup_control_detected: control.detected, orphans_after: trackedAlive.length + descAlive.length + orph.orphan_browsers.length };
   log(`${name}: ${JSON.stringify(results[name])}`);
   return out;
 }
 
 async function main() {
-  save("_run-info.json", { started_at: new Date().toISOString(), node: process.version, note: "Живий пас (публічні сайти) — ⏭️: мережа закрита" });
+  const git = (a: string[]) => { try { return execFileSync("git", a, { cwd: ROOT, encoding: "utf8" }).trim(); } catch { return "unknown"; } };
+  save("_run-info.json", {
+    started_at: new Date().toISOString(), node: process.version, phases: [...phases], git_sha: git(["rev-parse", "HEAD"]), working_tree_dirty_files: git(["status", "--porcelain"]).split("\n").filter(Boolean).length,
+    note: "Живий пас (публічні сайти) — ⏭️: мережа закрита. Фази, не перелічені в `phases`, у цьому запуску не виконувались (їхні артефакти — з попереднього запуску).",
+  });
   const dbs = dbUp();
   log(`Postgres: ${JSON.stringify(dbs)}, PID-файл ${JSON.stringify(readPidFile(path.join(S2, "pids", "postgres.json"))?.pid)}`);
   await fixturesUp();
@@ -120,12 +155,12 @@ async function main() {
       const t0 = Date.now();
       const s = await submit(FX.shop + "/");
       const fin = await done(s.id!);
-      const pages = await pageIds(s.id!);
-      const ev = await evIds(s.id!);
+      const ref = await refOf(s.id!);
+      const pages = ref.pages, ev = ref.ev_all;
       const api = await http("GET", `${API}/api/audits/${s.id}`);
       const apiPages = await http("GET", `${API}/api/audits/${s.id}/pages`);
       const s1aEqual = same(pages, S1A_PAGES);
-      save("baseline.json", { audit_id: s.id, duration_ms: Date.now() - t0, status: fin.status, ids: { pages, ev }, pages_equal_to_S1a_artifact: s1aEqual, s1a_pages: S1A_PAGES.length, evidence_rows: ev.length, note: "ідентичність множини сторінок незалежному артефакту S1a (planning/qa/artifacts/sprint-1a-fix/shop/pages.json)" });
+      save("baseline.json", { audit_id: s.id, duration_ms: Date.now() - t0, status: fin.status, ids: ref, pages_equal_to_S1a_artifact: s1aEqual, s1a_pages: S1A_PAGES.length, evidence_rows: ev.length, note: "ідентичність множини сторінок незалежному артефакту S1a (planning/qa/artifacts/sprint-1a-fix/shop/pages.json)" });
       save("baseline-api-status.json", api.json);
       save("baseline-api-pages.json", apiPages.json);
       results["baseline"] = { status: fin.status, pages: pages.length, s1a_equal: s1aEqual, evidence: ev.length };
@@ -140,7 +175,7 @@ async function main() {
   if (want("crawl")) {
     const b = await loadBaseline();
     await killScenario("kill9-worker-crawl", {
-      requireOrphanControl: false, url: FX.shop + "/", expectPages: b.pages, expectEv: b.ev,
+      requireOrphanControl: false, url: FX.shop + "/", expect: b,
       trigger: async (_w, id) => { await waitFor("≥ 4 сторінки й crawling", async () => (await pageCount(id)) >= 4 && (await auditRow(id))!.status === "crawling" ? true : null, 180_000, 200); await waitFor("браузер живий", () => (workerBrowsers(pidOf("worker")!).length > 0) || null, 30_000, 100); },
     });
   }
@@ -149,10 +184,9 @@ async function main() {
     // еталон малого сайту: 4 сторінки
     const ref = await submit(FX.errors + "/ok");
     await done(ref.id!);
-    const refPages = await pageIds(ref.id!);
-    const refEv = await evIds(ref.id!);
+    const refSets = await refOf(ref.id!);
     await killScenario("kill9-worker-lighthouse", {
-      requireOrphanControl: true, url: FX.errors + "/ok", expectPages: refPages, expectEv: refEv,
+      requireOrphanControl: true, url: FX.errors + "/ok", expect: refSets,
       trigger: async (w) => { await waitFor("Chrome Lighthouse запущено (профіль sl-lh-)", () => descendantsOf(w).some((p) => cmdlineOf(p).includes("/sl-lh-")) || null, 240_000, 50); },
     });
     const id = (JSON.parse(readFileSync(path.join(ART, "kill9-worker-lighthouse.json"), "utf8")) as { audit_id: string }).audit_id;
@@ -194,7 +228,8 @@ async function main() {
     await poller;
     const apiStatus = await http("GET", `${API}/api/audits/${id}`);
     const apiPages = await http("GET", `${API}/api/audits/${id}/pages`);
-    const integ = await integrity(id, b.pages, b.ev);
+    const integ = await integrity(id, b);
+    const control = await dupControl(id, b);
     const failures = samples.filter((s) => !s.ok);
     const firstOkAfter = samples.find((s, i) => s.ok && samples.slice(0, i).some((x) => !x.ok));
     const jobRow = await q(db, "SELECT count(*)::int AS n FROM pgboss.job WHERE name = 'crawl_site' AND data->>'auditRunId' = $1", [id]);
@@ -204,13 +239,13 @@ async function main() {
       scenario: "kill9-api", audit_id: id, api_killed: { pid: apiPid, signal: "SIGKILL", pages_at_kill: pagesAtKill }, connection_refused_after_kill: refused,
       worker_unaffected: { pid_before: workerPidBefore, pid_after: pidOf("worker"), pages_during_api_downtime: pagesDuringDowntime, progressed_while_api_dead: pagesDuringDowntime > pagesAtKill || fin.status === "completed" },
       restart: { new_api_pid: newApi }, poller: { samples: samples.length, failures: failures.length, first_ok_after_outage_ms: firstOkAfter?.t ?? null, error_samples: [...new Set(failures.map((f) => f.err ?? `HTTP ${f.status}`))] },
-      final: { status: fin.status }, integrity: integ, atomic_submit: { crawl_site_jobs_for_audit: jobRow[0]!["n"] }, orphans_after: orph, postgres_pid_file_consistent: pgOk,
-      pass: fin.status === "completed" && refused && integ.pages_lost === 0 && integ.pages_extra === 0 && integ.pages_duplicated === 0 && integ.evidence_duplicated === 0 && integ.evidence_equal_to_baseline === true && failures.length > 0 && !!firstOkAfter && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && pgOk,
+      final: { status: fin.status }, integrity: integ, dup_control: control, atomic_submit: { crawl_site_jobs_for_audit: jobRow[0]!["n"] }, orphans_after: orph, postgres_pid_file_consistent: pgOk,
+      pass: fin.status === "completed" && refused && integrityOk(integ) && control.detected && failures.length > 0 && !!firstOkAfter && orph.orphan_browsers.length === 0 && orph.orphan_postgres.length === 0 && pgOk,
     };
     save("kill9-api.json", out);
     save("kill9-api-status.json", apiStatus.json);
     save("kill9-api-pages.json", apiPages.json);
-    results["kill9-api"] = { pass: out.pass, pages: `${integ.pages_found}/${integ.pages_expected}`, lost: integ.pages_lost, duplicated: integ.pages_duplicated + integ.evidence_duplicated, outage_samples_failed: failures.length };
+    results["kill9-api"] = { pass: out.pass, pages: `${integ.pages_found}/${integ.pages_expected}`, lost: integ.pages_lost, duplicates_or_extra: integ.pages_extra + integ.evidence_extra + integ.jobs_extra, lighthouse_rows: `${integ.lighthouse_rows}/${integ.lighthouse_rows_expected_from_baseline}`, dup_control_detected: control.detected, outage_samples_failed: failures.length };
     log(`kill9-api: ${JSON.stringify(results["kill9-api"])}`);
   }
 

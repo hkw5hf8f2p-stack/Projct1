@@ -1,0 +1,134 @@
+[
+  {
+    "finding_key": "accessibility|*|axe:button-name|header/button",
+    "category": "accessibility",
+    "page_group": "*",
+    "claim_kind": "axe:button-name",
+    "detector_ids": [
+      "axe:button-name"
+    ],
+    "evidence_ids": [
+      "ev_24e97e6d978d",
+      "ev_2ef2188d2e5f",
+      "ev_316027a111ca",
+      "ev_38261f3d6368",
+      "ev_4d0c402da9ad",
+      "ev_6a675d10c7f7",
+      "ev_7b93f04f4d2f",
+      "ev_b38341a5da2b",
+      "ev_cf975b2c2b6e",
+      "ev_df1efa72eec3",
+      "ev_e3a6f7d286da"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 11,
+    "component": "header/button"
+  },
+  {
+    "finding_key": "accessibility|product|axe:image-alt|main/img",
+    "category": "accessibility",
+    "page_group": "product",
+    "claim_kind": "axe:image-alt",
+    "detector_ids": [
+      "axe:image-alt"
+    ],
+    "evidence_ids": [
+      "ev_298d737db9ce",
+      "ev_3c2826ce5a19"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 2,
+    "component": "main/img"
+  },
+  {
+    "finding_key": "cta|product|below_fold",
+    "category": "cta",
+    "page_group": "product",
+    "claim_kind": "below_fold",
+    "detector_ids": [
+      "cta_below_fold"
+    ],
+    "evidence_ids": [
+      "ev_6e93fb9b4ca8",
+      "ev_84d76ad92bde",
+      "ev_90fa85f3f031",
+      "ev_9467f18511ff",
+      "ev_a679645bd500",
+      "ev_f080ee1bb7d9"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  },
+  {
+    "finding_key": "mobile_usability|product|horizontal_overflow",
+    "category": "mobile_usability",
+    "page_group": "product",
+    "claim_kind": "horizontal_overflow",
+    "detector_ids": [
+      "horizontal_overflow"
+    ],
+    "evidence_ids": [
+      "ev_da1aa8e5315b"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 1
+  },
+  {
+    "finding_key": "performance|/|oversized_image",
+    "category": "performance",
+    "page_group": "/",
+    "claim_kind": "oversized_image",
+    "detector_ids": [
+      "oversized_image"
+    ],
+    "evidence_ids": [
+      "ev_0fcc40c9006f",
+      "ev_e130204af87c"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 2
+  },
+  {
+    "finding_key": "shipping|product|deep_link_only",
+    "category": "shipping",
+    "page_group": "product",
+    "claim_kind": "deep_link_only",
+    "detector_ids": [
+      "shipping_depth"
+    ],
+    "evidence_ids": [
+      "ev_6c4df6719f2f",
+      "ev_b0633aacb00e",
+      "ev_cb087a9b31d4",
+      "ev_cbe2bb8c4fbb",
+      "ev_d3b1fd1d5b00",
+      "ev_f120b619357a"
+    ],
+    "evidence_families": [
+      "F-DET"
+    ],
+    "confidence": "VERIFIED",
+    "evidence_strength": 1,
+    "instances": 6
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "none_run_ids": [
+    "aud_c5d2aacdf7ebbbda",
+    "aud_44d6ff64590f5d45",
+    "aud_d2afe918c749161a"
+  ],
+  "shop_state_after_none": {
+    "add_to_cart_get": 0,
+    "logout": 0,
+    "delete_action": 0,
+    "non_get": 0
+  },
+  "sql_c1_none": {
+    "findings": 8,
+    "recommendations": 8,
+    "finding_evidence": 36,
+    "findings_without_evidence": 0,
+    "recs_without_finding": 0
+  },
+  "fake_run_db": {
+    "profile": 1,
+    "tasks": 6,
+    "lenses": 12,
+    "snap_sc": 30,
+    "journey_sc": 8,
+    "snap_ses": 30,
+    "journey_ses": 8,
+    "snap_jobs": 30,
+    "llm_calls": 33,
+    "tokens_input": 58019,
+    "tokens_output": 7464
+  },
+  "budget_states": {
+    "crawl": "done",
+    "tasks": "done",
+    "lenses": "done",
+    "report": "done",
+    "capture": "done",
+    "aggregate": "done",
+    "lighthouse": "skipped",
+    "site_profile": "done",
+    "accessibility": "done",
+    "scenario_matrix": "done",
+    "browser_sessions": "done",
+    "snapshot_sessions": "budget_limited"
+  },
+  "budget_used_tokens": {
+    "max": 40000,
+    "used": 34983
+  }
+}

@@ -37,6 +37,7 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 curl -s http://127.0.0.1:3001/api/audits/aud_…          # статус, етапи, попередження, помилка
 curl -s http://127.0.0.1:3001/api/audits/aud_…/pages    # сторінки (+ збійні з класом помилки)
 curl -s http://127.0.0.1:3001/api/audits/aud_…/evidence/ev_…
+curl -s http://127.0.0.1:3001/api/audits/aud_…/report   # звіт за контрактом Report (лише коли аудит completed)
 ```
 **Без інтернету / на локальних фікстурах** (fixture-режим послаблює SSRF-захист лише для явно перелічених origin-ів; заборонений при `NODE_ENV=production`):
 ```bash
@@ -57,6 +58,8 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 | `POST /api/audits` `{"url", "language"?: "uk"\|"en"}` | `202 {auditId}`; `400` (клас `invalid_url` + пояснення); `401`; `429` (ліміт) |
 | `GET /api/audits/:id` | статус (`queued → crawling → profiling → generating_lenses → running_scenarios → aggregating → completed \| failed`), `stage_status` кожного етапу, `progress`, `warnings[]`, `error {class, message}` |
 | `GET /api/audits/:id/pages` | сторінки: тип, скриншоти, `capture_ok`, `capture_error {class, message}`, `egress_denied[]` (що заблокував SSRF-шар), `evidence_count` |
+| `GET /api/audits/:id/report` | звіт за контрактом `Report` (`packages/schemas/src/report.ts`), уже перевірений guard-ом; перед відповіддю API ще раз перевіряє Zod-контракт і сканує весь JSON guard-ом (fail-closed). `409 report_not_ready` (аудит виконується), `503 report_unavailable` (звіту немає або його заблоковано), `404` (аудит не знайдено / завершився помилкою) |
+| `GET /api/audits/:id/artifacts/<шлях>` | скриншот/JSON доказу з каталогу **цього** аудиту (`pages/<id>/1440x1000/viewport.png`); лише png/jpg/webp/json, сегменти `[A-Za-z0-9._-]`, без `..`, символічних посилань і прихованих файлів; будь-що інше — `404` |
 | `GET /api/audits/:id/evidence/:evidenceId` | один доказ (source_class, artifact_reference, selector_or_region …) |
 | `DELETE /api/audits/:id` | видаляє аудит цілком: рядки БД, задачі черги, каталог артефактів (F3) |
 | `GET /api/health` | `{ok, db}` (без токена) |
@@ -102,10 +105,12 @@ curl -s -X POST http://127.0.0.1:3001/api/audits -H 'content-type: application/j
 
 ## Known limitations
 * **Живі сайти — ⏭️ не перевірено** (мережа середовища розробки закрита). Усе перевірено на фікстурах; поведінка проти реального Cloudflare, редіректів, CDN — невідома до живого пасу (S1b-live / S7).
-* **LLM — ⏭️**: без ключа етапи `skipped`; збереження виходів етапів (профіль, задачі, лінзи) підключає S4. Якість моделі не перевірялась.
+* **LLM — ⏭️**: без ключа етапи `skipped`. Виходи етапів (профіль, задачі, лінзи, сценарії, snapshot-сесії) зберігаються в БД і проходять весь конвеєр до звіту на scripted fake / replay (плумбінг доведено), але **якість моделі не перевірялась**; тексти знахідок від LLM (finding-aggregator / recommendation) у звіт ще не підключено — звіт бере кодові шаблони; журнали (`run_browser_scenario`) чекають виконавця з `packages/browser` (без нього — `skipped: journal_executor_unavailable`).
+* Токени (`MAX_AUDIT_TOKENS`): ліміт «м'який» при паралельних snapshot-сценаріях — кожна задача бачить залишок на момент свого старту (до 4 задач одночасно); перевищення обмежене кількома викликами (DEV-70).
+* `GET /artifacts/…` при заданому `ACCESS_TOKEN`: `<img src>` не може надіслати заголовок `Authorization` — показ скриншотів у UI з токеном **unverified** (перевіряється лише режим без токена).
 * `infra/docker-compose.yml` — **UNVERIFIED: ніколи не запускався** (немає Docker); лише PostgreSQL. Основний шлях — embedded-postgres.
 * embedded-postgres — лише beta-збірки на npm (DEV-10), закріплено `18.4.0-beta.17`; підтримано linux-x64 і darwin-arm64. **macOS не перевірено**: облік процесів спирається на `/proc` (Linux), на macOS перевірка `starttime` і обхід нащадків — неперевірені.
 * Знімок нащадків у PID-файл робиться кожні ~100 мс: процес, що з'явився й пережив смерть worker за менший інтервал, не буде записаний (для Playwright Chromium це не важливо: він виходить сам, коли закривається канал; для Chrome Lighthouse — записується за секунди).
 * Одночасно — один worker (PID-файл відмовляє другому). Масштабування на кілька worker — не в обсязі.
 * Видалення аудиту під час його виконання: задачі, що вже пишуть, можуть створити порожній каталог артефактів (прибирається наступним видаленням/TTL).
-* Lighthouse-докази мають `claim_kind=lighthouse_category_score` — узгодження зі схемою `Evidence` ще не закрито (див. звіт S2).
+* Lighthouse-докази (`claim_kind=lighthouse_category_score`) — опорні факти (ET-SUP): проходять Zod `Evidence` (DEV-68), але самі знахідок не створюють (severity від LCP/TBT для них ще не підключено).

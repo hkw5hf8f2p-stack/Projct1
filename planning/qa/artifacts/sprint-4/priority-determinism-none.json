@@ -1,0 +1,79 @@
+{
+  "runs": 3,
+  "identical": true,
+  "findings": 8,
+  "top10": [
+    {
+      "key": "pricing|category|not_in_first_viewport",
+      "rank": 1,
+      "priority": 90,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.85,
+      "fun": 0.9
+    },
+    {
+      "key": "pricing|product|not_in_first_viewport",
+      "rank": 2,
+      "priority": 90,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.85,
+      "fun": 0.9
+    },
+    {
+      "key": "cta|product|below_fold",
+      "rank": 3,
+      "priority": 85,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.8,
+      "fun": 0.8
+    },
+    {
+      "key": "accessibility|*|axe:button-name|header/button",
+      "rank": 4,
+      "priority": 85,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.75,
+      "fun": 0.9
+    },
+    {
+      "key": "shipping|product|deep_link_only",
+      "rank": 5,
+      "priority": 85,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.75,
+      "fun": 0.9
+    },
+    {
+      "key": "accessibility|product|axe:image-alt|main/img",
+      "rank": 6,
+      "priority": 82,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.75,
+      "fun": 0.8
+    },
+    {
+      "key": "mobile_usability|product|horizontal_overflow",
+      "rank": 7,
+      "priority": 80,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.7,
+      "fun": 0.8
+    },
+    {
+      "key": "performance|/|oversized_image",
+      "rank": 8,
+      "priority": 60,
+      "conf": "VERIFIED",
+      "strength": 1,
+      "sev": 0.6,
+      "fun": 0.3
+    }
+  ]
+}

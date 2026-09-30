@@ -1,0 +1,166 @@
+{
+  "session_id": "l4__t10",
+  "start_url": "http://127.0.0.1:41979/",
+  "origin": "http://127.0.0.1:41979",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_success",
+  "error": null,
+  "cart": {
+    "button_found": false,
+    "reachable": false,
+    "button_text": null,
+    "page_url": null,
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "false"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Немає такого посилання\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "link",
+        "name": "Немає такого посилання",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": "journeys/l4__t10/step-00.png"
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/about",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Про нас\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Про нас",
+        "count": 2,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Про нас",
+        "href": "http://127.0.0.1:41979/about"
+      },
+      "screenshot": "journeys/l4__t10/step-01.png"
+    },
+    {
+      "n": 2,
+      "url_before": "http://127.0.0.1:41979/about",
+      "url_after": "http://127.0.0.1:41979/",
+      "decision": {
+        "action": "back",
+        "target": "",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l4__t10/step-02.png"
+    },
+    {
+      "n": 3,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "back",
+        "target": "",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l4__t10/step-03.png"
+    },
+    {
+      "n": 4,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "back",
+        "target": "",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "noop",
+      "rule": null,
+      "detail": "історії немає",
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l4__t10/step-04.png"
+    },
+    {
+      "n": 5,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "stop_success",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l4__t10/step-05.png"
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

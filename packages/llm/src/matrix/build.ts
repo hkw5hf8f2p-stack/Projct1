@@ -4,7 +4,7 @@
  */
 import { LENS_VARIABLES, type BehavioralLens, type Scenario, type Task } from "@sitelens/schemas";
 import { stableId } from "../canonical.js";
-import { POLES, poleById, type PoleId } from "../lenses/select.js";
+import { POLES, lensStableId, poleById, type PoleId } from "../lenses/select.js";
 
 type VarKey = (typeof LENS_VARIABLES)[number];
 /** [змінна, інвертувати?, вага] */
@@ -37,7 +37,7 @@ export const MATRIX_MIN = 24, MATRIX_MAX = 40;
 const round = (x: number) => Math.round(x * 1e9) / 1e9;
 
 export function buildMatrix(lenses: readonly BehavioralLens[], tasks: readonly Task[]): MatrixResult {
-  const sid = new Map(lenses.map((l) => [l.id, stableId(l)]));
+  const sid = new Map(lenses.map((l) => [l.id, lensStableId(l)]));
   const lensById = new Map(lenses.map((l) => [l.id, l]));
   const R = new Map<string, number>();
   for (const l of lenses) for (const t of tasks) R.set(`${l.id}|${t.task_id}`, relevance(l, t.task_type));
@@ -149,7 +149,7 @@ export function toScenarios(auditRunId: string, m: readonly Pick<MatrixEntry, "l
 export interface JournalPick extends Omit<MatrixEntry, "level"> { level: "journey"; slot: number | "adaptive"; flags: string[] }
 
 export function selectFixedJournals(lenses: readonly BehavioralLens[], tasks: readonly Task[]): { journals: JournalPick[]; flags: string[] } {
-  const sid = new Map(lenses.map((l) => [l.id, stableId(l)]));
+  const sid = new Map(lenses.map((l) => [l.id, lensStableId(l)]));
   const taskById = new Map(tasks.map((t) => [t.task_id, t]));
   const used = new Set<string>();
   const flags: string[] = [];

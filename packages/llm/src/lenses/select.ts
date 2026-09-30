@@ -5,6 +5,16 @@
 import { LENS_VARIABLES, type BehavioralLens } from "@sitelens/schemas";
 import { stableId } from "../canonical.js";
 
+/**
+ * stableId лінзи БЕЗ службових полів (audit_run_id, prompt_version, llm_call_id): тай-брейки відбору й матриці не мають залежати від ідентифікатора аудиту —
+ * інакше той самий вхід дає різні набори лінз у різних аудитах (виявлено S4: 3 прогони fixtures/shop → різні лінзи → різні пріоритети; кр. 6, E2).
+ */
+export const lensStableId = (l: BehavioralLens): string => {
+  const { audit_run_id: _a, prompt_version: _p, llm_call_id: _c, ...content } = l;
+  void _a; void _p; void _c;
+  return stableId(content);
+};
+
 export type PoleId = "P1" | "P2" | "P3" | "P4" | "P5" | "P6" | "P7";
 type V = Record<(typeof LENS_VARIABLES)[number], number>;
 const v = (l: BehavioralLens): V => l as unknown as V;
@@ -47,7 +57,7 @@ export const isDuplicate = (a: BehavioralLens, b: BehavioralLens): boolean => le
 
 /** §9.2: з групи дублікатів лишається лінза з меншим stableId (транзитивно, за компонентами зв'язності) */
 export function dedupe(cands: readonly BehavioralLens[]): { kept: BehavioralLens[]; dropped: BehavioralLens[] } {
-  const ids = cands.map((c) => ({ c, sid: stableId(c) })).sort((a, b) => (a.sid < b.sid ? -1 : 1));
+  const ids = cands.map((c) => ({ c, sid: lensStableId(c) })).sort((a, b) => (a.sid < b.sid ? -1 : 1));
   const kept: typeof ids = [];
   const dropped: BehavioralLens[] = [];
   for (const x of ids) {
@@ -65,7 +75,7 @@ export function selectLenses(candidates: readonly BehavioralLens[], kRequested?:
   const k = clampK(kRequested);
   const flags: string[] = [];
   const { kept: C, dropped } = dedupe(candidates);
-  const sid = new Map(C.map((c) => [c.id, stableId(c)]));
+  const sid = new Map(C.map((c) => [c.id, lensStableId(c)]));
   const S: BehavioralLens[] = [];
   const minDist = (c: BehavioralLens) => (S.length === 0 ? 1 : Math.min(...S.map((s) => lensDistance(c, s))));
   const unmet: PoleId[] = [];
@@ -109,7 +119,7 @@ export function selectFarthestOnly(candidates: readonly BehavioralLens[], kReque
   const k = clampK(kRequested);
   const { kept: C } = dedupe(candidates);
   const S: BehavioralLens[] = [];
-  const sid = (c: BehavioralLens) => stableId(c);
+  const sid = (c: BehavioralLens) => lensStableId(c);
   while (S.length < k && S.length < C.length) {
     let best: BehavioralLens | null = null; let bd = -1;
     for (const c of C) {

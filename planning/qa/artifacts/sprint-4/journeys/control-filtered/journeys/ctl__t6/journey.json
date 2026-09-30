@@ -1,0 +1,224 @@
+{
+  "session_id": "ctl__t6",
+  "start_url": "http://127.0.0.1:40899/",
+  "origin": "http://127.0.0.1:40899",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_failure",
+  "error": null,
+  "cart": {
+    "button_found": false,
+    "reachable": false,
+    "button_text": null,
+    "page_url": null,
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "false"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:40899/",
+      "url_after": "http://127.0.0.1:40899/",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Вийти\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "blocked",
+      "rule": "logout",
+      "detail": "href http://127.0.0.1:40899/logout у deny-list (logout)",
+      "located": {
+        "role": "link",
+        "name": "Вийти",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Вийти",
+        "href": "http://127.0.0.1:40899/logout"
+      },
+      "screenshot": null
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:40899/",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "back",
+        "target": "",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 2,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Каталог\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "link",
+        "name": "Каталог",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 3,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "click",
+        "target": "link:\"В кошик\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "link",
+        "name": "В кошик",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 4,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Очистити порівняння\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "link",
+        "name": "Очистити порівняння",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 5,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "click",
+        "target": "link:\"AquaPro X200 (система HFX)\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "link",
+        "name": "AquaPro X200 (система HFX)",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 6,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Додати в кошик\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "not_found",
+      "rule": null,
+      "detail": "елемент за семантичним локатором не знайдено",
+      "located": {
+        "role": "button",
+        "name": "Додати в кошик",
+        "count": 0,
+        "picked_visible": false
+      },
+      "element": null,
+      "screenshot": null
+    },
+    {
+      "n": 7,
+      "url_before": "about:blank",
+      "url_after": "about:blank",
+      "decision": {
+        "action": "stop_failure",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": null
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

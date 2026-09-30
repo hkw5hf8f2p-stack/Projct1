@@ -1,0 +1,58 @@
+{
+  "session_id": "lens_a__t6",
+  "audit_run_id": "aud_s4",
+  "lens_id": "lens_a",
+  "task_id": "t6",
+  "level": "journey",
+  "status": "done",
+  "success": "partial",
+  "actions_used": 4,
+  "frictions": [],
+  "positive_signals": [
+    "The add-to-cart control is easy to find."
+  ],
+  "uncertainties": [],
+  "final_summary": "The control was found; price and delivery were not confirmed first.",
+  "steps": [
+    {
+      "action": "click",
+      "target": "link:\"Вийти\"",
+      "reason_summary": "Next useful page.",
+      "task_progress": "Moving on.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    {
+      "action": "click",
+      "target": "link:\"Каталог\"",
+      "reason_summary": "Next useful page.",
+      "task_progress": "Moving on.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    {
+      "action": "navigate_internal_link",
+      "target": "link:\"AquaPro X200 (система HFX)\"",
+      "reason_summary": "Next useful page.",
+      "task_progress": "Moving on.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    {
+      "action": "click",
+      "target": "button:\"Додати в кошик\"",
+      "reason_summary": "Next useful page.",
+      "task_progress": "Moving on.",
+      "friction_detected": [],
+      "confidence": 0.6
+    },
+    {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "The add-to-cart control is reachable.",
+      "task_progress": "Control found.",
+      "friction_detected": [],
+      "confidence": 0.7
+    }
+  ]
+}

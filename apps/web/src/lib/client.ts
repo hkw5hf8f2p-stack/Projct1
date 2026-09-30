@@ -56,8 +56,8 @@ export const getStatus = (id: string) => call<AuditStatus>(`/audits/${encodeURIC
 export const getReport = (id: string) => call<Report>(`/audits/${encodeURIComponent(id)}/report`);
 
 /**
- * URL артефакту доказу (скриншот). ⚠ unverified: маршрут `GET /api/audits/:id/artifacts/<path>` у реальному API ще не існує
- * (S5 очікує його від backend); у fixture-режимі його віддає dev-роут. Змінюється в одному місці — тут.
+ * URL артефакту доказу (скриншот). Реальний API віддає `GET /api/audits/:id/artifacts/<path>` (DEV-71; перевірено e2e через SITELENS_SOURCE=api —
+ * apps/worker/test/web-api.e2e.test.ts); у fixture-режимі його віддає dev-роут. При заданому ACCESS_TOKEN `<img>` не шле Authorization — unverified. Змінюється в одному місці — тут.
  */
 export function artifactUrl(auditId: string, ref: string): string {
   return `${BASE}/audits/${encodeURIComponent(auditId)}/artifacts/${ref.split("/").map(encodeURIComponent).join("/")}`;

@@ -1,0 +1,49 @@
+[
+  {
+    "type": "browser_session",
+    "self_confirming": false,
+    "session_id": "l3__t6",
+    "lens_id": "l3",
+    "task_id": "t6",
+    "level": "journey",
+    "artifact_reference": "journeys/l3__t6/journey.json",
+    "id": "ev_38ae4c4be781",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:41979/catalog",
+    "page_path": "/catalog",
+    "description": "Add-to-cart control «В кошик» found; reachable=true; price known before=false; shipping known before=false",
+    "selector_or_region": {
+      "selector": "button:\"В кошик\""
+    },
+    "category": "cta",
+    "claim_kind": "general",
+    "excerpt": "В кошик",
+    "detector_id": "journey_cart_reachable",
+    "assertion": "presence",
+    "viewport": "D",
+    "measurement": {
+      "reachable": true,
+      "price_known_before": false,
+      "shipping_known_before": false,
+      "success": "partial"
+    },
+    "capture_complete": true,
+    "capture_context": {
+      "banner_state": "closed",
+      "banner_actions": [
+        {
+          "step": "reject",
+          "label": "Лише необхідні",
+          "clicked": true,
+          "method": "click",
+          "hidden_after": true
+        }
+      ],
+      "blocked_requests_count": 0,
+      "js_error_count": 0,
+      "scroll_completed": true,
+      "layout_stable": true,
+      "http_status": 200
+    }
+  }
+]

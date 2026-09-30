@@ -1,0 +1,53 @@
+{
+  "session_id": "l4__t4",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l4",
+  "task_id": "t4",
+  "level": "journey",
+  "status": "done",
+  "success": "true",
+  "actions_used": 2,
+  "frictions": [
+    {
+      "category": "shipping",
+      "severity": "low",
+      "evidence": "\"Доставка Новою поштою: 1–2 дні, від 70 грн.\"",
+      "page_url": "http://127.0.0.1:41979/help/shipping"
+    },
+    {
+      "category": "pricing",
+      "severity": "medium",
+      "evidence": "NOT_FOUND: total price with options",
+      "page_url": "http://127.0.0.1:41979/help/shipping"
+    }
+  ],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "scripted summary",
+  "steps": [
+    {
+      "action": "click",
+      "target": "link:\"Допомога\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "click",
+      "target": "link:\"Доставка й оплата\"",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "stop_success",
+      "target": "",
+      "reason_summary": "done",
+      "task_progress": "done",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

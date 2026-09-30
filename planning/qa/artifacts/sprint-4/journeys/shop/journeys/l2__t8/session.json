@@ -1,0 +1,48 @@
+{
+  "session_id": "l2__t8",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l2",
+  "task_id": "t8",
+  "level": "journey",
+  "status": "done",
+  "success": "false",
+  "actions_used": 3,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "",
+  "steps": [
+    {
+      "action": "scroll",
+      "target": "down",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "scroll",
+      "target": "down",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "scroll",
+      "target": "top",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    },
+    {
+      "action": "scroll",
+      "target": "down",
+      "reason_summary": "scripted",
+      "task_progress": "scripted",
+      "friction_detected": [],
+      "confidence": 0.5
+    }
+  ]
+}

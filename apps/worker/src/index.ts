@@ -8,6 +8,7 @@ import path from "node:path";
 import { cleanupOrphansFromFile, cleanupSpawnLog, isSameProc, killOwnDescendants, loadDotEnv, pg, readPidFile, startProcWatch } from "@sitelens/db";
 import { QUEUE_SPECS, createBoss, describeConfig, loadConfig, startBoss, sweepExpiredArtifacts } from "@sitelens/pipeline";
 import { registerHandlers } from "./handlers.js";
+import { browserJournalRunner } from "./journal-runner.js";
 import { createRuntime, type Runtime } from "./runtime.js";
 
 loadDotEnv();
@@ -39,6 +40,7 @@ try {
 const boss = createBoss(cfg.databaseUrl, { supervise: true, max: 10, application_name: "sitelens-worker-boss" });
 await startBoss(boss);
 const rt: Runtime = createRuntime(cfg, pool, boss);
+rt.journalRunner = browserJournalRunner; // run_browser_scenario: виконавець журналів із packages/browser (DEV-70)
 
 /** Задачі, що лишились `active` від мертвого worker → fail() → pg-boss повертає їх у чергу (retry), бо retryLimit > 0. */
 let requeued = 0;

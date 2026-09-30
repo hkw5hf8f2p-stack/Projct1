@@ -8,11 +8,18 @@ const rd = <T = Record<string, any>>(f: string): T | null => (existsSync(path.jo
 const c = rd("kill9-worker-crawl.json"), l = rd("kill9-worker-lighthouse.json"), a = rd("kill9-api.json"), p = rd("partial-failure.json"), t = rd("taxonomy-48.json");
 const r = rd("repeat.json"), d = rd("ttl-and-delete.json"), s = rd("ssrf-via-api.json"), li = rd("listen.json"), sec = rd("secrets-scan.json"), lh = rd("kill9-worker-lighthouse-lh.json");
 const kills = [c, l, a];
-const lost = kills.reduce((n, k) => n + (k?.integrity.pages_lost ?? 999) + (k?.integrity.evidence_lost ?? 0), 0);
-const dup = kills.reduce((n, k) => n + (k?.integrity.pages_duplicated ?? 999) + (k?.integrity.evidence_duplicated ?? 0) + (k?.integrity.jobs_duplicated ?? 0), 0);
+// S2-1: «0 дублів / 0 втрат» = рівність множин із baseline (сторінки, докази УСІХ типів включно з Lighthouse, ключі задач); PK-лічильники — лише structural, у суму не входять
+const lost = kills.reduce((n, k) => n + (k?.integrity.pages_lost ?? 999) + (k?.integrity.evidence_lost ?? 999) + (k?.integrity.jobs_lost ?? 999), 0);
+const dup = kills.reduce((n, k) => n + (k?.integrity.pages_extra ?? 999) + (k?.integrity.evidence_extra ?? 999) + (k?.integrity.jobs_extra ?? 999), 0);
+const lhRows = kills.map((k) => (k ? `${k.integrity.lighthouse_rows}/${k.integrity.lighthouse_rows_expected_from_baseline}` : null));
+const dupControl = kills.map((k) => k?.dup_control?.detected ?? null);
 const orph = [c, l].reduce((n, k) => n + (k ? k.orphans_after.tracked_pids_still_alive.length + k.orphans_after.descendants_of_dead_worker_still_alive.length + k.orphans_after.independent_scan.orphan_browsers.length + k.orphans_after.independent_scan.orphan_postgres.length : 999), 0) + (a ? a.orphans_after.orphan_browsers.length + a.orphans_after.orphan_postgres.length : 999);
 const out = {
-  "1_restart_kill9": { scenarios_passed: `${kills.filter((k) => k?.pass).length}/3`, pages_lost_plus_evidence_lost: lost, duplicated: dup, lighthouse_rows_exactly_once: lh?.ok ?? null },
+  "1_restart_kill9": {
+    scenarios_passed: `${kills.filter((k) => k?.pass).length}/3`, pages_evidence_jobs_lost: lost, extra_or_duplicated_vs_baseline: dup, lighthouse_rows_per_scenario_vs_baseline: lhRows, lighthouse_rows_exactly_once_lh_scenario: lh?.ok ?? null,
+    dup_control_detects_planted_double_lighthouse: dupControl, meaning: "0 дублів = рівність множин із baseline (id сторінок, id доказів усіх типів, ключі задач); count−count(DISTINCT) по PK — structural, не рахується",
+    run: { git_sha: rd("_run-info.json")?.git_sha, working_tree_dirty_files: rd("_run-info.json")?.working_tree_dirty_files, phases: rd("_run-info.json")?.phases },
+  },
   "2_partial_failure": { status: p?.status, audits_failed_due_to_one_page_or_lighthouse: p?.audits_failed_because_of_one_page_or_lighthouse, warnings: p?.warnings?.length, pass: p?.pass },
   "3_taxonomy_48": { classes_passed: `${t?.classes_passed}/${t?.classes_total}`, zero_analysis_on_failure: t?.rows.every((x: { evidence_rows: number }) => x.evidence_rows === 0) },
   "4_repeat": { independent_audit_runs: r?.distinct_audit_runs, first_unchanged: r?.first_unchanged },

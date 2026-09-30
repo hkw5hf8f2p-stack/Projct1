@@ -1,0 +1,160 @@
+{
+  "session_id": "l1__t2",
+  "start_url": "http://127.0.0.1:41979/",
+  "origin": "http://127.0.0.1:41979",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_success",
+  "error": null,
+  "cart": {
+    "button_found": true,
+    "reachable": true,
+    "button_text": "В кошик",
+    "page_url": "http://127.0.0.1:41979/catalog",
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "partial"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/catalog",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Каталог\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Каталог",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Каталог",
+        "href": "http://127.0.0.1:41979/catalog"
+      },
+      "screenshot": "journeys/l1__t2/step-00.png"
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:41979/catalog",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x200",
+      "decision": {
+        "action": "click",
+        "target": "link:\"AquaPro X200 (система HFX)\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "AquaPro X200 (система HFX)",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "AquaPro X200 (система HFX)",
+        "href": "http://127.0.0.1:41979/product/aquapro-x200"
+      },
+      "screenshot": "journeys/l1__t2/step-01.png"
+    },
+    {
+      "n": 2,
+      "url_before": "http://127.0.0.1:41979/product/aquapro-x200",
+      "url_after": "http://127.0.0.1:41979/catalog",
+      "decision": {
+        "action": "back",
+        "target": "",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l1__t2/step-02.png"
+    },
+    {
+      "n": 3,
+      "url_before": "http://127.0.0.1:41979/catalog",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x220",
+      "decision": {
+        "action": "click",
+        "target": "link:\"AquaPro X220 (система HFX)\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "AquaPro X220 (система HFX)",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "AquaPro X220 (система HFX)",
+        "href": "http://127.0.0.1:41979/product/aquapro-x220"
+      },
+      "screenshot": "journeys/l1__t2/step-03.png"
+    },
+    {
+      "n": 4,
+      "url_before": "http://127.0.0.1:41979/product/aquapro-x220",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x220",
+      "decision": {
+        "action": "stop_success",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l1__t2/step-04.png"
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

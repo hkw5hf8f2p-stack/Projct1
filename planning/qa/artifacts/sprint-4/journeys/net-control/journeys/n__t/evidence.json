@@ -1,0 +1,23 @@
+[
+  {
+    "type": "browser_session",
+    "self_confirming": false,
+    "session_id": "n__t",
+    "lens_id": "n",
+    "task_id": "t",
+    "level": "journey",
+    "artifact_reference": "journeys/n__t/journey.json",
+    "id": "ev_97c2db9cff74",
+    "source_class": "OBSERVED",
+    "page_url": "http://127.0.0.1:41221/x",
+    "page_path": "/x",
+    "description": "Browser interaction failure: http_error (HTTP 403)",
+    "selector_or_region": {
+      "selector": "body"
+    },
+    "browser_failure": {
+      "kind": "http_error",
+      "reproduced_by_replay": false
+    }
+  }
+]

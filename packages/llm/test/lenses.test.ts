@@ -109,3 +109,20 @@ describe("C5: покриття обов'язкових полюсів (1000 ви
     expect(stats.total).toBe(1000);
   });
 });
+
+describe("інваріантність до audit_run_id (S4: критерій 6, E2)", () => {
+  // кандидати shop мають точні збіги ключів (значення з кроком 0.05–0.1), тож тай-брейк за stableId реально спрацьовує
+  it("той самий набір кандидатів під різними audit_run_id → ті самі лінзи (id і порядок) і та сама матриця (lens|task|device)", async () => {
+    const { shopLensCandidates } = await import("../src/testing/synthetic-shop.js");
+    const { candidateToLens } = await import("../src/schemas.js");
+    const { buildMatrix } = await import("../src/index.js");
+    const { shopTasksResponse } = await import("../src/testing/synthetic-shop.js");
+    const { Task } = await import("@sitelens/schemas");
+    const tasks = shopTasksResponse().tasks.map((t) => Task.parse({ ...t, recommended_start_page: "https://x.test/" }));
+    const mk = (audit: string) => shopLensCandidates().map((c) => candidateToLens(c as never, audit).lens);
+    const sels = ["run_a", "aud_0123456789abcdef", "aud_fedcba9876543210", "zzz"].map((a) => selectLenses(mk(a)).selected.map((l) => l.id));
+    for (const s of sels.slice(1)) expect(s).toEqual(sels[0]);
+    const mats = ["run_a", "aud_0123456789abcdef", "zzz"].map((a) => buildMatrix(selectLenses(mk(a)).selected, tasks).entries.map((e) => `${e.lens_id}|${e.task_id}|${e.device}`));
+    for (const m of mats.slice(1)) expect(m).toEqual(mats[0]);
+  });
+});

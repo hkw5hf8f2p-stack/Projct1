@@ -1,0 +1,24 @@
+{
+  "reports_scanned": 3,
+  "fields_checked": [
+    87,
+    87,
+    87
+  ],
+  "clean": true,
+  "control_uk": {
+    "clean": false,
+    "violation": {
+      "ptr": "/findings/0/problem",
+      "kind": "template",
+      "rule_ids": [
+        "structural_number",
+        "invented_percent",
+        "business_percent"
+      ],
+      "sample": "Після виправлення буде +12 % конверсії."
+    }
+  },
+  "control_en_clean": false,
+  "api_poisoned_status": 503
+}

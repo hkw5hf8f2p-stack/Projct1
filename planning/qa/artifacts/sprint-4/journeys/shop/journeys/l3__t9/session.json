@@ -1,0 +1,15 @@
+{
+  "session_id": "l3__t9",
+  "audit_run_id": "aud_s4",
+  "lens_id": "l3",
+  "task_id": "t9",
+  "level": "journey",
+  "status": "failed",
+  "success": "false",
+  "actions_used": 0,
+  "frictions": [],
+  "positive_signals": [],
+  "uncertainties": [],
+  "final_summary": "",
+  "steps": []
+}

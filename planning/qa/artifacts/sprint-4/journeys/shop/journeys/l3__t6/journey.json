@@ -1,0 +1,253 @@
+{
+  "session_id": "l3__t6",
+  "start_url": "http://127.0.0.1:41979/",
+  "origin": "http://127.0.0.1:41979",
+  "vp": "D",
+  "max_steps": 8,
+  "filter": true,
+  "end_reason": "stop_failure",
+  "error": null,
+  "cart": {
+    "button_found": true,
+    "reachable": true,
+    "button_text": "В кошик",
+    "page_url": "http://127.0.0.1:41979/catalog",
+    "price_known_before": false,
+    "shipping_known_before": false,
+    "success": "partial"
+  },
+  "steps": [
+    {
+      "n": 0,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Вийти\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "blocked",
+      "rule": "logout",
+      "detail": "href http://127.0.0.1:41979/logout у deny-list (logout)",
+      "located": {
+        "role": "link",
+        "name": "Вийти",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Вийти",
+        "href": "http://127.0.0.1:41979/logout"
+      },
+      "screenshot": "journeys/l3__t6/step-00.png"
+    },
+    {
+      "n": 1,
+      "url_before": "http://127.0.0.1:41979/",
+      "url_after": "http://127.0.0.1:41979/catalog",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Каталог\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "Каталог",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Каталог",
+        "href": "http://127.0.0.1:41979/catalog"
+      },
+      "screenshot": "journeys/l3__t6/step-01.png"
+    },
+    {
+      "n": 2,
+      "url_before": "http://127.0.0.1:41979/catalog",
+      "url_after": "http://127.0.0.1:41979/catalog",
+      "decision": {
+        "action": "click",
+        "target": "link:\"В кошик\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "blocked",
+      "rule": "add_to_cart",
+      "detail": "href http://127.0.0.1:41979/catalog?add-to-cart=1 у deny-list (add_to_cart)",
+      "located": {
+        "role": "link",
+        "name": "В кошик",
+        "count": 3,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "В кошик",
+        "href": "http://127.0.0.1:41979/catalog?add-to-cart=1"
+      },
+      "screenshot": "journeys/l3__t6/step-02.png"
+    },
+    {
+      "n": 3,
+      "url_before": "http://127.0.0.1:41979/catalog",
+      "url_after": "http://127.0.0.1:41979/catalog",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Очистити порівняння\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "blocked",
+      "rule": "delete",
+      "detail": "href http://127.0.0.1:41979/catalog?action=delete&list=compare у deny-list (delete)",
+      "located": {
+        "role": "link",
+        "name": "Очистити порівняння",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Очистити порівняння",
+        "href": "http://127.0.0.1:41979/catalog?action=delete&list=compare"
+      },
+      "screenshot": "journeys/l3__t6/step-03.png"
+    },
+    {
+      "n": 4,
+      "url_before": "http://127.0.0.1:41979/catalog",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x200",
+      "decision": {
+        "action": "click",
+        "target": "link:\"AquaPro X200 (система HFX)\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "executed",
+      "rule": null,
+      "detail": null,
+      "located": {
+        "role": "link",
+        "name": "AquaPro X200 (система HFX)",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "AquaPro X200 (система HFX)",
+        "href": "http://127.0.0.1:41979/product/aquapro-x200"
+      },
+      "screenshot": "journeys/l3__t6/step-04.png"
+    },
+    {
+      "n": 5,
+      "url_before": "http://127.0.0.1:41979/product/aquapro-x200",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x200",
+      "decision": {
+        "action": "click",
+        "target": "link:\"Прибрати з порівняння\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "blocked",
+      "rule": "delete",
+      "detail": "href http://127.0.0.1:41979/product/aquapro-x200?action=delete&id=1 у deny-list (delete)",
+      "located": {
+        "role": "link",
+        "name": "Прибрати з порівняння",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "a",
+        "text": "Прибрати з порівняння",
+        "href": "http://127.0.0.1:41979/product/aquapro-x200?action=delete&id=1"
+      },
+      "screenshot": "journeys/l3__t6/step-05.png"
+    },
+    {
+      "n": 6,
+      "url_before": "http://127.0.0.1:41979/product/aquapro-x200",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x200",
+      "decision": {
+        "action": "click",
+        "target": "button:\"Додати в кошик\"",
+        "reason_summary": "scripted",
+        "task_progress": "scripted",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "found_not_clicked",
+      "rule": "commercial_cta",
+      "detail": "текст «Додати в кошик» → commercial_cta",
+      "located": {
+        "role": "button",
+        "name": "Додати в кошик",
+        "count": 1,
+        "picked_visible": true
+      },
+      "element": {
+        "tag": "button",
+        "text": "Додати в кошик",
+        "href": null
+      },
+      "screenshot": "journeys/l3__t6/step-06.png"
+    },
+    {
+      "n": 7,
+      "url_before": "http://127.0.0.1:41979/product/aquapro-x200",
+      "url_after": "http://127.0.0.1:41979/product/aquapro-x200",
+      "decision": {
+        "action": "stop_failure",
+        "target": "",
+        "reason_summary": "done",
+        "task_progress": "done",
+        "friction_detected": [],
+        "confidence": 0.5
+      },
+      "verdict": "stop",
+      "rule": null,
+      "detail": null,
+      "located": null,
+      "element": null,
+      "screenshot": "journeys/l3__t6/step-07.png"
+    }
+  ],
+  "net_blocks": [],
+  "recovered_from_blocked_navigation": 0,
+  "method_blocks": 0,
+  "rejected_frictions": [],
+  "banner": {
+    "detected": true,
+    "state": "closed",
+    "actions": [
+      {
+        "step": "reject",
+        "label": "Лише необхідні",
+        "clicked": true,
+        "method": "click",
+        "hidden_after": true
+      }
+    ]
+  }
+}

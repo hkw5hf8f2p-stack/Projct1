@@ -55,3 +55,37 @@ describe("BehavioralLens / Session / LlmCall", () => {
     expect(S.Task.safeParse({ ...t, task_type: "x" }).success).toBe(false);
   });
 });
+
+describe("AuditRun під колонки 002 (DEV-55/DEV-68)", () => {
+  it("language/токени/error_class/warnings: валідні значення проходять, значення за замовчуванням є", () => {
+    const p = S.AuditRun.parse(run({ language: "en", tokens_input: 10, tokens_output: 5, warnings: [{ stage: "capture", message: "m", class: "timeout" }] }));
+    expect(p.language).toBe("en");
+    expect(S.AuditRun.parse(run()).language).toBe("uk");
+    expect(S.AuditRun.parse(run()).tokens_input).toBe(0);
+  });
+  it("контролі: мова xx, від'ємні токени, клас поза §48, failed без error_class — відхиляються", () => {
+    expect(S.AuditRun.safeParse(run({ language: "xx" })).success).toBe(false);
+    expect(S.AuditRun.safeParse(run({ tokens_input: -1 })).success).toBe(false);
+    expect(S.AuditRun.safeParse(run({ error_class: "boom" })).success).toBe(false);
+    expect(S.AuditRun.safeParse(run({ status: "failed", error: "x", completed_at: null })).success).toBe(false);
+    expect(S.AuditRun.safeParse(run({ status: "failed", error: "x", error_class: "timeout", completed_at: null })).success).toBe(true);
+  });
+});
+
+describe("Evidence Lighthouse (DEV-68)", () => {
+  const lh = (o: Record<string, unknown> = {}) => ({
+    id: "ev_0123456789ab", type: "lighthouse", source_class: "BENCHMARKED", page_url: "https://example.com/", description: "Lighthouse 13 performance (desktop): 98/100", artifact_reference: "pages/index/lighthouse-desktop.json",
+    selector_or_region: { selector: "lhr.categories.performance" }, self_confirming: false, category: "performance", detector_id: "lighthouse:performance", claim_kind: "lighthouse_category_score", assertion: "presence", viewport: "D",
+    measurement: { score_100: 98 }, capture_complete: true, capture_context: { banner_state: "none", banner_actions: [], blocked_requests_count: 0, js_error_count: 0, scroll_completed: true, layout_stable: true, http_status: null }, ...o,
+  });
+  it("performance і accessibility з claim_kind lighthouse_category_score — валідний доказ", () => {
+    expect(S.Evidence.safeParse(lh()).success).toBe(true);
+    expect(S.Evidence.safeParse(lh({ category: "accessibility", detector_id: "lighthouse:accessibility" })).success).toBe(true);
+  });
+  it("контроль: та сама вимірювальна назва в чужій категорії (cta) — відхиляється; LLM-список claim_kind її не містить", () => {
+    expect(S.Evidence.safeParse(lh({ category: "cta" })).success).toBe(false);
+    expect(S.CLAIM_KINDS_BY_CATEGORY.performance).not.toContain("lighthouse_category_score");
+    expect(S.isClaimKindFor("performance", "lighthouse_category_score")).toBe(true);
+    expect(S.isClaimKindFor("shipping", "lighthouse_category_score")).toBe(false);
+  });
+});

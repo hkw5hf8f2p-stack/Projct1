@@ -2,6 +2,8 @@
  * REPRO (знахідка S2 для S1b): сторінка з `window.open(...)` при `captureViewport` інколи (≈ 1–2 із 6) не завершується до 60-с watchdog.
  * Запуск: bash scripts/run-as-sitelens.sh pnpm exec tsx scripts/s2/repro-popup-hang.ts   → друкує ok/hang для варіантів сторінки.
  * Спроба закривати popup у контексті (ctx.on('page') → p.close()) ПОГІРШИЛА картину (≈ 10 з 20) — не допомагає.
+ * ВИПРАВЛЕНО (S4): captureViewport ставить WINDOW_OPEN_LOCK_SCRIPT (window.open → null); LOCK=0 вимикає замок (контроль). N=<кількість>, T=<таймаут мс>.
+ * Вимірювання: без замка з window.open 19/62 зависань, з замком 0/50; без window.open 0/92. Тест: packages/browser/test/popup-hang.test.ts.
  */
 import { secureLaunch } from "../../packages/browser/src/secure-launch.js";
 import { captureViewport } from "../../packages/browser/src/audit/capture-page.js";

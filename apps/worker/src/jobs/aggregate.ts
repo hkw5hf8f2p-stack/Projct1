@@ -67,7 +67,7 @@ export async function aggregateJob(rt: Runtime, job: Job<JobData>): Promise<void
   await withTx(rt.pool, async (c) => {
     if (llmR && llmR.llm.evidence.length) await insertEvidence(c, id, llmR.llm.evidence as unknown as EvidenceInput[]);
     await replaceFindings(c, id, findingRows(scored));
-    await setStage(c, id, "aggregate", "done", `докази зведено (${art.evidence.length} детермінованих, ${llmR?.llm.evidence.length ?? 0} синтетичних; оновлено ${changed}); знахідок ${scored.findings.length}, відхилено тверджень без доказу ${llmR?.rejected.length ?? 0}`);
+    await setStage(c, id, "aggregate", "done", `докази зведено (${art.evidence.length} детермінованих, ${llmR?.llm.evidence.length ?? 0} синтетичних; оновлено ${changed}); знахідок ${scored.findings.length}, відхилено тверджень без доказу ${llmR?.rejected.length ?? 0}${llmR && llmR.rejected.length ? ` (${Object.entries(llmR.rejected.reduce<Record<string, number>>((m, r) => ({ ...m, [r.reason]: (m[r.reason] ?? 0) + 1 }), {})).map(([k, n]) => `${k}: ${n}`).join(", ")})` : ""}`);
     await enqueue(rt.boss, Q.report, { auditRunId: id }, { db: txDb(c) });
   });
 }
