@@ -7,11 +7,30 @@ import { AnthropicProvider } from "./providers/anthropic.js";
 import { ClaudeCliProvider } from "./providers/claude-cli.js";
 import { DEFAULT_NAMESPACE, SessionProvider } from "./providers/session.js";
 import { OpenAiProvider } from "./providers/openai.js";
+import { OpenAiChatProvider } from "./providers/openai-chat.js";
 import type { Logger } from "./redact.js";
 import type { CacheMode, FetchLike } from "./types.js";
 
 export type Env = Record<string, string | undefined>;
 export type LlmModeAudit = "live" | "replay" | "none";
+export type OpenAiApiMode = "responses" | "chat";
+
+/**
+ * Режим OpenAI-адаптера. Явний `OPENAI_API_MODE=responses|chat` — понад усе. Інакше: `LLM_PROVIDER=openai_compatible` або `OPENAI_BASE_URL` не на api.openai.com
+ * (так BYO-налаштування «openai_compatible» доходить до пакета) → chat completions (Ollama/LM Studio/vLLM не мають /v1/responses); інакше responses.
+ */
+export function resolveOpenAiApiMode(env: Env, compatible: boolean): OpenAiApiMode {
+  const raw = env.OPENAI_API_MODE?.trim().toLowerCase();
+  if (raw) {
+    if (raw === "responses") return "responses";
+    if (raw === "chat" || raw === "chat_completions" || raw === "chat-completions") return "chat";
+    throw new ConfigError(`OPENAI_API_MODE=${raw}: очікується responses|chat`);
+  }
+  if (compatible) return "chat";
+  const base = env.OPENAI_BASE_URL?.trim();
+  if (!base) return "responses";
+  try { return new URL(base).hostname === "api.openai.com" ? "responses" : "chat"; } catch { throw new ConfigError("OPENAI_BASE_URL: некоректний URL"); }
+}
 
 export interface ResolvedConfig {
   llm_mode: LlmModeAudit;
@@ -19,6 +38,8 @@ export interface ResolvedConfig {
   model: string | null;
   /** DEV-82/83: транспорт поза API-ключем. Для AuditRun/Report схема лишається llm_mode ∈ {live,replay,none} (session → replay, claude-cli → live) */
   transport: "session" | "claude-cli" | null;
+  /** лише для provider=openai: Responses API чи Chat Completions (DEV-84); openai_compatible і чужий OPENAI_BASE_URL → chat */
+  openai_api_mode?: OpenAiApiMode;
   max_audit_tokens: number;
   cache_mode: CacheMode;
   /** секрети, які треба редагувати в логах */
@@ -54,11 +75,18 @@ export function resolveConfig(env: Env): ResolvedConfig {
     if (isProd(env)) throw new ConfigError("LLM_PROVIDER=claude-cli заборонено в production: підписка — для особистого/локального використання (DEV-83)");
     return { llm_mode: "live", provider: "claude-cli", model: env.LLM_MODEL ?? null, transport: "claude-cli", max_audit_tokens: max, cache_mode, secrets };
   }
-  if (p !== "anthropic" && p !== "openai") throw new ConfigError(`LLM_PROVIDER=${p}: очікується anthropic|openai|claude-cli|session|replay|none`);
+  const compatible = p === "openai_compatible" || p === "openai-compatible";
+  if (compatible) {
+    if (!env.OPENAI_BASE_URL?.trim()) throw new ConfigError("LLM_PROVIDER=openai_compatible: OPENAI_BASE_URL не задано (адреса сервера, напр. http://127.0.0.1:11434/v1)");
+    if (!env.LLM_MODEL) throw new ConfigError("LLM_MODEL не задано: модель не хардкодиться (SPEC §6)");
+    // локальні сервери часто без ключа: підставляємо заглушку (як BYO-overlay); справжній ключ, якщо заданий, редагується в логах
+    return { llm_mode: "live", provider: "openai", model: env.LLM_MODEL, transport: null, openai_api_mode: resolveOpenAiApiMode(env, true), max_audit_tokens: max, cache_mode, secrets };
+  }
+  if (p !== "anthropic" && p !== "openai") throw new ConfigError(`LLM_PROVIDER=${p}: очікується anthropic|openai|openai_compatible|claude-cli|session|replay|none`);
   const key = p === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY;
   if (!key) throw new ConfigError(`LLM_PROVIDER=${p}, але ${p === "anthropic" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY"} не задано`);
   if (!env.LLM_MODEL) throw new ConfigError("LLM_MODEL не задано: модель не хардкодиться (SPEC §6)");
-  return { llm_mode: "live", provider: p, model: env.LLM_MODEL, transport: null, max_audit_tokens: max, cache_mode, secrets };
+  return { llm_mode: "live", provider: p, model: env.LLM_MODEL, transport: null, ...(p === "openai" ? { openai_api_mode: resolveOpenAiApiMode(env, false) } : {}), max_audit_tokens: max, cache_mode, secrets };
 }
 
 export interface ClientDeps { fetchImpl?: FetchLike; logger?: Logger; replayDir?: string; namespace?: string; sleep?: (ms: number) => Promise<void> }
@@ -86,9 +114,9 @@ export function createClientFromEnv(env: Env, deps: ClientDeps = {}): { client: 
     const [prov, model] = (env.REPLAY_AS ?? "replay:synthetic-fixture-v1").split(/:(.*)/s);
     return { client: new LlmClient({ mode: "replay", cache, cache_identity: { provider: prov ?? "replay", model: model || "synthetic-fixture-v1" }, ...common }), config };
   }
-  const key = (config.provider === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY) as string;
+  const key = (config.provider === "anthropic" ? env.ANTHROPIC_API_KEY : env.OPENAI_API_KEY || (config.openai_api_mode === "chat" ? "local-no-key" : undefined)) as string;
   const cfg = { apiKey: key, model: config.model as string, fetchImpl: deps.fetchImpl, sleep: deps.sleep, baseUrl: config.provider === "anthropic" ? env.ANTHROPIC_BASE_URL : env.OPENAI_BASE_URL };
-  const provider = config.provider === "anthropic" ? new AnthropicProvider(cfg) : new OpenAiProvider(cfg);
+  const provider = config.provider === "anthropic" ? new AnthropicProvider(cfg) : config.openai_api_mode === "chat" ? new OpenAiChatProvider(cfg) : new OpenAiProvider(cfg);
   const cache = new ReplayCache(new DirStore(dir), ns);
   return { client: new LlmClient({ mode: "live", provider, cache, ...common }), config };
 }

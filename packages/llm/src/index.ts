@@ -18,6 +18,7 @@ export * from "./lenses/select.js";
 export * from "./matrix/build.js";
 export * from "./providers/anthropic.js";
 export * from "./providers/openai.js";
+export * from "./providers/openai-chat.js";
 export * from "./providers/scripted-fake.js";
 export * from "./providers/session.js";
 export * from "./providers/claude-cli.js";

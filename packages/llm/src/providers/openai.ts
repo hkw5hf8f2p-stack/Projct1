@@ -3,9 +3,10 @@ import type { LlmProvider, LlmRequest, ProviderResult } from "../types.js";
 import type { AdapterConfig } from "./anthropic.js";
 import { isSamplingRejection, postJson } from "./http.js";
 import { loadImageB64 } from "./images.js";
+import { openAiEndpoint } from "./openai-chat.js";
 
 /**
- * OpenAI Responses API (SPEC §6): `text.format = json_schema` (strict). Автентифікація — Bearer з env.
+ * OpenAI Responses API (SPEC §6; `OPENAI_API_MODE=responses`, типово для api.openai.com; для сумісних серверів типовий режим — chat completions, див. openai-chat.ts): `text.format = json_schema` (strict). Автентифікація — Bearer з env.
  * UNVERIFIED до живого виклику: strict-режим схеми, поведінка `temperature` на reasoning-моделях.
  */
 export class OpenAiProvider implements LlmProvider {
@@ -32,7 +33,7 @@ export class OpenAiProvider implements LlmProvider {
 
   async complete(req: LlmRequest): Promise<ProviderResult> {
     const t0 = Date.now();
-    const url = `${(this.c.baseUrl ?? "https://api.openai.com").replace(/\/$/, "")}/v1/responses`;
+    const url = openAiEndpoint(this.c.baseUrl, "responses");
     const headers = { authorization: `Bearer ${this.c.apiKey}` };
     const http = { fetchImpl: this.c.fetchImpl, timeoutMs: this.c.timeoutMs, maxRetries: this.c.maxRetries, sleep: this.c.sleep, secrets: [this.c.apiKey] };
     let dropped = false;
