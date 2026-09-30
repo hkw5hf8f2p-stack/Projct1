@@ -17,3 +17,63 @@ rc=0
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/user/Projct1[39m
 
+ [32m✓[39m packages/browser/test/worker-bypass.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4180[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль raw (без шару 2): POST доходить до цілі з КОЖНОГО варіанта — детектор уміє впасти [33m 1280[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов [33m 1305[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mSecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано [33m 1224[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 07:56:13
+[2m   Duration [22m 4.97s[2m (transform 176ms, setup 0ms, collect 496ms, tests 4.18s, environment 0ms, prepare 69ms)[22m
+
+rc=0
+== run 3
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/user/Projct1[39m
+
+ [32m✓[39m packages/browser/test/worker-bypass.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4329[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль raw (без шару 2): POST доходить до цілі з КОЖНОГО варіанта — детектор уміє впасти [33m 1382[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов [33m 1381[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mSecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано [33m 1206[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 07:56:20
+[2m   Duration [22m 5.16s[2m (transform 160ms, setup 0ms, collect 508ms, tests 4.33s, environment 0ms, prepare 91ms)[22m
+
+rc=0
+== run 4
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/user/Projct1[39m
+
+ [32m✓[39m packages/browser/test/worker-bypass.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4219[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль raw (без шару 2): POST доходить до цілі з КОЖНОГО варіанта — детектор уміє впасти [33m 1244[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов [33m 1392[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mSecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано [33m 1222[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 07:56:26
+[2m   Duration [22m 5.06s[2m (transform 194ms, setup 0ms, collect 529ms, tests 4.22s, environment 0ms, prepare 85ms)[22m
+
+rc=0
+== run 5
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/user/Projct1[39m
+
+ [32m✓[39m packages/browser/test/worker-bypass.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4134[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль raw (без шару 2): POST доходить до цілі з КОЖНОГО варіанта — детектор уміє впасти [33m 1331[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mконтроль old (шар 2 до S1b-Fix, без SharedWorker lockdown): dedicated-клас 0 POST, shared-клас — POST дійшов [33m 1252[2mms[22m[39m
+   [33m[2m✓[22m[39m worker-bypass: не-GET до цілі з Worker / SharedWorker (S1b-Fix, DEV-50)[2m > [22mSecureBrowser: 0 не-GET до цілі з усіх 13 варіантів; SharedWorker → SecurityError, його скрипт не запитано [33m 1193[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 07:56:32
+[2m   Duration [22m 4.95s[2m (transform 143ms, setup 0ms, collect 500ms, tests 4.13s, environment 0ms, prepare 73ms)[22m
+
+rc=0
+== run 6
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/user/Projct1[39m
+
